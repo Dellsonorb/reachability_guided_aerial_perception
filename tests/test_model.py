@@ -81,6 +81,8 @@ class TypeTests(unittest.TestCase):
             list(FieldStatus),
             [FieldStatus.PARTIALLY_ASSESSED, FieldStatus.NO_INVERSE_REACHABLE],
         )
+        self.assertEqual(FieldStatus.PARTIALLY_ASSESSED.value, "PARTIALLY_ASSESSED")
+        self.assertEqual(FieldStatus.NO_INVERSE_REACHABLE.value, "NO_INVERSE_REACHABLE")
         self.assertEqual(
             list(CellState),
             [
@@ -130,8 +132,8 @@ class TypeTests(unittest.TestCase):
             grid=grid,
             relevance=np.zeros(grid.shape),
             cell_state=np.full(grid.shape, CellState.UNASSESSED, dtype=np.int8),
-            evaluated_count=2,
-            feasible_count=1,
+            evaluated_count=np.full(grid.shape, 2, dtype=np.int32),
+            feasible_count=np.full(grid.shape, 1, dtype=np.int32),
             best_yaw=np.zeros(grid.shape),
             best_joint_margin_rad=np.zeros(grid.shape),
             best_fk_position_residual_m=np.zeros(grid.shape),
@@ -149,6 +151,22 @@ class TypeTests(unittest.TestCase):
                 np.zeros(grid.shape),
                 0,
                 0,
+                np.zeros(grid.shape),
+                np.zeros(grid.shape),
+                np.zeros(grid.shape),
+                np.zeros(grid.shape),
+                coverage,
+            )
+        with self.assertRaises(ValueError):
+            ManipulationInterestField(
+                "g",
+                "map",
+                FieldStatus.PARTIALLY_ASSESSED,
+                grid,
+                np.zeros(grid.shape),
+                np.zeros(grid.shape),
+                np.zeros((1, 1)),
+                np.zeros(grid.shape),
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),

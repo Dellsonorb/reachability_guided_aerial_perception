@@ -27,8 +27,8 @@ def _as_finite_vector(value: Any, size: int, name: str) -> tuple[float, ...]:
 class FieldStatus(str, Enum):
     """Assessment status exposed by a manipulation interest field."""
 
-    PARTIALLY_ASSESSED = "partially_assessed"
-    NO_INVERSE_REACHABLE = "no_inverse_reachable"
+    PARTIALLY_ASSESSED = "PARTIALLY_ASSESSED"
+    NO_INVERSE_REACHABLE = "NO_INVERSE_REACHABLE"
 
 
 class CellState(IntEnum):
@@ -232,8 +232,8 @@ class ManipulationInterestField:
     grid: GridSpec
     relevance: np.ndarray
     cell_state: np.ndarray
-    evaluated_count: int
-    feasible_count: int
+    evaluated_count: np.ndarray
+    feasible_count: np.ndarray
     best_yaw: np.ndarray
     best_joint_margin_rad: np.ndarray
     best_fk_position_residual_m: np.ndarray
@@ -261,12 +261,7 @@ class ManipulationInterestField:
         ):
             object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
         for name in ("evaluated_count", "feasible_count"):
-            value = getattr(self, name)
-            if isinstance(value, bool) or not isinstance(value, Integral) or value < 0:
-                raise ValueError(f"{name} must be a nonnegative integer")
-            object.__setattr__(self, name, int(value))
-        if self.feasible_count > self.evaluated_count:
-            raise ValueError("feasible_count cannot exceed evaluated_count")
+            object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
 
 
 @dataclass(frozen=True)
