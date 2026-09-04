@@ -33,6 +33,8 @@ def candidate(x=0.0, y=0.0, yaw=0.0, margin=0.25, **overrides):
         "rejection_reason": None,
     }
     value.update(overrides)
+    if value["valid"] is False and value["rejection_reason"] is None:
+        value["rejection_reason"] = "invalid"
     return value
 
 
@@ -45,6 +47,12 @@ def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None
         validation_limit = len(candidates)
     if valid is None:
         valid = sum(candidate_relevance(item, FieldConfig()) > 0 for item in candidates)
+    rejected = {}
+    for item in candidates:
+        if item.get("valid") is not True:
+            reason = item.get("rejection_reason")
+            if isinstance(reason, str):
+                rejected[reason] = rejected.get(reason, 0) + 1
     return {
         "schema_version": 1,
         "frame_id": "map",
@@ -55,6 +63,7 @@ def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None
             "validation_limit": validation_limit,
             "evaluated": len(candidates),
             "valid": valid,
+            "rejected_by_reason": rejected,
         },
         "evaluated_candidates": candidates,
         "candidates": [],

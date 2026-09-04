@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from collections.abc import Mapping
+from dataclasses import dataclass, field as dataclass_field
 from enum import Enum, IntEnum
 import math
 from numbers import Integral
+from types import MappingProxyType
 from typing import Any, ClassVar
 
 import numpy as np
@@ -198,8 +200,19 @@ class AssessmentCoverage:
     candidate_validation_fraction: float
     assessed_cell_fraction: float
     validation_truncated: bool
+    rejected_by_reason: Mapping[str, int] = dataclass_field(default_factory=dict)
 
     def __post_init__(self) -> None:
+        if not isinstance(self.rejected_by_reason, Mapping):
+            raise ValueError("rejected_by_reason must be a mapping")
+        rejected = {}
+        for reason, count in self.rejected_by_reason.items():
+            if not isinstance(reason, str):
+                raise ValueError("rejected_by_reason keys must be strings")
+            if isinstance(count, bool) or not isinstance(count, Integral) or count < 0:
+                raise ValueError("rejected_by_reason values must be nonnegative integers")
+            rejected[reason] = int(count)
+        object.__setattr__(self, "rejected_by_reason", MappingProxyType(rejected))
         if isinstance(self.inverse_reachable, bool) or not isinstance(self.inverse_reachable, Integral):
             raise ValueError("inverse_reachable must be a nonnegative integer")
         if self.inverse_reachable < 0:
@@ -219,6 +232,8 @@ class AssessmentCoverage:
             object.__setattr__(self, name, int(value))
         if self.valid_candidates > self.evaluated_candidates:
             raise ValueError("valid_candidates cannot exceed evaluated_candidates")
+        if sum(rejected.values()) != self.evaluated_candidates - self.valid_candidates:
+            raise ValueError("rejected_by_reason must account for every invalid evaluated candidate")
         if self.evaluated_candidates > self.deduplicated_candidates:
             raise ValueError("evaluated_candidates cannot exceed deduplicated_candidates")
         if self.evaluated_cells > self.total_cells:

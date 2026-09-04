@@ -37,6 +37,8 @@ def candidate(x=0.0, y=0.0, yaw=0.0, margin=0.25, **overrides):
         "rejection_reason": None,
     }
     value.update(overrides)
+    if value["valid"] is False and value["rejection_reason"] is None:
+        value["rejection_reason"] = "invalid"
     return value
 
 
@@ -49,6 +51,12 @@ def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None
         validation_limit = len(candidates)
     if valid is None:
         valid = sum(candidate_relevance(item, FieldConfig()) > 0 for item in candidates)
+    rejected = {}
+    for item in candidates:
+        if item.get("valid") is not True:
+            reason = item.get("rejection_reason")
+            if isinstance(reason, str):
+                rejected[reason] = rejected.get(reason, 0) + 1
     return {
         "schema_version": 1,
         "frame_id": "map",
@@ -59,6 +67,7 @@ def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None
             "validation_limit": validation_limit,
             "evaluated": len(candidates),
             "valid": valid,
+            "rejected_by_reason": rejected,
         },
         "evaluated_candidates": candidates,
         "candidates": [],
@@ -150,10 +159,37 @@ class OutputTests(unittest.TestCase):
             {"inverse_reachable", "deduplicated", "validation_limit", "evaluated", "valid", "rejected_by_reason", "assessed_cells", "total_cells", "coverage_fraction"},
         )
         self.assertEqual(summary["coverage"]["evaluated"], 2)
-        self.assertEqual(summary["coverage"]["rejected_by_reason"], {})
+        self.assertEqual(summary["coverage"]["rejected_by_reason"], {"invalid": 1})
         self.assertEqual(summary["cells"], {"unassessed": 2, "infeasible": 1, "low": 1, "high": 0})
         encoded = json.dumps(summary, allow_nan=False)
         self.assertNotIn("NaN", encoded)
+
+    def test_summary_preserves_rejected_by_reason_coverage(self):
+        rejected = candidate(0.01, -0.19, margin=0.0, valid=False, rejection_reason="joint_margin")
+        field = build_field_from_result(self.grasp, result([rejected], valid=0), self.grid)
+        summary = field_summary(field, FieldConfig())
+        self.assertEqual(summary["coverage"]["rejected_by_reason"], {"joint_margin": 1})
+
+    def test_save_rejects_candidate_count_validity_config_and_raster_contradictions(self):
+        item = candidate(-0.19, -0.19)
+        field = build_field_from_result(self.grasp, result([item], valid=1), self.grid)
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [], temporary)
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [candidate(-0.19, -0.19, valid=False)], temporary)
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [item], temporary, config=FieldConfig(minimum_joint_margin_rad=0.3))
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [candidate(0.01, 0.01)], temporary)
+
+    def test_save_requires_all_candidate_diagnostic_columns(self):
+        item = candidate(-0.19, -0.19)
+        field = build_field_from_result(self.grasp, result([item], valid=1), self.grid)
+        del item["candidate_id"]
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [item], temporary)
 
     def test_save_bundle_has_exact_files_roundtrip_arrays_and_csv(self):
         items = [

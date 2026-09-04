@@ -133,6 +133,7 @@ class TypeTests(unittest.TestCase):
             candidate_validation_fraction=1.0,
             assessed_cell_fraction=0.5,
             validation_truncated=False,
+            rejected_by_reason={"rejected": 2},
         )
         field = ManipulationInterestField(
             grasp_id="g",
@@ -179,6 +180,7 @@ class TypeTests(unittest.TestCase):
             candidate_validation_fraction=0.5,
             assessed_cell_fraction=0.5,
             validation_truncated=True,
+            rejected_by_reason={"rejected": 1},
         )
         coverage = AssessmentCoverage(**valid)
         self.assertEqual(coverage.inverse_reachable, 30564)
@@ -200,6 +202,38 @@ class TypeTests(unittest.TestCase):
             AssessmentCoverage(**{**valid, "deduplicated_candidates": 0, "evaluated_candidates": 0,
                                   "candidate_validation_fraction": 0.5, "validation_truncated": False})
 
+    def test_coverage_preserves_immutable_rejection_counts(self):
+        coverage = AssessmentCoverage(
+            inverse_reachable=2,
+            deduplicated_candidates=2,
+            validation_limit=2,
+            evaluated_candidates=2,
+            valid_candidates=1,
+            evaluated_cells=1,
+            total_cells=4,
+            candidate_validation_fraction=1.0,
+            assessed_cell_fraction=0.25,
+            validation_truncated=False,
+            rejected_by_reason={"collision": 1},
+        )
+        self.assertEqual(dict(coverage.rejected_by_reason), {"collision": 1})
+        with self.assertRaises(TypeError):
+            coverage.rejected_by_reason["other"] = 1
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(
+                inverse_reachable=2,
+                deduplicated_candidates=2,
+                validation_limit=2,
+                evaluated_candidates=2,
+                valid_candidates=1,
+                evaluated_cells=1,
+                total_cells=4,
+                candidate_validation_fraction=1.0,
+                assessed_cell_fraction=0.25,
+                validation_truncated=False,
+                rejected_by_reason={"bad": 2},
+            )
+
     def test_ndarray_records_own_read_only_array_copies(self):
         grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
         source_relevance = np.zeros(grid.shape)
@@ -207,7 +241,7 @@ class TypeTests(unittest.TestCase):
         source_evaluated = np.ones(grid.shape, dtype=np.int32)
         source_feasible = np.zeros(grid.shape, dtype=np.int32)
         source_diagnostic = np.zeros(grid.shape)
-        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False)
+        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False, {"rejected": 1})
         field = ManipulationInterestField(
             "g", "map", FieldStatus.PARTIALLY_ASSESSED, grid,
             source_relevance, source_state, source_evaluated, source_feasible,
@@ -230,7 +264,7 @@ class TypeTests(unittest.TestCase):
 
     def test_interest_field_arrays_have_minimal_semantic_validation(self):
         grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
-        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False)
+        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False, {"rejected": 1})
         base = dict(
             grasp_id="g", frame_id="map", status=FieldStatus.PARTIALLY_ASSESSED, grid=grid,
             relevance=np.zeros(grid.shape),
@@ -283,6 +317,7 @@ class TypeTests(unittest.TestCase):
             candidate_validation_fraction=0.5,
             assessed_cell_fraction=0.5,
             validation_truncated=True,
+            rejected_by_reason={"rejected": 1},
         )
         with self.assertRaises(ValueError):
             AssessmentCoverage(**{**valid, "evaluated_candidates": 3})
@@ -301,11 +336,11 @@ class TypeTests(unittest.TestCase):
             best_joint_margin_rad=np.full(grid.shape, np.nan),
             best_fk_position_residual_m=np.full(grid.shape, np.nan),
             best_fk_orientation_residual_rad=np.full(grid.shape, np.nan),
-            coverage=AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False),
+            coverage=AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False, {"rejected": 1}),
         )
         with self.assertRaises(ValueError):
             ManipulationInterestField(**{**base, "coverage": dataclasses.replace(base["coverage"], total_cells=3)})
-        no_inverse_coverage = AssessmentCoverage(0, 0, 0, 0, 0, 0, 4, 0.0, 0.0, False)
+        no_inverse_coverage = AssessmentCoverage(0, 0, 0, 0, 0, 0, 4, 0.0, 0.0, False, {})
         with self.assertRaises(ValueError):
             ManipulationInterestField(**{**base, "status": FieldStatus.PARTIALLY_ASSESSED,
                                          "coverage": no_inverse_coverage,

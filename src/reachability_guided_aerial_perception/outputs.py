@@ -11,11 +11,12 @@ from typing import Any
 
 import numpy as np
 
-from .field import candidate_relevance
+from .field import build_field_from_result, candidate_relevance
 from .model import (
     CellState,
     FieldConfig,
     FieldStatus,
+    GraspTCP,
     ManipulationInterestField,
 )
 
@@ -36,6 +37,7 @@ _CANDIDATE_COLUMNS = (
     "valid",
     "rejection_reason",
 )
+_RAW_CANDIDATE_COLUMNS = tuple(name for name in _CANDIDATE_COLUMNS if name != "field_relevance")
 
 
 def _require_field(field: Any) -> ManipulationInterestField:
@@ -55,7 +57,66 @@ def _validate_candidates(evaluated_candidates: Any) -> list[Mapping[str, Any]]:
         raise ValueError("evaluated_candidates must be a list")
     if not all(isinstance(candidate, Mapping) for candidate in evaluated_candidates):
         raise ValueError("each evaluated candidate must be a mapping")
+    for candidate in evaluated_candidates:
+        missing = [name for name in _RAW_CANDIDATE_COLUMNS if name not in candidate]
+        if missing:
+            raise ValueError(f"candidate missing required fields: {', '.join(missing)}")
     return evaluated_candidates
+
+
+def _candidate_rejection_counts(candidates: list[Mapping[str, Any]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for candidate in candidates:
+        if candidate["valid"] is True:
+            continue
+        reason = candidate["rejection_reason"]
+        if not isinstance(reason, str):
+            raise ValueError("invalid candidate must have a string rejection_reason")
+        counts[reason] = counts.get(reason, 0) + 1
+    return counts
+
+
+def _validate_field_raster(
+    field: ManipulationInterestField,
+    candidates: list[Mapping[str, Any]],
+    config: FieldConfig,
+) -> None:
+    coverage = field.coverage
+    if len(candidates) != coverage.evaluated_candidates:
+        raise ValueError("candidate count does not match field coverage")
+    valid_count = sum(candidate["valid"] is True for candidate in candidates)
+    if valid_count != coverage.valid_candidates:
+        raise ValueError("candidate valid count does not match field coverage")
+    if _candidate_rejection_counts(candidates) != dict(coverage.rejected_by_reason):
+        raise ValueError("candidate rejection counts do not match field coverage")
+    synthetic_grasp = GraspTCP(field.grasp_id, field.frame_id, (0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0))
+    reconstructed = build_field_from_result(
+        synthetic_grasp,
+        {
+            "schema_version": 1,
+            "frame_id": field.frame_id,
+            "grasp_id": field.grasp_id,
+            "summary": {
+                "inverse_reachable": coverage.inverse_reachable,
+                "deduplicated": coverage.deduplicated_candidates,
+                "validation_limit": coverage.validation_limit,
+                "evaluated": coverage.evaluated_candidates,
+                "valid": coverage.valid_candidates,
+                "rejected_by_reason": dict(coverage.rejected_by_reason),
+            },
+            "evaluated_candidates": candidates,
+        },
+        grid=field.grid,
+        config=config,
+    )
+    for actual, expected, name in (
+        (reconstructed.relevance, field.relevance, "relevance"),
+        (reconstructed.cell_state, field.cell_state, "cell_state"),
+        (reconstructed.evaluated_count, field.evaluated_count, "evaluated_count"),
+        (reconstructed.feasible_count, field.feasible_count, "valid_count"),
+    ):
+        if not np.array_equal(actual, expected, equal_nan=True):
+            raise ValueError(f"provided candidates/config do not reproduce field {name}")
 
 
 def _csv_value(value: Any) -> Any:
@@ -117,7 +178,7 @@ def field_summary(field: ManipulationInterestField, config: FieldConfig) -> dict
         "validation_limit": coverage_values["validation_limit"],
         "evaluated": coverage_values["evaluated_candidates"],
         "valid": coverage_values["valid_candidates"],
-        "rejected_by_reason": {},
+        "rejected_by_reason": dict(coverage_values["rejected_by_reason"]),
         "assessed_cells": coverage_values["evaluated_cells"],
         "total_cells": coverage_values["total_cells"],
         "coverage_fraction": coverage_values["assessed_cell_fraction"],
@@ -163,6 +224,7 @@ def save_field_bundle(
     field = _require_field(field)
     config = _require_config(config)
     candidates = _validate_candidates(evaluated_candidates)
+    _validate_field_raster(field, candidates, config)
     try:
         output_path = Path(output_dir)
     except (TypeError, ValueError) as exc:

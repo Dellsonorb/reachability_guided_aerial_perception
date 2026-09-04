@@ -63,6 +63,20 @@ def _require_count(summary: Mapping[str, Any], name: str) -> int:
     return int(value)
 
 
+def _require_rejection_counts(summary: Mapping[str, Any]) -> dict[str, int]:
+    value = summary.get("rejected_by_reason")
+    if not isinstance(value, Mapping):
+        raise ValueError("summary.rejected_by_reason must be a mapping")
+    result = {}
+    for reason, count in value.items():
+        if not isinstance(reason, str):
+            raise ValueError("summary.rejected_by_reason keys must be strings")
+        if isinstance(count, bool) or not isinstance(count, Integral) or count < 0:
+            raise ValueError("summary.rejected_by_reason values must be nonnegative integers")
+        result[reason] = int(count)
+    return result
+
+
 def _validate_pose(candidate: Mapping[str, Any]) -> tuple[float, float, float]:
     values = []
     for name in _POSE_FIELDS:
@@ -150,7 +164,7 @@ def _validate_frozen_valid_evidence(candidate: Mapping[str, Any]) -> None:
 def _validate_result(
     grasp: GraspTCP,
     result: Mapping[str, Any],
-) -> tuple[Mapping[str, Any], dict[str, int]]:
+) -> tuple[Mapping[str, Any], dict[str, Any]]:
     if not isinstance(result, Mapping):
         raise ValueError("result must be a mapping")
     if type(result.get("schema_version")) is not int or result["schema_version"] != 1:
@@ -168,6 +182,7 @@ def _validate_result(
     counts = {name: _require_count(summary, name) for name in (
         "inverse_reachable", "deduplicated", "validation_limit", "evaluated", "valid"
     )}
+    counts["rejected_by_reason"] = _require_rejection_counts(summary)
     if counts["evaluated"] != len(evaluated):
         raise ValueError("summary.evaluated must equal evaluated_candidates length")
     if counts["evaluated"] > counts["validation_limit"]:
@@ -181,6 +196,7 @@ def _validate_result(
     if counts["inverse_reachable"] == 0 and any(counts[name] for name in ("deduplicated", "evaluated", "valid")):
         raise ValueError("zero inverse-reachable result must have zero candidate counts")
     baseline_valid = 0
+    rejection_counts: dict[str, int] = {}
     for item in evaluated:
         if not isinstance(item, Mapping):
             raise ValueError("each evaluated candidate must be a mapping")
@@ -189,8 +205,15 @@ def _validate_result(
         _validate_frozen_valid_evidence(item)
         if item["valid"] is True:
             baseline_valid += 1
+        else:
+            reason = item["rejection_reason"]
+            if not isinstance(reason, str):
+                raise ValueError("invalid candidate must have a string rejection_reason")
+            rejection_counts[reason] = rejection_counts.get(reason, 0) + 1
     if counts["valid"] != baseline_valid:
         raise ValueError("summary.valid must equal baseline valid candidate count")
+    if counts["rejected_by_reason"] != rejection_counts:
+        raise ValueError("summary.rejected_by_reason must match invalid candidate rejection reasons")
     return result, counts
 
 
@@ -261,6 +284,7 @@ def build_field_from_result(
         candidate_validation_fraction=(counts["evaluated"] / counts["deduplicated"] if counts["deduplicated"] else 0.0),
         assessed_cell_fraction=(evaluated_cells / grid.total_cells if grid.total_cells else 0.0),
         validation_truncated=counts["deduplicated"] > counts["evaluated"],
+        rejected_by_reason=counts["rejected_by_reason"],
     )
     status = FieldStatus.NO_INVERSE_REACHABLE if counts["inverse_reachable"] == 0 else FieldStatus.PARTIALLY_ASSESSED
     return ManipulationInterestField(
