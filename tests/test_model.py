@@ -114,6 +114,8 @@ class TypeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             FieldConfig(minimum_joint_margin_rad=-0.1)
         with self.assertRaises(ValueError):
+            FieldConfig(minimum_joint_margin_rad=0.0)
+        with self.assertRaises(ValueError):
             FieldConfig(minimum_joint_margin_rad=0.5, joint_margin_saturation_rad=0.1)
         with self.assertRaises(ValueError):
             FieldConfig(high_relevance_threshold=math.inf)

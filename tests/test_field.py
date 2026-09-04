@@ -88,6 +88,10 @@ class CandidateRelevanceTests(unittest.TestCase):
                 item = candidate()
                 item[field] = True if field == "footprint_collision" else False
                 self.assertEqual(candidate_relevance(item, FieldConfig()), 0.0)
+        for footprint in (None, 0, 1, np.bool_(False), "false"):
+            item = candidate(footprint_collision=footprint)
+            with self.subTest(footprint_collision=footprint):
+                self.assertEqual(candidate_relevance(item, FieldConfig()), 0.0)
         for margin in (None, math.nan, 0.009):
             with self.subTest(margin=margin):
                 self.assertEqual(candidate_relevance(candidate(margin=margin), FieldConfig()), 0.0)
@@ -148,7 +152,13 @@ class FieldBuilderTests(unittest.TestCase):
         self.assertEqual(field.cell_state[empty_cell], CellState.UNASSESSED)
 
     def test_null_diagnostics_are_nan_and_out_of_grid_candidates_are_ignored(self):
-        inside = candidate(0.01, 0.01, fk_position_residual_m=None, fk_orientation_residual_rad=None)
+        inside = candidate(
+            0.01,
+            0.01,
+            valid=False,
+            fk_position_residual_m=None,
+            fk_orientation_residual_rad=None,
+        )
         outside = candidate(4.0, 4.0, margin=0.5)
         field = build_field_from_result(self.grasp, result([inside, outside]), self.grid)
         cell = self.grid.cell_index(0.01, 0.01)
@@ -183,6 +193,33 @@ class FieldBuilderTests(unittest.TestCase):
         self.assertEqual(field.evaluated_count[cell], 1)
         self.assertEqual(field.feasible_count[cell], 0)
         self.assertEqual(field.cell_state[cell], CellState.INFEASIBLE)
+
+    def test_baseline_valid_candidate_must_have_frozen_valid_evidence(self):
+        for updates in (
+            {"joint_margin_rad": None},
+            {"rm4d_reachable": False},
+            {"ik_valid": False},
+            {"collision_free": False},
+            {"footprint_collision": True},
+            {"fk_position_residual_m": None},
+            {"fk_orientation_residual_rad": None},
+        ):
+            item = candidate(**updates)
+            with self.subTest(updates=updates):
+                with self.assertRaises(ValueError):
+                    build_field_from_result(self.grasp, result([item], valid=1), self.grid)
+
+    def test_summary_requires_exact_frozen_candidate_coverage_counts(self):
+        with self.assertRaises(ValueError):
+            build_field_from_result(self.grasp, result([], inverse=3, deduplicated=0, validation_limit=0, valid=0), self.grid)
+        items = [candidate(0.01, 0.01)]
+        with self.assertRaises(ValueError):
+            build_field_from_result(self.grasp, result(items, inverse=3, deduplicated=2, validation_limit=2, valid=1), self.grid)
+
+    def test_huge_candidate_pose_raises_value_error(self):
+        item = candidate(bunker_x=10 ** 10000)
+        with self.assertRaises(ValueError):
+            build_field_from_result(self.grasp, result([item], valid=1), self.grid)
 
     def test_no_inverse_reachable_is_distinct_and_all_cells_unassessed(self):
         field = build_field_from_result(self.grasp, result([], inverse=0, deduplicated=0, validation_limit=0, valid=0), self.grid)
@@ -304,6 +341,24 @@ class LiveBuilderTests(unittest.TestCase):
         assert cell is not None
         self.assertEqual(field.best_yaw[cell], 0.7)
         self.assertEqual(field.relevance[cell], 0.5)
+
+    def test_live_builder_rejects_invalid_local_args_before_api_call(self):
+        grasp = GraspTCP("g", "map", (0.0, 0.0, 0.4), (0, 0, 0, 1))
+
+        class FakeAPI:
+            def __init__(self):
+                self.calls = 0
+
+            def plan(self, request, top_k=None):
+                self.calls += 1
+                raise AssertionError("API must not be called")
+
+        for grid, config in ((object(), FieldConfig()), (GridSpec.centered((0, 0), 0.2, 0.2, 0.1), object())):
+            api = FakeAPI()
+            with self.subTest(grid=grid, config=config):
+                with self.assertRaises(ValueError):
+                    build_field(grasp, api, grid=grid, config=config)
+            self.assertEqual(api.calls, 0)
 
 
 if __name__ == "__main__":

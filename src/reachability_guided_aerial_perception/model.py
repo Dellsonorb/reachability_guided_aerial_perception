@@ -178,8 +178,8 @@ class FieldConfig:
             if not isinstance(value, (int, float, np.number)) or not math.isfinite(float(value)):
                 raise ValueError(f"{name} must be finite")
             object.__setattr__(self, name, float(value))
-        if self.minimum_joint_margin_rad < 0:
-            raise ValueError("minimum_joint_margin_rad must be nonnegative")
+        if self.minimum_joint_margin_rad <= 0:
+            raise ValueError("minimum_joint_margin_rad must be positive")
         if self.joint_margin_saturation_rad <= self.minimum_joint_margin_rad:
             raise ValueError("joint_margin_saturation_rad must be greater than minimum_joint_margin_rad")
         if not 0.0 <= self.high_relevance_threshold <= 1.0:

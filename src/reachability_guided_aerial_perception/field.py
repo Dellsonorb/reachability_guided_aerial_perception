@@ -27,7 +27,7 @@ def _is_gate_valid(candidate: Mapping[str, Any], config: FieldConfig) -> bool:
     """Apply the complete candidate validity gate."""
     if not all(candidate.get(name) is True for name in ("rm4d_reachable", "ik_valid", "collision_free", "valid")):
         return False
-    if candidate.get("footprint_collision") is True:
+    if candidate.get("footprint_collision") is not False:
         return False
     margin = _as_scalar(candidate.get("joint_margin_rad"))
     return margin is not None and margin >= config.minimum_joint_margin_rad
@@ -48,7 +48,7 @@ def _as_scalar(value: Any) -> float | None:
     """Convert a scalar numeric value without NumPy scalar conversion warnings."""
     try:
         array = np.asarray(value, dtype=float)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):
         return None
     if array.shape != ():
         return None
@@ -69,7 +69,11 @@ def _validate_pose(candidate: Mapping[str, Any]) -> tuple[float, float, float]:
         if name not in candidate:
             raise ValueError(f"candidate missing {name}")
         value = candidate[name]
-        if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(float(value)):
+        try:
+            finite = math.isfinite(float(value))
+        except (TypeError, ValueError, OverflowError):
+            finite = False
+        if isinstance(value, bool) or not isinstance(value, Real) or not finite:
             raise ValueError(f"candidate {name} must be a finite real")
         values.append(float(value))
     return tuple(values)  # type: ignore[return-value]
@@ -81,7 +85,11 @@ def _validate_diagnostic(candidate: Mapping[str, Any], name: str) -> float:
     value = candidate[name]
     if value is None:
         return math.nan
-    if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(float(value)) or value < 0:
+    try:
+        finite = math.isfinite(float(value))
+    except (TypeError, ValueError, OverflowError):
+        finite = False
+    if isinstance(value, bool) or not isinstance(value, Real) or not finite or value < 0:
         raise ValueError(f"candidate {name} must be null or finite nonnegative")
     return float(value)
 
@@ -99,7 +107,7 @@ def _validate_candidate_evidence(candidate: Mapping[str, Any]) -> None:
     if margin is not None and (
         isinstance(margin, bool)
         or not isinstance(margin, Real)
-        or not math.isfinite(float(margin))
+        or not _is_finite_real(margin)
         or margin < 0
     ):
         raise ValueError("candidate joint_margin_rad must be null or finite nonnegative")
@@ -109,6 +117,34 @@ def _validate_candidate_evidence(candidate: Mapping[str, Any]) -> None:
         raise ValueError("candidate missing rejection_reason")
     if candidate["rejection_reason"] is not None and not isinstance(candidate["rejection_reason"], str):
         raise ValueError("candidate rejection_reason must be a string or null")
+
+
+def _is_finite_real(value: Any) -> bool:
+    if isinstance(value, bool) or not isinstance(value, Real):
+        return False
+    try:
+        return math.isfinite(float(value))
+    except (TypeError, ValueError, OverflowError):
+        return False
+
+
+def _validate_frozen_valid_evidence(candidate: Mapping[str, Any]) -> None:
+    if candidate["valid"] is not True:
+        return
+    if (
+        candidate["rm4d_reachable"] is not True
+        or candidate["ik_valid"] is not True
+        or candidate["collision_free"] is not True
+        or candidate["footprint_collision"] is not False
+    ):
+        raise ValueError("baseline-valid candidate has inconsistent validity flags")
+    margin = candidate["joint_margin_rad"]
+    if margin is None or not _is_finite_real(margin) or float(margin) < 0.01:
+        raise ValueError("baseline-valid candidate has invalid joint margin")
+    for name in ("fk_position_residual_m", "fk_orientation_residual_rad"):
+        value = candidate[name]
+        if value is None or not _is_finite_real(value) or float(value) < 0:
+            raise ValueError("baseline-valid candidate has invalid FK residual")
 
 
 def _validate_result(
@@ -138,6 +174,10 @@ def _validate_result(
         raise ValueError("summary.evaluated cannot exceed validation_limit")
     if counts["deduplicated"] > counts["inverse_reachable"]:
         raise ValueError("summary.deduplicated cannot exceed inverse_reachable")
+    if counts["inverse_reachable"] > 0 and counts["deduplicated"] == 0:
+        raise ValueError("positive inverse-reachable count requires deduplicated candidates")
+    if counts["evaluated"] != min(counts["deduplicated"], counts["validation_limit"]):
+        raise ValueError("summary.evaluated must equal the frozen validation selection count")
     if counts["inverse_reachable"] == 0 and any(counts[name] for name in ("deduplicated", "evaluated", "valid")):
         raise ValueError("zero inverse-reachable result must have zero candidate counts")
     baseline_valid = 0
@@ -146,6 +186,7 @@ def _validate_result(
             raise ValueError("each evaluated candidate must be a mapping")
         _validate_candidate_evidence(item)
         _validate_pose(item)
+        _validate_frozen_valid_evidence(item)
         if item["valid"] is True:
             baseline_valid += 1
     if counts["valid"] != baseline_valid:
@@ -246,5 +287,11 @@ def build_field(
     config: FieldConfig = FieldConfig(),
 ) -> ManipulationInterestField:
     """Call the planner once and build a field from its complete evaluation set."""
+    if not isinstance(grasp, GraspTCP):
+        raise ValueError("grasp must be a GraspTCP")
+    if grid is not None and not isinstance(grid, GridSpec):
+        raise ValueError("grid must be a GridSpec")
+    if not isinstance(config, FieldConfig):
+        raise ValueError("config must be a FieldConfig")
     result = rm4d_api.plan(grasp.as_request(), top_k=1)
     return build_field_from_result(grasp, result, grid=grid, config=config)
