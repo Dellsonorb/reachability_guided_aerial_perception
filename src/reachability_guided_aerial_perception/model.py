@@ -149,6 +149,10 @@ class GridSpec:
         if not math.isfinite(x_value) or not math.isfinite(y_value):
             return None
         origin_x, origin_y = self.origin_xy
+        if x_value < origin_x or x_value >= origin_x + self.width_m:
+            return None
+        if y_value < origin_y or y_value >= origin_y + self.height_m:
+            return None
         column = math.floor((x_value - origin_x) / self.resolution_m)
         row = math.floor((y_value - origin_y) / self.resolution_m)
         if not (0 <= column < self.width_cells and 0 <= row < self.height_cells):
@@ -184,7 +188,7 @@ class FieldConfig:
 
 @dataclass(frozen=True)
 class AssessmentCoverage:
-    inverse_reachable: bool
+    inverse_reachable: int
     deduplicated_candidates: int
     validation_limit: int
     evaluated_candidates: int
@@ -196,6 +200,11 @@ class AssessmentCoverage:
     validation_truncated: bool
 
     def __post_init__(self) -> None:
+        if isinstance(self.inverse_reachable, bool) or not isinstance(self.inverse_reachable, Integral):
+            raise ValueError("inverse_reachable must be a nonnegative integer")
+        if self.inverse_reachable < 0:
+            raise ValueError("inverse_reachable must be a nonnegative integer")
+        object.__setattr__(self, "inverse_reachable", int(self.inverse_reachable))
         for name in (
             "deduplicated_candidates",
             "validation_limit",
@@ -208,6 +217,12 @@ class AssessmentCoverage:
             if isinstance(value, bool) or not isinstance(value, Integral) or value < 0:
                 raise ValueError(f"{name} must be a nonnegative integer")
             object.__setattr__(self, name, int(value))
+        if self.valid_candidates > self.evaluated_candidates:
+            raise ValueError("valid_candidates cannot exceed evaluated_candidates")
+        if self.evaluated_candidates > self.deduplicated_candidates:
+            raise ValueError("evaluated_candidates cannot exceed deduplicated_candidates")
+        if self.evaluated_cells > self.total_cells:
+            raise ValueError("evaluated_cells cannot exceed total_cells")
         for name in ("candidate_validation_fraction", "assessed_cell_fraction"):
             value = getattr(self, name)
             if not isinstance(value, (int, float, np.number)) or not math.isfinite(float(value)):
@@ -215,16 +230,41 @@ class AssessmentCoverage:
             if not 0.0 <= float(value) <= 1.0:
                 raise ValueError(f"{name} must be between 0 and 1")
             object.__setattr__(self, name, float(value))
+        expected_candidate_fraction = (
+            self.evaluated_candidates / self.deduplicated_candidates
+            if self.deduplicated_candidates
+            else 0.0
+        )
+        expected_cell_fraction = self.evaluated_cells / self.total_cells if self.total_cells else 0.0
+        if not math.isclose(
+            self.candidate_validation_fraction,
+            expected_candidate_fraction,
+            rel_tol=1e-9,
+            abs_tol=1e-9,
+        ):
+            raise ValueError("candidate_validation_fraction is inconsistent with candidate counts")
+        if not math.isclose(
+            self.assessed_cell_fraction,
+            expected_cell_fraction,
+            rel_tol=1e-9,
+            abs_tol=1e-9,
+        ):
+            raise ValueError("assessed_cell_fraction is inconsistent with cell counts")
+        if type(self.validation_truncated) is not bool:
+            raise ValueError("validation_truncated must be a bool")
+        if self.validation_truncated != (self.deduplicated_candidates > self.evaluated_candidates):
+            raise ValueError("validation_truncated is inconsistent with candidate counts")
 
 
 def _as_grid_array(value: Any, shape: tuple[int, int], name: str) -> np.ndarray:
-    array = np.asarray(value)
+    array = np.array(value, copy=True, subok=False)
     if array.shape != shape:
         raise ValueError(f"{name} must have shape {shape}")
+    array.setflags(write=False)
     return array
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, eq=False)
 class ManipulationInterestField:
     grasp_id: str
     frame_id: str
@@ -262,9 +302,32 @@ class ManipulationInterestField:
             object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
         for name in ("evaluated_count", "feasible_count"):
             object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
+        if not np.issubdtype(self.relevance.dtype, np.number):
+            raise ValueError("relevance must be numeric")
+        if not np.all(np.isin(self.cell_state, [state.value for state in CellState])):
+            raise ValueError("cell_state contains an unknown state")
+        for name in ("evaluated_count", "feasible_count"):
+            array = getattr(self, name)
+            if not np.issubdtype(array.dtype, np.integer):
+                raise ValueError(f"{name} must contain integer values")
+            if np.any(array < 0):
+                raise ValueError(f"{name} must contain nonnegative values")
+        if np.any(self.feasible_count > self.evaluated_count):
+            raise ValueError("feasible_count cannot exceed evaluated_count")
+        for name in (
+            "best_yaw",
+            "best_joint_margin_rad",
+            "best_fk_position_residual_m",
+            "best_fk_orientation_residual_rad",
+        ):
+            array = getattr(self, name)
+            if not np.issubdtype(array.dtype, np.number):
+                raise ValueError(f"{name} must be numeric")
+            if np.any(np.isinf(array)):
+                raise ValueError(f"{name} must not contain infinite values")
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, eq=False)
 class OccupancyGridPayload:
     frame_id: str
     field_status: FieldStatus
@@ -292,7 +355,8 @@ class OccupancyGridPayload:
             if isinstance(value, bool) or not isinstance(value, Integral) or value < 1:
                 raise ValueError(f"{name} must be a positive integer")
             object.__setattr__(self, name, int(value))
-        array = np.asarray(self.data)
+        array = np.array(self.data, copy=True, subok=False)
         if array.shape not in ((self.height, self.width), (self.height * self.width,)):
             raise ValueError("data must have shape (height, width) or (height * width,)")
+        array.setflags(write=False)
         object.__setattr__(self, "data", array)

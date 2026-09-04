@@ -74,6 +74,13 @@ class GridSpecTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             GridSpec.centered((0, 0), 1.01, 1, 0.1)
 
+    def test_cell_index_uses_half_open_bounds_at_exact_upper_edge(self):
+        grid = GridSpec.centered((0, 0), 0.6, 0.6, 0.1)
+        self.assertEqual(grid.cell_index(grid.origin_x, grid.origin_y), (0, 0))
+        self.assertEqual(grid.cell_index(grid.origin_x + 0.5, grid.origin_y + 0.5), (5, 5))
+        self.assertIsNone(grid.cell_index(grid.origin_x + grid.width_m, grid.origin_y + 0.1))
+        self.assertIsNone(grid.cell_index(grid.origin_x + 0.1, grid.origin_y + grid.height_m))
+
 
 class TypeTests(unittest.TestCase):
     def test_enums_have_exact_wire_values(self):
@@ -114,7 +121,7 @@ class TypeTests(unittest.TestCase):
     def test_frozen_field_records_validate_grid_shaped_arrays(self):
         grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
         coverage = AssessmentCoverage(
-            inverse_reachable=True,
+            inverse_reachable=1,
             deduplicated_candidates=4,
             validation_limit=4,
             evaluated_candidates=4,
@@ -157,6 +164,95 @@ class TypeTests(unittest.TestCase):
                 np.zeros(grid.shape),
                 coverage,
             )
+
+    def test_coverage_requires_integer_inverse_count_and_consistent_invariants(self):
+        valid = dict(
+            inverse_reachable=30564,
+            deduplicated_candidates=4,
+            validation_limit=2,
+            evaluated_candidates=2,
+            valid_candidates=1,
+            evaluated_cells=2,
+            total_cells=4,
+            candidate_validation_fraction=0.5,
+            assessed_cell_fraction=0.5,
+            validation_truncated=True,
+        )
+        coverage = AssessmentCoverage(**valid)
+        self.assertEqual(coverage.inverse_reachable, 30564)
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "inverse_reachable": True})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "inverse_reachable": -1})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "valid_candidates": 3})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "evaluated_candidates": 5})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "evaluated_cells": 5})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "candidate_validation_fraction": 0.6})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "validation_truncated": False})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "deduplicated_candidates": 0, "evaluated_candidates": 0,
+                                  "candidate_validation_fraction": 0.5, "validation_truncated": False})
+
+    def test_ndarray_records_own_read_only_array_copies(self):
+        grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
+        source_relevance = np.zeros(grid.shape)
+        source_state = np.full(grid.shape, CellState.UNASSESSED, dtype=np.int8)
+        source_evaluated = np.ones(grid.shape, dtype=np.int32)
+        source_feasible = np.zeros(grid.shape, dtype=np.int32)
+        source_diagnostic = np.zeros(grid.shape)
+        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False)
+        field = ManipulationInterestField(
+            "g", "map", FieldStatus.PARTIALLY_ASSESSED, grid,
+            source_relevance, source_state, source_evaluated, source_feasible,
+            source_diagnostic, source_diagnostic, source_diagnostic, source_diagnostic,
+            coverage,
+        )
+        source_relevance[0, 0] = 1.0
+        source_evaluated[0, 0] = 0
+        self.assertEqual(field.relevance[0, 0], 0.0)
+        self.assertEqual(field.evaluated_count[0, 0], 1)
+        with self.assertRaises(ValueError):
+            field.relevance[0, 0] = 1.0
+
+        source_data = np.zeros((2, 2), dtype=np.int8)
+        payload = OccupancyGridPayload("map", FieldStatus.PARTIALLY_ASSESSED, -0.1, -0.1, 0.1, 2, 2, source_data)
+        source_data[0, 0] = 100
+        self.assertEqual(payload.data[0, 0], 0)
+        with self.assertRaises(ValueError):
+            payload.data[0, 0] = 100
+
+    def test_interest_field_arrays_have_minimal_semantic_validation(self):
+        grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
+        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False)
+        base = dict(
+            grasp_id="g", frame_id="map", status=FieldStatus.PARTIALLY_ASSESSED, grid=grid,
+            relevance=np.zeros(grid.shape),
+            cell_state=np.full(grid.shape, CellState.UNASSESSED, dtype=np.int8),
+            evaluated_count=np.ones(grid.shape, dtype=np.int32),
+            feasible_count=np.zeros(grid.shape, dtype=np.int32),
+            best_yaw=np.full(grid.shape, np.nan),
+            best_joint_margin_rad=np.zeros(grid.shape),
+            best_fk_position_residual_m=np.zeros(grid.shape),
+            best_fk_orientation_residual_rad=np.zeros(grid.shape),
+            coverage=coverage,
+        )
+        for name, value in (
+            ("relevance", np.full(grid.shape, "x", dtype=object)),
+            ("cell_state", np.full(grid.shape, 9, dtype=np.int8)),
+            ("evaluated_count", np.ones(grid.shape, dtype=float)),
+            ("evaluated_count", -np.ones(grid.shape, dtype=np.int32)),
+            ("feasible_count", np.full(grid.shape, 2, dtype=np.int32)),
+            ("best_yaw", np.full(grid.shape, np.inf)),
+            ("best_joint_margin_rad", np.full(grid.shape, "x", dtype=object)),
+        ):
+            with self.subTest(name=name):
+                with self.assertRaises(ValueError):
+                    ManipulationInterestField(**{**base, name: value})
         with self.assertRaises(ValueError):
             ManipulationInterestField(
                 "g",
