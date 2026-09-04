@@ -10,6 +10,7 @@ from .model import (
     ManipulationInterestField,
     OccupancyGridPayload,
 )
+from .field import build_field, build_field_from_result, candidate_relevance
 
 __all__ = [
     "AssessmentCoverage",
@@ -20,4 +21,7 @@ __all__ = [
     "GridSpec",
     "ManipulationInterestField",
     "OccupancyGridPayload",
+    "candidate_relevance",
+    "build_field_from_result",
+    "build_field",
 ]
