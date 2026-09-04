@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from numbers import Integral
+from numbers import Integral, Real
 import math
 from typing import Any
 
@@ -68,23 +68,47 @@ def _validate_pose(candidate: Mapping[str, Any]) -> tuple[float, float, float]:
     for name in _POSE_FIELDS:
         if name not in candidate:
             raise ValueError(f"candidate missing {name}")
-        value = _as_scalar(candidate[name])
-        if value is None:
-            raise ValueError(f"candidate {name} must be finite")
-        values.append(value)
+        value = candidate[name]
+        if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(float(value)):
+            raise ValueError(f"candidate {name} must be a finite real")
+        values.append(float(value))
     return tuple(values)  # type: ignore[return-value]
 
 
 def _validate_diagnostic(candidate: Mapping[str, Any], name: str) -> float:
-    value = candidate.get(name)
+    if name not in candidate:
+        raise ValueError(f"candidate missing {name}")
+    value = candidate[name]
     if value is None:
         return math.nan
-    value = _as_scalar(value)
-    if value is None:
+    if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(float(value)) or value < 0:
         raise ValueError(f"candidate {name} must be null or finite nonnegative")
-    if value < 0:
-        raise ValueError(f"candidate {name} must be null or finite nonnegative")
-    return value
+    return float(value)
+
+
+def _validate_candidate_evidence(candidate: Mapping[str, Any]) -> None:
+    candidate_id = candidate.get("candidate_id")
+    if not isinstance(candidate_id, str) or not candidate_id.strip():
+        raise ValueError("candidate_id must be a nonblank string")
+    for name in ("rm4d_reachable", "ik_valid", "collision_free", "footprint_collision", "valid"):
+        if type(candidate.get(name)) is not bool:
+            raise ValueError(f"candidate {name} must be a bool")
+    if "joint_margin_rad" not in candidate:
+        raise ValueError("candidate missing joint_margin_rad")
+    margin = candidate["joint_margin_rad"]
+    if margin is not None and (
+        isinstance(margin, bool)
+        or not isinstance(margin, Real)
+        or not math.isfinite(float(margin))
+        or margin < 0
+    ):
+        raise ValueError("candidate joint_margin_rad must be null or finite nonnegative")
+    _validate_diagnostic(candidate, "fk_position_residual_m")
+    _validate_diagnostic(candidate, "fk_orientation_residual_rad")
+    if "rejection_reason" not in candidate:
+        raise ValueError("candidate missing rejection_reason")
+    if candidate["rejection_reason"] is not None and not isinstance(candidate["rejection_reason"], str):
+        raise ValueError("candidate rejection_reason must be a string or null")
 
 
 def _validate_result(
@@ -94,6 +118,8 @@ def _validate_result(
 ) -> tuple[Mapping[str, Any], dict[str, int]]:
     if not isinstance(result, Mapping):
         raise ValueError("result must be a mapping")
+    if type(result.get("schema_version")) is not int or result["schema_version"] != 1:
+        raise ValueError("result.schema_version must be 1")
     if result.get("frame_id") != "map":
         raise ValueError("result.frame_id must be 'map'")
     if result.get("grasp_id") != grasp.grasp_id:
@@ -119,6 +145,7 @@ def _validate_result(
     for item in evaluated:
         if not isinstance(item, Mapping):
             raise ValueError("each evaluated candidate must be a mapping")
+        _validate_candidate_evidence(item)
         _validate_pose(item)
         if _is_gate_valid(item, config):
             gate_valid += 1

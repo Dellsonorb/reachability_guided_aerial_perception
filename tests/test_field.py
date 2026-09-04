@@ -18,6 +18,7 @@ from reachability_guided_aerial_perception import (
 
 def candidate(x=0.0, y=0.0, yaw=0.0, margin=0.25, **overrides):
     value = {
+        "candidate_id": f"candidate-{yaw}",
         "bunker_x": x,
         "bunker_y": y,
         "bunker_yaw": yaw,
@@ -29,6 +30,7 @@ def candidate(x=0.0, y=0.0, yaw=0.0, margin=0.25, **overrides):
         "joint_margin_rad": margin,
         "fk_position_residual_m": 0.01,
         "fk_orientation_residual_rad": 0.02,
+        "rejection_reason": None,
     }
     value.update(overrides)
     return value
@@ -44,6 +46,7 @@ def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None
     if valid is None:
         valid = sum(candidate_relevance(item, FieldConfig()) > 0 for item in candidates)
     return {
+        "schema_version": 1,
         "frame_id": "map",
         "grasp_id": "g",
         "summary": {
@@ -100,6 +103,12 @@ class FieldBuilderTests(unittest.TestCase):
         self.assertEqual(field.grid.center_xy, (0.0, 0.0))
         self.assertEqual((field.grid.width_m, field.grid.height_m, field.grid.resolution_m), (3.0, 3.0, 0.1))
         self.assertEqual(field.grid.shape, (30, 30))
+
+    def test_result_requires_schema_version_one(self):
+        bad = result([], inverse=0, deduplicated=0, validation_limit=0, valid=0)
+        bad["schema_version"] = 999
+        with self.assertRaises(ValueError):
+            build_field_from_result(self.grasp, bad, self.grid)
 
     def test_yaw_envelope_chooses_highest_margin_and_diagnostics(self):
         low = candidate(0.01, 0.01, yaw=0.4, margin=0.2, fk_position_residual_m=0.1, fk_orientation_residual_rad=0.2)
@@ -169,6 +178,28 @@ class FieldBuilderTests(unittest.TestCase):
         self.assertEqual(field.status, FieldStatus.NO_INVERSE_REACHABLE)
         self.assertTrue(np.isnan(field.relevance).all())
         self.assertTrue((field.cell_state == CellState.UNASSESSED).all())
+        self.assertTrue((field.evaluated_count == 0).all())
+        self.assertTrue((field.feasible_count == 0).all())
+        self.assertTrue(np.isnan(field.best_yaw).all())
+        self.assertTrue(np.isnan(field.best_joint_margin_rad).all())
+        self.assertTrue(np.isnan(field.best_fk_position_residual_m).all())
+        self.assertTrue(np.isnan(field.best_fk_orientation_residual_rad).all())
+
+    def test_inverse_reachable_with_only_invalid_candidates_is_partial_and_infeasible(self):
+        item = candidate(0.01, 0.01, valid=False)
+        field = build_field_from_result(self.grasp, result([item], valid=0), self.grid)
+        cell = self.grid.cell_index(0.01, 0.01)
+        assert cell is not None
+        self.assertEqual(field.status, FieldStatus.PARTIALLY_ASSESSED)
+        self.assertEqual(field.cell_state[cell], CellState.INFEASIBLE)
+
+    def test_positive_subthreshold_score_is_low(self):
+        item = candidate(0.01, 0.01, margin=0.2)
+        field = build_field_from_result(self.grasp, result([item]), self.grid)
+        cell = self.grid.cell_index(0.01, 0.01)
+        assert cell is not None
+        self.assertEqual(field.relevance[cell], 0.4)
+        self.assertEqual(field.cell_state[cell], CellState.LOW)
 
     def test_malformed_result_and_in_grid_candidate_pose_raise(self):
         for bad in ({}, {"frame_id": "map"}, {**result([]), "summary": {}}):
@@ -179,6 +210,52 @@ class FieldBuilderTests(unittest.TestCase):
         malformed["evaluated_candidates"][0]["bunker_x"] = math.nan
         with self.assertRaises(ValueError):
             build_field_from_result(self.grasp, malformed, self.grid)
+
+    def test_evaluated_candidates_require_complete_typed_evidence(self):
+        required = (
+            "candidate_id", "bunker_x", "bunker_y", "bunker_yaw",
+            "rm4d_reachable", "ik_valid", "collision_free", "footprint_collision",
+            "valid", "joint_margin_rad", "fk_position_residual_m",
+            "fk_orientation_residual_rad", "rejection_reason",
+        )
+        for name in required:
+            item = candidate()
+            del item[name]
+            bad = result([item], valid=0)
+            with self.subTest(missing=name):
+                with self.assertRaises(ValueError):
+                    build_field_from_result(self.grasp, bad, self.grid)
+
+        for name in ("rm4d_reachable", "ik_valid", "collision_free", "footprint_collision", "valid"):
+            item = candidate(**{name: 1})
+            with self.subTest(non_bool=name):
+                with self.assertRaises(ValueError):
+                    build_field_from_result(self.grasp, result([item], valid=0), self.grid)
+
+        for name, value in (
+            ("joint_margin_rad", -0.1),
+            ("fk_position_residual_m", math.inf),
+            ("fk_orientation_residual_rad", -0.1),
+        ):
+            item = candidate(**{name: value})
+            with self.subTest(bad_value=name):
+                with self.assertRaises(ValueError):
+                    build_field_from_result(self.grasp, result([item], valid=0), self.grid)
+
+        for value in ("", "  ", 1):
+            item = candidate(candidate_id=value)
+            with self.subTest(candidate_id=value):
+                with self.assertRaises(ValueError):
+                    build_field_from_result(self.grasp, result([item], valid=0), self.grid)
+
+    def test_builders_do_not_mutate_grasp_or_result(self):
+        item = candidate(0.01, 0.01)
+        original_result = result([item])
+        result_copy = copy.deepcopy(original_result)
+        request_before = copy.deepcopy(self.grasp.as_request())
+        build_field_from_result(self.grasp, original_result, self.grid)
+        self.assertEqual(original_result, result_copy)
+        self.assertEqual(self.grasp.as_request(), request_before)
 
 
 class LiveBuilderTests(unittest.TestCase):
@@ -198,8 +275,12 @@ class LiveBuilderTests(unittest.TestCase):
                 return returned
 
         api = FakeAPI()
+        returned_copy = copy.deepcopy(returned)
+        request_before = copy.deepcopy(grasp.as_request())
         field = build_field(grasp, api, GridSpec.centered((0, 0), 0.2, 0.2, 0.1))
         self.assertEqual(api.calls, [(grasp.as_request(), 1)])
+        self.assertEqual(returned, returned_copy)
+        self.assertEqual(grasp.as_request(), request_before)
         cell = field.grid.cell_index(0, 0)
         assert cell is not None
         self.assertEqual(field.best_yaw[cell], 0.7)
