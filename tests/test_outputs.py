@@ -10,7 +10,6 @@ import numpy as np
 from reachability_guided_aerial_perception import (
     CellState,
     FieldConfig,
-    FieldStatus,
     GraspTCP,
     GridSpec,
     build_field_from_result,
@@ -71,7 +70,7 @@ class OutputTests(unittest.TestCase):
         self.grid = GridSpec.centered((0.0, 0.0), 0.4, 0.4, 0.2)
         self.grasp = GraspTCP("g", "map", (0.0, 0.0, 0.4), (0, 0, 0, 1))
 
-    def test_payload_maps_states_and_flattens_in_c_row_major_order(self):
+    def test_payload_is_exact_nested_wire_dict_and_flattens_in_c_row_major_order(self):
         field = build_field_from_result(
             self.grasp,
             result(
@@ -85,16 +84,23 @@ class OutputTests(unittest.TestCase):
             self.grid,
         )
         payload = to_occupancy_grid_payload(field)
-        self.assertIsInstance(payload.data, np.ndarray)
-        self.assertEqual(payload.data.shape, (4,))
-        self.assertEqual(payload.data.dtype, np.dtype(np.int8))
-        self.assertEqual(payload.data.tolist(), [50, 100, 0, -1])
-        self.assertEqual(payload.frame_id, "map")
-        self.assertEqual(payload.field_status, FieldStatus.PARTIALLY_ASSESSED)
-        self.assertEqual(payload.origin_x, self.grid.origin_x)
-        self.assertEqual(payload.origin_y, self.grid.origin_y)
-        self.assertEqual(payload.width, 2)
-        self.assertEqual(payload.height, 2)
+        self.assertEqual(
+            payload,
+            {
+                "header": {"frame_id": "map"},
+                "info": {
+                    "resolution": 0.2,
+                    "width": 2,
+                    "height": 2,
+                    "origin": {
+                        "position": {"x": -0.2, "y": -0.2, "z": 0.0},
+                        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
+                    },
+                },
+                "field_status": "PARTIALLY_ASSESSED",
+                "data": [50, 100, 0, -1],
+            },
+        )
 
     def test_no_inverse_payload_is_all_unassessed(self):
         field = build_field_from_result(
@@ -103,8 +109,8 @@ class OutputTests(unittest.TestCase):
             self.grid,
         )
         payload = to_occupancy_grid_payload(field)
-        self.assertEqual(payload.field_status, FieldStatus.NO_INVERSE_REACHABLE)
-        self.assertEqual(payload.data.tolist(), [-1, -1, -1, -1])
+        self.assertEqual(payload["field_status"], "NO_INVERSE_REACHABLE")
+        self.assertEqual(payload["data"], [-1, -1, -1, -1])
 
     def test_summary_is_json_safe_and_contains_semantics_coverage_and_counts(self):
         field = build_field_from_result(
@@ -114,14 +120,38 @@ class OutputTests(unittest.TestCase):
         )
         summary = field_summary(field, FieldConfig())
         self.assertEqual(summary["schema_version"], 1)
-        self.assertEqual(summary["field_type"], "validated_manipulation_interest_field")
+        self.assertEqual(summary["field_type"], "validated_manipulation_interest")
         self.assertEqual(summary["status"], "PARTIALLY_ASSESSED")
         self.assertEqual(summary["relevance_semantics"], "joint_margin_only")
-        self.assertEqual(summary["scoring"]["fk_ik_residual_role"], "diagnostic_only")
+        self.assertEqual(
+            summary["scoring"],
+            {
+                "minimum_margin_rad": 0.01,
+                "saturation_margin_rad": 0.5,
+                "high_threshold": 0.8,
+                "residual_role": "diagnostic_only",
+            },
+        )
+        self.assertEqual(
+            summary["grid"],
+            {
+                "origin_x_m": -0.2,
+                "origin_y_m": -0.2,
+                "resolution_m": 0.2,
+                "width": 2,
+                "height": 2,
+                "shape": [2, 2],
+                "convention": "row-major [y, x]; q=(base_link x, base_link y) in map",
+            },
+        )
         self.assertEqual(summary["grid"]["shape"], [2, 2])
-        self.assertEqual(summary["coverage"]["evaluated_candidates"], 2)
-        self.assertEqual(summary["cell_counts"]["INFEASIBLE"], 1)
-        self.assertEqual(summary["cell_counts"]["UNASSESSED"], 2)
+        self.assertEqual(
+            set(summary["coverage"]),
+            {"inverse_reachable", "deduplicated", "validation_limit", "evaluated", "valid", "rejected_by_reason", "assessed_cells", "total_cells", "coverage_fraction"},
+        )
+        self.assertEqual(summary["coverage"]["evaluated"], 2)
+        self.assertEqual(summary["coverage"]["rejected_by_reason"], {})
+        self.assertEqual(summary["cells"], {"unassessed": 2, "infeasible": 1, "low": 1, "high": 0})
         encoded = json.dumps(summary, allow_nan=False)
         self.assertNotIn("NaN", encoded)
 
@@ -136,11 +166,14 @@ class OutputTests(unittest.TestCase):
             self.assertEqual(set(output), {"field", "summary", "candidates"})
             self.assertEqual({path.name for path in output.values()}, {"field.npz", "summary.json", "candidate_diagnostics.csv"})
             with np.load(output["field"]) as arrays:
-                for name in (
-                    "relevance", "cell_state", "evaluated_count", "feasible_count", "best_yaw",
-                    "best_joint_margin_rad", "best_fk_position_residual_m", "best_fk_orientation_residual_rad",
-                ):
-                    np.testing.assert_array_equal(arrays[name], getattr(field, name))
+                self.assertEqual(
+                    set(arrays.files),
+                    {"relevance", "state", "evaluated_count", "valid_count", "frame_id", "grasp_id", "status", "origin_x_m", "origin_y_m", "resolution_m", "width", "height"},
+                )
+                np.testing.assert_array_equal(arrays["relevance"], field.relevance)
+                np.testing.assert_array_equal(arrays["state"], field.cell_state)
+                np.testing.assert_array_equal(arrays["evaluated_count"], field.evaluated_count)
+                np.testing.assert_array_equal(arrays["valid_count"], field.feasible_count)
                 self.assertEqual(str(arrays["status"]), "PARTIALLY_ASSESSED")
                 self.assertEqual(str(arrays["grasp_id"]), "g")
             parsed = json.loads(Path(output["summary"]).read_text())
@@ -158,6 +191,16 @@ class OutputTests(unittest.TestCase):
                     "fk_orientation_residual_rad", "field_relevance", "valid", "rejection_reason",
                 ],
             )
+
+    def test_csv_field_relevance_ignores_fk_residuals(self):
+        first = candidate(-0.19, -0.19, yaw=0.1, margin=0.25, fk_position_residual_m=0.0, fk_orientation_residual_rad=0.0)
+        second = candidate(-0.19, -0.19, yaw=0.1, margin=0.25, fk_position_residual_m=999.0, fk_orientation_residual_rad=math.pi)
+        field = build_field_from_result(self.grasp, result([first, second], valid=2), self.grid)
+        with tempfile.TemporaryDirectory() as temporary:
+            paths = save_field_bundle(field, [first, second], temporary)
+            with Path(paths["candidates"]).open(newline="") as stream:
+                rows = list(csv.DictReader(stream))
+        self.assertEqual(rows[0]["field_relevance"], rows[1]["field_relevance"])
 
     def test_outputs_do_not_mutate_field_or_candidates(self):
         item = candidate(-0.19, -0.19)

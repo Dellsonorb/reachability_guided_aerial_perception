@@ -17,7 +17,6 @@ from .model import (
     FieldConfig,
     FieldStatus,
     ManipulationInterestField,
-    OccupancyGridPayload,
 )
 
 
@@ -68,8 +67,8 @@ def _csv_value(value: Any) -> Any:
     return value
 
 
-def to_occupancy_grid_payload(field: ManipulationInterestField) -> OccupancyGridPayload:
-    """Convert a field into a flat, signed int8 occupancy-grid payload."""
+def to_occupancy_grid_payload(field: ManipulationInterestField) -> dict[str, Any]:
+    """Convert a field into a ROS-independent occupancy-grid wire dictionary."""
     field = _require_field(field)
     data = np.full(field.grid.shape, CellState.UNASSESSED.value, dtype=np.int8)
     if field.status is not FieldStatus.NO_INVERSE_REACHABLE:
@@ -84,53 +83,73 @@ def to_occupancy_grid_payload(field: ManipulationInterestField) -> OccupancyGrid
             if np.any(finite):
                 converted[finite] = np.clip(np.rint(values[finite] * 100.0), 1, 100).astype(np.int8)
             data[mask] = converted
-    return OccupancyGridPayload(
-        frame_id=field.frame_id,
-        field_status=field.status,
-        origin_x=field.grid.origin_x,
-        origin_y=field.grid.origin_y,
-        resolution=field.grid.resolution_m,
-        width=field.grid.width_cells,
-        height=field.grid.height_cells,
-        data=data.reshape(-1, order="C"),
-    )
+    return {
+        "header": {"frame_id": field.frame_id},
+        "info": {
+            "resolution": float(field.grid.resolution_m),
+            "width": int(field.grid.width_cells),
+            "height": int(field.grid.height_cells),
+            "origin": {
+                "position": {
+                    "x": float(field.grid.origin_x),
+                    "y": float(field.grid.origin_y),
+                    "z": 0.0,
+                },
+                "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
+            },
+        },
+        "field_status": field.status.value,
+        "data": [int(value) for value in data.reshape(-1, order="C")],
+    }
 
 
 def field_summary(field: ManipulationInterestField, config: FieldConfig) -> dict[str, Any]:
     """Return a JSON-safe description of field semantics, geometry, and coverage."""
     field = _require_field(field)
     config = _require_config(config)
-    coverage = {
+    coverage_values = {
         item.name: getattr(field.coverage, item.name)
         for item in dataclass_fields(field.coverage)
     }
-    cell_counts = {
-        state.name: int(np.count_nonzero(field.cell_state == state.value))
+    coverage = {
+        "inverse_reachable": coverage_values["inverse_reachable"],
+        "deduplicated": coverage_values["deduplicated_candidates"],
+        "validation_limit": coverage_values["validation_limit"],
+        "evaluated": coverage_values["evaluated_candidates"],
+        "valid": coverage_values["valid_candidates"],
+        "rejected_by_reason": {},
+        "assessed_cells": coverage_values["evaluated_cells"],
+        "total_cells": coverage_values["total_cells"],
+        "coverage_fraction": coverage_values["assessed_cell_fraction"],
+    }
+    cells = {
+        state.name.lower(): int(np.count_nonzero(field.cell_state == state.value))
         for state in CellState
     }
     return {
         "schema_version": 1,
-        "field_type": "validated_manipulation_interest_field",
+        "field_type": "validated_manipulation_interest",
         "grasp_id": field.grasp_id,
         "frame_id": field.frame_id,
         "status": field.status.value,
         "relevance_semantics": "joint_margin_only",
         "scoring": {
-            "minimum_joint_margin_rad": config.minimum_joint_margin_rad,
-            "joint_margin_saturation_rad": config.joint_margin_saturation_rad,
-            "high_relevance_threshold": config.high_relevance_threshold,
-            "fk_ik_residual_role": "diagnostic_only",
+            "minimum_margin_rad": config.minimum_joint_margin_rad,
+            "saturation_margin_rad": config.joint_margin_saturation_rad,
+            "high_threshold": config.high_relevance_threshold,
+            "residual_role": "diagnostic_only",
         },
         "grid": {
-            "origin_xy": [field.grid.origin_x, field.grid.origin_y],
+            "origin_x_m": field.grid.origin_x,
+            "origin_y_m": field.grid.origin_y,
             "resolution_m": field.grid.resolution_m,
-            "width_cells": field.grid.width_cells,
-            "height_cells": field.grid.height_cells,
+            "width": field.grid.width_cells,
+            "height": field.grid.height_cells,
             "shape": list(field.grid.shape),
-            "convention": "row-major C-order: (row, column) = (y, x)",
+            "convention": "row-major [y, x]; q=(base_link x, base_link y) in map",
         },
         "coverage": coverage,
-        "cell_counts": cell_counts,
+        "cells": cells,
     }
 
 
@@ -154,18 +173,14 @@ def save_field_bundle(
     np.savez(
         field_path,
         relevance=np.array(field.relevance, copy=True),
-        cell_state=np.array(field.cell_state, copy=True),
+        state=np.array(field.cell_state, copy=True),
         evaluated_count=np.array(field.evaluated_count, copy=True),
-        feasible_count=np.array(field.feasible_count, copy=True),
-        best_yaw=np.array(field.best_yaw, copy=True),
-        best_joint_margin_rad=np.array(field.best_joint_margin_rad, copy=True),
-        best_fk_position_residual_m=np.array(field.best_fk_position_residual_m, copy=True),
-        best_fk_orientation_residual_rad=np.array(field.best_fk_orientation_residual_rad, copy=True),
+        valid_count=np.array(field.feasible_count, copy=True),
         grasp_id=np.array(field.grasp_id),
         frame_id=np.array(field.frame_id),
         status=np.array(field.status.value),
-        origin_x=np.array(field.grid.origin_x),
-        origin_y=np.array(field.grid.origin_y),
+        origin_x_m=np.array(field.grid.origin_x),
+        origin_y_m=np.array(field.grid.origin_y),
         resolution_m=np.array(field.grid.resolution_m),
         width=np.array(field.grid.width_cells, dtype=np.int64),
         height=np.array(field.grid.height_cells, dtype=np.int64),
