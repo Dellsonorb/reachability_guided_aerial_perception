@@ -1,0 +1,46 @@
+{
+  "cells": {
+    "high": 81,
+    "infeasible": 1,
+    "low": 7,
+    "unassessed": 811
+  },
+  "coverage": {
+    "assessed_cells": 89,
+    "coverage_fraction": 0.09888888888888889,
+    "deduplicated": 30295,
+    "evaluated": 256,
+    "inverse_reachable": 30564,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 1,
+      "joint_margin_below_minimum": 1
+    },
+    "total_cells": 900,
+    "valid": 254,
+    "validation_limit": 256
+  },
+  "field_type": "validated_manipulation_interest",
+  "frame_id": "map",
+  "grasp_id": "nominal",
+  "grid": {
+    "convention": "row-major [y, x]; q=(base_link x, base_link y) in map",
+    "height": 30,
+    "origin_x_m": -0.6595943877530993,
+    "origin_y_m": -1.7803510348664946,
+    "resolution_m": 0.1,
+    "shape": [
+      30,
+      30
+    ],
+    "width": 30
+  },
+  "relevance_semantics": "joint_margin_only",
+  "schema_version": 1,
+  "scoring": {
+    "high_threshold": 0.8,
+    "minimum_margin_rad": 0.01,
+    "residual_role": "diagnostic_only",
+    "saturation_margin_rad": 0.5
+  },
+  "status": "PARTIALLY_ASSESSED"
+}
