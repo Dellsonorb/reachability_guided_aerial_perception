@@ -114,7 +114,6 @@ def _validate_candidate_evidence(candidate: Mapping[str, Any]) -> None:
 def _validate_result(
     grasp: GraspTCP,
     result: Mapping[str, Any],
-    config: FieldConfig,
 ) -> tuple[Mapping[str, Any], dict[str, int]]:
     if not isinstance(result, Mapping):
         raise ValueError("result must be a mapping")
@@ -141,16 +140,16 @@ def _validate_result(
         raise ValueError("summary.deduplicated cannot exceed inverse_reachable")
     if counts["inverse_reachable"] == 0 and any(counts[name] for name in ("deduplicated", "evaluated", "valid")):
         raise ValueError("zero inverse-reachable result must have zero candidate counts")
-    gate_valid = 0
+    baseline_valid = 0
     for item in evaluated:
         if not isinstance(item, Mapping):
             raise ValueError("each evaluated candidate must be a mapping")
         _validate_candidate_evidence(item)
         _validate_pose(item)
-        if _is_gate_valid(item, config):
-            gate_valid += 1
-    if counts["valid"] != gate_valid:
-        raise ValueError("summary.valid must equal gate-valid candidate count")
+        if item["valid"] is True:
+            baseline_valid += 1
+    if counts["valid"] != baseline_valid:
+        raise ValueError("summary.valid must equal baseline valid candidate count")
     return result, counts
 
 
@@ -169,7 +168,7 @@ def build_field_from_result(
         grid = GridSpec.centered((grasp.position_xyz[0], grasp.position_xyz[1]), 3.0, 3.0, 0.1)
     if not isinstance(grid, GridSpec):
         raise ValueError("grid must be a GridSpec")
-    _, counts = _validate_result(grasp, result, config)
+    _, counts = _validate_result(grasp, result)
     evaluated = result["evaluated_candidates"]
     shape = grid.shape
     relevance = np.full(shape, np.nan, dtype=float)

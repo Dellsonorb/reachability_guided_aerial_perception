@@ -173,6 +173,17 @@ class FieldBuilderTests(unittest.TestCase):
         self.assertEqual(coverage.assessed_cell_fraction, 0.5)
         self.assertTrue(coverage.validation_truncated)
 
+    def test_coverage_preserves_baseline_valid_count_independent_of_field_config(self):
+        item = candidate(0.01, 0.01, margin=0.25)
+        config = FieldConfig(minimum_joint_margin_rad=0.3)
+        field = build_field_from_result(self.grasp, result([item], valid=1), self.grid, config=config)
+        cell = self.grid.cell_index(0.01, 0.01)
+        assert cell is not None
+        self.assertEqual(field.coverage.valid_candidates, 1)
+        self.assertEqual(field.evaluated_count[cell], 1)
+        self.assertEqual(field.feasible_count[cell], 0)
+        self.assertEqual(field.cell_state[cell], CellState.INFEASIBLE)
+
     def test_no_inverse_reachable_is_distinct_and_all_cells_unassessed(self):
         field = build_field_from_result(self.grasp, result([], inverse=0, deduplicated=0, validation_limit=0, valid=0), self.grid)
         self.assertEqual(field.status, FieldStatus.NO_INVERSE_REACHABLE)
@@ -210,6 +221,14 @@ class FieldBuilderTests(unittest.TestCase):
         malformed["evaluated_candidates"][0]["bunker_x"] = math.nan
         with self.assertRaises(ValueError):
             build_field_from_result(self.grasp, malformed, self.grid)
+        wrong_frame = result([], inverse=0, deduplicated=0, validation_limit=0, valid=0)
+        wrong_frame["frame_id"] = "odom"
+        with self.assertRaisesRegex(ValueError, "frame_id"):
+            build_field_from_result(self.grasp, wrong_frame, self.grid)
+        wrong_grasp = result([], inverse=0, deduplicated=0, validation_limit=0, valid=0)
+        wrong_grasp["grasp_id"] = "other"
+        with self.assertRaisesRegex(ValueError, "grasp_id"):
+            build_field_from_result(self.grasp, wrong_grasp, self.grid)
 
     def test_evaluated_candidates_require_complete_typed_evidence(self):
         required = (
