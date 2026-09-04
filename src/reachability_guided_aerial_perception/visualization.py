@@ -3,39 +3,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-import math
-from numbers import Real
 from pathlib import Path
 from typing import Any
 
-import matplotlib
-
-matplotlib.use("Agg", force=True)
-
-import matplotlib.pyplot as plt
-from matplotlib.colors import BoundaryNorm, ListedColormap, Normalize
 from matplotlib.cm import ScalarMappable
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.colors import BoundaryNorm, ListedColormap, Normalize
+from matplotlib.figure import Figure
 import numpy as np
 
 from .field import candidate_relevance
 from .model import CellState, FieldConfig, FieldStatus, GraspTCP, ManipulationInterestField
-
-
-def _validate_candidate_list(evaluated_candidates: Any) -> list[Mapping[str, Any]]:
-    if not isinstance(evaluated_candidates, list):
-        raise ValueError("evaluated_candidates must be a list")
-    candidates: list[Mapping[str, Any]] = []
-    for index, candidate in enumerate(evaluated_candidates):
-        if not isinstance(candidate, Mapping):
-            raise ValueError(f"evaluated_candidates[{index}] must be a mapping")
-        for name in ("bunker_x", "bunker_y"):
-            value = candidate.get(name)
-            if isinstance(value, bool) or not isinstance(value, Real):
-                raise ValueError(f"evaluated_candidates[{index}].{name} must be a finite real")
-            if not math.isfinite(float(value)):
-                raise ValueError(f"evaluated_candidates[{index}].{name} must be a finite real")
-        candidates.append(candidate)
-    return candidates
+from .outputs import _require_config, _require_field, _validate_candidates, _validate_field_raster
 
 
 def _validate_output_path(output_path: Any) -> Path:
@@ -73,19 +52,18 @@ def render_field(
     modifying either input.  It is deliberately ROS-independent and always uses
     Matplotlib's non-interactive Agg backend.
     """
-    if not isinstance(field, ManipulationInterestField):
-        raise ValueError("field must be a ManipulationInterestField")
+    field = _require_field(field)
     if not isinstance(grasp, GraspTCP):
         raise ValueError("grasp must be a GraspTCP")
     if field.grasp_id != grasp.grasp_id:
         raise ValueError("field and grasp grasp_id must match")
     if field.frame_id != grasp.frame_id or field.frame_id != "map":
         raise ValueError("field and grasp frame_id must be 'map'")
-    if not isinstance(config, FieldConfig):
-        raise ValueError("config must be a FieldConfig")
+    config = _require_config(config)
     if config != field.config:
         raise ValueError("config does not match the field's scoring config")
-    candidates = _validate_candidate_list(evaluated_candidates)
+    candidates = _validate_candidates(evaluated_candidates)
+    _validate_field_raster(field, candidates, config)
     path = _validate_output_path(output_path)
 
     extent = (
@@ -118,7 +96,9 @@ def render_field(
             invalid_x.append(x)
             invalid_y.append(y)
 
-    figure, axes = plt.subplots(1, 3, figsize=(15, 5), constrained_layout=False)
+    figure = Figure(figsize=(15, 5), constrained_layout=False)
+    FigureCanvasAgg(figure)
+    axes = figure.subplots(1, 3)
     try:
         relevance_image = axes[0].imshow(
             raw_relevance,
@@ -219,5 +199,5 @@ def render_field(
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, format="png", dpi=150)
     finally:
-        plt.close(figure)
+        figure.clear()
     return path

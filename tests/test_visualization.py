@@ -1,4 +1,7 @@
 import copy
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 import warnings
@@ -127,6 +130,43 @@ class VisualizationTests(unittest.TestCase):
                         render_field(*args)
             with self.assertRaises(ValueError):
                 render_field(field, self.grasp, candidates, output, FieldConfig(high_relevance_threshold=0.7))
+
+    def test_rejects_candidates_that_do_not_reproduce_the_field(self):
+        original = candidate(0.01, 0.01, yaw=0.2, margin=0.25)
+        field = build_field_from_result(self.grasp, result([original]), self.grid)
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "field.png"
+            with self.assertRaises(ValueError):
+                render_field(field, self.grasp, [], output)
+            for name, value in (
+                ("rm4d_reachable", False),
+                ("bunker_yaw", 0.3),
+                ("fk_position_residual_m", 0.02),
+            ):
+                altered = copy.deepcopy(original)
+                altered[name] = value
+                with self.subTest(name=name):
+                    with self.assertRaises(ValueError):
+                        render_field(field, self.grasp, [altered], output)
+
+    def test_importing_visualization_does_not_change_selected_backend(self):
+        source = (
+            "import matplotlib; matplotlib.use('svg', force=True); "
+            "before = matplotlib.get_backend(); "
+            "import reachability_guided_aerial_perception.visualization; "
+            "assert matplotlib.get_backend() == before, "
+            "(before, matplotlib.get_backend())"
+        )
+        environment = os.environ.copy()
+        environment["PYTHONPATH"] = str(Path(__file__).parents[1] / "src")
+        completed = subprocess.run(
+            [sys.executable, "-c", source],
+            env=environment,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
 
     def test_inputs_are_not_mutated(self):
         candidates = [candidate(0.01, 0.01)]
