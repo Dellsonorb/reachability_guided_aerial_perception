@@ -62,6 +62,16 @@ def _existing_file(path: str | Path, name: str) -> Path:
     return resolved
 
 
+def _require_rm4d_module_from_root(module: Any, root: Path) -> None:
+    expected = (root / "rm4d" / "__init__.py").resolve()
+    try:
+        module_path = Path(module.__file__).resolve()
+    except (AttributeError, OSError, TypeError, ValueError) as exc:
+        raise ValueError("rm4d module is not from the requested rm4d_root") from exc
+    if module_path != expected:
+        raise ValueError("rm4d module is not from the requested rm4d_root")
+
+
 @contextmanager
 def open_frozen_rm4d_api(
     rm4d_root: str | Path,
@@ -73,16 +83,21 @@ def open_frozen_rm4d_api(
     config = _existing_file(config_path, "config_path")
     reachability_map = _existing_file(map_path, "map_path")
     root_string = str(root)
-    inserted = root_string not in sys.path
-    if inserted:
-        sys.path.insert(0, root_string)
+
+    cached_module = sys.modules.get("rm4d")
+    if cached_module is not None:
+        _require_rm4d_module_from_root(cached_module, root)
+
+    prior_sys_path = list(sys.path)
+    sys.path.insert(0, root_string)
     try:
         module = importlib.import_module("rm4d")
-        base_placement_api = module.BasePlacementAPI
-        api = base_placement_api.from_files(str(config), str(reachability_map))
     finally:
-        if inserted:
-            sys.path.remove(root_string)
+        sys.path[:] = prior_sys_path
+
+    _require_rm4d_module_from_root(module, root)
+    base_placement_api = module.BasePlacementAPI
+    api = base_placement_api.from_files(str(config), str(reachability_map))
 
     if callable(getattr(api, "__enter__", None)) and callable(
         getattr(api, "__exit__", None)

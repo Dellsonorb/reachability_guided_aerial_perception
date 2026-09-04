@@ -153,10 +153,9 @@ class CliTests(unittest.TestCase):
         class FakeBasePlacementAPI:
             @classmethod
             def from_files(cls, config_path, map_path):
-                events.append((config_path, map_path, sys.path[0]))
+                events.append(("from_files", config_path, map_path, list(sys.path)))
                 return FakeAPI()
 
-        fake_module = type("FakeModule", (), {"BasePlacementAPI": FakeBasePlacementAPI})
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "rm4d"
             root.mkdir()
@@ -164,14 +163,141 @@ class CliTests(unittest.TestCase):
             map_path = Path(directory) / "rmap.npy"
             config.touch()
             map_path.touch()
-            with patch("importlib.import_module", return_value=fake_module) as importer:
-                with open_frozen_rm4d_api(root, config, map_path) as api:
-                    self.assertIsInstance(api, FakeAPI)
-            importer.assert_called_once_with("rm4d")
+            fake_module = type(
+                "FakeModule",
+                (),
+                {
+                    "BasePlacementAPI": FakeBasePlacementAPI,
+                    "__file__": str(root / "rm4d" / "__init__.py"),
+                },
+            )
             root_string = str(root.resolve())
-            self.assertEqual(events[0], (str(config.resolve()), str(map_path.resolve()), root_string))
-            self.assertEqual(events[1:], ["enter", "exit"])
-            self.assertNotIn(root_string, sys.path)
+            prior_path = ["before-root", root_string, "after-root"]
+
+            def import_rm4d(name):
+                events.append(("import", name, list(sys.path)))
+                return fake_module
+
+            with patch.object(sys, "path", prior_path.copy()):
+                with patch("importlib.import_module", side_effect=import_rm4d) as importer:
+                    with open_frozen_rm4d_api(root, config, map_path) as api:
+                        self.assertIsInstance(api, FakeAPI)
+                self.assertEqual(sys.path, prior_path)
+            importer.assert_called_once_with("rm4d")
+            self.assertEqual(events[0][0:2], ("import", "rm4d"))
+            self.assertEqual(events[0][2][0], root_string)
+            self.assertEqual(
+                events[1],
+                ("from_files", str(config.resolve()), str(map_path.resolve()), prior_path),
+            )
+            self.assertEqual(events[2:], ["enter", "exit"])
+
+    def test_frozen_loader_rejects_cached_module_outside_requested_root(self):
+        calls = []
+
+        class WrongBasePlacementAPI:
+            @classmethod
+            def from_files(cls, config_path, map_path):
+                calls.append((config_path, map_path))
+
+        cached_module = type(
+            "CachedModule",
+            (),
+            {
+                "BasePlacementAPI": WrongBasePlacementAPI,
+                "__file__": "/some/other/repository/rm4d/__init__.py",
+            },
+        )
+        real_import = __import__("importlib").import_module
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "requested"
+            root.mkdir()
+            config = Path(directory) / "config.json"
+            map_path = Path(directory) / "rmap.npy"
+            config.touch()
+            map_path.touch()
+            with patch.dict(sys.modules, {"rm4d": cached_module}):
+                with patch("importlib.import_module", side_effect=real_import) as importer:
+                    with self.assertRaisesRegex(ValueError, "requested rm4d_root"):
+                        with open_frozen_rm4d_api(root, config, map_path):
+                            pass
+            importer.assert_not_called()
+        self.assertEqual(calls, [])
+
+    def test_frozen_loader_rejects_newly_imported_module_outside_requested_root(self):
+        calls = []
+
+        class WrongBasePlacementAPI:
+            @classmethod
+            def from_files(cls, config_path, map_path):
+                calls.append((config_path, map_path))
+
+        imported_module = type(
+            "ImportedModule",
+            (),
+            {
+                "BasePlacementAPI": WrongBasePlacementAPI,
+                "__file__": "/some/other/repository/rm4d/__init__.py",
+            },
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "requested"
+            root.mkdir()
+            config = Path(directory) / "config.json"
+            map_path = Path(directory) / "rmap.npy"
+            config.touch()
+            map_path.touch()
+            prior_path = list(sys.path)
+            with patch("importlib.import_module", return_value=imported_module):
+                with self.assertRaisesRegex(ValueError, "requested rm4d_root"):
+                    with open_frozen_rm4d_api(root, config, map_path):
+                        pass
+            self.assertEqual(sys.path, prior_path)
+        self.assertEqual(calls, [])
+
+    def test_frozen_loader_rejects_module_without_a_path_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "requested"
+            root.mkdir()
+            config = Path(directory) / "config.json"
+            map_path = Path(directory) / "rmap.npy"
+            config.touch()
+            map_path.touch()
+            for module_file in (None, object()):
+                imported_module = type(
+                    "ImportedModule",
+                    (),
+                    {"BasePlacementAPI": object(), "__file__": module_file},
+                )
+                with self.subTest(module_file=module_file):
+                    with patch("importlib.import_module", return_value=imported_module):
+                        with self.assertRaisesRegex(ValueError, "requested rm4d_root"):
+                            with open_frozen_rm4d_api(root, config, map_path):
+                                pass
+
+    def test_frozen_loader_restores_sys_path_when_import_raises(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "requested"
+            root.mkdir()
+            config = Path(directory) / "config.json"
+            map_path = Path(directory) / "rmap.npy"
+            config.touch()
+            map_path.touch()
+            root_string = str(root.resolve())
+            prior_path = ["first", root_string, "last"]
+            observed = []
+
+            def fail_import(name):
+                observed.append(list(sys.path))
+                raise ImportError("expected import failure")
+
+            with patch.object(sys, "path", prior_path.copy()):
+                with patch("importlib.import_module", side_effect=fail_import):
+                    with self.assertRaisesRegex(ImportError, "expected import failure"):
+                        with open_frozen_rm4d_api(root, config, map_path):
+                            pass
+                self.assertEqual(sys.path, prior_path)
+            self.assertEqual(observed[0][0], root_string)
 
     def test_frozen_loader_rejects_missing_root_config_or_map_before_import(self):
         with tempfile.TemporaryDirectory() as directory:
