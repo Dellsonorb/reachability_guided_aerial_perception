@@ -121,7 +121,7 @@ class TypeTests(unittest.TestCase):
     def test_frozen_field_records_validate_grid_shaped_arrays(self):
         grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
         coverage = AssessmentCoverage(
-            inverse_reachable=1,
+            inverse_reachable=4,
             deduplicated_candidates=4,
             validation_limit=4,
             evaluated_candidates=4,
@@ -243,16 +243,74 @@ class TypeTests(unittest.TestCase):
         )
         for name, value in (
             ("relevance", np.full(grid.shape, "x", dtype=object)),
+            ("relevance", np.full(grid.shape, np.inf)),
+            ("relevance", np.full(grid.shape, -0.1)),
+            ("relevance", np.full(grid.shape, 1.1)),
+            ("relevance", np.full(grid.shape, 1.0 + 0.0j)),
             ("cell_state", np.full(grid.shape, 9, dtype=np.int8)),
             ("evaluated_count", np.ones(grid.shape, dtype=float)),
             ("evaluated_count", -np.ones(grid.shape, dtype=np.int32)),
             ("feasible_count", np.full(grid.shape, 2, dtype=np.int32)),
             ("best_yaw", np.full(grid.shape, np.inf)),
+            ("best_yaw", np.full(grid.shape, 1.0 + 0.0j)),
             ("best_joint_margin_rad", np.full(grid.shape, "x", dtype=object)),
+            ("best_joint_margin_rad", np.full(grid.shape, np.inf)),
+            ("best_joint_margin_rad", np.full(grid.shape, -0.1)),
+            ("best_joint_margin_rad", np.full(grid.shape, 1.0 + 0.0j)),
+            ("best_fk_position_residual_m", np.full(grid.shape, np.inf)),
+            ("best_fk_position_residual_m", np.full(grid.shape, -0.1)),
+            ("best_fk_orientation_residual_rad", np.full(grid.shape, np.inf)),
+            ("best_fk_orientation_residual_rad", np.full(grid.shape, -0.1)),
         ):
             with self.subTest(name=name):
                 with self.assertRaises(ValueError):
                     ManipulationInterestField(**{**base, name: value})
+
+        nan_relevance = ManipulationInterestField(**{**base, "relevance": np.full(grid.shape, np.nan)})
+        self.assertTrue(np.isnan(nan_relevance.relevance).all())
+
+    def test_coverage_requires_validation_budget_and_inverse_count_consistency(self):
+        valid = dict(
+            inverse_reachable=4,
+            deduplicated_candidates=4,
+            validation_limit=2,
+            evaluated_candidates=2,
+            valid_candidates=1,
+            evaluated_cells=2,
+            total_cells=4,
+            candidate_validation_fraction=0.5,
+            assessed_cell_fraction=0.5,
+            validation_truncated=True,
+        )
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "evaluated_candidates": 3})
+        with self.assertRaises(ValueError):
+            AssessmentCoverage(**{**valid, "inverse_reachable": 3})
+
+    def test_interest_field_status_matches_coverage_and_grid_cell_count(self):
+        grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
+        base = dict(
+            grasp_id="g", frame_id="map", status=FieldStatus.PARTIALLY_ASSESSED, grid=grid,
+            relevance=np.zeros(grid.shape),
+            cell_state=np.full(grid.shape, CellState.UNASSESSED, dtype=np.int8),
+            evaluated_count=np.ones(grid.shape, dtype=np.int32),
+            feasible_count=np.zeros(grid.shape, dtype=np.int32),
+            best_yaw=np.full(grid.shape, np.nan),
+            best_joint_margin_rad=np.full(grid.shape, np.nan),
+            best_fk_position_residual_m=np.full(grid.shape, np.nan),
+            best_fk_orientation_residual_rad=np.full(grid.shape, np.nan),
+            coverage=AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False),
+        )
+        with self.assertRaises(ValueError):
+            ManipulationInterestField(**{**base, "coverage": dataclasses.replace(base["coverage"], total_cells=3)})
+        no_inverse_coverage = AssessmentCoverage(0, 0, 0, 0, 0, 0, 4, 0.0, 0.0, False)
+        with self.assertRaises(ValueError):
+            ManipulationInterestField(**{**base, "status": FieldStatus.PARTIALLY_ASSESSED,
+                                         "coverage": no_inverse_coverage,
+                                         "evaluated_count": np.zeros(grid.shape, dtype=np.int32),
+                                         "feasible_count": np.zeros(grid.shape, dtype=np.int32)})
+        with self.assertRaises(ValueError):
+            ManipulationInterestField(**{**base, "status": FieldStatus.NO_INVERSE_REACHABLE})
         with self.assertRaises(ValueError):
             ManipulationInterestField(
                 "g",
@@ -267,7 +325,7 @@ class TypeTests(unittest.TestCase):
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),
-                coverage,
+                base["coverage"],
             )
 
     def test_occupancy_payload_is_frozen(self):

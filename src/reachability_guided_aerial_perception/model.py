@@ -250,6 +250,10 @@ class AssessmentCoverage:
             abs_tol=1e-9,
         ):
             raise ValueError("assessed_cell_fraction is inconsistent with cell counts")
+        if self.evaluated_candidates > self.validation_limit:
+            raise ValueError("evaluated_candidates cannot exceed validation_limit")
+        if self.deduplicated_candidates > self.inverse_reachable:
+            raise ValueError("deduplicated_candidates cannot exceed inverse_reachable")
         if type(self.validation_truncated) is not bool:
             raise ValueError("validation_truncated must be a bool")
         if self.validation_truncated != (self.deduplicated_candidates > self.evaluated_candidates):
@@ -262,6 +266,16 @@ def _as_grid_array(value: Any, shape: tuple[int, int], name: str) -> np.ndarray:
         raise ValueError(f"{name} must have shape {shape}")
     array.setflags(write=False)
     return array
+
+
+def _require_real_numeric(array: np.ndarray, name: str) -> None:
+    if not np.issubdtype(array.dtype, np.number) or np.issubdtype(array.dtype, np.complexfloating):
+        raise ValueError(f"{name} must be real-valued numeric data")
+
+
+def _require_nan_or_finite(array: np.ndarray, name: str) -> None:
+    if np.any(np.isinf(array)):
+        raise ValueError(f"{name} must not contain infinite values")
 
 
 @dataclass(frozen=True, eq=False)
@@ -302,8 +316,11 @@ class ManipulationInterestField:
             object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
         for name in ("evaluated_count", "feasible_count"):
             object.__setattr__(self, name, _as_grid_array(getattr(self, name), self.grid.shape, name))
-        if not np.issubdtype(self.relevance.dtype, np.number):
-            raise ValueError("relevance must be numeric")
+        _require_real_numeric(self.relevance, "relevance")
+        _require_nan_or_finite(self.relevance, "relevance")
+        relevance_is_number = ~np.isnan(self.relevance)
+        if np.any(relevance_is_number & ((self.relevance < 0) | (self.relevance > 1))):
+            raise ValueError("relevance must be NaN or finite in [0, 1]")
         if not np.all(np.isin(self.cell_state, [state.value for state in CellState])):
             raise ValueError("cell_state contains an unknown state")
         for name in ("evaluated_count", "feasible_count"):
@@ -314,17 +331,21 @@ class ManipulationInterestField:
                 raise ValueError(f"{name} must contain nonnegative values")
         if np.any(self.feasible_count > self.evaluated_count):
             raise ValueError("feasible_count cannot exceed evaluated_count")
-        for name in (
-            "best_yaw",
-            "best_joint_margin_rad",
-            "best_fk_position_residual_m",
-            "best_fk_orientation_residual_rad",
-        ):
+        _require_real_numeric(self.best_yaw, "best_yaw")
+        _require_nan_or_finite(self.best_yaw, "best_yaw")
+        for name in ("best_joint_margin_rad", "best_fk_position_residual_m", "best_fk_orientation_residual_rad"):
             array = getattr(self, name)
-            if not np.issubdtype(array.dtype, np.number):
-                raise ValueError(f"{name} must be numeric")
-            if np.any(np.isinf(array)):
-                raise ValueError(f"{name} must not contain infinite values")
+            _require_real_numeric(array, name)
+            _require_nan_or_finite(array, name)
+            finite_values = ~np.isnan(array)
+            if np.any(finite_values & (array < 0)):
+                raise ValueError(f"{name} must be NaN or finite nonnegative values")
+        if self.coverage.total_cells != self.grid.total_cells:
+            raise ValueError("coverage.total_cells must equal grid.total_cells")
+        if self.status is FieldStatus.PARTIALLY_ASSESSED and self.coverage.inverse_reachable <= 0:
+            raise ValueError("PARTIALLY_ASSESSED requires inverse-reachable candidates")
+        if self.status is FieldStatus.NO_INVERSE_REACHABLE and self.coverage.inverse_reachable != 0:
+            raise ValueError("NO_INVERSE_REACHABLE requires zero inverse-reachable candidates")
 
 
 @dataclass(frozen=True, eq=False)
