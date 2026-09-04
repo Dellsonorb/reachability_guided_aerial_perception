@@ -1,0 +1,188 @@
+import csv
+import json
+import math
+import tempfile
+import unittest
+from pathlib import Path
+
+import numpy as np
+
+from reachability_guided_aerial_perception import (
+    CellState,
+    FieldConfig,
+    FieldStatus,
+    GraspTCP,
+    GridSpec,
+    build_field_from_result,
+    candidate_relevance,
+    field_summary,
+    save_field_bundle,
+    to_occupancy_grid_payload,
+)
+
+
+def candidate(x=0.0, y=0.0, yaw=0.0, margin=0.25, **overrides):
+    value = {
+        "candidate_id": f"candidate-{yaw}",
+        "bunker_x": x,
+        "bunker_y": y,
+        "bunker_yaw": yaw,
+        "rm4d_reachable": True,
+        "ik_valid": True,
+        "collision_free": True,
+        "footprint_collision": False,
+        "valid": True,
+        "joint_margin_rad": margin,
+        "fk_position_residual_m": 0.01,
+        "fk_orientation_residual_rad": 0.02,
+        "rejection_reason": None,
+    }
+    value.update(overrides)
+    return value
+
+
+def result(candidates, *, inverse=None, deduplicated=None, validation_limit=None, valid=None):
+    if inverse is None:
+        inverse = len(candidates)
+    if deduplicated is None:
+        deduplicated = len(candidates)
+    if validation_limit is None:
+        validation_limit = len(candidates)
+    if valid is None:
+        valid = sum(candidate_relevance(item, FieldConfig()) > 0 for item in candidates)
+    return {
+        "schema_version": 1,
+        "frame_id": "map",
+        "grasp_id": "g",
+        "summary": {
+            "inverse_reachable": inverse,
+            "deduplicated": deduplicated,
+            "validation_limit": validation_limit,
+            "evaluated": len(candidates),
+            "valid": valid,
+        },
+        "evaluated_candidates": candidates,
+        "candidates": [],
+    }
+
+
+class OutputTests(unittest.TestCase):
+    def setUp(self):
+        self.grid = GridSpec.centered((0.0, 0.0), 0.4, 0.4, 0.2)
+        self.grasp = GraspTCP("g", "map", (0.0, 0.0, 0.4), (0, 0, 0, 1))
+
+    def test_payload_maps_states_and_flattens_in_c_row_major_order(self):
+        field = build_field_from_result(
+            self.grasp,
+            result(
+                [
+                    candidate(-0.19, -0.19, margin=0.25),
+                    candidate(0.01, -0.19, margin=0.5),
+                    candidate(-0.19, 0.01, margin=0.0, valid=False),
+                ],
+                valid=2,
+            ),
+            self.grid,
+        )
+        payload = to_occupancy_grid_payload(field)
+        self.assertIsInstance(payload.data, np.ndarray)
+        self.assertEqual(payload.data.shape, (4,))
+        self.assertEqual(payload.data.dtype, np.dtype(np.int8))
+        self.assertEqual(payload.data.tolist(), [50, 100, 0, -1])
+        self.assertEqual(payload.frame_id, "map")
+        self.assertEqual(payload.field_status, FieldStatus.PARTIALLY_ASSESSED)
+        self.assertEqual(payload.origin_x, self.grid.origin_x)
+        self.assertEqual(payload.origin_y, self.grid.origin_y)
+        self.assertEqual(payload.width, 2)
+        self.assertEqual(payload.height, 2)
+
+    def test_no_inverse_payload_is_all_unassessed(self):
+        field = build_field_from_result(
+            self.grasp,
+            result([], inverse=0, deduplicated=0, validation_limit=0, valid=0),
+            self.grid,
+        )
+        payload = to_occupancy_grid_payload(field)
+        self.assertEqual(payload.field_status, FieldStatus.NO_INVERSE_REACHABLE)
+        self.assertEqual(payload.data.tolist(), [-1, -1, -1, -1])
+
+    def test_summary_is_json_safe_and_contains_semantics_coverage_and_counts(self):
+        field = build_field_from_result(
+            self.grasp,
+            result([candidate(-0.19, -0.19, margin=0.25), candidate(0.01, -0.19, margin=0.0, valid=False)], valid=1),
+            self.grid,
+        )
+        summary = field_summary(field, FieldConfig())
+        self.assertEqual(summary["schema_version"], 1)
+        self.assertEqual(summary["field_type"], "validated_manipulation_interest_field")
+        self.assertEqual(summary["status"], "PARTIALLY_ASSESSED")
+        self.assertEqual(summary["relevance_semantics"], "joint_margin_only")
+        self.assertEqual(summary["scoring"]["fk_ik_residual_role"], "diagnostic_only")
+        self.assertEqual(summary["grid"]["shape"], [2, 2])
+        self.assertEqual(summary["coverage"]["evaluated_candidates"], 2)
+        self.assertEqual(summary["cell_counts"]["INFEASIBLE"], 1)
+        self.assertEqual(summary["cell_counts"]["UNASSESSED"], 2)
+        encoded = json.dumps(summary, allow_nan=False)
+        self.assertNotIn("NaN", encoded)
+
+    def test_save_bundle_has_exact_files_roundtrip_arrays_and_csv(self):
+        items = [
+            candidate(-0.19, -0.19, yaw=0.1, margin=0.25),
+            candidate(0.01, -0.19, yaw=0.2, margin=0.5, valid=False, fk_position_residual_m=None),
+        ]
+        field = build_field_from_result(self.grasp, result(items, valid=1), self.grid)
+        with tempfile.TemporaryDirectory() as temporary:
+            output = save_field_bundle(field, items, temporary)
+            self.assertEqual(set(output), {"field", "summary", "candidates"})
+            self.assertEqual({path.name for path in output.values()}, {"field.npz", "summary.json", "candidate_diagnostics.csv"})
+            with np.load(output["field"]) as arrays:
+                for name in (
+                    "relevance", "cell_state", "evaluated_count", "feasible_count", "best_yaw",
+                    "best_joint_margin_rad", "best_fk_position_residual_m", "best_fk_orientation_residual_rad",
+                ):
+                    np.testing.assert_array_equal(arrays[name], getattr(field, name))
+                self.assertEqual(str(arrays["status"]), "PARTIALLY_ASSESSED")
+                self.assertEqual(str(arrays["grasp_id"]), "g")
+            parsed = json.loads(Path(output["summary"]).read_text())
+            self.assertEqual(parsed["status"], "PARTIALLY_ASSESSED")
+            with Path(output["candidates"]).open(newline="") as stream:
+                rows = list(csv.DictReader(stream))
+            self.assertEqual(len(rows), 2)
+            self.assertEqual(rows[0]["field_relevance"], "0.5")
+            self.assertEqual(rows[1]["fk_position_residual_m"], "")
+            self.assertEqual(
+                list(rows[0]),
+                [
+                    "candidate_id", "bunker_x", "bunker_y", "bunker_yaw", "rm4d_reachable", "ik_valid",
+                    "collision_free", "footprint_collision", "joint_margin_rad", "fk_position_residual_m",
+                    "fk_orientation_residual_rad", "field_relevance", "valid", "rejection_reason",
+                ],
+            )
+
+    def test_outputs_do_not_mutate_field_or_candidates(self):
+        item = candidate(-0.19, -0.19)
+        before = dict(item)
+        field = build_field_from_result(self.grasp, result([item]), self.grid)
+        snapshots = {name: getattr(field, name).copy() for name in ("relevance", "cell_state", "best_yaw")}
+        with tempfile.TemporaryDirectory() as temporary:
+            to_occupancy_grid_payload(field)
+            field_summary(field, FieldConfig())
+            save_field_bundle(field, [item], temporary)
+        self.assertEqual(item, before)
+        for name, snapshot in snapshots.items():
+            np.testing.assert_array_equal(getattr(field, name), snapshot)
+
+    def test_invalid_inputs_raise_value_error(self):
+        field = build_field_from_result(self.grasp, result([], inverse=0, deduplicated=0, validation_limit=0, valid=0), self.grid)
+        with self.assertRaises(ValueError):
+            to_occupancy_grid_payload(object())
+        with self.assertRaises(ValueError):
+            field_summary(field, object())
+        with self.assertRaises(ValueError):
+            save_field_bundle(field, object(), tempfile.gettempdir())
+        with self.assertRaises(ValueError):
+            save_field_bundle(field, [object()], tempfile.gettempdir())
+
+
+if __name__ == "__main__":
+    unittest.main()
