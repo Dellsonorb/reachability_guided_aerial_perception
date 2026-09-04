@@ -75,9 +75,9 @@ class OutputTests(unittest.TestCase):
             self.grasp,
             result(
                 [
-                    candidate(-0.19, -0.19, margin=0.25),
-                    candidate(0.01, -0.19, margin=0.5),
-                    candidate(-0.19, 0.01, margin=0.0, valid=False),
+                    candidate(0.01, -0.19, margin=0.0, valid=False),
+                    candidate(-0.19, 0.01, margin=0.25),
+                    candidate(0.01, 0.01, margin=0.5),
                 ],
                 valid=2,
             ),
@@ -98,7 +98,7 @@ class OutputTests(unittest.TestCase):
                     },
                 },
                 "field_status": "PARTIALLY_ASSESSED",
-                "data": [50, 100, 0, -1],
+                "data": [-1, 0, 50, 100],
             },
         )
 
