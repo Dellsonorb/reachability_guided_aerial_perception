@@ -301,6 +301,7 @@ def build_field_from_result(
         best_fk_position_residual_m=best_position,
         best_fk_orientation_residual_rad=best_orientation,
         coverage=coverage,
+        config=config,
     )
 
 

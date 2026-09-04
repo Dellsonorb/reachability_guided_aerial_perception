@@ -170,6 +170,16 @@ class OutputTests(unittest.TestCase):
         summary = field_summary(field, FieldConfig())
         self.assertEqual(summary["coverage"]["rejected_by_reason"], {"joint_margin": 1})
 
+    def test_summary_and_bundle_require_the_field_config_identity(self):
+        item = candidate(-0.19, -0.19)
+        field = build_field_from_result(self.grasp, result([item], valid=1), self.grid)
+        equivalent = FieldConfig(minimum_joint_margin_rad=0.02)
+        with self.assertRaises(ValueError):
+            field_summary(field, equivalent)
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [item], temporary, config=equivalent)
+
     def test_save_rejects_candidate_count_validity_config_and_raster_contradictions(self):
         item = candidate(-0.19, -0.19)
         field = build_field_from_result(self.grasp, result([item], valid=1), self.grid)
@@ -182,6 +192,10 @@ class OutputTests(unittest.TestCase):
                 save_field_bundle(field, [item], temporary, config=FieldConfig(minimum_joint_margin_rad=0.3))
             with self.assertRaises(ValueError):
                 save_field_bundle(field, [candidate(0.01, 0.01)], temporary)
+
+            altered_yaw = candidate(-0.19, -0.19, yaw=1.0)
+            with self.assertRaises(ValueError):
+                save_field_bundle(field, [altered_yaw], temporary)
 
     def test_save_requires_all_candidate_diagnostic_columns(self):
         item = candidate(-0.19, -0.19)

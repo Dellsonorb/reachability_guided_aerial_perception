@@ -114,6 +114,10 @@ def _validate_field_raster(
         (reconstructed.cell_state, field.cell_state, "cell_state"),
         (reconstructed.evaluated_count, field.evaluated_count, "evaluated_count"),
         (reconstructed.feasible_count, field.feasible_count, "valid_count"),
+        (reconstructed.best_yaw, field.best_yaw, "best_yaw"),
+        (reconstructed.best_joint_margin_rad, field.best_joint_margin_rad, "best_joint_margin_rad"),
+        (reconstructed.best_fk_position_residual_m, field.best_fk_position_residual_m, "best_fk_position_residual_m"),
+        (reconstructed.best_fk_orientation_residual_rad, field.best_fk_orientation_residual_rad, "best_fk_orientation_residual_rad"),
     ):
         if not np.array_equal(actual, expected, equal_nan=True):
             raise ValueError(f"provided candidates/config do not reproduce field {name}")
@@ -168,6 +172,8 @@ def field_summary(field: ManipulationInterestField, config: FieldConfig) -> dict
     """Return a JSON-safe description of field semantics, geometry, and coverage."""
     field = _require_field(field)
     config = _require_config(config)
+    if config != field.config:
+        raise ValueError("config does not match the field's scoring config")
     coverage_values = {
         item.name: getattr(field.coverage, item.name)
         for item in dataclass_fields(field.coverage)
@@ -223,6 +229,8 @@ def save_field_bundle(
     """Write the field arrays, summary, and candidate diagnostics to a directory."""
     field = _require_field(field)
     config = _require_config(config)
+    if config != field.config:
+        raise ValueError("config does not match the field's scoring config")
     candidates = _validate_candidates(evaluated_candidates)
     _validate_field_raster(field, candidates, config)
     try:

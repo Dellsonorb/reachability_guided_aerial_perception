@@ -308,6 +308,7 @@ class ManipulationInterestField:
     best_fk_position_residual_m: np.ndarray
     best_fk_orientation_residual_rad: np.ndarray
     coverage: AssessmentCoverage
+    config: FieldConfig
 
     def __post_init__(self) -> None:
         if not isinstance(self.grasp_id, str) or not self.grasp_id.strip():
@@ -320,6 +321,8 @@ class ManipulationInterestField:
             raise ValueError("status must be a FieldStatus")
         if not isinstance(self.coverage, AssessmentCoverage):
             raise ValueError("coverage must be an AssessmentCoverage")
+        if not isinstance(self.config, FieldConfig):
+            raise ValueError("config must be a FieldConfig")
         for name in (
             "relevance",
             "cell_state",

@@ -149,6 +149,7 @@ class TypeTests(unittest.TestCase):
             best_fk_position_residual_m=np.zeros(grid.shape),
             best_fk_orientation_residual_rad=np.zeros(grid.shape),
             coverage=coverage,
+            config=FieldConfig(),
         )
         self.assertEqual(field.relevance.shape, grid.shape)
         with self.assertRaises(ValueError):
@@ -166,6 +167,7 @@ class TypeTests(unittest.TestCase):
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),
                 coverage,
+                FieldConfig(),
             )
 
     def test_coverage_requires_integer_inverse_count_and_consistent_invariants(self):
@@ -247,6 +249,7 @@ class TypeTests(unittest.TestCase):
             source_relevance, source_state, source_evaluated, source_feasible,
             source_diagnostic, source_diagnostic, source_diagnostic, source_diagnostic,
             coverage,
+            FieldConfig(),
         )
         source_relevance[0, 0] = 1.0
         source_evaluated[0, 0] = 0
@@ -276,6 +279,7 @@ class TypeTests(unittest.TestCase):
             best_fk_position_residual_m=np.zeros(grid.shape),
             best_fk_orientation_residual_rad=np.zeros(grid.shape),
             coverage=coverage,
+            config=FieldConfig(),
         )
         for name, value in (
             ("relevance", np.full(grid.shape, "x", dtype=object)),
@@ -337,6 +341,7 @@ class TypeTests(unittest.TestCase):
             best_fk_position_residual_m=np.full(grid.shape, np.nan),
             best_fk_orientation_residual_rad=np.full(grid.shape, np.nan),
             coverage=AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False, {"rejected": 1}),
+            config=FieldConfig(),
         )
         with self.assertRaises(ValueError):
             ManipulationInterestField(**{**base, "coverage": dataclasses.replace(base["coverage"], total_cells=3)})
@@ -363,6 +368,29 @@ class TypeTests(unittest.TestCase):
                 np.zeros(grid.shape),
                 np.zeros(grid.shape),
                 base["coverage"],
+                FieldConfig(),
+            )
+
+    def test_interest_field_requires_a_valid_field_config(self):
+        grid = GridSpec.centered((0, 0), 0.2, 0.2, 0.1)
+        coverage = AssessmentCoverage(1, 1, 1, 1, 0, 1, 4, 1.0, 0.25, False, {"rejected": 1})
+        arrays = {
+            "relevance": np.zeros(grid.shape),
+            "cell_state": np.full(grid.shape, CellState.UNASSESSED, dtype=np.int8),
+            "evaluated_count": np.ones(grid.shape, dtype=np.int32),
+            "feasible_count": np.zeros(grid.shape, dtype=np.int32),
+            "best_yaw": np.full(grid.shape, np.nan),
+            "best_joint_margin_rad": np.full(grid.shape, np.nan),
+            "best_fk_position_residual_m": np.full(grid.shape, np.nan),
+            "best_fk_orientation_residual_rad": np.full(grid.shape, np.nan),
+        }
+        field = ManipulationInterestField(
+            "g", "map", FieldStatus.PARTIALLY_ASSESSED, grid, config=FieldConfig(), coverage=coverage, **arrays
+        )
+        self.assertEqual(field.config, FieldConfig())
+        with self.assertRaises(ValueError):
+            ManipulationInterestField(
+                "g", "map", FieldStatus.PARTIALLY_ASSESSED, grid, config=object(), coverage=coverage, **arrays
             )
 
     def test_occupancy_payload_is_frozen(self):
