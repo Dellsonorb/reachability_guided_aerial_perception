@@ -1,0 +1,308 @@
+{
+  "gain_semantics": "predicted_observation_gain_surrogate",
+  "status": "RANKED",
+  "formula": "G_task = (1-exp(-1/tau)) * sum(V * U_task)",
+  "visibility_semantics": "idealized_one_new_informative_endpoint_opportunity",
+  "unknown_occludes": false,
+  "height_semantics": "assumed_occlusion_surrogate_not_A2_measured_height",
+  "flight_cost_semantics": "straight_line_plus_yaw_proxy_not_path_or_energy",
+  "current": {
+    "position_xyz": [
+      -0.45,
+      0.05,
+      1.5
+    ],
+    "yaw_rad": 0.0,
+    "frame_id": "map"
+  },
+  "config": {
+    "xy_offsets_m": [
+      -4.0,
+      -2.0,
+      0.0,
+      2.0,
+      4.0
+    ],
+    "yaw_samples": 8,
+    "assumed_height_m": 1.0,
+    "flight_weight": 0.25,
+    "yaw_cost_m_per_rad": 0.25
+  },
+  "sensor": {
+    "T_uav_lidar": [
+      [
+        0.9393727128473789,
+        0.0,
+        0.34289780745545134,
+        0.14714489037277256
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        -0.34289780745545134,
+        0.0,
+        0.9393727128473789,
+        0.27696863564236895
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "min_elevation_deg": -7.0,
+    "max_elevation_deg": 52.0,
+    "horizontal_fov_deg": 360,
+    "yaw_equivalent": false
+  },
+  "a2_config": {
+    "ground_z_m": 0.0,
+    "ground_tolerance_m": 0.02,
+    "obstacle_min_height_m": 0.05,
+    "min_range_m": 0.2,
+    "max_range_m": 40.0,
+    "free_observations": 2,
+    "unknown_scale": 2.0
+  },
+  "a3_summary": {
+    "schema_version": 1,
+    "field_type": "task_relevant_observation_deficit",
+    "frame_id": "map",
+    "grasp_id": "a4-synthetic",
+    "grid": {
+      "origin_xy": [
+        -2.0,
+        -3.0
+      ],
+      "frame_id": "map",
+      "resolution_m": 0.1,
+      "width_cells": 120,
+      "height_cells": 60
+    },
+    "a1_status": "PARTIALLY_ASSESSED",
+    "a1_coverage": {
+      "inverse_reachable": 1,
+      "deduplicated_candidates": 1,
+      "validation_limit": 256,
+      "evaluated_candidates": 1,
+      "valid_candidates": 1,
+      "evaluated_cells": 1,
+      "total_cells": 7200,
+      "candidate_validation_fraction": 1.0,
+      "assessed_cell_fraction": 0.0001388888888888889,
+      "validation_truncated": false,
+      "rejected_by_reason": {}
+    },
+    "footprint": {
+      "half_length_m": 0.52,
+      "half_width_m": 0.39
+    },
+    "cell_overlap": "closed_rectangle_intersection_including_contact",
+    "contact_tolerance_m": 1e-12,
+    "cells": {
+      "no_validated_support": 7101,
+      "blocked_only": 0,
+      "supported": 99
+    },
+    "pose_states": {
+      "not_projected": 7199,
+      "a2_occupied_blocked": 0,
+      "unconfirmed": 1,
+      "observed_ground_support": 0
+    },
+    "projected_poses": 1,
+    "clipped_poses": 0,
+    "uncertainty_max": 0.9,
+    "uncertainty_mean_over_nominal_support": 0.9000000000000004,
+    "nominal_formula": "max R(q) over all validated-support representative footprints containing x",
+    "operational_formula": "max R(q) over non-A2-occupied-blocked supporting footprints containing x",
+    "uncertainty_formula": "unknown_score * task_relevance_at_environment_cell",
+    "blocked_semantics": "A2-occupied-blocked_not_navigation_infeasible",
+    "representative_pose": "A1_cell_center_plus_stored_best_yaw",
+    "representative_pose_ik_validated": false,
+    "free_forces_zero_score": false,
+    "unknown_blocks_pose": false,
+    "score_semantics": "heuristic_not_probability_or_information_gain",
+    "no_validated_support_values": "NaN_not_zero_not_global_task_irrelevance",
+    "blocked_only_values": "nominal_preserved_operational_and_uncertainty_zero",
+    "observed_ground_support_semantics": "A2_ground_support_not_full_clearance",
+    "smoothing": false
+  },
+  "a3_poses": [
+    {
+      "source_id": 3660,
+      "row": 30,
+      "col": 60,
+      "xy": [
+        4.050000000000001,
+        0.050000000000000266
+      ],
+      "yaw": 0.0,
+      "relevance": 0.9,
+      "environment_state": 1,
+      "blocked": false,
+      "footprint_clipped": false,
+      "free_cells": 0,
+      "occupied_cells": 0,
+      "unknown_cells": 99,
+      "covered_environment_cells": [
+        3175,
+        3176,
+        3177,
+        3178,
+        3179,
+        3180,
+        3181,
+        3182,
+        3183,
+        3184,
+        3185,
+        3295,
+        3296,
+        3297,
+        3298,
+        3299,
+        3300,
+        3301,
+        3302,
+        3303,
+        3304,
+        3305,
+        3415,
+        3416,
+        3417,
+        3418,
+        3419,
+        3420,
+        3421,
+        3422,
+        3423,
+        3424,
+        3425,
+        3535,
+        3536,
+        3537,
+        3538,
+        3539,
+        3540,
+        3541,
+        3542,
+        3543,
+        3544,
+        3545,
+        3655,
+        3656,
+        3657,
+        3658,
+        3659,
+        3660,
+        3661,
+        3662,
+        3663,
+        3664,
+        3665,
+        3775,
+        3776,
+        3777,
+        3778,
+        3779,
+        3780,
+        3781,
+        3782,
+        3783,
+        3784,
+        3785,
+        3895,
+        3896,
+        3897,
+        3898,
+        3899,
+        3900,
+        3901,
+        3902,
+        3903,
+        3904,
+        3905,
+        4015,
+        4016,
+        4017,
+        4018,
+        4019,
+        4020,
+        4021,
+        4022,
+        4023,
+        4024,
+        4025,
+        4135,
+        4136,
+        4137,
+        4138,
+        4139,
+        4140,
+        4141,
+        4142,
+        4143,
+        4144,
+        4145
+      ]
+    }
+  ],
+  "task_order": [
+    1,
+    0
+  ],
+  "generic_order": [
+    1,
+    0
+  ],
+  "best_task_id": 1,
+  "best_generic_id": 1,
+  "candidates": [
+    {
+      "candidate_id": 0,
+      "viewpoint": {
+        "position_xyz": [
+          -0.45,
+          0.05,
+          1.5
+        ],
+        "yaw_rad": 0.0,
+        "frame_id": "map"
+      },
+      "status": "VALID",
+      "task_gain": 0.0,
+      "generic_gain": 18.73727011127887,
+      "flight_cost": 0.0,
+      "task_score": 0.0,
+      "generic_score": 18.73727011127887,
+      "visible_cells": 2600,
+      "visible_task_cells": 0
+    },
+    {
+      "candidate_id": 1,
+      "viewpoint": {
+        "position_xyz": [
+          8.55,
+          0.05,
+          1.5
+        ],
+        "yaw_rad": -3.141592653589793,
+        "frame_id": "map"
+      },
+      "status": "VALID",
+      "task_gain": 35.05811821960437,
+      "generic_gain": 74.18903518676672,
+      "flight_cost": 9.78539816339745,
+      "task_score": 32.611768678755006,
+      "generic_score": 71.74268564591735,
+      "visible_cells": 2630,
+      "visible_task_cells": 99
+    }
+  ]
+}
