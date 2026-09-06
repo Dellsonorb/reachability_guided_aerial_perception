@@ -1,0 +1,122 @@
+{
+  "scene": "occlusion_multiview",
+  "boxes_map": [
+    {
+      "lower": [
+        -0.35,
+        -0.55,
+        0
+      ],
+      "upper": [
+        0.05,
+        0.55,
+        1.2
+      ]
+    }
+  ],
+  "sensor_frame": "lidar",
+  "steps": [
+    {
+      "label": "View 1: occluded ground",
+      "update": {
+        "stamp_s": 0.0,
+        "input_points": 73,
+        "masked_invalid_points": 1,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 0,
+        "obstacle_points": 72,
+        "free_cells": 0,
+        "occupied_cells": 5
+      },
+      "cells": {
+        "unknown": 895,
+        "free": 0,
+        "occupied": 5
+      },
+      "probes": {
+        "hidden_ground": {
+          "row_col": [
+            15,
+            22
+          ],
+          "state": "UNKNOWN",
+          "occupied_evidence": 0,
+          "free_evidence": 0,
+          "observation_count": 0,
+          "unknown_score": 1.0
+        }
+      }
+    },
+    {
+      "label": "View 2: ground revealed",
+      "update": {
+        "stamp_s": 1.0,
+        "input_points": 72,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 72,
+        "obstacle_points": 0,
+        "free_cells": 72,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 895,
+        "free": 0,
+        "occupied": 5
+      },
+      "probes": {
+        "hidden_ground": {
+          "row_col": [
+            15,
+            22
+          ],
+          "state": "UNKNOWN",
+          "occupied_evidence": 0,
+          "free_evidence": 1,
+          "observation_count": 1,
+          "unknown_score": 0.6065306597126334
+        }
+      }
+    },
+    {
+      "label": "View 3: ground confirmed",
+      "update": {
+        "stamp_s": 2.0,
+        "input_points": 72,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 72,
+        "obstacle_points": 0,
+        "free_cells": 72,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 823,
+        "free": 72,
+        "occupied": 5
+      },
+      "probes": {
+        "hidden_ground": {
+          "row_col": [
+            15,
+            22
+          ],
+          "state": "FREE",
+          "occupied_evidence": 0,
+          "free_evidence": 2,
+          "observation_count": 2,
+          "unknown_score": 0.36787944117144233
+        }
+      }
+    }
+  ]
+}

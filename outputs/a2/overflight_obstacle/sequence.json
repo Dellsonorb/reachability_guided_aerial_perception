@@ -1,0 +1,190 @@
+{
+  "scene": "overflight_obstacle",
+  "boxes_map": [
+    {
+      "lower": [
+        -0.25,
+        -0.25,
+        0
+      ],
+      "upper": [
+        0.25,
+        0.25,
+        0.4
+      ]
+    }
+  ],
+  "sensor_frame": "lidar",
+  "steps": [
+    {
+      "label": "View 1: overflight",
+      "update": {
+        "stamp_s": 0.0,
+        "input_points": 20,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 20,
+        "obstacle_points": 0,
+        "free_cells": 20,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 900,
+        "free": 0,
+        "occupied": 0
+      },
+      "probes": {
+        "box_edge": {
+          "row_col": [
+            15,
+            12
+          ],
+          "state": "UNKNOWN",
+          "occupied_evidence": 0,
+          "free_evidence": 0,
+          "observation_count": 0,
+          "unknown_score": 1.0
+        }
+      }
+    },
+    {
+      "label": "View 2: overflight",
+      "update": {
+        "stamp_s": 1.0,
+        "input_points": 20,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 20,
+        "obstacle_points": 0,
+        "free_cells": 20,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 880,
+        "free": 20,
+        "occupied": 0
+      },
+      "probes": {
+        "box_edge": {
+          "row_col": [
+            15,
+            12
+          ],
+          "state": "UNKNOWN",
+          "occupied_evidence": 0,
+          "free_evidence": 0,
+          "observation_count": 0,
+          "unknown_score": 1.0
+        }
+      }
+    },
+    {
+      "label": "View 3: wall hit",
+      "update": {
+        "stamp_s": 2.0,
+        "input_points": 4,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 0,
+        "obstacle_points": 4,
+        "free_cells": 0,
+        "occupied_cells": 4
+      },
+      "cells": {
+        "unknown": 876,
+        "free": 20,
+        "occupied": 4
+      },
+      "probes": {
+        "box_edge": {
+          "row_col": [
+            15,
+            12
+          ],
+          "state": "OCCUPIED",
+          "occupied_evidence": 1,
+          "free_evidence": 0,
+          "observation_count": 1,
+          "unknown_score": 0.6065306597126334
+        }
+      }
+    },
+    {
+      "label": "View 4: edge ground",
+      "update": {
+        "stamp_s": 3.0,
+        "input_points": 1,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 1,
+        "obstacle_points": 0,
+        "free_cells": 1,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 876,
+        "free": 20,
+        "occupied": 4
+      },
+      "probes": {
+        "box_edge": {
+          "row_col": [
+            15,
+            12
+          ],
+          "state": "OCCUPIED",
+          "occupied_evidence": 1,
+          "free_evidence": 1,
+          "observation_count": 2,
+          "unknown_score": 0.36787944117144233
+        }
+      }
+    },
+    {
+      "label": "View 5: edge ground",
+      "update": {
+        "stamp_s": 4.0,
+        "input_points": 1,
+        "masked_invalid_points": 0,
+        "nonfinite_points": 0,
+        "out_of_range_points": 0,
+        "out_of_grid_points": 0,
+        "ambiguous_points": 0,
+        "ground_points": 1,
+        "obstacle_points": 0,
+        "free_cells": 1,
+        "occupied_cells": 0
+      },
+      "cells": {
+        "unknown": 876,
+        "free": 20,
+        "occupied": 4
+      },
+      "probes": {
+        "box_edge": {
+          "row_col": [
+            15,
+            12
+          ],
+          "state": "OCCUPIED",
+          "occupied_evidence": 1,
+          "free_evidence": 2,
+          "observation_count": 3,
+          "unknown_score": 0.22313016014842982
+        }
+      }
+    }
+  ]
+}
