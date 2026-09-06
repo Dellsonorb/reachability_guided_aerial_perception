@@ -1,0 +1,159 @@
+[
+  {
+    "scene": "task_vs_generic",
+    "case": "heading_choice",
+    "description": "Large low-R unknown west versus small high-R unknown east",
+    "best_task_id": 0,
+    "best_generic_id": 4,
+    "candidates": [
+      {
+        "id": 0,
+        "task_gain": 28.683914906949028,
+        "generic_gain": 61.59370564421017,
+        "cost": 0.0,
+        "task_score": 28.683914906949028
+      },
+      {
+        "id": 1,
+        "task_gain": 1.06236721877589,
+        "generic_gain": 18.885580291154618,
+        "cost": 0.19634954084936207,
+        "task_score": 1.0132798335635493
+      },
+      {
+        "id": 2,
+        "task_gain": 0.0,
+        "generic_gain": 2.0683063545911673,
+        "cost": 0.39269908169872414,
+        "task_score": -0.09817477042468103
+      },
+      {
+        "id": 3,
+        "task_gain": 9.915427375241636,
+        "generic_gain": 177.2994222883659,
+        "cost": 0.5890486225480862,
+        "task_score": 9.768165219604615
+      },
+      {
+        "id": 4,
+        "task_gain": 17.942201917103915,
+        "generic_gain": 302.6677649999126,
+        "cost": 0.7853981633974483,
+        "task_score": 17.745852376254554
+      },
+      {
+        "id": 5,
+        "task_gain": 9.915427375241638,
+        "generic_gain": 185.33456186817452,
+        "cost": 0.5890486225480862,
+        "task_score": 9.768165219604617
+      },
+      {
+        "id": 6,
+        "task_gain": 0.0,
+        "generic_gain": 2.565564676775107,
+        "cost": 0.39269908169872414,
+        "task_score": -0.09817477042468103
+      },
+      {
+        "id": 7,
+        "task_gain": 1.06236721877589,
+        "generic_gain": 19.195465912225767,
+        "cost": 0.1963495408493623,
+        "task_score": 1.0132798335635493
+      }
+    ]
+  },
+  {
+    "scene": "occlusion",
+    "case": "clear",
+    "description": "Known 1 m surrogate wall outside the manipulation footprint",
+    "best_task_id": 0,
+    "best_generic_id": 0,
+    "candidates": [
+      {
+        "id": 0,
+        "task_gain": 35.05811821960437,
+        "generic_gain": 85.15033820186486,
+        "cost": 0.0,
+        "task_score": 35.05811821960437
+      },
+      {
+        "id": 1,
+        "task_gain": 35.05811821960437,
+        "generic_gain": 85.58273674289437,
+        "cost": 9.78539816339745,
+        "task_score": 32.611768678755006
+      }
+    ]
+  },
+  {
+    "scene": "occlusion",
+    "case": "known_barrier",
+    "description": "Known 1 m surrogate wall outside the manipulation footprint",
+    "best_task_id": 1,
+    "best_generic_id": 1,
+    "candidates": [
+      {
+        "id": 0,
+        "task_gain": 0.0,
+        "generic_gain": 18.73727011127887,
+        "cost": 0.0,
+        "task_score": 0.0
+      },
+      {
+        "id": 1,
+        "task_gain": 35.05811821960437,
+        "generic_gain": 74.18903518676672,
+        "cost": 9.78539816339745,
+        "task_score": 32.611768678755006
+      }
+    ]
+  },
+  {
+    "scene": "flight_cost",
+    "case": "zero_cost",
+    "description": "Small additional predicted gain versus 10.1 m reposition plus yaw",
+    "best_task_id": 1,
+    "best_generic_id": 0,
+    "candidates": [
+      {
+        "id": 0,
+        "task_gain": 28.683914906949024,
+        "generic_gain": 52.94573482361993,
+        "cost": 0.0,
+        "task_score": 28.683914906949024
+      },
+      {
+        "id": 1,
+        "task_gain": 29.002625072581797,
+        "generic_gain": 52.94573482361992,
+        "cost": 10.88539816339745,
+        "task_score": 29.002625072581797
+      }
+    ]
+  },
+  {
+    "scene": "flight_cost",
+    "case": "with_cost",
+    "description": "Small additional predicted gain versus 10.1 m reposition plus yaw",
+    "best_task_id": 0,
+    "best_generic_id": 0,
+    "candidates": [
+      {
+        "id": 0,
+        "task_gain": 28.683914906949024,
+        "generic_gain": 52.94573482361993,
+        "cost": 0.0,
+        "task_score": 28.683914906949024
+      },
+      {
+        "id": 1,
+        "task_gain": 29.002625072581797,
+        "generic_gain": 52.94573482361992,
+        "cost": 10.88539816339745,
+        "task_score": 26.281275531732433
+      }
+    ]
+  }
+]
