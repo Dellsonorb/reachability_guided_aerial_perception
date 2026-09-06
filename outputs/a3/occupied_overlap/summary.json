@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "field_type": "task_relevant_observation_deficit",
+  "frame_id": "map",
+  "grasp_id": "a3-synthetic-grasp",
+  "grid": {
+    "origin_xy": [
+      -1.5,
+      -1.5
+    ],
+    "frame_id": "map",
+    "resolution_m": 0.1,
+    "width_cells": 30,
+    "height_cells": 30
+  },
+  "a1_status": "PARTIALLY_ASSESSED",
+  "a1_coverage": {
+    "inverse_reachable": 2,
+    "deduplicated_candidates": 2,
+    "validation_limit": 256,
+    "evaluated_candidates": 2,
+    "valid_candidates": 2,
+    "evaluated_cells": 2,
+    "total_cells": 900,
+    "candidate_validation_fraction": 1.0,
+    "assessed_cell_fraction": 0.0022222222222222222,
+    "validation_truncated": false,
+    "rejected_by_reason": {}
+  },
+  "footprint": {
+    "half_length_m": 0.52,
+    "half_width_m": 0.39
+  },
+  "cell_overlap": "closed_rectangle_intersection_including_contact",
+  "contact_tolerance_m": 1e-12,
+  "cells": {
+    "no_validated_support": 747,
+    "blocked_only": 54,
+    "supported": 99
+  },
+  "pose_states": {
+    "not_projected": 898,
+    "a2_occupied_blocked": 1,
+    "unconfirmed": 1,
+    "observed_ground_support": 0
+  },
+  "projected_poses": 2,
+  "clipped_poses": 0,
+  "uncertainty_max": 0.2,
+  "uncertainty_mean_over_nominal_support": 0.12941176470588234,
+  "nominal_formula": "max R(q) over all validated-support representative footprints containing x",
+  "operational_formula": "max R(q) over non-A2-occupied-blocked supporting footprints containing x",
+  "uncertainty_formula": "unknown_score * task_relevance_at_environment_cell",
+  "blocked_semantics": "A2-occupied-blocked_not_navigation_infeasible",
+  "representative_pose": "A1_cell_center_plus_stored_best_yaw",
+  "representative_pose_ik_validated": false,
+  "free_forces_zero_score": false,
+  "unknown_blocks_pose": false,
+  "score_semantics": "heuristic_not_probability_or_information_gain",
+  "no_validated_support_values": "NaN_not_zero_not_global_task_irrelevance",
+  "blocked_only_values": "nominal_preserved_operational_and_uncertainty_zero",
+  "observed_ground_support_semantics": "A2_ground_support_not_full_clearance",
+  "smoothing": false
+}

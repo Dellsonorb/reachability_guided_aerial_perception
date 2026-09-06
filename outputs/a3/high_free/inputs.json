@@ -1,0 +1,65 @@
+{
+  "input_kind": "synthetic_A1_candidates_and_A2_endpoints_not_real_IK_or_sensor_validation",
+  "scene": "high_free",
+  "description": "R=.9, ground support N=2 then N=8",
+  "grasp": {
+    "grasp_id": "a3-synthetic-grasp",
+    "frame_id": "map",
+    "position_xyz": [
+      0.0,
+      0.0,
+      0.4
+    ],
+    "quaternion_xyzw": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "a1_result": {
+    "schema_version": 1,
+    "grasp_id": "a3-synthetic-grasp",
+    "frame_id": "map",
+    "summary": {
+      "inverse_reachable": 1,
+      "deduplicated": 1,
+      "validation_limit": 256,
+      "evaluated": 1,
+      "valid": 1,
+      "rejected_by_reason": {}
+    },
+    "evaluated_candidates": [
+      {
+        "candidate_id": "synthetic-0",
+        "bunker_x": 0.01,
+        "bunker_y": 0.01,
+        "bunker_yaw": 0,
+        "rm4d_reachable": true,
+        "ik_valid": true,
+        "collision_free": true,
+        "footprint_collision": false,
+        "valid": true,
+        "joint_margin_rad": 0.45,
+        "fk_position_residual_m": 0.0,
+        "fk_orientation_residual_rad": 0.0,
+        "rejection_reason": null
+      }
+    ],
+    "candidates": []
+  },
+  "a1_config": {
+    "minimum_joint_margin_rad": 0.01,
+    "joint_margin_saturation_rad": 0.5,
+    "high_relevance_threshold": 0.8
+  },
+  "a2_config": {
+    "ground_z_m": 0.0,
+    "ground_tolerance_m": 0.02,
+    "obstacle_min_height_m": 0.05,
+    "min_range_m": 0.2,
+    "max_range_m": 40.0,
+    "free_observations": 2,
+    "unknown_scale": 2.0
+  }
+}
