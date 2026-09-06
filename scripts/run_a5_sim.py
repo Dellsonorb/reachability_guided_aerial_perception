@@ -1,0 +1,340 @@
+#!/usr/bin/python3
+"""Run the A5 adapter against an already launched SIM runtime (run_demo=false)."""
+
+import argparse
+import importlib.util
+import math
+from pathlib import Path
+import sys
+import time
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_SIM = "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation"
+DEMO_RELATIVE = Path("src/demos/air_ground_pick_demo")
+
+
+def build_parser():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--sim-root", type=Path, default=Path(DEFAULT_SIM))
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--core-python", type=Path, required=True,
+                        help="Python 3.10 interpreter with the frozen core/RM4D dependencies")
+    parser.add_argument("--rm4d-root", type=Path, required=True)
+    parser.add_argument("--rm4d-config", type=Path, required=True)
+    parser.add_argument("--rm4d-map", type=Path, required=True)
+    parser.add_argument("--max-viewpoints", type=int, default=3,
+                        help="observation budget, including the initial capture and rescans")
+    parser.add_argument("--flight-bounds", type=float, nargs=6,
+                        default=[-4., 4., -3., 3., .5, 3.],
+                        metavar=("XMIN", "XMAX", "YMIN", "YMAX", "ZMIN", "ZMAX"))
+    parser.add_argument("--xy-offsets-m", type=float, nargs="+", default=[-2., 0., 2.])
+    parser.add_argument("--facade-position-tolerance", type=float, default=.15)
+    parser.add_argument("--view-position", type=float, nargs=3, default=None)
+    parser.add_argument("--view-yaw", type=float, default=None)
+    parser.add_argument("--settle-position-tolerance", type=float, default=.10)
+    parser.add_argument("--settle-yaw-tolerance", type=float, default=.10)
+    parser.add_argument("--settle-speed", type=float, default=.10)
+    parser.add_argument("--settle-duration", type=float, default=.5)
+    parser.add_argument("--settle-timeout", type=float, default=45.)
+    parser.add_argument("--cloud-timeout", type=float, default=20.)
+    parser.add_argument("--core-timeout", type=float, default=900.)
+    parser.add_argument("--tf-max-age", type=float, default=.5)
+    parser.add_argument("--tf-timeout", type=float, default=1.)
+    parser.add_argument("--cloud-topic", default="/uav1/livox/lidar")
+    parser.add_argument("--uav-base-frame", default="uav1/base_link")
+    parser.add_argument("--check-imports", action="store_true",
+                        help="load ROS and the inherited demo without initializing a node or moving robots")
+    return parser
+
+
+def validate_options(parser, options):
+    if options.max_viewpoints < 1:
+        parser.error("--max-viewpoints must be positive")
+    for name in ("settle_position_tolerance", "settle_yaw_tolerance", "settle_speed",
+                 "settle_duration", "settle_timeout", "cloud_timeout", "core_timeout",
+                 "tf_max_age", "tf_timeout", "facade_position_tolerance"):
+        if not math.isfinite(getattr(options, name)) or getattr(options, name) <= 0:
+            parser.error("--%s must be finite and positive" % name.replace("_", "-"))
+    if (not all(math.isfinite(value) for value in options.flight_bounds)
+            or any(options.flight_bounds[index] >= options.flight_bounds[index + 1]
+                   for index in (0, 2, 4))):
+        parser.error("--flight-bounds must contain finite increasing min/max pairs")
+    for values in (options.xy_offsets_m, options.view_position or [],
+                   [] if options.view_yaw is None else [options.view_yaw]):
+        if not all(math.isfinite(value) for value in values):
+            parser.error("view pose and offsets must be finite")
+    for name in ("sim_root", "output_dir", "core_python", "rm4d_root", "rm4d_config", "rm4d_map"):
+        setattr(options, name, getattr(options, name).expanduser().resolve())
+    for path in (options.core_python, options.rm4d_config, options.rm4d_map,
+                 options.sim_root / DEMO_RELATIVE / "scripts/run_air_ground_pick_demo.py",
+                 options.sim_root / DEMO_RELATIVE / "config/demo.yaml"):
+        if not path.is_file():
+            parser.error("required file does not exist: %s" % path)
+    if not options.rm4d_root.is_dir():
+        parser.error("RM4D root does not exist: %s" % options.rm4d_root)
+
+
+def load_demo_module(sim_root):
+    path = sim_root / DEMO_RELATIVE / "scripts/run_air_ground_pick_demo.py"
+    spec = importlib.util.spec_from_file_location("a5_inherited_air_ground_pick_demo", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def build_adapter_class(demo_module, options):
+    """Import the ROS boundary lazily so --help and source import stay portable."""
+    import numpy as np
+    import rospy
+    from sensor_msgs.msg import PointCloud2
+    from sensor_msgs import point_cloud2
+    import tf2_ros
+
+    from a5_ros_support import (
+        WorkerError, capture_pose_settled, finite_xyz, fresh_scan_stamp, normalized_frame, pose_settled,
+        pose_xyzyaw, rigid_transform, run_worker_request, yaw_quaternion,
+    )
+
+    DemoError = demo_module.DemoError
+
+    class A5AirGroundPickDemo(demo_module.AirGroundPickDemo):
+        def __init__(self):
+            super().__init__()
+            self._a5_cloud = None
+            self._a5_previous_stamp = 0.
+            self._a5_observations = []
+            self._a5_selected = None
+            self._a5_candidate_count = 0
+            self._a5_output = options.output_dir
+            self._a5_output.mkdir(parents=True, exist_ok=True)
+            self._a5_cloud_subscriber = rospy.Subscriber(
+                options.cloud_topic, PointCloud2, self._a5_cloud_callback,
+                queue_size=1, buff_size=16 * 1024 * 1024)
+
+        def _a5_cloud_callback(self, message):
+            with self._lock:
+                self._a5_cloud = message
+
+        @staticmethod
+        def _a5_matrix(transform):
+            t, q = transform.transform.translation, transform.transform.rotation
+            return rigid_transform([t.x, t.y, t.z], [q.x, q.y, q.z, q.w])
+
+        def _a5_measured_pose(self, stamp=None):
+            transform = self._tf_buffer.lookup_transform(
+                self._map_frame, normalized_frame(options.uav_base_frame),
+                rospy.Time(0) if stamp is None else stamp, rospy.Duration(options.tf_timeout))
+            if stamp is None:
+                age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
+                if not 0 <= age <= options.tf_max_age:
+                    raise DemoError("A5 UAV map TF is stale")
+            return pose_xyzyaw(self._a5_matrix(transform))
+
+        def _a5_settled_now(self, goal):
+            pose = self._a5_measured_pose()
+            state, _target, received, _target_received = self._air_snapshot()
+            settled = (state is not None and received is not None
+                       and time.monotonic() - received <= self._flight_health_max_age
+                       and pose_settled(pose, goal, state.velocity,
+                                        options.settle_position_tolerance,
+                                        options.settle_yaw_tolerance, options.settle_speed))
+            return settled, pose
+
+        def _a5_wait_settled(self, goal):
+            deadline, stable_since = time.monotonic() + options.settle_timeout, None
+            while not rospy.is_shutdown() and time.monotonic() < deadline:
+                try:
+                    settled, pose = self._a5_settled_now(goal)
+                except (DemoError, tf2_ros.TransformException):
+                    settled = False
+                now = time.monotonic()
+                if settled:
+                    stable_since = now if stable_since is None else stable_since
+                    if now - stable_since >= options.settle_duration:
+                        self._publish_status("A5_SETTLED", uav_pose_map=pose)
+                        return pose
+                else:
+                    stable_since = None
+                self._wait_step()
+            raise DemoError("A5 UAV position/yaw/speed did not settle")
+
+        def _a5_fly_and_hover(self, goal, label, force_flight=False):
+            bounds = options.flight_bounds
+            if any(not bounds[2 * axis] <= goal[axis] <= bounds[2 * axis + 1]
+                   for axis in range(3)):
+                raise DemoError("A5 viewpoint is outside configured flight bounds")
+            current = self._a5_measured_pose()
+            close_position = np.linalg.norm(np.asarray(current[:3]) - goal[:3]) <= options.facade_position_tolerance
+            same_pose = pose_settled(current, goal, [0., 0., 0.],
+                                     options.facade_position_tolerance,
+                                     options.settle_yaw_tolerance, options.settle_speed)
+            if close_position and not same_pose:
+                raise DemoError("A5 cannot execute a yaw-only goal through the current flight facade")
+            self._publish_status("A5_VIEWPOINT", goal_map=list(goal), rescan=bool(same_pose and not force_flight))
+            if force_flight or not same_pose:
+                target = self._view_pose()
+                target.pose.position.x, target.pose.position.y, target.pose.position.z = goal[:3]
+                q = yaw_quaternion(goal[3])
+                (target.pose.orientation.x, target.pose.orientation.y,
+                 target.pose.orientation.z, target.pose.orientation.w) = q
+                self._execute_flight(self._fly_to_command, label, target)
+            self._a5_wait_settled(goal)
+            self._execute_flight(self._hover_command, "A5 hover")
+
+        def _a5_capture(self, goal):
+            # Start after a sustained stable interval. No moving-cloud deskew.
+            self._a5_wait_settled(goal)
+            capture_start = rospy.Time.now().to_sec()
+            deadline = time.monotonic() + options.cloud_timeout
+            while not rospy.is_shutdown() and time.monotonic() < deadline:
+                settled, _pose = self._a5_settled_now(goal)
+                if not settled:
+                    raise DemoError("A5 UAV moved while waiting for the hover cloud")
+                with self._lock:
+                    cloud = self._a5_cloud
+                if (cloud is None or not fresh_scan_stamp(
+                        cloud.header.stamp.to_sec(), self._a5_previous_stamp, capture_start)):
+                    self._wait_step()
+                    continue
+                frame = normalized_frame(cloud.header.frame_id)
+                # This must be the cloud header time, never the latest transform.
+                transform = self._tf_buffer.lookup_transform(
+                    self._map_frame, frame, cloud.header.stamp, rospy.Duration(options.tf_timeout))
+                sensor_matrix = self._a5_matrix(transform)
+                pose = self._a5_measured_pose(cloud.header.stamp)
+                settled, current_pose = self._a5_settled_now(goal)
+                state = self._air_snapshot()[0]
+                if not settled or not capture_pose_settled(
+                        current_pose, pose, goal, state.velocity,
+                        options.settle_position_tolerance, options.settle_yaw_tolerance,
+                        options.settle_speed):
+                    raise DemoError("A5 cloud-stamp UAV pose was outside the stable hover")
+                points = finite_xyz(point_cloud2.read_points(
+                    cloud, field_names=("x", "y", "z"), skip_nans=False))
+                stamp = cloud.header.stamp.to_sec()
+                path = self._a5_output / ("observation_%02d.npz" % (len(self._a5_observations) + 1))
+                if path.exists():
+                    raise DemoError("A5 observation already exists; use a fresh output directory: %s" % path)
+                np.savez_compressed(str(path), points_xyz=points, T_map_sensor=sensor_matrix,
+                                    stamp_s=np.asarray(stamp), frame_id=np.asarray(frame))
+                self._a5_previous_stamp = stamp
+                self._a5_observations.append(str(path))
+                self._publish_status("A5_OBSERVATION", round=len(self._a5_observations),
+                                     stamp_s=stamp, sensor_frame=frame, point_count=len(points),
+                                     uav_pose_map=pose, observation_file=str(path))
+                return pose
+            raise DemoError("A5 fresh MID360 PointCloud2 capture timed out")
+
+        def _a5_core(self, request, label):
+            self._publish_status("A5_CORE", operation=request["op"], label=label)
+            return run_worker_request(options.core_python, ROOT / "scripts/a5_core_worker.py",
+                                      ROOT / "src", request, self._a5_output, label,
+                                      options.core_timeout)
+
+        def _run_air_phase(self):
+            try:
+                self._wait_preflight()
+                for status in ("ARMING", "COMMAND_CONTROL", "TAKEOFF"):
+                    self._publish_status(status)
+                self._flight_started = True
+                self._execute_flight(self._takeoff_command, "takeoff")
+                initial_view = list(self._view_position) + [self._view_yaw]
+                self._publish_status("AIR_VIEW")
+                self._a5_fly_and_hover(initial_view, "A5 initial fly-to", force_flight=True)
+                self._publish_status("AIR_OBSERVE")
+                target_map = self._observe_from_air()
+                generated = demo_module.generate_top_down_grasp(
+                    target_map, self._target_size, self._pregrasp_height, self._lift_height,
+                    self._finger_pad_lower_edge_offset, self._contact_overlap, self._surface_clearance)
+                initial = self._a5_core({
+                    "op": "init", "output_dir": str(self._a5_output),
+                    "sim_root": str(options.sim_root), "rm4d_root": str(options.rm4d_root),
+                    "rm4d_config": str(options.rm4d_config), "rm4d_map": str(options.rm4d_map),
+                    "grasp": {"grasp_id": self._rm4d_grasp_id, "frame_id": self._map_frame,
+                              "position_xyz": list(generated.grasp.position),
+                              "quaternion_xyzw": list(generated.grasp.orientation)},
+                    "current_bunker_pose": list(self._ground_pose()),
+                    "config": {"max_viewpoints": options.max_viewpoints,
+                               "flight_bounds": options.flight_bounds,
+                               "facade_position_tolerance": options.facade_position_tolerance,
+                               "xy_offsets_m": options.xy_offsets_m},
+                }, "init")
+                self._a5_candidate_count = initial.get("candidate_count", 0)
+                goal = initial_view
+                for round_number in range(1, options.max_viewpoints + 1):
+                    pose = self._a5_capture(goal)
+                    response = self._a5_core({
+                        "op": "observe", "initial_file": initial["initial_file"],
+                        "observations": list(self._a5_observations), "uav_pose": pose,
+                        "output_dir": str(self._a5_output),
+                    }, "round-%02d" % round_number)
+                    self._publish_status("A5_DECISION", **{key: response[key] for key in (
+                        "round", "stop_reason", "next_viewpoint", "selected_candidate")})
+                    if response["stop_reason"] is not None:
+                        self._a5_selected = response["selected_candidate"]
+                        if self._a5_selected is None:
+                            raise DemoError("A5 stopped (%s) without a confirmed exact candidate" % response["stop_reason"])
+                        self._a5_candidate_count = response.get("candidate_count", self._a5_candidate_count)
+                        self._publish_status("A5_SELECTED", **self._a5_selected)
+                        self._a5_fly_and_hover(initial_view, "A5 return to clear landing location")
+                        self._publish_status("LANDING")
+                        self._request_land()
+                        return target_map
+                    if round_number == options.max_viewpoints:
+                        raise DemoError("A5 core did not stop at the configured observation budget")
+                    goal = response["next_viewpoint"]
+                    self._a5_fly_and_hover(goal, "A5 next viewpoint")
+                raise DemoError("A5 observation loop ended without a selection")
+            except (WorkerError, OSError, ValueError) as error:
+                raise DemoError("A5 adapter failed: %s" % error) from error
+
+        def _select_rm4d_candidate(self, _target_map):
+            if self._a5_selected is None:
+                raise DemoError("A5 has no cached exact candidate for the ground stage")
+            chosen = self._a5_selected
+            return ((chosen["x"], chosen["y"], chosen["yaw"]), chosen["candidate_id"],
+                    chosen["relevance"], self._a5_candidate_count)
+
+    return A5AirGroundPickDemo
+
+
+def main(argv=None):
+    argv = sys.argv if argv is None else argv
+    parser = build_parser()
+    if "--help" in argv or "-h" in argv:
+        parser.parse_args(["--help"])
+    import rospy
+    import moveit_commander
+    import yaml
+
+    options = parser.parse_args(rospy.myargv(argv=argv)[1:])
+    validate_options(parser, options)
+    demo_module = load_demo_module(options.sim_root)
+    adapter_class = build_adapter_class(demo_module, options)
+    if options.check_imports:
+        return 0
+    moveit_commander.roscpp_initialize(argv)
+    rospy.init_node("a5_sim_active_perception")
+    try:
+        with (options.sim_root / DEMO_RELATIVE / "config/demo.yaml").open() as stream:
+            parameters = yaml.safe_load(stream)
+        parameters["placement_mode"] = "rm4d"
+        if options.view_position is not None:
+            parameters["view_position"] = options.view_position
+        if options.view_yaw is not None:
+            parameters["view_yaw"] = options.view_yaw
+        if parameters["map_frame"] != "map":
+            raise demo_module.DemoError("A5 core requires the map frame")
+        for key, value in parameters.items():
+            rospy.set_param("~" + key, value)
+        return 0 if adapter_class().run() else 1
+    except (demo_module.DemoError, OSError, ValueError) as error:
+        rospy.logfatal("A5 configuration failed: %s", error)
+        return 2
+    finally:
+        moveit_commander.roscpp_shutdown()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
