@@ -1,0 +1,25 @@
+# Python caches and test/tool state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments and packaging metadata
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+build/
+dist/
+
+# Logs and transient generated files
+*.log
+*.tmp
+*.swp
+outputs/**/*.tmp
+outputs/**/*.partial
