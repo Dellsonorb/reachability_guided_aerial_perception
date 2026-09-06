@@ -8,6 +8,20 @@
 
 **Tech Stack:** Existing NumPy/Matplotlib, unittest, ROS Noetic/Gazebo/MoveIt and frozen RM4D; no new dependencies.
 
+## Execution status — 2026-09-07
+
+Tasks 1 and 2 are implemented and committed, with red/green unit tests, real
+subprocess/ROS import checks, independent spec review and code-quality review.
+Task 3 launched one actual natural Gazebo attempt (`gazebo-WwmQis`). It failed at
+the first A3/A4 decision: public TF did not place the ground in A2's frozen height
+band, all 21 representatives were occupied-blocked, and no next task viewpoint
+or exact ground candidate was selected. UAV cleanup landed and the runtime was
+stopped. See [the integration report](../../A5_SIM_ACTIVE_PERCEPTION.md).
+
+E2E success, A5 PR merge and A5 completion remain **open**. Do not check off the
+displacement/grasp/lift acceptance or claim the input prerequisite is fixed.
+No frozen method or SIM source was changed to force this failed run to pass.
+
 ## Task 1 — Core integration and exact candidate catalog (root)
 
 Create `src/sim_active_perception/{__init__,core,worker}.py`, `scripts/a5_core_worker.py`, `tests/test_a5_core.py`.

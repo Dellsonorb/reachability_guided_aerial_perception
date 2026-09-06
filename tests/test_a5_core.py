@@ -4,13 +4,12 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
-from dataclasses import replace
 
 import numpy as np
 
 from environment_belief import EnvironmentBeliefMapper, EnvironmentGridSpec, PointCloudObservation
 from reachability_guided_aerial_perception import GraspTCP, GridSpec, build_field_from_result
-from reachability_guided_nbv import NBVConfig, Viewpoint
+from reachability_guided_nbv import Viewpoint
 from task_relevant_uncertainty import build_task_uncertainty
 from task_relevant_uncertainty.geometry import footprint_cells
 from tests.test_field import candidate, result
@@ -107,6 +106,43 @@ class A5CoreTests(unittest.TestCase):
         choice, _ = decide(field, raw, belief, Viewpoint((-4, 0, 1.5), 0), round_count=1)
         self.assertEqual(choice['stop_reason'], 'NO_PREDICTED_TASK_GAIN')
         self.assertIsNone(choice['next_viewpoint'])
+
+    def test_nonpositive_score_stops_despite_positive_gain_alternatives(self):
+        field, raw = inputs([candidate(candidate_id='first', x=.011, y=.019, margin=.3)])
+        belief = EnvironmentBeliefMapper(self.grid).snapshot()
+        choice, ranking = decide(field, raw, belief, Viewpoint((4, 0, 1.5), 0),
+                                  round_count=1, config=A5Config(flight_weight=100000))
+        self.assertEqual(ranking.status, 'RANKED')
+        self.assertTrue(any(e.task_gain > 0 for e in ranking.candidates))
+        self.assertEqual(choice['best_task_score'], 0)
+        self.assertEqual(choice['stop_reason'], 'NONPOSITIVE_SCORE')
+        self.assertIsNone(choice['next_viewpoint'])
+
+    def test_equal_relevance_across_cells_preserves_raw_order(self):
+        field, raw = inputs([
+            candidate(candidate_id='later-cell-first', x=.299, y=.219, margin=.3),
+            candidate(candidate_id='earlier-cell-second', x=-.399, y=-.419, margin=.3)])
+        belief = replay_observations(self.grid, [scan(ground_points(self.grid), stamp) for stamp in (1, 2)])
+        choice, _ = decide(field, raw, belief, Viewpoint((-4, 0, 1.5), 0), round_count=3)
+        self.assertEqual(choice['selected_candidate']['candidate_id'], 'later-cell-first')
+
+    def test_representative_only_occupancy_blocks_exact_free_candidate(self):
+        field, raw = inputs([candidate(candidate_id='exact-clear', x=.011, y=.019, yaw=.2, margin=.3)])
+        exact, _ = footprint_cells(self.grid, (.011, .019), .2)
+        representative, _ = footprint_cells(self.grid, (.05, .05), .2)
+        extra = np.setdiff1d(representative, exact)
+        self.assertGreater(len(extra), 0)
+        mapper = EnvironmentBeliefMapper(self.grid, sensor_frame='uav1/lidar_link')
+        for stamp in (1, 2):
+            mapper.update(scan(ground_points(self.grid), stamp))
+        point = ground_points(self.grid)[extra[0]].copy()
+        point[2] = .2
+        mapper.update(scan([point], 3))
+        assessment = assess_candidates(field, mapper.snapshot(), candidate_catalog(field, raw))[0]
+        self.assertEqual(assessment['occupied_cells'], 0)
+        self.assertEqual(assessment['free_cells'], len(exact))
+        self.assertTrue(assessment['representative_blocked'])
+        self.assertFalse(assessment['confirmed'])
 
     def test_yaw_only_goals_filtered_current_rescan_preserved(self):
         field, raw = inputs([candidate(candidate_id='first', x=.011, y=.019, margin=.3)])

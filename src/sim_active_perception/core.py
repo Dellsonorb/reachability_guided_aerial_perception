@@ -9,7 +9,7 @@ from environment_belief import BeliefConfig, EnvironmentBeliefMapper, Environmen
 from reachability_guided_aerial_perception import candidate_relevance
 from reachability_guided_nbv import NBVConfig, generate_candidates, rank_viewpoints
 from task_relevant_uncertainty import build_task_uncertainty
-from task_relevant_uncertainty.geometry import FootprintSpec, footprint_cells
+from task_relevant_uncertainty.geometry import footprint_cells
 
 
 @dataclass(frozen=True)
