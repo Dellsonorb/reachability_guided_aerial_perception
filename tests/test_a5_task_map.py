@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import sys
 import tempfile
@@ -15,7 +16,7 @@ from sim_active_perception.task_map import (
 )
 
 
-FROZEN_ROOT = Path('/tmp/rm4d-aubo-baseline-v1.n9oGee/repo')
+FROZEN_ROOT = Path(os.environ.get('RM4D_ROOT', '/tmp/rm4d-aubo-baseline-v1.n9oGee/repo'))
 FROZEN_CONFIG = FROZEN_ROOT / 'configs/mr4_offline_base_placement.json'
 FROZEN_MAP = Path(
     '/media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/'

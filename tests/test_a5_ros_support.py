@@ -309,6 +309,7 @@ class CaptureWindowTests(unittest.TestCase):
         modules = {"rospy": ros, "tf2_ros": SimpleNamespace(TransformException=LookupError),
                    "sensor_msgs": SimpleNamespace(point_cloud2=point_cloud),
                    "sensor_msgs.msg": SimpleNamespace(PointCloud2=object),
+                   "std_msgs.msg": SimpleNamespace(String=object),
                    "a5_ros_support": support}
         self.options = SimpleNamespace(cloud_timeout=1., cloud_window_s=.3, tf_timeout=.2,
                                        settle_position_tolerance=.1, settle_yaw_tolerance=.1,
@@ -649,6 +650,119 @@ class CaptureWindowTests(unittest.TestCase):
 
 
 class AdapterImportTests(unittest.TestCase):
+    @staticmethod
+    def load_adapter():
+        spec = importlib.util.spec_from_file_location(
+            "a5_adapter", ROOT / "scripts/run_a5_sim.py")
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        return adapter
+
+    def test_status_subscriber_wait_is_optional_and_transport_bounded(self):
+        adapter = self.load_adapter()
+        parser = adapter.build_parser()
+        required = ["--output-dir", "/tmp/a5-test", "--core-python", sys.executable,
+                    "--rm4d-root", "/tmp", "--rm4d-config", "/tmp/config.json",
+                    "--rm4d-map", "/tmp/map.npy"]
+        defaults = parser.parse_args(required)
+        self.assertTrue(hasattr(defaults, "wait_for_status_subscriber"))
+        self.assertFalse(defaults.wait_for_status_subscriber)
+        self.assertTrue(parser.parse_args(
+            required + ["--wait-for-status-subscriber"]).wait_for_status_subscriber)
+        self.assertTrue(hasattr(adapter, "wait_for_status_subscriber"))
+
+        clock = SimpleNamespace(now=0.)
+        ros = SimpleNamespace(is_shutdown=lambda: False)
+        ready = SimpleNamespace(connections=iter([0, 0, 1]))
+        ready.get_num_connections = lambda: next(ready.connections)
+        with patch.object(adapter.time, "monotonic", side_effect=lambda: clock.now), \
+                patch.object(adapter.time, "sleep",
+                             side_effect=lambda seconds: setattr(clock, "now", clock.now + seconds)):
+            adapter.wait_for_status_subscriber(ready, ros, RuntimeError)
+
+        never = SimpleNamespace(get_num_connections=lambda: 0)
+        clock.now = 0.
+        with patch.object(adapter.time, "monotonic", side_effect=lambda: clock.now), \
+                patch.object(adapter.time, "sleep",
+                             side_effect=lambda seconds: setattr(clock, "now", clock.now + seconds)), \
+                self.assertRaisesRegex(RuntimeError, "status subscriber"):
+            adapter.wait_for_status_subscriber(never, ros, RuntimeError)
+        self.assertLessEqual(clock.now, 2.01)
+        with self.assertRaisesRegex(RuntimeError, "status subscriber"):
+            adapter.wait_for_status_subscriber(
+                never, SimpleNamespace(is_shutdown=lambda: True), RuntimeError)
+
+    def test_a5_replaces_inherited_status_publisher_before_events(self):
+        adapter = self.load_adapter()
+        publishers = []
+
+        class Publisher:
+            def __init__(self, topic, message_type, queue_size, latch):
+                self.topic = topic
+                self.message_type = message_type
+                self.queue_size = queue_size
+                self.latch = latch
+                self.unregistered = False
+                publishers.append(self)
+
+            def unregister(self):
+                self.unregistered = True
+
+        ros = SimpleNamespace(
+            Publisher=Publisher,
+            Subscriber=lambda *args, **kwargs: SimpleNamespace(),
+            Time=object, Duration=lambda value: value)
+
+        class Parent:
+            def __init__(self):
+                self._status_topic = "/demo/status"
+                self._status_pub = ros.Publisher(
+                    self._status_topic, object, queue_size=1, latch=True)
+
+        modules = {
+            "rospy": ros,
+            "tf2_ros": SimpleNamespace(TransformException=LookupError),
+            "sensor_msgs": SimpleNamespace(point_cloud2=SimpleNamespace()),
+            "sensor_msgs.msg": SimpleNamespace(PointCloud2=object),
+            "std_msgs.msg": SimpleNamespace(String=object),
+            "a5_ros_support": support,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            options = SimpleNamespace(
+                output_dir=Path(directory), cloud_topic="/cloud")
+            with patch.dict(sys.modules, modules):
+                cls = adapter.build_adapter_class(
+                    SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=Parent),
+                    options)
+                node = cls()
+        self.assertEqual(2, len(publishers))
+        self.assertTrue(publishers[0].unregistered)
+        self.assertIs(node._status_pub, publishers[1])
+        self.assertEqual(10, publishers[1].queue_size)
+        self.assertTrue(publishers[1].latch)
+
+    def test_navigation_timeout_preserves_default_and_explicitly_overrides_runtime_only(self):
+        spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        parser = adapter.build_parser()
+        required = ["--output-dir", "/tmp/a5-test", "--core-python", sys.executable,
+                    "--rm4d-root", "/tmp", "--rm4d-config", "/tmp/config.json",
+                    "--rm4d-map", "/tmp/map.npy"]
+        original = {"navigation_timeout": 60., "ground_goal_tolerance": .06}
+        defaults = adapter.build_demo_parameters(original, parser.parse_args(required))
+        self.assertEqual(defaults["navigation_timeout"], 60.)
+        options = parser.parse_args(required + ["--navigation-timeout", "120"])
+        with patch.object(Path, "is_file", return_value=True), patch.object(Path, "is_dir", return_value=True):
+            adapter.validate_options(parser, options)
+        changed = adapter.build_demo_parameters(original, options)
+        self.assertEqual(changed["navigation_timeout"], 120.)
+        self.assertEqual(changed["ground_goal_tolerance"], .06)
+        self.assertEqual(original["navigation_timeout"], 60.)
+        for value in ("0", "-1", "nan", "inf"):
+            with self.subTest(value=value), patch("sys.stderr"), self.assertRaises(SystemExit):
+                adapter.validate_options(parser, parser.parse_args(required + ["--navigation-timeout", value]))
+
     def test_task_asset_is_an_explicit_optional_cli_directory(self):
         spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
         adapter = importlib.util.module_from_spec(spec)

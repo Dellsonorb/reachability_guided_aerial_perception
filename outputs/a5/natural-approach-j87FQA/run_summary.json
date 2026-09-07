@@ -1,0 +1,267 @@
+{
+  "status": "PASS",
+  "scope": "one natural Gazebo A5 integration demonstration, not a benchmark",
+  "sim_commit": "5e25039",
+  "frozen_rm4d_commit": "e9d431299053f38a4a4319aed3dfeccc261b9fac",
+  "rm4d_asset": "assets/rm4d_ground_task_v1",
+  "rm4d_summary": {
+    "inverse_reachable": 144,
+    "deduplicated": 144,
+    "validation_limit": 256,
+    "evaluated": 144,
+    "valid": 139,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 5
+    }
+  },
+  "observations": [
+    {
+      "capture_anchor_map": [
+        -0.4682726495438055,
+        0.0810047461841743,
+        1.5901778972309564,
+        0.006553770321118157
+      ],
+      "chunk_count": 52,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-approach-j87FQA/observation_01.npz",
+      "point_count": 86679,
+      "requested_viewpoint": [
+        -0.5,
+        0.0,
+        1.5,
+        0.0
+      ],
+      "round": 1,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 92.77,
+      "uav_pose_map": [
+        -0.5231531465545245,
+        0.03327581299895956,
+        1.4405743079432465,
+        0.005988168631128209
+      ],
+      "window_duration_s": 5.088999999999999
+    },
+    {
+      "capture_anchor_map": [
+        -2.52869320347305,
+        -0.011026465612121946,
+        1.453136532006541,
+        0.006483288041019848
+      ],
+      "chunk_count": 52,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-approach-j87FQA/observation_02.npz",
+      "point_count": 87058,
+      "requested_viewpoint": [
+        -2.5231531465545247,
+        0.03327581299895956,
+        1.4405743079432465,
+        0.005988168631128055
+      ],
+      "round": 2,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 117.967,
+      "uav_pose_map": [
+        -2.587320865896293,
+        -0.0030290183173179996,
+        1.512773772784763,
+        0.008473352943451105
+      ],
+      "window_duration_s": 5.093999999999994
+    },
+    {
+      "capture_anchor_map": [
+        -2.6159513131879457,
+        -2.026609733304327,
+        1.5214240901849871,
+        0.00892312224460266
+      ],
+      "chunk_count": 51,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-approach-j87FQA/observation_03.npz",
+      "point_count": 85472,
+      "requested_viewpoint": [
+        -2.587320865896293,
+        -2.003029018317318,
+        1.512773772784763,
+        0.008473352943451307
+      ],
+      "round": 3,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 139.875,
+      "uav_pose_map": [
+        -2.5435296121417155,
+        -1.9330235953498622,
+        1.5883128692297366,
+        0.0033395158659354214
+      ],
+      "window_duration_s": 5.0260000000000105
+    }
+  ],
+  "viewpoint_commands": [
+    {
+      "goal_map": [
+        -0.5,
+        0.0,
+        1.5,
+        0.0
+      ],
+      "rescan": false
+    },
+    {
+      "goal_map": [
+        -2.5231531465545247,
+        0.03327581299895956,
+        1.4405743079432465,
+        0.005988168631128055
+      ],
+      "rescan": false
+    },
+    {
+      "goal_map": [
+        -2.587320865896293,
+        -2.003029018317318,
+        1.512773772784763,
+        0.008473352943451307
+      ],
+      "rescan": false
+    },
+    {
+      "goal_map": [
+        -0.5,
+        0.0,
+        1.5,
+        0.0
+      ],
+      "rescan": false
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "environment_cells": {
+        "UNKNOWN": 1600,
+        "FREE": 0,
+        "OCCUPIED": 0
+      },
+      "task_uncertainty_mass": 327.46277317260797,
+      "confirmed_candidate_count": 0,
+      "best_task_score": 128.34656132889762,
+      "next_viewpoint": [
+        -2.5231531465545247,
+        0.03327581299895956,
+        1.4405743079432465,
+        0.005988168631128055
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 2,
+      "environment_cells": {
+        "UNKNOWN": 1301,
+        "FREE": 291,
+        "OCCUPIED": 8
+      },
+      "task_uncertainty_mass": 71.57061784609074,
+      "confirmed_candidate_count": 0,
+      "best_task_score": 27.66084378786055,
+      "next_viewpoint": [
+        -2.587320865896293,
+        -2.003029018317318,
+        1.512773772784763,
+        0.008473352943451307
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 3,
+      "environment_cells": {
+        "UNKNOWN": 526,
+        "FREE": 1066,
+        "OCCUPIED": 8
+      },
+      "task_uncertainty_mass": 43.4097740582302,
+      "confirmed_candidate_count": 2,
+      "best_task_score": 17.080415160715475,
+      "next_viewpoint": null,
+      "stop_reason": "VIEW_BUDGET_REACHED"
+    }
+  ],
+  "selected_candidate": {
+    "candidate_id": "candidate-000008",
+    "x": 2.396173918999503,
+    "y": -0.6002179802753214,
+    "yaw": 2.094395102393195,
+    "relevance": 1.0,
+    "source_id": 544,
+    "evaluation_index": 8,
+    "footprint_clipped": false,
+    "free_cells": 108,
+    "occupied_cells": 0,
+    "unknown_cells": 0,
+    "representative_blocked": false,
+    "confirmed": true,
+    "mean_unknown_score": 0.3678794411714423
+  },
+  "physical": {
+    "arm_controller": {
+      "goal_ids": [
+        "/move_group-2-196.881000000",
+        "/move_group-3-197.911000000",
+        "/move_group-4-204.731000000"
+      ],
+      "success_count": 3
+    },
+    "flight": {
+      "armed_seen": true,
+      "landed_after_arm": true
+    },
+    "grasp": {
+      "grasp_confirmed": true
+    },
+    "observations": {
+      "aerial": {
+        "age_s": 0.3269999999999982,
+        "frame": "map",
+        "stamp": 68.625
+      },
+      "ground": {
+        "age_s": 0.4380000000000166,
+        "frame": "map",
+        "stamp": 196.384
+      }
+    },
+    "physical_target": {
+      "baseline_z_m": 0.056499510222921524,
+      "final_z_m": 0.20511084942167762,
+      "target_lift_m": 0.1486113391987561
+    },
+    "sequence": {
+      "ground_travel_m": 1.964507939820007,
+      "landing_count": 1,
+      "states": [
+        "PREFLIGHT",
+        "ARMING",
+        "COMMAND_CONTROL",
+        "TAKEOFF",
+        "AIR_VIEW",
+        "AIR_OBSERVE",
+        "AIR_HANDOFF",
+        "LANDING",
+        "GROUND_APPROACH",
+        "GROUND_STOPPED",
+        "GROUND_OBSERVE",
+        "GROUND_REFINED",
+        "PREGRASP",
+        "GRASP",
+        "LIFTING",
+        "LIFT"
+      ],
+      "takeoff_count": 1,
+      "tcp_lift_m": 0.14955286012751154
+    },
+    "status": "PASS"
+  },
+  "runtime_teardown": "SIGINT to own timeout/roslaunch; exec exit 0; process monitor completed",
+  "stopping_semantics": "VIEW_BUDGET_REACHED is a runtime guard, not Score<=0 or convergence",
+  "frozen_A1_A4_unchanged": true
+}

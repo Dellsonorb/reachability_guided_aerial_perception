@@ -78,8 +78,9 @@ This failure is retained and does not justify disabling any collision checks.
 
 ![A1 using the separate task asset, unchanged field method](../outputs/a5/task-floor-validation-grxkej/current_target/a1/field.png)
 
-The natural A5 loop has resumed with fresh aerial perception and MID360.
-Its latest run completed three observations, two NBV flights and exact Ground
-selection/navigation; it stopped at refined approach branch selection, before
-grasp/lift. See [actual A5 progress](A5_SIM_ACTIVE_PERCEPTION.md). Acquisition
-and manipulation runtime issues remain separate from frame calibration.
+The natural A5 run `natural-approach-j87FQA` completed three real observations,
+two NBV flights, exact Ground selection/navigation, D435 refinement, AG95 grasp
+and physical brick lift of 0.14861 m. The existing physical checker is PASS after
+clean teardown. See [actual A5 results](A5_SIM_ACTIVE_PERCEPTION.md). Acquisition
+and manipulation integration fixes remain separate from frame calibration and
+do not modify the frozen baseline or A1–A4.

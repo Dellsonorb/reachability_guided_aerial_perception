@@ -103,7 +103,7 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config()):
             continue
         distance = np.linalg.norm(np.asarray(v.position_xyz) - current.position_xyz)
         if distance <= config.facade_position_tolerance and v != current:
-            continue  # Existing SIM facade may succeed without publishing a yaw-only command.
+            continue  # Facade success does not certify yaw-only completion.
         candidates.append(v)
     if not candidates:
         raise ValueError('no viewpoint within the configured operating area')

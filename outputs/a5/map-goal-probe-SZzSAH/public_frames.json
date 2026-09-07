@@ -1,0 +1,141 @@
+{
+  "air_tf": [
+    {
+      "chain": "map<-uav1/base_link",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/lidar_link",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_link",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_depth_frame",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_ired1_frame",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_ired2_frame",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_imu_link",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/d435i_link",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_color_optical_frame",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    },
+    {
+      "chain": "map<-uav1/camera_depth_optical_frame",
+      "stamp": 10.282,
+      "age_s": 0.023999999999999133
+    }
+  ],
+  "ground_tf": [
+    {
+      "chain": "map<-ground/base_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/lidar_2d_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/imu_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/aubo_i5_base_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/ee_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/d435_color_optical_frame",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/d435_depth_optical_frame",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/gripper_tcp_link",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/left_finger_pad",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    },
+    {
+      "chain": "map<-ground/right_finger_pad",
+      "stamp": 10.318,
+      "age_s": 0.0039999999999995595
+    }
+  ],
+  "p450_sensors": {
+    "color": {
+      "frame": "uav1/camera_link",
+      "stamp": 10.394,
+      "age_s": 0.019000000000000128,
+      "width": 640,
+      "height": 480
+    },
+    "color_info": {
+      "frame": "uav1/camera_link",
+      "stamp": 10.498,
+      "age_s": 0.009999999999999787,
+      "width": 640,
+      "height": 480
+    },
+    "depth": {
+      "frame": "uav1/camera_depth_frame",
+      "stamp": 10.595,
+      "age_s": 0.0039999999999995595,
+      "width": 640,
+      "height": 480
+    },
+    "depth_info": {
+      "frame": "uav1/camera_depth_frame",
+      "stamp": 10.66,
+      "age_s": 0.032999999999999474,
+      "width": 640,
+      "height": 480
+    },
+    "imu": {
+      "frame": "uav1/camera_imu_link",
+      "stamp": 10.734,
+      "age_s": 0.009000000000000341
+    }
+  }
+}

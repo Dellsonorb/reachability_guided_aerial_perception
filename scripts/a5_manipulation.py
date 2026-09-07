@@ -29,7 +29,7 @@ def _complete_cartesian(response, minimum_fraction):
 
 
 def execute_refined_pregrasp(owner, target, grasp, demo_error):
-    """Validate a grasp-seeded reverse branch before executing its pregrasp."""
+    """Validate a grasp-seeded reverse branch for initial or refined pregrasp."""
     rospy, services = _ros_interfaces()
     exception_types = (rospy.ServiceException, rospy.ROSException)
     try:

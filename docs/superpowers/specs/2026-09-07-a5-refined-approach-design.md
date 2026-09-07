@@ -32,22 +32,37 @@ Reuse existing planning time/attempt count, Cartesian step, minimum fraction,
 joint/collision checks, execution and TCP verification. No target offsets,
 collision exemptions, relaxed fractions or empirical seeds. Failed IK, partial
 paths or failed plans cannot trigger execution. Explicit initial aerial
-continuation remains delegated to SIM unchanged.
+continuation was initially delegated to SIM unchanged.
 
 Simply passing the continuation argument was considered, but six read-only
 pose-goal retries reproduced the same unsuitable branch. Planning backward from
 the actual grasp supplies an approach-compatible joint goal without changing
 the grasp or any research method. Adding a robot/clearance model is unnecessary.
 
+## Reuse before the initial D435 observation
+
+`natural-map-goal-SikHiu` subsequently completed all three observations, confirmed
+candidate 000009 and navigated to its exact goal. Its initial aerial-target
+pregrasp failed six forward-continuation checks (fractions about 0.677–0.733).
+A planning-only check at the **actual stopped base pose**, with the unchanged
+saved exact map grasp and existing SIM collision scene, produced IK success,
+reverse fraction 1.0, a 43-point current-state plan and forward fraction 1.0.
+
+Reuse the same A5 helper for an explicit initial-aerial continuation as well as
+the scoped refined grasp. Do not change the helper's geometry, solver, checks,
+attempt budget or execution behavior. If neither exact grasp is available,
+retain parent delegation. This is execution-branch selection at the existing
+SIM interface, not a change to RM4D ranking, A1 relevance or the selected pose.
+
 ## Implementation and validation plan
 
-- [ ] Add focused failing tests for exact-pose forwarding, explicit-continuation
+- [x] Add focused failing tests for exact-pose forwarding, explicit-continuation
   delegation, IK/collision requests, partial-path rejection and no execution on
   failure; use the existing Python 3.8-compatible ROS adapter conventions.
-- [ ] Implement one focused helper and a small adapter override. Keep all ROS
+- [x] Implement one focused helper and a small adapter override. Keep all ROS
   imports lazy and add no dependency.
-- [ ] Run focused tests, independent spec review then quality review.
-- [ ] Run the complete natural loop from real aerial/MID360 observations using
+- [x] Run focused tests, independent spec review then quality review.
+- [x] Run the complete natural loop from real aerial/MID360 observations using
   the existing physical checker. Report actual stopping condition and outcome.
 - [ ] Run the full unit suite, document the result and finish only the authorized
   A5 integration Git workflow. Do not merge an incomplete E2E result.

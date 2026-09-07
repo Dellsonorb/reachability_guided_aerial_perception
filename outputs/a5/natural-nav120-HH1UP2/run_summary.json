@@ -1,0 +1,213 @@
+{
+  "completed": false,
+  "reason": "A5 settling failed at second viewpoint; no Ground or manipulation execution.",
+  "navigation_timeout_s": 120,
+  "rm4d_summary": {
+    "inverse_reachable": 144,
+    "deduplicated": 144,
+    "validation_limit": 256,
+    "evaluated": 144,
+    "valid": 139,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 5
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "environment_cells": {
+        "UNKNOWN": 1600,
+        "FREE": 0,
+        "OCCUPIED": 0
+      },
+      "task_uncertainty_mass": 326.46277657926765,
+      "best_task_score": 109.20384016912128,
+      "confirmed_candidate_count": 0,
+      "next_viewpoint": [
+        -2.621913706023073,
+        1.9607503536598898,
+        1.8506291869297986,
+        -0.7752148111598753
+      ],
+      "stop_reason": null
+    }
+  ],
+  "milestones": [
+    {
+      "status": "PREFLIGHT",
+      "data": {}
+    },
+    {
+      "status": "ARMING",
+      "data": {}
+    },
+    {
+      "status": "COMMAND_CONTROL",
+      "data": {}
+    },
+    {
+      "status": "TAKEOFF",
+      "data": {}
+    },
+    {
+      "status": "AIR_VIEW",
+      "data": {}
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -0.5329702425147224,
+          0.018758407578158127,
+          1.5165196218229295,
+          0.0020939842484746884
+        ]
+      }
+    },
+    {
+      "status": "AIR_OBSERVE",
+      "data": {}
+    },
+    {
+      "status": "AIR_HANDOFF",
+      "data": {
+        "observation_stamp": 207.621,
+        "target_map": [
+          1.9926875347836368,
+          0.007092884542482347,
+          0.05939390070374979,
+          0.0013323071909532302
+        ]
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "init",
+        "operation": "init"
+      }
+    },
+    {
+      "status": "A5_CAPTURE_ANCHOR",
+      "data": {
+        "capture_anchor_map": [
+          -0.5285935316126401,
+          0.024168961430507636,
+          1.7087066216177824,
+          0.006146460961816171
+        ],
+        "position_discrepancy_m": 0.2120381632013931,
+        "requested_viewpoint": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "yaw_discrepancy_rad": 0.00614646096181617
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -0.5292512097611494,
+          0.010335031507681848,
+          1.7189810945829853,
+          0.0060665585143280356
+        ]
+      }
+    },
+    {
+      "status": "A5_OBSERVATION",
+      "data": {
+        "capture_anchor_map": [
+          -0.5285935316126401,
+          0.024168961430507636,
+          1.7087066216177824,
+          0.006146460961816171
+        ],
+        "chunk_count": 51,
+        "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-nav120-HH1UP2/observation_01.npz",
+        "point_count": 83092,
+        "requested_viewpoint": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "round": 1,
+        "sensor_frame": "uav1/lidar_link",
+        "stamp_s": 232.073,
+        "uav_pose_map": [
+          -0.621913706023073,
+          -0.03924964634011021,
+          1.8506291869297986,
+          0.010183352237573178
+        ],
+        "window_duration_s": 5.032000000000011
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "round-01",
+        "operation": "observe"
+      }
+    },
+    {
+      "status": "A5_DECISION",
+      "data": {
+        "next_viewpoint": [
+          -2.621913706023073,
+          1.9607503536598898,
+          1.8506291869297986,
+          -0.7752148111598753
+        ],
+        "round": 1,
+        "selected_candidate": null,
+        "stop_reason": null
+      }
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -2.621913706023073,
+          1.9607503536598898,
+          1.8506291869297986,
+          -0.7752148111598753
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "FAILED",
+      "data": {
+        "reason": "A5 UAV position/yaw/speed did not settle"
+      }
+    }
+  ],
+  "physical_checker": {
+    "error": "demo reported FAILED: A5 UAV position/yaw/speed did not settle",
+    "status": "FAIL"
+  },
+  "separate_flight_probe": {
+    "flight_count": 2,
+    "landed": true,
+    "second_goal_error_at_success": 0.14941941212712767,
+    "second_goal_error_after_15s": 0.23664355652465807,
+    "note": "Separate diagnostic flight after failedA5; not counted as A5 observations."
+  }
+}

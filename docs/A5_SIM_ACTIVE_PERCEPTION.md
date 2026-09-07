@@ -1,13 +1,17 @@
-# A5 — SIM active-perception integration (not yet E2E complete)
+# A5 — SIM active-perception integration (minimal E2E verified)
 
 Current status: the authorized **Ground reference-frame bridge and independent
 task-domain RM4D asset are verified**; the repaired UAV public TF also passes
 real ground-height checks. The frozen map remains unchanged. The separate
 runtime asset adds negative flange coverage and an explicitly calibrated floor;
 see [asset geometry and actual SIM planning checks](A5_TASK_DOMAIN_ASSET.md).
-The latest natural run completed active observation and Ground navigation but
-stopped at refined grasp-approach planning. No grasp/lift success is claimed,
-and A5 remains a WIP feature branch.
+Natural run `natural-approach-j87FQA` completed active observation, exact Ground
+confirmation, navigation, D435 refinement, AG95 grasp and physical lift. The
+unchanged SIM physical checker is **PASS**, finalized after clean runtime
+teardown. Earlier failed attempts and the local integration fixes remain below.
+A5 remains on its feature branch / Draft PR #5; main is not merged. Required SIM
+commit `5e25039` is local on its independent feature branch; its push was blocked
+by automatic permission review pending authorization of the existing SIM remote.
 
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
 `feature/a5-sim-active-perception-loop`. This implementation adds only an
@@ -15,11 +19,52 @@ integration/orchestration layer; A1/A2/A3/A4 are unchanged. The subsequently
 authorized public-map correctness repair is isolated in SIM branch
 `feature/fix-sim-uav-map-localization`, not in these research modules.
 
+## Completed natural demonstration
+
+The same natural brick and initial clear-parking scene were used, with no
+mid-run teleport. The controller consumed real sensor/public-TF inputs only.
+
+| Result | Observed value |
+|---|---:|
+| Task-asset inverse / evaluated / valid candidates | 144 / 144 / 139 |
+| Real MID360 observation windows | 3 (52 / 52 / 51 packets) |
+| A4-selected translated NBV flights | 2 (2 m each) |
+| Task uncertainty mass, after each observation | 327.46 → 71.57 → 43.41 |
+| Confirmed exact candidates | 0 → 0 → 2 |
+| Selected candidate 000008 exact footprint | 108 FREE / 0 UNKNOWN / 0 OCCUPIED |
+| Ground travel | 1.9645 m |
+| Post-refinement completed arm controller goals | 3 |
+| Physical brick lift / TCP lift | 0.14861 m / 0.14955 m |
+
+Selected exact BUNKER pose: `(2.396173919, -0.600217980, 2.094395102)` in map
+`(x,y,yaw)`, with relevance 1.0. FREE retains mean unknown_score 0.367879. The
+stop was `VIEW_BUDGET_REACHED`, with best remaining predicted score 17.0804:
+this is the three-observation runtime guard, **not** Score≤0 or convergence.
+Task mass reflects both observation-deficit updates and occupied pose exclusion;
+it is not calibrated information gain or a comparison against another method.
+
+D435 produced a fresh map observation, AG95 confirmed the actual grasp, and the
+independent checker observed the full status sequence, landing, three successful
+post-refinement arm goals and the physical target height increase. All three
+saved scan windows placed the known-clear ground patch within A2's unchanged
+0.02 m tolerance (worst absolute error 0.001085 m). No A2 ground offset or
+threshold relaxation was used.
+
+- [Complete run summary](../outputs/a5/natural-approach-j87FQA/run_summary.json)
+- [Existing independent physical checker: PASS](../outputs/a5/natural-approach-j87FQA/physical_summary.json)
+- [Known ground returns from all three real windows](../outputs/a5/natural-approach-j87FQA/known_ground_from_saved_windows.json)
+- [Exact candidate decision](../outputs/a5/natural-approach-j87FQA/decision.json)
+
+![Successful run: real belief updates and final exact footprint](../outputs/a5/natural-approach-j87FQA/belief_progress.png)
+
+This completes one minimal natural integration demonstration, not a benchmark,
+repeatability estimate or real-robot robustness claim. No further stage is started.
+
 ## Implemented boundary
 
 `scripts/run_a5_sim.py` subclasses the existing SIM `AirGroundPickDemo`. It
 replaces the aerial phase and RM4D candidate provider, and wires the exact
-D435-refined grasp into approach-compatible pregrasp branch selection through
+aerial and D435-refined grasps into approach-compatible pregrasp selection through
 existing MoveIt services. Ground navigation, perception, Cartesian descent,
 AG95 confirmation and lift retain the existing SIM implementation. No Gazebo
 model state enters the algorithm.
@@ -59,12 +104,18 @@ Each observation request replays its small ordered cloud history into an
 empty A2 mapper, then invokes the frozen A3 and A4 functions. This does not add
 extra votes to an already accumulated belief.
 
+The optional `--wait-for-status-subscriber` is only for a connected external
+diagnostic/checker: before any transition or flight, wait up to two wall seconds
+for its ROS transport. Normal runs do not require a status subscriber. A5's
+same-topic latched status publisher has queue 10 to retain short transition
+bursts; no event replay or checker modification is used.
+
 Defaults: fixed map/0.10 m grid, 4 m square around the observed grasp, 3 total
 observations including initial/rescans, XY offsets {-2,0,2} m, flight weight
 0.25, operating bounds x[-4,4], y[-3,3], z[0.5,3] m. These are integration run
 settings, not a new planner. A4 yaw-only goals within the current flight facade's
-position tolerance are excluded because that facade may acknowledge them without
-issuing a yaw command. Translated yaw goals and current-pose rescans remain.
+position tolerance remain conservatively excluded because facade success does
+not certify yaw completion. Translated yaw goals and current-pose rescans remain.
 
 Stop on `NONPOSITIVE_SCORE`, `NO_PREDICTED_TASK_GAIN`, or
 `VIEW_BUDGET_REACHED`. The latter is a guard, not convergence. Recover the original
@@ -154,7 +205,7 @@ paper's task-weighting hypothesis. Changing A2 thresholds, adding adaptive groun
 segmentation, or substituting Gazebo truth would alter the tested assumptions or
 cross the platform boundary. None was done. This prompted the separately
 authorized SIM repair below, after which A5 resumed with frozen A2 semantics.
-A5 is not merged or frozen as complete.
+At that point A5 was not merged or complete. The successful retry is above.
 
 ## Authorized platform repair and corrected retry
 
@@ -200,11 +251,12 @@ paths used here:
 ```bash
 export SIM_ROOT=/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation
 export P450_PX4_ROOT=/media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4
-export RM4D_ROOT=/tmp/rm4d-aubo-baseline-v1.n9oGee/repo
+export RM4D_ROOT=/tmp/rm4d-aubo-baseline-v1.14uZXq/repo
 export RM4D_PYTHON=/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python
 export RM4D_MAP=/media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy
 export A5_RUN_DIR="$(mktemp -d -p "$PWD/outputs/a5" gazebo-XXXXXX)"
-bash scripts/run_a5_gazebo.bash "$A5_RUN_DIR" bunker_x:=3.0 bunker_y:=-2.5
+bash scripts/run_a5_gazebo.bash "$A5_RUN_DIR" bunker_x:=3.0 bunker_y:=-2.5 \
+  flight_position_tolerance:=0.05
 ```
 
 `RM4D_ROOT` must name an available frozen baseline checkout; the temporary path
@@ -221,12 +273,16 @@ export ROS_MASTER_URI=http://127.0.0.1:11951
   --rm4d-root "$RM4D_ROOT" \
   --rm4d-config "$RM4D_ROOT/configs/mr4_offline_base_placement.json" \
   --rm4d-map "$RM4D_MAP" \
-  --rm4d-task-asset assets/rm4d_ground_task_v1 --max-ground-travel 3.0
+  --rm4d-task-asset assets/rm4d_ground_task_v1 --max-ground-travel 3.0 \
+  --navigation-timeout 120 --facade-position-tolerance 0.05
 ```
 
-The existing SIM `scripts/check_air_ground_pick_demo.py` can be started before
-the adapter to observe retained AG95 grasp and physical brick lift independently.
-It must not supply control inputs. This attempt's checker correctly reported FAIL.
+For complete validation, start the existing SIM
+`scripts/check_air_ground_pick_demo.py --summary "$A5_RUN_DIR/physical_summary.json"
+--timeout 1200 --maximum-ground-travel 3.0` in a separate terminal before the
+adapter. Then add `--wait-for-status-subscriber` to the adapter command above.
+Keep the checker as the sole initial status subscriber. It independently
+observes AG95 confirmation and physical lift, and supplies no control input.
 
 ## Verification and review
 
@@ -235,8 +291,8 @@ remaining blocking code issue. The latter checked exact identity, first ties,
 representative/exact occupied gates, stamped transforms and stopped-response
 semantics. The review does **not** establish Gazebo E2E completion.
 
-Latest local verification: **248 tests passed** across frozen modules and A5;
-the 51 ROS-independent acquisition adapter tests and 15 refined-approach tests
+Latest local verification: **251 tests passed** across frozen modules and A5;
+the 54 ROS-independent acquisition adapter tests and 15 approach tests
 also passed separately under system Python 3.8. Shell syntax and diff whitespace
 checks passed; the frozen source-directory
 diff against main was empty.
@@ -328,3 +384,72 @@ planning failure cannot execute motion, and execution failure is not retried.
 The diagnostic using the complete mount (including x=0.15 m) found IK success,
 reverse fraction 1.0, a 39-point pregrasp plan, and forward fraction 1.0; this
 planning-only result is not itself an executed E2E grasp.
+
+## Further natural runs and public map-goal tracking
+
+`natural-refined-0coa8b` passed the unchanged initial settling gate, obtained
+three observations and confirmed two exact candidates. A4 selected one major
+diagonal translation (about 2.83 m) then a current-observation-pose rescan; the
+facade made a short correction to that recorded pose after core-computation
+drift. Task uncertainty mass fell 327.463 → 71.571 → 43.410. At the three-view
+guard, candidate 000008 had 108/108 footprint cells FREE. Navigation exhausted
+the inherited 60 s simulated-time guard near its exact goal: post-stop XY error
+0.06057 m and yaw error 0.33094 rad. No D435/grasp/lift followed.
+
+`--navigation-timeout` now optionally forwards the existing SIM runtime
+parameter; absence preserves 60 s. The next run used 120 s for the roughly 2 m
+Ground approach, retaining all goal tolerances/collision checks. That run,
+`natural-nav120-HH1UP2`, instead stopped at the second UAV viewpoint's settling
+gate after one complete observation; the longer Ground guard was never used.
+The temporary baseline checkout had to be restored after session recovery;
+the replacement is the identical detached e9d4312 commit, not the release
+branch's later HEAD. `RM4D_ROOT` can also select the checkout for the task-map
+integration tests. Missing local dependencies cause explicit skips, not passes.
+
+A separate public-flight probe then established a platform translation issue:
+the facade converts a map goal once to odom, while the repaired localization
+updates map←odom dynamically. The second diagnostic flight reported success
+at 0.1494 m map error; after 15 seconds, map error was 0.2366 m and speed
+0.0885 m/s. The fixed odom target itself had shifted approximately 0.159 m in
+map. The probe landed afterwards and is not counted as an A5 observation or
+E2E success. This motivates the separate SIM
+[map-target correction](superpowers/specs/2026-09-07-a5-public-flight-map-target-design.md),
+not an empirical AGENT offset or a relaxed A2/arrival gate.
+
+- [Navigation-limited actual run](../outputs/a5/natural-refined-0coa8b/run_summary.json)
+- [Flight-limited actual run](../outputs/a5/natural-nav120-HH1UP2/run_summary.json)
+- [Public flight / TF samples](../outputs/a5/natural-nav120-HH1UP2/flight_frame_probe.json)
+
+![Public map target drift under one-shot odom conversion](../outputs/a5/natural-nav120-HH1UP2/flight_frame_probe.png)
+
+SIM commit `5e25039` corrects only map-goal translation: each fresh odometry
+snapshot supplies the TF time for command/completion/feedback; the final command
+is also published, with cancellation retained across TF lookup. FLY_TO's
+configured 0.05 m tolerance is separate from TAKEOFF's unchanged 0.15 m.
+The bounded probe `map-fly-to-probe-NLl2v8` completed both flights at actual map
+errors 0.04808/0.04968 m and then landed. Post-action hover still drifted, so
+this is not continuous map stationkeeping. Public P450/Ground frames and P450
+sensors passed their read-only checks. The separate ground-height checks remain
+within the unchanged A2 band.
+
+The next natural run, `natural-map-goal-SikHiu`, completed two translated NBV
+flights and three real observations. Task mass was 320.28 → 80.67 → 48.93;
+confirmed exact candidates increased 0 → 0 → 2. At the view guard, candidate
+000009's exact footprint was 106/106 FREE and BUNKER successfully traveled
+1.953 m. Its initial aerial-target pregrasp could not find a complete forward
+continuation, so no D435 refinement/grasp/lift occurred. A planning-only probe
+at that actual stopped base found IK success, reverse fraction 1.0, a 43-point
+current-state plan and forward fraction 1.0. The existing A5 approach helper
+is therefore reused before D435 as well as after refinement, without changing
+its algorithm, exact targets or acceptance checks.
+
+This run's physical checker also missed early transitions: ROS logs show
+PREFLIGHT through TAKEOFF sent before its transport connected. Its FAIL is
+retained, not relabeled. The bounded opt-in status transport wait above addresses
+that distinct diagnostic issue; the checker and physical checks are unchanged.
+
+- [Actual natural run and failure](../outputs/a5/natural-map-goal-SikHiu/run_summary.json)
+- [Planning-only actual-pose approach check](../outputs/a5/natural-map-goal-SikHiu/actual_approach_planning_probe.json)
+- [Two successful public FLY_TO probes](../outputs/a5/map-fly-to-probe-NLl2v8/flight_frame_probe.json)
+
+![Actual belief progression before the initial-pregrasp failure](../outputs/a5/natural-map-goal-SikHiu/belief_progress.png)

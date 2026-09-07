@@ -218,6 +218,7 @@ class AdapterOverrideTests(unittest.TestCase):
             "numpy": SimpleNamespace(), "rospy": SimpleNamespace(Subscriber=lambda *_a, **_k: None),
             "tf2_ros": SimpleNamespace(), "sensor_msgs": SimpleNamespace(point_cloud2=None),
             "sensor_msgs.msg": SimpleNamespace(PointCloud2=object),
+            "std_msgs.msg": SimpleNamespace(String=object),
             "a5_ros_support": SimpleNamespace(
                 WorkerError=RuntimeError, capture_pose_settled=None, finite_xyz=None,
                 fresh_scan_stamp=None, merge_cloud_chunks=None, normalized_frame=None,
@@ -226,20 +227,23 @@ class AdapterOverrideTests(unittest.TestCase):
         modules["a5_manipulation"] = manipulation or load_script("a5_manipulation")
         return modules
 
-    def test_explicit_continuation_delegates_unchanged(self):
+    def test_explicit_continuation_routes_to_existing_a5_helper(self):
         adapter = load_script("run_a5_sim")
-        calls = []
+        helper_calls = []
+        helper = lambda *args: helper_calls.append(args) or "refined"
+        manipulation = SimpleNamespace(execute_refined_pregrasp=helper)
         class Base:
-            def _execute_pregrasp(self, target, continuation=None):
-                calls.append((target, continuation))
-                return "base"
+            def _execute_pregrasp(self, *_args):
+                raise AssertionError("must not delegate")
         fake = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=Base)
-        with patch.dict(sys.modules, self.adapter_modules()):
+        with patch.dict(sys.modules, self.adapter_modules(manipulation)):
             cls = adapter.build_adapter_class(fake, SimpleNamespace())
         node = object.__new__(cls)
+        node._a5_refined_grasp = None
         target, continuation = object(), object()
-        self.assertEqual(node._execute_pregrasp(target, continuation), "base")
-        self.assertEqual(calls, [(target, continuation)])
+        self.assertEqual(node._execute_pregrasp(target, continuation), "refined")
+        self.assertEqual(
+            helper_calls, [(node, target, continuation, RuntimeError)])
 
     def test_pick_scopes_exact_transformed_grasp_and_always_clears_it(self):
         adapter = load_script("run_a5_sim")

@@ -1,0 +1,62 @@
+{
+  "executed": false,
+  "scope": "actual stopped SIM pose, exact saved aerial grasp; existing collision scene",
+  "exact_map_grasp": {
+    "grasp_id": "side-up-top-grasp",
+    "frame_id": "map",
+    "position_xyz": [
+      1.993753653029427,
+      0.0034108220499641574,
+      0.08236998822525506
+    ],
+    "quaternion_xyzw": [
+      -0.007722232096771267,
+      0.7070646131234709,
+      0.007722232096771269,
+      0.707064613123471
+    ]
+  },
+  "T_planning_map": [
+    [
+      -0.2684067282152707,
+      0.9633056774714732,
+      0.0,
+      1.260829823337628
+    ],
+    [
+      -0.9633056774714732,
+      -0.2684067282152707,
+      0.0,
+      2.1584164194836655
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      -0.36
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "planning_frame": "ground/base_link",
+  "scene_objects": [
+    "air_ground_floor"
+  ],
+  "attempts": [
+    {
+      "ik_code": 1,
+      "reverse_code": 1,
+      "reverse_fraction": 1.0,
+      "plan_success": true,
+      "plan_code": 1,
+      "plan_time": 0.04868171,
+      "points": 43,
+      "forward_code": 1,
+      "forward_fraction": 1.0
+    }
+  ]
+}

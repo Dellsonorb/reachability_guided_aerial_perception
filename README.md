@@ -1,5 +1,9 @@
 # A1 — Validated Manipulation Interest Field
 
+项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
+详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
+及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1–A4 方法保持不变。
+
 本仓库实现 Paper 1 的最小 A1 原型：把 `map` 下的 Brick grasp TCP 交给冻结的 AUBO RM4D planner，并将 planner **实际验证过的候选**投影成 0.10 m 二维地面场。这里的
 
 \[
