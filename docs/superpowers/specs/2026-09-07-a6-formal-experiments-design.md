@@ -1,6 +1,11 @@
 # A6 — Paper 1 formal experiment design
 
-状态：**设计提案，等待用户审查；未实现实验 runner，未运行 pilot 或 formal matrix。**
+状态：**2026-09-08 用户已批准 pilot；formal matrix 未授权。**
+本文件保留原设计提案。执行前的精确定义以
+[A6 pilot protocol](../../A6_PILOT_PROTOCOL.md) 为准：3-window、停止、候选选择、
+invalid/失败规则、simulation-time 效率和唯一主比较已明确；本次禁止额外开发补跑。
+共同初始视点未通过 [RGB-D 几何前置检查](../../A6_PREFLIGHT_GEOMETRY.md)，
+当前 0/14 attempts，尚未进入 ROS pilot 执行。
 
 ## 1. 冻结基线与研究问题
 
