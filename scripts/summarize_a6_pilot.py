@@ -96,7 +96,7 @@ def pair_outcome(row, first_activation=False):
                   retrieval_success=row['retrieval_success'], attempt_dir=row['selected_attempt'])
     if first_activation:
         result.update(retrieval_success=None, attempt_dir=None)
-        if row['status'] in ('AMBIGUOUS_DUPLICATE_VALID', 'NOT_RUN', 'RUNNING'):
+        if row['status'] in ('AMBIGUOUS_DUPLICATE_VALID', 'NOT_RUN'):
             return result
         first = row['attempts'][0]
         result.update(status=first['effective_status'], attempt_dir=first['attempt_dir'])
@@ -196,8 +196,9 @@ def summarize_pilot(config, results_dir):
     sensitivity = paired_comparison(config['scenes'], rows, first_activation=True)
     sensitivity['definition'] = (
         'First directory-ordered activation per slot: completed INVALID_TRIAL becomes failure; '
-        'completed VALID_TRIAL keeps its binary outcome. Unrun, running, ambiguous and '
-        'unknown outcomes are excluded. This is separate from the completed-valid primary analysis.')
+        'completed VALID_TRIAL keeps its binary outcome. Unrun slots, unfinished first activations, '
+        'duplicate-valid ambiguities and unknown outcomes are excluded. A later running rerun does '
+        'not remove a completed first activation. This is separate from the completed-valid primary analysis.')
     return dict(schema_version=1, descriptive_only=True, efficiency_clock='simulation',
                 config_status=config.get('status'), counts=counts, slots=rows,
                 primary_comparison=primary, first_activation_invalid_as_failure=sensitivity,

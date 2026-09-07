@@ -109,6 +109,21 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(sensitivity['generic_only_c'], 1)
         self.assertEqual(report['primary_comparison']['both_success'], 1)
 
+    def test_first_invalid_remains_in_sensitivity_while_its_rerun_is_running(self):
+        first = self.activation(2, None, status='INVALID_TRIAL', suffix='01',
+                                reason='independent startup timeout')
+        self.activation(2, None, status='INVALID_TRIAL', suffix='02', completed=False)
+        self.activation(4, True)
+        report = self.summarize()
+        self.assertEqual(self.slot(report, 2)['status'], 'RUNNING')
+        self.assertEqual(report['primary_comparison']['n_complete_pairs'], 0)
+        sensitivity = report['first_activation_invalid_as_failure']
+        self.assertEqual(sensitivity['n_complete_pairs'], 1)
+        self.assertEqual(sensitivity['generic_only_c'], 1)
+        self.assertEqual(sensitivity['paired_risk_difference'], -1.)
+        self.assertEqual(sensitivity['pairs'][0]['ours']['attempt_dir'], first.name)
+        self.assertEqual(sensitivity['pairs'][0]['ours']['status'], 'INVALID_TRIAL')
+
     def test_established_valid_failure_survives_missing_physical_and_lift_status(self):
         self.activation(2, False, reason='task wall guard', classification_reason='no handoff',
                         metrics=dict(terminal_status='LIFT', terminal_failure_stage='active',
