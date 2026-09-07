@@ -10,6 +10,11 @@
 
 ## Execution status — 2026-09-07
 
+Current pause: [Ground/RM4D absolute-height assumption](../../A5_GROUND_RM4D_HEIGHT_BOUNDARY.md).
+Public Ground base/AUBO heights are .36/.482 m; frozen candidates use 0/.122 m.
+Resolving that frozen frame/model assumption needs the user's decision. No
+baseline/A1-A4 correction was applied and no Ground/grasp/lift acceptance was met.
+
 Tasks 1 and 2 are implemented and committed, with red/green unit tests, real
 subprocess/ROS import checks, independent spec review and code-quality review.
 Task 3 launched one actual natural Gazebo attempt (`gazebo-WwmQis`). It failed at

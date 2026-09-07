@@ -1,5 +1,10 @@
 # A5 — SIM active-perception integration (not yet E2E complete)
 
+Current pause: the repaired UAV public TF passes real ground-height checks, but
+the frozen RM4D placement chain and SIM Ground base have a pre-existing **0.36 m
+absolute-height mismatch**. See the [measured geometry and decision boundary](A5_GROUND_RM4D_HEIGHT_BOUNDARY.md).
+No Ground/grasp/lift success is claimed, and A5 remains a WIP feature branch.
+
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
 `feature/a5-sim-active-perception-loop`. This implementation adds only an
 integration/orchestration layer; A1/A2/A3/A4 are unchanged. The subsequently
@@ -18,10 +23,18 @@ filters nonfinite/zero returns, waits for stable position/yaw/velocity, and
 collects a 5-second scan window per observation. Every packet uses its own
 header timestamp for the full `T_map_sensor`. The mount includes
 pitch 0.35 rad and the ray-sensor translation, not just a yaw rotation. A delayed
-cloud must also have a goal-consistent UAV pose at its own timestamp.
+cloud must also have an anchor-consistent UAV pose at its own timestamp.
+Flight arrival is checked against the requested viewpoint. After a potentially
+long RM4D query, capture stability uses a fresh measured pose as a fixed anchor,
+not the old request; the request/anchor difference is logged. It is not re-anchored
+during a window or its retries. A4 receives the last actual stamped UAV pose.
 Packets are re-expressed in the last sensor frame/time. Each entire window is
 one A2 observation, never extra votes proportional to packet count. This is
 between-packet coordinate alignment during hover, not within-packet deskew.
+If current/stamped hover checks fail during collection, discard the partial
+window, wait for the same continuous settling interval, and start with fresh
+packets. The original 20-second wall capture deadline is not reset. An incomplete
+window never updates A2; frame/numeric errors are not reinterpreted as evidence.
 
 The Python 3.10 worker calls frozen RM4D once using the existing SIM query-only
 regularization and retains the complete evaluated result and unmodified grasp
@@ -204,8 +217,8 @@ remaining blocking code issue. The latter checked exact identity, first ties,
 representative/exact occupied gates, stamped transforms and stopped-response
 semantics. The review does **not** establish Gazebo E2E completion.
 
-Final local verification: **185 tests passed** across frozen modules and A5;
-the 25 ROS-independent adapter tests also passed separately under system Python
+Final local verification: **207 tests passed** across frozen modules and A5;
+the 46 ROS-independent adapter tests also passed separately under system Python
 3.8. Shell syntax and diff whitespace checks passed; the frozen source-directory
 diff against main was empty.
 
