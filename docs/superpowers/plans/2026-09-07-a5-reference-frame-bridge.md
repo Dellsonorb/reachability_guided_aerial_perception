@@ -28,3 +28,13 @@
 - [ ] Only after bridge checks, rerun fresh initial observation through A1–A4 and existing Ground/manipulation pipeline.
 - [ ] If capture timeout recurs, inspect packet TF/physical motion separately; use a focused failing test before any runtime fix. Never alter A2 evidence rules.
 - [ ] Run focused/full existing tests once at handoff, inspect frozen-directory diff, update A5 docs with actual outcome, commit/push WIP only while E2E incomplete. No merge to main.
+
+## Execution checkpoint
+
+- [x] Tasks 1–2 implemented with red/green tests and independent spec/quality review.
+- [x] Public nominal height .36 and relative mount .122 confirmed from sources and live TF.
+- [x] In-domain representative: 192 valid candidates, local matrix error <=5.56e-16; actual SIM collision-aware IK + 28-point RRTConnect plan passed for candidate-000014 (no execution).
+- [x] Fresh natural A5 retry: exact TCP z=.082807036, calibrated query yields zero inverse-reachable before validation; A1 NO_INVERSE_REACHABLE preserved.
+- [x] Existing full suite: 219 tests passed; frozen source diff empty.
+- [ ] A5 E2E: blocked by frozen map coverage (internal flange z<0, stored domain [0,1.3]). Task/scene or map coverage decision needed; do not modify frozen baseline.
+- [ ] Separate sampling-window timeout remains; not changed while map coverage prevents a valid Ground decision.

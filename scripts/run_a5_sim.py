@@ -140,6 +140,24 @@ def build_adapter_class(demo_module, options):
             t, q = transform.transform.translation, transform.transform.rotation
             return rigid_transform([t.x, t.y, t.z], [q.x, q.y, q.z, q.w])
 
+        def _a5_frame_calibration(self):
+            """Read the public nominal Ground plane, not a LiDAR-fitted offset."""
+            odom_bunker = self._tf_buffer.lookup_transform(
+                'ground/odom', self._ground_base_frame, rospy.Time(0),
+                rospy.Duration(options.tf_timeout))
+            stamp = odom_bunker.header.stamp
+            age = rospy.Time.now().to_sec() - stamp.to_sec()
+            if not 0 <= age <= options.tf_max_age:
+                raise DemoError('A5 Ground map TF is stale')
+            map_odom = self._tf_buffer.lookup_transform(
+                self._map_frame, 'ground/odom', stamp, rospy.Duration(options.tf_timeout))
+            bunker_aubo = self._tf_buffer.lookup_transform(
+                self._ground_base_frame, 'ground/aubo_i5_base_link', stamp,
+                rospy.Duration(options.tf_timeout))
+            return {'T_map_ground_odom': self._a5_matrix(map_odom).tolist(),
+                    'T_ground_odom_bunker': self._a5_matrix(odom_bunker).tolist(),
+                    'T_bunker_aubo': self._a5_matrix(bunker_aubo).tolist()}
+
         def _a5_measured_pose(self, stamp=None, timeout_s=None):
             transform = self._tf_buffer.lookup_transform(
                 self._map_frame, normalized_frame(options.uav_base_frame),
@@ -355,6 +373,7 @@ def build_adapter_class(demo_module, options):
                               "position_xyz": list(generated.grasp.position),
                               "quaternion_xyzw": list(generated.grasp.orientation)},
                     "current_bunker_pose": list(self._ground_pose()),
+                    "frame_calibration": self._a5_frame_calibration(),
                     "config": {"max_viewpoints": options.max_viewpoints,
                                "flight_bounds": options.flight_bounds,
                                "facade_position_tolerance": options.facade_position_tolerance,

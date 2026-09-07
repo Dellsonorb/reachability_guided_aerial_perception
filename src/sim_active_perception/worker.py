@@ -17,6 +17,7 @@ from reachability_guided_nbv import Viewpoint
 from reachability_guided_nbv.outputs import render_result, save_result
 from task_relevant_uncertainty import build_task_uncertainty
 from .core import A5Config, candidate_catalog, decide, replay_observations
+from .frame_bridge import FrameBridge
 
 
 def write_json(path, value):
@@ -30,12 +31,14 @@ def make_field(grasp, raw, config):
     return build_field_from_result(grasp, raw, grid=grid)
 
 
-def save_initial(grasp, raw, config, output_dir, query_request=None):
+def save_initial(grasp, raw, config, output_dir, query_request=None,
+                 baseline_result=None, frame_calibration=None):
     field = make_field(grasp, raw, config)
     directory = Path(output_dir).resolve()
     initial_path = directory / 'initial.json'
     write_json(initial_path, dict(grasp=grasp.as_request(), result=raw, config=asdict(config),
-                                  query_request=query_request))
+                                  query_request=query_request, baseline_result=baseline_result,
+                                  frame_calibration=frame_calibration))
     save_field_bundle(field, raw['evaluated_candidates'], directory / 'a1')
     return dict(ok=True, initial_file=str(initial_path), candidate_count=len(candidate_catalog(field, raw)),
                 a1_status=field.status.value, evaluated=raw['summary']['evaluated'],
@@ -45,15 +48,22 @@ def save_initial(grasp, raw, config, output_dir, query_request=None):
 def initialize(request):
     grasp = GraspTCP(**request['grasp'])
     config = A5Config(**request.get('config', {}))
+    if 'frame_calibration' not in request:
+        raise ValueError('initialize requires frame_calibration from public Ground TF')
+    frozen_config = json.loads(Path(request['rm4d_config']).read_text())
+    bridge = FrameBridge(request['frame_calibration'], frozen_config['transforms']['T_bunker_aubo'])
     # Reuse the already frozen SIM numerical interface, without changing exact TCP.
     integration_path = Path(request['sim_root']) / 'src/integrations/rm4d_sim_integration/src'
     sys.path.insert(0, str(integration_path))
     from rm4d_sim_integration.geometry import PoseValues, build_rm4d_request
     query = build_rm4d_request('map', PoseValues(grasp.position_xyz, grasp.quaternion_xyzw),
                                request['current_bunker_pose'], grasp.grasp_id)
+    query = bridge.query_to_reference(query)
     with open_frozen_rm4d_api(request['rm4d_root'], request['rm4d_config'], request['rm4d_map']) as api:
-        raw = api.plan(query, top_k=1)
-    return save_initial(grasp, raw, config, request['output_dir'], query)
+        baseline = api.plan(query, top_k=1)
+    raw = bridge.result_to_map(baseline)
+    return save_initial(grasp, raw, config, request['output_dir'], query,
+                        baseline_result=baseline, frame_calibration=bridge.as_dict())
 
 
 def observe(request):

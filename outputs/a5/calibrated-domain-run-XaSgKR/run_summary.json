@@ -1,0 +1,21 @@
+{
+  "e2e_complete": false,
+  "scene": "existing air_ground_v1, BUNKER initial parking (3,-2.5), no scene or target height change",
+  "exact_map_tcp_z_m": 0.08280703588300183,
+  "reference_query_tcp_z_m": -0.2771929641169982,
+  "ground_reference_height_m": 0.36,
+  "a1_status": "NO_INVERSE_REACHABLE",
+  "inverse_reachable": 0,
+  "evaluated": 0,
+  "valid": 0,
+  "accepted_mid360_observations": 0,
+  "discarded_partial_window_chunks": 26,
+  "adapter_failure": "A5 fresh MID360 PointCloud2 window capture timed out",
+  "a2_updated": false,
+  "nbv_flight_executed": false,
+  "ground_executed": false,
+  "grasp_or_lift_executed": false,
+  "landed_ground_check_passed": true,
+  "landed_ground_check_max_abs_error_m": 0.000009935976566177729,
+  "interpretation": "RM4D map-domain failure preceded and is independent of capture timeout; neither proves physical IK infeasibility."
+}

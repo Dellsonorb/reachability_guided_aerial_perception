@@ -1,0 +1,20 @@
+{
+  "exact_map_tcp_z": 0.08152868197292665,
+  "reference_tcp_z": -0.27847131802707337,
+  "reference_flange_z": -0.0784713180271733,
+  "internal_map_flange_z": -0.19047131802717332,
+  "frozen_z_limits": [
+    0,
+    1.3
+  ],
+  "frozen_voxel_res": 0.05,
+  "summary": {
+    "inverse_reachable": 0,
+    "deduplicated": 0,
+    "validation_limit": 256,
+    "evaluated": 0,
+    "valid": 0,
+    "rejected_by_reason": {}
+  },
+  "out_of_domain": "z idx < 0 -- -0.19047131802717332"
+}

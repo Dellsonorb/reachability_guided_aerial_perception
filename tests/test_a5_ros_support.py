@@ -358,6 +358,30 @@ class CaptureWindowTests(unittest.TestCase):
         with patch.object(self.adapter.time, "monotonic", side_effect=lambda: self.clock.wall):
             return self.node._a5_capture(self.goal)
 
+    def test_frame_calibration_reads_public_ground_chain_at_one_fresh_stamp(self):
+        self.assertTrue(hasattr(self.node, '_a5_frame_calibration'))
+        self.node._ground_base_frame = 'ground/base_link'
+        calls = []
+        def lookup(target, source, stamp, timeout):
+            calls.append((target, source, stamp.to_sec()))
+            xyz = {('map', 'ground/odom'): (3., -2.5, .36),
+                   ('ground/odom', 'ground/base_link'): (.2, .1, 0.),
+                   ('ground/base_link', 'ground/aubo_i5_base_link'): (.15, 0., .122)}[(target, source)]
+            return SimpleNamespace(header=SimpleNamespace(stamp=self.Stamp(9.9 if source == 'ground/base_link' else 0)),
+                transform=SimpleNamespace(translation=SimpleNamespace(x=xyz[0], y=xyz[1], z=xyz[2]),
+                                          rotation=SimpleNamespace(x=0., y=0., z=0., w=1.)))
+        self.node._tf_buffer.lookup_transform = lookup
+        result = self.node._a5_frame_calibration()
+        self.assertEqual(set(result), {'T_map_ground_odom', 'T_ground_odom_bunker', 'T_bunker_aubo'})
+        self.assertEqual(result['T_map_ground_odom'][2][3], .36)
+        self.assertEqual(result['T_bunker_aubo'][2][3], .122)
+        self.assertEqual(calls, [('ground/odom', 'ground/base_link', 0),
+                                 ('map', 'ground/odom', 9.9),
+                                 ('ground/base_link', 'ground/aubo_i5_base_link', 9.9)])
+        self.clock.sim = 11.
+        with self.assertRaisesRegex(RuntimeError, 'Ground.*stale'):
+            self.node._a5_frame_calibration()
+
     def test_capture_collects_full_window_at_own_stamps_as_one_observation(self):
         pose = self.capture([(10.1, "/uav1/livox"), (10.1, "uav1/livox"),
                              (10.05, "uav1/livox"), (10.2, "uav1/livox"),

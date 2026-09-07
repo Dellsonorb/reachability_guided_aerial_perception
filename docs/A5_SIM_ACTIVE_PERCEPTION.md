@@ -1,8 +1,10 @@
 # A5 — SIM active-perception integration (not yet E2E complete)
 
-Current pause: the repaired UAV public TF passes real ground-height checks, but
-the frozen RM4D placement chain and SIM Ground base have a pre-existing **0.36 m
-absolute-height mismatch**. See the [measured geometry and decision boundary](A5_GROUND_RM4D_HEIGHT_BOUNDARY.md).
+Current boundary: the authorized **Ground reference-frame bridge is verified**;
+the repaired UAV public TF also passes real ground-height checks. Correctly
+calibrated natural ground-brick queries are outside the frozen RM4D map's
+`z=[0,1.3] m` domain and return `NO_INVERSE_REACHABLE`. See the
+[geometry, actual IK/planning validation and coverage boundary](A5_GROUND_RM4D_HEIGHT_BOUNDARY.md).
 No Ground/grasp/lift success is claimed, and A5 remains a WIP feature branch.
 
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
@@ -38,7 +40,13 @@ window never updates A2; frame/numeric errors are not reinterpreted as evidence.
 
 The Python 3.10 worker calls frozen RM4D once using the existing SIM query-only
 regularization and retains the complete evaluated result and unmodified grasp
-TCP. Each observation request replays its small ordered cloud history into an
+TCP. The new A5-only `FrameBridge` reads the public nominal Ground reference
+height and verifies its mount against frozen RM4D; it translates the query into
+the original RM4D `world` frame and translates global result transforms back
+to public map. `initial.json` retains `baseline_result`, map `result`, and
+`frame_calibration` separately. This is not an A2 ground correction: A2's ground
+remains z=0 and A1–A4 are unchanged.
+Each observation request replays its small ordered cloud history into an
 empty A2 mapper, then invokes the frozen A3 and A4 functions. This does not add
 extra votes to an already accumulated belief.
 
@@ -217,8 +225,8 @@ remaining blocking code issue. The latter checked exact identity, first ties,
 representative/exact occupied gates, stamped transforms and stopped-response
 semantics. The review does **not** establish Gazebo E2E completion.
 
-Final local verification: **207 tests passed** across frozen modules and A5;
-the 46 ROS-independent adapter tests also passed separately under system Python
+Latest local verification: **219 tests passed** across frozen modules and A5;
+the 47 ROS-independent adapter tests also passed separately under system Python
 3.8. Shell syntax and diff whitespace checks passed; the frozen source-directory
 diff against main was empty.
 
@@ -231,3 +239,32 @@ bash -n scripts/run_a5_gazebo.bash
 
 No additional dependencies, baseline/ablation benchmark, security/evidence
 framework, A6 stage or frozen-method changes were introduced.
+
+## Calibrated fresh natural-scene retry
+
+After the bridge's real SIM planning-only check passed, run
+`calibrated-domain-run-XaSgKR` used the same natural scene and unchanged initial
+parking, took off, and obtained a fresh aerial observation. Exact map TCP z was
+0.082807036 m; reference query TCP z was -0.277192964 m. The frozen planner
+returned inverse_reachable=0, evaluated=0, valid=0; A1 saved
+`NO_INVERSE_REACHABLE`, consistent with the independent frozen-domain check.
+
+The adapter then attempted its existing real MID360 capture. A partial window
+of 26 packets was discarded after its unchanged hover gate failed, and the
+20-second capture deadline expired. No full observation was accepted, so this
+run did not update A2 or enter NBV/Ground/grasp/lift. This separate sampling
+failure cannot explain or fix the already completed RM4D out-of-domain query.
+No sampling gate, baseline map, exact target, or A2 threshold was changed.
+
+- [Fresh actual initialization](../outputs/a5/calibrated-domain-run-XaSgKR/initial.json)
+- [Fresh A1 status](../outputs/a5/calibrated-domain-run-XaSgKR/a1/summary.json)
+- [Attempt summary](../outputs/a5/calibrated-domain-run-XaSgKR/run_summary.json)
+- [Post-cleanup landed ground check](../outputs/a5/calibrated-domain-run-XaSgKR/landed_ground_check.json)
+
+Inherited cleanup landed the UAV. Five actual ground-return frames remained
+within the unchanged 0.02 m A2 tolerance (maximum absolute error 9.94e-6 m).
+The task-owned runtime was then stopped.
+
+The frame-calibration subtask is validated; A5 remains incomplete. Continuing
+the ground-brick task needs a decision on map coverage versus task/scene scope,
+not another height offset. This retry is not an E2E success.

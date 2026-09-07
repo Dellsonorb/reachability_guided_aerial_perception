@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    0.0,
+    0.1
+  ],
+  "samples": [
+    {
+      "points": 24,
+      "median_error_m": 2.452799200414191e-07,
+      "max_abs_error_m": 4.115389442560513e-07,
+      "within_tolerance": true,
+      "stamp_s": 712.77,
+      "public_base_z_m": 0.04498669517917442
+    },
+    {
+      "points": 4,
+      "median_error_m": 8.511093614771426e-06,
+      "max_abs_error_m": 9.935976566177729e-06,
+      "within_tolerance": true,
+      "stamp_s": 712.972,
+      "public_base_z_m": 0.04498672417101757
+    },
+    {
+      "points": 11,
+      "median_error_m": 1.4861355324136127e-07,
+      "max_abs_error_m": 3.44236281035748e-07,
+      "within_tolerance": true,
+      "stamp_s": 713.241,
+      "public_base_z_m": 0.04498674702101271
+    },
+    {
+      "points": 7,
+      "median_error_m": 1.5526988705882871e-07,
+      "max_abs_error_m": 2.1502800040540393e-07,
+      "within_tolerance": true,
+      "stamp_s": 713.377,
+      "public_base_z_m": 0.04498677499723562
+    },
+    {
+      "points": 12,
+      "median_error_m": 2.0136703166029335e-07,
+      "max_abs_error_m": 2.664804598651038e-07,
+      "within_tolerance": true,
+      "stamp_s": 713.43,
+      "public_base_z_m": 0.04498678635684896
+    }
+  ],
+  "last_wait_reason": "no returns in the known ground patch",
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}
