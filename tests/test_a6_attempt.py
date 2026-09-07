@@ -58,6 +58,22 @@ class AttemptTests(unittest.TestCase):
                                           [{'state': 'LIFT'}], 0, 1)
         self.assertEqual(result[:2], ('VALID_TRIAL', False))
 
+    def test_proven_pre_task_subscriber_failure_is_not_a_negative_retrieval(self):
+        log = '[FATAL] A6 configuration failed: A5 status subscriber did not connect before startup'
+        physical = dict(status='FAIL', error='timed out waiting for LIFT')
+        result = attempt.classify_outcome(physical, [], 2, None, adapter_log=log)
+        self.assertEqual(result[:2], ('INVALID_TRIAL', None))
+        self.assertEqual(result[2], 'platform_startup_status_subscriber_not_connected')
+
+    def test_exit_two_alone_or_a_started_task_cannot_prove_platform_invalidity(self):
+        log = 'A6 configuration failed: A5 status subscriber did not connect before startup'
+        for events, code, text in (([], 2, ''), ([], 1, log),
+                                   ([dict(state='A6_TASK_START')], 2, log),
+                                   ([dict(state='FAILED', reason='method failed')], 2, log)):
+            with self.subTest(events=events, code=code):
+                result = attempt.classify_outcome(None, events, code, None, adapter_log=text)
+                self.assertEqual(result[:2], ('VALID_TRIAL', False))
+
     def test_connected_without_valid_odometry_is_not_common_ready(self):
         from types import SimpleNamespace
         self.assertFalse(attempt.state_ready(SimpleNamespace(connected=True, odom_valid=False)))

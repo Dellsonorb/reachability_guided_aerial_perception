@@ -105,7 +105,12 @@ def action_probe(client):
     return ready
 
 
-def classify_outcome(physical, events, adapter_exit, checker_exit):
+def classify_outcome(physical, events, adapter_exit, checker_exit, adapter_log=''):
+    # This exact failure is raised before adapter.run(), not by a task stage.
+    # Exit code 2 or a later checker timeout alone cannot establish invalidity.
+    if (not events and adapter_exit == 2 and
+            'A6 configuration failed: A5 status subscriber did not connect before startup' in adapter_log):
+        return 'INVALID_TRIAL', None, 'platform_startup_status_subscriber_not_connected'
     failed = next((e for e in events if e.get('state') == 'FAILED'), None)
     if failed:
         return 'VALID_TRIAL', False, failed.get('reason', 'method_reported_failure')
@@ -301,7 +306,15 @@ def main(argv=None):
         if errors: record['measurement_read_errors'] = errors
         if physical is not None: record['physical_status'] = physical.get('status')
         if record['task_started'] and not args.setup_scene:
-            attach_outcome(record, classify_outcome(physical, events, record.get('adapter_exit'), record.get('checker_exit')))
+            adapter_log = ''
+            if record.get('adapter_exit') == 2 and not events and not errors:
+                try: adapter_log = (output/'adapter.log').read_text()
+                except OSError: pass
+            attach_outcome(record, classify_outcome(physical, events, record.get('adapter_exit'),
+                                                    record.get('checker_exit'), adapter_log))
+            if record.get('classification_reason') == 'platform_startup_status_subscriber_not_connected':
+                record.update(task_started=False, adapter_launched=True,
+                              startup_failure='status consumer did not connect before adapter.run; no task events')
         record['finish_wall'] = time.time(); save()
     print('DONE', json.dumps(record), flush=True)
     return 0

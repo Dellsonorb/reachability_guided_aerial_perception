@@ -20,6 +20,23 @@ SIM_DEMO = Path('/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implem
 
 
 class AdapterTests(unittest.TestCase):
+    def test_checker_connection_can_recover_from_registration_race_before_task(self):
+        publisher = SimpleNamespace(get_num_connections=lambda: int(self.clock.wall >= 103.))
+        def advance(seconds): self.clock.wall += seconds
+        with patch.object(self.adapter.a5.time, 'sleep', side_effect=advance):
+            self.adapter.wait_for_checker(publisher, self.ros, RuntimeError)
+        self.assertGreaterEqual(self.clock.wall, 103.)
+        self.assertLess(self.clock.wall, 103.02)
+
+    def test_checker_connection_startup_wait_is_still_bounded(self):
+        publisher = SimpleNamespace(get_num_connections=lambda: 0)
+        def advance(seconds): self.clock.wall += seconds
+        with patch.object(self.adapter.a5.time, 'sleep', side_effect=advance):
+            with self.assertRaisesRegex(RuntimeError, 'before startup'):
+                self.adapter.wait_for_checker(publisher, self.ros, RuntimeError)
+        self.assertGreaterEqual(self.clock.wall, 110.)
+        self.assertLess(self.clock.wall, 110.02)
+
     def setUp(self):
         path = ROOT / 'scripts/run_a6_sim.py'
         self.assertTrue(path.exists(), 'A6 ROS adapter module must exist')

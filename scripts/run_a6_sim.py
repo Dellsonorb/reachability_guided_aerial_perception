@@ -308,6 +308,12 @@ def build_adapter_class(demo_module, options):
     return A6AirGroundPickDemo
 
 
+def wait_for_checker(publisher, rospy, error_type):
+    # rospy may retry a TCPROS connection after publisher registration races.
+    # This is common diagnostic startup, before task time or physical actions.
+    a5.wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=10.)
+
+
 def main(argv=None):
     argv = sys.argv if argv is None else argv
     parser = build_parser()
@@ -334,7 +340,7 @@ def main(argv=None):
             rospy.set_param('~' + key, value)
         adapter = adapter_class()
         if options.wait_for_status_subscriber:
-            a5.wait_for_status_subscriber(adapter._status_pub, rospy, demo_module.DemoError)
+            wait_for_checker(adapter._status_pub, rospy, demo_module.DemoError)
         return 0 if adapter.run() else 1
     except (demo_module.DemoError, OSError, ValueError) as error:
         rospy.logfatal('A6 configuration failed: %s', error)
