@@ -10,15 +10,29 @@ import numpy as np
 from environment_belief import BeliefConfig, EnvironmentGridSpec, PointCloudObservation
 from reachability_guided_aerial_perception import GraspTCP
 from reachability_guided_nbv import Viewpoint
+from sim_active_perception import worker as frozen_worker
 from sim_active_perception.core import A5Config, replay_observations
-from sim_active_perception.worker import initialize, make_field, render_result, save_belief, save_result, write_json
+from sim_active_perception.worker import make_field, render_result, save_belief, save_result, write_json
 from task_relevant_uncertainty import build_task_uncertainty
-from .policy import decide_policy, rm4d_top_one
+from .policy import VIEW_BUDGET, decide_policy, rm4d_top_one
+
+
+def _pilot_config(values):
+    config = A5Config(**values)
+    if config.max_viewpoints != VIEW_BUDGET:
+        raise ValueError('A6 max_viewpoints must be 3')
+    return config
+
+
+def initialize(request):
+    _pilot_config(request.get('config', {}))
+    return frozen_worker.initialize(request)
 
 
 def observe(request):
     initial = json.loads(Path(request['initial_file']).read_text())
-    grasp, config = GraspTCP(**initial['grasp']), A5Config(**initial['config'])
+    config = _pilot_config(initial['config'])
+    grasp = GraspTCP(**initial['grasp'])
     raw = initial['result']
     field = make_field(grasp, raw, config)
     grid = EnvironmentGridSpec(field.grid.origin_xy, field.grid.width_cells, field.grid.height_cells)
@@ -48,6 +62,7 @@ def observe(request):
 
 def rm4d_select(request):
     initial = json.loads(Path(request['initial_file']).read_text())
+    _pilot_config(initial['config'])
     selected = rm4d_top_one(initial['result'])
     choice = dict(ok=True, selected_candidate=selected,
                   stop_reason='RM4D_TOP_ONE_SELECTED' if selected is not None else 'NO_RM4D_CANDIDATE')

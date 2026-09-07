@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -330,16 +331,44 @@ class A6WorkerTests(unittest.TestCase):
             directory = Path(tmp)
             initial = directory / 'initial.json'
             for candidates in ([first], []):
-                initial.write_text(json.dumps({'result': {'candidates': candidates}}))
+                initial.write_text(json.dumps({'config': {'max_viewpoints': 3},
+                                               'result': {'candidates': candidates}}))
                 process, response = self.run_worker(directory, dict(op='rm4d_select', initial_file=str(initial)))
                 self.assertEqual(process.returncode, 0, process.stderr)
                 self.assertTrue(response['ok'])
                 self.assertEqual(response['selected_candidate'], rm4d_top_one({'candidates': candidates}))
 
-    def test_worker_init_is_frozen_and_errors_are_structured(self):
+    def test_worker_rejects_bad_budget_before_init_field_cloud_or_selection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            initial = directory / 'initial.json'
+            for budget in (2, 4):
+                config = {'max_viewpoints': budget}
+                initial.write_text(json.dumps({'config': config, 'result': {'candidates': []}}))
+                for op in ('init', 'observe', 'rm4d_select'):
+                    with self.subTest(budget=budget, op=op):
+                        request = (dict(op=op, config=config) if op == 'init' else
+                                   dict(op=op, initial_file=str(initial)))
+                        process, response = self.run_worker(directory, request)
+                        self.assertNotEqual(process.returncode, 0)
+                        self.assertFalse(response['ok'])
+                        self.assertRegex(response['error'], 'max_viewpoints.*3')
+
+    def test_worker_valid_init_preserves_frozen_request_and_return_exactly(self):
         from a6_pilot import worker
         from sim_active_perception import worker as frozen
-        self.assertIs(worker.initialize, frozen.initialize)
+        # Isolate only the external RM4D initialization boundary; the A6 guard
+        # and pass-through are real, with the complete frozen response shape.
+        expected = dict(ok=True, initial_file='/tmp/initial.json', candidate_count=1,
+                        a1_status='OK', evaluated=1, rm4d_valid=1, baseline_valid=1)
+        for values in ({}, {'config': {'max_viewpoints': 3}}):
+            with self.subTest(values=values):
+                request = dict(op='init', **values)
+                with patch.object(frozen, 'initialize', return_value=expected) as initialize:
+                    self.assertIs(worker.initialize(request), expected)
+                    initialize.assert_called_once_with(request)
+
+    def test_worker_errors_are_structured(self):
         with tempfile.TemporaryDirectory() as tmp:
             process, response = self.run_worker(Path(tmp), {'op': 'missing'})
             self.assertNotEqual(process.returncode, 0)
