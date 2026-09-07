@@ -18,9 +18,17 @@ band, all 21 representatives were occupied-blocked, and no next task viewpoint
 or exact ground candidate was selected. UAV cleanup landed and the runtime was
 stopped. See [the integration report](../../A5_SIM_ACTIVE_PERCEPTION.md).
 
-E2E success, A5 PR merge and A5 completion remain **open**. Do not check off the
-displacement/grasp/lift acceptance or claim the input prerequisite is fixed.
-No frozen method or SIM source was changed to force this failed run to pass.
+Subsequent authorized SIM platform repair is isolated on
+`feature/fix-sim-uav-map-localization @ 02cd039`. Landed/hover real ground checks
+and P450/Ground/D435 public frame regressions passed. A fresh clear-parking run
+executed two actual A4-selected flights, but three single-message observations
+left the best exact footprint with only 17/108 FREE cells. A5 correctly aborted.
+
+E2E success, A5 PR merge and A5 completion remain **open**. The next bounded
+integration step is a 5-second stable-hover acquisition window, with each chunk
+transformed at its own timestamp and the whole window remaining ONE A2 vote per
+cell. Frozen A1-A4, thresholds, occupied priority and exact all-FREE acceptance
+remain unchanged. No Ground/grasp/lift acceptance has yet been met.
 
 ## Task 1 — Core integration and exact candidate catalog (root)
 
@@ -51,3 +59,9 @@ Create `scripts/run_a5_gazebo.bash` and `docs/A5_SIM_ACTIVE_PERCEPTION.md`; pres
 - [ ] Inspect failures with systematic-debugging. Correct only A5 integration/local run settings; if results negate a research assumption or require frozen changes, stop and report the precise boundary.
 - [ ] Require real A4-selected displacement, real endpoint-induced belief/candidate change, navigation and D435 refinement, retained AG95 grasp and lift. Save concise scalar results and field plots; label unsuccessful attempts honestly.
 - [ ] Perform final independent review, one complete frozen+A5 test run, syntax checks and frozen-path diff check. Commit the completed A5 work and perform the appropriate authorized PR workflow only if genuinely complete. Do not enter paper experiments or a new stage.
+
+## Bounded follow-up — hover-window acquisition
+
+- [ ] Delegated adapter implementation: test `merge_cloud_chunks` with distinct translated/pitched sensor poses, stamps and normalized frames; then collect a finite positive `--cloud-window-s` below the existing capture timeout. Re-express all points into the last sensor frame/time, save one observation and minimal chunk geometry for debugging.
+- [ ] Root frozen-A2 integration test: multiple chunks covering the same ground cells yield observation_count=1, free_evidence=1, unknown_score=exp(-1/2), not the number of packets. A second whole window is required for FREE.
+- [ ] Review, fresh natural Gazebo run, exact candidate/navigation/refinement/grasp/lift verification. Do not loosen semantics if the remaining outcome is negative.

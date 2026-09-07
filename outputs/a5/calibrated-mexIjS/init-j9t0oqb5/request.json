@@ -1,0 +1,45 @@
+{
+  "config": {
+    "facade_position_tolerance": 0.15,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "max_viewpoints": 3,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ]
+  },
+  "current_bunker_pose": [
+    2.9998443877676384,
+    0.0001939417588317991,
+    -3.1414553984965456
+  ],
+  "grasp": {
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      1.9958350414736088,
+      0.005002066448552135,
+      0.08337821565643691
+    ],
+    "quaternion_xyzw": [
+      0.003629350245145272,
+      0.7070974669851378,
+      -0.0036293502451452725,
+      0.7070974669851379
+    ]
+  },
+  "op": "init",
+  "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/calibrated-mexIjS",
+  "rm4d_config": "/tmp/rm4d-aubo-baseline-v1.n9oGee/repo/configs/mr4_offline_base_placement.json",
+  "rm4d_map": "/media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy",
+  "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.n9oGee/repo",
+  "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation"
+}

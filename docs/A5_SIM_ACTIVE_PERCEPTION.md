@@ -2,7 +2,9 @@
 
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
 `feature/a5-sim-active-perception-loop`. This implementation adds only an
-integration/orchestration layer; A1/A2/A3/A4 and SIM source are unchanged.
+integration/orchestration layer; A1/A2/A3/A4 are unchanged. The subsequently
+authorized public-map correctness repair is isolated in SIM branch
+`feature/fix-sim-uav-map-localization`, not in these research modules.
 
 ## Implemented boundary
 
@@ -13,9 +15,13 @@ implementation. No Gazebo model state enters the algorithm.
 
 The Python 3.8 ROS adapter consumes actual `/uav1/livox/lidar` PointCloud2,
 filters nonfinite/zero returns, waits for stable position/yaw/velocity, and
-uses the cloud header timestamp for the full `T_map_sensor`. The mount includes
+collects a 5-second scan window per observation. Every packet uses its own
+header timestamp for the full `T_map_sensor`. The mount includes
 pitch 0.35 rad and the ray-sensor translation, not just a yaw rotation. A delayed
 cloud must also have a goal-consistent UAV pose at its own timestamp.
+Packets are re-expressed in the last sensor frame/time. Each entire window is
+one A2 observation, never extra votes proportional to packet count. This is
+between-packet coordinate alignment during hover, not within-packet deskew.
 
 The Python 3.10 worker calls frozen RM4D once using the existing SIM query-only
 regularization and retains the complete evaluated result and unmodified grasp
@@ -81,9 +87,9 @@ The reused frozen A4 renderer's footer “no real scan or flight” describes it
 candidate visibility/gain prediction, not the origin of this A5 input: the input
 scan above is real SIM data; proposed NBV observations are not measurements.
 
-## Geometric prerequisite exposed by the run
+## Geometric prerequisite exposed by the original run
 
-The public TF does not currently place the observed horizontal ground within
+The original public TF did not place the observed horizontal ground within
 A2's fixed map-ground band. With the correctly stamped composite transform,
 distant returns in the saved hover scan form a near-plane at approximately
 `z = 0.00249*x + 0.00921*y + 0.04940` m. At (2.8,0), that is about **0.0564 m**,
@@ -103,7 +109,7 @@ A separate read-only check after landing found:
 The stationary cloud timestamp was 279.553 s and the diagnostic model-state
 timestamp 279.597 s. The close agreement between height offset and apparent
 ground elevation supports a localization/frame-datum issue, not an A5 rotation
-or timestamp substitution. SIM currently uses a static `map -> uav1/odom` offset
+or timestamp substitution. At the time, SIM used a static `map -> uav1/odom` offset
 based on spawn position plus the onboard estimated pose; see SIM
 `air_ground_standalone.launch:34`. Sensor extrinsics include the expected ray
 offset and match the published contract.
@@ -116,11 +122,47 @@ justify treating every occupied cell as a false obstacle.
 The failure invalidates the **direct-input assumption for this SIM run**, not the
 paper's task-weighting hypothesis. Changing A2 thresholds, adding adaptive ground
 segmentation, or substituting Gazebo truth would alter the tested assumptions or
-cross the platform boundary. None was done. The recommended next decision is to
-resolve/validate SIM's public map-localization/ground alignment, then resume A5
-with frozen A2 semantics. A5 is not merged or frozen as complete.
+cross the platform boundary. None was done. This prompted the separately
+authorized SIM repair below, after which A5 resumed with frozen A2 semantics.
+A5 is not merged or frozen as complete.
 
-## Running after the prerequisite is resolved
+## Authorized platform repair and corrected retry
+
+The WIP A5 checkpoint `eb33ea4` has been pushed to its feature branch without
+merging main. In SIM, the incorrect static spawn-based map/odom edge has been
+replaced by a same-time full-SE(3) localization correction. A SIM-private stamped
+physical body pose is consumed only inside that platform adapter. AGENT still
+uses only public map TF; no empirical Z offset, threshold change, body masking
+or Gazebo pose substitution was added to A2/A5.
+
+In corrected run `calibrated-mexIjS`, actual known-ground returns had maximum
+absolute height error **0.000000402 m landed** (5 frames) and **0.0006364 m in
+hover** (10 frames), both within the unchanged A2 0.02 m tolerance. Physical
+landed base_link height remained approximately 0.04484 m. Public P450/Ground TF
+and P450 D435 frame checks passed.
+
+The first fresh A5 scan now provided 126 ground/free votes and 50 occupied votes.
+All 31 representative candidates were still blocked, but the relevant occupied
+endpoints were real current BUNKER/arm returns at z=0.394..1.028 m, rather than
+misregistered ground. This run correctly stopped with no executable candidate;
+it is not a completed A5 result.
+
+The next natural run parks BUNKER initially at (3,-2.5), yaw pi, outside the
+candidate region. This is an explicit initial scene setting, not a mid-run
+teleport or self-body evidence suppression. `--max-ground-travel 3.0` exposes the
+existing SIM travel guard for that parking distance; it does not change RM4D
+quality, A1 relevance, A4 cost or candidate ranking. The default remains SIM's
+1.10 m unless explicitly overridden. Exact footprints must still be entirely
+A2 FREE before Ground execution.
+
+That clear-parking run (`clear-parking-iaOxLx`) executed two A4-selected flights.
+Across three single-packet observations, task uncertainty mass changed
+295.19 -> 274.15 -> 247.80, and FREE cells changed 0 -> 29 -> 86. However,
+the best exact footprint had only 17/108 FREE cells; the adapter stopped at the
+view budget without executing Ground. This motivated the 5-second scan-window
+acquisition above, without changing the per-observation A2 vote or all-FREE gate.
+
+## Running with the repaired SIM platform
 
 Use the public/E2E SIM checkout, not its older parent checkout. Existing machine
 paths used here:

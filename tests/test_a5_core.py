@@ -1,4 +1,5 @@
 import unittest
+import importlib.util
 import json
 from pathlib import Path
 import subprocess
@@ -89,6 +90,31 @@ class A5CoreTests(unittest.TestCase):
         np.testing.assert_allclose(belief.unknown_score, np.exp(-1))
         with self.assertRaisesRegex(ValueError, 'increasing'):
             replay_observations(self.grid, [frames[0], frames[0]])
+
+    def test_hover_window_chunks_are_one_frozen_a2_observation_not_extra_votes(self):
+        spec = importlib.util.spec_from_file_location('a5_support', 'scripts/a5_ros_support.py')
+        support = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(support)
+        world_points = ground_points(self.grid)
+        chunks = []
+        for stamp, offset, pitch in [(1., -.03, -.02), (2., .04, .03), (3., .01, 0.)]:
+            transform = support.rigid_transform([offset, 0, 2],
+                                                [0, np.sin(pitch / 2), 0, np.cos(pitch / 2)])
+            chunks.append(dict(points_xyz=(world_points - transform[:3, 3]) @ transform[:3, :3],
+                               T_map_sensor=transform, stamp_s=stamp, frame_id='uav1/lidar_link'))
+        merged = support.merge_cloud_chunks(chunks)
+        observation = PointCloudObservation(merged['points_xyz'], str(merged['frame_id']),
+                                            float(merged['stamp_s']), merged['T_map_sensor'])
+        once = replay_observations(self.grid, [observation])
+        np.testing.assert_array_equal(once.observation_count, 1)
+        np.testing.assert_array_equal(once.free_evidence, 1)
+        np.testing.assert_array_equal(once.occupied_evidence, 0)
+        np.testing.assert_allclose(once.unknown_score, np.exp(-.5))
+        second = PointCloudObservation(observation.points_xyz, observation.frame_id,
+                                       6., observation.T_map_sensor)
+        twice = replay_observations(self.grid, [observation, second])
+        np.testing.assert_array_equal(twice.observation_count, 2)
+        np.testing.assert_array_equal(twice.free_evidence, 2)
 
     def test_max_round_stops_even_with_positive_score_and_does_not_force_success(self):
         field, raw = inputs([candidate(candidate_id='first', x=.011, y=.019, margin=.3)])
