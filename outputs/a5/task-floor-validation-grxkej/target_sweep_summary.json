@@ -1,0 +1,48 @@
+[
+  {
+    "label": "lower_band",
+    "map_tcp_z": 0.0494,
+    "asset_flange_z": -0.22260000000000002,
+    "summary": {
+      "inverse_reachable": 216,
+      "deduplicated": 216,
+      "validation_limit": 256,
+      "evaluated": 216,
+      "valid": 175,
+      "rejected_by_reason": {
+        "ik_no_valid_solution": 14,
+        "joint_margin_below_minimum": 27
+      }
+    }
+  },
+  {
+    "label": "upper_band",
+    "map_tcp_z": 0.1094,
+    "asset_flange_z": -0.16260000000000002,
+    "summary": {
+      "inverse_reachable": 144,
+      "deduplicated": 144,
+      "validation_limit": 256,
+      "evaluated": 144,
+      "valid": 139,
+      "rejected_by_reason": {
+        "ik_no_valid_solution": 5
+      }
+    }
+  },
+  {
+    "label": "positive",
+    "map_tcp_z": 0.397,
+    "asset_flange_z": 0.125,
+    "summary": {
+      "inverse_reachable": 18000,
+      "deduplicated": 18000,
+      "validation_limit": 256,
+      "evaluated": 256,
+      "valid": 219,
+      "rejected_by_reason": {
+        "ik_no_valid_solution": 37
+      }
+    }
+  }
+]

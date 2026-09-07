@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    0.0,
+    0.1
+  ],
+  "samples": [
+    {
+      "points": 9,
+      "median_error_m": 1.3757343669817956e-07,
+      "max_abs_error_m": 2.687881979768214e-07,
+      "within_tolerance": true,
+      "stamp_s": 26.96,
+      "public_base_z_m": 0.04484105334753857
+    },
+    {
+      "points": 26,
+      "median_error_m": 1.843986038307932e-07,
+      "max_abs_error_m": 4.348245266072581e-07,
+      "within_tolerance": true,
+      "stamp_s": 27.161,
+      "public_base_z_m": 0.044841042378775786
+    },
+    {
+      "points": 12,
+      "median_error_m": 1.2809178007167077e-07,
+      "max_abs_error_m": 3.2833051055725093e-07,
+      "within_tolerance": true,
+      "stamp_s": 27.231,
+      "public_base_z_m": 0.044841040720641365
+    },
+    {
+      "points": 9,
+      "median_error_m": 3.159732180346708e-07,
+      "max_abs_error_m": 5.479100917415991e-07,
+      "within_tolerance": true,
+      "stamp_s": 27.36,
+      "public_base_z_m": 0.04484109458292966
+    },
+    {
+      "points": 5,
+      "median_error_m": 1.1360692175887976e-07,
+      "max_abs_error_m": 2.4295075140567945e-07,
+      "within_tolerance": true,
+      "stamp_s": 27.435,
+      "public_base_z_m": 0.04484111822435809
+    }
+  ],
+  "last_wait_reason": "Lookup would require extrapolation 0.049000000s into the past.  Requested time 25.821000000 but the earliest data is at time 25.870000000, when looking up transform from frame [uav1/base_link] to frame [map]",
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}

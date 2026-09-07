@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "asset_kind": "a5_task_domain_rm4d",
+  "workspace": {
+    "xy_limits_m": [
+      -1.15,
+      1.15
+    ],
+    "z_limits_m": [
+      -0.25,
+      1.3
+    ],
+    "voxel_resolution_m": 0.05,
+    "theta_bins": 36
+  },
+  "floor_calibration": {
+    "inputs": {
+      "map_ground_z": 0.0,
+      "ground_reference_height_m": 0.36,
+      "mount_height_m": 0.122,
+      "robot_base_z_m": 0.01
+    },
+    "task_floor_z": -0.472,
+    "validated_T_bunker_aubo": [
+      [1.0, 0.0, 0.0, 0.15],
+      [0.0, 1.0, 0.0, 0.0],
+      [0.0, 0.0, 1.0, 0.122],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "assumption": "horizontal map ground and BUNKER mount, validated by FrameBridge"
+  },
+  "positive_overlap": {
+    "source_map": "/media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy",
+    "source_samples": 10000000,
+    "copied_slices": 26,
+    "copied_occupied_bins": 455974
+  },
+  "negative_sampling": {
+    "samples": 100000,
+    "seed": 42,
+    "negative_fk_samples_stored": 14683,
+    "proposal": "uniform_joint_space",
+    "rejection": "AuboI5.get_random_joint_config(prevent_collisions=True)"
+  },
+  "collision_world": {
+    "simulator": "unchanged rm4d Simulator",
+    "robot": "unchanged rm4d AuboI5",
+    "robot_base_z_m": 0.01,
+    "plane_relocated_only": true,
+    "self_collision_enabled": true,
+    "floor_collision_enabled": true
+  }
+}

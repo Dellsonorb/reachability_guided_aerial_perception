@@ -189,6 +189,12 @@ class FrameBridgeTests(unittest.TestCase):
 
 class WorkerFrameBridgeTests(unittest.TestCase):
     def test_initialize_translates_query_and_saves_exact_grasp_baseline_and_calibration(self):
+        self.check_initialize(task_asset=False)
+
+    def test_task_asset_uses_independent_validator_and_is_not_labelled_baseline(self):
+        self.check_initialize(task_asset=True)
+
+    def check_initialize(self, task_asset):
         values = calibration()
         regularized = [0., math.sin(5e-7), 0., math.cos(5e-7)]
         calls = []
@@ -227,6 +233,13 @@ class WorkerFrameBridgeTests(unittest.TestCase):
         def open_api(*args):
             yield FrozenAPI()
 
+        task_calls = []
+
+        @contextmanager
+        def open_task_api(*args):
+            task_calls.append(args)
+            yield FrozenAPI()
+
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
             config_path = directory / 'frozen.json'
@@ -237,10 +250,13 @@ class WorkerFrameBridgeTests(unittest.TestCase):
                            rm4d_config=str(config_path), rm4d_map=str(directory / 'map.npy'),
                            output_dir=str(directory / 'initial'), current_bunker_pose=[4.5, -1.2, .3],
                            frame_calibration=values)
+            if task_asset:
+                request['rm4d_task_asset'] = str(directory / 'task_asset')
             before = copy.deepcopy(request)
             with patch.object(worker, 'open_frozen_rm4d_api', open_api), patch.dict(
                     sys.modules, {'rm4d_sim_integration.geometry': geometry}), patch.object(
-                        sys, 'path', sys.path.copy()):
+                        sys, 'path', sys.path.copy()), patch.object(
+                            worker, 'open_task_rm4d_api', open_task_api, create=True):
                 response = worker.initialize(request)
             initial = json.loads(Path(response['initial_file']).read_text())
 
@@ -254,7 +270,15 @@ class WorkerFrameBridgeTests(unittest.TestCase):
             self.assertEqual(calls[1], initial['query_request'])
             self.assertEqual(initial['grasp'], request['grasp'])
             self.assertEqual(request, before)
-            self.assertEqual(initial['baseline_result'], baseline)
+            if task_asset:
+                self.assertEqual(task_calls, [(request['rm4d_root'], request['rm4d_config'],
+                                               request['rm4d_task_asset'], values)])
+                self.assertIsNone(initial['baseline_result'])
+                self.assertEqual(initial['task_domain_result'], baseline)
+                self.assertEqual(initial['rm4d_task_asset'], request['rm4d_task_asset'])
+            else:
+                self.assertEqual(task_calls, [])
+                self.assertEqual(initial['baseline_result'], baseline)
             self.assertEqual(initial['result']['frame_id'], 'map')
             self.assertAlmostEqual(initial['result']['evaluated_candidates'][0]['T_map_bunker'][2][3], .36)
             self.assertEqual(initial['frame_calibration']['ground_reference_height_m'], .36)
@@ -262,6 +286,11 @@ class WorkerFrameBridgeTests(unittest.TestCase):
                 self.assertEqual(initial['frame_calibration'][key], value)
             self.assertEqual(initial['config']['ground_z_m'], 0.)
             self.assertEqual(response['candidate_count'], 1)
+            self.assertEqual(response.get('rm4d_valid'), 1)
+            if task_asset:
+                self.assertNotIn('baseline_valid', response)
+            else:
+                self.assertEqual(response.get('baseline_valid'), 1)
 
     def test_initialize_requires_calibration_before_external_work(self):
         request = dict(grasp=dict(grasp_id='exact', frame_id='map',

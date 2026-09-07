@@ -1,9 +1,9 @@
 # A5 task-domain RM4D map: geometry and collision-world decision
 
-Status: geometric coverage derived; **map generation not started**. Investigation
-found that coverage-only extension cannot pass the unchanged frozen plane
-collision gate for the required negative flange targets. No frozen assets,
-algorithms, robot definitions or runtime collision worlds have been changed.
+Status: **approved for implementation**. User authorized a separately owned
+integration collision floor at the derived -0.472 m, with workspace coverage
+[-0.25,1.3] m. Frozen assets, algorithms, robot definitions and the baseline
+validator/collision world remain unchanged.
 
 ## What the z index means
 
@@ -112,11 +112,10 @@ this is more than changing workspace coverage. Sampling AND runtime validation
 must agree on that explicit task floor. Self-collision and floor collision
 must remain enabled; actual SIM collision-aware planning remains necessary.
 
-Generation is paused at the user's explicit physical-definition decision
-boundary. The proposed additional authorization is **task-floor calibration in
-the new runtime asset and its validator only**, not modifying the baseline or
-turning off collision checks. No task map has been generated and none of its
-overlap/RM4D/SIM cross-validation requirements is claimed complete.
+The user authorized **task-floor calibration in the new runtime asset and its
+validator only**, not modifying the baseline or turning off collision checks.
+Generation and overlap/RM4D/SIM validation are implementation work; authorization
+alone does not establish their success.
 
 ## Validation after that decision
 

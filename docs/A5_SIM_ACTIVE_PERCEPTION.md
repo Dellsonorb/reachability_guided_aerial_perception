@@ -1,11 +1,13 @@
 # A5 — SIM active-perception integration (not yet E2E complete)
 
-Current boundary: the authorized **Ground reference-frame bridge is verified**;
-the repaired UAV public TF also passes real ground-height checks. Correctly
-calibrated natural ground-brick queries are outside the frozen RM4D map's
-`z=[0,1.3] m` domain and return `NO_INVERSE_REACHABLE`. See the
-[geometry, actual IK/planning validation and coverage boundary](A5_GROUND_RM4D_HEIGHT_BOUNDARY.md).
-No Ground/grasp/lift success is claimed, and A5 remains a WIP feature branch.
+Current status: the authorized **Ground reference-frame bridge and independent
+task-domain RM4D asset are verified**; the repaired UAV public TF also passes
+real ground-height checks. The frozen map remains unchanged. The separate
+runtime asset adds negative flange coverage and an explicitly calibrated floor;
+see [asset geometry and actual SIM planning checks](A5_TASK_DOMAIN_ASSET.md).
+The latest natural run completed active observation and Ground navigation but
+stopped at refined grasp-approach planning. No grasp/lift success is claimed,
+and A5 remains a WIP feature branch.
 
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
 `feature/a5-sim-active-perception-loop`. This implementation adds only an
@@ -15,35 +17,42 @@ authorized public-map correctness repair is isolated in SIM branch
 
 ## Implemented boundary
 
-`scripts/run_a5_sim.py` subclasses the existing SIM `AirGroundPickDemo`. Only
-the aerial phase and RM4D candidate provider are replaced. Ground navigation,
-D435 refinement, MoveIt, AG95 confirmation and lift retain the existing SIM
-implementation. No Gazebo model state enters the algorithm.
+`scripts/run_a5_sim.py` subclasses the existing SIM `AirGroundPickDemo`. It
+replaces the aerial phase and RM4D candidate provider, and wires the exact
+D435-refined grasp into approach-compatible pregrasp branch selection through
+existing MoveIt services. Ground navigation, perception, Cartesian descent,
+AG95 confirmation and lift retain the existing SIM implementation. No Gazebo
+model state enters the algorithm.
 
 The Python 3.8 ROS adapter consumes actual `/uav1/livox/lidar` PointCloud2,
 filters nonfinite/zero returns, waits for stable position/yaw/velocity, and
 collects a 5-second scan window per observation. Every packet uses its own
 header timestamp for the full `T_map_sensor`. The mount includes
 pitch 0.35 rad and the ray-sensor translation, not just a yaw rotation. A delayed
-cloud must also have an anchor-consistent UAV pose at its own timestamp.
+cloud must also have a current-position-consistent UAV pose at its own timestamp.
 Flight arrival is checked against the requested viewpoint. After a potentially
-long RM4D query, capture stability uses a fresh measured pose as a fixed anchor,
-not the old request; the request/anchor difference is logged. It is not re-anchored
-during a window or its retries. A4 receives the last actual stamped UAV pose.
+long RM4D query, capture records a fresh measured anchor and logs its difference
+from the request. Initial settling is unchanged. During acquisition, the anchor
+provides the yaw reference, while slow current/stamped common position drift is
+allowed inside the operating bounds. A delayed packet must be within 0.10 m of
+the current position, not the original anchor. Fresh health/TF, low speed and yaw
+checks remain active. The anchor is never rewritten; A4 receives the last actual
+stamped UAV pose. See the [separate runtime diagnosis](superpowers/specs/2026-09-07-a5-low-speed-acquisition-design.md).
 Packets are re-expressed in the last sensor frame/time. Each entire window is
 one A2 observation, never extra votes proportional to packet count. This is
 between-packet coordinate alignment during hover, not within-packet deskew.
-If current/stamped hover checks fail during collection, discard the partial
+If current/stamped acquisition checks fail during collection, discard the partial
 window, wait for the same continuous settling interval, and start with fresh
 packets. The original 20-second wall capture deadline is not reset. An incomplete
 window never updates A2; frame/numeric errors are not reinterpreted as evidence.
 
-The Python 3.10 worker calls frozen RM4D once using the existing SIM query-only
+The Python 3.10 worker calls the unchanged RM4D planner once using the existing SIM query-only
 regularization and retains the complete evaluated result and unmodified grasp
 TCP. The new A5-only `FrameBridge` reads the public nominal Ground reference
 height and verifies its mount against frozen RM4D; it translates the query into
 the original RM4D `world` frame and translates global result transforms back
-to public map. `initial.json` retains `baseline_result`, map `result`, and
+to public map. `initial.json` retains the raw reference result (`task_domain_result`
+for the explicit task asset, otherwise `baseline_result`), map `result`, and
 `frame_calibration` separately. This is not an A2 ground correction: A2's ground
 remains z=0 and A1–A4 are unchanged.
 Each observation request replays its small ordered cloud history into an
@@ -195,7 +204,7 @@ export RM4D_ROOT=/tmp/rm4d-aubo-baseline-v1.n9oGee/repo
 export RM4D_PYTHON=/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python
 export RM4D_MAP=/media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy
 export A5_RUN_DIR="$(mktemp -d -p "$PWD/outputs/a5" gazebo-XXXXXX)"
-bash scripts/run_a5_gazebo.bash "$A5_RUN_DIR"
+bash scripts/run_a5_gazebo.bash "$A5_RUN_DIR" bunker_x:=3.0 bunker_y:=-2.5
 ```
 
 `RM4D_ROOT` must name an available frozen baseline checkout; the temporary path
@@ -211,7 +220,8 @@ export ROS_MASTER_URI=http://127.0.0.1:11951
   --output-dir "$A5_RUN_DIR" --core-python "$RM4D_PYTHON" \
   --rm4d-root "$RM4D_ROOT" \
   --rm4d-config "$RM4D_ROOT/configs/mr4_offline_base_placement.json" \
-  --rm4d-map "$RM4D_MAP"
+  --rm4d-map "$RM4D_MAP" \
+  --rm4d-task-asset assets/rm4d_ground_task_v1 --max-ground-travel 3.0
 ```
 
 The existing SIM `scripts/check_air_ground_pick_demo.py` can be started before
@@ -225,9 +235,10 @@ remaining blocking code issue. The latter checked exact identity, first ties,
 representative/exact occupied gates, stamped transforms and stopped-response
 semantics. The review does **not** establish Gazebo E2E completion.
 
-Latest local verification: **219 tests passed** across frozen modules and A5;
-the 47 ROS-independent adapter tests also passed separately under system Python
-3.8. Shell syntax and diff whitespace checks passed; the frozen source-directory
+Latest local verification: **248 tests passed** across frozen modules and A5;
+the 51 ROS-independent acquisition adapter tests and 15 refined-approach tests
+also passed separately under system Python 3.8. Shell syntax and diff whitespace
+checks passed; the frozen source-directory
 diff against main was empty.
 
 ```bash
@@ -265,6 +276,55 @@ Inherited cleanup landed the UAV. Five actual ground-return frames remained
 within the unchanged 0.02 m A2 tolerance (maximum absolute error 9.94e-6 m).
 The task-owned runtime was then stopped.
 
-The frame-calibration subtask is validated; A5 remains incomplete. Continuing
-the ground-brick task needs a decision on map coverage versus task/scene scope,
-not another height offset. This retry is not an E2E success.
+This historical retry predates the subsequently authorized task-domain asset.
+Its map-coverage issue is resolved by the separate asset described above, not
+by another height offset. The retry itself is not an E2E success.
+
+## Task asset and complete acquisition: `low-speed-dwell-7fKHEZ`
+
+The calibrated task asset returned 144 evaluated / 139 valid candidates from
+a fresh aerial estimate. With the bounded low-speed acquisition correction,
+all three observation windows completed (51–52 actual MID360 packets, roughly
+87,000 endpoints and 5.09 simulated seconds per window). These are three A2
+votes per cell at most, not thousands of votes from the packets/endpoints.
+
+| Observation | UNKNOWN / FREE / OCCUPIED | Task uncertainty mass | Confirmed exact candidates |
+|---|---:|---:|---:|
+| Initial | 1600 / 0 / 0 | 324.768 | 0 |
+| After NBV 1 | 1220 / 372 / 8 | 88.553 | 0 |
+| After NBV 2 | 444 / 1148 / 8 | 53.710 | 3 |
+
+The first observation has no FREE cells because A2 requires two observations;
+it does contain free evidence. Two A4-selected translations of about 2 m each
+were executed through the public flight interface. The loop stopped at
+`VIEW_BUDGET_REACHED`, not score convergence (best remaining score 20.989).
+The exact selected candidate 000008 was (2.396970, -0.596781, yaw 2.094395),
+with all 107 footprint cells FREE, none occupied/unknown, and relevance 1.
+Its mean unknown score remained 0.367879, as permitted by A2's FREE semantics.
+
+UAV return/landing, exact BUNKER navigation and D435 refinement completed.
+The inherited refined pose-goal pregrasp selected an IK branch whose subsequent
+Cartesian descent reached only fraction 0.767. The adapter aborted without
+executing the descent or closing/lifting; the independent physical checker
+reported failure. Read-only retries reproduced this branch issue, while a
+fresh SIM check found collision-aware exact refined-grasp IK and complete
+reverse approaches. This is handled separately from the validated task floor.
+
+- [Actual run summary](../outputs/a5/low-speed-dwell-7fKHEZ/run_summary.json)
+- [Failed branch diagnostic](../outputs/a5/low-speed-dwell-7fKHEZ/cartesian_branch_diagnostic.json)
+- [Fresh local IK / reverse approach check](../outputs/a5/refined-approach-GYWLxP/refined_local_ik_diagnostic.json)
+- [Full-mount reverse, joint-goal and forward planning check](../outputs/a5/refined-approach-GYWLxP/reverse_branch_planning_check.json)
+- [Minimal A5 branch integration design](superpowers/specs/2026-09-07-a5-refined-approach-design.md)
+
+![Actual belief progression and selected exact footprint](../outputs/a5/low-speed-dwell-7fKHEZ/belief_progress.png)
+
+The A5-only refined branch wiring retains SIM's exact generated grasp and full
+stamped map-to-planning-frame transform. Collision-aware grasp IK is followed by
+a reverse Cartesian approach; its endpoint is the joint goal for the ordinary
+current-state planner. The existing forward continuation check must pass before
+pregrasp execution. Original Cartesian step/fraction, collision checks, target
+geometry, descent/close/lift sequence and TCP verification are unchanged. A
+planning failure cannot execute motion, and execution failure is not retried.
+The diagnostic using the complete mount (including x=0.15 m) found IK success,
+reverse fraction 1.0, a 39-point pregrasp plan, and forward fraction 1.0; this
+planning-only result is not itself an executed E2E grasp.

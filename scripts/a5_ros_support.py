@@ -87,9 +87,16 @@ def pose_settled(current, goal, velocity, position_tolerance, yaw_tolerance, spe
 
 def capture_pose_settled(current, stamped_pose, goal, velocity,
                          position_tolerance, yaw_tolerance, speed_tolerance):
-    """A recovered hover cannot authorize a delayed cloud from another pose."""
-    return (pose_settled(current, goal, velocity, position_tolerance, yaw_tolerance, speed_tolerance)
-            and pose_settled(stamped_pose, goal, [0., 0., 0.],
+    """Accept slow common drift, but not a delayed cloud from another pose."""
+    try:
+        current = _vector(current, 4)
+        goal = _vector(goal, 4)
+    except (TypeError, ValueError):
+        return False
+    acquisition_goal = [current[0], current[1], current[2], goal[3]]
+    return (pose_settled(current, acquisition_goal, velocity,
+                         position_tolerance, yaw_tolerance, speed_tolerance)
+            and pose_settled(stamped_pose, acquisition_goal, [0., 0., 0.],
                              position_tolerance, yaw_tolerance, speed_tolerance))
 
 

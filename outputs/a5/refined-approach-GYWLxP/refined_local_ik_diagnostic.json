@@ -1,0 +1,63 @@
+{
+  "executed": false,
+  "scope": "same exact refined target under nominal selected candidate arm-local geometry, current SIM parked base",
+  "results": [
+    {
+      "seed": "prior_executed_pregrasp",
+      "ik_code": 1,
+      "reverse_to_pregrasp_fraction": 1.0,
+      "grasp_joints": {
+        "shoulder_pan_joint": 0.2416973389766273,
+        "shoulder_lift_joint": -1.404730901839379,
+        "elbow_joint": 1.0726421663606027,
+        "wrist_1_joint": -2.235012239873584,
+        "wrist_2_joint": -1.5708093567502195,
+        "wrist_3_joint": -0.8040477518756974,
+        "left_inner_knuckle_joint": 0.00010068025264065028,
+        "left_outer_knuckle_joint": 0.00010068025264065028,
+        "left_finger_joint": 0.00010068025264065028,
+        "right_inner_knuckle_joint": 0.00010068025264065028,
+        "right_outer_knuckle_joint": 0.00010068025264065028,
+        "right_finger_joint": 0.00010068025264065028
+      }
+    },
+    {
+      "seed": "rm4d",
+      "ik_code": 1,
+      "reverse_to_pregrasp_fraction": 1.0,
+      "grasp_joints": {
+        "shoulder_pan_joint": 2.9339567788314382,
+        "shoulder_lift_joint": 1.404737808359866,
+        "elbow_joint": -1.0726397633874034,
+        "wrist_1_joint": 2.235022430266928,
+        "wrist_2_joint": 1.570794866173976,
+        "wrist_3_joint": -1.25336456183237,
+        "left_inner_knuckle_joint": 9.853797957060095e-05,
+        "left_outer_knuckle_joint": 9.853797957060095e-05,
+        "left_finger_joint": 9.853797957060095e-05,
+        "right_inner_knuckle_joint": 9.853797957060095e-05,
+        "right_outer_knuckle_joint": 9.853797957060095e-05,
+        "right_finger_joint": 9.853797957060095e-05
+      }
+    },
+    {
+      "seed": "negative_elbow",
+      "ik_code": 1,
+      "reverse_to_pregrasp_fraction": 1.0,
+      "grasp_joints": {
+        "shoulder_pan_joint": 2.933957235821613,
+        "shoulder_lift_joint": 1.4047411596047088,
+        "elbow_joint": -1.0726340657602076,
+        "wrist_1_joint": 2.2350247737214777,
+        "wrist_2_joint": 1.570794865842246,
+        "wrist_3_joint": -1.2533641043273875,
+        "left_inner_knuckle_joint": 9.800615582999939e-05,
+        "left_outer_knuckle_joint": 9.800615582999939e-05,
+        "left_finger_joint": 9.800615582999939e-05,
+        "right_inner_knuckle_joint": 9.800615582999939e-05,
+        "right_outer_knuckle_joint": 9.800615582999939e-05,
+        "right_finger_joint": 9.800615582999939e-05
+      }
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # A5 Ground / RM4D reference calibration and coverage boundary
 
+Historical diagnosis below. The user subsequently authorized a **separate
+task-domain asset and calibrated integration floor**; its implementation and
+SIM planning checks are recorded in [A5 task-domain validation](A5_TASK_DOMAIN_ASSET.md).
+The frozen baseline and the original findings below remain unchanged.
+
 A5 is **not E2E complete**. The user-authorized integration frame bridge is
 implemented and checked against public TF and actual SIM IK/planning. It does
 not modify frozen M-R3/M-R4 or A1–A4. Correct calibration exposes a separate

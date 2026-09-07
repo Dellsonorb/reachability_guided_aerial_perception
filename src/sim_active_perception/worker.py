@@ -18,6 +18,7 @@ from reachability_guided_nbv.outputs import render_result, save_result
 from task_relevant_uncertainty import build_task_uncertainty
 from .core import A5Config, candidate_catalog, decide, replay_observations
 from .frame_bridge import FrameBridge
+from .task_map import open_task_rm4d_api
 
 
 def write_json(path, value):
@@ -32,17 +33,22 @@ def make_field(grasp, raw, config):
 
 
 def save_initial(grasp, raw, config, output_dir, query_request=None,
-                 baseline_result=None, frame_calibration=None):
+                 baseline_result=None, frame_calibration=None,
+                 task_domain_result=None, rm4d_task_asset=None):
     field = make_field(grasp, raw, config)
     directory = Path(output_dir).resolve()
     initial_path = directory / 'initial.json'
     write_json(initial_path, dict(grasp=grasp.as_request(), result=raw, config=asdict(config),
                                   query_request=query_request, baseline_result=baseline_result,
+                                  task_domain_result=task_domain_result, rm4d_task_asset=rm4d_task_asset,
                                   frame_calibration=frame_calibration))
     save_field_bundle(field, raw['evaluated_candidates'], directory / 'a1')
-    return dict(ok=True, initial_file=str(initial_path), candidate_count=len(candidate_catalog(field, raw)),
-                a1_status=field.status.value, evaluated=raw['summary']['evaluated'],
-                baseline_valid=raw['summary']['valid'])
+    response = dict(ok=True, initial_file=str(initial_path), candidate_count=len(candidate_catalog(field, raw)),
+                    a1_status=field.status.value, evaluated=raw['summary']['evaluated'],
+                    rm4d_valid=raw['summary']['valid'])
+    if not rm4d_task_asset:
+        response['baseline_valid'] = raw['summary']['valid']
+    return response
 
 
 def initialize(request):
@@ -59,11 +65,17 @@ def initialize(request):
     query = build_rm4d_request('map', PoseValues(grasp.position_xyz, grasp.quaternion_xyzw),
                                request['current_bunker_pose'], grasp.grasp_id)
     query = bridge.query_to_reference(query)
-    with open_frozen_rm4d_api(request['rm4d_root'], request['rm4d_config'], request['rm4d_map']) as api:
-        baseline = api.plan(query, top_k=1)
-    raw = bridge.result_to_map(baseline)
+    asset = request.get('rm4d_task_asset')
+    context = (open_task_rm4d_api(request['rm4d_root'], request['rm4d_config'], asset,
+                                 request['frame_calibration']) if asset else
+               open_frozen_rm4d_api(request['rm4d_root'], request['rm4d_config'], request['rm4d_map']))
+    with context as api:
+        planned = api.plan(query, top_k=1)
+    raw = bridge.result_to_map(planned)
     return save_initial(grasp, raw, config, request['output_dir'], query,
-                        baseline_result=baseline, frame_calibration=bridge.as_dict())
+                        baseline_result=None if asset else planned,
+                        task_domain_result=planned if asset else None,
+                        rm4d_task_asset=asset, frame_calibration=bridge.as_dict())
 
 
 def observe(request):

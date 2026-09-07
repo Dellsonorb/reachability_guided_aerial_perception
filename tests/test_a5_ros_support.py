@@ -79,19 +79,19 @@ class SupportTests(unittest.TestCase):
                                             [0, 0, 1, -math.pi + .01],
                                             [0, 0, 0], .1, .03, .1))
 
-    def test_delayed_cloud_pose_must_match_the_stable_goal_even_after_recovery(self):
+    def test_delayed_cloud_pose_must_match_current_position_and_anchor_yaw(self):
         goal = [0, 0, 1.5, 0]
         self.assertTrue(hasattr(support, "capture_pose_settled"), "stamped hover capture gate is missing")
         self.assertFalse(support.capture_pose_settled(
-            goal, [.3, 0, 1.5, 0], goal, [0, 0, 0], .1, .1, .1))
+            [.3, 0, 1.5, 0], [0, 0, 1.5, 0], goal, [0, 0, 0], .1, .1, .1))
         self.assertFalse(support.capture_pose_settled(
             goal, [0, 0, 1.5, .3], goal, [0, 0, 0], .1, .1, .1))
 
-    def test_cloud_acceptance_requires_current_hover_and_low_speed(self):
+    def test_cloud_acceptance_allows_common_slow_drift_beyond_anchor_tolerance(self):
         goal = [0, 0, 1.5, 0]
         self.assertTrue(hasattr(support, "capture_pose_settled"), "stamped hover capture gate is missing")
-        self.assertFalse(support.capture_pose_settled(
-            [.3, 0, 1.5, 0], goal, goal, [0, 0, 0], .1, .1, .1))
+        self.assertTrue(support.capture_pose_settled(
+            [.3, 0, 1.5, 0], [.25, 0, 1.5, .01], goal, [.06, 0, 0], .1, .1, .1))
         self.assertFalse(support.capture_pose_settled(
             goal, goal, goal, [.2, 0, 0], .1, .1, .1))
 
@@ -100,6 +100,16 @@ class SupportTests(unittest.TestCase):
         self.assertTrue(hasattr(support, "capture_pose_settled"), "stamped hover capture gate is missing")
         self.assertTrue(support.capture_pose_settled(
             goal, [.01, 0, 1.5, .01], goal, [.01, 0, 0], .1, .1, .1))
+
+    def test_capture_settling_rejects_nonfinite_or_malformed_poses(self):
+        goal = [0, 0, 1.5, 0]
+        cases = [([0, 0, float("nan"), 0], goal, goal),
+                 (goal, [0, 0, 1.5], goal),
+                 (goal, goal, [0, 0, 1.5, float("inf")])]
+        for current, stamped, anchor in cases:
+            with self.subTest(current=current, stamped=stamped, anchor=anchor):
+                self.assertFalse(support.capture_pose_settled(
+                    current, stamped, anchor, [0, 0, 0], .1, .1, .1))
 
     def test_scan_must_be_strictly_newer_than_capture_and_previous_scan(self):
         self.assertTrue(support.fresh_scan_stamp(12.1, 11, 12))
@@ -358,6 +368,39 @@ class CaptureWindowTests(unittest.TestCase):
         with patch.object(self.adapter.time, "monotonic", side_effect=lambda: self.clock.wall):
             return self.node._a5_capture(self.goal)
 
+    def test_acquisition_gate_allows_bounded_drift_but_arrival_gate_stays_strict(self):
+        measured = [.2, 0., 1.5, 0.]
+        velocity = [.06, 0., 0.]
+        received = [self.clock.wall]
+        self.node._a5_measured_pose = lambda **_kwargs: list(measured)
+        self.node._air_snapshot = lambda: (
+            SimpleNamespace(velocity=list(velocity)), None, received[0], None)
+        self.node._flight_health_max_age = .5
+        settled_now = type(self.node)._a5_settled_now.__get__(self.node)
+        with patch.object(self.adapter.time, "monotonic", side_effect=lambda: self.clock.wall):
+            self.assertFalse(settled_now(self.goal)[0])
+            self.assertTrue(settled_now(self.goal, acquisition=True)[0])
+            measured[3] = .2
+            self.assertFalse(settled_now(self.goal, acquisition=True)[0])
+            measured[3] = 0.
+            velocity[0] = .2
+            self.assertFalse(settled_now(self.goal, acquisition=True)[0])
+            velocity[0] = .06
+            received[0] = self.clock.wall - .6
+            self.assertFalse(settled_now(self.goal, acquisition=True)[0])
+            received[0] = self.clock.wall
+            measured[0] = 4.1
+            self.assertFalse(settled_now(self.goal, acquisition=True)[0])
+
+    def test_capture_gate_rejects_stamped_pose_outside_flight_bounds(self):
+        current = [3.98, 0., 1.5, 0.]
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (True, list(current))
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: (
+            self.goal if stamp is None else [4.01, 0., 1.5, 0.])
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+
     def test_frame_calibration_reads_public_ground_chain_at_one_fresh_stamp(self):
         self.assertTrue(hasattr(self.node, '_a5_frame_calibration'))
         self.node._ground_base_frame = 'ground/base_link'
@@ -546,7 +589,7 @@ class CaptureWindowTests(unittest.TestCase):
         self.assertEqual(observation["requested_viewpoint"], self.goal)
         self.assertEqual(observation["capture_anchor_map"], anchor)
 
-    def test_motion_relative_to_anchor_discards_window_without_following_the_drift(self):
+    def test_common_slow_drift_beyond_anchor_tolerance_still_saves_one_window(self):
         anchor = [0., 0., 1.35, 0.]
         anchor_reads, used_goals = [], []
 
@@ -560,21 +603,22 @@ class CaptureWindowTests(unittest.TestCase):
 
         def settled(goal, **_kwargs):
             used_goals.append(list(goal))
-            return support.pose_settled(current(), goal, [0., 0., 0.], .1, .1, .1), current()
+            acquisition = _kwargs.get("acquisition", False)
+            effective_goal = current()[:3] + [goal[3]] if acquisition else goal
+            return support.pose_settled(current(), effective_goal, [.06, 0., 0.], .1, .1, .1), current()
 
         self.node._a5_measured_pose = measured
         self.node._a5_settled_now = settled
-        with self.assertRaisesRegex(RuntimeError, "timed out"):
-            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox"),
-                          (10.5, "uav1/livox")])
+        pose = self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox"),
+                             (10.5, "uav1/livox")])
         self.assertEqual(anchor_reads, [anchor])
         self.assertTrue(all(goal == anchor for goal in used_goals))
-        self.assertEqual(self.node._a5_observations, [])
-        retry = next(details for status, details in self.statuses if status == "A5_CAPTURE_RETRY")
-        self.assertEqual(retry["discarded_chunks"], 1)
-        self.assertEqual(retry["goal_map"], anchor)
-        self.assertEqual(retry["requested_viewpoint"], self.goal)
-        self.assertEqual(retry["capture_anchor_map"], anchor)
+        self.assertEqual(pose, [.2, 0., 1.35, 0.])
+        self.assertEqual(len(self.node._a5_observations), 1)
+        self.assertFalse(any(status == "A5_CAPTURE_RETRY" for status, _ in self.statuses))
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            np.testing.assert_allclose(data["chunk_stamps_s"], [10.1, 10.2, 10.5])
+            self.assertEqual(data["points_xyz"].shape, (3, 3))
 
     def test_capture_rejects_measured_anchor_outside_existing_flight_bounds(self):
         self.node._a5_measured_pose = lambda stamp=None, **_kwargs: [0., 0., .4, 0.]
@@ -605,6 +649,25 @@ class CaptureWindowTests(unittest.TestCase):
 
 
 class AdapterImportTests(unittest.TestCase):
+    def test_task_asset_is_an_explicit_optional_cli_directory(self):
+        spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        parser = adapter.build_parser()
+        required = ["--output-dir", "/tmp/a5-test", "--core-python", sys.executable,
+                    "--rm4d-root", "/tmp", "--rm4d-config", "/tmp/config.json",
+                    "--rm4d-map", "/tmp/map.npy"]
+        self.assertTrue(hasattr(parser.parse_args(required), 'rm4d_task_asset'))
+        self.assertIsNone(parser.parse_args(required).rm4d_task_asset)
+        with tempfile.TemporaryDirectory() as directory:
+            options = parser.parse_args(required + ["--rm4d-task-asset", directory])
+            with patch.object(Path, 'is_file', return_value=True):
+                adapter.validate_options(parser, options)
+            self.assertEqual(options.rm4d_task_asset, Path(directory).resolve())
+            options.rm4d_task_asset = Path(directory) / 'absent'
+            with patch.object(Path, 'is_file', return_value=True), patch('sys.stderr'), self.assertRaises(SystemExit):
+                adapter.validate_options(parser, options)
+
     def test_cloud_window_defaults_to_five_seconds_and_is_positive_below_timeout(self):
         spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
         adapter = importlib.util.module_from_spec(spec)

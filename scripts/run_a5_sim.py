@@ -23,6 +23,8 @@ def build_parser():
     parser.add_argument("--rm4d-root", type=Path, required=True)
     parser.add_argument("--rm4d-config", type=Path, required=True)
     parser.add_argument("--rm4d-map", type=Path, required=True)
+    parser.add_argument("--rm4d-task-asset", type=Path,
+                        help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
     parser.add_argument("--max-viewpoints", type=int, default=3,
                         help="observation budget, including the initial capture and rescans")
     parser.add_argument("--flight-bounds", type=float, nargs=6,
@@ -82,6 +84,10 @@ def validate_options(parser, options):
             parser.error("required file does not exist: %s" % path)
     if not options.rm4d_root.is_dir():
         parser.error("RM4D root does not exist: %s" % options.rm4d_root)
+    if options.rm4d_task_asset is not None:
+        options.rm4d_task_asset = options.rm4d_task_asset.expanduser().resolve()
+        if not options.rm4d_task_asset.is_dir():
+            parser.error("RM4D task asset directory does not exist: %s" % options.rm4d_task_asset)
 
 
 def build_demo_parameters(parameters, options):
@@ -114,12 +120,20 @@ def build_adapter_class(demo_module, options):
         normalized_frame, pose_settled,
         pose_xyzyaw, rigid_transform, run_worker_request, yaw_quaternion,
     )
+    manipulation = sys.modules.get("a5_manipulation")
+    if manipulation is None:
+        manipulation_spec = importlib.util.spec_from_file_location(
+            "a5_manipulation", ROOT / "scripts/a5_manipulation.py")
+        manipulation = importlib.util.module_from_spec(manipulation_spec)
+        manipulation_spec.loader.exec_module(manipulation)
+    execute_refined_pregrasp = manipulation.execute_refined_pregrasp
 
     DemoError = demo_module.DemoError
 
     class A5AirGroundPickDemo(demo_module.AirGroundPickDemo):
         def __init__(self):
             super().__init__()
+            self._a5_refined_grasp = None
             self._a5_cloud = None
             self._a5_previous_stamp = 0.
             self._a5_observations = []
@@ -169,12 +183,17 @@ def build_adapter_class(demo_module, options):
                     raise DemoError("A5 UAV map TF is stale")
             return pose_xyzyaw(self._a5_matrix(transform))
 
-        def _a5_settled_now(self, goal, timeout_s=None):
+        def _a5_settled_now(self, goal, timeout_s=None, acquisition=False):
             pose = self._a5_measured_pose(timeout_s=timeout_s)
             state, _target, received, _target_received = self._air_snapshot()
+            settled_goal = pose[:3] + [goal[3]] if acquisition else goal
+            bounds = options.flight_bounds
+            in_bounds = all(bounds[2 * axis] <= pose[axis] <= bounds[2 * axis + 1]
+                            for axis in range(3))
             settled = (state is not None and received is not None
                        and time.monotonic() - received <= self._flight_health_max_age
-                       and pose_settled(pose, goal, state.velocity,
+                       and (not acquisition or in_bounds)
+                       and pose_settled(pose, settled_goal, state.velocity,
                                         options.settle_position_tolerance,
                                         options.settle_yaw_tolerance, options.settle_speed))
             return settled, pose
@@ -259,7 +278,8 @@ def build_adapter_class(demo_module, options):
 
             while not rospy.is_shutdown() and time.monotonic() < deadline:
                 try:
-                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
+                    settled, current_pose = self._a5_settled_now(
+                        goal, timeout_s=0., acquisition=True)
                 except (DemoError, tf2_ros.TransformException):
                     discard_window("current_tf_unavailable")
                     self._wait_step()
@@ -301,18 +321,23 @@ def build_adapter_class(demo_module, options):
                     self._wait_step()
                     continue
                 try:
-                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
+                    settled, current_pose = self._a5_settled_now(
+                        goal, timeout_s=0., acquisition=True)
                 except (DemoError, tf2_ros.TransformException):
                     discard_window("current_tf_unavailable", stamped_pose=pose)
                     self._wait_step()
                     continue
                 state = self._air_snapshot()[0]
-                if not settled or state is None or not capture_pose_settled(
+                stamped_in_bounds = all(
+                    bounds[2 * axis] <= pose[axis] <= bounds[2 * axis + 1]
+                    for axis in range(3))
+                if not settled or state is None or not stamped_in_bounds or not capture_pose_settled(
                         current_pose, pose, goal, state.velocity,
                         options.settle_position_tolerance, options.settle_yaw_tolerance,
                         options.settle_speed):
-                    reason = ("stamped_pose_outside_hover" if not pose_settled(
-                        pose, goal, [0., 0., 0.], options.settle_position_tolerance,
+                    acquisition_goal = current_pose[:3] + [goal[3]]
+                    reason = ("stamped_pose_outside_hover" if not stamped_in_bounds or not pose_settled(
+                        pose, acquisition_goal, [0., 0., 0.], options.settle_position_tolerance,
                         options.settle_yaw_tolerance, options.settle_speed)
                         else "current_hover_unsettled")
                     discard_window(reason, current_pose, pose)
@@ -369,6 +394,7 @@ def build_adapter_class(demo_module, options):
                     "op": "init", "output_dir": str(self._a5_output),
                     "sim_root": str(options.sim_root), "rm4d_root": str(options.rm4d_root),
                     "rm4d_config": str(options.rm4d_config), "rm4d_map": str(options.rm4d_map),
+                    "rm4d_task_asset": str(options.rm4d_task_asset) if options.rm4d_task_asset else None,
                     "grasp": {"grasp_id": self._rm4d_grasp_id, "frame_id": self._map_frame,
                               "position_xyz": list(generated.grasp.position),
                               "quaternion_xyzw": list(generated.grasp.orientation)},
@@ -414,6 +440,27 @@ def build_adapter_class(demo_module, options):
             chosen = self._a5_selected
             return ((chosen["x"], chosen["y"], chosen["yaw"]), chosen["candidate_id"],
                     chosen["relevance"], self._a5_candidate_count)
+
+        def _pick_and_lift(self, sensor_pose, target):
+            generated = demo_module.generate_top_down_grasp(
+                target, self._target_size, self._pregrasp_height,
+                self._lift_height, self._finger_pad_lower_edge_offset,
+                self._contact_overlap, self._surface_clearance)
+            group = self._initialize_moveit()
+            exact_grasp = self._pose_message(
+                generated.grasp, self._map_frame, sensor_pose.header.stamp)
+            self._a5_refined_grasp = self._transform_pose(
+                exact_grasp, group.get_planning_frame())
+            try:
+                return super()._pick_and_lift(sensor_pose, target)
+            finally:
+                self._a5_refined_grasp = None
+
+        def _execute_pregrasp(self, target, continuation=None):
+            if continuation is not None or self._a5_refined_grasp is None:
+                return super()._execute_pregrasp(target, continuation)
+            return execute_refined_pregrasp(
+                self, target, self._a5_refined_grasp, DemoError)
 
     return A5AirGroundPickDemo
 
