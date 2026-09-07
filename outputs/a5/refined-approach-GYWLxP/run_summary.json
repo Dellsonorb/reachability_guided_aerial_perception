@@ -1,0 +1,10 @@
+{
+  "completed": false,
+  "reason": "Initial A5 position/yaw/speed settling timed out before aerial target acquisition or RM4D/A2.",
+  "observation_count": 0,
+  "grasp_or_lift_executed": false,
+  "physical_checker": "FAIL on actual initial settling error",
+  "separate_planning_check": "Full recorded mounting transform: exact refined grasp IK succeeded, reverse Cartesian fraction 1.0, current-state joint-goal plan 39 points, forward fraction 1.0; no diagnostic trajectory executed.",
+  "cleanup": "Inherited landing completed; public UAV base z 0.044995 m and armed=false. Task-owned runtime stopped with SIGINT.",
+  "diagnostic_limit": "Post-landing pose is not a sample of the failed airborne settling interval. No particular arrival gate or localization cause is established by this run."
+}

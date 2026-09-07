@@ -1,0 +1,20 @@
+{
+  "completed": false,
+  "stop": "MID360 window timeout",
+  "rm4d_summary": {
+    "inverse_reachable": 144,
+    "deduplicated": 144,
+    "validation_limit": 256,
+    "evaluated": 144,
+    "valid": 138,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 6
+    }
+  },
+  "a1_status": "PARTIALLY_ASSESSED",
+  "accepted_observations": 0,
+  "diagnosis": "low-speed native HOVER drift crossed fixed 0.10m whole-window anchor after 33 packets; independent of calibrated task-floor",
+  "physical_checker": "started before adapter but subscription connection missed early statuses; no success claimed",
+  "ground_or_grasp_executed": false,
+  "cleanup": "inherited landing; public ground-return check passed"
+}

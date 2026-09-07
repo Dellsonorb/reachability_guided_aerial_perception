@@ -1,0 +1,555 @@
+{
+  "completed": false,
+  "reason": "Inherited 60 s SIM navigation runtime guard expired near exact goal, before D435 or manipulation.",
+  "rm4d_summary": {
+    "inverse_reachable": 144,
+    "deduplicated": 144,
+    "validation_limit": 256,
+    "evaluated": 144,
+    "valid": 139,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 5
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "environment_cells": {
+        "UNKNOWN": 1600,
+        "FREE": 0,
+        "OCCUPIED": 0
+      },
+      "task_uncertainty_mass": 327.4627750780064,
+      "best_task_score": 128.0903679122146,
+      "confirmed_candidate_count": 0,
+      "next_viewpoint": [
+        -2.4795296854748066,
+        -2.101072632993203,
+        1.5821136440229635,
+        0.7872793232204782
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 2,
+      "environment_cells": {
+        "UNKNOWN": 1370,
+        "FREE": 223,
+        "OCCUPIED": 7
+      },
+      "task_uncertainty_mass": 71.57061784609074,
+      "best_task_score": 28.16084378786055,
+      "confirmed_candidate_count": 0,
+      "next_viewpoint": [
+        -2.4997743896430964,
+        -2.2065844448560528,
+        1.4840712621281176,
+        0.7852262811865751
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 3,
+      "environment_cells": {
+        "UNKNOWN": 316,
+        "FREE": 1277,
+        "OCCUPIED": 7
+      },
+      "task_uncertainty_mass": 43.4097740582302,
+      "best_task_score": 17.080415160715475,
+      "confirmed_candidate_count": 2,
+      "next_viewpoint": null,
+      "stop_reason": "VIEW_BUDGET_REACHED"
+    }
+  ],
+  "selected_candidate": {
+    "candidate_id": "candidate-000008",
+    "x": 2.398624611897602,
+    "y": -0.5970837663199451,
+    "yaw": 2.094395102393195,
+    "relevance": 1.0,
+    "source_id": 544,
+    "evaluation_index": 8,
+    "footprint_clipped": false,
+    "free_cells": 108,
+    "occupied_cells": 0,
+    "unknown_cells": 0,
+    "representative_blocked": false,
+    "confirmed": true,
+    "mean_unknown_score": 0.3678794411714423
+  },
+  "navigation_after_stop": {
+    "pose": [
+      2.440378745012951,
+      -0.6409665098280497,
+      0.36,
+      1.7634598079388164
+    ],
+    "goal": [
+      2.398624611897602,
+      -0.5970837663199451,
+      2.094395102393195
+    ],
+    "xy_error": 0.06057311953343979,
+    "yaw_error": -0.3309352944543784
+  },
+  "physical_checker": {
+    "error": "demo reported FAILED: RM4D top-1 navigation action timed out",
+    "status": "FAIL"
+  },
+  "milestones": [
+    {
+      "status": "PREFLIGHT",
+      "data": {}
+    },
+    {
+      "status": "ARMING",
+      "data": {}
+    },
+    {
+      "status": "COMMAND_CONTROL",
+      "data": {}
+    },
+    {
+      "status": "TAKEOFF",
+      "data": {}
+    },
+    {
+      "status": "AIR_VIEW",
+      "data": {}
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -0.48497792225647346,
+          -0.012722111125037837,
+          1.5042292978400817,
+          0.0004581755324710297
+        ]
+      }
+    },
+    {
+      "status": "AIR_OBSERVE",
+      "data": {}
+    },
+    {
+      "status": "AIR_HANDOFF",
+      "data": {
+        "observation_stamp": 102.218,
+        "target_map": [
+          1.9944898568041458,
+          0.004964559189502004,
+          0.06047708173328121,
+          0.00873051317075646
+        ]
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "init",
+        "operation": "init"
+      }
+    },
+    {
+      "status": "A5_CAPTURE_ANCHOR",
+      "data": {
+        "capture_anchor_map": [
+          -0.5620565135903178,
+          -0.011045828813278903,
+          1.636525489326971,
+          0.0023201901971274712
+        ],
+        "position_discrepancy_m": 0.15037363615051152,
+        "requested_viewpoint": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "yaw_discrepancy_rad": 0.0023201901971274712
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -0.565873555097834,
+          -0.01769257400793097,
+          1.6267386527697922,
+          0.0021280261408640625
+        ]
+      }
+    },
+    {
+      "status": "A5_OBSERVATION",
+      "data": {
+        "capture_anchor_map": [
+          -0.5620565135903178,
+          -0.011045828813278903,
+          1.636525489326971,
+          0.0023201901971274712
+        ],
+        "chunk_count": 52,
+        "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-refined-0coa8b/observation_01.npz",
+        "point_count": 87306,
+        "requested_viewpoint": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "round": 1,
+        "sensor_frame": "uav1/lidar_link",
+        "stamp_s": 125.418,
+        "uav_pose_map": [
+          -0.4795296854748064,
+          -0.10107263299320292,
+          1.5821136440229635,
+          0.0018811598230301413
+        ],
+        "window_duration_s": 5.0930000000000035
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "round-01",
+        "operation": "observe"
+      }
+    },
+    {
+      "status": "A5_DECISION",
+      "data": {
+        "next_viewpoint": [
+          -2.4795296854748066,
+          -2.101072632993203,
+          1.5821136440229635,
+          0.7872793232204782
+        ],
+        "round": 1,
+        "selected_candidate": null,
+        "stop_reason": null
+      }
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -2.4795296854748066,
+          -2.101072632993203,
+          1.5821136440229635,
+          0.7872793232204782
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -2.5086354727322235,
+          -2.16760144439193,
+          1.6447293615199936,
+          0.7872901580518468
+        ]
+      }
+    },
+    {
+      "status": "A5_CAPTURE_ANCHOR",
+      "data": {
+        "capture_anchor_map": [
+          -2.5086354727322235,
+          -2.16760144439193,
+          1.6447293615199936,
+          0.7872901580518468
+        ],
+        "position_discrepancy_m": 0.09588512749988527,
+        "requested_viewpoint": [
+          -2.4795296854748066,
+          -2.101072632993203,
+          1.5821136440229635,
+          0.7872793232204782
+        ],
+        "yaw_discrepancy_rad": 1.0834831368544684e-05
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -2.5110733535671432,
+          -2.166502581771078,
+          1.64839779662341,
+          0.7871747055632289
+        ]
+      }
+    },
+    {
+      "status": "A5_OBSERVATION",
+      "data": {
+        "capture_anchor_map": [
+          -2.5086354727322235,
+          -2.16760144439193,
+          1.6447293615199936,
+          0.7872901580518468
+        ],
+        "chunk_count": 51,
+        "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-refined-0coa8b/observation_02.npz",
+        "point_count": 85323,
+        "requested_viewpoint": [
+          -2.4795296854748066,
+          -2.101072632993203,
+          1.5821136440229635,
+          0.7872793232204782
+        ],
+        "round": 2,
+        "sensor_frame": "uav1/lidar_link",
+        "stamp_s": 158.718,
+        "uav_pose_map": [
+          -2.4997743896430964,
+          -2.2065844448560528,
+          1.4840712621281176,
+          0.7852262811865749
+        ],
+        "window_duration_s": 5.021999999999991
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "round-02",
+        "operation": "observe"
+      }
+    },
+    {
+      "status": "A5_DECISION",
+      "data": {
+        "next_viewpoint": [
+          -2.4997743896430964,
+          -2.2065844448560528,
+          1.4840712621281176,
+          0.7852262811865751
+        ],
+        "round": 2,
+        "selected_candidate": null,
+        "stop_reason": null
+      }
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -2.4997743896430964,
+          -2.2065844448560528,
+          1.4840712621281176,
+          0.7852262811865751
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -2.5048869487562433,
+          -2.1765500061533167,
+          1.4047053266969025,
+          0.7858932532487587
+        ]
+      }
+    },
+    {
+      "status": "A5_CAPTURE_ANCHOR",
+      "data": {
+        "capture_anchor_map": [
+          -2.5048869487562433,
+          -2.1765500061533167,
+          1.4047053266969025,
+          0.7858932532487587
+        ],
+        "position_discrepancy_m": 0.08501269008651371,
+        "requested_viewpoint": [
+          -2.4997743896430964,
+          -2.2065844448560528,
+          1.4840712621281176,
+          0.7852262811865751
+        ],
+        "yaw_discrepancy_rad": 0.0006669720621835795
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -2.510043991657629,
+          -2.190993695748726,
+          1.4057445950016765,
+          0.7864509092645061
+        ]
+      }
+    },
+    {
+      "status": "A5_OBSERVATION",
+      "data": {
+        "capture_anchor_map": [
+          -2.5048869487562433,
+          -2.1765500061533167,
+          1.4047053266969025,
+          0.7858932532487587
+        ],
+        "chunk_count": 52,
+        "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-refined-0coa8b/observation_03.npz",
+        "point_count": 87977,
+        "requested_viewpoint": [
+          -2.4997743896430964,
+          -2.2065844448560528,
+          1.4840712621281176,
+          0.7852262811865751
+        ],
+        "round": 3,
+        "sensor_frame": "uav1/lidar_link",
+        "stamp_s": 172.524,
+        "uav_pose_map": [
+          -2.620635503980112,
+          -2.162812423411623,
+          1.4179111465732273,
+          0.7861471479840793
+        ],
+        "window_duration_s": 5.096000000000004
+      }
+    },
+    {
+      "status": "A5_CORE",
+      "data": {
+        "label": "round-03",
+        "operation": "observe"
+      }
+    },
+    {
+      "status": "A5_DECISION",
+      "data": {
+        "next_viewpoint": null,
+        "round": 3,
+        "selected_candidate": {
+          "candidate_id": "candidate-000008",
+          "confirmed": true,
+          "evaluation_index": 8,
+          "footprint_clipped": false,
+          "free_cells": 108,
+          "mean_unknown_score": 0.3678794411714423,
+          "occupied_cells": 0,
+          "relevance": 1.0,
+          "representative_blocked": false,
+          "source_id": 544,
+          "unknown_cells": 0,
+          "x": 2.398624611897602,
+          "y": -0.5970837663199451,
+          "yaw": 2.094395102393195
+        },
+        "stop_reason": "VIEW_BUDGET_REACHED"
+      }
+    },
+    {
+      "status": "A5_SELECTED",
+      "data": {
+        "candidate_id": "candidate-000008",
+        "confirmed": true,
+        "evaluation_index": 8,
+        "footprint_clipped": false,
+        "free_cells": 108,
+        "mean_unknown_score": 0.3678794411714423,
+        "occupied_cells": 0,
+        "relevance": 1.0,
+        "representative_blocked": false,
+        "source_id": 544,
+        "unknown_cells": 0,
+        "x": 2.398624611897602,
+        "y": -0.5970837663199451,
+        "yaw": 2.094395102393195
+      }
+    },
+    {
+      "status": "A5_VIEWPOINT",
+      "data": {
+        "goal_map": [
+          -0.5,
+          0.0,
+          1.5,
+          0.0
+        ],
+        "rescan": false
+      }
+    },
+    {
+      "status": "A5_SETTLED",
+      "data": {
+        "uav_pose_map": [
+          -0.43705845528950416,
+          -0.047795253481486145,
+          1.4521811806019558,
+          -0.005348451214401478
+        ]
+      }
+    },
+    {
+      "status": "LANDING",
+      "data": {}
+    },
+    {
+      "status": "RM4D_CANDIDATES",
+      "data": {
+        "candidate_count": 37,
+        "top_candidate_id": "candidate-000008",
+        "top_candidate_pose_map": [
+          2.398624611897602,
+          -0.5970837663199451,
+          2.094395102393195
+        ],
+        "top_candidate_score": 1.0
+      }
+    },
+    {
+      "status": "GROUND_APPROACH",
+      "data": {
+        "navigation_goal_map": [
+          2.398624611897602,
+          -0.5970837663199451,
+          2.094395102393195
+        ],
+        "start_map": [
+          2.9998411197075487,
+          -2.499781927313923,
+          -3.141448122895683
+        ],
+        "target_map": [
+          1.9944898568041458,
+          0.004964559189502004,
+          0.06047708173328121,
+          0.00873051317075646
+        ],
+        "top_candidate_id": "candidate-000008",
+        "top_candidate_score": 1.0
+      }
+    },
+    {
+      "status": "FAILED",
+      "data": {
+        "reason": "RM4D top-1 navigation action timed out"
+      }
+    }
+  ]
+}

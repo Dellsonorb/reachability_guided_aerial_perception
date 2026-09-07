@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    1.3,
+    2.2
+  ],
+  "samples": [],
+  "last_wait_reason": "Lookup would require extrapolation 0.006000000s into the past.  Requested time 104.638000000 but the earliest data is at time 104.644000000, when looking up transform from frame [uav1/base_link] to frame [map]",
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}

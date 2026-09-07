@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    1.4,
+    1.6
+  ],
+  "samples": [
+    {
+      "points": 47,
+      "median_error_m": -7.632947343649832e-05,
+      "max_abs_error_m": 0.00020106549257148387,
+      "within_tolerance": true,
+      "stamp_s": 92.966,
+      "public_base_z_m": 1.599656487812249
+    },
+    {
+      "points": 47,
+      "median_error_m": 4.139050350882023e-05,
+      "max_abs_error_m": 0.00017321550564286525,
+      "within_tolerance": true,
+      "stamp_s": 93.105,
+      "public_base_z_m": 1.5963989139101724
+    },
+    {
+      "points": 48,
+      "median_error_m": -0.00014509882926827533,
+      "max_abs_error_m": 0.00022280777942262908,
+      "within_tolerance": true,
+      "stamp_s": 93.171,
+      "public_base_z_m": 1.5950225342742026
+    },
+    {
+      "points": 44,
+      "median_error_m": -0.0001564105693913076,
+      "max_abs_error_m": 0.0002353630921361205,
+      "within_tolerance": true,
+      "stamp_s": 93.302,
+      "public_base_z_m": 1.5924047595493038
+    },
+    {
+      "points": 44,
+      "median_error_m": -0.0001926053208540779,
+      "max_abs_error_m": 0.0002144444600140627,
+      "within_tolerance": true,
+      "stamp_s": 93.379,
+      "public_base_z_m": 1.5910204914665265
+    },
+    {
+      "points": 47,
+      "median_error_m": -0.00032917805149179635,
+      "max_abs_error_m": 0.00040302589226870467,
+      "within_tolerance": true,
+      "stamp_s": 93.503,
+      "public_base_z_m": 1.5892938406671653
+    },
+    {
+      "points": 40,
+      "median_error_m": -0.00021993644662621215,
+      "max_abs_error_m": 0.00025092110103863696,
+      "within_tolerance": true,
+      "stamp_s": 93.573,
+      "public_base_z_m": 1.5885343904246625
+    },
+    {
+      "points": 41,
+      "median_error_m": -6.571250600906353e-05,
+      "max_abs_error_m": 0.000201119007990469,
+      "within_tolerance": true,
+      "stamp_s": 93.704,
+      "public_base_z_m": 1.5870602264584825
+    },
+    {
+      "points": 20,
+      "median_error_m": -0.00041168783326450686,
+      "max_abs_error_m": 0.0004688015520113442,
+      "within_tolerance": true,
+      "stamp_s": 93.772,
+      "public_base_z_m": 1.586288138797227
+    },
+    {
+      "points": 46,
+      "median_error_m": -0.00010383078697362436,
+      "max_abs_error_m": 0.0001342263035792879,
+      "within_tolerance": true,
+      "stamp_s": 93.904,
+      "public_base_z_m": 1.5849630521222364
+    }
+  ],
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}

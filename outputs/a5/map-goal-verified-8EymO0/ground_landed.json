@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    0,
+    0.1
+  ],
+  "samples": [
+    {
+      "points": 10,
+      "median_error_m": 1.0534533345651909e-07,
+      "max_abs_error_m": 2.146031186089914e-07,
+      "within_tolerance": true,
+      "stamp_s": 18.116,
+      "public_base_z_m": 0.04483940105979686
+    },
+    {
+      "points": 14,
+      "median_error_m": 2.6156839438851165e-07,
+      "max_abs_error_m": 4.47482406684685e-07,
+      "within_tolerance": true,
+      "stamp_s": 18.25,
+      "public_base_z_m": 0.04483944494701425
+    },
+    {
+      "points": 25,
+      "median_error_m": 1.6724266144185762e-07,
+      "max_abs_error_m": 3.496216946508035e-07,
+      "within_tolerance": true,
+      "stamp_s": 18.316,
+      "public_base_z_m": 0.044839440976191774
+    },
+    {
+      "points": 12,
+      "median_error_m": 1.741840347513346e-07,
+      "max_abs_error_m": 4.7182036455595266e-07,
+      "within_tolerance": true,
+      "stamp_s": 18.45,
+      "public_base_z_m": 0.04483948564332832
+    },
+    {
+      "points": 8,
+      "median_error_m": 1.6667183894147897e-07,
+      "max_abs_error_m": 3.760925168516671e-07,
+      "within_tolerance": true,
+      "stamp_s": 18.519,
+      "public_base_z_m": 0.04483947896507681
+    }
+  ],
+  "last_wait_reason": "Lookup would require extrapolation 0.021000000s into the past.  Requested time 17.044000000 but the earliest data is at time 17.065000000, when looking up transform from frame [uav1/base_link] to frame [map]",
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}

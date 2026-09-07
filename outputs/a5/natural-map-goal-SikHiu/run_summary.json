@@ -1,0 +1,175 @@
+{
+  "status": "INCOMPLETE",
+  "sim_commit": "5e25039",
+  "scope": "natural A5 run, real observations; no grasp/lift success",
+  "physical_checker": {
+    "error": "unexpected status TAKEOFF after []",
+    "status": "FAIL"
+  },
+  "execution_failure": "MoveIt pregrasp planning failed with no continuation-valid IK branch",
+  "observations": [
+    {
+      "capture_anchor_map": [
+        -0.5653876642426318,
+        0.08475939468602849,
+        1.303661333285619,
+        0.008076307558365215
+      ],
+      "chunk_count": 52,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-map-goal-SikHiu/observation_01.npz",
+      "point_count": 88621,
+      "requested_viewpoint": [
+        -0.5,
+        0.0,
+        1.5,
+        0.0
+      ],
+      "round": 1,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 87.821,
+      "uav_pose_map": [
+        -0.49094611087636614,
+        0.08197479009066541,
+        1.4978099959108562,
+        0.007550443669938637
+      ],
+      "window_duration_s": 5.090999999999994
+    },
+    {
+      "capture_anchor_map": [
+        -2.5038145644570466,
+        0.0903326958827019,
+        1.4581400083567888,
+        0.007138621867892665
+      ],
+      "chunk_count": 51,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-map-goal-SikHiu/observation_02.npz",
+      "point_count": 85779,
+      "requested_viewpoint": [
+        -2.490946110876366,
+        0.08197479009066541,
+        1.4978099959108562,
+        0.007550443669938733
+      ],
+      "round": 2,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 106.517,
+      "uav_pose_map": [
+        -2.567912079228844,
+        0.06507533937951203,
+        1.344278329617473,
+        0.006551311567174632
+      ],
+      "window_duration_s": 5.036000000000001
+    },
+    {
+      "capture_anchor_map": [
+        -2.559093201651382,
+        -1.979035010126361,
+        1.3569652069236782,
+        0.007231502078382566
+      ],
+      "chunk_count": 51,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a5/natural-map-goal-SikHiu/observation_03.npz",
+      "point_count": 85831,
+      "requested_viewpoint": [
+        -2.567912079228844,
+        -1.934924660620488,
+        1.344278329617473,
+        0.0065513115671747
+      ],
+      "round": 3,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 131.308,
+      "uav_pose_map": [
+        -2.6337947509678683,
+        -2.001250281841613,
+        1.4090543409223644,
+        0.004857892389025622
+      ],
+      "window_duration_s": 5.014999999999986
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "environment_cells": {
+        "UNKNOWN": 1600,
+        "FREE": 0,
+        "OCCUPIED": 0
+      },
+      "task_uncertainty_mass": 320.2823670694952,
+      "confirmed_candidate_count": 0,
+      "best_task_score": 125.52129167651044,
+      "next_viewpoint": [
+        -2.490946110876366,
+        0.08197479009066541,
+        1.4978099959108562,
+        0.007550443669938733
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 2,
+      "environment_cells": {
+        "UNKNOWN": 1173,
+        "FREE": 420,
+        "OCCUPIED": 7
+      },
+      "task_uncertainty_mass": 80.66857774178025,
+      "confirmed_candidate_count": 0,
+      "best_task_score": 31.001960847437225,
+      "next_viewpoint": [
+        -2.567912079228844,
+        -1.934924660620488,
+        1.344278329617473,
+        0.0065513115671747
+      ],
+      "stop_reason": null
+    },
+    {
+      "round": 3,
+      "environment_cells": {
+        "UNKNOWN": 441,
+        "FREE": 1152,
+        "OCCUPIED": 7
+      },
+      "task_uncertainty_mass": 48.92796567580183,
+      "confirmed_candidate_count": 2,
+      "best_task_score": 19.106905095037646,
+      "next_viewpoint": null,
+      "stop_reason": "VIEW_BUDGET_REACHED"
+    }
+  ],
+  "selected_candidate": {
+    "candidate_id": "candidate-000009",
+    "x": 2.380353574147158,
+    "y": -0.6053316120840587,
+    "yaw": 1.919862177193762,
+    "relevance": 1.0,
+    "source_id": 543,
+    "evaluation_index": 9,
+    "footprint_clipped": false,
+    "free_cells": 106,
+    "occupied_cells": 0,
+    "unknown_cells": 0,
+    "representative_blocked": false,
+    "confirmed": true,
+    "mean_unknown_score": 0.36651388191650824
+  },
+  "actual_ground_stopped": {
+    "ground_travel": 1.953111785810168,
+    "navigation_goal_map": [
+      2.380353574147158,
+      -0.6053316120840587,
+      1.919862177193762
+    ],
+    "target_distance": 0.7666255038330668,
+    "top_candidate_id": "candidate-000009",
+    "top_candidate_score": 1.0
+  },
+  "d435_refined": false,
+  "grasp_confirmed": false,
+  "lift_completed": false,
+  "followup_planning_check": "actual_approach_planning_probe.json; plan only at actual stopped BUNKER"
+}

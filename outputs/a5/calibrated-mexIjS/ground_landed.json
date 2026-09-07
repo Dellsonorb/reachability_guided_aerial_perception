@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "expected_ground_z_m": 0,
+  "tolerance_m": 0.02,
+  "ground_roi": [
+    6,
+    10,
+    1.5,
+    4
+  ],
+  "height_range": [
+    0.0,
+    0.1
+  ],
+  "samples": [
+    {
+      "points": 9,
+      "median_error_m": 1.7716204642193034e-07,
+      "max_abs_error_m": 2.135987687279517e-07,
+      "within_tolerance": true,
+      "stamp_s": 20.465,
+      "public_base_z_m": 0.04483984815134587
+    },
+    {
+      "points": 14,
+      "median_error_m": 1.2968777318711489e-07,
+      "max_abs_error_m": 3.062476268134162e-07,
+      "within_tolerance": true,
+      "stamp_s": 20.669,
+      "public_base_z_m": 0.04483982009421414
+    },
+    {
+      "points": 23,
+      "median_error_m": 1.748039033522275e-07,
+      "max_abs_error_m": 3.5973856404858395e-07,
+      "within_tolerance": true,
+      "stamp_s": 20.736,
+      "public_base_z_m": 0.044839875111030575
+    },
+    {
+      "points": 15,
+      "median_error_m": 1.8598406170688975e-07,
+      "max_abs_error_m": 3.3788721887084705e-07,
+      "within_tolerance": true,
+      "stamp_s": 20.87,
+      "public_base_z_m": 0.04483989926618345
+    },
+    {
+      "points": 15,
+      "median_error_m": 1.8303645676898128e-07,
+      "max_abs_error_m": 4.018445786124758e-07,
+      "within_tolerance": true,
+      "stamp_s": 20.936,
+      "public_base_z_m": 0.04483990668665494
+    }
+  ],
+  "last_wait_reason": "Lookup would require extrapolation 0.011000000s into the past.  Requested time 19.330000000 but the earliest data is at time 19.341000000, when looking up transform from frame [uav1/base_link] to frame [map]",
+  "authorities": {
+    "world -> map": [
+      "/sim_world_to_map"
+    ],
+    "map -> uav1/odom": [
+      "/sim_localization_uav1"
+    ],
+    "uav1/odom -> uav1/base_link": [
+      "/uav_control_main_1"
+    ],
+    "uav1/base_link -> uav1/lidar_link": [
+      "/uav_control_main_1"
+    ],
+    "map -> ground/odom": [
+      "/sim_localization_ground"
+    ]
+  },
+  "single_expected_authorities": true
+}

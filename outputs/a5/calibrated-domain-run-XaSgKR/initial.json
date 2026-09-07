@@ -1,0 +1,249 @@
+{
+  "grasp": {
+    "grasp_id": "side-up-top-grasp",
+    "frame_id": "map",
+    "position_xyz": [
+      1.9992087555705405,
+      0.003965190846334354,
+      0.08280703588300183
+    ],
+    "quaternion_xyzw": [
+      0.0005097571083720264,
+      0.7071065974431934,
+      -0.0005097571083720265,
+      0.7071065974431935
+    ]
+  },
+  "result": {
+    "schema_version": 1,
+    "status": "no_feasible_candidate",
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "summary": {
+      "inverse_reachable": 0,
+      "deduplicated": 0,
+      "validation_limit": 256,
+      "evaluated": 0,
+      "valid": 0,
+      "rejected_by_reason": {}
+    },
+    "candidates": [],
+    "evaluated_candidates": [],
+    "provenance": {
+      "bunker_workspace": "/home/lu/navCarProject_ws/bunker_aubo_ws",
+      "bunker_workspace_commit": "d8a75ae83a92fbee9f071307c2cc0558e4100fa3",
+      "earlier_20_of_20_commit": "22f23b1001f2f2201fca8887bc0bbde0e231bca4",
+      "upper_body_xacro_sha256": "9b690be84d49a12508d125ee6a7af5af226ea7fce33f133ebe5f29f7e471ae98",
+      "bunker_aubo_xacro_sha256": "158e96895e46479ecf1860e94a4a71d9e4bc3218e04c652bd3d5b69db89da749",
+      "costmap_common_sha256": "894a89b9be6fd4090d2ff0e66f74ed1ddb59da6812dfbf214942b1c035e8f4d9",
+      "rm4d_upstream_commit": "970aa03227685e755ac82949cb292db0d8524d29",
+      "aubo_adapter_commit": "8b0d33592a99c15af2129609cdb87d414f5838da",
+      "mr3_completion_commit": "d6d906398b81d91c317db90e8d356e80128f9dc2",
+      "map_path": "runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy",
+      "map_sha256": "77279fafaf61d5c92cf303a644cd9613457c85e0d197c66c4487c30d135db3b4"
+    }
+  },
+  "config": {
+    "max_viewpoints": 3,
+    "grid_width_m": 4.0,
+    "grid_height_m": 4.0,
+    "ground_z_m": 0.0,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ],
+    "flight_weight": 0.25,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "facade_position_tolerance": 0.15
+  },
+  "query_request": {
+    "frame_id": "world",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      1.9992087555705405,
+      0.003965190846334354,
+      -0.2771929641169982
+    ],
+    "quaternion_xyzw": [
+      0.0005097573632505169,
+      0.7071069509964039,
+      -0.0005097568534934087,
+      0.7071062438898065
+    ],
+    "current_bunker_pose": {
+      "x": 2.999829482678054,
+      "y": -2.499706610683573,
+      "yaw": -3.14142478526593
+    }
+  },
+  "baseline_result": {
+    "schema_version": 1,
+    "status": "no_feasible_candidate",
+    "frame_id": "world",
+    "grasp_id": "side-up-top-grasp",
+    "summary": {
+      "inverse_reachable": 0,
+      "deduplicated": 0,
+      "validation_limit": 256,
+      "evaluated": 0,
+      "valid": 0,
+      "rejected_by_reason": {}
+    },
+    "candidates": [],
+    "evaluated_candidates": [],
+    "provenance": {
+      "bunker_workspace": "/home/lu/navCarProject_ws/bunker_aubo_ws",
+      "bunker_workspace_commit": "d8a75ae83a92fbee9f071307c2cc0558e4100fa3",
+      "earlier_20_of_20_commit": "22f23b1001f2f2201fca8887bc0bbde0e231bca4",
+      "upper_body_xacro_sha256": "9b690be84d49a12508d125ee6a7af5af226ea7fce33f133ebe5f29f7e471ae98",
+      "bunker_aubo_xacro_sha256": "158e96895e46479ecf1860e94a4a71d9e4bc3218e04c652bd3d5b69db89da749",
+      "costmap_common_sha256": "894a89b9be6fd4090d2ff0e66f74ed1ddb59da6812dfbf214942b1c035e8f4d9",
+      "rm4d_upstream_commit": "970aa03227685e755ac82949cb292db0d8524d29",
+      "aubo_adapter_commit": "8b0d33592a99c15af2129609cdb87d414f5838da",
+      "mr3_completion_commit": "d6d906398b81d91c317db90e8d356e80128f9dc2",
+      "map_path": "runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy",
+      "map_sha256": "77279fafaf61d5c92cf303a644cd9613457c85e0d197c66c4487c30d135db3b4"
+    }
+  },
+  "frame_calibration": {
+    "T_map_ground_odom": [
+      [
+        -1.0,
+        -1.2246467991473532e-16,
+        0.0,
+        3.0
+      ],
+      [
+        1.2246467991473532e-16,
+        -1.0,
+        0.0,
+        -2.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_ground_odom_bunker": [
+      [
+        0.999999985910113,
+        -0.00016786832307531945,
+        0.0,
+        0.00017051732194595104
+      ],
+      [
+        0.00016786832307531945,
+        0.999999985910113,
+        0.0,
+        -0.000293389316427195
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_bunker_aubo": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.15
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_reference_height_m": 0.36,
+    "T_reference_map": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        -0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_map_reference": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  }
+}
