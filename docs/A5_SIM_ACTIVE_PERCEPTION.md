@@ -9,9 +9,11 @@ Natural run `natural-approach-j87FQA` completed active observation, exact Ground
 confirmation, navigation, D435 refinement, AG95 grasp and physical lift. The
 unchanged SIM physical checker is **PASS**, finalized after clean runtime
 teardown. Earlier failed attempts and the local integration fixes remain below.
-A5 remains on its feature branch / Draft PR #5; main is not merged. Required SIM
-commit `5e25039` is local on its independent feature branch; its push was blocked
-by automatic permission review pending authorization of the existing SIM remote.
+A5 remains on its feature branch / [PR #5](https://github.com/Dellsonorb/reachability_guided_aerial_perception/pull/5);
+AGENT main is not merged. Required SIM correction `5e25039` was delivered through
+[Simulation-Platform PR #1](https://github.com/Dellsonorb/Simulation-Platform/pull/1)
+and merged into SIM main at `2e7feaa7585425a13208741b10b4a4bd8e14fefa`.
+The merged source tree is identical to the correction used in the successful run.
 
 A4 was merged through PR #4 and is frozen at main `431a907`. A5 lives on
 `feature/a5-sim-active-perception-loop`. This implementation adds only an
@@ -245,8 +247,10 @@ acquisition above, without changing the per-observation A2 vote or all-FREE gate
 
 ## Running with the repaired SIM platform
 
-Use the public/E2E SIM checkout, not its older parent checkout. Existing machine
-paths used here:
+Use a built SIM checkout containing main merge `2e7feaa` (correction `5e25039`),
+not the older uncorrected platform. Set `SIM_ROOT` to that checkout and use it
+consistently for launch, ROS setup and the adapter. Existing machine paths used
+for the successful run were:
 
 ```bash
 export SIM_ROOT=/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation
@@ -269,7 +273,7 @@ source /opt/ros/noetic/setup.bash
 source "$SIM_ROOT/install/p450-clean/setup.bash"
 export ROS_MASTER_URI=http://127.0.0.1:11951
 /usr/bin/python3 -B scripts/run_a5_sim.py \
-  --output-dir "$A5_RUN_DIR" --core-python "$RM4D_PYTHON" \
+  --sim-root "$SIM_ROOT" --output-dir "$A5_RUN_DIR" --core-python "$RM4D_PYTHON" \
   --rm4d-root "$RM4D_ROOT" \
   --rm4d-config "$RM4D_ROOT/configs/mr4_offline_base_placement.json" \
   --rm4d-map "$RM4D_MAP" \
@@ -285,6 +289,24 @@ Keep the checker as the sole initial status subscriber. It independently
 observes AG95 confirmation and physical lift, and supplies no control input.
 
 ## Verification and review
+
+Final delivery review confirmed that the A5 runtime scripts/helpers and the
+independent `assets/rm4d_ground_task_v1/{rmap.npy,metadata.json}` are tracked.
+The required SIM Python and launch files in the tested install match the
+committed correction; the frozen RM4D checkout remains clean at `e9d4312`.
+The four remaining untracked diagnostic output directories are not runtime
+dependencies. No temporary helper or uncommitted source change is needed.
+An in-memory replay of all three saved observation histories reproduced every
+recorded round decision and the known-ground diagnostics exactly. A ROS import
+check also passed against a clean Git-exported SIM correction checkout.
+
+Fresh delivery checks passed: 251 AGENT tests (no skips), 12 SIM facade tests,
+59 SIM bringup tests, and 237 repository tests outside three old audit modules.
+Full historical SIM test discovery is not green: clean main before this fix and
+the correction both have the same 15 failure entries in the old import/layout,
+boundary and extraction audit tests. They are documented in SIM PR #1, not
+weakened or expanded into a new framework. The existing working checkout adds
+one ignored-cache-directory failure; it is not a source regression.
 
 Independent adapter spec review and whole-integration quality review found no
 remaining blocking code issue. The latter checked exact identity, first ties,
