@@ -209,14 +209,42 @@ def build_adapter_class(demo_module, options):
             deadline = time.monotonic() + options.cloud_timeout
             chunks, pending_cloud = [], None
             previous_stamp = self._a5_previous_stamp
+            recovering, stable_since = False, None
+
+            def discard_window(reason, current_pose=None, stamped_pose=None):
+                nonlocal chunks, pending_cloud, recovering, stable_since
+                if not recovering:
+                    state, _target, received, _target_received = self._air_snapshot()
+                    self._publish_status(
+                        "A5_CAPTURE_RETRY", reason=reason, discarded_chunks=len(chunks),
+                        uav_pose_map=current_pose, stamped_uav_pose_map=stamped_pose,
+                        goal_map=list(goal),
+                        velocity_xyz=None if state is None else [float(value) for value in state.velocity],
+                        flight_health_age_s=None if received is None else time.monotonic() - received)
+                chunks, pending_cloud = [], None
+                recovering, stable_since = True, None
+
             while not rospy.is_shutdown() and time.monotonic() < deadline:
                 try:
-                    settled, _pose = self._a5_settled_now(goal, timeout_s=0.)
-                except tf2_ros.TransformException:
+                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
+                except (DemoError, tf2_ros.TransformException):
+                    discard_window("current_tf_unavailable")
                     self._wait_step()
                     continue
                 if not settled:
-                    raise DemoError("A5 UAV moved while collecting the hover cloud window")
+                    discard_window("current_hover_unsettled", current_pose)
+                    self._wait_step()
+                    continue
+                if recovering:
+                    now = time.monotonic()
+                    stable_since = now if stable_since is None else stable_since
+                    if now - stable_since >= options.settle_duration:
+                        # Require new packet stamps after the entire settling
+                        # interval; never carry points across an unstable period.
+                        capture_start = rospy.Time.now().to_sec()
+                        recovering, stable_since = False, None
+                    self._wait_step()
+                    continue
                 if pending_cloud is None:
                     with self._lock:
                         pending_cloud = self._a5_cloud
@@ -236,8 +264,13 @@ def build_adapter_class(demo_module, options):
                         self._map_frame, frame, cloud.header.stamp, rospy.Duration(0.))
                     sensor_matrix = self._a5_matrix(transform)
                     pose = self._a5_measured_pose(cloud.header.stamp, timeout_s=0.)
-                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
                 except tf2_ros.TransformException:
+                    self._wait_step()
+                    continue
+                try:
+                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
+                except (DemoError, tf2_ros.TransformException):
+                    discard_window("current_tf_unavailable", stamped_pose=pose)
                     self._wait_step()
                     continue
                 state = self._air_snapshot()[0]
@@ -245,7 +278,13 @@ def build_adapter_class(demo_module, options):
                         current_pose, pose, goal, state.velocity,
                         options.settle_position_tolerance, options.settle_yaw_tolerance,
                         options.settle_speed):
-                    raise DemoError("A5 cloud-stamp UAV pose was outside the stable hover")
+                    reason = ("stamped_pose_outside_hover" if not pose_settled(
+                        pose, goal, [0., 0., 0.], options.settle_position_tolerance,
+                        options.settle_yaw_tolerance, options.settle_speed)
+                        else "current_hover_unsettled")
+                    discard_window(reason, current_pose, pose)
+                    self._wait_step()
+                    continue
                 points = finite_xyz(point_cloud2.read_points(
                     cloud, field_names=("x", "y", "z"), skip_nans=False))
                 stamp = cloud.header.stamp.to_sec()

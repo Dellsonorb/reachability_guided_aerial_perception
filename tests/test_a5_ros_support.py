@@ -302,7 +302,7 @@ class CaptureWindowTests(unittest.TestCase):
                    "a5_ros_support": support}
         self.options = SimpleNamespace(cloud_timeout=1., cloud_window_s=.3, tf_timeout=.2,
                                        settle_position_tolerance=.1, settle_yaw_tolerance=.1,
-                                       settle_speed=.1)
+                                       settle_speed=.1, settle_duration=.5)
         with patch.dict(sys.modules, modules):
             cls = self.adapter.build_adapter_class(
                 SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=object), self.options)
@@ -321,7 +321,8 @@ class CaptureWindowTests(unittest.TestCase):
         self.node._a5_measured_pose = lambda stamp, **_kwargs: [
             .02 * (stamp.to_sec() - 10.), 0., 1.5, 0.]
         self.node._air_snapshot = lambda: (SimpleNamespace(velocity=[0., 0., 0.]), None, 0., None)
-        self.node._publish_status = lambda *_args, **_kwargs: None
+        self.statuses = []
+        self.node._publish_status = lambda status, **details: self.statuses.append((status, details))
         self.lookup_stamps = []
         self.lookup_timeouts = []
 
@@ -395,15 +396,101 @@ class CaptureWindowTests(unittest.TestCase):
     def test_capture_checks_header_pose_for_every_chunk(self):
         self.node._a5_measured_pose = lambda stamp, **_kwargs: (
             self.goal if stamp.to_sec() < 10.2 else [.3, 0., 1.5, 0.])
-        with self.assertRaisesRegex(RuntimeError, "stable hover"):
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
             self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
         self.assertEqual(self.node._a5_observations, [])
 
     def test_capture_checks_current_hover_throughout_the_window(self):
         self.node._a5_settled_now = lambda _goal, **_kwargs: (self.clock.sim < 10.2, self.goal)
-        with self.assertRaisesRegex(RuntimeError, "moved"):
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
             self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
         self.assertEqual(self.node._a5_observations, [])
+
+    def test_capture_discards_interrupted_window_and_recovers_with_only_new_chunks(self):
+        self.options.cloud_timeout = 2.
+        self.options.cloud_window_s = .25
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (
+            not 10.24 <= self.clock.sim < 10.3,
+            [.3, 0., 1.5, 0.] if 10.24 <= self.clock.sim < 10.3 else self.goal)
+        self.capture([(10. + index * .125, "uav1/livox") for index in range(1, 17)])
+        self.assertEqual(len(self.node._a5_observations), 1)
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            stamps = data["chunk_stamps_s"]
+            self.assertGreaterEqual(stamps[0], 11.125)
+            self.assertGreaterEqual(stamps[-1] - stamps[0], self.options.cloud_window_s)
+            self.assertNotIn(10.125, stamps)
+        retries = [details for status, details in self.statuses if status == "A5_CAPTURE_RETRY"]
+        self.assertEqual(len(retries), 1)
+        self.assertEqual(retries[0]["reason"], "current_hover_unsettled")
+        self.assertEqual(retries[0]["discarded_chunks"], 1)
+        self.assertEqual(retries[0]["uav_pose_map"], [.3, 0., 1.5, 0.])
+        self.assertEqual(retries[0]["goal_map"], self.goal)
+        self.assertEqual(retries[0]["velocity_xyz"], [0., 0., 0.])
+        self.assertGreaterEqual(retries[0]["flight_health_age_s"], 0.)
+
+    def test_capture_bad_header_pose_discards_old_chunks_before_recovery(self):
+        self.options.cloud_timeout = 2.
+        self.options.cloud_window_s = .25
+        self.node._a5_measured_pose = lambda stamp, **_kwargs: (
+            [.3, 0., 1.5, 0.] if stamp.to_sec() == 10.25 else self.goal)
+        self.capture([(10. + index * .125, "uav1/livox") for index in range(1, 17)])
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            self.assertGreaterEqual(data["chunk_stamps_s"][0], 11.125)
+            self.assertNotIn(10.125, data["chunk_stamps_s"])
+        retries = [details for status, details in self.statuses if status == "A5_CAPTURE_RETRY"]
+        self.assertEqual(len(retries), 1)
+        self.assertEqual(retries[0]["reason"], "stamped_pose_outside_hover")
+        self.assertEqual(retries[0]["stamped_uav_pose_map"], [.3, 0., 1.5, 0.])
+
+    def test_recovery_settling_must_be_continuous_without_a_second_deadline(self):
+        self.options.cloud_timeout = 2.
+        self.options.cloud_window_s = .25
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (
+            not (10.24 <= self.clock.sim < 10.3 or 10.74 <= self.clock.sim < 10.8), self.goal)
+        self.capture([(10. + index * .125, "uav1/livox") for index in range(1, 17)])
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            self.assertGreaterEqual(data["chunk_stamps_s"][0], 11.625)
+        self.assertLessEqual(self.clock.wall, self.options.cloud_timeout)
+        self.assertEqual(sum(status == "A5_CAPTURE_RETRY" for status, _ in self.statuses), 1)
+
+    def test_permanent_instability_times_out_once_without_a_partial_observation(self):
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (self.clock.sim < 10.2, self.goal)
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
+        self.assertLessEqual(self.clock.wall, self.options.cloud_timeout + .1)
+        self.assertEqual(self.node._a5_observations, [])
+        self.assertEqual(list(self.node._a5_output.glob("*.npz")), [])
+        self.assertEqual(sum(status == "A5_CAPTURE_RETRY" for status, _ in self.statuses), 1)
+
+    def test_missing_current_tf_breaks_the_partial_window_and_settling_continuity(self):
+        self.options.cloud_timeout = 2.
+        self.options.cloud_window_s = .25
+
+        def settled(_goal, **_kwargs):
+            if 10.24 <= self.clock.sim < 10.3:
+                raise LookupError("current pose TF unavailable")
+            return True, self.goal
+
+        self.node._a5_settled_now = settled
+        self.capture([(10. + index * .125, "uav1/livox") for index in range(1, 17)])
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            self.assertGreaterEqual(data["chunk_stamps_s"][0], 11.125)
+            self.assertNotIn(10.125, data["chunk_stamps_s"])
+
+    def test_invalid_transform_remains_an_error_instead_of_a_capture_retry(self):
+        lookup = self.node._tf_buffer.lookup_transform
+
+        def invalid_lookup(target, source, stamp, timeout):
+            message = lookup(target, source, stamp, timeout)
+            if stamp.to_sec() >= 10.2:
+                message.transform.rotation = SimpleNamespace(x=0., y=0., z=0., w=0.)
+            return message
+
+        self.node._tf_buffer.lookup_transform = invalid_lookup
+        with self.assertRaisesRegex(ValueError, "invalid transform quaternion"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+        self.assertFalse(any(status == "A5_CAPTURE_RETRY" for status, _ in self.statuses))
 
     def test_capture_wall_timeout_does_not_save_an_incomplete_window(self):
         with self.assertRaisesRegex(RuntimeError, "timed out"):
