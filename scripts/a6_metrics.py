@@ -118,9 +118,9 @@ def _stage_summary(events, terminal, clock_reset):
             finish(stage, timestamp, 'FAILED' if failed else 'SUCCEEDED')
             if failed and failure_stage is None:
                 failure_stage, failure_reason = stage, row.get('reason')
-        elif state in ('GROUND_STOPPED', 'A6_LANDED', 'A6_ACTIVE_STOP'):
+        elif state in ('GROUND_STOPPED', 'GROUND_REFINED', 'A6_LANDED', 'A6_ACTIVE_STOP'):
             stage = {'GROUND_STOPPED': 'ground_navigation', 'A6_LANDED': 'landing',
-                     'A6_ACTIVE_STOP': 'active'}[state]
+                     'GROUND_REFINED': 'ground_refine', 'A6_ACTIVE_STOP': 'active'}[state]
             finish(stage, timestamp, 'SUCCEEDED')
         elif state == 'FAILED':
             finish(current, timestamp, 'FAILED')

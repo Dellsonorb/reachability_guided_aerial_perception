@@ -216,6 +216,33 @@ def build_adapter_class(demo_module, options):
             self._a6_sample_trajectory(None)
             return result
 
+        def _a6_record_terminal_exception(self, error, source):
+            if not any(row['state'] in ('LIFT', 'FAILED') for row in self._a6_events):
+                self._a6_event('FAILED', reason=str(error), source=source)
+                self._a6_sample_trajectory(None)
+
+        def _stop_ground(self, required=False):
+            # Frozen run() calls this first in finally. An exception outside its
+            # handled types is still active here, before either cleanup action.
+            # Recording only in our outer run() catch would include recovery.
+            pending = sys.exc_info()[1]
+            if not required and pending is not None:
+                self._a6_record_terminal_exception(pending, 'inherited_cleanup_entry')
+            return super()._stop_ground(required=required)
+
+        def _approach_ground(self, target_map):
+            # The inherited Ground pose lookup precedes GROUND_APPROACH.
+            return self._a6_stage_call('ground_navigation', super()._approach_ground, target_map)
+
+        def _observe_ground_target(self, target_map):
+            return self._a6_stage_call('ground_refine', super()._observe_ground_target, target_map)
+
+        def _pick_and_lift(self, sensor_pose, target):
+            # A5 generates/transforms the refined grasp before PREGRASP and
+            # before _a5_refined_grasp is set. Those preparations belong here.
+            self._a6_event('A6_STAGE_START', stage='refined_pregrasp')
+            return super()._pick_and_lift(sensor_pose, target)
+
         def _a6_stage_call(self, stage, operation, *args):
             self._a6_event('A6_STAGE_START', stage=stage)
             try:
@@ -261,9 +288,7 @@ def build_adapter_class(demo_module, options):
                 result = super().run()
                 return result
             except Exception as error:
-                if not any(row['state'] in ('LIFT', 'FAILED') for row in self._a6_events):
-                    self._a6_event('FAILED', reason=str(error), source='adapter_exception')
-                    self._a6_sample_trajectory(None)
+                self._a6_record_terminal_exception(error, 'adapter_exception')
                 self._a6_event('A6_UNHANDLED_ERROR', reason=str(error))
                 raise
             finally:

@@ -1,6 +1,7 @@
 """A6 wrapper behavior over real A5 code with only runtime boundaries replaced."""
 
 import importlib.util
+import ast
 import contextlib
 import io
 import json
@@ -14,6 +15,8 @@ from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SIM_DEMO = Path('/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation') / \
+    'src/demos/air_ground_pick_demo/scripts/run_air_ground_pick_demo.py'
 
 
 class AdapterTests(unittest.TestCase):
@@ -86,6 +89,7 @@ class AdapterTests(unittest.TestCase):
                 self._takeoff_command, self._fly_to_command = 'TAKEOFF', 'FLY'
                 self._hover_command, self._land_command = 'HOVER', 'LAND'
                 self._flight_started, self._landed = False, False
+                self._placement_mode = 'rm4d'
                 self._flight_health_max_age = .5
                 self._rm4d_grasp_id = 'grasp-live'
                 for key in ('target_size', 'pregrasp_height', 'lift_height',
@@ -149,6 +153,9 @@ class AdapterTests(unittest.TestCase):
             def _hold_grasp_confirmation(self):
                 return 'retained'
 
+            def _stop_ground(self, required=False):
+                owner.actions.append(('STOP_GROUND', required))
+
             def run(self):
                 try:
                     target = self._run_air_phase()
@@ -166,6 +173,18 @@ class AdapterTests(unittest.TestCase):
         self.demo = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=DemoBase,
                                     generate_top_down_grasp=lambda *args: SimpleNamespace(
                                         grasp=SimpleNamespace(position=(2., 0., .1), orientation=(0., 0., 0., 1.))))
+
+    def inherited_method(self, name):
+        """Execute the actual frozen body while replacing its imported ROS boundary."""
+        tree = ast.parse(SIM_DEMO.read_text())
+        base = next(node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == 'AirGroundPickDemo')
+        method = next(node for node in base.body if isinstance(node, ast.FunctionDef) and node.name == name)
+        namespace = dict(DemoError=RuntimeError, ApproachError=RuntimeError, GraspError=RuntimeError,
+                         moveit_commander=SimpleNamespace(MoveItCommanderException=RuntimeError),
+                         tf2_ros=SimpleNamespace(TransformException=LookupError),
+                         rospy=SimpleNamespace(logerr=lambda *a: None, logwarn=lambda *a: None))
+        exec(compile(ast.Module(body=[method], type_ignores=[]), str(SIM_DEMO), 'exec'), namespace)
+        return namespace[name]
 
     def lookup(self, target, source, stamp, timeout):
         import math
@@ -401,6 +420,86 @@ class AdapterTests(unittest.TestCase):
                 '--output-dir', str(self.output / 'untouched'), '--core-python', sys.executable,
                 '--rm4d-root', str(self.output), '--rm4d-config', str(config), '--rm4d-map', str(map_file)]), 0)
         self.assertFalse((self.output / 'untouched').exists())
+
+    def test_unexpected_air_error_is_terminal_before_actual_inherited_finally_cleanup(self):
+        node = self.node()
+        failure_time = []
+
+        def fail_worker(*args):
+            if args[3]['op'] == 'observe':
+                failure_time.append(self.clock.sim)
+                raise NameError('unexpected active failure')
+            return self.worker(*args)
+
+        def delayed_land(owner):
+            self.clock.sim += 8.
+            self.clock.wall += 10.
+            owner._landed = True
+
+        with patch.object(self.base, 'run', self.inherited_method('run')), \
+                patch.object(self.base, '_safe_land', self.inherited_method('_safe_land'), create=True), \
+                patch.object(self.base, '_request_land', delayed_land), \
+                patch.object(self.adapter, 'run_worker_request', side_effect=fail_worker):
+            with self.assertRaisesRegex(NameError, 'unexpected active failure'):
+                node.run()
+        metrics = json.loads((self.output / 'metrics.json').read_text())
+        capture = next(row['ros_time'] for row in self.events() if row['state'] == 'A6_CAPTURE_START')
+        self.assertAlmostEqual(metrics['T_task_sim'], failure_time[0] - 10.)
+        self.assertAlmostEqual(metrics['T_active_sim'], failure_time[0] - capture)
+        self.assertEqual(metrics['task_end_sim'], failure_time[0])
+        self.assertEqual(metrics['landed_sim'], failure_time[0] + 8.)
+        self.assertEqual(metrics['terminal_failure_stage'], 'active')
+        self.assertEqual(metrics['stages']['landing']['status'], 'NOT_REACHED')
+        self.assertEqual([required for command, required in self.actions if command == 'STOP_GROUND'], [False])
+        rows = self.events()
+        failed = next(index for index, row in enumerate(rows) if row['state'] == 'FAILED')
+        cleanup_landing = next(index for index, row in enumerate(rows)
+                               if row['state'] == 'A6_STAGE_START' and row['stage'] == 'landing')
+        self.assertLess(failed, cleanup_landing)
+        self.assertEqual(sum(row['state'] == 'FAILED' for row in rows), 1)
+
+    def test_ground_entry_tf_failure_preserves_successful_landing(self):
+        node = self.node()
+
+        def ground_pose(owner):
+            if owner._landed:
+                raise RuntimeError('Ground entry TF missing')
+            return (3., -2.5, 3.14)
+
+        with patch.object(self.base, 'run', self.inherited_method('run')), \
+                patch.object(self.base, '_safe_land', self.inherited_method('_safe_land'), create=True), \
+                patch.object(self.base, '_approach_ground', self.inherited_method('_approach_ground'), create=True), \
+                patch.object(self.base, '_approach_ground_rm4d', self.inherited_method('_approach_ground_rm4d'), create=True), \
+                patch.object(self.base, '_ground_pose', ground_pose), \
+                patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):
+            self.assertFalse(node.run())
+        metrics = json.loads((self.output / 'metrics.json').read_text())
+        self.assertEqual(metrics['terminal_failure_stage'], 'ground_navigation')
+        self.assertEqual(metrics['stages']['landing']['status'], 'SUCCEEDED')
+        self.assertEqual(metrics['stages']['ground_navigation']['status'], 'FAILED')
+        self.assertEqual(metrics['stages']['ground_refine']['status'], 'NOT_REACHED')
+        self.assertNotIn('GROUND_APPROACH', [state for state, details in self.statuses])
+
+    def test_refined_pregrasp_preparation_failure_follows_completed_refine(self):
+        node = self.node()
+        node._a6_event('A6_TASK_START')
+        node._publish_status('GROUND_OBSERVE')
+        self.clock.sim += 2.
+        node._publish_status('GROUND_REFINED', target_map=[2., 0., .1])
+        self.clock.sim += 1.
+        group = SimpleNamespace(get_planning_frame=lambda: 'ground/aubo_i5_base_link')
+        with patch.object(self.base, '_initialize_moveit', return_value=group, create=True), \
+                patch.object(self.base, '_pose_message', return_value=SimpleNamespace(), create=True), \
+                patch.object(self.base, '_transform_pose', side_effect=LookupError('pregrasp preparation TF missing'), create=True):
+            with self.assertRaisesRegex(LookupError, 'pregrasp preparation TF missing'):
+                node._pick_and_lift(SimpleNamespace(header=SimpleNamespace(stamp=self.Stamp.now())), [2., 0., .1])
+        node._publish_status('FAILED', reason='pregrasp preparation TF missing')
+        metrics = self.adapter.summarize_metrics(self.events(), [], method='ours')
+        self.assertEqual(metrics['terminal_failure_stage'], 'refined_pregrasp')
+        self.assertEqual(metrics['stages']['ground_refine']['status'], 'SUCCEEDED')
+        self.assertEqual(metrics['stages']['ground_refine']['duration_sim_s'], 2.)
+        self.assertEqual(metrics['stages']['refined_pregrasp']['status'], 'FAILED')
+        self.assertFalse(metrics['D_exec'])
 
 
 if __name__ == '__main__':
