@@ -1,0 +1,110 @@
+{
+  "check": "necessary_rgbd_depth_admission",
+  "simulation_started": false,
+  "activated_attempts": 0,
+  "config": "configs/a6_pilot.json",
+  "sensor_contract": {
+    "optical_xyz": [
+      0.13614773689465415,
+      0.0,
+      0.11272472554168546
+    ],
+    "optical_rpy": [
+      -1.9207963267948966,
+      0.0,
+      -1.5707963267948966
+    ],
+    "min_depth": 0.25,
+    "max_depth": 4.0,
+    "target_size": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "sources": [
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/platform/sim_platform_bringup/launch/p450_runtime.launch",
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/air_observer.yaml",
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/demo.yaml"
+    ]
+  },
+  "scenes": [
+    {
+      "scene_id": "easy",
+      "seed": 2026090801,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.310362322386463,
+        3.580136715013205
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "moderate",
+      "seed": 2026090802,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3605652378523914,
+        3.6275322579280735
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "hard",
+      "seed": 2026090803,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4803498313837906,
+        3.7506479528985053
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    }
+  ]
+}

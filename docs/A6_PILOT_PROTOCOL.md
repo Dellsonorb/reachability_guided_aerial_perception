@@ -2,14 +2,17 @@
 
 Operational rules below are fixed before any pilot attempt. A1–A5 remain at
 `060a4e2`; SIM public correction and the shared task-domain RM4D asset remain
-unchanged. This is a 14-attempt **pilot cap**, not formal-matrix authorization.
+unchanged. This authorizes **14 scheduled pilot method slots**, not a formal
+matrix. The subsequent overnight authorization permits rerunning independently
+demonstrated INVALID platform activations; every activation remains recorded.
 
-**Pre-execution status:** the approved initial scene setup is not yet admitted.
-The configured initial view `(-2.5,0,1.5), yaw=0` places the nominal brick at
-optical depth 4.50–4.77 m, outside the unchanged aerial observer's 4.0 m limit.
-No pilot task may start with this known common bootstrap defect. The approved
-design §5/§10 calls for setup review when RGB-D and ground-observation geometry
-cannot both hold. See `A6_PREFLIGHT_GEOMETRY.md`; no threshold change is proposed.
+**Frozen initialization:** common map sensing destination `(-1.4,0,1.2), yaw=0`;
+common public UAV launch `(-.5,0,.15), yaw=0`. All three original seeds passed
+sensor-only qualification with both poses before any pilot method executed.
+See `A6_INITIALIZATION.md` for the depth/FOV/ground-return checks and the common
+launch-origin collision repair; neither used RM4D/discovery/scores/outcomes.
+The earlier `(-2.5,0,1.5)` range defect is historical (`A6_PREFLIGHT_GEOMETRY.md`).
+No further initialization changes after pilot execution begins.
 
 ## 1. Exact three-window semantics
 
@@ -112,20 +115,23 @@ Ground-candidate attempts. `D_exec=1` only after actual Ground arrival, fresh
 D435 refine and successful collision-aware refined continuation to verified
 pregrasp; it is separate from physical retrieval success.
 
-## 3. Attempt cap, invalidity and failure
+## 3. Scheduled slots, invalidity and failure
 
 The fixed schedule in `configs/a6_pilot.json` has 12 baseline slots and two Hard
-ablation slots. w/o task weighting **is Generic**, not a fifteenth run. Easy
-Fixed-view is first for the approved common sensing check. For the remaining
+ablation slots. w/o task weighting **is Generic**, not a fifteenth method slot. Easy
+Fixed-view retains its first position. For the remaining
 positions, `Random(20260908).shuffle([generic,ours,rm4d_only])` defines the first
 block; subsequent tiers left-rotate that order by one/two positions. This is
-restricted randomization with a deliberate first Fixed-view admission check,
+restricted randomization with a deliberate first Fixed-view position,
 not unrestricted random ordering. The two secondary ablations run last in the
-serialized order. A slot is activated
-when its fresh SIM launch starts; activation consumes one attempt even if
-platform startup later fails. An unlaunched slot is `NOT_RUN`, never a failure
-or a success. There are **no replacements or development E2E reruns** in this
-authorization, including for INVALID trials. The absolute cap is 14 launches.
+serialized order. An activation begins when its fresh SIM launch starts and is
+recorded even if platform startup later fails. An unlaunched slot is `NOT_RUN`,
+never a failure or success. The latest overnight authorization permits a fresh
+activation of the **same slot/seed/method** only after independently establishing
+INVALID_TRIAL. Preserve its invalid record, reason, and rerun link; do not replace
+or rerun valid method failures. No extra method slots or development E2E trials.
+Method-independent sensor setup checks are separately labeled and do not execute
+RM4D, NBV, Ground candidate selection or retrieval; they are not pilot trials.
 
 Platform readiness precedes task start: advancing `/clock`, Ground runtime
 ready, live UAV state, fresh public map TF for UAV/Ground and reachable common
@@ -164,13 +170,21 @@ define each scene. Three pilot seeds are reserved and cannot become independent
 formal samples. Physics/scan/planner randomness not publicly seedable is labeled
 uncontrolled rather than falsely made deterministic.
 
-Admission uses the common setup and physical geometry only: finite in-domain
-poses, horizontal ground, unchanged brick geometry/dynamics, 1 m ground-supported
-boxes, RGB-D target range/FOV opportunity, at least one nominal-clear exact
-footprint, unblocked coarse Ground access, and clear UAV takeoff/landing/flight
-height. Geometric opportunity is necessary, not a success guarantee. A1
-UNASSESSED is never called unreachable. No score/argmax, method outcome, live
-catalog equality, or "Ours beats Generic" filter is permitted.
+The replacement initial pose may use **only** aerial RGB-D depth/FOV, raw MID360
+initial ground-observation usability and basic UAV/SIM hover geometry. It must
+not use A1 relevance, candidate discovery, catalog/footprint completion, NBV
+scores, retrieval outcomes or method wins. Prefer one fixed map pose; any fallback
+rule must be deterministic from setup metadata only, never runtime GT policy
+input. On each original seed, test the unchanged live RGB-D observer and frozen
+hover/capture geometry; raw endpoint ground coverage in the common 4×4 m setup
+ROI is a sensor diagnostic, not A2 voting or confirmed-candidate selection.
+After all three pass, freeze immediately before any pilot method executes.
+
+Original scene geometry remains fixed: finite in-domain poses, horizontal ground,
+unchanged brick/dynamics and 1 m ground-supported boxes. Ground access and tier
+qualification are descriptive checks, not grounds for optimizing the initial
+pose or replacing a seed. Geometric opportunity is not a success guarantee. A1
+UNASSESSED is never called unreachable.
 
 Difficulty qualification uses the complete high-support patch from design §5,
 true scene-box geometry (not A4's assumed belief geometry), and the initial
@@ -181,13 +195,14 @@ and a geometrically distinct side view. No map-size change by method. Actual
 first-window N=0 areas are manipulation checks, not state-UNKNOWN counts or
 post-outcome exclusion rules.
 
-If a common setup or template is structurally inadmissible, stop before the
-affected slots and request setup review; do not resample until a favorable seed
-appears. A noisy but admitted live query with no support is retained as method
-failure, not a retroactive scene rejection. Easy's first live fixed-view attempt
-checks joint RGB-D/bootstrap and full-footprint evidence acquisition. Failure
-caused by an untenable common sensing setup stops the remaining pilot for
-review; incidental task failure alone does not justify dropping later slots.
+Do not resample scenes or modify the frozen pose after method execution starts.
+A noisy admitted live query with no support or insufficient full-footprint FREE
+evidence within budget remains a method failure, not retroactive scene rejection.
+Report discrepancies against difficulty targets without changing scenes. Ordinary
+platform/orchestration problems may be repaired and proven INVALID activations
+rerun. Stop only for the user's specified substantive conflicts: required frozen
+method/protocol changes, unfair primary comparison, unfixable method-dependent
+scene bias, core-claim changes, or irreconcilable physical/frame semantics.
 
 ## 5. Time, distance and denominators
 
@@ -237,7 +252,7 @@ means no evidence of difference, not equivalence. Equal-weight tier reporting,
 secondary baselines and ablations are descriptive here. This pilot does not
 support significance, power or paper-superiority claims.
 
-After at most 14 attempts (or an earlier explicit setup/geometry stop), deliver
+After the 14 scheduled slots (plus separately retained proven INVALID reruns), deliver
 all outcomes, failure/invalid reasons, simulation-time resources and admission
-diagnostics. Stop for review. No frozen-parameter tuning, further trials,
+diagnostics. Stop for review. No frozen-parameter tuning, further method slots,
 formal matrix, or new experiment/evidence framework is authorized.
