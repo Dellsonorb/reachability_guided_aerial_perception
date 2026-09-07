@@ -98,6 +98,44 @@ def fresh_scan_stamp(stamp_s, previous_stamp_s, capture_start_s):
                 and stamp_s > previous_stamp_s and stamp_s > capture_start_s)
 
 
+def merge_cloud_chunks(chunks):
+    """Return one observation, anchored at the last chunk's sensor pose.
+
+    Each chunk uses its own map transform. This changes coordinates between
+    packets; it does not deskew points within a packet or create extra votes.
+    """
+    chunks = list(chunks)
+    if not chunks:
+        raise ValueError("cloud window must contain at least one chunk")
+    frames = [normalized_frame(chunk["frame_id"]) for chunk in chunks]
+    if any(frame != frames[0] for frame in frames):
+        raise ValueError("cloud window sensor frames must match")
+    stamps = np.asarray([chunk["stamp_s"] for chunk in chunks], dtype=np.float64)
+    if (not np.all(np.isfinite(stamps)) or np.any(stamps <= 0)
+            or np.any(np.diff(stamps) <= 0)):
+        raise ValueError("cloud window stamps must be finite, positive and strictly increasing")
+    matrices = np.asarray([chunk["T_map_sensor"] for chunk in chunks], dtype=np.float64)
+    if matrices.shape != (len(chunks), 4, 4) or not np.all(np.isfinite(matrices)):
+        raise ValueError("cloud chunks require finite 4x4 transforms")
+    rotations = matrices[:, :3, :3]
+    if (not np.allclose(matrices[:, 3, :], [0, 0, 0, 1], rtol=0, atol=1e-9)
+            or not np.allclose(rotations.swapaxes(1, 2) @ rotations, np.eye(3), rtol=0, atol=1e-6)
+            or not np.allclose(np.linalg.det(rotations), 1., rtol=0, atol=1e-6)):
+        raise ValueError("cloud chunks require proper rigid transforms")
+    reexpressed, counts = [], []
+    for chunk, matrix in zip(chunks, matrices):
+        points = np.asarray(chunk["points_xyz"], dtype=np.float64)
+        if points.ndim != 2 or points.shape[1] != 3 or not np.all(np.isfinite(points)):
+            raise ValueError("cloud chunks require finite (N, 3) points")
+        last_from_chunk = np.linalg.solve(matrices[-1], matrix)
+        reexpressed.append(points @ last_from_chunk[:3, :3].T + last_from_chunk[:3, 3])
+        counts.append(len(points))
+    return dict(points_xyz=np.concatenate(reexpressed), T_map_sensor=matrices[-1].copy(),
+                stamp_s=np.asarray(stamps[-1]), frame_id=np.asarray(frames[-1]),
+                chunk_stamps_s=stamps, chunk_point_counts=np.asarray(counts, dtype=np.int64),
+                chunk_T_map_sensor=matrices)
+
+
 def _response_numbers(values, size):
     if not isinstance(values, list) or not all(type(value) in (int, float) for value in values):
         raise ValueError("decision coordinates must be JSON numbers")

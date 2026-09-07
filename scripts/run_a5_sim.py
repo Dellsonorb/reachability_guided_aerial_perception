@@ -32,12 +32,16 @@ def build_parser():
     parser.add_argument("--facade-position-tolerance", type=float, default=.15)
     parser.add_argument("--view-position", type=float, nargs=3, default=None)
     parser.add_argument("--view-yaw", type=float, default=None)
+    parser.add_argument("--max-ground-travel", type=float, default=None,
+                        help="override the inherited SIM ground-travel guard for the initial parking location")
     parser.add_argument("--settle-position-tolerance", type=float, default=.10)
     parser.add_argument("--settle-yaw-tolerance", type=float, default=.10)
     parser.add_argument("--settle-speed", type=float, default=.10)
     parser.add_argument("--settle-duration", type=float, default=.5)
     parser.add_argument("--settle-timeout", type=float, default=45.)
     parser.add_argument("--cloud-timeout", type=float, default=20.)
+    parser.add_argument("--cloud-window-s", type=float, default=5.,
+                        help="stable hover duration of fresh Livox chunks per observation")
     parser.add_argument("--core-timeout", type=float, default=900.)
     parser.add_argument("--tf-max-age", type=float, default=.5)
     parser.add_argument("--tf-timeout", type=float, default=1.)
@@ -51,11 +55,16 @@ def build_parser():
 def validate_options(parser, options):
     if options.max_viewpoints < 1:
         parser.error("--max-viewpoints must be positive")
+    if options.max_ground_travel is not None and (
+            not math.isfinite(options.max_ground_travel) or options.max_ground_travel <= 0):
+        parser.error("--max-ground-travel must be finite and positive")
     for name in ("settle_position_tolerance", "settle_yaw_tolerance", "settle_speed",
-                 "settle_duration", "settle_timeout", "cloud_timeout", "core_timeout",
+                 "settle_duration", "settle_timeout", "cloud_timeout", "cloud_window_s", "core_timeout",
                  "tf_max_age", "tf_timeout", "facade_position_tolerance"):
         if not math.isfinite(getattr(options, name)) or getattr(options, name) <= 0:
             parser.error("--%s must be finite and positive" % name.replace("_", "-"))
+    if options.cloud_window_s >= options.cloud_timeout:
+        parser.error("--cloud-window-s must be less than --cloud-timeout")
     if (not all(math.isfinite(value) for value in options.flight_bounds)
             or any(options.flight_bounds[index] >= options.flight_bounds[index + 1]
                    for index in (0, 2, 4))):
@@ -75,6 +84,15 @@ def validate_options(parser, options):
         parser.error("RM4D root does not exist: %s" % options.rm4d_root)
 
 
+def build_demo_parameters(parameters, options):
+    """Keep SIM defaults unless the run explicitly overrides a scene setting."""
+    parameters = dict(parameters, placement_mode="rm4d")
+    for name in ("view_position", "view_yaw", "max_ground_travel"):
+        if getattr(options, name) is not None:
+            parameters[name] = getattr(options, name)
+    return parameters
+
+
 def load_demo_module(sim_root):
     path = sim_root / DEMO_RELATIVE / "scripts/run_air_ground_pick_demo.py"
     spec = importlib.util.spec_from_file_location("a5_inherited_air_ground_pick_demo", path)
@@ -92,7 +110,8 @@ def build_adapter_class(demo_module, options):
     import tf2_ros
 
     from a5_ros_support import (
-        WorkerError, capture_pose_settled, finite_xyz, fresh_scan_stamp, normalized_frame, pose_settled,
+        WorkerError, capture_pose_settled, finite_xyz, fresh_scan_stamp, merge_cloud_chunks,
+        normalized_frame, pose_settled,
         pose_xyzyaw, rigid_transform, run_worker_request, yaw_quaternion,
     )
 
@@ -121,18 +140,19 @@ def build_adapter_class(demo_module, options):
             t, q = transform.transform.translation, transform.transform.rotation
             return rigid_transform([t.x, t.y, t.z], [q.x, q.y, q.z, q.w])
 
-        def _a5_measured_pose(self, stamp=None):
+        def _a5_measured_pose(self, stamp=None, timeout_s=None):
             transform = self._tf_buffer.lookup_transform(
                 self._map_frame, normalized_frame(options.uav_base_frame),
-                rospy.Time(0) if stamp is None else stamp, rospy.Duration(options.tf_timeout))
+                rospy.Time(0) if stamp is None else stamp,
+                rospy.Duration(options.tf_timeout if timeout_s is None else timeout_s))
             if stamp is None:
                 age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
                 if not 0 <= age <= options.tf_max_age:
                     raise DemoError("A5 UAV map TF is stale")
             return pose_xyzyaw(self._a5_matrix(transform))
 
-        def _a5_settled_now(self, goal):
-            pose = self._a5_measured_pose()
+        def _a5_settled_now(self, goal, timeout_s=None):
+            pose = self._a5_measured_pose(timeout_s=timeout_s)
             state, _target, received, _target_received = self._air_snapshot()
             settled = (state is not None and received is not None
                        and time.monotonic() - received <= self._flight_health_max_age
@@ -183,29 +203,45 @@ def build_adapter_class(demo_module, options):
             self._execute_flight(self._hover_command, "A5 hover")
 
         def _a5_capture(self, goal):
-            # Start after a sustained stable interval. No moving-cloud deskew.
+            # One stable dwell window is one observation, regardless of packet count.
             self._a5_wait_settled(goal)
             capture_start = rospy.Time.now().to_sec()
             deadline = time.monotonic() + options.cloud_timeout
+            chunks, pending_cloud = [], None
+            previous_stamp = self._a5_previous_stamp
             while not rospy.is_shutdown() and time.monotonic() < deadline:
-                settled, _pose = self._a5_settled_now(goal)
+                try:
+                    settled, _pose = self._a5_settled_now(goal, timeout_s=0.)
+                except tf2_ros.TransformException:
+                    self._wait_step()
+                    continue
                 if not settled:
-                    raise DemoError("A5 UAV moved while waiting for the hover cloud")
-                with self._lock:
-                    cloud = self._a5_cloud
+                    raise DemoError("A5 UAV moved while collecting the hover cloud window")
+                if pending_cloud is None:
+                    with self._lock:
+                        pending_cloud = self._a5_cloud
+                cloud = pending_cloud
                 if (cloud is None or not fresh_scan_stamp(
-                        cloud.header.stamp.to_sec(), self._a5_previous_stamp, capture_start)):
+                        cloud.header.stamp.to_sec(), previous_stamp, capture_start)):
+                    pending_cloud = None
                     self._wait_step()
                     continue
                 frame = normalized_frame(cloud.header.frame_id)
-                # This must be the cloud header time, never the latest transform.
-                transform = self._tf_buffer.lookup_transform(
-                    self._map_frame, frame, cloud.header.stamp, rospy.Duration(options.tf_timeout))
-                sensor_matrix = self._a5_matrix(transform)
-                pose = self._a5_measured_pose(cloud.header.stamp)
-                settled, current_pose = self._a5_settled_now(goal)
+                if chunks and frame != chunks[0]["frame_id"]:
+                    raise DemoError("A5 sensor frame changed during the hover cloud window")
+                try:
+                    # Retry this packet until its exact stamped TF arrives. Zero
+                    # TF timeouts keep the wall deadline independent of /clock.
+                    transform = self._tf_buffer.lookup_transform(
+                        self._map_frame, frame, cloud.header.stamp, rospy.Duration(0.))
+                    sensor_matrix = self._a5_matrix(transform)
+                    pose = self._a5_measured_pose(cloud.header.stamp, timeout_s=0.)
+                    settled, current_pose = self._a5_settled_now(goal, timeout_s=0.)
+                except tf2_ros.TransformException:
+                    self._wait_step()
+                    continue
                 state = self._air_snapshot()[0]
-                if not settled or not capture_pose_settled(
+                if not settled or state is None or not capture_pose_settled(
                         current_pose, pose, goal, state.velocity,
                         options.settle_position_tolerance, options.settle_yaw_tolerance,
                         options.settle_speed):
@@ -213,18 +249,28 @@ def build_adapter_class(demo_module, options):
                 points = finite_xyz(point_cloud2.read_points(
                     cloud, field_names=("x", "y", "z"), skip_nans=False))
                 stamp = cloud.header.stamp.to_sec()
+                chunks.append(dict(points_xyz=points, T_map_sensor=sensor_matrix,
+                                   stamp_s=stamp, frame_id=frame))
+                previous_stamp, pending_cloud = stamp, None
+                if stamp - chunks[0]["stamp_s"] < options.cloud_window_s:
+                    self._wait_step()
+                    continue
+                if time.monotonic() >= deadline:
+                    break
+                observation = merge_cloud_chunks(chunks)
                 path = self._a5_output / ("observation_%02d.npz" % (len(self._a5_observations) + 1))
                 if path.exists():
                     raise DemoError("A5 observation already exists; use a fresh output directory: %s" % path)
-                np.savez_compressed(str(path), points_xyz=points, T_map_sensor=sensor_matrix,
-                                    stamp_s=np.asarray(stamp), frame_id=np.asarray(frame))
+                np.savez_compressed(str(path), **observation)
                 self._a5_previous_stamp = stamp
                 self._a5_observations.append(str(path))
                 self._publish_status("A5_OBSERVATION", round=len(self._a5_observations),
-                                     stamp_s=stamp, sensor_frame=frame, point_count=len(points),
+                                     stamp_s=stamp, sensor_frame=frame,
+                                     point_count=len(observation["points_xyz"]), chunk_count=len(chunks),
+                                     window_duration_s=stamp - chunks[0]["stamp_s"],
                                      uav_pose_map=pose, observation_file=str(path))
                 return pose
-            raise DemoError("A5 fresh MID360 PointCloud2 capture timed out")
+            raise DemoError("A5 fresh MID360 PointCloud2 window capture timed out")
 
         def _a5_core(self, request, label):
             self._publish_status("A5_CORE", operation=request["op"], label=label)
@@ -318,12 +364,7 @@ def main(argv=None):
     rospy.init_node("a5_sim_active_perception")
     try:
         with (options.sim_root / DEMO_RELATIVE / "config/demo.yaml").open() as stream:
-            parameters = yaml.safe_load(stream)
-        parameters["placement_mode"] = "rm4d"
-        if options.view_position is not None:
-            parameters["view_position"] = options.view_position
-        if options.view_yaw is not None:
-            parameters["view_yaw"] = options.view_yaw
+            parameters = build_demo_parameters(yaml.safe_load(stream), options)
         if parameters["map_frame"] != "map":
             raise demo_module.DemoError("A5 core requires the map frame")
         for key, value in parameters.items():

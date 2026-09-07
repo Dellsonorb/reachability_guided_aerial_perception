@@ -8,6 +8,8 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import threading
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -111,6 +113,60 @@ class SupportTests(unittest.TestCase):
         self.assertEqual(support.normalized_frame("uav1/livox"), "uav1/livox")
         with self.assertRaises(ValueError):
             support.normalized_frame("///")
+
+    def test_cloud_window_reexpresses_each_chunk_in_the_last_sensor_pose(self):
+        self.assertTrue(hasattr(support, "merge_cloud_chunks"), "cloud-window merge is missing")
+        chunks = []
+        expected_map = []
+        for index, points in enumerate(([[1., 2., -.4], [-.1, .2, .3]],
+                                        [[-.2, .7, .8]], [])):
+            pitch = -.3 + .2 * index
+            transform = support.rigid_transform(
+                [.2 * index, -.1 * index, 1.5 + .05 * index],
+                [0., math.sin(pitch / 2), 0., math.cos(pitch / 2)])
+            points = np.asarray(points, dtype=np.float64).reshape((-1, 3))
+            chunks.append(dict(points_xyz=points, T_map_sensor=transform,
+                               stamp_s=10.1 + index, frame_id="/uav1/livox"))
+            expected_map.append(points @ transform[:3, :3].T + transform[:3, 3])
+
+        merged = support.merge_cloud_chunks(chunks)
+
+        np.testing.assert_allclose(merged["T_map_sensor"], chunks[-1]["T_map_sensor"])
+        anchor = merged["T_map_sensor"]
+        reconstructed_map = merged["points_xyz"] @ anchor[:3, :3].T + anchor[:3, 3]
+        np.testing.assert_allclose(reconstructed_map, np.concatenate(expected_map), atol=1e-12)
+        np.testing.assert_array_equal(merged["chunk_point_counts"], [2, 1, 0])
+        np.testing.assert_allclose(merged["chunk_stamps_s"], [10.1, 11.1, 12.1])
+        np.testing.assert_allclose(merged["chunk_T_map_sensor"],
+                                   np.stack([chunk["T_map_sensor"] for chunk in chunks]))
+        self.assertEqual(float(merged["stamp_s"]), 12.1)
+        self.assertEqual(str(merged["frame_id"]), "uav1/livox")
+        np.testing.assert_array_equal(chunks[0]["points_xyz"], [[1., 2., -.4], [-.1, .2, .3]])
+
+    def test_cloud_window_requires_monotonic_positive_stamps_and_one_normalized_frame(self):
+        self.assertTrue(hasattr(support, "merge_cloud_chunks"), "cloud-window merge is missing")
+        first = dict(points_xyz=np.array([[1., 0., 0.]]), T_map_sensor=np.eye(4),
+                     stamp_s=10., frame_id="///uav1/livox")
+        second = dict(first, stamp_s=10.1, frame_id="uav1/livox")
+        self.assertEqual(str(support.merge_cloud_chunks([first, second])["frame_id"]), "uav1/livox")
+        for stamp in (0., -1., 10., 9.9, float("nan"), float("inf")):
+            with self.subTest(stamp=stamp), self.assertRaises(ValueError):
+                support.merge_cloud_chunks([first, dict(second, stamp_s=stamp)])
+        with self.assertRaises(ValueError):
+            support.merge_cloud_chunks([first, dict(second, frame_id="uav1/other_sensor")])
+        with self.assertRaises(ValueError):
+            support.merge_cloud_chunks([])
+
+    def test_cloud_window_rejects_invalid_chunk_geometry(self):
+        self.assertTrue(hasattr(support, "merge_cloud_chunks"), "cloud-window merge is missing")
+        chunk = dict(points_xyz=np.array([[1., 0., 0.]]), T_map_sensor=np.eye(4),
+                     stamp_s=10., frame_id="uav1/livox")
+        for points in (np.array([[float("nan"), 0, 0]]), np.ones((2, 2))):
+            with self.subTest(points=points), self.assertRaises(ValueError):
+                support.merge_cloud_chunks([dict(chunk, points_xyz=points)])
+        for matrix in (np.eye(3), np.diag([2., 1., 1., 1.]), np.full((4, 4), np.nan)):
+            with self.subTest(matrix=matrix), self.assertRaises(ValueError):
+                support.merge_cloud_chunks([dict(chunk, T_map_sensor=matrix)])
 
     def observation_response(self):
         return {"ok": True, "round": 1, "stop_reason": None,
@@ -216,7 +272,188 @@ class SupportTests(unittest.TestCase):
             self.assertTrue(response["ok"])
 
 
+class CaptureWindowTests(unittest.TestCase):
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location("a5_capture_adapter", ROOT / "scripts/run_a5_sim.py")
+        self.adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.adapter)
+        self.clock = SimpleNamespace(sim=10., wall=0.)
+        clock = self.clock
+
+        class Stamp:
+            def __init__(self, seconds=0.):
+                self.seconds = seconds
+
+            def to_sec(self):
+                return self.seconds
+
+            @staticmethod
+            def now():
+                return Stamp(clock.sim)
+
+        self.Stamp = Stamp
+        # Replace only ROS transport/time boundaries. Capture, hover gates,
+        # coordinate conversion, merging and NPZ persistence run unchanged.
+        ros = SimpleNamespace(Time=Stamp, Duration=lambda seconds: seconds, is_shutdown=lambda: False)
+        point_cloud = SimpleNamespace(read_points=lambda cloud, **_kwargs: iter(cloud.points))
+        modules = {"rospy": ros, "tf2_ros": SimpleNamespace(TransformException=LookupError),
+                   "sensor_msgs": SimpleNamespace(point_cloud2=point_cloud),
+                   "sensor_msgs.msg": SimpleNamespace(PointCloud2=object),
+                   "a5_ros_support": support}
+        self.options = SimpleNamespace(cloud_timeout=1., cloud_window_s=.3, tf_timeout=.2,
+                                       settle_position_tolerance=.1, settle_yaw_tolerance=.1,
+                                       settle_speed=.1)
+        with patch.dict(sys.modules, modules):
+            cls = self.adapter.build_adapter_class(
+                SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=object), self.options)
+        self.node = object.__new__(cls)
+        self.node._lock = threading.Lock()
+        self.node._map_frame = "map"
+        self.node._a5_cloud = None
+        self.node._a5_previous_stamp = 9.
+        self.node._a5_observations = []
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.node._a5_output = Path(self.temporary.name)
+        self.goal = [0., 0., 1.5, 0.]
+        self.node._a5_wait_settled = lambda _goal: self.goal
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (True, self.goal)
+        self.node._a5_measured_pose = lambda stamp, **_kwargs: [
+            .02 * (stamp.to_sec() - 10.), 0., 1.5, 0.]
+        self.node._air_snapshot = lambda: (SimpleNamespace(velocity=[0., 0., 0.]), None, 0., None)
+        self.node._publish_status = lambda *_args, **_kwargs: None
+        self.lookup_stamps = []
+        self.lookup_timeouts = []
+
+        def lookup(_target, _source, stamp, _timeout):
+            seconds = stamp.to_sec()
+            self.lookup_stamps.append(seconds)
+            self.lookup_timeouts.append(_timeout)
+            pitch = .02 * (seconds - 10.)
+            return SimpleNamespace(transform=SimpleNamespace(
+                translation=SimpleNamespace(x=.01 * (seconds - 10.), y=0., z=1.5),
+                rotation=SimpleNamespace(x=0., y=math.sin(pitch / 2), z=0., w=math.cos(pitch / 2))))
+
+        self.node._tf_buffer = SimpleNamespace(lookup_transform=lookup)
+
+    def capture(self, stamps_and_frames):
+        messages = iter(stamps_and_frames)
+
+        def advance():
+            self.clock.wall += .1
+            try:
+                stamp, frame = next(messages)
+            except StopIteration:
+                self.clock.sim += .1
+                return
+            self.clock.sim = max(self.clock.sim, stamp) + .01
+            self.node._a5_cloud = SimpleNamespace(
+                header=SimpleNamespace(stamp=self.Stamp(stamp), frame_id=frame),
+                points=[(1., 0., -.2), (0., 0., 0.)])
+
+        self.node._wait_step = advance
+        with patch.object(self.adapter.time, "monotonic", side_effect=lambda: self.clock.wall):
+            return self.node._a5_capture(self.goal)
+
+    def test_capture_collects_full_window_at_own_stamps_as_one_observation(self):
+        pose = self.capture([(10.1, "/uav1/livox"), (10.1, "uav1/livox"),
+                             (10.05, "uav1/livox"), (10.2, "uav1/livox"),
+                             (10.3, "uav1/livox"), (10.5, "uav1/livox")])
+        self.assertEqual(self.lookup_stamps, [10.1, 10.2, 10.3, 10.5])
+        self.assertEqual(self.lookup_timeouts, [0., 0., 0., 0.])
+        self.assertEqual(len(self.node._a5_observations), 1)
+        self.assertEqual(self.node._a5_previous_stamp, 10.5)
+        np.testing.assert_allclose(pose, [.01, 0., 1.5, 0.])
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            self.assertEqual(data["points_xyz"].shape, (4, 3))
+            np.testing.assert_allclose(data["chunk_stamps_s"], self.lookup_stamps)
+            np.testing.assert_array_equal(data["chunk_point_counts"], [1, 1, 1, 1])
+            self.assertGreaterEqual(data["chunk_stamps_s"][-1] - data["chunk_stamps_s"][0], .3)
+            self.assertEqual(float(data["stamp_s"]), 10.5)
+
+    def test_capture_rejects_mixed_frames_without_saving_partial_window(self):
+        with self.assertRaisesRegex(RuntimeError, "frame"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/other_sensor")])
+        self.assertEqual(self.node._a5_observations, [])
+
+    def test_capture_retains_pending_chunk_until_its_stamped_tf_arrives(self):
+        lookup = self.node._tf_buffer.lookup_transform
+        attempts = []
+
+        def delayed_lookup(target, source, stamp, timeout):
+            attempts.append(stamp.to_sec())
+            if len(attempts) == 1:
+                raise LookupError("stamped TF has not arrived yet")
+            return lookup(target, source, stamp, timeout)
+
+        self.node._tf_buffer.lookup_transform = delayed_lookup
+        self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox"),
+                      (10.3, "uav1/livox"), (10.5, "uav1/livox")])
+        self.assertEqual(attempts[:2], [10.1, 10.1])
+        self.assertEqual(len(self.node._a5_observations), 1)
+
+    def test_capture_checks_header_pose_for_every_chunk(self):
+        self.node._a5_measured_pose = lambda stamp, **_kwargs: (
+            self.goal if stamp.to_sec() < 10.2 else [.3, 0., 1.5, 0.])
+        with self.assertRaisesRegex(RuntimeError, "stable hover"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+
+    def test_capture_checks_current_hover_throughout_the_window(self):
+        self.node._a5_settled_now = lambda _goal, **_kwargs: (self.clock.sim < 10.2, self.goal)
+        with self.assertRaisesRegex(RuntimeError, "moved"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+
+    def test_capture_wall_timeout_does_not_save_an_incomplete_window(self):
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
+            self.capture([(10.1, "uav1/livox")])
+        self.assertLessEqual(self.clock.wall, self.options.cloud_timeout + .1)
+        self.assertEqual(self.node._a5_observations, [])
+
+
 class AdapterImportTests(unittest.TestCase):
+    def test_cloud_window_defaults_to_five_seconds_and_is_positive_below_timeout(self):
+        spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        parser = adapter.build_parser()
+        required = ["--output-dir", "/tmp/a5-test", "--core-python", sys.executable,
+                    "--rm4d-root", "/tmp", "--rm4d-config", "/tmp/config.json",
+                    "--rm4d-map", "/tmp/map.npy"]
+        defaults = parser.parse_args(required)
+        self.assertEqual(getattr(defaults, "cloud_window_s", None), 5.)
+        self.assertEqual(defaults.cloud_timeout, 20.)
+        for value in ["0", "-1", "nan", "inf", "20", "21"]:
+            with self.subTest(value=value), patch("sys.stderr"), self.assertRaises(SystemExit) as raised:
+                adapter.validate_options(parser, parser.parse_args(required + ["--cloud-window-s", value]))
+            self.assertEqual(raised.exception.code, 2)
+        with patch.object(Path, "is_file", return_value=True), patch.object(Path, "is_dir", return_value=True):
+            adapter.validate_options(parser, defaults)
+            options = parser.parse_args(required + ["--cloud-window-s", "3.0"])
+            adapter.validate_options(parser, options)
+            self.assertEqual(options.cloud_window_s, 3.)
+
+    def test_ground_travel_is_an_optional_runtime_override_not_a_method_change(self):
+        spec = importlib.util.spec_from_file_location("a5_adapter", ROOT / "scripts/run_a5_sim.py")
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        parser = adapter.build_parser()
+        required = ["--output-dir", "/tmp/a5-test", "--core-python", sys.executable,
+                    "--rm4d-root", "/tmp", "--rm4d-config", "/tmp/config.json",
+                    "--rm4d-map", "/tmp/map.npy"]
+        original = {"max_ground_travel": 1.1, "view_position": [0, 0, 1.5],
+                    "view_yaw": 0., "map_frame": "map"}
+        defaults = adapter.build_demo_parameters(original, parser.parse_args(required))
+        self.assertEqual(defaults["max_ground_travel"], 1.1)
+        options = parser.parse_args(required + ["--max-ground-travel", "3.0"])
+        self.assertEqual(adapter.build_demo_parameters(original, options)["max_ground_travel"], 3.)
+        self.assertEqual(original["max_ground_travel"], 1.1)
+        self.assertEqual(defaults["placement_mode"], "rm4d")
+        for value in ["0", "-1", "nan", "inf"]:
+            with self.subTest(value=value), patch("sys.stderr"), self.assertRaises(SystemExit):
+                adapter.validate_options(parser, parser.parse_args(required + ["--max-ground-travel", value]))
+
     def test_importing_adapter_does_not_import_ros_or_the_research_core(self):
         result = subprocess.run(
             [sys.executable, "-c", "import importlib.util, sys; "
