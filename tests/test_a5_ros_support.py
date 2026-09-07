@@ -302,7 +302,9 @@ class CaptureWindowTests(unittest.TestCase):
                    "a5_ros_support": support}
         self.options = SimpleNamespace(cloud_timeout=1., cloud_window_s=.3, tf_timeout=.2,
                                        settle_position_tolerance=.1, settle_yaw_tolerance=.1,
-                                       settle_speed=.1, settle_duration=.5)
+                                       settle_speed=.1, settle_duration=.5, tf_max_age=.5,
+                                       uav_base_frame="uav1/base_link",
+                                       flight_bounds=[-4., 4., -3., 3., .5, 3.])
         with patch.dict(sys.modules, modules):
             cls = self.adapter.build_adapter_class(
                 SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=object), self.options)
@@ -318,8 +320,8 @@ class CaptureWindowTests(unittest.TestCase):
         self.goal = [0., 0., 1.5, 0.]
         self.node._a5_wait_settled = lambda _goal: self.goal
         self.node._a5_settled_now = lambda _goal, **_kwargs: (True, self.goal)
-        self.node._a5_measured_pose = lambda stamp, **_kwargs: [
-            .02 * (stamp.to_sec() - 10.), 0., 1.5, 0.]
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: (
+            self.goal if stamp is None else [.02 * (stamp.to_sec() - 10.), 0., 1.5, 0.])
         self.node._air_snapshot = lambda: (SimpleNamespace(velocity=[0., 0., 0.]), None, 0., None)
         self.statuses = []
         self.node._publish_status = lambda status, **details: self.statuses.append((status, details))
@@ -394,8 +396,8 @@ class CaptureWindowTests(unittest.TestCase):
         self.assertEqual(len(self.node._a5_observations), 1)
 
     def test_capture_checks_header_pose_for_every_chunk(self):
-        self.node._a5_measured_pose = lambda stamp, **_kwargs: (
-            self.goal if stamp.to_sec() < 10.2 else [.3, 0., 1.5, 0.])
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: (
+            self.goal if stamp is None or stamp.to_sec() < 10.2 else [.3, 0., 1.5, 0.])
         with self.assertRaisesRegex(RuntimeError, "timed out"):
             self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
         self.assertEqual(self.node._a5_observations, [])
@@ -431,8 +433,8 @@ class CaptureWindowTests(unittest.TestCase):
     def test_capture_bad_header_pose_discards_old_chunks_before_recovery(self):
         self.options.cloud_timeout = 2.
         self.options.cloud_window_s = .25
-        self.node._a5_measured_pose = lambda stamp, **_kwargs: (
-            [.3, 0., 1.5, 0.] if stamp.to_sec() == 10.25 else self.goal)
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: (
+            [.3, 0., 1.5, 0.] if stamp is not None and stamp.to_sec() == 10.25 else self.goal)
         self.capture([(10. + index * .125, "uav1/livox") for index in range(1, 17)])
         with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
             self.assertGreaterEqual(data["chunk_stamps_s"][0], 11.125)
@@ -491,6 +493,85 @@ class CaptureWindowTests(unittest.TestCase):
             self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox")])
         self.assertEqual(self.node._a5_observations, [])
         self.assertFalse(any(status == "A5_CAPTURE_RETRY" for status, _ in self.statuses))
+
+    def test_delayed_core_drift_allows_steady_capture_at_one_measured_anchor(self):
+        anchor = [0., 0., 1.35, 0.]
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: list(anchor)
+        settling_goals = []
+
+        def wait_settled(goal):
+            settling_goals.append(list(goal))
+            self.assertTrue(support.pose_settled(anchor, goal, [0., 0., 0.], .1, .1, .1))
+            return list(anchor)
+
+        self.node._a5_wait_settled = wait_settled
+        self.node._a5_settled_now = lambda goal, **_kwargs: (
+            support.pose_settled(anchor, goal, [0., 0., 0.], .1, .1, .1), list(anchor))
+        pose = self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox"),
+                             (10.5, "uav1/livox")])
+        self.assertEqual(settling_goals, [anchor])
+        self.assertEqual(pose, anchor)
+        self.assertEqual(len(self.node._a5_observations), 1)
+        anchors = [details for status, details in self.statuses if status == "A5_CAPTURE_ANCHOR"]
+        self.assertEqual(len(anchors), 1)
+        self.assertEqual(anchors[0]["requested_viewpoint"], self.goal)
+        self.assertEqual(anchors[0]["capture_anchor_map"], anchor)
+        self.assertAlmostEqual(anchors[0]["position_discrepancy_m"], .15)
+        self.assertAlmostEqual(anchors[0]["yaw_discrepancy_rad"], 0.)
+        observation = next(details for status, details in self.statuses if status == "A5_OBSERVATION")
+        self.assertEqual(observation["requested_viewpoint"], self.goal)
+        self.assertEqual(observation["capture_anchor_map"], anchor)
+
+    def test_motion_relative_to_anchor_discards_window_without_following_the_drift(self):
+        anchor = [0., 0., 1.35, 0.]
+        anchor_reads, used_goals = [], []
+
+        def current():
+            return list(anchor) if self.clock.sim < 10.2 else [.2, 0., 1.35, 0.]
+
+        def measured(stamp=None, **_kwargs):
+            if stamp is None:
+                anchor_reads.append(current())
+            return current()
+
+        def settled(goal, **_kwargs):
+            used_goals.append(list(goal))
+            return support.pose_settled(current(), goal, [0., 0., 0.], .1, .1, .1), current()
+
+        self.node._a5_measured_pose = measured
+        self.node._a5_settled_now = settled
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
+            self.capture([(10.1, "uav1/livox"), (10.2, "uav1/livox"),
+                          (10.5, "uav1/livox")])
+        self.assertEqual(anchor_reads, [anchor])
+        self.assertTrue(all(goal == anchor for goal in used_goals))
+        self.assertEqual(self.node._a5_observations, [])
+        retry = next(details for status, details in self.statuses if status == "A5_CAPTURE_RETRY")
+        self.assertEqual(retry["discarded_chunks"], 1)
+        self.assertEqual(retry["goal_map"], anchor)
+        self.assertEqual(retry["requested_viewpoint"], self.goal)
+        self.assertEqual(retry["capture_anchor_map"], anchor)
+
+    def test_capture_rejects_measured_anchor_outside_existing_flight_bounds(self):
+        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: [0., 0., .4, 0.]
+        with self.assertRaisesRegex(RuntimeError, "flight bounds"):
+            self.capture([(10.1, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+
+    def test_capture_anchor_requires_fresh_public_map_tf(self):
+        lookup = self.node._tf_buffer.lookup_transform
+
+        def stale_lookup(target, source, stamp, timeout):
+            message = lookup(target, source, stamp, timeout)
+            message.header = SimpleNamespace(stamp=self.Stamp(self.clock.sim - .6))
+            return message
+
+        self.node._tf_buffer.lookup_transform = stale_lookup
+        self.node._a5_measured_pose = type(self.node)._a5_measured_pose.__get__(self.node)
+        with self.assertRaisesRegex(RuntimeError, "TF is stale"):
+            self.capture([(10.1, "uav1/livox"), (10.5, "uav1/livox")])
+        self.assertEqual(self.node._a5_observations, [])
+        self.assertFalse(any(status == "A5_CAPTURE_ANCHOR" for status, _ in self.statuses))
 
     def test_capture_wall_timeout_does_not_save_an_incomplete_window(self):
         with self.assertRaisesRegex(RuntimeError, "timed out"):

@@ -202,7 +202,21 @@ def build_adapter_class(demo_module, options):
             self._a5_wait_settled(goal)
             self._execute_flight(self._hover_command, "A5 hover")
 
-        def _a5_capture(self, goal):
+        def _a5_capture(self, requested_goal):
+            # Freeze one measured anchor after flight completion and any core delay.
+            goal = list(self._a5_measured_pose())
+            bounds = options.flight_bounds
+            if any(not bounds[2 * axis] <= goal[axis] <= bounds[2 * axis + 1]
+                   for axis in range(3)):
+                raise DemoError("A5 measured capture anchor is outside configured flight bounds")
+            capture_metadata = dict(requested_viewpoint=list(requested_goal),
+                                    capture_anchor_map=list(goal))
+            yaw_delta = goal[3] - requested_goal[3]
+            self._publish_status(
+                "A5_CAPTURE_ANCHOR", **capture_metadata,
+                position_discrepancy_m=float(np.linalg.norm(
+                    np.asarray(goal[:3]) - np.asarray(requested_goal[:3]))),
+                yaw_discrepancy_rad=math.atan2(math.sin(yaw_delta), math.cos(yaw_delta)))
             # One stable dwell window is one observation, regardless of packet count.
             self._a5_wait_settled(goal)
             capture_start = rospy.Time.now().to_sec()
@@ -220,7 +234,8 @@ def build_adapter_class(demo_module, options):
                         uav_pose_map=current_pose, stamped_uav_pose_map=stamped_pose,
                         goal_map=list(goal),
                         velocity_xyz=None if state is None else [float(value) for value in state.velocity],
-                        flight_health_age_s=None if received is None else time.monotonic() - received)
+                        flight_health_age_s=None if received is None else time.monotonic() - received,
+                        **capture_metadata)
                 chunks, pending_cloud = [], None
                 recovering, stable_since = True, None
 
@@ -307,7 +322,7 @@ def build_adapter_class(demo_module, options):
                                      stamp_s=stamp, sensor_frame=frame,
                                      point_count=len(observation["points_xyz"]), chunk_count=len(chunks),
                                      window_duration_s=stamp - chunks[0]["stamp_s"],
-                                     uav_pose_map=pose, observation_file=str(path))
+                                     uav_pose_map=pose, observation_file=str(path), **capture_metadata)
                 return pose
             raise DemoError("A5 fresh MID360 PointCloud2 window capture timed out")
 
