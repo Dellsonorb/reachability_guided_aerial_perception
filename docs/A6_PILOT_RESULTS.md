@@ -13,7 +13,7 @@ and [operational protocol](A6_PILOT_PROTOCOL.md). There is no runtime GT initial
 
 ## Completed Easy block
 
-At this checkpoint: **4/14 completed, all valid; 0 pilot INVALID activations**.
+At this checkpoint: **8/14 completed, all valid; 0 pilot INVALID activations**.
 The nine earlier setup activations are separate sensor/geometry checks, never
 pilot primary denominators. Remaining slots continue in their serialized order.
 
@@ -59,6 +59,32 @@ are measured, not inferred from nominal candidate displacement.
   MID360 windows; no A2 confirmation or alternate Ground candidate was added.
 - Generic's physical descent failure is retained after successful D_exec.
   No joint-speed threshold, planning parameter or success criterion was tuned.
+
+## Completed Moderate block
+
+| Seed / method | Final confirmed | D_exec | Retrieval | Earliest failure |
+|---|---:|---:|---:|---|
+| Moderate 2026090802 / Ours | 4 | 0 | 0 | D435_REFINE: observation timeout |
+| Moderate 2026090802 / RM4D-only | N/A | 0 | 0 | D435_REFINE: observation timeout |
+| Moderate 2026090802 / Generic | 4 | 0 | 0 | D435_REFINE: measured target height -.0429 m vs .0575 m, unchanged .0300 m gate |
+| Moderate 2026090802 / Fixed-view | 0 | 0 | 0 | NO_GROUND_HANDOFF: three-window budget |
+
+Ours/Generic both confirmed support and completed Ground navigation, but neither
+reached execution-validated refined pregrasp. The primary Moderate pair is again
+neither success. None of these valid failures was rerun or used to tune gates.
+Fixed-view discarded one disrupted partial capture within the inherited guard;
+it still acquired and voted exactly three complete windows, not four.
+
+| Method | Windows | First confirmation (active sim s) | Task sim s | UAV total path (m) |
+|---|---:|---:|---:|---:|
+| Ours | 3 | 52.821 | 187.184 | 12.588, complete |
+| RM4D-only | 0 | N/A | 167.963 | 5.180, complete |
+| Generic | 3 | 53.138 | 170.281 | retained in raw metrics |
+| Fixed-view | 3 | not reached | 77.483 | 5.330, complete to failure |
+
+Post-failure landing is recorded as cleanup, not included in a fabricated
+successful task. There are still no common-success Ours/Generic pairs on which
+to base a success-conditional resource comparison.
 
 ## Engineering work before execution
 
