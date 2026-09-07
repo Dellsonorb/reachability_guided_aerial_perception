@@ -1,0 +1,76 @@
+{
+  "slot": 9,
+  "scene": "hard",
+  "method": "rm4d_only",
+  "seed": 2026090803,
+  "scene_spec": {
+    "id": "hard",
+    "seed": 2026090803,
+    "target_xy": [
+      2.1267987983190006,
+      0.06341573638079859
+    ],
+    "target_z": 0.0575,
+    "target_yaw": 0.22927465103644773,
+    "bunker_xy": [
+      3.0530425483343486,
+      -2.406933624923402
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.196422468611061,
+    "boxes": [
+      {
+        "name": "a6_wall_h1",
+        "center_xy": [
+          0.3,
+          0.5
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1.0
+        ],
+        "yaw": 0.0
+      },
+      {
+        "name": "a6_wall_h2",
+        "center_xy": [
+          0.5,
+          -0.4
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1.0
+        ],
+        "yaw": 0.0
+      }
+    ]
+  },
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "kind": "PILOT_ATTEMPT",
+  "status": "VALID_TRIAL",
+  "task_started": true,
+  "activation_wall": 1788805869.4017735,
+  "ready_sim": 10.447,
+  "adapter_exit": 1,
+  "checker_exit": 1,
+  "runtime_exit_during_task": null,
+  "runtime_exit": 0,
+  "physical_status": "FAIL",
+  "retrieval_success": false,
+  "classification_reason": "RM4D top-1 navigation action timed out",
+  "reason": "RM4D top-1 navigation action timed out",
+  "finish_wall": 1788806081.6583536
+}
