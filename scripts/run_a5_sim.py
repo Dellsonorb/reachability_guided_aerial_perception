@@ -43,7 +43,7 @@ def build_parser():
     parser.add_argument("--navigation-timeout", type=float, default=None,
                         help="override the inherited SIM navigation runtime guard in seconds")
     parser.add_argument("--wait-for-status-subscriber", action="store_true",
-                        help="wait up to two seconds for a status transport subscriber before starting")
+                        help="wait up to ten seconds for a status transport subscriber before starting")
     parser.add_argument("--settle-position-tolerance", type=float, default=.10)
     parser.add_argument("--settle-yaw-tolerance", type=float, default=.10)
     parser.add_argument("--settle-speed", type=float, default=.10)
@@ -118,8 +118,10 @@ def load_demo_module(sim_root):
     return module
 
 
-def wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=2.):
+def wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=10.):
     """Bound startup until the optional diagnostic status consumer connects."""
+    # Match A6's existing allowance for rospy's registration-race reconnect.
+    # This happens before task timing, observation windows or physical actions.
     deadline = time.monotonic() + timeout_s
     while not rospy.is_shutdown() and time.monotonic() < deadline:
         if publisher.get_num_connections() > 0:
@@ -155,9 +157,13 @@ def build_adapter_class(demo_module, options):
     class A5AirGroundPickDemo(demo_module.AirGroundPickDemo):
         def __init__(self):
             super().__init__()
-            self._status_pub.unregister()
+            inherited_status_pub = self._status_pub
+            # Acquire the replacement before releasing the inherited handle:
+            # rospy shares one topic implementation, so no unregister/register
+            # gap can strand a checker already connecting to this same URI.
             self._status_pub = rospy.Publisher(
                 self._status_topic, String, queue_size=10, latch=True)
+            inherited_status_pub.unregister()
             self._a5_refined_grasp = None
             self._a5_cloud = None
             self._a5_previous_stamp = 0.
@@ -522,6 +528,7 @@ def main(argv=None):
             rospy.set_param("~" + key, value)
         adapter = adapter_class()
         if options.wait_for_status_subscriber:
+            rospy.loginfo("A5 adapter ready; waiting for status subscriber")
             wait_for_status_subscriber(
                 adapter._status_pub, rospy, demo_module.DemoError)
         return 0 if adapter.run() else 1

@@ -437,6 +437,14 @@ identified before replicate2.
 
 ## Replicate2: scientific pause after slots15–16 (2026-09-09)
 
+Subsequent user decision: authorize v1.2 exact-pose anchoring design/minimal
+implementation/regression, then STOP at review. The16 v1.1 formal runs are
+permanently **interrupted-development evidence**, not observations for final
+v1.2 statistics. Their original success/failure classifications and files stay
+unchanged. Slot17 and formal-matrix resumption are explicitly not authorized.
+See `superpowers/specs/2026-09-09-exact-pose-support-design.md` for the bounded
+revision; the earlier scientific-pause findings below remain historical facts.
+
 Hard-002 (prelisted seed958985919) passes the unchanged method-independent
 setup: fixed initial pose`(-1.4,0,1.2,0)`,364 distinct ground cells,
 5.028 sim-second window, maximum absolute ground-return z.0192213 m. New
