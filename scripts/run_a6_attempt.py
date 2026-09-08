@@ -74,6 +74,8 @@ def adapter_args(config, output, sim, rm):
             continue  # fixed core defaults, no alternative method parameters
         args += ['--'+key.replace('_', '-')]
         args += list(map(str, value)) if isinstance(value, list) else [str(value)]
+    if 'operational_gating' in config:
+        args += ['--operational-gating', config['operational_gating']]
     return args
 
 
@@ -90,6 +92,34 @@ def stop_process(process):
             return
         except subprocess.TimeoutExpired:
             continue
+
+
+def diagnostic_command(config, output):
+    """Native-rate failure diagnostics; no GT or demo-status subscriptions.
+
+    Demo status is already in events; recording it could incorrectly satisfy
+    the checker's connection wait. Do not activate extra depth point clouds.
+    """
+    if not config.get('record_diagnostics', False):
+        return None
+    topics = [
+        '/clock', '/tf', '/tf_static', '/rosout_agg',
+        '/ground/move_base/goal', '/ground/move_base/status',
+        '/ground/move_base/result', '/ground/move_base/cancel',
+        '/ground/nav_cmd_vel', '/ground/cmd_vel', '/ground/odom', '/ground/scan',
+        '/ground/move_base/global_costmap/costmap', '/ground/move_base/local_costmap/costmap',
+        '/ground/move_base/NavfnROS/plan', '/ground/move_base/DWAPlannerROS/local_plan',
+        '/ground/d435/color/image_raw', '/ground/d435/depth/image_raw',
+        '/ground/d435/color/camera_info', '/ground/d435/depth/camera_info',
+        '/ground_observer/status', '/ground_observer/target_pose',
+        '/ground/joint_states', '/ground/arm_controller/state',
+        '/ground/arm_controller/follow_joint_trajectory/goal',
+        '/ground/arm_controller/follow_joint_trajectory/status',
+        '/ground/arm_controller/follow_joint_trajectory/result',
+        '/ground/arm_controller/follow_joint_trajectory/cancel',
+    ]
+    return ['rosbag', 'record', '--lz4', '--buffsize', '256',
+            '-O', str(output/'diagnostics.bag'), *topics]
 
 
 def state_ready(state):
@@ -254,6 +284,8 @@ def main(argv=None):
     children, logs = [], []
     record = dict(**slot, seed=scene['seed'], scene_spec=scene, initial_view=config['initial_view'],
                   uav_launch_pose=config['uav_launch_pose'],
+                  config_path=str(args.config.resolve()), protocol=config['protocol'],
+                  operational_gating=config.get('operational_gating', 'v1'),
                   kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else 'PILOT_ATTEMPT',
                   status='INVALID_TRIAL', task_started=False, activation_wall=time.time())
     def save(): (output/'attempt.json').write_text(json.dumps(record, indent=2, allow_nan=False)+'\n')
@@ -263,7 +295,7 @@ def main(argv=None):
                                  cwd=str(ROOT), start_new_session=True)
         children.append(child)
         return child
-    runtime = checker = adapter = None
+    runtime = checker = adapter = recorder = None
     save()
     try:
         source = args.sim_root/'src/demos/air_ground_pick_demo/launch/air_ground_pick_demo.launch'
@@ -275,6 +307,10 @@ def main(argv=None):
         print('START', slot, output, flush=True)
         record['ready_sim'] = prepare_scene(scene, runtime)
         print('READY', slot, record['ready_sim'], flush=True)
+        record_command = diagnostic_command(config, output)
+        if record_command is not None:
+            record['diagnostic_command'] = record_command
+            recorder = start(record_command, 'diagnostics')
         common = adapter_args(config, output/'data', args.sim_root, args.rm4d_root)
         if args.setup_scene:
             command = ['/usr/bin/python3', str(ROOT/'scripts/a6_setup_check.py'), *common,
@@ -302,6 +338,9 @@ def main(argv=None):
         for child in reversed(children): stop_process(child)
         for log in logs: log.close()
         record['runtime_exit'] = None if runtime is None else runtime.poll()
+        if recorder is not None:
+            record['diagnostic_exit'] = recorder.poll()
+            record['diagnostic_bag_finalized'] = (output/'diagnostics.bag').is_file()
         physical, events, errors = read_measurements(output)
         if errors: record['measurement_read_errors'] = errors
         if physical is not None: record['physical_status'] = physical.get('status')

@@ -103,6 +103,17 @@ positive-association synthetic regressions already test that mechanism.
 
 ## Readiness and continuation
 
+Passive native-rate LZ4 rosbag recording captures public clock/TF, navigation
+goals/plans/costmaps/commands/odometry/scan, D435 RGB/depth/calibration/observer,
+and arm joint/controller/action state. The command and recorder exit/finalized
+file status are saved per attempt. Bags stay on the experiment volume, outside
+Git; they are diagnostic inputs, never controller inputs. Demo status is omitted
+because a recorder subscription could satisfy its checker-connection wait;
+existing events already preserve that stream. No GT topic is recorded. Inspect
+bag topic counts, time span and overflow warnings before attributing a failure.
+Missing diagnostics cannot erase a demonstrated task failure. No sensor rate,
+controller parameter or wall-clock guard is changed for logging.
+
 After each activation inspect terminal status, outcome measurement and any
 new failure. Only independently demonstrated INVALID activations are rerun in
 a new directory with the identical slot/seed/method. Do not overwrite any
