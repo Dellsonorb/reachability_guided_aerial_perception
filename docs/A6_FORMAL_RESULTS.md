@@ -6,7 +6,8 @@ The [formal protocol](A6_FORMAL_PROTOCOL.md) defines 120 independent scenes,
 40 per existing tier, and 560 valid method slots. Exact seeds/specifications
 and balanced order are in `configs/a6_formal.json`. Pilot-1/2 remain separate.
 At creation of this record: **0/560 method slots; 0/120 setup scenes**. No
-formal outcome has informed the design or sample size.
+formal outcome has informed the design or sample size. The prospective freeze
+was committed and pushed as `b8848ae` before the first setup activation.
 
 Independent reviews cleared the seed/order/common-settings implementation,
 paired analysis and stage-scoped native D435 logging. The review corrected the
@@ -69,3 +70,79 @@ No interim efficacy analysis, sample-size revision, scene replacement or method
 tuning is permitted. Append actual progress, invalid history, stage/failure
 tables and final figures as execution proceeds. Scientific stop conditions
 remain those explicitly specified by the user.
+
+## Execution progress
+
+`easy-001` (seed565465572) passed its first method-independent setup activation:
+846 distinct ground cells, 5.025 s window, mean ground-return map-z
+`.000014826 m`, maximum absolute z `.010173 m`, accepted original RGB-D gate.
+The native control bag finalized normally; no image recorder started because
+setup never selects a Ground handoff. This activation is outside the method
+sample. Its full output is `outputs/a6/formal-setup/easy-001-01`.
+
+Formal slot1 (Easy-001/RM4D-only) completed VALID/SUCCESS: D_exec true at
+122.649 simulation seconds, physical brick lift `.148212 m`, TCP lift
+`.149478 m`, grasp confirmed and checker CHECKS_PASS. MID360 windows0 and
+environment confirmation N/A, as prescribed. Task duration123.148 sim s, UAV
+total distance5.218002 m. Ground online distance is unavailable because of one
+sampling gap; its observed lower bound2.551287 m is not substituted for a
+complete path. Both native recorders finalized with exit0.
+
+Slot1's native image recording begins at51.908, before navigation64.617 and
+GROUND_OBSERVE110.032. Both streams contain the exact refine stamp120.398 and
+continue beyond LIFT. Control TF retains four `/tf` and eleven `/tf_static`
+publisher connections. Both recorder logs are free of warning/overflow errors.
+The separate secondary report reproduces original metrics and preserves the
+genuine Ground sampling gap. Combined native bags are1.617 GB; this handoff
+run is not representative of the planning mean that includes no-handoff runs.
+
+Slot2 (Easy-001/Fixed) completed VALID/FAILURE after three completed windows,
+zero NBV moves,35.273 active simulation seconds, without a confirmed candidate.
+There are still five exact-unblocked candidates and three combined-clear
+candidates (sources541/501/580). Final missing ground-support cells are11/17/37,
+respectively, out of103/108/103. This is finite-budget coverage failure, not
+an all-candidate operational deadlock. All three saved shared-scoring checks
+pass; two have different task/generic argmaxes. One partial capture was discarded
+by the unchanged hover rule; the three actual voted windows completed normally.
+No handoff means no image recorder; control recording finalized without warnings.
+Original UAV path metrics remain missing for one TF sample; secondary estimates
+are separately5.353145 m total/1.449205 m active, not primary replacements.
+
+Slot3 (Easy-001/Generic) completed VALID/FAILURE: three windows, two NBV moves,
+one confirmed candidate first obtained in window3 at53.533 active sim s. BUNKER
+navigation succeeded in76.351 sim s. D435 refinement then rejected measured
+target z about`.0060 m` against the unchanged`.0575 +/- .0300 m` gate; D_exec
+and retrieval are false. This actual perception/execution failure is retained,
+not reclassified or rerun. Active duration53.534 sim s; UAV active/total
+distance3.418733/10.957603 m. Original Ground distance is missing for nine TF
+samples; partial lower bound2.871577 m is not a complete path. All six saved
+shared-scoring snapshots through slot3 pass.
+
+Slot4 (Easy-001/Ours) completed VALID/SUCCESS: three windows, two NBV moves,
+two confirmed candidates in window3, actual D_exec and physical retrieval.
+Brick/TCP lift are`.148917/.149760 m`; checker CHECKS_PASS. Navigation took
+78.742 sim s, refine11.422 sim s. Active duration50.518 sim s, task215.794 sim s;
+UAV active/total distance4.222348/12.661519 m. Original Ground path is missing
+for four TF samples and remains missing in the primary resource table.
+
+| Easy-001 method | Confirmed | D_exec | Retrieval | Terminal result |
+|---|---:|---|---|---|
+| RM4D-only | N/A | Yes | Success | Physical checks pass |
+| Fixed | 0 | No | Failure | Three-window ground-support budget |
+| Generic | 1 | No | Failure | Fresh but height-inconsistent D435 refine |
+| Ours | 2 | Yes | Success | Physical checks pass |
+
+This first primary pair is Ours-only. It is a descriptive record, not an interim
+test or efficacy claim. Ours used more UAV distance here despite success;
+shorter active duration is not automatically overall retrieval efficiency.
+Nine saved same-state scoring checks pass; five task/generic argmaxes differ.
+All three descriptive initial snapshots have true-box occlusion0 and33 nominal-
+clear high-relevance footprints. Fixed/Ours have zero fully initially visible
+high footprints versus one for Generic, missing the old Easy visibility proposal
+target. This measured FOV/pose variation is reported, not a reason to discard,
+relabel or replace the scene.
+
+Current completed method sample: **4/560**, zero INVALID activations. The next
+fixed block is Moderate-001, beginning with its method-independent setup. The
+prescribed final inferential analysis remains unavailable until all planned
+valid slots complete. Progress is tracked in Draft PR#6; main is not merged.

@@ -1,0 +1,14 @@
+{"state": "PREFLIGHT", "ros_time": 11.523}
+{"state": "ARMING", "ros_time": 11.528}
+{"state": "COMMAND_CONTROL", "ros_time": 11.532}
+{"state": "TAKEOFF", "ros_time": 11.534}
+{"state": "AIR_VIEW", "ros_time": 21.637}
+{"state": "A5_VIEWPOINT", "ros_time": 21.64, "goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false}
+{"state": "A5_SETTLED", "ros_time": 32.951, "uav_pose_map": [-1.4327438516049034, 0.014459098448658218, 1.225536670990157, -0.00041204564068835327]}
+{"state": "AIR_OBSERVE", "ros_time": 32.958}
+{"state": "AIR_HANDOFF", "ros_time": 33.007, "target_map": [1.8988738276587875, -0.0480785690294138, 0.060638006042257324, -0.2865137082954723], "observation_stamp": 32.952}
+{"state": "TARGET_REFERENCE", "ros_time": 33.165, "status": "AVAILABLE", "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal-setup/easy-001-01/data/target_reference.npz", "frame_id": "map", "stamp_s": 32.952, "perceived_target": {"center_xyz": [1.8988738276587875, -0.0480785690294138, 0.060638006042257324], "yaw_rad": -0.2865137082954723, "size_xyz": [0.24, 0.053, 0.115]}, "mask_pixels": 325, "points": 156}
+{"state": "A5_CAPTURE_ANCHOR", "ros_time": 33.166, "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.43199766241891, 0.009339429066425289, 1.2257143426785229, -0.0010638967278017678], "position_discrepancy_m": 0.042098726286549565, "yaw_discrepancy_rad": -0.0010638967278017678}
+{"state": "A5_SETTLED", "ros_time": 33.645, "uav_pose_map": [-1.4338413378275274, 0.0038285278649311527, 1.2309959714335805, -0.0006467844251404405]}
+{"state": "A5_OBSERVATION", "ros_time": 38.842, "round": 1, "stamp_s": 38.704, "sensor_frame": "uav1/lidar_link", "point_count": 88273, "chunk_count": 51, "window_duration_s": 5.024999999999999, "uav_pose_map": [-1.3702617044620258, -0.06736043567364508, 1.2280448005165496, -0.00801986156426809], "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal-setup/easy-001-01/data/observation_01.npz", "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.43199766241891, 0.009339429066425289, 1.2257143426785229, -0.0010638967278017678]}
+{"state": "LANDING", "ros_time": 38.845}

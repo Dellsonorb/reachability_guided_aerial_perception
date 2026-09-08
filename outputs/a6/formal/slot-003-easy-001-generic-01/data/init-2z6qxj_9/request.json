@@ -1,0 +1,144 @@
+{
+  "config": {
+    "facade_position_tolerance": 0.05,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "max_viewpoints": 3,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ]
+  },
+  "current_bunker_pose": [
+    3.010501941611746,
+    -2.5313886970134987,
+    3.0798823241073356
+  ],
+  "frame_calibration": {
+    "T_bunker_aubo": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.15
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_ground_odom_bunker": [
+      [
+        0.999999990956679,
+        -0.00013448658629646872,
+        0.0,
+        0.00015428624557101145
+      ],
+      [
+        0.00013448658629646872,
+        0.999999990956679,
+        0.0,
+        -0.00018467767247942746
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_map_ground_odom": [
+      [
+        -0.9980882188246376,
+        -0.061805399792107314,
+        0.0,
+        3.010644518818397
+      ],
+      [
+        0.061805399792107314,
+        -0.9980882188246376,
+        0.0,
+        -2.53158255734577
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "grasp": {
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      1.8974081145854793,
+      -0.04767261396831871,
+      0.08288867513762095
+    ],
+    "quaternion_xyzw": [
+      0.10066073191852215,
+      0.6999052914856605,
+      -0.10066073191852216,
+      0.6999052914856606
+    ]
+  },
+  "method": "generic",
+  "op": "init",
+  "operational_gating": "v1.1",
+  "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-003-easy-001-generic-01/data",
+  "perceived_target": {
+    "center_xyz": [
+      1.8974081145854793,
+      -0.04767261396831871,
+      0.060988675137620955
+    ],
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "yaw_rad": -0.28568204226630667
+  },
+  "rm4d_config": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo/configs/mr4_offline_base_placement.json",
+  "rm4d_map": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1/rmap.npy",
+  "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+  "rm4d_task_asset": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1",
+  "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation",
+  "target_reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-003-easy-001-generic-01/data/target_reference.npz",
+  "target_reference_reason": null,
+  "target_reference_status": "AVAILABLE"
+}

@@ -1,0 +1,1424 @@
+{
+  "kind": "post_freeze_first_window_scene_description",
+  "descriptive_only": true,
+  "config": "configs/a6_formal.json",
+  "results_dir": "outputs/a6/formal",
+  "snapshot_count": 3,
+  "snapshots": [
+    {
+      "scene_id": "easy-001",
+      "seed": 565465572,
+      "round": 1,
+      "grid": {
+        "origin_xy": [
+          -0.10428498414496801,
+          -2.0473828544728323
+        ],
+        "shape": [
+          40,
+          40
+        ],
+        "resolution_m": 0.1,
+        "area_m2": 16.000000000000004
+      },
+      "nominal_view_source": "ranking.current with saved frozen MID360 transform; level UAV",
+      "actual_initial_view": {
+        "position_xyz": [
+          -1.4289322541104266,
+          -0.07535267546623672,
+          1.2742811218433372
+        ],
+        "yaw_rad": -0.01232081648845229,
+        "frame_id": "map"
+      },
+      "sensor_origin_map_m": [
+        -1.2817985320788752,
+        -0.07716557478980676,
+        1.551249757485706
+      ],
+      "sensor": {
+        "T_uav_lidar": [
+          [
+            0.9393727128473789,
+            0.0,
+            0.34289780745545134,
+            0.14714489037277256
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.34289780745545134,
+            0.0,
+            0.9393727128473789,
+            0.27696863564236895
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min_elevation_deg": -7.0,
+        "max_elevation_deg": 52.0,
+        "horizontal_fov_deg": 360,
+        "yaw_equivalent": false
+      },
+      "true_boxes": [],
+      "catalog_candidate_count": 35,
+      "catalog_union_cells": 327,
+      "nominal_clear_high_relevance_footprints": 33,
+      "full_initial_visible_high_relevance_footprints": 0,
+      "high_support_patch_cells": 321,
+      "high_support_patch_area_m2": 3.2100000000000004,
+      "eligible_high_support_cells": 210,
+      "true_box_occluded_high_support_cells": 0,
+      "o_task": 0.0,
+      "o_task_undefined_reason": null,
+      "never_observed_cells": 711,
+      "state_unknown_cells": 1593,
+      "candidate_relative_unsupported_never_observed_cells": 596,
+      "low_nominal_never_observed_cells": 0,
+      "irrelevant_never_observed_cells": 596,
+      "task_never_observed_cells": 112,
+      "a_irrel_m2": 5.960000000000001,
+      "a_task_unknown_m2": 1.12,
+      "irrelevant_to_task_unknown_ratio": 5.321428571428572,
+      "ratio_denominator_floor_m2": 0.1,
+      "targets": {
+        "o_task": {
+          "reference_range": [
+            0.0,
+            0.1
+          ],
+          "measured": 0.0,
+          "met": true
+        },
+        "nominal_clear_high_relevance_footprint": {
+          "minimum": 1,
+          "measured": 33,
+          "met": true
+        },
+        "full_initial_footprint_ground_center_visibility": {
+          "minimum": 1,
+          "measured": 0,
+          "met": false
+        }
+      },
+      "proposal_mismatches": [
+        "full_initial_footprint_ground_center_visibility"
+      ],
+      "undefined_targets": [],
+      "catalog_footprints": [
+        {
+          "candidate_id": "candidate-000000",
+          "relevance": 1.0,
+          "footprint_cells": 101,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000002",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000003",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000007",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000010",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000011",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000013",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000018",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000022",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000029",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000036",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000044",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000046",
+          "relevance": 0.7085671062883145,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000051",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000057",
+          "relevance": 0.7085671045344464,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000058",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000060",
+          "relevance": 0.22903941668794214,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000061",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000063",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000069",
+          "relevance": 1.0,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000072",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000075",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000076",
+          "relevance": 0.7085671024559588,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000087",
+          "relevance": 1.0,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000093",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000099",
+          "relevance": 0.8074379427039604,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000107",
+          "relevance": 0.7085671022349711,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000108",
+          "relevance": 0.22903941668931527,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000109",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000119",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000122",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000127",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000135",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000136",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000137",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        }
+      ],
+      "snapshot": "outputs/a6/formal/slot-002-easy-001-fixed-01/data/rounds/round-01",
+      "attempt": "outputs/a6/formal/slot-002-easy-001-fixed-01",
+      "actual_method": "fixed",
+      "slot": 2,
+      "attempt_status": "VALID_TRIAL",
+      "serialized_scene_matches_config": true,
+      "serialized_seed_matches_config": true
+    },
+    {
+      "scene_id": "easy-001",
+      "seed": 565465572,
+      "round": 1,
+      "grid": {
+        "origin_xy": [
+          -0.10259188541452069,
+          -2.047672613968319
+        ],
+        "shape": [
+          40,
+          40
+        ],
+        "resolution_m": 0.1,
+        "area_m2": 16.000000000000004
+      },
+      "nominal_view_source": "ranking.current with saved frozen MID360 transform; level UAV",
+      "actual_initial_view": {
+        "position_xyz": [
+          -1.4184289405473065,
+          -0.0699675359356507,
+          1.2428353526307578
+        ],
+        "yaw_rad": -0.010853479816679279,
+        "frame_id": "map"
+      },
+      "sensor_origin_map_m": [
+        -1.2712927167781312,
+        -0.07156453867904687,
+        1.519803988273127
+      ],
+      "sensor": {
+        "T_uav_lidar": [
+          [
+            0.9393727128473789,
+            0.0,
+            0.34289780745545134,
+            0.14714489037277256
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.34289780745545134,
+            0.0,
+            0.9393727128473789,
+            0.27696863564236895
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min_elevation_deg": -7.0,
+        "max_elevation_deg": 52.0,
+        "horizontal_fov_deg": 360,
+        "yaw_equivalent": false
+      },
+      "true_boxes": [],
+      "catalog_candidate_count": 35,
+      "catalog_union_cells": 328,
+      "nominal_clear_high_relevance_footprints": 33,
+      "full_initial_visible_high_relevance_footprints": 1,
+      "high_support_patch_cells": 323,
+      "high_support_patch_area_m2": 3.2300000000000004,
+      "eligible_high_support_cells": 223,
+      "true_box_occluded_high_support_cells": 0,
+      "o_task": 0.0,
+      "o_task_undefined_reason": null,
+      "never_observed_cells": 697,
+      "state_unknown_cells": 1594,
+      "candidate_relative_unsupported_never_observed_cells": 588,
+      "low_nominal_never_observed_cells": 0,
+      "irrelevant_never_observed_cells": 588,
+      "task_never_observed_cells": 107,
+      "a_irrel_m2": 5.880000000000001,
+      "a_task_unknown_m2": 1.0700000000000003,
+      "irrelevant_to_task_unknown_ratio": 5.495327102803738,
+      "ratio_denominator_floor_m2": 0.1,
+      "targets": {
+        "o_task": {
+          "reference_range": [
+            0.0,
+            0.1
+          ],
+          "measured": 0.0,
+          "met": true
+        },
+        "nominal_clear_high_relevance_footprint": {
+          "minimum": 1,
+          "measured": 33,
+          "met": true
+        },
+        "full_initial_footprint_ground_center_visibility": {
+          "minimum": 1,
+          "measured": 1,
+          "met": true
+        }
+      },
+      "proposal_mismatches": [],
+      "undefined_targets": [],
+      "catalog_footprints": [
+        {
+          "candidate_id": "candidate-000000",
+          "relevance": 1.0,
+          "footprint_cells": 104,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000003",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000005",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000007",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000012",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000013",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000018",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000022",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000036",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000037",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000040",
+          "relevance": 0.8509650626225671,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000042",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000045",
+          "relevance": 0.7085670734036214,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000048",
+          "relevance": 1.0,
+          "footprint_cells": 96,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": true
+        },
+        {
+          "candidate_id": "candidate-000050",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000054",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000056",
+          "relevance": 0.7085670714715455,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000058",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000059",
+          "relevance": 0.22903938458220718,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000063",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000066",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000067",
+          "relevance": 1.0,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000071",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000074",
+          "relevance": 0.7085670693872128,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000091",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000097",
+          "relevance": 0.8417743554998482,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000099",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000102",
+          "relevance": 1.0,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000105",
+          "relevance": 0.7085670690072741,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000106",
+          "relevance": 0.2290393845833396,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000117",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000118",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000130",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000134",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000135",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        }
+      ],
+      "snapshot": "outputs/a6/formal/slot-003-easy-001-generic-01/data/rounds/round-01",
+      "attempt": "outputs/a6/formal/slot-003-easy-001-generic-01",
+      "actual_method": "generic",
+      "slot": 3,
+      "attempt_status": "VALID_TRIAL",
+      "serialized_scene_matches_config": true,
+      "serialized_seed_matches_config": true
+    },
+    {
+      "scene_id": "easy-001",
+      "seed": 565465572,
+      "round": 1,
+      "grid": {
+        "origin_xy": [
+          -0.10177768331530035,
+          -2.0477024619690276
+        ],
+        "shape": [
+          40,
+          40
+        ],
+        "resolution_m": 0.1,
+        "area_m2": 16.000000000000004
+      },
+      "nominal_view_source": "ranking.current with saved frozen MID360 transform; level UAV",
+      "actual_initial_view": {
+        "position_xyz": [
+          -1.43326384961216,
+          -0.07939272868667216,
+          1.3099003761548629
+        ],
+        "yaw_rad": -0.011437897147395848,
+        "frame_id": "map"
+      },
+      "sensor_origin_map_m": [
+        -1.2861285842857302,
+        -0.08107572011159737,
+        1.5868690117972317
+      ],
+      "sensor": {
+        "T_uav_lidar": [
+          [
+            0.9393727128473789,
+            0.0,
+            0.34289780745545134,
+            0.14714489037277256
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.34289780745545134,
+            0.0,
+            0.9393727128473789,
+            0.27696863564236895
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min_elevation_deg": -7.0,
+        "max_elevation_deg": 52.0,
+        "horizontal_fov_deg": 360,
+        "yaw_equivalent": false
+      },
+      "true_boxes": [],
+      "catalog_candidate_count": 35,
+      "catalog_union_cells": 327,
+      "nominal_clear_high_relevance_footprints": 33,
+      "full_initial_visible_high_relevance_footprints": 0,
+      "high_support_patch_cells": 320,
+      "high_support_patch_area_m2": 3.2000000000000006,
+      "eligible_high_support_cells": 198,
+      "true_box_occluded_high_support_cells": 0,
+      "o_task": 0.0,
+      "o_task_undefined_reason": null,
+      "never_observed_cells": 741,
+      "state_unknown_cells": 1594,
+      "candidate_relative_unsupported_never_observed_cells": 610,
+      "low_nominal_never_observed_cells": 0,
+      "irrelevant_never_observed_cells": 610,
+      "task_never_observed_cells": 128,
+      "a_irrel_m2": 6.100000000000001,
+      "a_task_unknown_m2": 1.2800000000000002,
+      "irrelevant_to_task_unknown_ratio": 4.765625,
+      "ratio_denominator_floor_m2": 0.1,
+      "targets": {
+        "o_task": {
+          "reference_range": [
+            0.0,
+            0.1
+          ],
+          "measured": 0.0,
+          "met": true
+        },
+        "nominal_clear_high_relevance_footprint": {
+          "minimum": 1,
+          "measured": 33,
+          "met": true
+        },
+        "full_initial_footprint_ground_center_visibility": {
+          "minimum": 1,
+          "measured": 0,
+          "met": false
+        }
+      },
+      "proposal_mismatches": [
+        "full_initial_footprint_ground_center_visibility"
+      ],
+      "undefined_targets": [],
+      "catalog_footprints": [
+        {
+          "candidate_id": "candidate-000000",
+          "relevance": 1.0,
+          "footprint_cells": 101,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000002",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000005",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000007",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000011",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000012",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000018",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000022",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000029",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000036",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000042",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000044",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000046",
+          "relevance": 0.708567072660073,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000051",
+          "relevance": 1.0,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000057",
+          "relevance": 0.7085670707993623,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000058",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000060",
+          "relevance": 0.22903938402897417,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000061",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000063",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000069",
+          "relevance": 1.0,
+          "footprint_cells": 109,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000073",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000075",
+          "relevance": 1.0,
+          "footprint_cells": 103,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000076",
+          "relevance": 0.7085670687564711,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000087",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000093",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000099",
+          "relevance": 0.8169295168900295,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000107",
+          "relevance": 0.7085670685152277,
+          "footprint_cells": 105,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000108",
+          "relevance": 0.22903938402997515,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": false,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000109",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000119",
+          "relevance": 1.0,
+          "footprint_cells": 102,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000121",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000127",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000135",
+          "relevance": 1.0,
+          "footprint_cells": 107,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000136",
+          "relevance": 1.0,
+          "footprint_cells": 106,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        },
+        {
+          "candidate_id": "candidate-000137",
+          "relevance": 1.0,
+          "footprint_cells": 108,
+          "footprint_clipped": false,
+          "true_box_intersection": false,
+          "nominal_clear": true,
+          "high_relevance_nominal_clear": true,
+          "full_initial_ground_center_visibility": false
+        }
+      ],
+      "snapshot": "outputs/a6/formal/slot-004-easy-001-ours-01/data/rounds/round-01",
+      "attempt": "outputs/a6/formal/slot-004-easy-001-ours-01",
+      "actual_method": "ours",
+      "slot": 4,
+      "attempt_status": "VALID_TRIAL",
+      "serialized_scene_matches_config": true,
+      "serialized_seed_matches_config": true
+    }
+  ],
+  "unavailable_snapshots": [
+    {
+      "attempt": "outputs/a6/formal/slot-001-easy-001-rm4d-only-01",
+      "actual_method": "rm4d_only",
+      "missing": [
+        "outputs/a6/formal/slot-001-easy-001-rm4d-only-01/data/rounds/round-01/ranking.json",
+        "outputs/a6/formal/slot-001-easy-001-rm4d-only-01/data/rounds/round-01/decision.json",
+        "outputs/a6/formal/slot-001-easy-001-rm4d-only-01/data/rounds/round-01/fields.npz"
+      ],
+      "reason": "no_complete_saved_first_window; RM4D-only has no MID360 window"
+    }
+  ],
+  "note": "Proposal targets are descriptive and never select, reject, rerun or relabel scenes/trials. N=0 is never-observed evidence, not state UNKNOWN. NaN nominal values are not zero. Outside the exact catalog union means candidate-relative unsupported, not globally unreachable. High support uses all unclipped relevance>=.7 exact catalog footprints clear of serialized boxes and saved A3 nominal relevance>=.7; A2 FREE/blocked/confirmed never gates nominal-clear. Catalog union includes in-grid cells of clipped footprints. Footprint cells use closed overlap; rays end at their ground centers. Only serialized scene boxes are geometric occluders. These checks do not establish continuous visibility of every footprint point, Ground routes, arm clearance, side-view access, or complete physical feasibility."
+}
