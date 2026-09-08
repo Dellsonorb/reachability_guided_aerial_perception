@@ -142,7 +142,106 @@ high footprints versus one for Generic, missing the old Easy visibility proposal
 target. This measured FOV/pose variation is reported, not a reason to discard,
 relabel or replace the scene.
 
-Current completed method sample: **4/560**, zero INVALID activations. The next
-fixed block is Moderate-001, beginning with its method-independent setup. The
-prescribed final inferential analysis remains unavailable until all planned
-valid slots complete. Progress is tracked in Draft PR#6; main is not merged.
+At the end of this first block: **4/560**, zero INVALID activations. Independent
+saved-state review checked all nine score/NPZ identities with zero numerical
+discrepancy and 315 exact-candidate assessments against evidence and geometry.
+Actual Generic/Ours actions and common stopping rules agree. No fairness or
+scientific-stop concern was found. The Fixed evidence does not establish that
+additional fixed rescans would necessarily succeed; it establishes only the
+narrower finite-budget-no-confirmation result.
+
+### Moderate-001, replicate 1
+
+Seed1863681335 passed the unchanged setup: 591 distinct ground cells, 5.026 s
+window, mean ground-return z `.000017639 m`, maximum absolute z `.014352 m`,
+accepted original RGB-D gate. Setup output is
+`outputs/a6/formal-setup/moderate-001-01`. This is outside the method sample.
+
+Slot5 (Fixed) completed VALID/FAILURE. Three completed windows yielded counts
+0/0/2; first confirmation35.838 active sim s, active35.839, task230.190 sim s.
+One unsettled partial capture was discarded by the existing rule; no extra
+completed window was granted. Selected source584 had96/96 real ground-supported
+cells, no occupied or operational block, relevance1. Navigation succeeded in
+89.608 sim s. The subsequent ground_refine stage failed after54.906 sim s with
+the recorded message `MoveIt refined pregrasp planning failed`.
+
+Focused classification distinguishes that message from fresh D435 refinement:
+there is no GROUND_REFINED, D_exec-ready or arm trajectory goal/result. The
+shared A5 helper also uses this error text for the **initial observation-position
+pregrasp based on the aerial target**. Timing fits six10-wall-second grasp-IK
+attempts before Cartesian/OMPL planning; exact service response codes are not
+recorded. Causal TF before the inferred first request gives actual base
+`(2.403554,-.524504,3.063060)` versus selected
+`(2.391735,-.537797,-pi)`, a1.779 cm XY/4.500-degree yaw error, TF age.059 s.
+This shifts the target's base-relative XY by6.93 cm; it plausibly affects IK
+but does not prove causation. Auxiliary-frame TF warnings also occur in a
+successful run. No integration defect is demonstrated; preserve this valid
+planning failure, without adjusting parameters or retrying.
+
+Slot5 UAV active/total paths are1.422095/6.486255 m. Original Ground distance
+is unavailable (two TF misses). The uniform secondary report reproduces raw
+metrics and non-path values, and Ground remains unavailable for a genuine
+sampling gap. Native image indexes cover the full failed refine interval,
+836frames/stream. Both recorders finalized with exit0 and no overflow warnings.
+
+Slot6 (RM4D-only) completed VALID/FAILURE, original120-s navigation timeout,
+zero MID360 windows, confirmation N/A, no D_exec or retrieval. Control replay
+shows the goal ACTIVE until timeout/cancellation, then PREEMPTED. All1,800
+navigation/guard commands agree;6,000 odometry samples have maximum gap.030 s.
+Final error is.134160 m XY/.341021 rad yaw; no recorded pose met both original
+tolerances. The last30 s contain.210 m travel and2.927 rad turning, supporting
+navigation-convergence failure, not command starvation or a demonstrated
+platform invalidity. Both recorders finalized normally. Original/secondary UAV
+total5.963524 m and Ground2.656754 m match with no missing samples or gaps.
+
+Slot7 (Ours) completed VALID/FAILURE: three windows, two moves, two confirmed
+candidates first in window3 at52.427 active sim s. Active/task times are
+52.428/201.129 sim s; UAV active/total paths3.403576/11.493130 m. Navigation
+succeeded in33.952 sim s; ground_refine failed after54.374 sim s. As in slot5,
+there is no fresh accepted GROUND_REFINED, D_exec or arm trajectory. The failure
+is the aerial-target observation-position pregrasp, with timing consistent
+with six10-wall-second IK attempts; exact rejection codes remain unknown.
+Actual causal base pose `(2.412979,-.502685,3.062860)` differs from the exact
+selection by4.280 cm/.07873 rad, changing the same target's base-relative XY
+by9.35 cm. This is a plausible feasibility influence, not a proved cause.
+Original Ground distance is unavailable for one sampling gap, which persists
+in the separately preserved secondary reconstruction. Both native recorders
+finalized normally; images span the entire failing phase.
+
+Slot8 (Generic) completed VALID/FAILURE: three windows, two moves, two final
+confirmed candidates. First confirmation occurred in window2 at43.641 active
+sim s; the method correctly continued to the common stopping rule, not an
+early confirmation stop. Active/task times are53.053/267.293 sim s; UAV
+active/total paths4.216646/12.518591 m. Navigation succeeded in101.146 sim s;
+ground_refine then failed after53.544 sim s with the same recorded pregrasp
+planning message. D_exec/retrieval are false. Original Ground path is missing
+for two TF samples, not replaced with a partial path.
+
+| Moderate-001 method | Final confirmed | D_exec | Retrieval | Terminal stage |
+|---|---:|---|---|---|
+| RM4D-only | N/A | No | Failure | Navigation timeout |
+| Fixed | 2 | No | Failure | Observation-position pregrasp planning |
+| Generic | 2 | No | Failure | Observation-position pregrasp planning |
+| Ours | 2 | No | Failure | Observation-position pregrasp planning |
+
+This primary pair is neither-success. All three environment-gated methods
+passed confirmation and Ground navigation; the shared execution bottleneck is
+reported rather than tuning the methods or erasing their failures. Across the
+two closed blocks, all18 shared-score snapshots pass and12 argmaxes differ.
+The first-window descriptions have five proposal mismatches among six saved
+snapshots; no scene is replaced or relabeled. Detailed descriptive fields are
+in `outputs/a6/formal/scene-description-progress.json`.
+
+Current completed method sample: **8/560**, two successes/six failures, zero
+INVALID activations. The two primary paired records are Easy-001 Ours-only
+and Moderate-001 neither-success, with no interim test or efficacy conclusion.
+Slot8's focused review likewise places its failure before fresh refinement:
+no GROUND_REFINED/D_exec or arm trajectory. Both recorders finalized normally;
+there is no demonstrated platform defect. These failures are not INVALIDs.
+
+Hard-001 (seed719495214) has now passed setup:399 ground cells,5.028 s window,
+mean ground-return z.000044814 m, maximum absolute z.017458 m, original RGB-D
+gate accepted. All three first-replicate setups have passed without pose/seed
+changes. Hard core/ablation slots9–14 follow in the prelisted order. Final
+inferential analysis remains unavailable until every planned valid slot
+completes. Progress is in Draft PR#6; main is not merged.
