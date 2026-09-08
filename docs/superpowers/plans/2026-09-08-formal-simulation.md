@@ -169,6 +169,15 @@ upper = sum(U_b[h]-L_c[h] for h in tiers)/3.
 - [ ] Generate compact data-driven figures with Matplotlib and save JSON/CSV,
   paper-ready methods/results text, commands and acknowledged model limitations.
   No raster-generation model or scene GT is used to invent results.
+- [x] Prepare the final-only native PDF exporter `scripts/plot_a6_formal.py`
+  and nine synthetic tests. It requires completed matching analysis/tables,
+  retains endpoint/resource denominators and missingness, and includes valid
+  failures without treating short failure runtimes as time-to-success. Two
+  figures cover paired outcomes/endpoints and observed resources. Independent
+  review passes; actual-study rendering remains deferred until final completion.
+- [x] Draft `docs/PAPER1_SIMULATION_METHODS.md` from the already frozen protocol
+  and method documents, without outcome claims. Independent review confirms
+  shared settings, surrogate-model limits and the precise paired-test null.
 - [ ] Run necessary core/Noetic regression, inspect source boundaries/worktree,
   commit/push final research checkpoint and obtain independent final review.
   Mark the persistent goal complete only when experiments and analysis are
