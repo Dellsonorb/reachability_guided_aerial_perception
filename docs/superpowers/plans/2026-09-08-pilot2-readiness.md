@@ -90,15 +90,15 @@ alias = (candidate['occupied_cells'] > 0 and gate['target_cells'] > 0
 
 ## Task 4 — Pilot-2 execution and analysis (root)
 
-- [ ] Run exactly prelisted slots sequentially with a fresh simulator each time,
+- [x] Run exactly prelisted slots sequentially with a fresh simulator each time,
   via existing `run_a6_attempt.py --config configs/a6_pilot2.json --slot N
   --output-dir NEW_SLOT_DIR`. Poll logs/results, never run concurrent Gazebo.
-- [ ] Classify terminal events before considering any rerun. Retain valid failures,
+- [x] Classify terminal events before considering any rerun. Retain valid failures,
   rerun only demonstrated INVALID, and stop at a scientific stop condition.
-- [ ] Generate old-schema pilot summary, same-state score checks, scene descriptions
+- [x] Generate old-schema pilot summary, same-state score checks, scene descriptions
   and new mechanism report. Summarize paired b/c outcomes and simulation-time
   resources, all stage results, invalid history and unresolved causal limits.
-- [ ] Review explicit structural/fairness/measurement/core-hypothesis readiness,
+- [x] Review explicit structural/fairness/measurement/core-hypothesis readiness,
   write `docs/A6_PILOT2_RESULTS.md`, test/check source boundaries, commit/push.
 
 ## Task 5 — conditional next subproject

@@ -1,9 +1,9 @@
-# Pilot-2 execution notes — in progress
+# Pilot-2 results — 14 slots complete, readiness review
 
-No formal runs have started. Pilot-2 methods: **8/14 valid completed slots**,
-with one additional INVALID method activation retained and successfully repeated. This file is
-updated as activations finish; it is not a completed
-experiment claim. Protocol/seeds were committed before any method outcome in
+No formal runs have started. Pilot-2 methods: **14/14 valid completed slots**,
+with one additional INVALID method activation retained and successfully repeated.
+Two retrieval successes and twelve valid failures are retained. Formal readiness
+review is separate from this completed pilot. Protocol/seeds were committed before any method outcome in
 `18fb57d`, with the serialized configuration and shared v1.1 switch in `ed87bd6`.
 Pilot-1 and all frozen algorithm files remain unchanged.
 
@@ -91,6 +91,12 @@ unchanged. Setup, reporter and code review preparation gates are satisfied.
 | 6 Moderate Generic / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
 | 7 Moderate Ours / 01 | 1 candidate at window 2 | no | valid failure: Ground navigation timeout |
 | 8 Moderate RM4D-only / 01 | N/A | yes | valid failure: lift Cartesian execution check |
+| 9 Hard Generic / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 10 Hard Ours / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 11 Hard RM4D-only / 01 | N/A | no | valid failure: Ground navigation timeout |
+| 12 Hard Fixed / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 13 Hard no-occlusion / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 14 Hard no-cost / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
 
 Slot1's four arm trajectories all report SUCCEEDED/error0. The accepted close
 stall was followed by successful lift motion, then `AG95 lost grasp confirmation
@@ -210,6 +216,13 @@ remain false. The Moderate primary pair is neither-success, despite different
 failure stages. RM4D-only completes navigation/refinement/pregrasp/descend/close,
 but fails during lift: `max_joint_speed=0.1659 joint=wrist_3_joint`. D_exec=true
 is retained separately from retrieval=false. All four outcomes remain valid.
+Native controller logs identify `GOAL_TOLERANCE_VIOLATED` at wrist3, followed by
+MoveIt CONTROL_FAILED; the speed is an appended diagnostic, not a new AGENT
+threshold. Lift planning itself produced32 points/100% completion. The controller
+checks velocity as well as position while printing only position error, so its
+printed .000032 rad does not establish a false rejection. Concurrent .1659 rad/s
+exceeds the original .10 stopped-velocity tolerance. Exact state timing remains
+to be cross-checked in the retained bag; no demonstrated integration defect.
 
 The Fixed missing-support cell781 is raw UNKNOWN with one ground vote and no
 occupied-class evidence. All65 generated viewpoints pass range, but elevation
@@ -238,4 +251,141 @@ convergence failure; no independent integration defect has been demonstrated.
 The post-freeze scene description measures Moderate task-support occlusion at
 .173–.178, below the proposal's .25–.50 descriptive target. Report this mismatch;
 do not reject/relabel the seed, move walls or select a replacement. The scene
-comes from the original method-blind distribution. Hard remains unevaluated.
+comes from the original method-blind distribution; this finding preceded Hard.
+
+## Hard block
+
+Generic's35 candidates include three exact/representative-clear poses throughout
+all windows: candidate000000/source582, 000010/source501 and000015/source500.
+Their final ground-support deficits are respectively4/99,2/107 and4/103 cells.
+All three are unclipped with zero occupied-class overlap or continuous target
+collision. Thus the actual budget failure does not establish all-candidate
+operational deadlock. Ours also completes the budget with no confirmation, but
+retains two combined-clear poses, source582 (97/99 ground) and501 (103/106).
+Its missing cells417/457 and576/616/656 have actual ground-vote histories0→0→1;
+Generic's missing737/738/739/740/783 remain1→1→1. All are raw UNKNOWN with zero
+occupied-class votes. This does not prove another window would succeed, but
+does refute absolute sensing impossibility for Ours' missing cells.
+
+Hard Generic blockers comprise27 expanded-target-collision+AMBIGUOUS,
+3 collision-only and2 AMBIGUOUS-only; Ours has30 collision+AMBIGUOUS and
+3 AMBIGUOUS-only. Neither has ENVIRONMENT-overlap or representative-only
+blockers. Raw and operational blocked counts remain32 and33; alias retention
+is zero. Collision refers to perceived expanded geometry, not GT-confirmed
+physical collision. Final TARGET/ENVIRONMENT/AMBIGUOUS vote sums are6/82/5
+for Generic and13/84/18 for Ours; five cells carry mixed target/ambiguous evidence.
+The third primary pair is neither-success: overall b=0,c=1,neither=2,n=3.
+These descriptive outcomes do not support an E2E superiority claim.
+
+Hard Fixed and both predeclared ablations also terminate at three windows with
+no confirmed candidate. RM4D-only reaches its original top-one navigation stage,
+but times out without D_exec. No natural alias rescue is required or claimed.
+The Hard scene description meets the original targets: task-support occlusion
+.651–.688 across five saved sensing activations, with sufficient task-irrelevant
+unknown by the original descriptive checks. This does not override failures.
+
+## Simulation-time resources (original online metrics)
+
+Windows count completed observations, including the initial MID360 window.
+Moves exclude the initial flight and return; Fixed's two rescans are not NBV
+moves. First confirmation is elapsed from active-phase start. UAV time is the
+recorded UAV-total interval, ending at landing or terminal failure; post-failure
+cleanup is separate, retained in JSON. Task time includes Ground/manipulation
+when reached. Distances are actual trajectories, including hover drift.
+
+| Slot | Method / tier | Windows / moves | First confirmed (s) | Active (s) | UAV active (m) | UAV total (m) | UAV time (s) | Task (s) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 1 | Easy RM4D-only | 0 / 0 | — | 0 | 0 | unavailable | 81.994 | 149.406 |
+| 2 | Easy Fixed | 3 / 0 | 36.605 | 36.606 | 1.503 | 6.625 | 86.834 | 140.994 |
+| 3 | Easy Generic | 3 / 2 | 50.695 | 50.696 | 3.446 | 10.831 | 111.969 | 164.352 |
+| 4 | Easy Ours | 3 / 2 | 41.649 | 52.575 | 3.453 | 10.881 | 109.543 | 229.549 |
+| 5 | Moderate Fixed | 3 / 0 | — | 35.417 | 1.420 | 5.439 | 77.689 | 77.689 |
+| 6 | Moderate Generic | 3 / 2 | — | 51.706 | 4.271 | 7.983 | 92.771 | 92.771 |
+| 7 | Moderate Ours | 3 / 2 | 39.486 | 50.276 | unavailable | unavailable | 111.845 | 231.853 |
+| 8 | Moderate RM4D-only | 0 / 0 | — | 0 | 0 | 6.107 | 83.694 | 196.286 |
+| 9 | Hard Generic | 3 / 2 | — | 52.674 | 4.151 | 8.084 | 91.950 | 91.950 |
+| 10 | Hard Ours | 3 / 2 | — | 46.398 | 3.307 | 7.206 | 92.542 | 92.542 |
+| 11 | Hard RM4D-only | 0 / 0 | — | 0 | 0 | 5.252 | 52.619 | 172.629 |
+| 12 | Hard Fixed | 3 / 0 | — | 37.180 | 1.472 | 5.462 | 76.846 | 76.846 |
+| 13 | Hard no-occlusion | 3 / 2 | — | 51.288 | 3.358 | 7.298 | 93.080 | 93.080 |
+| 14 | Hard no-cost | 3 / 2 | — | 45.894 | 3.403 | 7.404 | 93.248 | 93.248 |
+
+Unavailable online distances remain unavailable, not zero or successful-case
+imputation. Uniform bag-derived resources are separate secondary reports; they
+do not overwrite the table or any primary outcome. All environment methods use
+three completed windows, so this pilot shows no observation-window advantage.
+
+## Final classification and verification
+
+Valid failure taxonomy: seven active-phase budget/no-confirmation failures,
+three Ground navigation failures, one lift-controller failure and one retention
+confirmation failure. Zero terminal refine/descend failures does not mean every
+run reached those stages. D_exec occurs in slots1/2/3/8; retrieval only in2/3.
+
+The sole method INVALID is slot2's missed checker initialization sequence,
+followed by its identical successful repeat. The separate Easy setup launch
+failure and its repeat remain outside the method denominator. No valid failure
+is rerun or reclassified. First-activation-invalid-as-failure sensitivity leaves
+the primary Ours/Generic paired outcomes unchanged (the INVALID was Fixed).
+
+Slot8's full bag verifies ABORTED/error-5 GOAL_TOLERANCE_VIOLATED at208.231 s.
+All200 controller samples in the final2 s exceed the original .10 rad/s stopped
+velocity limit at wrist3 (actual -.2434 to -.1604 rad/s); position error stays
+below .000100 rad. All147 lift-phase grasp confirmations are true. Joint state
+at208.228 reproduces -.165902459 rad/s. This establishes terminal controller
+velocity failure, not grasp loss; it does not independently diagnose its physical
+dynamics root cause or justify modifying the controller.
+
+Slot11's goal remains ACTIVE until its120 s cancel→PREEMPTED. Navigation and
+guarded commands match across1,800 samples;6,000 odometry samples remain fresh.
+It turns/drifts repeatedly (about17.26 rad heading travel), ending .094492 m /
+.414176 rad from goal; no sample satisfies both frozen tolerances. Unlike the
+other two navigation failures, its final local costmap retains obstacle cells.
+A13.469 s local-plan publication gap does not imply lost navigation commands
+or automatically make the observed timeout INVALID.
+
+Final core regression:468 tests,452 pass with16 environment-specific skips;
+Noetic's35 reporter/metric/target-support tests pass and cover those skips.
+All36 saved scoring snapshots (including retained INVALID diagnostics and both
+ablations) pass shared gain/mask/cost identities;33 task/generic argmaxes differ.
+This is same-state scoring, not a claim that closed-loop methods visit identical
+states. All12 scene-description snapshots remain descriptive, with only the
+three Moderate occlusion-target mismatches reported above.
+
+Machine-readable results: `outputs/a6/pilot2/summary-final.json`,
+`mechanism-final.json`, `scoring-final.json`, `scene-description-final.json`.
+Per-window PNGs and original JSON/NPZ observations are retained under every
+sensing activation; native diagnostic bags remain local and Git-ignored.
+The inherited A4 figure subtitle describes its predicted-view panels; these A6
+upper-panel fields use actual saved SIM observations, not a synthetic cloud.
+
+## Formal-readiness decision
+
+Independent final review supports **GO to a separately predeclared formal
+study**, not a claim that Ours is superior. It verifies all1,248 recorded exact
+assessments against blocker/confirmation rules, and separately checks actual
+Fixed/no-occlusion/no-cost decisions across nine windows and489 viewpoint
+evaluations (including ablation masks, ordering and stopping, not only shared
+ranking files). All match the frozen implementation. The last three slots retain
+three combined-clear candidates each, with unmet actual ground-support votes.
+No user-listed mandatory scientific stop condition is established.
+
+Keep the **actual common SIM navigation configuration** for the next study.
+The known latch namespace mismatch and replanning/latch interaction are a
+documented limitation, not a reason to describe the platform as flawless,
+erase navigation failures or tune successful-goal behavior. No causal repair
+has been established here, and no mixed platform version may enter a primary
+pair. Source/algorithm settings and success definitions remain unchanged.
+
+All15 secondary bag reports reproduce original metrics and leave non-path
+metrics unchanged. Among14 valid slots, online/secondary complete counts are
+UAV-total12/14 versus14/14, UAV-active13/14 versus14/14, Ground-total7/14 versus
+10/14. Actual scheduling gaps remain in slots1/2-repeat/3/8; no poses or samples
+are invented to close them. Keep original online metrics primary for this pilot.
+
+Next: prospectively define formal sample size, paired binary analysis,
+independent seeds/order and resource reporting, then execute under the user's
+conditional authorization. Neither Pilot-1 nor Pilot-2 will be pooled into formal
+inference. No formal sample size has been selected or formal activation run at
+this pilot checkpoint. Low pilot success is reported; it does not authorize
+changing the method, sampling distribution, budget, primary endpoint or success.
