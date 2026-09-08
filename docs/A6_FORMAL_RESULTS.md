@@ -434,3 +434,104 @@ topics are passive and formal-only; both image scopes, disabled diagnostics
 and unchanged Pilot recording are tested. The storage change preserves native
 bytes and historical results. No engineering or scientific-stop blocker is
 identified before replicate2.
+
+## Replicate2: scientific pause after slots15–16 (2026-09-09)
+
+Hard-002 (prelisted seed958985919) passes the unchanged method-independent
+setup: fixed initial pose`(-1.4,0,1.2,0)`,364 distinct ground cells,
+5.028 sim-second window, maximum absolute ground-return z.0192213 m. New
+passive gripper topics are present in the native setup bag (3,833 state and
+192 status messages); no gripper action is expected during setup.
+
+Slot15 Generic completes three windows/two NBV moves and fails with zero
+confirmed candidates at the original budget. Active/task52.169/92.235 sim s;
+UAV active/total4.175445/8.118505 m, all original paths complete. Slot16 Fixed,
+already launched when the structural issue was noticed in slot15's closed
+mechanism report, completes three windows/two stationary rescans with one
+discarded partial capture and fails at the same budget. Active/task37.051/
+76.722 sim s, UAV active1.382368 m; its original Ground path remains missing
+(one missing sample), with a separately labeled complete secondary estimate.
+Both retain **VALID_TRIAL failures**, no D_exec or retrieval, no handoff/image
+capture. Both control recorders exit0/finalize cleanly; all secondary reports
+reproduce raw/non-path metrics. These are not INVALIDs and will not be retried.
+
+### Newly demonstrated scene-local v1.1 structural handoff lock
+
+This is not a new efficacy look or a reason to select different scenes. The
+user's explicit scientific-stop condition is now met by runtime/perception
+geometry in slot15:
+
+- All34 A1 catalog representatives are blocked in the **first** window and
+  remain blocked through window3. M_nominal covers321 cells, but M_operational
+  has no positive cells and U_task mass is0 in all three saved snapshots.
+- Of34 exact catalog poses,33 are operational-blocked. Exact source624 is
+  unblocked, has no ENVIRONMENT/AMBIGUOUS footprint cells and no continuous
+  target collision, and reaches87/88 real ground-supported cells by window3.
+- The exact padded footprint and already-allowance-expanded perceived target
+  have a19.4184 mm separating gap along map y. Replacing the exact source624
+  pose with its A1 cell center shifts y by+40.5502 mm and creates21.1318 mm
+  projection overlap; the full continuous-rectangle SAT confirms collision.
+  A3 explicitly uses a discrete representative, not an IK-validated cell
+  center. A5 additionally requires this representative to be unblocked, so
+  the clear exact pose cannot be confirmed even if its last ground cell is
+  observed. This is a representative-quantization veto, not evidence that
+  the exact pose is physically impossible.
+- All34 representatives also intersect accumulated AMBIGUOUS evidence (none
+  intersects ENVIRONMENT evidence);31 have continuous target collision.
+  Shared cell781 already receives three ambiguous endpoints in window1.
+  Their initial RGB-D reference lacks positive interior-mask/valid-depth
+  association. Later observations cannot erase the retained ambiguous vote;
+  target/reference geometry is fixed during this air phase. Extra ground
+  votes therefore cannot remove either fixed blocker. No TARGET exception,
+  threshold relaxation or counter subtraction is used in this diagnosis.
+
+Independent reconstruction matches all102 saved exact assessments, A3 arrays,
+three policy/action checks, every raw A2 snapshot and all four derived vote
+arrays from the original three point-cloud windows. The original sensor/pixel
+formula reproduces allowance.04645728611061248 m; no constant is adjusted.
+All inputs to this diagnosis are recorded public runtime/perception geometry,
+not Gazebo GT. Details and a reproducible scene-local diagnostic are saved with
+slot15. This establishes a sensing-irreparable lock for this initial catalog,
+not proved full navigation/manipulation feasibility of source624, and not a
+claim that all scenes or all methods necessarily lock. Slot16's separate
+perception retains one combined-clear candidate, with15/107 ground cells
+supported at its final window; its own outcome is not reclassified.
+
+### Research decision required; no further formal activation
+
+No slot17 or later is started. SIM is shut down. Current retained sample is
+**16/560 valid slots:3 retrieval successes,13 method failures,0 INVALIDs**.
+Only the original three primary scene pairs are complete; Hard-002 is
+incomplete. All39 saved same-state score identities pass. No interim p-value,
+final inference, sample adaptation, seed replacement or efficacy claim is made.
+The original formal configuration/protocol and all historical results remain
+unchanged; this pause is documented here, not by rewriting the freeze.
+
+The narrow proposed research revision is to anchor A3 footprint support to
+the **same original exact validated per-cell winner** already retained by A5,
+and use that pose consistently for operational projection/confirmation. Keep
+the0.10 m grid, R values, original candidate catalog/order, A2, positive target
+association, all allowances/padding, AMBIGUOUS/ENVIRONMENT blocking, genuine
+continuous target collision and real ground-support votes unchanged. This
+would remove the additional snapped-representative veto, but would also change
+A3 nominal/operational support masks, U_task and consequently viewpoint gains
+and possibly rankings, even for some poses where both versions are clear.
+Unchanged formulas/constants do not mean unchanged method behavior. It is a
+change to frozen A3/A5 pose-support semantics and is **not implemented or
+authorized as an ordinary engineering fix**. The shared anchor must apply to
+all five environment methods (Fixed, Generic, Ours and both Hard ablations),
+not only the primary pair; RM4D-only retains its existing path. No improvement
+or general elimination of ambiguous-evidence deadlocks is claimed in advance.
+Any approved revision requires its own regression/readiness and prospective
+experiment-version decision; these16 v1.1 outcomes must not be overwritten,
+reclassified or silently pooled with a revised method.
+
+Checkpoint verification: root reran the saved-state reconstruction successfully
+(102 exact/102 representative assessments,36 A3 arrays,15 A2 arrays,12
+operational arrays and3 scoring/action snapshots);47 report/table/formal-design/
+analysis tests pass. A second independent review agrees with the scientific
+pause and the above qualifications; no remaining material findings. Research
+source/A5/assets/Pilot-1 files still match approved v1.1, SIM worktree is clean,
+and owned ports11951/11952 have no listener. No active simulator or bag reader
+is left running. The diagnostic figure and reproduction command are in
+`outputs/a6/formal/slot-015-hard-002-generic-01/structural-gating-diagnosis.md`.
