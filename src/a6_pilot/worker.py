@@ -8,6 +8,7 @@ import sys
 import numpy as np
 
 from environment_belief import BeliefConfig, EnvironmentGridSpec, PointCloudObservation
+from operational_gating.io import build_operational_context, save_operational
 from reachability_guided_aerial_perception import GraspTCP
 from reachability_guided_nbv import Viewpoint
 from sim_active_perception import worker as frozen_worker
@@ -45,15 +46,17 @@ def observe(request):
             observations.append(PointCloudObservation(data['points_xyz'], str(data['frame_id'].item()),
                                                        float(data['stamp_s'].item()), data['T_map_sensor']))
     belief = replay_observations(grid, observations, BeliefConfig(ground_z_m=config.ground_z_m))
+    operational, operational_metadata = build_operational_context(initial, grid, observations, belief.config)
     pose = request['uav_pose']
     if len(pose) != 4:
         raise ValueError('uav_pose must be [x,y,z,yaw]')
     method = request.get('method', 'ours')
     choice, ranking = decide_policy(field, raw, belief, Viewpoint(tuple(pose[:3]), pose[3]),
-                                    method=method, round_count=len(paths), config=config)
-    task = build_task_uncertainty(field, belief)
+                                    method=method, round_count=len(paths), config=config, operational=operational)
+    task = build_task_uncertainty(field, belief, operational=operational)
     directory = Path(request['output_dir'])
     save_belief(belief, directory / 'a2')
+    save_operational(directory, operational, operational_metadata)
     save_result(ranking, task, belief, directory)
     render_result(ranking, task, belief, directory / 'nbv.png', title=f'A6 {method} observation {len(paths)}')
     write_json(directory / 'decision.json', choice)

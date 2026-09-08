@@ -23,13 +23,15 @@ class PoseEnvironmentState(IntEnum):
     A2_OCCUPIED_BLOCKED = 0
     UNCONFIRMED = 1
     OBSERVED_GROUND_SUPPORT = 2
+    OPERATIONAL_BLOCKED = 3
 
 
 @dataclass(frozen=True)
 class PoseSupport:
     """Discrete cell-center pose, NOT the exact original IK-validated candidate.
 
-    blocked means A2-occupied-blocked only, not navigation infeasible.
+    blocked is the selected operational gate, never navigation infeasible.
+    free/occupied/unknown cell counts remain raw A2 diagnostics in v1.1 too.
     source_id and covered_environment_cells are row-major flat cell ids.
     """
 
@@ -68,6 +70,7 @@ class TaskRelevantUncertaintyField:
     unknown_score: np.ndarray
     pose_environment_state: np.ndarray
     poses: tuple[PoseSupport, ...]
+    operational_semantics: str = 'v1'
 
     @property
     def frame_id(self):
@@ -108,8 +111,8 @@ def _check_inputs(a1, a2):
     return eligible
 
 
-def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec()):
-    """Project stored best_yaw poses, then apply A2 occupied gating and score.
+def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, operational=None):
+    """Project best_yaw poses and apply v1 or explicit object-aware gating.
 
     UNKNOWN never blocks; FREE keeps its supplied unknown_score. No mutation,
     new IK, alternate yaw search, occupancy clearing, or clearance inference.
@@ -118,8 +121,13 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec()):
     if not isinstance(footprint, FootprintSpec):
         raise ValueError('footprint must be FootprintSpec')
     grid = a2_belief.grid
+    if operational is not None:
+        from operational_gating import OperationalEvidenceView, assess_footprint
+        if (not isinstance(operational, OperationalEvidenceView) or operational.grid != grid
+                or operational.config != a2_belief.config):
+            raise ValueError('operational evidence must be aligned with the A2 grid/config')
     size = grid.width_cells * grid.height_cells
-    nominal, operational = np.zeros(size), np.zeros(size)
+    nominal, relevance_operational = np.zeros(size), np.zeros(size)
     nominal_count, operational_count = np.zeros(size, dtype=np.int32), np.zeros(size, dtype=np.int32)
     nominal_source, operational_source = np.full(size, -1, dtype=np.int64), np.full(size, -1, dtype=np.int64)
     pose_state = np.full(size, PoseEnvironmentState.NOT_PROJECTED, dtype=np.int8)
@@ -136,10 +144,13 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec()):
         occupied = int(np.count_nonzero(states == EnvironmentState.OCCUPIED))
         free = int(np.count_nonzero(states == EnvironmentState.FREE))
         unknown = int(np.count_nonzero(states == EnvironmentState.UNKNOWN))
-        blocked = occupied > 0
+        assessment = None if operational is None else assess_footprint(operational, xy, yaw, footprint)
+        blocked = occupied > 0 if assessment is None else assessment.blocked
+        unconfirmed = (clipped or unknown) if assessment is None else not assessment.ground_supported
         if blocked:
-            status = PoseEnvironmentState.A2_OCCUPIED_BLOCKED
-        elif clipped or unknown:
+            status = (PoseEnvironmentState.A2_OCCUPIED_BLOCKED if assessment is None else
+                      PoseEnvironmentState.OPERATIONAL_BLOCKED)
+        elif unconfirmed:
             status = PoseEnvironmentState.UNCONFIRMED
         else:
             status = PoseEnvironmentState.OBSERVED_GROUND_SUPPORT
@@ -151,17 +162,17 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec()):
         nominal[better], nominal_source[better] = relevance, source
         if not blocked:
             operational_count[cells] += 1
-            better = cells[relevance > operational[cells]]
-            operational[better], operational_source[better] = relevance, source
+            better = cells[relevance > relevance_operational[cells]]
+            relevance_operational[better], operational_source[better] = relevance, source
 
     support = np.full(size, SupportState.NO_VALIDATED_SUPPORT, dtype=np.int8)
     support[nominal_count > 0] = SupportState.BLOCKED_ONLY
     support[operational_count > 0] = SupportState.SUPPORTED
     no_support = nominal_count == 0
     nominal[no_support] = np.nan
-    operational[no_support] = np.nan
-    uncertainty = operational * np.asarray(a2_belief.unknown_score).ravel()
-    values = (nominal, operational, uncertainty, support, nominal_count, operational_count,
+    relevance_operational[no_support] = np.nan
+    uncertainty = relevance_operational * np.asarray(a2_belief.unknown_score).ravel()
+    values = (nominal, relevance_operational, uncertainty, support, nominal_count, operational_count,
               nominal_source, operational_source, a1_field.cell_state, a2_belief.state,
               a2_belief.unknown_score, pose_state)
     arrays = []
@@ -170,4 +181,5 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec()):
         array.setflags(write=False)
         arrays.append(array)
     return TaskRelevantUncertaintyField(grid, a1_field.grasp_id, a1_field.status,
-                                        a1_field.coverage, footprint, *arrays, tuple(poses))
+                                        a1_field.coverage, footprint, *arrays, tuple(poses),
+                                        'v1' if operational is None else 'object-aware-v1.1')

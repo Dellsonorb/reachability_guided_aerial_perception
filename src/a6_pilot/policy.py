@@ -53,7 +53,7 @@ def _stop_reason(ranking, order, gain_name, score_name, round_count):
     return 'VIEW_BUDGET_REACHED' if round_count >= VIEW_BUDGET else None
 
 
-def decide_policy(field, raw, belief, current, *, method, round_count, config=A5Config()):
+def decide_policy(field, raw, belief, current, *, method, round_count, config=A5Config(), operational=None):
     """Return frozen shared diagnostics and the selected method's next action.
 
     A6 requires the approved three-window budget. Ours is the exact A5 result
@@ -67,7 +67,8 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
         raise ValueError(f'unsupported A6 method: {method}')
     if config.max_viewpoints != VIEW_BUDGET:
         raise ValueError('A6 max_viewpoints must be 3')
-    choice, ranking = decide(field, raw, belief, current, round_count=round_count, config=config)
+    choice, ranking = decide(field, raw, belief, current, round_count=round_count,
+                              config=config, operational=operational)
     if method == 'ours':
         return choice, ranking
 
@@ -75,7 +76,7 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
     gain_name, score_name = 'task_gain', 'task_score'
     if method == 'no_cost':
         _, variant = decide(field, raw, belief, current, round_count=round_count,
-                            config=replace(config, flight_weight=0))
+                            config=replace(config, flight_weight=0), operational=operational)
     elif method == 'no_occlusion':
         variant = _without_occlusion(belief, ranking)
     elif method == 'generic':

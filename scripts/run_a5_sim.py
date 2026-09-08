@@ -25,6 +25,8 @@ def build_parser():
     parser.add_argument("--rm4d-map", type=Path, required=True)
     parser.add_argument("--rm4d-task-asset", type=Path,
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
+    parser.add_argument("--operational-gating", choices=("v1", "v1.1"), default="v1",
+                        help="explicit v1.1 object-aware gate; default preserves frozen v1 behavior")
     parser.add_argument("--max-viewpoints", type=int, default=3,
                         help="observation budget, including the initial capture and rescans")
     parser.add_argument("--flight-bounds", type=float, nargs=6,
@@ -425,6 +427,7 @@ def build_adapter_class(demo_module, options):
                                "flight_bounds": options.flight_bounds,
                                "facade_position_tolerance": options.facade_position_tolerance,
                                "xy_offsets_m": options.xy_offsets_m},
+                    **getattr(self, '_operational_init', {}),
                 }, "init")
                 self._a5_candidate_count = initial.get("candidate_count", 0)
                 goal = initial_view
@@ -484,6 +487,9 @@ def build_adapter_class(demo_module, options):
             return execute_refined_pregrasp(
                 self, target, grasp, DemoError)
 
+    if getattr(options, 'operational_gating', 'v1') == 'v1.1':
+        from a5_target_support import build_object_aware_adapter
+        return build_object_aware_adapter(A5AirGroundPickDemo, options)
     return A5AirGroundPickDemo
 
 

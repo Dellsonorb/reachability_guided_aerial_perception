@@ -1,6 +1,6 @@
 """Compose frozen A1-A4 and recover exact, observed-ground-supported candidates."""
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from numbers import Integral
 
 import numpy as np
@@ -56,9 +56,19 @@ def candidate_catalog(field, raw):
     return sorted(winners.values(), key=lambda c: c['evaluation_index'])
 
 
-def assess_candidates(field, belief, catalog, *, task=None):
-    """FREE here is A2 ground support, never a navigation/clearance proof."""
-    task = build_task_uncertainty(field, belief) if task is None else task
+def assess_candidates(field, belief, catalog, *, task=None, operational=None):
+    """Confirm measured ground support, never full navigation/clearance.
+
+    v1 uses raw A2 FREE; v1.1 uses shared blocking plus real ground votes.
+    """
+    task = build_task_uncertainty(field, belief, operational=operational) if task is None else task
+    expected = 'v1' if operational is None else 'object-aware-v1.1'
+    if task.operational_semantics != expected:
+        raise ValueError('task and exact candidates must use the same operational semantics')
+    if operational is not None:
+        from operational_gating import assess_footprint
+        if operational.grid != belief.grid or operational.config != belief.config:
+            raise ValueError('operational evidence must be aligned with the A2 grid/config')
     representative = {p.source_id: p for p in task.poses}
     assessments = []
     for candidate in catalog:
@@ -69,11 +79,20 @@ def assess_candidates(field, belief, catalog, *, task=None):
         unknown = int(np.count_nonzero(states == EnvironmentState.UNKNOWN))
         source = representative.get(candidate['source_id'])
         source_blocked = source is None or source.blocked
-        assessments.append(dict(candidate, footprint_clipped=bool(clipped), free_cells=free,
+        if operational is not None and source is not None:
+            source_blocked = assess_footprint(operational, source.xy, source.yaw, task.footprint).blocked
+        exact = None if operational is None else assess_footprint(
+            operational, (candidate['x'], candidate['y']), candidate['yaw'], task.footprint)
+        confirmed = (bool(len(cells) and not clipped and not source_blocked and free == len(cells))
+                     if exact is None else bool(not source_blocked and not exact.blocked and exact.ground_supported))
+        record = dict(candidate, footprint_clipped=bool(clipped), free_cells=free,
                                 occupied_cells=occupied, unknown_cells=unknown,
                                 representative_blocked=source_blocked,
-                                confirmed=bool(len(cells) and not clipped and not source_blocked and free == len(cells)),
-                                mean_unknown_score=float(np.mean(belief.unknown_score.ravel()[cells])) if len(cells) else None))
+                                confirmed=confirmed,
+                                mean_unknown_score=float(np.mean(belief.unknown_score.ravel()[cells])) if len(cells) else None)
+        if exact is not None:
+            record['operational'] = asdict(exact)
+        assessments.append(record)
     return assessments
 
 
@@ -91,7 +110,7 @@ def replay_observations(grid, observations, config=BeliefConfig()):
     return mapper.snapshot()
 
 
-def decide(field, raw, belief, current, *, round_count, config=A5Config()):
+def decide(field, raw, belief, current, *, round_count, config=A5Config(), operational=None):
     """A bounded one-step decision; no simulated belief updates or forced flight."""
     if not isinstance(round_count, Integral) or round_count < 1:
         raise ValueError('round_count must count at least the initial observation')
@@ -107,9 +126,9 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config()):
         candidates.append(v)
     if not candidates:
         raise ValueError('no viewpoint within the configured operating area')
-    task = build_task_uncertainty(field, belief)
+    task = build_task_uncertainty(field, belief, operational=operational)
     ranking = rank_viewpoints(task, belief, current, candidates=candidates, config=nbv_config)
-    assessments = assess_candidates(field, belief, candidate_catalog(field, raw), task=task)
+    assessments = assess_candidates(field, belief, candidate_catalog(field, raw), task=task, operational=operational)
     confirmed = [c for c in assessments if c['confirmed']]
     selected = max(confirmed, key=lambda c: c['relevance']) if confirmed else None
     best = ranking.best_task
@@ -117,11 +136,14 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config()):
             'NONPOSITIVE_SCORE' if best.task_score <= 0 else
             'VIEW_BUDGET_REACHED' if round_count >= config.max_viewpoints else None)
     next_pose = None if stop or best is None else [*best.viewpoint.position_xyz, best.viewpoint.yaw_rad]
-    return dict(ok=True, round=int(round_count), stop_reason=stop, next_viewpoint=next_pose,
+    choice = dict(ok=True, round=int(round_count), stop_reason=stop, next_viewpoint=next_pose,
                 selected_candidate=selected, candidate_count=len(assessments), confirmed_candidate_count=len(confirmed),
                 best_task_score=None if best is None else best.task_score,
                 best_task_gain=None if best is None else best.task_gain,
                 assessments=assessments, environment_cells={s.name: int(np.count_nonzero(belief.state == s))
                                                            for s in EnvironmentState},
                 total_observation_votes=int(belief.observation_count.sum()),
-                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty))), ranking
+                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty)))
+    if operational is not None:
+        choice['operational_semantics'] = task.operational_semantics
+    return choice, ranking

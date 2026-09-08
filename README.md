@@ -2,7 +2,9 @@
 
 A6 状态：14/14 pilot slots 已完成（另保留 1 次启动期 INVALID 及同 slot 重跑），
 停在 [pilot review checkpoint：完整结果、失败分布与设计限制](docs/A6_PILOT_RESULTS.md)。
-A1–A5 保持冻结，未启动 formal matrix，A6 分支未合并 main。
+Pilot-1 永久保留为 v1 protocol/debugging results，未启动 formal matrix，A6 分支未合并 main。
+已批准的独立修订见 [A3/A5 v1.1 object-aware operational gating](docs/OBJECT_AWARE_GATING_V11.md)：
+显式启用、默认仍为 v1；A1/A2/A4、RM4D 和执行参数不变。当前只做单元、Hard 记录回放与原 A5 自然场景回归，不运行 Pilot-2。
 
 项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
 详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
