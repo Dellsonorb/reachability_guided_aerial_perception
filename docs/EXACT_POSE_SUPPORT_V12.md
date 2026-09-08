@@ -1,5 +1,10 @@
 # v1.2 exact-pose support anchoring — review checkpoint
 
+**Update:** the subsequent [v1.2 integration-complete checkpoint](V12_INTEGRATION_CHECKPOINT.md)
+passes the original natural A5 E2E after a bounded TF-readiness repair. The
+review below records the earlier9f3a527 checkpoint and its failures unchanged.
+No formal restart or multi-support revision follows the new integration pass.
+
 Scope: the user-authorized A3/A5 anchor revision, synthetic/saved-state tests,
 and the original natural A5 regression. This is not a formal experiment restart.
 **Core and recorded-state checks pass; natural E2E acceptance does not pass.**

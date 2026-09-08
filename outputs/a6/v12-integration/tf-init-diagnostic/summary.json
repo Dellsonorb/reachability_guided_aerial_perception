@@ -1,0 +1,29 @@
+{
+  "kind": "NO_MOTION_PUBLIC_ROS_MOVEIT_STARTUP_DIAGNOSTIC",
+  "task_activation": false,
+  "source": "live Python heartbeat and public TF/clock probe; no planning or motion request",
+  "before": {
+    "monotonic_s": 119834.304488531,
+    "python_ros_s": 66.971,
+    "ground_tf_latest_s": 66.957
+  },
+  "after_move_group_constructor": {
+    "monotonic_s": 119835.523411957,
+    "python_ros_s": 66.971,
+    "ground_tf_latest_s": 66.976,
+    "cpp_ready_ros_s": 68.102
+  },
+  "after_wall_yield": {
+    "monotonic_s": 119835.623699806,
+    "python_ros_s": 68.195,
+    "ground_tf_latest_s": 68.177
+  },
+  "largest_python_heartbeat_gap_wall_s": 1.2190923019952606,
+  "exact_lookup": {
+    "requested_stamp_s": 66.971,
+    "returned_stamp_s": 66.971,
+    "success": true,
+    "wait_wall_s": 0.00006565099465660751
+  },
+  "interpretation": "Constructor stalls Python callbacks. This probe's exact stamp was already bracketed, so its lookup succeeded; the separate clock-before-TF regression reproduces the failure. This is not an E2E attempt or a statistical sample."
+}
