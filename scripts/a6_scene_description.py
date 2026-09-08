@@ -135,15 +135,16 @@ def describe_snapshot(scene, initial, ranking, decision, arrays):
     clear_count = sum(c['high_relevance_nominal_clear'] for c in candidates)
     visible_count = sum(c['high_relevance_nominal_clear'] and c['full_initial_ground_center_visibility']
                         for c in candidates)
-    lower, upper = O_TASK_TARGETS[scene['id']]
+    tier = scene.get('tier', scene['id'])
+    lower, upper = O_TASK_TARGETS[tier]
     targets = dict(o_task=dict(reference_range=[lower, upper], measured=o_task,
                                met=None if o_task is None else lower <= o_task <= upper),
                    nominal_clear_high_relevance_footprint=dict(minimum=1, measured=clear_count,
                                                                 met=clear_count >= 1))
-    if scene['id'] == 'easy':
+    if tier == 'easy':
         targets['full_initial_footprint_ground_center_visibility'] = dict(
             minimum=1, measured=visible_count, met=visible_count >= 1)
-    if scene['id'] == 'hard':
+    if tier == 'hard':
         targets.update(a_irrel_m2=dict(minimum=3., measured=a_irrel, met=a_irrel >= 3.),
                        irrelevant_to_task_unknown_ratio=dict(minimum=2., measured=ratio, met=ratio >= 2.))
     return dict(scene_id=scene['id'], seed=scene['seed'], round=1,

@@ -192,4 +192,176 @@ class AttemptTests(unittest.TestCase):
         self.assertEqual(ET.tostring(result), ET.tostring(ET.fromstring(source)))
 
 
+class ImageDiagnosticsTests(unittest.TestCase):
+    def setUp(self):
+        self.config = json.loads((ROOT / 'configs/a6_pilot2.json').read_text())
+        self.scoped = dict(self.config, status='FROZEN_FOR_FORMAL',
+                           diagnostic_image_scope='ground_handoff_to_end')
+        self.images = ['/ground/d435/color/image_raw', '/ground/d435/depth/image_raw']
+
+    def test_scope_removes_only_two_images_and_preserves_default_command(self):
+        output = Path('/tmp/example')
+        original = attempt.diagnostic_command(self.config, output)
+        for topic in self.images:
+            self.assertIn(topic, original)
+        scoped = attempt.diagnostic_command(self.scoped, output)
+        self.assertEqual(scoped, [word for word in original if word not in self.images])
+        self.assertNotIn('/air_ground_pick_demo/status', scoped)
+        for topic in ('/ground/d435/color/camera_info', '/ground/d435/depth/camera_info'):
+            self.assertIn(topic, scoped)
+
+    def test_second_recorder_is_opt_in_lz4_and_exactly_two_native_images(self):
+        self.assertTrue(hasattr(attempt, 'image_diagnostic_command'))
+        output = Path('/tmp/example')
+        self.assertIsNone(attempt.image_diagnostic_command(self.config, output))
+        self.assertIsNone(attempt.image_diagnostic_command(
+            dict(self.scoped, record_diagnostics=False), output))
+        self.assertEqual(attempt.image_diagnostic_command(self.scoped, output),
+                         ['rosbag', 'record', '--lz4', '--buffsize', '256', '-O',
+                          str(output / 'diagnostics-images.bag'), *self.images])
+
+    def test_poll_starts_once_for_each_actual_selection_and_keeps_adapter_exit(self):
+        import tempfile
+        from unittest.mock import patch
+        self.assertTrue(hasattr(attempt, 'wait_for_adapter'))
+        for state in ('A5_SELECTED', 'A6_RM4D_SELECTED'):
+            with self.subTest(state=state), tempfile.TemporaryDirectory() as temporary:
+                path = Path(temporary) / 'events.jsonl'
+                clock, waits, selected = [10.], [], []
+                event = dict(state=state, ros_time=40., wall_monotonic=10.2)
+                def wait(timeout):
+                    waits.append(timeout)
+                    if len(waits) == 3:
+                        return 7
+                    clock[0] += timeout
+                    path.write_text(json.dumps(event) + '\n' + json.dumps(event) + '\n{"state":')
+                    raise attempt.subprocess.TimeoutExpired('adapter', timeout)
+                with patch.object(attempt.time, 'monotonic', side_effect=lambda: clock[0]):
+                    code = attempt.wait_for_adapter(SimpleNamespace(wait=wait), 12., path, selected.append)
+                self.assertEqual(code, 7)
+                self.assertEqual(selected, [event])
+                self.assertEqual(waits, [.2, .2, .2])
+
+    def test_scores_confirmation_failure_and_absent_setup_events_do_not_start_images(self):
+        import tempfile
+        self.assertTrue(hasattr(attempt, 'wait_for_adapter'))
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / 'events.jsonl'
+            selected = []
+            process = SimpleNamespace(wait=lambda timeout: 1)
+            self.assertEqual(attempt.wait_for_adapter(process, float('inf'), path, selected.append), 1)
+            path.write_text('\n'.join(json.dumps(dict(state=state, confirmed=True))
+                                      for state in ('A6_SCORE', 'A5_ROUND', 'A5_CONFIRMED', 'FAILED')))
+            self.assertEqual(attempt.wait_for_adapter(process, float('inf'), path, selected.append), 1)
+            self.assertEqual(selected, [])
+
+    def test_poll_keeps_absolute_deadline_and_default_wait_is_unchanged(self):
+        from unittest.mock import patch
+        self.assertTrue(hasattr(attempt, 'wait_for_adapter'))
+        clock, waits = [10.], []
+        def wait(timeout):
+            waits.append(timeout)
+            clock[0] += timeout
+            raise attempt.subprocess.TimeoutExpired('adapter', timeout)
+        with patch.object(attempt.time, 'monotonic', side_effect=lambda: clock[0]):
+            with self.assertRaises(attempt.subprocess.TimeoutExpired):
+                attempt.wait_for_adapter(SimpleNamespace(wait=wait), 10.5,
+                                         Path('/tmp/nonexistent-a6-events'), lambda event: None)
+        self.assertAlmostEqual(clock[0], 10.5)
+        self.assertEqual(len(waits), 3)
+        self.assertLessEqual(max(waits), .2)
+        calls = []
+        with patch.object(attempt.time, 'monotonic', return_value=10.):
+            result = attempt.wait_for_adapter(
+                SimpleNamespace(wait=lambda timeout: calls.append(timeout) or 0),
+                20., Path('/tmp/nonexistent-a6-events'))
+        self.assertEqual(result, 0)
+        self.assertEqual(calls, [10.])
+
+    def test_main_records_image_cleanup_and_start_failure_cannot_erase_method_failure(self):
+        import contextlib
+        import io
+        import tempfile
+        from unittest.mock import patch
+        for selection, startup_error, setup in [('A5_SELECTED', False, False),
+                                                ('A6_RM4D_SELECTED', False, False),
+                                                ('A5_SELECTED', True, False),
+                                                (None, False, False), (None, False, True)]:
+            with self.subTest(selection=selection, startup_error=startup_error, setup=setup), \
+                    tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                config_path, output = root / 'config.json', root / 'out'
+                config_path.write_text(json.dumps(self.scoped))
+                sim = root / 'fake-sim'
+                source = sim / 'src/demos/air_ground_pick_demo/launch/air_ground_pick_demo.launch'
+                source.parent.mkdir(parents=True)
+                source.write_text('<launch><include file="/launch/air_ground_standalone.launch"/></launch>')
+                started, stopped, waits = [], [], []
+                def popen(command, stdout, **kwargs):
+                    name = Path(stdout.name).stem
+                    started.append(name)
+                    if name == 'diagnostics-images' and startup_error:
+                        raise OSError('image recorder unavailable')
+                    process = SimpleNamespace(name=name, code=None)
+                    process.poll = lambda: process.code
+                    def wait(timeout):
+                        if name == 'adapter':
+                            waits.append(timeout)
+                            path = output / 'data/events.jsonl'
+                            if selection is not None and len(waits) == 1:
+                                path.write_text(json.dumps(dict(state=selection, ros_time=20.,
+                                                                 wall_monotonic=30.)) + '\n')
+                                raise attempt.subprocess.TimeoutExpired('adapter', timeout)
+                            with path.open('a') as stream:
+                                stream.write(json.dumps(dict(state='FAILED', reason='actual method failure')) + '\n')
+                        process.code = 1
+                        return process.code
+                    process.wait = wait
+                    if name == 'adapter':
+                        (output / 'data').mkdir()
+                        (output / 'data/events.jsonl').write_text('')
+                    return process
+                def stop(process):
+                    if process is not None:
+                        stopped.append(process.name)
+                        if process.code is None:
+                            process.code = 0
+                        if process.name in ('diagnostics', 'diagnostics-images'):
+                            (output / (process.name + '.bag')).touch()
+                with patch.dict(attempt.os.environ), \
+                        patch.object(attempt.subprocess, 'Popen', side_effect=popen), \
+                        patch.object(attempt, 'prepare_scene', return_value=10.), \
+                        patch.object(attempt, 'wait_for_adapter_ready'), \
+                        patch.object(attempt, 'stop_process', side_effect=stop), \
+                        contextlib.redirect_stdout(io.StringIO()):
+                    mode = ['--setup-scene', 'easy'] if setup else ['--slot', '1']
+                    attempt.main(['--config', str(config_path), *mode,
+                                  '--output-dir', str(output), '--sim-root', str(sim)])
+                record = json.loads((output / 'attempt.json').read_text())
+                self.assertEqual(record.get('diagnostic_image_scope'), 'ground_handoff_to_end')
+                self.assertEqual(record['status'], 'VALID_TRIAL')
+                if setup:
+                    self.assertEqual(record['kind'], 'METHOD_INDEPENDENT_SETUP')
+                    self.assertNotIn('retrieval_success', record)
+                else:
+                    self.assertEqual(record['classification_reason'], 'actual method failure')
+                    self.assertIs(record['retrieval_success'], False)
+                self.assertEqual(record['adapter_exit'], 1)
+                self.assertLessEqual(max(waits), .2)
+                self.assertIn('diagnostics', stopped)
+                self.assertEqual(started.count('diagnostics-images'), int(selection is not None))
+                if selection is None:
+                    self.assertIsNone(record['diagnostic_image_start_trigger'])
+                else:
+                    self.assertEqual(record['diagnostic_image_start_trigger']['state'], selection)
+                if startup_error:
+                    self.assertIn('image recorder unavailable', record['diagnostic_image_error'])
+                elif selection is not None:
+                    self.assertIn('diagnostics-images', stopped)
+                    self.assertEqual(record['diagnostic_image_exit'], 0)
+                    self.assertTrue(record['diagnostic_image_bag_finalized'])
+                else:
+                    self.assertFalse(record['diagnostic_image_bag_finalized'])
+
+
 if __name__ == '__main__': unittest.main()

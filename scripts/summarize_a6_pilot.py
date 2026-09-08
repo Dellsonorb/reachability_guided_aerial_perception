@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Summarize the predefined A6 pilot slots from retained offline JSON evidence.
+"""Summarize predefined A6 pilot or formal slots from retained offline JSON evidence.
 
 This script never runs a trial or replaces an outcome. Directory order defines
 rerun links. Only one completed VALID_TRIAL with a literal binary outcome can
@@ -136,8 +136,10 @@ def paired_comparison(scenes, rows, first_activation=False):
 
 
 def summarize_pilot(config, results_dir):
-    """Collect only matching predefined pilot attempts, in stable path order."""
+    """Collect matching predefined attempts, keeping the existing pilot API."""
     results_dir = Path(results_dir)
+    expected_kind = ('FORMAL_ATTEMPT' if config.get('status') == 'FROZEN_FOR_FORMAL'
+                     else 'PILOT_ATTEMPT')
     scenes = {scene['id']: scene for scene in config['scenes']}
     specs = [dict(slot, seed=scenes[slot['scene']]['seed']) for slot in config['slots']]
     by_slot = {spec['slot']: spec for spec in specs}
@@ -155,8 +157,8 @@ def summarize_pilot(config, results_dir):
         reason = None
         if record is None:
             reason = 'unreadable_attempt_record'
-        elif record.get('kind') != 'PILOT_ATTEMPT':
-            reason = 'not_a_pilot_attempt'
+        elif record.get('kind') != expected_kind:
+            reason = 'not_a_formal_attempt' if expected_kind == 'FORMAL_ATTEMPT' else 'not_a_pilot_attempt'
         elif record.get('slot') not in by_slot:
             reason = 'slot_not_scheduled'
         else:

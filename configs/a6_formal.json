@@ -1,0 +1,6797 @@
+{
+  "protocol": "docs/A6_FORMAL_PROTOCOL.md",
+  "status": "FROZEN_FOR_FORMAL",
+  "attempt_limit": 560,
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5.0,
+  "capture_wall_guard_s": 20.0,
+  "task_wall_guard_s": 1200.0,
+  "efficiency_clock": "simulation",
+  "primary_comparison": [
+    "ours",
+    "generic"
+  ],
+  "order_seed": 202609084,
+  "order_rule": "Use only Random(202609084). First loop tiers easy/moderate/hard; within each tier loop ten consecutive groups of four replicates. For each group shuffle fresh [rm4d_only,fixed,generic,ours], then shuffle fresh [0,1,2,3]; assign each left rotation once in replicate order. After all groups, loop replicates 1..40 and shuffle fresh [easy,moderate,hard] for scene-block order. Emit each core block intact. Append [no_occlusion,no_cost] to odd Hard replicates and the reverse to even Hard replicates, without additional RNG draws.",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4.0,
+    "grid_height_m": 4.0,
+    "ground_z_m": 0.0,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ],
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3.0,
+    "navigation_timeout": 120.0,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45.0,
+    "core_timeout": 900.0,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1.0
+  },
+  "scenes": [
+    {
+      "id": "easy-001",
+      "seed": 565465572,
+      "target_xy": [
+        1.8994164452490054,
+        -0.05137390950547528
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.2826405833986195,
+      "bunker_xy": [
+        3.010644518818397,
+        -2.53158255734577
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.079747837520634,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 1
+    },
+    {
+      "id": "moderate-001",
+      "seed": 1863681335,
+      "target_xy": [
+        1.9782709068391129,
+        -0.03371716202151161
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.11300690102981564,
+      "bunker_xy": [
+        3.015000794532078,
+        -2.4830404203314975
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2044624852579933,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 1
+    },
+    {
+      "id": "hard-001",
+      "seed": 719495214,
+      "target_xy": [
+        1.9930595722351625,
+        0.07643065892664594
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4699685645416418,
+      "bunker_xy": [
+        2.972089844877208,
+        -2.4654731187767425
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1778199565848912,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 1
+    },
+    {
+      "id": "easy-002",
+      "seed": 298579121,
+      "target_xy": [
+        1.8625270202759425,
+        -0.07895436980195991
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.061969581455689426,
+      "bunker_xy": [
+        3.0284664631437237,
+        -2.4984384889632096
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0671459157739718,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 2
+    },
+    {
+      "id": "moderate-002",
+      "seed": 35855931,
+      "target_xy": [
+        2.0203221789404098,
+        0.11202226032665288
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.25171886254655257,
+      "bunker_xy": [
+        2.9092283813869204,
+        -2.579650640282386
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0632168328152205,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 2
+    },
+    {
+      "id": "hard-002",
+      "seed": 958985919,
+      "target_xy": [
+        1.920387025177396,
+        -0.0612404855633963
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.025251765829482742,
+      "bunker_xy": [
+        3.0310000757781945,
+        -2.4146181723888493
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2028273274811347,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 2
+    },
+    {
+      "id": "easy-003",
+      "seed": 338725510,
+      "target_xy": [
+        2.0982021317470974,
+        -0.02496558332505941
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.18740893723471908,
+      "bunker_xy": [
+        3.0973582328899045,
+        -2.4299726797467005
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.058737202879664,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 3
+    },
+    {
+      "id": "moderate-003",
+      "seed": 1569560994,
+      "target_xy": [
+        1.930475934004483,
+        -0.03796921529009539
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.01994324038709716,
+      "bunker_xy": [
+        2.914277928183912,
+        -2.4335902433120724
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.123160554749487,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 3
+    },
+    {
+      "id": "hard-003",
+      "seed": 597595373,
+      "target_xy": [
+        1.8992074684240579,
+        0.04464676664529815
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.2716428669032261,
+      "bunker_xy": [
+        3.080021404193972,
+        -2.41452655054527
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1723775123319617,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 3
+    },
+    {
+      "id": "easy-004",
+      "seed": 1658322352,
+      "target_xy": [
+        1.9286916707903117,
+        -0.120029764624888
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.34019940658587866,
+      "bunker_xy": [
+        2.989834170418892,
+        -2.407417471082282
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.171316612189097,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 4
+    },
+    {
+      "id": "moderate-004",
+      "seed": 1360986836,
+      "target_xy": [
+        1.8844526374156827,
+        0.05372907849156083
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.1913369339283244,
+      "bunker_xy": [
+        3.0202413924302993,
+        -2.422459131723555
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1318250918550055,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 4
+    },
+    {
+      "id": "hard-004",
+      "seed": 111882359,
+      "target_xy": [
+        2.116572190752514,
+        0.03715388160328656
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3177100130390479,
+      "bunker_xy": [
+        2.9565677690230414,
+        -2.5941133077792418
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.077768657789612,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 4
+    },
+    {
+      "id": "easy-005",
+      "seed": 1865350886,
+      "target_xy": [
+        2.0105081104452074,
+        -0.05532959025395187
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.077290462415819,
+      "bunker_xy": [
+        2.9585162348808836,
+        -2.4164027137083943
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.187511692351282,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 5
+    },
+    {
+      "id": "moderate-005",
+      "seed": 1470629440,
+      "target_xy": [
+        2.1285794350781337,
+        0.014697273267508443
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.40912052342868344,
+      "bunker_xy": [
+        2.9709865932274653,
+        -2.421294681983152
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.197569562339997,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 5
+    },
+    {
+      "id": "hard-005",
+      "seed": 1333883832,
+      "target_xy": [
+        2.1018723456416835,
+        0.08075186883450242
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.46144941299097547,
+      "bunker_xy": [
+        2.956240746010088,
+        -2.462380808974666
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0691787804106583,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 5
+    },
+    {
+      "id": "easy-006",
+      "seed": 676647065,
+      "target_xy": [
+        2.0483168687347177,
+        -0.12881981421398295
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.32791374837444864,
+      "bunker_xy": [
+        2.9067868302784654,
+        -2.514037105728103
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.133335270094775,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 6
+    },
+    {
+      "id": "moderate-006",
+      "seed": 1332140548,
+      "target_xy": [
+        1.8604798529696907,
+        -0.14549006293240369
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.23824002746963058,
+      "bunker_xy": [
+        2.9775701537731525,
+        -2.503294836561328
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1161318069343036,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 6
+    },
+    {
+      "id": "hard-006",
+      "seed": 418828098,
+      "target_xy": [
+        1.9275001491089057,
+        -0.09419348906861147
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.09227169287704817,
+      "bunker_xy": [
+        2.9514971173023405,
+        -2.5578410968161105
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.131880515769819,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 6
+    },
+    {
+      "id": "easy-007",
+      "seed": 1003569870,
+      "target_xy": [
+        2.1246606653148543,
+        0.1153318966384744
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.25259909142347764,
+      "bunker_xy": [
+        2.988449817069368,
+        -2.5849921069048967
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1132583707649935,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 7
+    },
+    {
+      "id": "moderate-007",
+      "seed": 2094985234,
+      "target_xy": [
+        2.030135555889297,
+        0.08473503632735882
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4266411130020009,
+      "bunker_xy": [
+        3.077789198662532,
+        -2.5816762664164457
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2169278724239816,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 7
+    },
+    {
+      "id": "hard-007",
+      "seed": 1018698094,
+      "target_xy": [
+        1.8562356893698457,
+        -0.048592818821971154
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.1325445860151903,
+      "bunker_xy": [
+        3.0745611700067976,
+        -2.470615459858796
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.129148659523495,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 7
+    },
+    {
+      "id": "easy-008",
+      "seed": 1868626241,
+      "target_xy": [
+        2.0121552914525953,
+        -0.08779005179226093
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2244081968186873,
+      "bunker_xy": [
+        3.0713226003334437,
+        -2.488660712597102
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2081079348323813,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 8
+    },
+    {
+      "id": "moderate-008",
+      "seed": 1041859029,
+      "target_xy": [
+        2.144001357529674,
+        0.09591086589227757
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.012393814585768603,
+      "bunker_xy": [
+        2.9187658778863366,
+        -2.489287689083262
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1345789016371928,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 8
+    },
+    {
+      "id": "hard-008",
+      "seed": 1040222024,
+      "target_xy": [
+        2.108036335325768,
+        -0.05044699617918698
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3026513269011051,
+      "bunker_xy": [
+        3.001351186513301,
+        -2.5498405331268716
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.111150071815306,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 8
+    },
+    {
+      "id": "easy-009",
+      "seed": 1475795544,
+      "target_xy": [
+        1.9825561736460755,
+        -0.14270490516121415
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.297268668789252,
+      "bunker_xy": [
+        3.0568777082664456,
+        -2.4639916637764374
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.113998173523856,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 9
+    },
+    {
+      "id": "moderate-009",
+      "seed": 1770482040,
+      "target_xy": [
+        1.967959873852439,
+        -0.11606933919842721
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.5200677007401284,
+      "bunker_xy": [
+        3.00546558194927,
+        -2.55801707168096
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1240553511933333,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 9
+    },
+    {
+      "id": "hard-009",
+      "seed": 828264247,
+      "target_xy": [
+        1.904168877098221,
+        -0.07066702901945172
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.03078320714580285,
+      "bunker_xy": [
+        3.0550530594677148,
+        -2.5909767214946755
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.201322472023827,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 9
+    },
+    {
+      "id": "easy-010",
+      "seed": 1856347681,
+      "target_xy": [
+        2.016112135510688,
+        0.03132076763442407
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3538564468444334,
+      "bunker_xy": [
+        3.0412928621561073,
+        -2.504317575866004
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1882272116392496,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 10
+    },
+    {
+      "id": "moderate-010",
+      "seed": 441069258,
+      "target_xy": [
+        2.0202360709203644,
+        0.11487742786581881
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.3315446780090717,
+      "bunker_xy": [
+        3.0140663859215033,
+        -2.535299914795229
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.081106372917776,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 10
+    },
+    {
+      "id": "hard-010",
+      "seed": 1701449634,
+      "target_xy": [
+        1.8631262233832038,
+        -0.01992708521128861
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.392072385789475,
+      "bunker_xy": [
+        3.0970830309194777,
+        -2.537255364657189
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2114828156413364,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 10
+    },
+    {
+      "id": "easy-011",
+      "seed": 1799044741,
+      "target_xy": [
+        1.980016547128624,
+        -0.1264056900993694
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.1261910534732691,
+      "bunker_xy": [
+        3.0345867310188597,
+        -2.5913975083328884
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.188467490582044,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 11
+    },
+    {
+      "id": "moderate-011",
+      "seed": 1542250437,
+      "target_xy": [
+        2.059804021752443,
+        0.07078289842157154
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.5160689686915486,
+      "bunker_xy": [
+        3.014572237985015,
+        -2.5419716589351595
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0761661767640343,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 11
+    },
+    {
+      "id": "hard-011",
+      "seed": 1969841285,
+      "target_xy": [
+        1.9829046023036845,
+        0.1016071437305475
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4881970691071301,
+      "bunker_xy": [
+        3.081244298793862,
+        -2.484408449696178
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0653393352377676,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 11
+    },
+    {
+      "id": "easy-012",
+      "seed": 1756570198,
+      "target_xy": [
+        2.065621553186257,
+        0.052501360985644424
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.40547103808553275,
+      "bunker_xy": [
+        3.0425932151165336,
+        -2.5972820344026823
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.184496214388042,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 12
+    },
+    {
+      "id": "moderate-012",
+      "seed": 1359732063,
+      "target_xy": [
+        2.084760671531016,
+        -0.10456177966673533
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.26950954446732045,
+      "bunker_xy": [
+        3.0709183819799666,
+        -2.5228487252307055
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1057472126350874,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 12
+    },
+    {
+      "id": "hard-012",
+      "seed": 813203922,
+      "target_xy": [
+        1.9984740770928935,
+        -0.04370470634693069
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3028985717674496,
+      "bunker_xy": [
+        2.9221124950518256,
+        -2.4363025431064207
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1367633158730457,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 12
+    },
+    {
+      "id": "easy-013",
+      "seed": 611994095,
+      "target_xy": [
+        1.919253709125975,
+        -0.09737609456625716
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.08249951150090717,
+      "bunker_xy": [
+        3.0824389944357957,
+        -2.4163590269923163
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.17906624629326,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 13
+    },
+    {
+      "id": "moderate-013",
+      "seed": 1984380563,
+      "target_xy": [
+        1.9971017198590653,
+        0.049182016960996056
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.029350988987377424,
+      "bunker_xy": [
+        3.094730882888628,
+        -2.5042449887554445
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.08772656482416,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 13
+    },
+    {
+      "id": "hard-013",
+      "seed": 1101554710,
+      "target_xy": [
+        1.9675142045965681,
+        0.049558860976215674
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4129115897947525,
+      "bunker_xy": [
+        2.9768654234347762,
+        -2.4579073866738415
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.184297766962921,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 13
+    },
+    {
+      "id": "easy-014",
+      "seed": 2131072486,
+      "target_xy": [
+        1.9827662661211207,
+        -0.12365866007191212
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.06199212065976312,
+      "bunker_xy": [
+        3.0089473434069185,
+        -2.421418954190802
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2188910536689868,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 14
+    },
+    {
+      "id": "moderate-014",
+      "seed": 2028221461,
+      "target_xy": [
+        1.8565783914424965,
+        -0.07463792240090097
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.2402444193376645,
+      "bunker_xy": [
+        2.954100379632971,
+        -2.5605819775184533
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1688808249358424,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 14
+    },
+    {
+      "id": "hard-014",
+      "seed": 1923569308,
+      "target_xy": [
+        2.0458423279757136,
+        0.09387685694570852
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.1833261986443916,
+      "bunker_xy": [
+        2.9696253755890436,
+        -2.4902142663862388
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0933131213648504,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 14
+    },
+    {
+      "id": "easy-015",
+      "seed": 827420593,
+      "target_xy": [
+        2.0480976333019343,
+        -0.10798136351696128
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3044995224235544,
+      "bunker_xy": [
+        2.9297185193241653,
+        -2.449061648912623
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.063670834926996,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 15
+    },
+    {
+      "id": "moderate-015",
+      "seed": 1730979111,
+      "target_xy": [
+        2.1258690483082088,
+        0.10016027574784717
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.10269579041940169,
+      "bunker_xy": [
+        2.928282460687362,
+        -2.5270544634640055
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.101242773031881,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 15
+    },
+    {
+      "id": "hard-015",
+      "seed": 2123845030,
+      "target_xy": [
+        1.8857374474904505,
+        0.02479002611841563
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.43559019658170206,
+      "bunker_xy": [
+        2.937838102376031,
+        -2.4309728792111267
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1055060441467317,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 15
+    },
+    {
+      "id": "easy-016",
+      "seed": 7919883,
+      "target_xy": [
+        2.1371619081063256,
+        0.02076779650862387
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.3299106006866239,
+      "bunker_xy": [
+        3.086940886446021,
+        -2.5986539964336988
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1503060805279772,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 16
+    },
+    {
+      "id": "moderate-016",
+      "seed": 1341417963,
+      "target_xy": [
+        2.063787224929573,
+        0.06330865850893622
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.02541543163563087,
+      "bunker_xy": [
+        3.015602288612019,
+        -2.416307179494906
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.210635536412885,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 16
+    },
+    {
+      "id": "hard-016",
+      "seed": 1569599428,
+      "target_xy": [
+        2.0457898244575885,
+        0.07289464239176524
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.17244332490407094,
+      "bunker_xy": [
+        2.9894054768086225,
+        -2.405731886422122
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1437261644058605,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 16
+    },
+    {
+      "id": "easy-017",
+      "seed": 1173791830,
+      "target_xy": [
+        1.990262510743551,
+        -0.08335153650918246
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.1278650383544805,
+      "bunker_xy": [
+        2.948093978905326,
+        -2.5113049725670678
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.16269517116693,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 17
+    },
+    {
+      "id": "moderate-017",
+      "seed": 840005071,
+      "target_xy": [
+        1.874341837706776,
+        0.015814203471579164
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.3673270939850392,
+      "bunker_xy": [
+        3.011995193296919,
+        -2.5698328593327897
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.093645350656195,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 17
+    },
+    {
+      "id": "hard-017",
+      "seed": 1733158990,
+      "target_xy": [
+        1.8851419691354903,
+        -0.09700614831550619
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.3214535523249261,
+      "bunker_xy": [
+        3.0447787186748605,
+        -2.4967616803512387
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.149088884486646,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 17
+    },
+    {
+      "id": "easy-018",
+      "seed": 960712397,
+      "target_xy": [
+        2.102199694292287,
+        0.14893994144451253
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.34058030421281804,
+      "bunker_xy": [
+        3.06149861478846,
+        -2.5300151946632705
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1984021684350994,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 18
+    },
+    {
+      "id": "moderate-018",
+      "seed": 482210981,
+      "target_xy": [
+        1.8696304749313317,
+        0.04492974943252881
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.28011130620134483,
+      "bunker_xy": [
+        2.9683929572443035,
+        -2.5087847455632613
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.183253994319185,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 18
+    },
+    {
+      "id": "hard-018",
+      "seed": 688630062,
+      "target_xy": [
+        1.942879866624743,
+        0.09501298512576425
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.042296569058037914,
+      "bunker_xy": [
+        2.9107868623326785,
+        -2.421636161501755
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.138088143017103,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 18
+    },
+    {
+      "id": "easy-019",
+      "seed": 1594703639,
+      "target_xy": [
+        2.067722259827965,
+        -0.05526541671681397
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.41211651892494516,
+      "bunker_xy": [
+        2.909918122566664,
+        -2.4858482439840124
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.217440553789464,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 19
+    },
+    {
+      "id": "moderate-019",
+      "seed": 1953486309,
+      "target_xy": [
+        2.0016736873667935,
+        -0.020102640530333143
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.2919897759371611,
+      "bunker_xy": [
+        2.902985598507144,
+        -2.5273993999117534
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1160362293256645,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 19
+    },
+    {
+      "id": "hard-019",
+      "seed": 1645484494,
+      "target_xy": [
+        2.12855486218293,
+        0.041087235125672056
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.29782250813651345,
+      "bunker_xy": [
+        2.9650881021122086,
+        -2.4145280839497723
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.174528817259194,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 19
+    },
+    {
+      "id": "easy-020",
+      "seed": 201593142,
+      "target_xy": [
+        1.9051659474913032,
+        -0.02326945191447566
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4323726528115661,
+      "bunker_xy": [
+        2.942749872947773,
+        -2.5341934191926336
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.21964456649223,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 20
+    },
+    {
+      "id": "moderate-020",
+      "seed": 929060639,
+      "target_xy": [
+        2.067132012078994,
+        -0.020048458065651975
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.13649537981528925,
+      "bunker_xy": [
+        3.094164726054362,
+        -2.404202079502578
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.11651209423473,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 20
+    },
+    {
+      "id": "hard-020",
+      "seed": 56288909,
+      "target_xy": [
+        1.896467077119811,
+        0.14877463990789438
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2929210078963108,
+      "bunker_xy": [
+        2.9398574019408734,
+        -2.5383764495732444
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0792745838773072,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 20
+    },
+    {
+      "id": "easy-021",
+      "seed": 56608368,
+      "target_xy": [
+        2.1256539399817496,
+        0.07808316075545763
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.22175579854498573,
+      "bunker_xy": [
+        3.047087843439677,
+        -2.545910035009271
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.162033105374766,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 21
+    },
+    {
+      "id": "moderate-021",
+      "seed": 138520652,
+      "target_xy": [
+        2.0532972982667688,
+        0.037261914310145416
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.48281657969364666,
+      "bunker_xy": [
+        2.9031462268081585,
+        -2.463097782037444
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1037490323210237,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 21
+    },
+    {
+      "id": "hard-021",
+      "seed": 1404021557,
+      "target_xy": [
+        2.0222461254183073,
+        -0.01419834032853795
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4213143759054868,
+      "bunker_xy": [
+        3.0040477123730125,
+        -2.4026164362480387
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.126843650508757,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 21
+    },
+    {
+      "id": "easy-022",
+      "seed": 274451619,
+      "target_xy": [
+        1.91820369639675,
+        0.13523914707867649
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.42191761566610286,
+      "bunker_xy": [
+        3.0876024992181965,
+        -2.509440041339058
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1826548839577433,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 22
+    },
+    {
+      "id": "moderate-022",
+      "seed": 451755430,
+      "target_xy": [
+        2.063237613244397,
+        0.03303967497620505
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.19992502100211063,
+      "bunker_xy": [
+        3.0004059044421783,
+        -2.4251516152069166
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2075628088543775,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 22
+    },
+    {
+      "id": "hard-022",
+      "seed": 1539477280,
+      "target_xy": [
+        1.9240104010907009,
+        -0.06214218714428277
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.06724079337465083,
+      "bunker_xy": [
+        3.0023379163972805,
+        -2.5917266325544275
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.135385779926682,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 22
+    },
+    {
+      "id": "easy-023",
+      "seed": 649848317,
+      "target_xy": [
+        2.1251178488897864,
+        -0.01518864752623822
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.07535822325125874,
+      "bunker_xy": [
+        2.9237426327093856,
+        -2.401711238309911
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1260187085613067,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 23
+    },
+    {
+      "id": "moderate-023",
+      "seed": 256870585,
+      "target_xy": [
+        2.0867440956386214,
+        0.028754041890918264
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.11428147901927344,
+      "bunker_xy": [
+        2.979511334012846,
+        -2.523061499255952
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0727661352942057,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 23
+    },
+    {
+      "id": "hard-023",
+      "seed": 353762560,
+      "target_xy": [
+        1.8828949330147573,
+        0.09669707392061477
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.20303217976542898,
+      "bunker_xy": [
+        3.059057135807265,
+        -2.4747242054251513
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1513988486741216,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 23
+    },
+    {
+      "id": "easy-024",
+      "seed": 1126888517,
+      "target_xy": [
+        1.861336544826388,
+        -0.13751743065485197
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.14039699278693463,
+      "bunker_xy": [
+        3.0018120561983572,
+        -2.5229754812921055
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1838419510479845,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 24
+    },
+    {
+      "id": "moderate-024",
+      "seed": 907623950,
+      "target_xy": [
+        2.0224389802820375,
+        -0.03251726062985692
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4910239437136049,
+      "bunker_xy": [
+        3.049614957739612,
+        -2.424652862318171
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1822613084992097,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 24
+    },
+    {
+      "id": "hard-024",
+      "seed": 1095407513,
+      "target_xy": [
+        2.0817567889400035,
+        -0.12539921874599316
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.061688623920437835,
+      "bunker_xy": [
+        2.9918737219476004,
+        -2.509279332630313
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.124915572179187,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 24
+    },
+    {
+      "id": "easy-025",
+      "seed": 810609070,
+      "target_xy": [
+        2.1278137890693767,
+        0.04465452267836559
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.36779260715872986,
+      "bunker_xy": [
+        3.062865879736021,
+        -2.5039127349318075
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.065299805469065,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 25
+    },
+    {
+      "id": "moderate-025",
+      "seed": 333307778,
+      "target_xy": [
+        1.9788735736617649,
+        -0.12003092441231629
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.10788457123852913,
+      "bunker_xy": [
+        2.978718093985466,
+        -2.400207058058311
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1103560261172416,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 25
+    },
+    {
+      "id": "hard-025",
+      "seed": 2091101838,
+      "target_xy": [
+        2.1031826075636655,
+        0.041551670878487296
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.21951409497109053,
+      "bunker_xy": [
+        3.0171163240646597,
+        -2.520621786341322
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.173099616988326,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 25
+    },
+    {
+      "id": "easy-026",
+      "seed": 1562111236,
+      "target_xy": [
+        1.974529389440419,
+        0.12041856223542777
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.43483678957385274,
+      "bunker_xy": [
+        3.031217523583258,
+        -2.417098977752959
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1593157138161665,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 26
+    },
+    {
+      "id": "moderate-026",
+      "seed": 1248115148,
+      "target_xy": [
+        2.0615820172119244,
+        -0.11189436191596212
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.013459343000463142,
+      "bunker_xy": [
+        3.067657392885946,
+        -2.4119026557582304
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2143035602094994,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 26
+    },
+    {
+      "id": "hard-026",
+      "seed": 771670306,
+      "target_xy": [
+        1.89492447703095,
+        0.04572903119611188
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.09173643245093788,
+      "bunker_xy": [
+        3.0975740540488337,
+        -2.405036586917772
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.097833533551923,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 26
+    },
+    {
+      "id": "easy-027",
+      "seed": 163216851,
+      "target_xy": [
+        2.129931897034378,
+        -0.028498398568178207
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.17682129289766457,
+      "bunker_xy": [
+        3.045765589995905,
+        -2.5347385693674815
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1074595549070794,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 27
+    },
+    {
+      "id": "moderate-027",
+      "seed": 107046518,
+      "target_xy": [
+        2.027809477227599,
+        0.023149300845961007
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.36361138096656626,
+      "bunker_xy": [
+        2.9546716616795226,
+        -2.5275137364494458
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.176923692595964,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 27
+    },
+    {
+      "id": "hard-027",
+      "seed": 1389146525,
+      "target_xy": [
+        2.024957913715612,
+        0.07029726776060666
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.2991893757788966,
+      "bunker_xy": [
+        2.9077731368713677,
+        -2.4602020790073733
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.099178352742876,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 27
+    },
+    {
+      "id": "easy-028",
+      "seed": 785958616,
+      "target_xy": [
+        2.020566817883307,
+        -0.10071801380090394
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.47162489538020225,
+      "bunker_xy": [
+        3.0934309123833286,
+        -2.572957879110705
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.208760376885874,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 28
+    },
+    {
+      "id": "moderate-028",
+      "seed": 1053579544,
+      "target_xy": [
+        2.1109678253873225,
+        0.06649941992213404
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4088225464883303,
+      "bunker_xy": [
+        3.03236566784793,
+        -2.4143792471513925
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0590717715859896,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 28
+    },
+    {
+      "id": "hard-028",
+      "seed": 1021949288,
+      "target_xy": [
+        1.998350268946711,
+        -0.08754745299208987
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.15923980609367583,
+      "bunker_xy": [
+        2.984700780731722,
+        -2.4971676263252878
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1098043486580274,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 28
+    },
+    {
+      "id": "easy-029",
+      "seed": 2095744990,
+      "target_xy": [
+        2.111017870542393,
+        0.022649022195520757
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.36274697399369105,
+      "bunker_xy": [
+        2.994004596651702,
+        -2.474184091153662
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1041178617810483,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 29
+    },
+    {
+      "id": "moderate-029",
+      "seed": 782318674,
+      "target_xy": [
+        2.064077276730928,
+        -0.022154156309344086
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.1476623237565543,
+      "bunker_xy": [
+        2.928475036170105,
+        -2.5817978736902565
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0719546710272088,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 29
+    },
+    {
+      "id": "hard-029",
+      "seed": 1609305575,
+      "target_xy": [
+        1.8881191196245806,
+        -0.015363076276401266
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.36000615322356744,
+      "bunker_xy": [
+        3.0746904016345207,
+        -2.455633077429793
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.179724700712966,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 29
+    },
+    {
+      "id": "easy-030",
+      "seed": 303355680,
+      "target_xy": [
+        2.0979608046319447,
+        0.14500670184875206
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.04685109689946387,
+      "bunker_xy": [
+        3.0556454681747325,
+        -2.5076065642637175
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.112844092385108,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 30
+    },
+    {
+      "id": "moderate-030",
+      "seed": 1746679637,
+      "target_xy": [
+        1.9977378687026677,
+        0.0916163019696763
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.47413107561210044,
+      "bunker_xy": [
+        3.0284608685814467,
+        -2.419688978665641
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1941371180005054,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 30
+    },
+    {
+      "id": "hard-030",
+      "seed": 2006489180,
+      "target_xy": [
+        2.027191380286601,
+        0.1358935314659281
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.3596985500973869,
+      "bunker_xy": [
+        3.0583796745625316,
+        -2.4126360714294215
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1635316047456765,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 30
+    },
+    {
+      "id": "easy-031",
+      "seed": 595597498,
+      "target_xy": [
+        1.9564484329136143,
+        0.07807737443214705
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.33340774625379516,
+      "bunker_xy": [
+        2.9984331379755824,
+        -2.4819439078677634
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1851628638183276,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 31
+    },
+    {
+      "id": "moderate-031",
+      "seed": 1316987547,
+      "target_xy": [
+        2.1156989935104975,
+        0.06932913063081844
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.11663523017389832,
+      "bunker_xy": [
+        3.096287839799141,
+        -2.594412593303585
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1043857278134044,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 31
+    },
+    {
+      "id": "hard-031",
+      "seed": 525756315,
+      "target_xy": [
+        1.924098541425221,
+        0.053599268478514234
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.1385689875374922,
+      "bunker_xy": [
+        2.9246909830161965,
+        -2.510790276184808
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1977433469797125,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 31
+    },
+    {
+      "id": "easy-032",
+      "seed": 414965416,
+      "target_xy": [
+        1.8863491891169508,
+        -0.06893266400752028
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4275673735771387,
+      "bunker_xy": [
+        2.968413161341667,
+        -2.5963070248190467
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0622681483163046,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 32
+    },
+    {
+      "id": "moderate-032",
+      "seed": 415462856,
+      "target_xy": [
+        1.9146534733180443,
+        -0.07426400747214854
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4217800035765749,
+      "bunker_xy": [
+        2.916621031443701,
+        -2.4955248509369907
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.149690685931392,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 32
+    },
+    {
+      "id": "hard-032",
+      "seed": 1703231483,
+      "target_xy": [
+        2.0609271211049505,
+        -0.04728161476588606
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.22532292621195882,
+      "bunker_xy": [
+        3.0202612676991425,
+        -2.4089753925227635
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.096106665622315,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 32
+    },
+    {
+      "id": "easy-033",
+      "seed": 48346439,
+      "target_xy": [
+        2.0074877924420336,
+        -0.05414678884002784
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.09020906006167628,
+      "bunker_xy": [
+        2.9708813205739895,
+        -2.532637537156142
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.179341935678852,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 33
+    },
+    {
+      "id": "moderate-033",
+      "seed": 1860393162,
+      "target_xy": [
+        1.892289894848969,
+        -0.009031872595638452
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.36637416255257316,
+      "bunker_xy": [
+        2.951296302997712,
+        -2.4088600080022613
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.217765724737572,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 33
+    },
+    {
+      "id": "hard-033",
+      "seed": 189038915,
+      "target_xy": [
+        1.9443265251647734,
+        0.13563290224550525
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.28590025261832985,
+      "bunker_xy": [
+        3.077061821516171,
+        -2.486591399459091
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.19820388893644,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 33
+    },
+    {
+      "id": "easy-034",
+      "seed": 119346356,
+      "target_xy": [
+        2.0529645375585375,
+        -0.027735233445681934
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.37776853738756955,
+      "bunker_xy": [
+        2.978593134973125,
+        -2.587484064358586
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.124720670314726,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 34
+    },
+    {
+      "id": "moderate-034",
+      "seed": 1866280922,
+      "target_xy": [
+        1.942852863217807,
+        0.08215649188908292
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4433955446784358,
+      "bunker_xy": [
+        3.0830016500624184,
+        -2.4588361095263243
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2154659572572775,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 34
+    },
+    {
+      "id": "hard-034",
+      "seed": 1618598086,
+      "target_xy": [
+        1.8618138124753651,
+        -0.01656689926122723
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.40639634745337727,
+      "bunker_xy": [
+        2.948785501588682,
+        -2.542640667125956
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2148628263592745,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 34
+    },
+    {
+      "id": "easy-035",
+      "seed": 763888104,
+      "target_xy": [
+        2.052356612826926,
+        0.10662336626575894
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.036530660922880154,
+      "bunker_xy": [
+        2.9231738362546347,
+        -2.500960231445331
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.194287893858609,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 35
+    },
+    {
+      "id": "moderate-035",
+      "seed": 658678540,
+      "target_xy": [
+        2.1109618773965595,
+        -0.06188708340225803
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2761838006060028,
+      "bunker_xy": [
+        2.9610261965697418,
+        -2.594129840939712
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1106757456708776,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 35
+    },
+    {
+      "id": "hard-035",
+      "seed": 2099583697,
+      "target_xy": [
+        1.9117080715758012,
+        -0.04422823473676227
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.05756222125472571,
+      "bunker_xy": [
+        2.916792570869148,
+        -2.5157467605092783
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0814813156741048,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 35
+    },
+    {
+      "id": "easy-036",
+      "seed": 1125639427,
+      "target_xy": [
+        1.922596258350004,
+        -0.14674124397574437
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.37138172263855773,
+      "bunker_xy": [
+        3.0907362106032914,
+        -2.528155846494854
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1851833427304883,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 36
+    },
+    {
+      "id": "moderate-036",
+      "seed": 1769458986,
+      "target_xy": [
+        1.8542697001229742,
+        -0.10966177043545515
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.19943093961115027,
+      "bunker_xy": [
+        3.063630582523586,
+        -2.5041908955216936
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.214921274781828,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 36
+    },
+    {
+      "id": "hard-036",
+      "seed": 1487579189,
+      "target_xy": [
+        2.091010762267944,
+        0.08857207733343203
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.18714504194056225,
+      "bunker_xy": [
+        2.954228743561411,
+        -2.5246693941843423
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.124028171290981,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 36
+    },
+    {
+      "id": "easy-037",
+      "seed": 1995251425,
+      "target_xy": [
+        1.9130761738856408,
+        -0.07704783287613964
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.37583057742063775,
+      "bunker_xy": [
+        2.9492963675231607,
+        -2.5073418755202432
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0566050349145306,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 37
+    },
+    {
+      "id": "moderate-037",
+      "seed": 611919965,
+      "target_xy": [
+        1.9409253046192636,
+        -0.034652333049882564
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.13932169737501127,
+      "bunker_xy": [
+        3.021148579701023,
+        -2.411600885226802
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.127840910712403,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 37
+    },
+    {
+      "id": "hard-037",
+      "seed": 1691047771,
+      "target_xy": [
+        1.8697237665996884,
+        -0.025552472259349326
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.43675257688330194,
+      "bunker_xy": [
+        3.073093300446353,
+        -2.5391051743475344
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1785284320761287,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 37
+    },
+    {
+      "id": "easy-038",
+      "seed": 980355277,
+      "target_xy": [
+        2.0699132898942403,
+        0.03950481623853827
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.41552090626548793,
+      "bunker_xy": [
+        3.0368053450029837,
+        -2.5236120150052956
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.146627499598567,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 38
+    },
+    {
+      "id": "moderate-038",
+      "seed": 630455259,
+      "target_xy": [
+        1.8924913944654942,
+        -0.12177294272495676
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4638467445306622,
+      "bunker_xy": [
+        3.0146638738654525,
+        -2.456968208649296
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1653860156879032,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 38
+    },
+    {
+      "id": "hard-038",
+      "seed": 144662374,
+      "target_xy": [
+        1.96891029819693,
+        -0.06555937554526768
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2306142510681256,
+      "bunker_xy": [
+        3.084693992955981,
+        -2.4914280947262912
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2156722769488066,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 38
+    },
+    {
+      "id": "easy-039",
+      "seed": 835671230,
+      "target_xy": [
+        2.015448398884685,
+        -0.07908193559420659
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.137986220576237,
+      "bunker_xy": [
+        3.0463536197494983,
+        -2.5051809470346322
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.106247194175492,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 39
+    },
+    {
+      "id": "moderate-039",
+      "seed": 1770335982,
+      "target_xy": [
+        1.876555120889459,
+        -0.07032203770081416
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.0034646367055998217,
+      "bunker_xy": [
+        3.0327326704359447,
+        -2.5701099707498916
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2263389286682025,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 39
+    },
+    {
+      "id": "hard-039",
+      "seed": 644188741,
+      "target_xy": [
+        2.083111017941754,
+        0.12956704002832034
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.23921034276820163,
+      "bunker_xy": [
+        2.9539443851552654,
+        -2.4175026062292986
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.132395206124982,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 39
+    },
+    {
+      "id": "easy-040",
+      "seed": 1526797714,
+      "target_xy": [
+        1.8527066006522401,
+        0.03411227126328212
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.0363140625608791,
+      "bunker_xy": [
+        3.0566551914957927,
+        -2.51108048717552
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.0890607120217983,
+      "boxes": [],
+      "tier": "easy",
+      "replicate": 40
+    },
+    {
+      "id": "moderate-040",
+      "seed": 494018758,
+      "target_xy": [
+        2.0699507101593517,
+        -0.14871820569421268
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4249133501573992,
+      "bunker_xy": [
+        3.0549091251564318,
+        -2.5313286185324197
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.201917200267401,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "moderate",
+      "replicate": 40
+    },
+    {
+      "id": "hard-040",
+      "seed": 1596483039,
+      "target_xy": [
+        2.0393291684391284,
+        0.06015438795228356
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.43435598662661723,
+      "bunker_xy": [
+        3.0639601927500872,
+        -2.446766982208842
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1249948380279418,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ],
+      "tier": "hard",
+      "replicate": 40
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "easy-001",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 2,
+      "scene": "easy-001",
+      "method": "fixed"
+    },
+    {
+      "slot": 3,
+      "scene": "easy-001",
+      "method": "generic"
+    },
+    {
+      "slot": 4,
+      "scene": "easy-001",
+      "method": "ours"
+    },
+    {
+      "slot": 5,
+      "scene": "moderate-001",
+      "method": "fixed"
+    },
+    {
+      "slot": 6,
+      "scene": "moderate-001",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 7,
+      "scene": "moderate-001",
+      "method": "ours"
+    },
+    {
+      "slot": 8,
+      "scene": "moderate-001",
+      "method": "generic"
+    },
+    {
+      "slot": 9,
+      "scene": "hard-001",
+      "method": "fixed"
+    },
+    {
+      "slot": 10,
+      "scene": "hard-001",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 11,
+      "scene": "hard-001",
+      "method": "ours"
+    },
+    {
+      "slot": 12,
+      "scene": "hard-001",
+      "method": "generic"
+    },
+    {
+      "slot": 13,
+      "scene": "hard-001",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 14,
+      "scene": "hard-001",
+      "method": "no_cost"
+    },
+    {
+      "slot": 15,
+      "scene": "hard-002",
+      "method": "generic"
+    },
+    {
+      "slot": 16,
+      "scene": "hard-002",
+      "method": "fixed"
+    },
+    {
+      "slot": 17,
+      "scene": "hard-002",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 18,
+      "scene": "hard-002",
+      "method": "ours"
+    },
+    {
+      "slot": 19,
+      "scene": "hard-002",
+      "method": "no_cost"
+    },
+    {
+      "slot": 20,
+      "scene": "hard-002",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 21,
+      "scene": "easy-002",
+      "method": "generic"
+    },
+    {
+      "slot": 22,
+      "scene": "easy-002",
+      "method": "ours"
+    },
+    {
+      "slot": 23,
+      "scene": "easy-002",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 24,
+      "scene": "easy-002",
+      "method": "fixed"
+    },
+    {
+      "slot": 25,
+      "scene": "moderate-002",
+      "method": "ours"
+    },
+    {
+      "slot": 26,
+      "scene": "moderate-002",
+      "method": "generic"
+    },
+    {
+      "slot": 27,
+      "scene": "moderate-002",
+      "method": "fixed"
+    },
+    {
+      "slot": 28,
+      "scene": "moderate-002",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 29,
+      "scene": "moderate-003",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 30,
+      "scene": "moderate-003",
+      "method": "ours"
+    },
+    {
+      "slot": 31,
+      "scene": "moderate-003",
+      "method": "generic"
+    },
+    {
+      "slot": 32,
+      "scene": "moderate-003",
+      "method": "fixed"
+    },
+    {
+      "slot": 33,
+      "scene": "hard-003",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 34,
+      "scene": "hard-003",
+      "method": "ours"
+    },
+    {
+      "slot": 35,
+      "scene": "hard-003",
+      "method": "generic"
+    },
+    {
+      "slot": 36,
+      "scene": "hard-003",
+      "method": "fixed"
+    },
+    {
+      "slot": 37,
+      "scene": "hard-003",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 38,
+      "scene": "hard-003",
+      "method": "no_cost"
+    },
+    {
+      "slot": 39,
+      "scene": "easy-003",
+      "method": "fixed"
+    },
+    {
+      "slot": 40,
+      "scene": "easy-003",
+      "method": "generic"
+    },
+    {
+      "slot": 41,
+      "scene": "easy-003",
+      "method": "ours"
+    },
+    {
+      "slot": 42,
+      "scene": "easy-003",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 43,
+      "scene": "moderate-004",
+      "method": "generic"
+    },
+    {
+      "slot": 44,
+      "scene": "moderate-004",
+      "method": "fixed"
+    },
+    {
+      "slot": 45,
+      "scene": "moderate-004",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 46,
+      "scene": "moderate-004",
+      "method": "ours"
+    },
+    {
+      "slot": 47,
+      "scene": "easy-004",
+      "method": "ours"
+    },
+    {
+      "slot": 48,
+      "scene": "easy-004",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 49,
+      "scene": "easy-004",
+      "method": "fixed"
+    },
+    {
+      "slot": 50,
+      "scene": "easy-004",
+      "method": "generic"
+    },
+    {
+      "slot": 51,
+      "scene": "hard-004",
+      "method": "ours"
+    },
+    {
+      "slot": 52,
+      "scene": "hard-004",
+      "method": "generic"
+    },
+    {
+      "slot": 53,
+      "scene": "hard-004",
+      "method": "fixed"
+    },
+    {
+      "slot": 54,
+      "scene": "hard-004",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 55,
+      "scene": "hard-004",
+      "method": "no_cost"
+    },
+    {
+      "slot": 56,
+      "scene": "hard-004",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 57,
+      "scene": "hard-005",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 58,
+      "scene": "hard-005",
+      "method": "ours"
+    },
+    {
+      "slot": 59,
+      "scene": "hard-005",
+      "method": "generic"
+    },
+    {
+      "slot": 60,
+      "scene": "hard-005",
+      "method": "fixed"
+    },
+    {
+      "slot": 61,
+      "scene": "hard-005",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 62,
+      "scene": "hard-005",
+      "method": "no_cost"
+    },
+    {
+      "slot": 63,
+      "scene": "moderate-005",
+      "method": "generic"
+    },
+    {
+      "slot": 64,
+      "scene": "moderate-005",
+      "method": "ours"
+    },
+    {
+      "slot": 65,
+      "scene": "moderate-005",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 66,
+      "scene": "moderate-005",
+      "method": "fixed"
+    },
+    {
+      "slot": 67,
+      "scene": "easy-005",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 68,
+      "scene": "easy-005",
+      "method": "generic"
+    },
+    {
+      "slot": 69,
+      "scene": "easy-005",
+      "method": "fixed"
+    },
+    {
+      "slot": 70,
+      "scene": "easy-005",
+      "method": "ours"
+    },
+    {
+      "slot": 71,
+      "scene": "moderate-006",
+      "method": "fixed"
+    },
+    {
+      "slot": 72,
+      "scene": "moderate-006",
+      "method": "generic"
+    },
+    {
+      "slot": 73,
+      "scene": "moderate-006",
+      "method": "ours"
+    },
+    {
+      "slot": 74,
+      "scene": "moderate-006",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 75,
+      "scene": "hard-006",
+      "method": "fixed"
+    },
+    {
+      "slot": 76,
+      "scene": "hard-006",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 77,
+      "scene": "hard-006",
+      "method": "ours"
+    },
+    {
+      "slot": 78,
+      "scene": "hard-006",
+      "method": "generic"
+    },
+    {
+      "slot": 79,
+      "scene": "hard-006",
+      "method": "no_cost"
+    },
+    {
+      "slot": 80,
+      "scene": "hard-006",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 81,
+      "scene": "easy-006",
+      "method": "generic"
+    },
+    {
+      "slot": 82,
+      "scene": "easy-006",
+      "method": "fixed"
+    },
+    {
+      "slot": 83,
+      "scene": "easy-006",
+      "method": "ours"
+    },
+    {
+      "slot": 84,
+      "scene": "easy-006",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 85,
+      "scene": "easy-007",
+      "method": "fixed"
+    },
+    {
+      "slot": 86,
+      "scene": "easy-007",
+      "method": "ours"
+    },
+    {
+      "slot": 87,
+      "scene": "easy-007",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 88,
+      "scene": "easy-007",
+      "method": "generic"
+    },
+    {
+      "slot": 89,
+      "scene": "moderate-007",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 90,
+      "scene": "moderate-007",
+      "method": "fixed"
+    },
+    {
+      "slot": 91,
+      "scene": "moderate-007",
+      "method": "generic"
+    },
+    {
+      "slot": 92,
+      "scene": "moderate-007",
+      "method": "ours"
+    },
+    {
+      "slot": 93,
+      "scene": "hard-007",
+      "method": "ours"
+    },
+    {
+      "slot": 94,
+      "scene": "hard-007",
+      "method": "generic"
+    },
+    {
+      "slot": 95,
+      "scene": "hard-007",
+      "method": "fixed"
+    },
+    {
+      "slot": 96,
+      "scene": "hard-007",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 97,
+      "scene": "hard-007",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 98,
+      "scene": "hard-007",
+      "method": "no_cost"
+    },
+    {
+      "slot": 99,
+      "scene": "easy-008",
+      "method": "ours"
+    },
+    {
+      "slot": 100,
+      "scene": "easy-008",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 101,
+      "scene": "easy-008",
+      "method": "generic"
+    },
+    {
+      "slot": 102,
+      "scene": "easy-008",
+      "method": "fixed"
+    },
+    {
+      "slot": 103,
+      "scene": "moderate-008",
+      "method": "ours"
+    },
+    {
+      "slot": 104,
+      "scene": "moderate-008",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 105,
+      "scene": "moderate-008",
+      "method": "fixed"
+    },
+    {
+      "slot": 106,
+      "scene": "moderate-008",
+      "method": "generic"
+    },
+    {
+      "slot": 107,
+      "scene": "hard-008",
+      "method": "generic"
+    },
+    {
+      "slot": 108,
+      "scene": "hard-008",
+      "method": "fixed"
+    },
+    {
+      "slot": 109,
+      "scene": "hard-008",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 110,
+      "scene": "hard-008",
+      "method": "ours"
+    },
+    {
+      "slot": 111,
+      "scene": "hard-008",
+      "method": "no_cost"
+    },
+    {
+      "slot": 112,
+      "scene": "hard-008",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 113,
+      "scene": "easy-009",
+      "method": "fixed"
+    },
+    {
+      "slot": 114,
+      "scene": "easy-009",
+      "method": "generic"
+    },
+    {
+      "slot": 115,
+      "scene": "easy-009",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 116,
+      "scene": "easy-009",
+      "method": "ours"
+    },
+    {
+      "slot": 117,
+      "scene": "hard-009",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 118,
+      "scene": "hard-009",
+      "method": "generic"
+    },
+    {
+      "slot": 119,
+      "scene": "hard-009",
+      "method": "fixed"
+    },
+    {
+      "slot": 120,
+      "scene": "hard-009",
+      "method": "ours"
+    },
+    {
+      "slot": 121,
+      "scene": "hard-009",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 122,
+      "scene": "hard-009",
+      "method": "no_cost"
+    },
+    {
+      "slot": 123,
+      "scene": "moderate-009",
+      "method": "fixed"
+    },
+    {
+      "slot": 124,
+      "scene": "moderate-009",
+      "method": "generic"
+    },
+    {
+      "slot": 125,
+      "scene": "moderate-009",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 126,
+      "scene": "moderate-009",
+      "method": "ours"
+    },
+    {
+      "slot": 127,
+      "scene": "moderate-010",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 128,
+      "scene": "moderate-010",
+      "method": "ours"
+    },
+    {
+      "slot": 129,
+      "scene": "moderate-010",
+      "method": "fixed"
+    },
+    {
+      "slot": 130,
+      "scene": "moderate-010",
+      "method": "generic"
+    },
+    {
+      "slot": 131,
+      "scene": "easy-010",
+      "method": "ours"
+    },
+    {
+      "slot": 132,
+      "scene": "easy-010",
+      "method": "fixed"
+    },
+    {
+      "slot": 133,
+      "scene": "easy-010",
+      "method": "generic"
+    },
+    {
+      "slot": 134,
+      "scene": "easy-010",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 135,
+      "scene": "hard-010",
+      "method": "generic"
+    },
+    {
+      "slot": 136,
+      "scene": "hard-010",
+      "method": "fixed"
+    },
+    {
+      "slot": 137,
+      "scene": "hard-010",
+      "method": "ours"
+    },
+    {
+      "slot": 138,
+      "scene": "hard-010",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 139,
+      "scene": "hard-010",
+      "method": "no_cost"
+    },
+    {
+      "slot": 140,
+      "scene": "hard-010",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 141,
+      "scene": "moderate-011",
+      "method": "generic"
+    },
+    {
+      "slot": 142,
+      "scene": "moderate-011",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 143,
+      "scene": "moderate-011",
+      "method": "ours"
+    },
+    {
+      "slot": 144,
+      "scene": "moderate-011",
+      "method": "fixed"
+    },
+    {
+      "slot": 145,
+      "scene": "hard-011",
+      "method": "ours"
+    },
+    {
+      "slot": 146,
+      "scene": "hard-011",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 147,
+      "scene": "hard-011",
+      "method": "generic"
+    },
+    {
+      "slot": 148,
+      "scene": "hard-011",
+      "method": "fixed"
+    },
+    {
+      "slot": 149,
+      "scene": "hard-011",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 150,
+      "scene": "hard-011",
+      "method": "no_cost"
+    },
+    {
+      "slot": 151,
+      "scene": "easy-011",
+      "method": "generic"
+    },
+    {
+      "slot": 152,
+      "scene": "easy-011",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 153,
+      "scene": "easy-011",
+      "method": "ours"
+    },
+    {
+      "slot": 154,
+      "scene": "easy-011",
+      "method": "fixed"
+    },
+    {
+      "slot": 155,
+      "scene": "hard-012",
+      "method": "fixed"
+    },
+    {
+      "slot": 156,
+      "scene": "hard-012",
+      "method": "ours"
+    },
+    {
+      "slot": 157,
+      "scene": "hard-012",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 158,
+      "scene": "hard-012",
+      "method": "generic"
+    },
+    {
+      "slot": 159,
+      "scene": "hard-012",
+      "method": "no_cost"
+    },
+    {
+      "slot": 160,
+      "scene": "hard-012",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 161,
+      "scene": "moderate-012",
+      "method": "ours"
+    },
+    {
+      "slot": 162,
+      "scene": "moderate-012",
+      "method": "fixed"
+    },
+    {
+      "slot": 163,
+      "scene": "moderate-012",
+      "method": "generic"
+    },
+    {
+      "slot": 164,
+      "scene": "moderate-012",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 165,
+      "scene": "easy-012",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 166,
+      "scene": "easy-012",
+      "method": "ours"
+    },
+    {
+      "slot": 167,
+      "scene": "easy-012",
+      "method": "fixed"
+    },
+    {
+      "slot": 168,
+      "scene": "easy-012",
+      "method": "generic"
+    },
+    {
+      "slot": 169,
+      "scene": "easy-013",
+      "method": "generic"
+    },
+    {
+      "slot": 170,
+      "scene": "easy-013",
+      "method": "ours"
+    },
+    {
+      "slot": 171,
+      "scene": "easy-013",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 172,
+      "scene": "easy-013",
+      "method": "fixed"
+    },
+    {
+      "slot": 173,
+      "scene": "moderate-013",
+      "method": "ours"
+    },
+    {
+      "slot": 174,
+      "scene": "moderate-013",
+      "method": "generic"
+    },
+    {
+      "slot": 175,
+      "scene": "moderate-013",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 176,
+      "scene": "moderate-013",
+      "method": "fixed"
+    },
+    {
+      "slot": 177,
+      "scene": "hard-013",
+      "method": "fixed"
+    },
+    {
+      "slot": 178,
+      "scene": "hard-013",
+      "method": "ours"
+    },
+    {
+      "slot": 179,
+      "scene": "hard-013",
+      "method": "generic"
+    },
+    {
+      "slot": 180,
+      "scene": "hard-013",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 181,
+      "scene": "hard-013",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 182,
+      "scene": "hard-013",
+      "method": "no_cost"
+    },
+    {
+      "slot": 183,
+      "scene": "moderate-014",
+      "method": "generic"
+    },
+    {
+      "slot": 184,
+      "scene": "moderate-014",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 185,
+      "scene": "moderate-014",
+      "method": "fixed"
+    },
+    {
+      "slot": 186,
+      "scene": "moderate-014",
+      "method": "ours"
+    },
+    {
+      "slot": 187,
+      "scene": "easy-014",
+      "method": "ours"
+    },
+    {
+      "slot": 188,
+      "scene": "easy-014",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 189,
+      "scene": "easy-014",
+      "method": "fixed"
+    },
+    {
+      "slot": 190,
+      "scene": "easy-014",
+      "method": "generic"
+    },
+    {
+      "slot": 191,
+      "scene": "hard-014",
+      "method": "ours"
+    },
+    {
+      "slot": 192,
+      "scene": "hard-014",
+      "method": "generic"
+    },
+    {
+      "slot": 193,
+      "scene": "hard-014",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 194,
+      "scene": "hard-014",
+      "method": "fixed"
+    },
+    {
+      "slot": 195,
+      "scene": "hard-014",
+      "method": "no_cost"
+    },
+    {
+      "slot": 196,
+      "scene": "hard-014",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 197,
+      "scene": "easy-015",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 198,
+      "scene": "easy-015",
+      "method": "fixed"
+    },
+    {
+      "slot": 199,
+      "scene": "easy-015",
+      "method": "generic"
+    },
+    {
+      "slot": 200,
+      "scene": "easy-015",
+      "method": "ours"
+    },
+    {
+      "slot": 201,
+      "scene": "moderate-015",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 202,
+      "scene": "moderate-015",
+      "method": "fixed"
+    },
+    {
+      "slot": 203,
+      "scene": "moderate-015",
+      "method": "ours"
+    },
+    {
+      "slot": 204,
+      "scene": "moderate-015",
+      "method": "generic"
+    },
+    {
+      "slot": 205,
+      "scene": "hard-015",
+      "method": "generic"
+    },
+    {
+      "slot": 206,
+      "scene": "hard-015",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 207,
+      "scene": "hard-015",
+      "method": "fixed"
+    },
+    {
+      "slot": 208,
+      "scene": "hard-015",
+      "method": "ours"
+    },
+    {
+      "slot": 209,
+      "scene": "hard-015",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 210,
+      "scene": "hard-015",
+      "method": "no_cost"
+    },
+    {
+      "slot": 211,
+      "scene": "moderate-016",
+      "method": "fixed"
+    },
+    {
+      "slot": 212,
+      "scene": "moderate-016",
+      "method": "ours"
+    },
+    {
+      "slot": 213,
+      "scene": "moderate-016",
+      "method": "generic"
+    },
+    {
+      "slot": 214,
+      "scene": "moderate-016",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 215,
+      "scene": "easy-016",
+      "method": "fixed"
+    },
+    {
+      "slot": 216,
+      "scene": "easy-016",
+      "method": "generic"
+    },
+    {
+      "slot": 217,
+      "scene": "easy-016",
+      "method": "ours"
+    },
+    {
+      "slot": 218,
+      "scene": "easy-016",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 219,
+      "scene": "hard-016",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 220,
+      "scene": "hard-016",
+      "method": "fixed"
+    },
+    {
+      "slot": 221,
+      "scene": "hard-016",
+      "method": "ours"
+    },
+    {
+      "slot": 222,
+      "scene": "hard-016",
+      "method": "generic"
+    },
+    {
+      "slot": 223,
+      "scene": "hard-016",
+      "method": "no_cost"
+    },
+    {
+      "slot": 224,
+      "scene": "hard-016",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 225,
+      "scene": "easy-017",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 226,
+      "scene": "easy-017",
+      "method": "ours"
+    },
+    {
+      "slot": 227,
+      "scene": "easy-017",
+      "method": "fixed"
+    },
+    {
+      "slot": 228,
+      "scene": "easy-017",
+      "method": "generic"
+    },
+    {
+      "slot": 229,
+      "scene": "hard-017",
+      "method": "generic"
+    },
+    {
+      "slot": 230,
+      "scene": "hard-017",
+      "method": "ours"
+    },
+    {
+      "slot": 231,
+      "scene": "hard-017",
+      "method": "fixed"
+    },
+    {
+      "slot": 232,
+      "scene": "hard-017",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 233,
+      "scene": "hard-017",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 234,
+      "scene": "hard-017",
+      "method": "no_cost"
+    },
+    {
+      "slot": 235,
+      "scene": "moderate-017",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 236,
+      "scene": "moderate-017",
+      "method": "generic"
+    },
+    {
+      "slot": 237,
+      "scene": "moderate-017",
+      "method": "fixed"
+    },
+    {
+      "slot": 238,
+      "scene": "moderate-017",
+      "method": "ours"
+    },
+    {
+      "slot": 239,
+      "scene": "moderate-018",
+      "method": "fixed"
+    },
+    {
+      "slot": 240,
+      "scene": "moderate-018",
+      "method": "ours"
+    },
+    {
+      "slot": 241,
+      "scene": "moderate-018",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 242,
+      "scene": "moderate-018",
+      "method": "generic"
+    },
+    {
+      "slot": 243,
+      "scene": "hard-018",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 244,
+      "scene": "hard-018",
+      "method": "generic"
+    },
+    {
+      "slot": 245,
+      "scene": "hard-018",
+      "method": "ours"
+    },
+    {
+      "slot": 246,
+      "scene": "hard-018",
+      "method": "fixed"
+    },
+    {
+      "slot": 247,
+      "scene": "hard-018",
+      "method": "no_cost"
+    },
+    {
+      "slot": 248,
+      "scene": "hard-018",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 249,
+      "scene": "easy-018",
+      "method": "generic"
+    },
+    {
+      "slot": 250,
+      "scene": "easy-018",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 251,
+      "scene": "easy-018",
+      "method": "ours"
+    },
+    {
+      "slot": 252,
+      "scene": "easy-018",
+      "method": "fixed"
+    },
+    {
+      "slot": 253,
+      "scene": "moderate-019",
+      "method": "ours"
+    },
+    {
+      "slot": 254,
+      "scene": "moderate-019",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 255,
+      "scene": "moderate-019",
+      "method": "generic"
+    },
+    {
+      "slot": 256,
+      "scene": "moderate-019",
+      "method": "fixed"
+    },
+    {
+      "slot": 257,
+      "scene": "hard-019",
+      "method": "ours"
+    },
+    {
+      "slot": 258,
+      "scene": "hard-019",
+      "method": "fixed"
+    },
+    {
+      "slot": 259,
+      "scene": "hard-019",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 260,
+      "scene": "hard-019",
+      "method": "generic"
+    },
+    {
+      "slot": 261,
+      "scene": "hard-019",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 262,
+      "scene": "hard-019",
+      "method": "no_cost"
+    },
+    {
+      "slot": 263,
+      "scene": "easy-019",
+      "method": "ours"
+    },
+    {
+      "slot": 264,
+      "scene": "easy-019",
+      "method": "fixed"
+    },
+    {
+      "slot": 265,
+      "scene": "easy-019",
+      "method": "generic"
+    },
+    {
+      "slot": 266,
+      "scene": "easy-019",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 267,
+      "scene": "hard-020",
+      "method": "fixed"
+    },
+    {
+      "slot": 268,
+      "scene": "hard-020",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 269,
+      "scene": "hard-020",
+      "method": "generic"
+    },
+    {
+      "slot": 270,
+      "scene": "hard-020",
+      "method": "ours"
+    },
+    {
+      "slot": 271,
+      "scene": "hard-020",
+      "method": "no_cost"
+    },
+    {
+      "slot": 272,
+      "scene": "hard-020",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 273,
+      "scene": "easy-020",
+      "method": "fixed"
+    },
+    {
+      "slot": 274,
+      "scene": "easy-020",
+      "method": "generic"
+    },
+    {
+      "slot": 275,
+      "scene": "easy-020",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 276,
+      "scene": "easy-020",
+      "method": "ours"
+    },
+    {
+      "slot": 277,
+      "scene": "moderate-020",
+      "method": "generic"
+    },
+    {
+      "slot": 278,
+      "scene": "moderate-020",
+      "method": "fixed"
+    },
+    {
+      "slot": 279,
+      "scene": "moderate-020",
+      "method": "ours"
+    },
+    {
+      "slot": 280,
+      "scene": "moderate-020",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 281,
+      "scene": "easy-021",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 282,
+      "scene": "easy-021",
+      "method": "fixed"
+    },
+    {
+      "slot": 283,
+      "scene": "easy-021",
+      "method": "generic"
+    },
+    {
+      "slot": 284,
+      "scene": "easy-021",
+      "method": "ours"
+    },
+    {
+      "slot": 285,
+      "scene": "hard-021",
+      "method": "generic"
+    },
+    {
+      "slot": 286,
+      "scene": "hard-021",
+      "method": "ours"
+    },
+    {
+      "slot": 287,
+      "scene": "hard-021",
+      "method": "fixed"
+    },
+    {
+      "slot": 288,
+      "scene": "hard-021",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 289,
+      "scene": "hard-021",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 290,
+      "scene": "hard-021",
+      "method": "no_cost"
+    },
+    {
+      "slot": 291,
+      "scene": "moderate-021",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 292,
+      "scene": "moderate-021",
+      "method": "fixed"
+    },
+    {
+      "slot": 293,
+      "scene": "moderate-021",
+      "method": "generic"
+    },
+    {
+      "slot": 294,
+      "scene": "moderate-021",
+      "method": "ours"
+    },
+    {
+      "slot": 295,
+      "scene": "hard-022",
+      "method": "fixed"
+    },
+    {
+      "slot": 296,
+      "scene": "hard-022",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 297,
+      "scene": "hard-022",
+      "method": "generic"
+    },
+    {
+      "slot": 298,
+      "scene": "hard-022",
+      "method": "ours"
+    },
+    {
+      "slot": 299,
+      "scene": "hard-022",
+      "method": "no_cost"
+    },
+    {
+      "slot": 300,
+      "scene": "hard-022",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 301,
+      "scene": "moderate-022",
+      "method": "ours"
+    },
+    {
+      "slot": 302,
+      "scene": "moderate-022",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 303,
+      "scene": "moderate-022",
+      "method": "fixed"
+    },
+    {
+      "slot": 304,
+      "scene": "moderate-022",
+      "method": "generic"
+    },
+    {
+      "slot": 305,
+      "scene": "easy-022",
+      "method": "fixed"
+    },
+    {
+      "slot": 306,
+      "scene": "easy-022",
+      "method": "generic"
+    },
+    {
+      "slot": 307,
+      "scene": "easy-022",
+      "method": "ours"
+    },
+    {
+      "slot": 308,
+      "scene": "easy-022",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 309,
+      "scene": "moderate-023",
+      "method": "generic"
+    },
+    {
+      "slot": 310,
+      "scene": "moderate-023",
+      "method": "ours"
+    },
+    {
+      "slot": 311,
+      "scene": "moderate-023",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 312,
+      "scene": "moderate-023",
+      "method": "fixed"
+    },
+    {
+      "slot": 313,
+      "scene": "easy-023",
+      "method": "ours"
+    },
+    {
+      "slot": 314,
+      "scene": "easy-023",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 315,
+      "scene": "easy-023",
+      "method": "fixed"
+    },
+    {
+      "slot": 316,
+      "scene": "easy-023",
+      "method": "generic"
+    },
+    {
+      "slot": 317,
+      "scene": "hard-023",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 318,
+      "scene": "hard-023",
+      "method": "generic"
+    },
+    {
+      "slot": 319,
+      "scene": "hard-023",
+      "method": "ours"
+    },
+    {
+      "slot": 320,
+      "scene": "hard-023",
+      "method": "fixed"
+    },
+    {
+      "slot": 321,
+      "scene": "hard-023",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 322,
+      "scene": "hard-023",
+      "method": "no_cost"
+    },
+    {
+      "slot": 323,
+      "scene": "easy-024",
+      "method": "generic"
+    },
+    {
+      "slot": 324,
+      "scene": "easy-024",
+      "method": "ours"
+    },
+    {
+      "slot": 325,
+      "scene": "easy-024",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 326,
+      "scene": "easy-024",
+      "method": "fixed"
+    },
+    {
+      "slot": 327,
+      "scene": "hard-024",
+      "method": "ours"
+    },
+    {
+      "slot": 328,
+      "scene": "hard-024",
+      "method": "fixed"
+    },
+    {
+      "slot": 329,
+      "scene": "hard-024",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 330,
+      "scene": "hard-024",
+      "method": "generic"
+    },
+    {
+      "slot": 331,
+      "scene": "hard-024",
+      "method": "no_cost"
+    },
+    {
+      "slot": 332,
+      "scene": "hard-024",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 333,
+      "scene": "moderate-024",
+      "method": "fixed"
+    },
+    {
+      "slot": 334,
+      "scene": "moderate-024",
+      "method": "generic"
+    },
+    {
+      "slot": 335,
+      "scene": "moderate-024",
+      "method": "ours"
+    },
+    {
+      "slot": 336,
+      "scene": "moderate-024",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 337,
+      "scene": "hard-025",
+      "method": "generic"
+    },
+    {
+      "slot": 338,
+      "scene": "hard-025",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 339,
+      "scene": "hard-025",
+      "method": "ours"
+    },
+    {
+      "slot": 340,
+      "scene": "hard-025",
+      "method": "fixed"
+    },
+    {
+      "slot": 341,
+      "scene": "hard-025",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 342,
+      "scene": "hard-025",
+      "method": "no_cost"
+    },
+    {
+      "slot": 343,
+      "scene": "easy-025",
+      "method": "fixed"
+    },
+    {
+      "slot": 344,
+      "scene": "easy-025",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 345,
+      "scene": "easy-025",
+      "method": "generic"
+    },
+    {
+      "slot": 346,
+      "scene": "easy-025",
+      "method": "ours"
+    },
+    {
+      "slot": 347,
+      "scene": "moderate-025",
+      "method": "generic"
+    },
+    {
+      "slot": 348,
+      "scene": "moderate-025",
+      "method": "ours"
+    },
+    {
+      "slot": 349,
+      "scene": "moderate-025",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 350,
+      "scene": "moderate-025",
+      "method": "fixed"
+    },
+    {
+      "slot": 351,
+      "scene": "easy-026",
+      "method": "ours"
+    },
+    {
+      "slot": 352,
+      "scene": "easy-026",
+      "method": "fixed"
+    },
+    {
+      "slot": 353,
+      "scene": "easy-026",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 354,
+      "scene": "easy-026",
+      "method": "generic"
+    },
+    {
+      "slot": 355,
+      "scene": "moderate-026",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 356,
+      "scene": "moderate-026",
+      "method": "fixed"
+    },
+    {
+      "slot": 357,
+      "scene": "moderate-026",
+      "method": "generic"
+    },
+    {
+      "slot": 358,
+      "scene": "moderate-026",
+      "method": "ours"
+    },
+    {
+      "slot": 359,
+      "scene": "hard-026",
+      "method": "fixed"
+    },
+    {
+      "slot": 360,
+      "scene": "hard-026",
+      "method": "generic"
+    },
+    {
+      "slot": 361,
+      "scene": "hard-026",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 362,
+      "scene": "hard-026",
+      "method": "ours"
+    },
+    {
+      "slot": 363,
+      "scene": "hard-026",
+      "method": "no_cost"
+    },
+    {
+      "slot": 364,
+      "scene": "hard-026",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 365,
+      "scene": "easy-027",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 366,
+      "scene": "easy-027",
+      "method": "generic"
+    },
+    {
+      "slot": 367,
+      "scene": "easy-027",
+      "method": "ours"
+    },
+    {
+      "slot": 368,
+      "scene": "easy-027",
+      "method": "fixed"
+    },
+    {
+      "slot": 369,
+      "scene": "hard-027",
+      "method": "ours"
+    },
+    {
+      "slot": 370,
+      "scene": "hard-027",
+      "method": "fixed"
+    },
+    {
+      "slot": 371,
+      "scene": "hard-027",
+      "method": "generic"
+    },
+    {
+      "slot": 372,
+      "scene": "hard-027",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 373,
+      "scene": "hard-027",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 374,
+      "scene": "hard-027",
+      "method": "no_cost"
+    },
+    {
+      "slot": 375,
+      "scene": "moderate-027",
+      "method": "ours"
+    },
+    {
+      "slot": 376,
+      "scene": "moderate-027",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 377,
+      "scene": "moderate-027",
+      "method": "fixed"
+    },
+    {
+      "slot": 378,
+      "scene": "moderate-027",
+      "method": "generic"
+    },
+    {
+      "slot": 379,
+      "scene": "easy-028",
+      "method": "generic"
+    },
+    {
+      "slot": 380,
+      "scene": "easy-028",
+      "method": "ours"
+    },
+    {
+      "slot": 381,
+      "scene": "easy-028",
+      "method": "fixed"
+    },
+    {
+      "slot": 382,
+      "scene": "easy-028",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 383,
+      "scene": "hard-028",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 384,
+      "scene": "hard-028",
+      "method": "ours"
+    },
+    {
+      "slot": 385,
+      "scene": "hard-028",
+      "method": "fixed"
+    },
+    {
+      "slot": 386,
+      "scene": "hard-028",
+      "method": "generic"
+    },
+    {
+      "slot": 387,
+      "scene": "hard-028",
+      "method": "no_cost"
+    },
+    {
+      "slot": 388,
+      "scene": "hard-028",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 389,
+      "scene": "moderate-028",
+      "method": "fixed"
+    },
+    {
+      "slot": 390,
+      "scene": "moderate-028",
+      "method": "generic"
+    },
+    {
+      "slot": 391,
+      "scene": "moderate-028",
+      "method": "ours"
+    },
+    {
+      "slot": 392,
+      "scene": "moderate-028",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 393,
+      "scene": "easy-029",
+      "method": "fixed"
+    },
+    {
+      "slot": 394,
+      "scene": "easy-029",
+      "method": "generic"
+    },
+    {
+      "slot": 395,
+      "scene": "easy-029",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 396,
+      "scene": "easy-029",
+      "method": "ours"
+    },
+    {
+      "slot": 397,
+      "scene": "hard-029",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 398,
+      "scene": "hard-029",
+      "method": "ours"
+    },
+    {
+      "slot": 399,
+      "scene": "hard-029",
+      "method": "fixed"
+    },
+    {
+      "slot": 400,
+      "scene": "hard-029",
+      "method": "generic"
+    },
+    {
+      "slot": 401,
+      "scene": "hard-029",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 402,
+      "scene": "hard-029",
+      "method": "no_cost"
+    },
+    {
+      "slot": 403,
+      "scene": "moderate-029",
+      "method": "generic"
+    },
+    {
+      "slot": 404,
+      "scene": "moderate-029",
+      "method": "fixed"
+    },
+    {
+      "slot": 405,
+      "scene": "moderate-029",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 406,
+      "scene": "moderate-029",
+      "method": "ours"
+    },
+    {
+      "slot": 407,
+      "scene": "easy-030",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 408,
+      "scene": "easy-030",
+      "method": "ours"
+    },
+    {
+      "slot": 409,
+      "scene": "easy-030",
+      "method": "fixed"
+    },
+    {
+      "slot": 410,
+      "scene": "easy-030",
+      "method": "generic"
+    },
+    {
+      "slot": 411,
+      "scene": "hard-030",
+      "method": "fixed"
+    },
+    {
+      "slot": 412,
+      "scene": "hard-030",
+      "method": "generic"
+    },
+    {
+      "slot": 413,
+      "scene": "hard-030",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 414,
+      "scene": "hard-030",
+      "method": "ours"
+    },
+    {
+      "slot": 415,
+      "scene": "hard-030",
+      "method": "no_cost"
+    },
+    {
+      "slot": 416,
+      "scene": "hard-030",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 417,
+      "scene": "moderate-030",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 418,
+      "scene": "moderate-030",
+      "method": "ours"
+    },
+    {
+      "slot": 419,
+      "scene": "moderate-030",
+      "method": "generic"
+    },
+    {
+      "slot": 420,
+      "scene": "moderate-030",
+      "method": "fixed"
+    },
+    {
+      "slot": 421,
+      "scene": "hard-031",
+      "method": "ours"
+    },
+    {
+      "slot": 422,
+      "scene": "hard-031",
+      "method": "fixed"
+    },
+    {
+      "slot": 423,
+      "scene": "hard-031",
+      "method": "generic"
+    },
+    {
+      "slot": 424,
+      "scene": "hard-031",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 425,
+      "scene": "hard-031",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 426,
+      "scene": "hard-031",
+      "method": "no_cost"
+    },
+    {
+      "slot": 427,
+      "scene": "moderate-031",
+      "method": "ours"
+    },
+    {
+      "slot": 428,
+      "scene": "moderate-031",
+      "method": "generic"
+    },
+    {
+      "slot": 429,
+      "scene": "moderate-031",
+      "method": "fixed"
+    },
+    {
+      "slot": 430,
+      "scene": "moderate-031",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 431,
+      "scene": "easy-031",
+      "method": "generic"
+    },
+    {
+      "slot": 432,
+      "scene": "easy-031",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 433,
+      "scene": "easy-031",
+      "method": "ours"
+    },
+    {
+      "slot": 434,
+      "scene": "easy-031",
+      "method": "fixed"
+    },
+    {
+      "slot": 435,
+      "scene": "moderate-032",
+      "method": "fixed"
+    },
+    {
+      "slot": 436,
+      "scene": "moderate-032",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 437,
+      "scene": "moderate-032",
+      "method": "ours"
+    },
+    {
+      "slot": 438,
+      "scene": "moderate-032",
+      "method": "generic"
+    },
+    {
+      "slot": 439,
+      "scene": "easy-032",
+      "method": "ours"
+    },
+    {
+      "slot": 440,
+      "scene": "easy-032",
+      "method": "fixed"
+    },
+    {
+      "slot": 441,
+      "scene": "easy-032",
+      "method": "generic"
+    },
+    {
+      "slot": 442,
+      "scene": "easy-032",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 443,
+      "scene": "hard-032",
+      "method": "generic"
+    },
+    {
+      "slot": 444,
+      "scene": "hard-032",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 445,
+      "scene": "hard-032",
+      "method": "ours"
+    },
+    {
+      "slot": 446,
+      "scene": "hard-032",
+      "method": "fixed"
+    },
+    {
+      "slot": 447,
+      "scene": "hard-032",
+      "method": "no_cost"
+    },
+    {
+      "slot": 448,
+      "scene": "hard-032",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 449,
+      "scene": "easy-033",
+      "method": "ours"
+    },
+    {
+      "slot": 450,
+      "scene": "easy-033",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 451,
+      "scene": "easy-033",
+      "method": "generic"
+    },
+    {
+      "slot": 452,
+      "scene": "easy-033",
+      "method": "fixed"
+    },
+    {
+      "slot": 453,
+      "scene": "moderate-033",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 454,
+      "scene": "moderate-033",
+      "method": "generic"
+    },
+    {
+      "slot": 455,
+      "scene": "moderate-033",
+      "method": "ours"
+    },
+    {
+      "slot": 456,
+      "scene": "moderate-033",
+      "method": "fixed"
+    },
+    {
+      "slot": 457,
+      "scene": "hard-033",
+      "method": "fixed"
+    },
+    {
+      "slot": 458,
+      "scene": "hard-033",
+      "method": "ours"
+    },
+    {
+      "slot": 459,
+      "scene": "hard-033",
+      "method": "generic"
+    },
+    {
+      "slot": 460,
+      "scene": "hard-033",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 461,
+      "scene": "hard-033",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 462,
+      "scene": "hard-033",
+      "method": "no_cost"
+    },
+    {
+      "slot": 463,
+      "scene": "hard-034",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 464,
+      "scene": "hard-034",
+      "method": "fixed"
+    },
+    {
+      "slot": 465,
+      "scene": "hard-034",
+      "method": "ours"
+    },
+    {
+      "slot": 466,
+      "scene": "hard-034",
+      "method": "generic"
+    },
+    {
+      "slot": 467,
+      "scene": "hard-034",
+      "method": "no_cost"
+    },
+    {
+      "slot": 468,
+      "scene": "hard-034",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 469,
+      "scene": "moderate-034",
+      "method": "ours"
+    },
+    {
+      "slot": 470,
+      "scene": "moderate-034",
+      "method": "fixed"
+    },
+    {
+      "slot": 471,
+      "scene": "moderate-034",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 472,
+      "scene": "moderate-034",
+      "method": "generic"
+    },
+    {
+      "slot": 473,
+      "scene": "easy-034",
+      "method": "generic"
+    },
+    {
+      "slot": 474,
+      "scene": "easy-034",
+      "method": "fixed"
+    },
+    {
+      "slot": 475,
+      "scene": "easy-034",
+      "method": "ours"
+    },
+    {
+      "slot": 476,
+      "scene": "easy-034",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 477,
+      "scene": "easy-035",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 478,
+      "scene": "easy-035",
+      "method": "generic"
+    },
+    {
+      "slot": 479,
+      "scene": "easy-035",
+      "method": "fixed"
+    },
+    {
+      "slot": 480,
+      "scene": "easy-035",
+      "method": "ours"
+    },
+    {
+      "slot": 481,
+      "scene": "moderate-035",
+      "method": "fixed"
+    },
+    {
+      "slot": 482,
+      "scene": "moderate-035",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 483,
+      "scene": "moderate-035",
+      "method": "generic"
+    },
+    {
+      "slot": 484,
+      "scene": "moderate-035",
+      "method": "ours"
+    },
+    {
+      "slot": 485,
+      "scene": "hard-035",
+      "method": "ours"
+    },
+    {
+      "slot": 486,
+      "scene": "hard-035",
+      "method": "generic"
+    },
+    {
+      "slot": 487,
+      "scene": "hard-035",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 488,
+      "scene": "hard-035",
+      "method": "fixed"
+    },
+    {
+      "slot": 489,
+      "scene": "hard-035",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 490,
+      "scene": "hard-035",
+      "method": "no_cost"
+    },
+    {
+      "slot": 491,
+      "scene": "hard-036",
+      "method": "generic"
+    },
+    {
+      "slot": 492,
+      "scene": "hard-036",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 493,
+      "scene": "hard-036",
+      "method": "fixed"
+    },
+    {
+      "slot": 494,
+      "scene": "hard-036",
+      "method": "ours"
+    },
+    {
+      "slot": 495,
+      "scene": "hard-036",
+      "method": "no_cost"
+    },
+    {
+      "slot": 496,
+      "scene": "hard-036",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 497,
+      "scene": "easy-036",
+      "method": "fixed"
+    },
+    {
+      "slot": 498,
+      "scene": "easy-036",
+      "method": "ours"
+    },
+    {
+      "slot": 499,
+      "scene": "easy-036",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 500,
+      "scene": "easy-036",
+      "method": "generic"
+    },
+    {
+      "slot": 501,
+      "scene": "moderate-036",
+      "method": "generic"
+    },
+    {
+      "slot": 502,
+      "scene": "moderate-036",
+      "method": "ours"
+    },
+    {
+      "slot": 503,
+      "scene": "moderate-036",
+      "method": "fixed"
+    },
+    {
+      "slot": 504,
+      "scene": "moderate-036",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 505,
+      "scene": "moderate-037",
+      "method": "ours"
+    },
+    {
+      "slot": 506,
+      "scene": "moderate-037",
+      "method": "fixed"
+    },
+    {
+      "slot": 507,
+      "scene": "moderate-037",
+      "method": "generic"
+    },
+    {
+      "slot": 508,
+      "scene": "moderate-037",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 509,
+      "scene": "hard-037",
+      "method": "fixed"
+    },
+    {
+      "slot": 510,
+      "scene": "hard-037",
+      "method": "generic"
+    },
+    {
+      "slot": 511,
+      "scene": "hard-037",
+      "method": "ours"
+    },
+    {
+      "slot": 512,
+      "scene": "hard-037",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 513,
+      "scene": "hard-037",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 514,
+      "scene": "hard-037",
+      "method": "no_cost"
+    },
+    {
+      "slot": 515,
+      "scene": "easy-037",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 516,
+      "scene": "easy-037",
+      "method": "ours"
+    },
+    {
+      "slot": 517,
+      "scene": "easy-037",
+      "method": "fixed"
+    },
+    {
+      "slot": 518,
+      "scene": "easy-037",
+      "method": "generic"
+    },
+    {
+      "slot": 519,
+      "scene": "easy-038",
+      "method": "ours"
+    },
+    {
+      "slot": 520,
+      "scene": "easy-038",
+      "method": "fixed"
+    },
+    {
+      "slot": 521,
+      "scene": "easy-038",
+      "method": "generic"
+    },
+    {
+      "slot": 522,
+      "scene": "easy-038",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 523,
+      "scene": "moderate-038",
+      "method": "fixed"
+    },
+    {
+      "slot": 524,
+      "scene": "moderate-038",
+      "method": "generic"
+    },
+    {
+      "slot": 525,
+      "scene": "moderate-038",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 526,
+      "scene": "moderate-038",
+      "method": "ours"
+    },
+    {
+      "slot": 527,
+      "scene": "hard-038",
+      "method": "ours"
+    },
+    {
+      "slot": 528,
+      "scene": "hard-038",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 529,
+      "scene": "hard-038",
+      "method": "fixed"
+    },
+    {
+      "slot": 530,
+      "scene": "hard-038",
+      "method": "generic"
+    },
+    {
+      "slot": 531,
+      "scene": "hard-038",
+      "method": "no_cost"
+    },
+    {
+      "slot": 532,
+      "scene": "hard-038",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 533,
+      "scene": "easy-039",
+      "method": "fixed"
+    },
+    {
+      "slot": 534,
+      "scene": "easy-039",
+      "method": "generic"
+    },
+    {
+      "slot": 535,
+      "scene": "easy-039",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 536,
+      "scene": "easy-039",
+      "method": "ours"
+    },
+    {
+      "slot": 537,
+      "scene": "hard-039",
+      "method": "generic"
+    },
+    {
+      "slot": 538,
+      "scene": "hard-039",
+      "method": "ours"
+    },
+    {
+      "slot": 539,
+      "scene": "hard-039",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 540,
+      "scene": "hard-039",
+      "method": "fixed"
+    },
+    {
+      "slot": 541,
+      "scene": "hard-039",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 542,
+      "scene": "hard-039",
+      "method": "no_cost"
+    },
+    {
+      "slot": 543,
+      "scene": "moderate-039",
+      "method": "generic"
+    },
+    {
+      "slot": 544,
+      "scene": "moderate-039",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 545,
+      "scene": "moderate-039",
+      "method": "ours"
+    },
+    {
+      "slot": 546,
+      "scene": "moderate-039",
+      "method": "fixed"
+    },
+    {
+      "slot": 547,
+      "scene": "easy-040",
+      "method": "generic"
+    },
+    {
+      "slot": 548,
+      "scene": "easy-040",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 549,
+      "scene": "easy-040",
+      "method": "ours"
+    },
+    {
+      "slot": 550,
+      "scene": "easy-040",
+      "method": "fixed"
+    },
+    {
+      "slot": 551,
+      "scene": "moderate-040",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 552,
+      "scene": "moderate-040",
+      "method": "ours"
+    },
+    {
+      "slot": 553,
+      "scene": "moderate-040",
+      "method": "fixed"
+    },
+    {
+      "slot": 554,
+      "scene": "moderate-040",
+      "method": "generic"
+    },
+    {
+      "slot": 555,
+      "scene": "hard-040",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 556,
+      "scene": "hard-040",
+      "method": "fixed"
+    },
+    {
+      "slot": 557,
+      "scene": "hard-040",
+      "method": "generic"
+    },
+    {
+      "slot": 558,
+      "scene": "hard-040",
+      "method": "ours"
+    },
+    {
+      "slot": 559,
+      "scene": "hard-040",
+      "method": "no_cost"
+    },
+    {
+      "slot": 560,
+      "scene": "hard-040",
+      "method": "no_occlusion"
+    }
+  ],
+  "experiment": "Formal",
+  "record_diagnostics": true,
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "operational_gating": "v1.1",
+  "seed_draw_seed": 202609083,
+  "scene_count": 120,
+  "replicates_per_tier": 40,
+  "tiers": [
+    "easy",
+    "moderate",
+    "hard"
+  ],
+  "seed_draw_rule": "Random(202609083).randrange(1, 2**31), first eligible unique draws; skip only Pilot-1/Pilot-2 seeds and already assigned seeds. Assign in replicate 1..40 order, then easy/moderate/hard.",
+  "scene_draw_rule": "For each scene Random(seed), in order: target x=2+U(-.15,.15), y=U(-.15,.15), yaw=U(-pi/6,pi/6); bunker x=3+U(-.1,.1), y=-2.5+U(-.1,.1), yaw=pi+U(-pi/36,pi/36). Copy tier boxes and target/bunker z unchanged from Pilot-2."
+}

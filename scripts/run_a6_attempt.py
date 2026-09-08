@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Run ONE explicit pilot slot or method-independent setup in a fresh SIM.
+"""Run ONE explicit frozen slot or method-independent setup in a fresh SIM.
 
 No matrix generation or automatic replacement. Every invocation has its own
 directory; the caller reviews INVALID status before requesting a rerun.
@@ -21,13 +21,14 @@ SIM = Path('/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementat
 RM = Path('/tmp/rm4d-aubo-baseline-v1.14uZXq/repo')
 CORE = '/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python'
 PX4 = '/media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4'
+IMAGE_TOPICS = ('/ground/d435/color/image_raw', '/ground/d435/depth/image_raw')
 
 
 def slot_spec(config, number):
     for slot in config['slots']:
         if slot['slot'] == number:
             return slot, next(s for s in config['scenes'] if s['id'] == slot['scene'])
-    raise ValueError('only prelisted pilot slots 1..14 may run')
+    raise ValueError('only slots explicitly listed in the supplied configuration may run')
 
 
 def scene_launch_args(scene):
@@ -119,8 +120,46 @@ def diagnostic_command(config, output):
         '/ground/arm_controller/follow_joint_trajectory/result',
         '/ground/arm_controller/follow_joint_trajectory/cancel',
     ]
+    if config.get('diagnostic_image_scope') == 'ground_handoff_to_end':
+        topics = [topic for topic in topics if topic not in IMAGE_TOPICS]
     return ['rosbag', 'record', '--lz4', '--buffsize', '256',
             '-O', str(output/'diagnostics.bag'), *topics]
+
+
+def image_diagnostic_command(config, output):
+    if (not config.get('record_diagnostics', False)
+            or config.get('diagnostic_image_scope') != 'ground_handoff_to_end'):
+        return None
+    return ['rosbag', 'record', '--lz4', '--buffsize', '256',
+            '-O', str(output/'diagnostics-images.bag'), *IMAGE_TOPICS]
+
+
+def wait_for_adapter(process, deadline, events_path, on_selection=None):
+    """Observe existing flushed handoff events without delaying robot action."""
+    if on_selection is None:
+        return process.wait(timeout=max(0., deadline-time.monotonic()))
+    while True:
+        if time.monotonic() >= deadline:
+            return process.wait(timeout=0)
+        if on_selection is not None:
+            try:
+                lines = events_path.read_text().splitlines()
+            except OSError:
+                lines = []  # startup/setup need not have an events file yet
+            for line in lines:
+                try:
+                    event = json.loads(line)
+                except ValueError:
+                    continue  # an append may not yet contain a whole JSON row
+                if isinstance(event, dict) and event.get('state') in ('A5_SELECTED', 'A6_RM4D_SELECTED'):
+                    callback, on_selection = on_selection, None
+                    callback(event)
+                    break
+        try:
+            return process.wait(timeout=min(.2, max(0., deadline-time.monotonic())))
+        except subprocess.TimeoutExpired:
+            if time.monotonic() >= deadline:
+                raise
 
 
 def state_ready(state):
@@ -283,7 +322,7 @@ def main(argv=None):
     parser.add_argument('--config', type=Path, default=ROOT/'configs/a6_pilot.json')
     choice = parser.add_mutually_exclusive_group(required=True)
     choice.add_argument('--slot', type=int)
-    choice.add_argument('--setup-scene', choices=('easy', 'moderate', 'hard'))
+    choice.add_argument('--setup-scene', help='Explicit scene ID from the supplied configuration')
     parser.add_argument('--output-dir', type=Path, required=True)
     parser.add_argument('--sim-root', type=Path, default=SIM)
     parser.add_argument('--rm4d-root', type=Path, default=RM)
@@ -295,8 +334,9 @@ def main(argv=None):
         slot = dict(scene=scene['id'], method='SETUP_CHECK', slot=None)
         if args.setup_view: config['initial_view'] = args.setup_view
     else:
-        if config['status'] != 'FROZEN_FOR_PILOT': raise ValueError('freeze setup/protocol before activating pilot slots')
-        if args.setup_view: raise ValueError('pilot pose overrides are not allowed')
+        if config['status'] not in ('FROZEN_FOR_PILOT', 'FROZEN_FOR_FORMAL'):
+            raise ValueError('freeze setup/protocol before activating slots')
+        if args.setup_view: raise ValueError('method pose overrides are not allowed')
         slot, scene = slot_spec(config, args.slot)
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -306,11 +346,13 @@ def main(argv=None):
                        ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
     os.environ.update(environment)
     children, logs = [], []
+    expected_kind = ('FORMAL_ATTEMPT' if config['status'] == 'FROZEN_FOR_FORMAL'
+                     else 'PILOT_ATTEMPT')
     record = dict(**slot, seed=scene['seed'], scene_spec=scene, initial_view=config['initial_view'],
                   uav_launch_pose=config['uav_launch_pose'],
                   config_path=str(args.config.resolve()), protocol=config['protocol'],
                   operational_gating=config.get('operational_gating', 'v1'),
-                  kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else 'PILOT_ATTEMPT',
+                  kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else expected_kind,
                   status='INVALID_TRIAL', task_started=False, activation_wall=time.time())
     def save(): (output/'attempt.json').write_text(json.dumps(record, indent=2, allow_nan=False)+'\n')
     def start(command, name):
@@ -319,7 +361,22 @@ def main(argv=None):
                                  cwd=str(ROOT), start_new_session=True)
         children.append(child)
         return child
-    runtime = checker = adapter = recorder = None
+    runtime = checker = adapter = recorder = image_recorder = None
+    image_command = image_diagnostic_command(config, output)
+    if image_command is not None:
+        record.update(diagnostic_image_scope=config['diagnostic_image_scope'],
+                      diagnostic_image_command=image_command,
+                      diagnostic_image_path=str(output/'diagnostics-images.bag'),
+                      diagnostic_image_start_trigger=None)
+    def start_images(event):
+        nonlocal image_recorder
+        record['diagnostic_image_start_trigger'] = {
+            key: event.get(key) for key in ('state', 'ros_time', 'wall_monotonic')}
+        try:
+            image_recorder = start(image_command, 'diagnostics-images')
+        except Exception as error:
+            record['diagnostic_image_error'] = '%s: %s' % (type(error).__name__, error)
+        save()
     save()
     try:
         source = args.sim_root/'src/demos/air_ground_pick_demo/launch/air_ground_pick_demo.launch'
@@ -350,7 +407,9 @@ def main(argv=None):
                              '--summary', str(output/'physical_summary.json'), '--timeout', '1250',
                              '--maximum-ground-travel', '3.0'], 'physical_checker')
         record.update(task_started=True, status='VALID_TRIAL'); save()
-        record['adapter_exit'] = adapter.wait(timeout=max(0., task_deadline-time.monotonic()))
+        record['adapter_exit'] = wait_for_adapter(
+            adapter, task_deadline, output/'data/events.jsonl',
+            start_images if image_command is not None else None)
         if checker is not None:
             try: record['checker_exit'] = checker.wait(timeout=5)
             except subprocess.TimeoutExpired: record['checker_exit'] = None
@@ -370,6 +429,9 @@ def main(argv=None):
         if recorder is not None:
             record['diagnostic_exit'] = recorder.poll()
             record['diagnostic_bag_finalized'] = (output/'diagnostics.bag').is_file()
+        if image_command is not None:
+            record['diagnostic_image_exit'] = None if image_recorder is None else image_recorder.poll()
+            record['diagnostic_image_bag_finalized'] = (output/'diagnostics-images.bag').is_file()
         physical, events, errors = read_measurements(output)
         if errors: record['measurement_read_errors'] = errors
         if physical is not None: record['physical_status'] = physical.get('status')
