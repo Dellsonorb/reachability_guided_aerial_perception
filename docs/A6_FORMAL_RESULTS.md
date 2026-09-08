@@ -245,3 +245,192 @@ gate accepted. All three first-replicate setups have passed without pose/seed
 changes. Hard core/ablation slots9–14 follow in the prelisted order. Final
 inferential analysis remains unavailable until every planned valid slot
 completes. Progress is in Draft PR#6; main is not merged.
+
+### Hard-001, replicate 1
+
+Slot9 (Fixed) completed VALID/FAILURE after three windows, one discarded partial
+capture, no confirmed candidate and no handoff. Active/task times are
+36.569/76.506 sim s. Of36 exact catalog entries,33 are raw-grid blocked and33
+object-aware exact blocked. Two combined-clear sources666/664 remain, with
+65/107 and53/106 real ground-supported cells (42/53 missing). TARGET,
+ENVIRONMENT and AMBIGUOUS class votes/cells are15/5,84/28 and18/6; these classes
+can overlap. No exact TARGET-alias rescue occurred. This is a retained finite-
+budget coverage failure, not an all-candidate blocking claim. Uniform secondary
+resources reproduce original values with no missing/gap samples; no image bag
+exists because no handoff occurred.
+
+Slot10 (RM4D-only) completed VALID/FAILURE: navigation succeeded, then the
+ground_refine stage151.673–163.001 rejected a fresh map target height
+`-.003387794 m` against the unchanged `.0575 +/- .0300 m` gate. The public pose
+stamp162.750 was received162.967: image age251 ms at rejection. Both RGB/depth
+images and both CameraInfo messages have the same162.750 stamp, matching
+intrinsics/frame metadata and the declared identity depth-to-color transform.
+Offline frozen geometry reproduces exactly7,376 mask/depth points and single-
+frame estimated center z`-.00339535 m`. Visible mapped z95 is`.054116 m`, from
+which the frozen upright-brick estimator subtracts half-height`.0575 m`.
+The red component touches the image bottom. Its
+[unmodified RGB frame](../outputs/a6/formal/slot-010-hard-001-rm4d-only-01/target-disturbance-rgb.png)
+is a diagnostic extract, not an efficacy figure or a modified observation.
+
+Saved `/pick_target/contacts` establishes physical target disturbance during
+navigation: BUNKER `ground/base_link` contact starts141.407 and ends143.991.
+The floor-support rectangle measures`.240 x .053 m` at141.357 before contact,
+then`.240 x .115 m` at144.991 and151.611, before GROUND_OBSERVE151.673. These
+match the known brick dimensions and strongly support tipping onto its narrow
+side. The ground-contact centroid moves`.186507 m`, from
+`(1.993060,.076431)` to`(1.896128,-.082908)`. This accounts for a low visible
+surface without demonstrating any registration/calibration defect. Contact
+measurements are retrospective diagnostics, never algorithm inputs. Preserve
+the original VALID ground_refine height-rejection outcome; do not relabel or
+retry it. No complete four-frame fusion replay is claimed.
+
+Slot11 (Ours) completed VALID/SUCCESS: third-window confirmation of source666,
+105/105 real ground-supported footprint cells, no continuous target or other
+operational block. There are34 catalog entries,30 raw/operational exact blocked;
+the other combined-clear source664 has106/108 ground-supported cells. Class
+votes/cells are TARGET16/6, ENVIRONMENT84/28, AMBIGUOUS17/6. No exact TARGET-
+alias rescue occurred. First confirmation51.332 active sim s; active51.333,
+task170.711; two NBV actions and three completed windows. Navigation/refinement/
+executed refined pregrasp take33.610/11.085/1.097 sim s. D_exec is true at
+157.475 sim s since task start. Brick/TCP lift are`.148579/.149572 m`, grasp
+and retention pass, physical checker CHECKS_PASS. UAV active/total paths are
+3.433868/11.075556 m. Original Ground path is missing; the causal secondary
+also retains a sampling gap. Both native recorders finalized normally.
+
+Slot12 (Generic) completed VALID/FAILURE, three windows/two NBV actions, zero
+confirmation and no handoff. Active/task times51.513/92.385 sim s. Catalog34,
+raw/operational exact blocked30; combined-clear sources666/664 have88/106 and
+88/108 real support (18/20 missing). Class votes/cells TARGET5/5,
+ENVIRONMENT81/28, AMBIGUOUS6/6; no exact alias rescue. Original and secondary
+resources agree without missing samples/gaps; UAV active/total4.26225/8.27451 m.
+Shorter total runtime than Ours includes this early valid failure, not faster
+successful retrieval. The Hard primary pair is Ours-only; no interim inference.
+
+Slot13 (no occlusion) completed VALID/FAILURE after three windows/two NBV
+actions, no confirmation or handoff. Active/task53.157/93.680 sim s; UAV active/
+total1.314361/5.302689 m. Catalog36, raw/operational exact blocked32; two
+combined-clear sources666/664 have52/106 and43/107 supported cells,54/64 missing.
+Class votes/cells TARGET16/6, ENVIRONMENT84/28, AMBIGUOUS18/6; no alias rescue.
+Original Ground path remains missing; the secondary-only reconstruction is
+complete at.001955 m. No outcome/resource substitution is made.
+
+A bounded contact check on the earlier Easy/Generic slot3 also shows real
+BUNKER–target contact, from181.239 during navigation through215.962 just before
+the215.977 height rejection. Floor-contact centroids move about.19916 m. Unlike
+slot10, a settled`.240 x .115 m` side-support rectangle is not established;
+sampled four-point supports remain`.240 x .053 m`, with only two floor points
+at the end. Physical disturbance is observed, but its exact contribution to
+the rejected estimate remains uncertain. Keep that original ground_refine
+failure, not a new class or an INVALID. A clear selected footprint does not
+establish collision-free navigation or swept turning geometry.
+
+Slot14 (no cost) completed VALID/FAILURE after confirming two candidates in
+window3 at52.940 active sim s. Sources666/664 have106/106 and107/107 ground
+support; catalog35, raw/operational exact blocked31, no alias rescue. Class
+votes/cells TARGET14/5, ENVIRONMENT82/28, AMBIGUOUS17/6. Navigation/refinement/
+refined pregrasp/descend succeeded; D_exec true at167.593 sim s since task
+start. Close failed after.488 sim s with AG95 action state4 (ABORTED); task
+duration173.162 sim s. All three recorded arm trajectories returned success,
+the last at184.551 before close184.559–185.047. During184.400–185.050 the
+knuckle remained`[-.02350,.00796] rad`, below the original.20-rad closed
+threshold; all14 grasp samples were false, with left-finger/floor target
+contacts only. Confirmed-stall acceptance conditions were not met. The actual
+gripper action's detailed error/tolerance code is not in the first-replicate
+bag topic set; do not invent it. This is unsuccessful physical closure, not a
+demonstrated platform invalidity. UAV active/total3.498481/10.964507 m; original
+Ground distance remains missing, including a gap in its secondary estimate.
+
+Independent Hard review checked15 shared-ranking/action snapshots and525
+exact/representative assessments. Actual ablations also pass:195 no-occlusion
+rows use range/FOV-only visibility with original costs/gates;147 no-cost rows
+retain visibility/gains and remove only the score penalty, with original
+tie-breaking. All methods retain combined-clear candidates. Support fractions
+above are each trial's own perceived geometry, not identical cross-run cells.
+No fairness, structural-handoff or scientific-stop concern was found.
+
+First formal replicate complete: **14/560 valid slots**, three successes,
+eleven failures, zero INVALID activations; three unchanged setup checks pass.
+Primary records are Easy Ours-only, Moderate neither-success and Hard Ours-only.
+There is no inferential efficacy look. The two Hard ablations fail at different
+stages: no-occlusion at confirmation budget, no-cost at close despite D_exec.
+Across the replicate,33 shared-scoring snapshots pass and27 argmaxes differ;
+1,161 candidate assessments have been independently reviewed. All14 native
+control/TF diagnostic reports reproduce original metrics/non-path values;
+secondary paths remain separately labeled. Next is prelisted Hard-002 setup,
+then slots15–20, followed by Easy-002 and Moderate-002 in the frozen order.
+
+### Storage-only correction after replicate 1
+
+Actual first-replicate native bags total22,889,315,916 bytes, including
+21,903,572,765 image bytes and985,743,151 control bytes. Three setup bags total
+44,267,748 bytes. Extrapolating this one observed mix to the remaining39
+replicates gives894,409,762,896 bytes, versus860,572,139,520 bytes available at
+the check: a33.84 GB shortfall before other files. This is a conditional storage
+projection, not a reason to change sample size, outcomes or acquisition.
+
+Use the already installed Zstandard CLI1.5.6 to archive **the complete native
+image-bag byte stream**, only after capture, native health checks and readers
+have finished. This is not `rosbag` rewriting/recompression and does not merge
+publisher connections or remove images. Control bags remain directly readable;
+all observation/metric/physical-result files remain unchanged. The first
+slot5 probe, at default level3/one worker, compressed2,872,802,712 bytes to
+2,364,217,216 bytes (ratio.822965) in8.68 wall seconds. Decompression was
+compared byte-for-byte with the source, exit0, in2.62 s. The source native
+format and all its connection metadata are therefore retained exactly.
+
+Closed image bags are now stored as`diagnostics-images.bag.zst`; their expanded
+`.bag` copies are removed after successful compression. Restore one when needed
+with the installed standard CLI, keeping the archive:
+
+```bash
+zstd -d --keep TRIAL/diagnostics-images.bag.zst -o TRIAL/diagnostics-images.bag
+```
+
+Do not overwrite an existing restored bag. Capture still writes the original
+native bag first, with unchanged topics/rates/trigger and no compression work
+during the trial. The original attempt's finalized/path fields describe that
+capture, not a rewritten historical record. Archives remain local and ignored
+by Git, like their expanded originals. The source-byte-equivalent storage
+change does not affect method or robot-efficiency measurements. No new archive
+framework, evidence chain, dependency installation or sample change is added.
+
+All10 first-replicate image archives passed the standard decoder integrity
+test (exit0,32.23 s); total archived image bytes17,673,211,074, saving
+4,230,361,691 bytes. Control native bytes remain985,743,151. At this observed
+mix, full-study image archives plus native control project746.36 GB, before
+setup/other files. This remains a sample-dependent planning estimate; keep
+monitoring capacity between blocks. No Pilot-1/2 bag was changed.
+
+### Passive gripper logging correction, from replicate 2
+
+Slot14's missing detailed gripper-controller response motivates five additional
+**formal-only passive** native control topics:
+
+```
+/ground/gripper_controller/follow_joint_trajectory/goal
+/ground/gripper_controller/follow_joint_trajectory/status
+/ground/gripper_controller/follow_joint_trajectory/result
+/ground/gripper_controller/follow_joint_trajectory/cancel
+/ground/gripper_controller/state
+```
+
+Names match unchanged SIM demo/controller wiring. Only the existing recorder's
+topic list changes, uniformly for all subsequent formal methods and setups;
+there is no new robot-side client, command, delay or policy input. Original
+Pilot/default recording and both image scopes remain unchanged. The original
+14 measurements, success criteria and failure stages are not rewritten or
+retried; slot14's detailed gripper error remains unknown. Formal configuration,
+seeds/order, deadlines, thresholds, costs, gates and A1–A5 are unchanged.
+
+Tests first fail for the five absent topics, then pass after the eight-line
+recorder extension. Fresh full core suite:517 tests,21 unchanged environment
+skips; Noetic/OpenCV/launcher/analysis split:75 tests pass without skips. The
+source diff remains empty for research src, A5 scripts/assets and Pilot-1
+configuration/protocol; SIM worktree remains clean.
+
+The actual frozen/task-domain RM4D asset split also passes all9 tests, covering
+the remaining external-map skips. Independent review returns GO: the five
+topics are passive and formal-only; both image scopes, disabled diagnostics
+and unchanged Pilot recording are tested. The storage change preserves native
+bytes and historical results. No engineering or scientific-stop blocker is
+identified before replicate2.

@@ -1,0 +1,32 @@
+{
+  "operational_semantics": "object-aware-v1.1",
+  "association_status": "AVAILABLE",
+  "association_rule": "interior_red_mask_AND_registered_depth_AND_expanded_known_object_geometry",
+  "reference_scope": "static_initial_air_phase_only",
+  "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-011-hard-001-ours-01/data/target_reference.npz",
+  "target": {
+    "center_xyz": [
+      1.9886246490545079,
+      0.0811331429076098,
+      0.05964175886847833
+    ],
+    "yaw_rad": 0.47833314017287876,
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "geometry_allowance_m": 0.04666283042171482,
+    "frame_id": "map"
+  },
+  "geometry_allowance_semantics": "declared_sensor_budget_not_calibrated_accuracy",
+  "raw_a2_unchanged": true,
+  "ground_semantics": "actual_ground_votes_with_environment_or_ambiguous_priority",
+  "observation_windows": 2,
+  "votes": {
+    "environment_occupied_votes": 56,
+    "ambiguous_occupied_votes": 12,
+    "target_occupied_votes": 10,
+    "ground_votes": 1095
+  }
+}

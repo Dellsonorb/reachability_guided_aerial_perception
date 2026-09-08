@@ -93,8 +93,14 @@ class FormalDesignTests(unittest.TestCase):
         self.assertEqual(launch.adapter_args(config, *paths), launch.adapter_args(self.p2, *paths))
         default_recording = {key: value for key, value in config.items()
                              if key != 'diagnostic_image_scope'}
+        # After formal replicate 1, passive gripper diagnostics are appended
+        # uniformly; the original pilot command and all robot arguments stay
+        # unchanged. These topics carry no new input to a research policy.
+        extra_topics = ['/ground/gripper_controller/follow_joint_trajectory/' + suffix
+                        for suffix in ('goal', 'status', 'result', 'cancel')]
+        extra_topics.append('/ground/gripper_controller/state')
         self.assertEqual(launch.diagnostic_command(default_recording, paths[0]),
-                         launch.diagnostic_command(self.p2, paths[0]))
+                         launch.diagnostic_command(self.p2, paths[0]) + extra_topics)
 
     def test_formal_only_image_scope_is_identical_for_every_method(self):
         config = self.build()

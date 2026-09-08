@@ -192,6 +192,38 @@ class AttemptTests(unittest.TestCase):
         self.assertEqual(ET.tostring(result), ET.tostring(ET.fromstring(source)))
 
 
+class GripperDiagnosticsTests(unittest.TestCase):
+    def test_only_formal_status_adds_exactly_five_passive_topics(self):
+        config = json.loads((ROOT / 'configs/a6_pilot2.json').read_text())
+        before = json.loads(json.dumps(config))
+        output = Path('/tmp/example')
+        extra = [
+            '/ground/gripper_controller/follow_joint_trajectory/goal',
+            '/ground/gripper_controller/follow_joint_trajectory/status',
+            '/ground/gripper_controller/follow_joint_trajectory/result',
+            '/ground/gripper_controller/follow_joint_trajectory/cancel',
+            '/ground/gripper_controller/state',
+        ]
+        for scope in (None, 'ground_handoff_to_end'):
+            scoped = dict(config, diagnostic_image_scope=scope)
+            original = attempt.diagnostic_command(scoped, output)
+            for status in (None, 'FROZEN_FOR_PILOT', 'FROZEN_FOR_PILOT2'):
+                with self.subTest(scope=scope, status=status):
+                    legacy = dict(scoped, status=status)
+                    if status is None:
+                        legacy.pop('status')
+                    self.assertEqual(attempt.diagnostic_command(legacy, output), original)
+            formal = dict(scoped, status='FROZEN_FOR_FORMAL')
+            with self.subTest(scope=scope, status=formal['status']):
+                recorded = attempt.diagnostic_command(formal, output)
+                self.assertEqual(recorded, original + extra)
+                self.assertEqual(len(recorded[7:]), len(set(recorded[7:])))
+                self.assertNotIn('/air_ground_pick_demo/status', recorded)
+                self.assertIsNone(attempt.diagnostic_command(
+                    dict(formal, record_diagnostics=False), output))
+        self.assertEqual(config, before)
+
+
 class ImageDiagnosticsTests(unittest.TestCase):
     def setUp(self):
         self.config = json.loads((ROOT / 'configs/a6_pilot2.json').read_text())
@@ -204,7 +236,8 @@ class ImageDiagnosticsTests(unittest.TestCase):
         original = attempt.diagnostic_command(self.config, output)
         for topic in self.images:
             self.assertIn(topic, original)
-        scoped = attempt.diagnostic_command(self.scoped, output)
+        scoped = attempt.diagnostic_command(
+            dict(self.config, diagnostic_image_scope='ground_handoff_to_end'), output)
         self.assertEqual(scoped, [word for word in original if word not in self.images])
         self.assertNotIn('/air_ground_pick_demo/status', scoped)
         for topic in ('/ground/d435/color/camera_info', '/ground/d435/depth/camera_info'):

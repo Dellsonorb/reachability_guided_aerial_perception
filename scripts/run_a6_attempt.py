@@ -120,6 +120,14 @@ def diagnostic_command(config, output):
         '/ground/arm_controller/follow_joint_trajectory/result',
         '/ground/arm_controller/follow_joint_trajectory/cancel',
     ]
+    if config.get('status') == 'FROZEN_FOR_FORMAL':
+        topics += [
+            '/ground/gripper_controller/follow_joint_trajectory/goal',
+            '/ground/gripper_controller/follow_joint_trajectory/status',
+            '/ground/gripper_controller/follow_joint_trajectory/result',
+            '/ground/gripper_controller/follow_joint_trajectory/cancel',
+            '/ground/gripper_controller/state',
+        ]
     if config.get('diagnostic_image_scope') == 'ground_handoff_to_end':
         topics = [topic for topic in topics if topic not in IMAGE_TOPICS]
     return ['rosbag', 'record', '--lz4', '--buffsize', '256',
