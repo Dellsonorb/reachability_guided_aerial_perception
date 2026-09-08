@@ -27,6 +27,8 @@ def build_parser():
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
     parser.add_argument("--operational-gating", choices=("v1", "v1.1"), default="v1",
                         help="explicit v1.1 object-aware gate; default preserves frozen v1 behavior")
+    parser.add_argument("--support-anchor", choices=("cell_center", "exact_winner"), default="cell_center",
+                        help="explicit v1.2 original-winner support; default preserves legacy cell centers")
     parser.add_argument("--max-viewpoints", type=int, default=3,
                         help="observation budget, including the initial capture and rescans")
     parser.add_argument("--flight-bounds", type=float, nargs=6,
@@ -424,6 +426,7 @@ def build_adapter_class(demo_module, options):
                     "current_bunker_pose": list(self._ground_pose()),
                     "frame_calibration": self._a5_frame_calibration(),
                     "config": {"max_viewpoints": options.max_viewpoints,
+                               "support_anchor": getattr(options, 'support_anchor', 'cell_center'),
                                "flight_bounds": options.flight_bounds,
                                "facade_position_tolerance": options.facade_position_tolerance,
                                "xy_offsets_m": options.xy_offsets_m},

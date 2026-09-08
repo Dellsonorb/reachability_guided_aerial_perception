@@ -56,6 +56,14 @@ def field_summary(field):
             operational_formula='max R(q) over object-aware-unblocked supporting footprints containing x',
             blocked_semantics='environment_or_ambiguous_or_target_geometry_not_navigation_infeasible',
             observed_ground_support_semantics='derived_actual_ground_votes_not_raw_A2_FREE_not_full_clearance')
+    if field.anchor_semantics == 'exact-validated-winner-v1.2':
+        summary.update(
+            anchor_semantics=field.anchor_semantics,
+            winner_anchors=[asdict(anchor) for anchor in field.winner_anchors],
+            anchor_tie_rule='first_original_evaluation_index_among_equal_candidate_relevance',
+            representative_pose='original_frozen_evaluated_candidate_per_A1_HIGH_LOW_cell',
+            representative_pose_ik_validated=True,
+            representative_pose_validation='original_A1_IK_validity_gates_not_new_IK_or_navigation_clearance')
     return summary
 
 

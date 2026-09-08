@@ -9,6 +9,7 @@ from environment_belief import EnvironmentBeliefGrid, EnvironmentGridSpec, Envir
 from reachability_guided_aerial_perception.model import (
     AssessmentCoverage, CellState, FieldStatus, ManipulationInterestField,
 )
+from .anchors import WinnerAnchor, reconstruct_winner_anchors
 from .geometry import FootprintSpec, footprint_cells
 
 
@@ -28,7 +29,7 @@ class PoseEnvironmentState(IntEnum):
 
 @dataclass(frozen=True)
 class PoseSupport:
-    """Discrete cell-center pose, NOT the exact original IK-validated candidate.
+    """Support pose; the task's anchor_semantics specifies center or exact winner.
 
     blocked is the selected operational gate, never navigation infeasible.
     free/occupied/unknown cell counts remain raw A2 diagnostics in v1.1 too.
@@ -71,6 +72,8 @@ class TaskRelevantUncertaintyField:
     pose_environment_state: np.ndarray
     poses: tuple[PoseSupport, ...]
     operational_semantics: str = 'v1'
+    anchor_semantics: str = 'cell-center'
+    winner_anchors: tuple[WinnerAnchor, ...] = ()
 
     @property
     def frame_id(self):
@@ -111,13 +114,19 @@ def _check_inputs(a1, a2):
     return eligible
 
 
-def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, operational=None):
-    """Project best_yaw poses and apply v1 or explicit object-aware gating.
+def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, operational=None,
+                           evaluated_candidates=None):
+    """Project legacy centers or exact original winners with the selected gate.
 
     UNKNOWN never blocks; FREE keeps its supplied unknown_score. No mutation,
     new IK, alternate yaw search, occupancy clearing, or clearance inference.
+    Omitted evaluations preserve legacy centers; a supplied empty sequence
+    still selects exact mode and must agree with the original A1 coverage.
     """
     eligible = _check_inputs(a1_field, a2_belief)
+    exact = evaluated_candidates is not None
+    anchors = reconstruct_winner_anchors(a1_field, evaluated_candidates) if exact else ()
+    anchors_by_source = {anchor.source_id: anchor for anchor in anchors}
     if not isinstance(footprint, FootprintSpec):
         raise ValueError('footprint must be FootprintSpec')
     grid = a2_belief.grid
@@ -139,6 +148,9 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, op
         xy = (grid.origin_xy[0] + (col + 0.5) * grid.resolution_m,
               grid.origin_xy[1] + (row + 0.5) * grid.resolution_m)
         yaw, relevance = float(a1_field.best_yaw[row, col]), float(a1_field.relevance[row, col])
+        if exact:
+            anchor = anchors_by_source[source]
+            xy, yaw = (anchor.x, anchor.y), anchor.yaw
         cells, clipped = footprint_cells(grid, xy, yaw, footprint)
         states = environment[cells]
         occupied = int(np.count_nonzero(states == EnvironmentState.OCCUPIED))
@@ -182,4 +194,5 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, op
         arrays.append(array)
     return TaskRelevantUncertaintyField(grid, a1_field.grasp_id, a1_field.status,
                                         a1_field.coverage, footprint, *arrays, tuple(poses),
-                                        'v1' if operational is None else 'object-aware-v1.1')
+                                        'v1' if operational is None else 'object-aware-v1.1',
+                                        'exact-validated-winner-v1.2' if exact else 'cell-center', anchors)

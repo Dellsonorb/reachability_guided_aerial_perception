@@ -16,8 +16,7 @@ from reachability_guided_aerial_perception.cli import open_frozen_rm4d_api
 from reachability_guided_aerial_perception.outputs import save_field_bundle
 from reachability_guided_nbv import Viewpoint
 from reachability_guided_nbv.outputs import render_result, save_result
-from task_relevant_uncertainty import build_task_uncertainty
-from .core import A5Config, candidate_catalog, decide, replay_observations
+from .core import A5Config, build_support_task, candidate_catalog, decide, replay_observations
 from .frame_bridge import FrameBridge
 from .task_map import open_task_rm4d_api
 
@@ -102,7 +101,7 @@ def observe(request):
         raise ValueError('uav_pose must be [x,y,z,yaw]')
     choice, ranking = decide(field, raw, belief, Viewpoint(tuple(pose[:3]), pose[3]),
                               round_count=len(paths), config=config, operational=operational)
-    task = build_task_uncertainty(field, belief, operational=operational)
+    task = build_support_task(field, raw, belief, config, operational=operational)
     directory = Path(request['output_dir'])
     save_belief(belief, directory / 'a2')
     save_operational(directory, operational, operational_metadata)

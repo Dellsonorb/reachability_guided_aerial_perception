@@ -12,9 +12,8 @@ from operational_gating.io import build_operational_context, save_operational
 from reachability_guided_aerial_perception import GraspTCP
 from reachability_guided_nbv import Viewpoint
 from sim_active_perception import worker as frozen_worker
-from sim_active_perception.core import A5Config, replay_observations
+from sim_active_perception.core import A5Config, build_support_task, replay_observations
 from sim_active_perception.worker import make_field, render_result, save_belief, save_result, write_json
-from task_relevant_uncertainty import build_task_uncertainty
 from .policy import VIEW_BUDGET, decide_policy, rm4d_top_one
 
 
@@ -53,7 +52,7 @@ def observe(request):
     method = request.get('method', 'ours')
     choice, ranking = decide_policy(field, raw, belief, Viewpoint(tuple(pose[:3]), pose[3]),
                                     method=method, round_count=len(paths), config=config, operational=operational)
-    task = build_task_uncertainty(field, belief, operational=operational)
+    task = build_support_task(field, raw, belief, config, operational=operational)
     directory = Path(request['output_dir'])
     save_belief(belief, directory / 'a2')
     save_operational(directory, operational, operational_metadata)
