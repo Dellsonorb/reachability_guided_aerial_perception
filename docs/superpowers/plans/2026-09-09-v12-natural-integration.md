@@ -63,3 +63,26 @@ dependency or mission/benchmark/evidence framework.
 - [ ] Final independent review; confirm source boundaries/working tree, close
   only owned SIM processes, commit/push feature checkpoint, update Draft PR and
   stop. Do not merge or resume the interrupted560-slot protocol.
+
+## Concrete repair after natural-attempt-01 diagnosis
+
+The unchanged run passed hover, all three windows, exact confirmation and
+Ground navigation. It failed preparing the D435 observation pregrasp, before
+`GROUND_REFINED`: Python requested TF at222.406 while its cache ended222.405.
+The public bag contains bracketing TF222.405/222.425 and later transforms.
+Native MoveIt construction blocks Python callbacks: a no-motion live probe
+measured a1.219s Python heartbeat gap and unchanged Python ROS time66.971
+while C++ advanced to68.102. Installed tf2 uses a ROS-time timeout, so queued
+clock delivery can expire the0.5s wait before queued TF delivery. A deterministic
+native tf2 replay reproduces the original1ms error with this callback order.
+
+- [ ] RED: reproduce clock catch-up before TF delivery; require unchanged
+  exact stamp to succeed once its bracketing transform arrives. Also test
+  permanent missing TF, shutdown, non-TF exceptions and explicit latest usage.
+- [ ] Add only an A5 adapter pose-transform override using nonblocking exact
+  lookup and a0.5s monotonic wall readiness bound, yielding between attempts.
+  Preserve inherited same-frame copy, requested frames/stamp and explicit
+  `use_latest` behavior. No stamp offset, new geometry tolerance, motion retry,
+  candidate replacement, method change or SIM source patch.
+- [ ] Test adapter wiring and native tf2 clock-order reproduction, then review
+  and run a fresh original natural regression. Retain the failed activation.

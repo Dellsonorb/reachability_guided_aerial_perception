@@ -507,7 +507,7 @@ class AdapterTests(unittest.TestCase):
         group = SimpleNamespace(get_planning_frame=lambda: 'ground/aubo_i5_base_link')
         with patch.object(self.base, '_initialize_moveit', return_value=group, create=True), \
                 patch.object(self.base, '_pose_message', return_value=SimpleNamespace(), create=True), \
-                patch.object(self.base, '_transform_pose', side_effect=LookupError('pregrasp preparation TF missing'), create=True):
+                patch.object(node, '_transform_pose', side_effect=LookupError('pregrasp preparation TF missing')):
             with self.assertRaisesRegex(LookupError, 'pregrasp preparation TF missing'):
                 node._pick_and_lift(SimpleNamespace(header=SimpleNamespace(stamp=self.Stamp.now())), [2., 0., .1])
         node._publish_status('FAILED', reason='pregrasp preparation TF missing')

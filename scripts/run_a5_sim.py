@@ -130,6 +130,27 @@ def wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=10.):
     raise error_type("A5 status subscriber did not connect before startup")
 
 
+def lookup_transform_wall(buffer, target_frame, source_frame, stamp, rospy, transient_errors):
+    """Wait at most 0.5 wall seconds for this unchanged TF request to be ready."""
+    # MoveIt initialization can hold Python callbacks behind the GIL. A queued
+    # /clock jump must not expire the wait before queued TF callbacks can run.
+    deadline = time.monotonic() + .5
+    last_error = None
+    while not rospy.is_shutdown():
+        if last_error is not None and time.monotonic() >= deadline:
+            raise last_error
+        try:
+            return buffer.lookup_transform(
+                target_frame, source_frame, stamp, rospy.Duration(0))
+        except transient_errors as error:
+            last_error = error
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise
+            time.sleep(min(.01, remaining))
+    raise rospy.ROSInterruptException("A5 pose transform interrupted by shutdown")
+
+
 def build_adapter_class(demo_module, options):
     """Import the ROS boundary lazily so --help and source import stay portable."""
     import numpy as np
@@ -175,6 +196,18 @@ def build_adapter_class(demo_module, options):
             self._a5_cloud_subscriber = rospy.Subscriber(
                 options.cloud_topic, PointCloud2, self._a5_cloud_callback,
                 queue_size=1, buff_size=16 * 1024 * 1024)
+
+        def _transform_pose(self, pose, target_frame, use_latest=False):
+            if pose.header.frame_id == target_frame:
+                return super()._transform_pose(pose, target_frame, use_latest=use_latest)
+            transform = lookup_transform_wall(
+                self._tf_buffer, target_frame, pose.header.frame_id,
+                rospy.Time(0) if use_latest else pose.header.stamp, rospy,
+                (tf2_ros.LookupException, tf2_ros.ConnectivityException,
+                 tf2_ros.ExtrapolationException))
+            result = demo_module.do_transform_pose(pose, transform)
+            result.header.frame_id = target_frame
+            return result
 
         def _a5_cloud_callback(self, message):
             with self._lock:
