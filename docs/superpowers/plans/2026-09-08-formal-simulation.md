@@ -133,7 +133,7 @@ upper = sum(U_b[h]-L_c[h] for h in tiers)/3.
 - [x] Use Pilot-2 event times and existing bag indices to quantify selection-
   scoped native image storage before formal launch. Keep all pilot originals
   untouched and retain the temporary compression probe for transparent review.
-- [ ] Commit/push reviewed protocol, exact serialized seeds/order and tested
+- [x] Commit/push reviewed protocol, exact serialized seeds/order and tested
   orchestration before any formal activation. No merge to main.
 - [ ] For each prelisted scene block run the unchanged setup check, then each
   prelisted method in its fixed order, one fresh simulator at a time. Invoke
@@ -152,6 +152,16 @@ upper = sum(U_b[h]-L_c[h] for h in tiers)/3.
 
 ## Task 5 — final analysis and handoff (root)
 
+- [x] Add only a read-only result projection in `scripts/a6_result_tables.py`
+  with `tests/test_a6_result_tables.py`. `describe_results(config, summary)`
+  flattens each prelisted slot's literal outcome, stage/discovery fields,
+  simulation windows/time and online path completeness without reclassification.
+  Join the existing collector's selected attempt, preserving None and RM4D N/A.
+  Tests use small constructed summaries for failed/missing/unreached stages;
+  a missing path must remain None and may have a separate observed lower bound.
+  Produce CSV/JSON and per-tier/method available numerators/denominators; no
+  inference or experiment scheduling in this module. The existing analysis
+  script alone supplies final inference after completion.
 - [ ] Run final paired analysis once all planned valid slots are complete.
   Report the E2E outcome table, discordant pairs, per-tier effects, confirmation
   → D_exec → retrieval, resources, all failures/INVALIDs, same-state diagnostics,
