@@ -1,7 +1,7 @@
 # Pilot-2 execution notes — in progress
 
-No formal runs have started. Pilot-2 methods: **1/14 valid completed slots**,
-with one additional INVALID method activation awaiting repeat. This file is
+No formal runs have started. Pilot-2 methods: **4/14 valid completed slots**,
+with one additional INVALID method activation retained and successfully repeated. This file is
 updated as activations finish; it is not a completed
 experiment claim. Protocol/seeds were committed before any method outcome in
 `18fb57d`, with the serialized configuration and shared v1.1 switch in `ed87bd6`.
@@ -84,6 +84,9 @@ unchanged. Setup, reporter and code review preparation gates are satisfied.
 |---|---|---|---|
 | 1 Easy RM4D-only / 01 | N/A | yes | valid failure: retention confirmation |
 | 2 Easy Fixed / 01 | 2 candidates at window 3 | yes | INVALID: checker startup loss |
+| 2 Easy Fixed / 02 | 1 candidate at window 3 | yes | success: independent physical checks pass |
+| 3 Easy Generic / 01 | 3 candidates at window 3 | yes | success: independent physical checks pass |
+| 4 Easy Ours / 01 | 1 candidate at window 2 | no | valid failure: Ground navigation timeout |
 
 Slot1's four arm trajectories all report SUCCEEDED/error0. The accepted close
 stall was followed by successful lift motion, then `AG95 lost grasp confirmation
@@ -111,8 +114,64 @@ all four initial states in all6 focused replacement-delay cases and all8 prior
 first-write-delay cases. Independent review and45 focused tests pass. Repeat
 only slot2's INVALID activation with the same seed/method/settings.
 
+The identical slot2 repeat passes all physical checks: brick lift .14773 m and
+TCP lift .14948 m, with confirmation retained. It uses 3 completed windows,
+2 stationary rescans, 36.606 s active time and 140.994 s task time (simulation).
+Actual UAV hover travel is not zeroed: 1.50322 m active, 6.62501 m total.
+The focused reproduction is retained outside the repo at
+`../runtime-scratch/publisher_startup_probe.py` and
+`../runtime-scratch/publisher_startup_probe_results.json`.
+
+Slot3 Generic also passes the independent physical checker. It uses 3 windows
+and 2 NBV moves; first confirmation occurs in window3, after 50.695 active
+simulation seconds. Active time is 50.696 s, task time 164.352 s; UAV travel is
+3.44632 m active and 10.83132 m total. Ground total travel remains unavailable
+because its online trace contains missing samples. These are descriptive
+records, not a population method-effect conclusion.
+
+Slot4 Ours confirms one pose in window2 (41.649 active simulation seconds),
+completes the frozen third window without first-confirmation early stop, then
+hands off exact candidate000006. Ground approaches its XY but fails to converge
+to the full navigation pose within the original 120 s guard. Keep the valid
+navigation failure: D_exec=false and all refinement/manipulation stages remain
+NOT_REACHED. Active time is 52.575 s, task time 229.549 s; UAV distance is
+3.45344 m active / 10.88072 m total. No settings or outcome-based rerun change.
+The first complete primary pair is **Generic-only success** (b=0,c=1,n=1).
+Earlier confirmation is not equated with execution or retrieval success.
+
+Slot4's passive bag establishes accepted/ACTIVE navigation, 1,800 matching
+navigation/guarded commands and 6,000 continuous odometry samples (max gap29 ms).
+Final XY/yaw errors are .06100 m / 1.12350 rad. The base briefly enters the frozen
+.06 m XY tolerance, then stalls around its boundary without yaw convergence;
+late commands continue rather than being dropped. Final local costmap is free,
+and recorded contacts show the target on the ground plane, not a BUNKER contact.
+This supports a controller/base convergence failure, not a demonstrated startup,
+transport or independent integration defect. Keep the valid failure and settings.
+
+Saved-only audit of the valid Fixed/Generic final windows finds respectively
+29/33 and 31/35 exact operationally blocked candidates, zero target-alias-retained
+exact candidates, and TARGET/AMBIGUOUS/ENVIRONMENT vote sums 15/17/0 and 11/16/0.
+Cause categories overlap. Their selected exact poses each have 108 supported
+cells, no operational blocker and no continuous target collision.
+Both reject `candidate-000014` (source745) solely through the preserved A3
+representative guard despite complete, unblocked exact geometry. Record this
+disagreement; alternative poses completed retrieval, so it is not yet evidence
+of a method-wide structural deadlock or a reason to change the frozen guard.
+
 Raw public TF remained available for slot1's missing resource samples; local
 buffer initialization/backlog caused the holes. Slot2 also has small local
 TF-versus-captured-clock races. Original path metrics stay unchanged/null where
-incomplete. A separately labelled, uniform causal bag-derived secondary report
-is being implemented; it cannot reclassify retrieval or fill absent observations.
+incomplete. The separately labelled uniform causal bag-derived secondary report
+is implemented and independently reviewed. Its 24 focused Noetic tests pass.
+A review-found clock-reset edge case is fixed: any reset in original samples
+or events makes the entire secondary trace unavailable before reading bag
+messages, avoiding false epoch attribution. It cannot reclassify retrieval,
+insert samples, or repair real scheduling gaps. Original metrics remain primary.
+
+Easy-block checkpoint verification: core discovery runs 468 tests (452 pass,
+16 environment-specific skips); Noetic's 24 reporter/metric tests and 11
+target-support tests pass and cover those skips. All 12 saved sensing snapshots
+pass same-state score/mask/cost identities. Four first-window scene descriptions
+(including the INVALID measurement activation) match the Easy proposal targets;
+these are post-freeze descriptions, never scene admission or outcome filters.
+No `src/`, frozen A5 method, Pilot-1 protocol/configuration or SIM change is made.
