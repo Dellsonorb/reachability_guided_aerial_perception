@@ -1,6 +1,6 @@
 # Pilot-2 execution notes — in progress
 
-No formal runs have started. Pilot-2 methods: **4/14 valid completed slots**,
+No formal runs have started. Pilot-2 methods: **8/14 valid completed slots**,
 with one additional INVALID method activation retained and successfully repeated. This file is
 updated as activations finish; it is not a completed
 experiment claim. Protocol/seeds were committed before any method outcome in
@@ -87,6 +87,10 @@ unchanged. Setup, reporter and code review preparation gates are satisfied.
 | 2 Easy Fixed / 02 | 1 candidate at window 3 | yes | success: independent physical checks pass |
 | 3 Easy Generic / 01 | 3 candidates at window 3 | yes | success: independent physical checks pass |
 | 4 Easy Ours / 01 | 1 candidate at window 2 | no | valid failure: Ground navigation timeout |
+| 5 Moderate Fixed / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 6 Moderate Generic / 01 | none in 3 windows | no | valid failure: budget without confirmed candidate |
+| 7 Moderate Ours / 01 | 1 candidate at window 2 | no | valid failure: Ground navigation timeout |
+| 8 Moderate RM4D-only / 01 | N/A | yes | valid failure: lift Cartesian execution check |
 
 Slot1's four arm trajectories all report SUCCEEDED/error0. The accepted close
 stall was followed by successful lift motion, then `AG95 lost grasp confirmation
@@ -157,6 +161,13 @@ Both reject `candidate-000014` (source745) solely through the preserved A3
 representative guard despite complete, unblocked exact geometry. Record this
 disagreement; alternative poses completed retrieval, so it is not yet evidence
 of a method-wide structural deadlock or a reason to change the frozen guard.
+Reassessment identifies both continuous expanded-target overlap and two
+AMBIGUOUS cells (780,821) at this representative, versus 40.55–41.04 mm exact
+continuous clearance and 108/108 exact ground support in the final Easy windows.
+Its exact raw occupied overlap is zero, so this is not a TARGET alias-retention
+case. The representative has 105/107 ground-supported cells. Exact/representative
+replay matches saved gates; only this candidate is lost among otherwise fully
+supported exact poses (Fixed2→1, Generic4→3, Ours2→1).
 
 Raw public TF remained available for slot1's missing resource samples; local
 buffer initialization/backlog caused the holes. Slot2 also has small local
@@ -175,3 +186,56 @@ pass same-state score/mask/cost identities. Four first-window scene descriptions
 (including the INVALID measurement activation) match the Easy proposal targets;
 these are post-freeze descriptions, never scene admission or outcome filters.
 No `src/`, frozen A5 method, Pilot-1 protocol/configuration or SIM change is made.
+
+## Moderate block
+
+Fixed's three rounds have 35 exact candidates, 33 exact operational blockers,
+34 representative/combined blockers and zero confirmation. Candidate000002
+(source666) remains exact/representative-unblocked and unclipped, with no target
+collision or occupied-class overlap. Its final missing support is **one cell781
+with one ground vote**, while the other 105 footprint cells have three votes.
+This is insufficient measured support within the budget, not all-candidate
+operational blocking. Candidate000021/source745 is exact-clear but its
+representative overlaps an AMBIGUOUS cell; it also lacks six exact support cells.
+Do not turn either into a confirmed pose or change the two-vote threshold.
+
+Generic completes all three windows and likewise terminates without handoff.
+Its two combined-clear candidates (source666/745) each support105/106 cells,
+missing only cell822's second vote. Two other exact-clear poses are excluded
+by continuous representative-target collision, with no class overlap.
+
+Ours confirms source666 in windows2/3 (106/106 ground, no exact or representative
+blocker), then times out during 120 s Ground navigation. D_exec and retrieval
+remain false. The Moderate primary pair is neither-success, despite different
+failure stages. RM4D-only completes navigation/refinement/pregrasp/descend/close,
+but fails during lift: `max_joint_speed=0.1659 joint=wrist_3_joint`. D_exec=true
+is retained separately from retrieval=false. All four outcomes remain valid.
+
+The Fixed missing-support cell781 is raw UNKNOWN with one ground vote and no
+occupied-class evidence. All65 generated viewpoints pass range, but elevation
+excludes51/49/50 per round and the remaining14/16/15 rays all hit neighboring
+cell780's mixed TARGET+AMBIGUOUS **1 m surrogate prism**. This explains saved
+zero predicted visibility, not real physical impossibility. Generic's nearby781
+and Ours'781/822 receive actual ground votes1→2→3. Independently perceived grid
+origins differ by millimeters; these are nearby cells, not identical inputs.
+Ours therefore demonstrates achievable handoff within the frozen budget.
+
+Final Fixed/Generic/Ours class vote totals are TARGET15/12/15,
+ENVIRONMENT108/101/106, AMBIGUOUS18/13/18. Exact blockers33/32/34 and
+combined-clear1/2/1 are separate. No alias rescue is required or manufactured.
+All21 saved Easy/Moderate snapshots pass shared scoring identities;19 select
+different task/generic argmaxes. No post-outcome tuning or scene replacement.
+
+Moderate/Ours navigation differs from Easy: it turns substantially on approach,
+then oscillates near the XY tolerance, ending at .0602255 m / .186489 rad errors
+without simultaneous .06 m / .08 rad convergence. Last33.64 s travel is12.2 mm,
+with95.4 mrad cumulative yaw, rather than Easy's nearly stationary large-yaw
+stall. The goal stays ACTIVE; the 120 s timeout cancels it to PREEMPTED.
+All1,800 navigation/guarded commands match, 6,001 odometry samples remain
+continuous, and the last pre-failure local costmap is free. Retain the observed
+convergence failure; no independent integration defect has been demonstrated.
+
+The post-freeze scene description measures Moderate task-support occlusion at
+.173–.178, below the proposal's .25–.50 descriptive target. Report this mismatch;
+do not reject/relabel the seed, move walls or select a replacement. The scene
+comes from the original method-blind distribution. Hard remains unevaluated.
