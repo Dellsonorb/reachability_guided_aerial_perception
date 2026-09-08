@@ -2,6 +2,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from types import SimpleNamespace
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -100,6 +101,28 @@ class AttemptTests(unittest.TestCase):
         self.assertEqual(record['reason'], 'common_task_wall_guard_expired')
         self.assertEqual(record['classification_reason'], 'timed out waiting for LIFT')
 
+    def test_checker_missing_initial_status_is_invalid_only_with_recorded_order_and_completion(self):
+        physical = dict(status='FAIL', error='unexpected status TAKEOFF after []')
+        events = [dict(state=s) for s in ('PREFLIGHT', 'ARMING', 'COMMAND_CONTROL', 'TAKEOFF', 'LIFT')]
+        self.assertEqual(attempt.classify_outcome(physical, events, 0, 1)[:2],
+                         ('INVALID_TRIAL', None))
+        for incomplete, exit_code in ((events[1:], 0), (events[:-1], 0), (events, 1)):
+            self.assertEqual(attempt.classify_outcome(physical, incomplete, exit_code, 1)[:2],
+                             ('VALID_TRIAL', False))
+
+    def test_actual_method_failure_keeps_priority_over_checker_startup_loss(self):
+        physical = dict(status='FAIL', error='unexpected status TAKEOFF after []')
+        events = [dict(state=s) for s in ('PREFLIGHT', 'ARMING', 'COMMAND_CONTROL', 'TAKEOFF', 'LIFT')]
+        events.append(dict(state='FAILED', reason='actual execution failure'))
+        self.assertEqual(attempt.classify_outcome(physical, events, 0, 1),
+                         ('VALID_TRIAL', False, 'actual execution failure'))
+
+    def test_different_order_error_is_not_automatically_a_platform_failure(self):
+        physical = dict(status='FAIL', error="unexpected status LIFT after ['PREFLIGHT']")
+        events = [dict(state=s) for s in ('PREFLIGHT', 'ARMING', 'COMMAND_CONTROL', 'TAKEOFF', 'LIFT')]
+        self.assertEqual(attempt.classify_outcome(physical, events, 0, 1)[:2],
+                         ('VALID_TRIAL', False))
+
     def test_node_initializes_only_after_sim_time_parameter_is_ready(self):
         import time
         from types import SimpleNamespace
@@ -120,6 +143,31 @@ class AttemptTests(unittest.TestCase):
         process = Mock(pid=123, poll=Mock(return_value=None))
         with patch.object(attempt.os, 'killpg', side_effect=ProcessLookupError):
             attempt.stop_process(process)
+
+    def test_checker_start_waits_for_final_adapter_publisher_marker(self):
+        import tempfile
+        from unittest.mock import patch
+        self.assertTrue(hasattr(attempt, 'wait_for_adapter_ready'))
+        with tempfile.TemporaryDirectory() as directory:
+            log = Path(directory)/'adapter.log'
+            log.write_text('initializing adapter\n')
+            clock = [10.]
+            def advance(_):
+                clock[0] += .01
+                log.write_text('initializing adapter\nA6_ADAPTER_READY\n')
+            process = SimpleNamespace(poll=lambda: None)
+            with patch.object(attempt.time, 'monotonic', side_effect=lambda: clock[0]), \
+                    patch.object(attempt.time, 'sleep', side_effect=advance):
+                attempt.wait_for_adapter_ready(process, log, deadline=20.)
+            self.assertGreater(clock[0], 10.)
+
+    def test_exited_adapter_does_not_start_a_checker(self):
+        import tempfile
+        self.assertTrue(hasattr(attempt, 'wait_for_adapter_ready'))
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(RuntimeError, 'before.*ready'):
+                attempt.wait_for_adapter_ready(SimpleNamespace(poll=lambda: 2),
+                                               Path(directory)/'absent.log', deadline=float('inf'))
 
     def test_truncated_measurements_retain_parsable_terminal_event(self):
         import tempfile

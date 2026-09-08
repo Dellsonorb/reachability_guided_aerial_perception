@@ -1,0 +1,47 @@
+{"method": "rm4d_only", "ros_time": 11.892, "state": "A6_TASK_START", "wall_monotonic": 98622.842006539}
+{"ros_time": 11.899000000000001, "state": "PREFLIGHT", "wall_monotonic": 98622.852805755}
+{"ros_time": 11.908, "state": "ARMING", "wall_monotonic": 98622.86360581}
+{"ros_time": 11.911, "state": "COMMAND_CONTROL", "wall_monotonic": 98622.867057815}
+{"ros_time": 11.917, "state": "TAKEOFF", "wall_monotonic": 98622.874813026}
+{"ros_time": 25.029, "state": "AIR_VIEW", "wall_monotonic": 98640.941499753}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 25.032, "state": "A5_VIEWPOINT", "view_role": "initial", "wall_monotonic": 98640.944798744}
+{"ros_time": 34.139, "state": "A5_SETTLED", "uav_pose_map": [-1.4342745317840664, -0.011462752946622218, 1.2210273764053605, 0.00011164619996717399], "wall_monotonic": 98652.970805638}
+{"ros_time": 34.144, "state": "AIR_OBSERVE", "wall_monotonic": 98652.975712745}
+{"observation_stamp": 33.774, "ros_time": 34.189, "state": "AIR_HANDOFF", "target_map": [1.948705169817883, 0.13349514592442416, 0.06043390938947719, 0.4392348895484304], "wall_monotonic": 98653.029640922}
+{"frame_id": "map", "mask_pixels": 344, "perceived_target": {"center_xyz": [1.948705169817883, 0.13349514592442416, 0.06043390938947719], "size_xyz": [0.24, 0.053, 0.115], "yaw_rad": 0.4392348895484304}, "points": 170, "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/pilot2/slot-01-easy-rm4d-only-01/data/target_reference.npz", "ros_time": 34.396, "stamp_s": 33.774, "state": "TARGET_REFERENCE", "status": "AVAILABLE", "wall_monotonic": 98653.31315877}
+{"label": "init", "operation": "init", "ros_time": 34.4, "state": "A5_CORE", "wall_monotonic": 98653.325633297}
+{"candidate_count": 1, "original_final_score": 0.8648959157468351, "ros_time": 53.82, "selected_candidate": {"T_aubo_flange": [[0.42524710550873507, -0.905077289106087, 9.050772888374858e-07, 0.49614249408564226], [-0.9050772891065395, -0.4252471055085224, 4.25247105417803e-07, -0.2917064030193346], [-2.7755575615628914e-17, -9.999999997512e-07, -0.9999999999995, -0.19966609061062282], [0.0, 0.0, 0.0, 1.0]], "T_map_aubo": [[-0.9999999999999999, 1.2338627032833685e-16, 1.6023493965997387e-22, 2.444847844918983], [-9.035910049282354e-17, -1.0, 1.5754253476000734e-23, -0.1582111720454893], [1.5740243159551258e-22, 1.4306442926032379e-22, 0.9999999999999999, 0.482], [0.0, 0.0, 0.0, 1.0]], "T_map_bunker": [[-0.9999999999999999, 1.2338627032833685e-16, 1.6023493965997387e-22, 2.594847844918983], [-9.035910049282354e-17, -1.0, 1.5754253476000734e-23, -0.1582111720454893], [1.5740243159551258e-22, 1.4306442926032379e-22, 0.9999999999999999, 0.36], [0.0, 0.0, 0.0, 1.0]], "T_map_flange": [[-0.4252471055087352, 0.905077289106087, -9.050772888374858e-07, 1.9487053508333407], [0.9050772891065395, 0.4252471055085225, -4.252471054178031e-07, 0.13349523097384525], [-2.7755575615628914e-17, -9.999999997512e-07, -0.9999999999995, 0.2823339093893772], [0.0, 0.0, 0.0, 1.0]], "bunker_x": 2.594847844918983, "bunker_y": -0.1582111720454893, "bunker_yaw": -3.141592653589793, "candidate_id": "candidate-000000", "collision_free": true, "final_score": 0.8648959157468351, "fk_orientation_residual_rad": 8.847170038060467e-16, "fk_position_residual_m": 2.498001805406602e-16, "footprint_collision": false, "ik_attempts": 1, "ik_seed": 721425858, "ik_valid": true, "joint_configuration": [-0.31880421182429375, -1.2195737084285658, 1.7158296287077186, 1.3646187561717507, 1.570811103073451, 2.3835568672257574], "joint_margin_rad": 0.6564431327742426, "rejection_reason": null, "rm4d_reachable": true, "transform_roundtrip_error": 1.1102230246251565e-16, "travel_cost": 2.309548229651738, "valid": true, "x": 2.594847844918983, "y": -0.1582111720454893, "yaw": -3.141592653589793}, "state": "A6_RM4D_SELECTED", "wall_monotonic": 98681.482022508}
+{"ros_time": 53.821, "stage": "return", "state": "A6_STAGE_START", "wall_monotonic": 98681.483472579}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 53.821, "state": "A5_VIEWPOINT", "view_role": "return", "wall_monotonic": 98681.484083323}
+{"ros_time": 86.874, "state": "A5_SETTLED", "uav_pose_map": [-1.3966763561298738, 0.04185888589912619, 1.2237937367561194, -0.00010466966031143477], "wall_monotonic": 98724.799192145}
+{"ros_time": 86.879, "stage": "return", "state": "A6_STAGE_END", "wall_monotonic": 98724.811126978}
+{"ros_time": 86.882, "state": "LANDING", "wall_monotonic": 98724.811570876}
+{"ros_time": 86.884, "stage": "landing", "state": "A6_STAGE_START", "wall_monotonic": 98724.814029078}
+{"ros_time": 93.886, "stage": "landing", "state": "A6_STAGE_END", "wall_monotonic": 98734.284371819}
+{"ros_time": 93.886, "state": "A6_LANDED", "wall_monotonic": 98734.284466172}
+{"ros_time": 93.886, "stage": "ground_navigation", "state": "A6_STAGE_START", "wall_monotonic": 98734.285038645}
+{"candidate_count": 1, "ros_time": 93.886, "state": "RM4D_CANDIDATES", "top_candidate_id": "candidate-000000", "top_candidate_pose_map": [2.594847844918983, -0.1582111720454893, -3.141592653589793], "top_candidate_score": 0.8648959157468351, "wall_monotonic": 98734.28523189}
+{"navigation_goal_map": [2.594847844918983, -0.1582111720454893, -3.141592653589793], "ros_time": 93.887, "start_map": [3.0716609548313425, -2.4080446787665957, -3.102661585931515], "state": "GROUND_APPROACH", "target_map": [1.948705169817883, 0.13349514592442416, 0.06043390938947719, 0.4392348895484304], "top_candidate_id": "candidate-000000", "top_candidate_score": 0.8648959157468351, "wall_monotonic": 98734.287283349}
+{"ground_travel": 2.3198302983463726, "navigation_goal_map": [2.594847844918983, -0.1582111720454893, -3.141592653589793], "ros_time": 127.435, "state": "GROUND_STOPPED", "target_distance": 0.7394672389181356, "top_candidate_id": "candidate-000000", "top_candidate_score": 0.8648959157468351, "wall_monotonic": 98781.793926656}
+{"ros_time": 127.441, "stage": "ground_navigation", "state": "A6_STAGE_END", "wall_monotonic": 98781.799929139}
+{"ros_time": 127.441, "stage": "ground_refine", "state": "A6_STAGE_START", "wall_monotonic": 98781.800051707}
+{"ros_time": 127.442, "state": "GROUND_OBSERVE", "wall_monotonic": 98781.801145112}
+{"measured_gripper_opening": 0.09519904736073667, "observation_stamp": 137.987, "ros_time": 138.158, "state": "GROUND_REFINED", "target_map": [1.9938422870624282, 0.14647220862643703, 0.0588478781454536, 0.4062510504698378], "wall_monotonic": 98799.793257565}
+{"ros_time": 138.165, "stage": "ground_refine", "state": "A6_STAGE_END", "wall_monotonic": 98799.80252546}
+{"ros_time": 138.165, "stage": "refined_pregrasp", "state": "A6_STAGE_START", "wall_monotonic": 98799.802683577}
+{"ros_time": 138.165, "state": "PREGRASP", "wall_monotonic": 98799.80368221}
+{"ros_time": 138.173, "stage": "refined_pregrasp", "state": "A6_STAGE_START", "wall_monotonic": 98799.812331399}
+{"ros_time": 150.183, "stage": "refined_pregrasp", "state": "A6_STAGE_END", "wall_monotonic": 98817.360399656}
+{"ros_time": 150.185, "state": "A6_EXEC_READY", "wall_monotonic": 98817.360936023}
+{"ros_time": 150.185, "state": "GRASP", "wall_monotonic": 98817.360992593}
+{"ros_time": 150.186, "stage": "descend", "state": "A6_STAGE_START", "wall_monotonic": 98817.364248227}
+{"ros_time": 154.703, "stage": "descend", "state": "A6_STAGE_END", "wall_monotonic": 98824.690207449}
+{"ros_time": 154.703, "stage": "close", "state": "A6_STAGE_START", "wall_monotonic": 98824.690353413}
+{"ros_time": 156.222, "stage": "close", "state": "A6_STAGE_END", "wall_monotonic": 98827.477287785}
+{"ros_time": 156.222, "state": "LIFTING", "wall_monotonic": 98827.477373059}
+{"ros_time": 156.224, "stage": "lift", "state": "A6_STAGE_START", "wall_monotonic": 98827.481132166}
+{"ros_time": 160.893, "stage": "lift", "state": "A6_STAGE_END", "wall_monotonic": 98836.214010733}
+{"ros_time": 160.893, "stage": "retention", "state": "A6_STAGE_START", "wall_monotonic": 98836.214128482}
+{"reason": "AG95 lost grasp confirmation during lift", "ros_time": 161.298, "stage": "retention", "state": "A6_STAGE_FAILED", "wall_monotonic": 98837.117664779}
+{"reason": "AG95 lost grasp confirmation during lift", "ros_time": 161.298, "state": "FAILED", "wall_monotonic": 98837.121806398}
+{"adapter_run_result": false, "ros_time": 161.303, "state": "A6_TASK_END", "wall_monotonic": 98837.139899072}

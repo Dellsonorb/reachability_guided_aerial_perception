@@ -109,3 +109,25 @@ alias = (candidate['occupied_cells'] > 0 and gate['target_cells'] > 0
   This plan does not silently treat the small pilot as a powered formal study.
 - [ ] Otherwise follow the user's scientific stop rule with concrete evidence and
   the smallest research decision needed; no algorithm tuning or scene replacement.
+
+## Observed runtime corrections during Pilot-2 (ordinary engineering)
+
+Slot2's checker missed the initial state burst during duplicate TCPROS
+connection turnover. A5 already unregisters its temporary parent publisher.
+Do not change A5 or increase delays/thresholds: expose final adapter construction
+completion on its existing log, then start the unchanged checker. Keep the
+same total wall guard and existing subscriber wait before task start. Test the
+ordering and narrowly classify this demonstrated missing-measurement case;
+actual FAILED events retain priority. Preserve the first automatic classification
+inside the reviewed record and rerun only this INVALID activation.
+
+Raw bags also demonstrate local Python TF-buffer gaps despite available public
+transforms. A bounded independent task may add a **separate secondary** offline
+bag-derived resource report, not overwrite the original metrics: preserve all
+original sample timestamps/order/wall times; use only causally received public
+TF with header stamps no later than each sample, coherent TF2 common-time
+composition, existing .5 s age and .3 s scheduling-gap checks, and the unchanged
+metrics reducer. Process every sample uniformly, not only failed/missing ones.
+No GT, smoothing, inserted trajectory samples or outcome changes. Any formal use
+must be prospectively declared before formal activation. This is measurement
+repair, not a new research method or execution framework.

@@ -339,6 +339,9 @@ def main(argv=None):
         for key, value in parameters.items():
             rospy.set_param('~' + key, value)
         adapter = adapter_class()
+        # The inherited A5 constructor replaces its temporary status publisher.
+        # Let orchestration subscribe the checker only to the final publisher.
+        print('A6_ADAPTER_READY', flush=True)
         if options.wait_for_status_subscriber:
             wait_for_checker(adapter._status_pub, rospy, demo_module.DemoError)
         return 0 if adapter.run() else 1

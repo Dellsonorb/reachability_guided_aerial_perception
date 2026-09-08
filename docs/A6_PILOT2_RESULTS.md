@@ -1,7 +1,8 @@
 # Pilot-2 execution notes — in progress
 
-No formal runs have started. Pilot-2 methods: **0/14** at this preparation
-checkpoint. This file is updated as activations finish; it is not a completed
+No formal runs have started. Pilot-2 methods: **1/14 valid completed slots**,
+with one additional INVALID method activation awaiting repeat. This file is
+updated as activations finish; it is not a completed
 experiment claim. Protocol/seeds were committed before any method outcome in
 `18fb57d`, with the serialized configuration and shared v1.1 switch in `ed87bd6`.
 Pilot-1 and all frozen algorithm files remain unchanged.
@@ -76,3 +77,42 @@ Final pre-activation regression: 451 tests, 445 passed with 6 OpenCV-only skips;
 the system Python's 11 target-support tests pass, covering all 6. The diff from
 `56ece4a` leaves `src/`, A5 runtime/target-support code, and Pilot-1 configuration
 unchanged. Setup, reporter and code review preparation gates are satisfied.
+
+## Completed method activations and engineering diagnosis
+
+| Slot / activation | Confirmation | D_exec | Primary retrieval |
+|---|---|---|---|
+| 1 Easy RM4D-only / 01 | N/A | yes | valid failure: retention confirmation |
+| 2 Easy Fixed / 01 | 2 candidates at window 3 | yes | INVALID: checker startup loss |
+
+Slot1's four arm trajectories all report SUCCEEDED/error0. The accepted close
+stall was followed by successful lift motion, then `AG95 lost grasp confirmation
+during lift` at sim161.298. The recorded gripper remained above the closure
+threshold. The missing grasp-confirmation Bool means false versus stale receipt
+cannot be distinguished; neither physical slipping nor a platform defect is
+proven. Keep the valid failure. Subsequent diagnostic commands additionally
+record the existing `/ground/gripper/grasp_confirmed` and `/pick_target/contacts`
+sensor streams; they are never new algorithm inputs and no gripper setting changes.
+
+Slot2's adapter completed LIFT, but the checker saw `TAKEOFF` as its first state
+and exited before physical measurement. Saved adapter events have the correct
+initial sequence. Both ROS logs show duplicate connections to the same peer
+during that burst. Isolated real-ROS reproduction with a diagnostic-only 60 ms
+connection-replacement delay produced exactly `[TAKEOFF]` despite a live queue
+size of10. This is not an actual method failure or a positive physical result.
+The initial automatic classification is retained in `attempt.json`'s
+`classification_review`; raw physical summary, metrics and observations remain.
+
+Minimal A6-only fix: the adapter announces final construction on its existing
+stdout log, and orchestration then starts the unchanged checker. A5/SIM code,
+task status sequence, total wall guard and subscriber wait are unchanged. The
+checker remains alive during adapter cleanup. Deferred subscription preserved
+all four initial states in all6 focused replacement-delay cases and all8 prior
+first-write-delay cases. Independent review and45 focused tests pass. Repeat
+only slot2's INVALID activation with the same seed/method/settings.
+
+Raw public TF remained available for slot1's missing resource samples; local
+buffer initialization/backlog caused the holes. Slot2 also has small local
+TF-versus-captured-clock races. Original path metrics stay unchanged/null where
+incomplete. A separately labelled, uniform causal bag-derived secondary report
+is being implemented; it cannot reclassify retrieval or fill absent observations.

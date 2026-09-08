@@ -92,6 +92,11 @@ class Pilot2Tests(unittest.TestCase):
             self.assertIn(topic, command)
         self.assertFalse(any('gazebo' in word or 'model_states' in word for word in command))
 
+    def test_retention_diagnostics_include_existing_facade_and_contact_sensor(self):
+        command = attempt.diagnostic_command(dict(self.old, record_diagnostics=True), Path('/experiment/out'))
+        self.assertIn('/ground/gripper/grasp_confirmed', command)
+        self.assertIn('/pick_target/contacts', command)
+
 
 if __name__ == '__main__':
     unittest.main()

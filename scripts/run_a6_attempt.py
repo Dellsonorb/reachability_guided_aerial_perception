@@ -112,6 +112,7 @@ def diagnostic_command(config, output):
         '/ground/d435/color/image_raw', '/ground/d435/depth/image_raw',
         '/ground/d435/color/camera_info', '/ground/d435/depth/camera_info',
         '/ground_observer/status', '/ground_observer/target_pose',
+        '/ground/gripper/grasp_confirmed', '/pick_target/contacts',
         '/ground/joint_states', '/ground/arm_controller/state',
         '/ground/arm_controller/follow_joint_trajectory/goal',
         '/ground/arm_controller/follow_joint_trajectory/status',
@@ -124,6 +125,20 @@ def diagnostic_command(config, output):
 
 def state_ready(state):
     return bool(state.connected and state.odom_valid)
+
+
+def wait_for_adapter_ready(process, log_path, deadline):
+    """Start the checker only after A5's temporary publisher is replaced."""
+    while time.monotonic() < deadline:
+        if process.poll() is not None:
+            raise RuntimeError('adapter exited before final publisher was ready')
+        try:
+            if 'A6_ADAPTER_READY' in log_path.read_text().splitlines():
+                return
+        except FileNotFoundError:
+            pass
+        time.sleep(.01)
+    raise subprocess.TimeoutExpired('adapter initialization', 0)
 
 
 def action_probe(client):
@@ -145,6 +160,15 @@ def classify_outcome(physical, events, adapter_exit, checker_exit, adapter_log='
     if failed:
         return 'VALID_TRIAL', False, failed.get('reason', 'method_reported_failure')
     if physical is not None:
+        initial_states = ('PREFLIGHT', 'ARMING', 'COMMAND_CONTROL', 'TAKEOFF')
+        recorded_initial = [e.get('state') for e in events if e.get('state') in initial_states]
+        if (physical.get('status') == 'FAIL' and adapter_exit == 0 and checker_exit == 1
+                and physical.get('error') == 'unexpected status TAKEOFF after []'
+                and recorded_initial == list(initial_states)
+                and any(e.get('state') == 'LIFT' for e in events)):
+            # The completed adapter recorded the correct sequence; the checker
+            # lost it during TCPROS connection turnover and never measured lift.
+            return 'INVALID_TRIAL', None, 'checker_missed_initial_status_sequence'
         if physical.get('status') in ('PASS', 'CHECKS_PASS'):
             return 'VALID_TRIAL', True, None
         if adapter_exit == 0 and physical.get('error') in (
@@ -316,14 +340,17 @@ def main(argv=None):
             command = ['/usr/bin/python3', str(ROOT/'scripts/a6_setup_check.py'), *common,
                        '--scene-file', str(args.config.resolve()), '--scene-id', scene['id']]
         else:
+            command = ['/usr/bin/python3', str(ROOT/'scripts/run_a6_sim.py'), *common,
+                       '--method', slot['method'], '--wait-for-status-subscriber']
+        task_deadline = time.monotonic()+config['task_wall_guard_s']
+        adapter = start(command, 'adapter')
+        if not args.setup_scene:
+            wait_for_adapter_ready(adapter, output/'adapter.log', task_deadline)
             checker = start(['/usr/bin/python3', str(args.sim_root/'scripts/check_air_ground_pick_demo.py'),
                              '--summary', str(output/'physical_summary.json'), '--timeout', '1250',
                              '--maximum-ground-travel', '3.0'], 'physical_checker')
-            command = ['/usr/bin/python3', str(ROOT/'scripts/run_a6_sim.py'), *common,
-                       '--method', slot['method'], '--wait-for-status-subscriber']
-        adapter = start(command, 'adapter')
         record.update(task_started=True, status='VALID_TRIAL'); save()
-        record['adapter_exit'] = adapter.wait(timeout=config['task_wall_guard_s'])
+        record['adapter_exit'] = adapter.wait(timeout=max(0., task_deadline-time.monotonic()))
         if checker is not None:
             try: record['checker_exit'] = checker.wait(timeout=5)
             except subprocess.TimeoutExpired: record['checker_exit'] = None
@@ -335,6 +362,8 @@ def main(argv=None):
         record['reason'] = '%s: %s' % (type(error).__name__, error)
         print('ERROR', record['reason'], flush=True)
     finally:
+        # Checker starts last now, but must remain alive for adapter cleanup.
+        stop_process(adapter)
         for child in reversed(children): stop_process(child)
         for log in logs: log.close()
         record['runtime_exit'] = None if runtime is None else runtime.poll()
