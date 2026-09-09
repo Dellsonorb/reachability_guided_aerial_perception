@@ -301,6 +301,38 @@ class AdapterOverrideTests(unittest.TestCase):
         self.assertEqual(inherited_scopes, [transformed])
         self.assertIsNone(node._a5_refined_grasp)
 
+    def test_full_robot_pick_cache_uses_shared_contact_configuration_grasp(self):
+        adapter = load_script("run_a5_sim")
+        exact = object()
+        calls = []
+
+        class Base:
+            def _generate_ground_grasp(self, target):
+                calls.append(("generate", target))
+                return SimpleNamespace(grasp=exact)
+
+            def _pick_and_lift(self, sensor_pose, target):
+                calls.append(("execute", target, self._a5_refined_grasp))
+                return "physical-result"
+
+        fake = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=Base)
+        with patch.dict(sys.modules, self.adapter_modules()):
+            cls = adapter.build_adapter_class(fake, SimpleNamespace())
+        node = object.__new__(cls)
+        node._full_robot_manipulation = True
+        node._map_frame = "map"
+        node._initialize_moveit = lambda: SimpleNamespace(get_planning_frame=lambda: "planning")
+        node._pose_message = lambda value, frame, stamp: (value, frame, stamp)
+        node._transform_pose = lambda value, frame: (value, frame)
+        sensor = SimpleNamespace(header=SimpleNamespace(stamp=12.3))
+        result = node._pick_and_lift(sensor, "runtime-refined-target")
+        self.assertEqual("physical-result", result)
+        self.assertEqual([
+            ("generate", "runtime-refined-target"),
+            ("execute", "runtime-refined-target", ((exact, "map", 12.3), "planning")),
+        ], calls)
+        self.assertIsNone(node._a5_refined_grasp)
+
     def test_implicit_refined_pregrasp_routes_to_helper(self):
         adapter = load_script("run_a5_sim")
         helper_calls = []

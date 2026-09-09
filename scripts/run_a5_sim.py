@@ -530,10 +530,15 @@ def build_adapter_class(demo_module, options):
                     chosen["relevance"], self._a5_candidate_count)
 
         def _pick_and_lift(self, sensor_pose, target):
-            generated = demo_module.generate_top_down_grasp(
-                target, self._target_size, self._pregrasp_height,
-                self._lift_height, self._finger_pad_lower_edge_offset,
-                self._contact_overlap, self._surface_clearance)
+            if getattr(self, "_full_robot_manipulation", False):
+                # The grasp-seeded approach and SIM execution must use the
+                # same contact-configuration pad geometry after refinement.
+                generated = self._generate_ground_grasp(target)
+            else:
+                generated = demo_module.generate_top_down_grasp(
+                    target, self._target_size, self._pregrasp_height,
+                    self._lift_height, self._finger_pad_lower_edge_offset,
+                    self._contact_overlap, self._surface_clearance)
             group = self._initialize_moveit()
             exact_grasp = self._pose_message(
                 generated.grasp, self._map_frame, sensor_pose.header.stamp)

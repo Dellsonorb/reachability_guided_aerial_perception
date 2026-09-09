@@ -224,3 +224,49 @@ planning mode remains opt-in and shared across methods; it was disabled in05.
    This is the sole full aerial E2E invocation in the batch, after05's locally
    validated real grasp/lift. A failure remains a failure, not a reason to
    repeat the complete aerial task until success.
+   Result: all3 real windows complete, confirmed counts0→0→3; selected
+   source585 has108/108 measured support. Actual navigation, D435 refine,
+   first-branch pregrasp and descend pass. Before sending any close command,
+   the whole-robot closure sweep rejects right_inner_knuckle/perceived target.
+   This is a hypothetical predicted collision, not an observed physical
+   knuckle strike. Real grasp/lift not reached; the full E2E remains failed.
+
+Offline follow-up before final startup: at06 public TF and independent
+JointState FK both corroborate a real model intersection at measured pregrasp
+(0.0231/0.0225mm interior vertex). Planned clearance0.4047mm is consumed by
+2.359mm TCP tracking toward the chassis; additional gripper closure helps,
+rather than causes, this failure. No tracking or collision tolerance change.
+
+07's closure issue exposes a separate insertion-model mismatch. Existing
+pad-edge calibration0.0156m is for the fully-open hand. From the actual AG95
+URDF, L=.055m, alpha=44.691deg and aperture
+w(q)=.0952+2L[cos(alpha+q)-cos(alpha)]. For the known53mm target,
+q_contact=.4573744071rad; pad shift
+delta=L[sin(alpha+q_contact)-sin(alpha)]=.0132905621m. Using
+pad_edge_contact=.0156-delta=.0023094379m preserves the original20mm
+insertion rather than inserting33.3mm. It raises the refined Ground TCP and
+its pregrasp/lift by the same derived13.290562mm; no fitted height offset.
+
+Independent offline07 tests compare41 closure samples using accepted target
+geometry and actual public TF/JointState. Old measured geometry has7 terminal
+samples with forbidden knuckle/target intersections; contact-height geometry
+has none. Old nominal geometry alone does not collide: extra insertion plus
+recorded tracking error causes the veto. Corrected measured pad vertical
+overlap stays23.96–24.42mm, but lateral offset≈3.99mm remains and one pad
+contacts before the other. This does not prove real closure or payload lift.
+
+Preserved pre-correction source checkpoints: AGENT6134508/SIM86abd7a reproduce
+the07 full-robot path with the original open-configuration grasp height. The
+new Ground generator and A5 grasp-seeded cache must share contact geometry;
+initial aerial/RM4D query, candidate selection and gates remain unchanged,
+with normal collision-aware revalidation after actual Ground refinement.
+
+8. `launch-08-moderate-ours-contact-geometry`: final startup, archived Moderate
+   Ours candidate000009/source from that archived selection, exact station
+   (arrival-conditioned). Uses integrated feedback, whole-robot planning and
+   independently derived contact-height correction in SIMc12d8ba. Preserves
+   source624's failure; this distinct previously selected station is not a
+   retry or a new candidate reselection. Same preshape command, controller,
+   tracking limits, target size and real success criteria. Independent review
+   passed; root109 SIM and133 native AGENT regressions passed. No ninth start
+   or second full aerial E2E, irrespective of outcome.
