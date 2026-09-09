@@ -1,0 +1,548 @@
+{
+  "T_map_candidate_base": [
+    [
+      -1.0,
+      1.2246467991473532e-16,
+      -0.0,
+      2.5368278045875257
+    ],
+    [
+      -1.2246467991473532e-16,
+      -1.0,
+      0.0,
+      -0.3799571971654724
+    ],
+    [
+      -0.0,
+      0.0,
+      1.0,
+      0.36
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "base_collision_lower_upper_m": [
+    [
+      -0.4951086975,
+      -0.39001501699999996,
+      -0.35799813199999997
+    ],
+    [
+      0.5312265214999999,
+      0.392729919,
+      0.037156649999999986
+    ]
+  ],
+  "branches": [
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.1299581316248448,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454308,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754566,
+            -0.06649614069916632
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/left_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.4842014923315674,
+            -0.37783689609294463,
+            -0.06615385863984273
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/left_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222857,
+      "pad_vertical_overlap_m": -0.1299581316248448,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.011726218610090704,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454308,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754566,
+            -0.21649614069916628
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/left_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.4842014923315674,
+            -0.37783689609294463,
+            -0.2161538586398427
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/left_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222857,
+      "pad_vertical_overlap_m": 0.02004186837515521,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.011726218610090683,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454308,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754566,
+            -0.06649614069916632
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/left_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.4842014923315674,
+            -0.37783689609294463,
+            -0.06615385863984273
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/left_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222857,
+      "pad_vertical_overlap_m": 0.020041868375155203,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.11794064609437943,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547465,
+      "pad_vertical_overlap_m": -0.11794064609437943,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.00044689840720809476,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547465,
+      "pad_vertical_overlap_m": 0.03205935390562054,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.0004468984072080462,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547465,
+      "pad_vertical_overlap_m": 0.03205935390562056,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.11666887609510743,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": -0.11666887609510743,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": -0.0005897361034998896,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": 0.033331123904892575,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": -0.0005897361034999105,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": 0.03333112390489257,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 0.0
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.1299581316248448,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454419,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754555,
+            -0.06649614069916632
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/right_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.48420149233156734,
+            -0.37783689609294463,
+            -0.06615385863984273
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/right_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222874,
+      "pad_vertical_overlap_m": -0.1299581316248448,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.011726218610090704,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454419,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754555,
+            -0.21649614069916628
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/right_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.48420149233156734,
+            -0.37783689609294463,
+            -0.2161538586398427
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/right_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222874,
+      "pad_vertical_overlap_m": 0.02004186837515521,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": -0.012178120907055334,
+      "all_ag95_target_axis_gap_min_m": 0.011726218610090683,
+      "geometry_master_q": 3.341630739583934e-05,
+      "gripper_case": "measured_open",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [
+        {
+          "example_min_distance_to_box_face_m": 0.011865508962454419,
+          "example_vertex_base_xyz": [
+            0.4788124242893325,
+            -0.37814950803754555,
+            -0.06649614069916632
+          ],
+          "inside_vertex_count": 356,
+          "link": "ground/right_outer_knuckle"
+        },
+        {
+          "example_min_distance_to_box_face_m": 0.012178120907055334,
+          "example_vertex_base_xyz": [
+            0.48420149233156734,
+            -0.37783689609294463,
+            -0.06615385863984273
+          ],
+          "inside_vertex_count": 180,
+          "link": "ground/right_finger"
+        }
+      ],
+      "pad_inner_gap_m": 0.09519750978222874,
+      "pad_vertical_overlap_m": 0.020041868375155203,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.11794064609437943,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547476,
+      "pad_vertical_overlap_m": -0.11794064609437943,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.00044689840720809476,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547476,
+      "pad_vertical_overlap_m": 0.03205935390562054,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.0004468984072080462,
+      "geometry_master_q": 0.3927100840336135,
+      "gripper_case": "required_opening_preshape",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05964152701547476,
+      "pad_vertical_overlap_m": 0.03205935390562056,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": 0.11666887609510743,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": -0.11666887609510743,
+      "stage": "pregrasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": -0.0005897361034998896,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": 0.033331123904892575,
+      "stage": "grasp",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.27912602224710936
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    },
+    {
+      "all_ag95_chassis_horizontal_gap_min_m": 0.0047620015285907424,
+      "all_ag95_target_axis_gap_min_m": -0.0005897361034999105,
+      "geometry_master_q": 0.45737440709566757,
+      "gripper_case": "predicted_pad_contact",
+      "lift_caveat": "Lift-height gripper envelope at stated preshape, NOT a measured closed grasp or attached payload simulation.",
+      "overlap_witnesses": [],
+      "pad_inner_gap_m": 0.05300009494934421,
+      "pad_vertical_overlap_m": 0.03333112390489257,
+      "stage": "lift",
+      "target_overlap_witnesses": [],
+      "target_triangle_intersections": {},
+      "tcp_base_xyz": [
+        0.47825082691141585,
+        -0.45956800646109847,
+        -0.1291260222471094
+      ],
+      "yaw_offset_rad": 3.141592653589793
+    }
+  ],
+  "candidate_source_id": 624,
+  "inverse_calibration": "q = .93 * (1 - (.053 + .002)/.0952); inverse of existing conservative_jaw_opening, not collision-fitted",
+  "inverse_conservative_opening_q": 0.3927100840336135,
+  "joint_header_s": 72.792,
+  "limit": "Vertices strictly inside rendered BUNKER collision box prove overlap; absence of a witness does not prove clearance. Arm IK/dynamics are not solved.",
+  "measured_arrival_map": [
+    2.53682752801954,
+    -0.3799568552115387,
+    -3.141591910651062
+  ],
+  "measured_gripper_master_q": 3.341630739583934e-05,
+  "mesh_kinematic_contact_prediction": {
+    "caveat": "Ideal URDF geometry only; actual confirmed closure joint must be measured.",
+    "pad_edge_at_contact_m": 0.0023094379126535995,
+    "pad_gap_contact_q": 0.45737440709566757,
+    "tcp_raise_to_preserve_existing_20mm_overlap_m": 0.0132905620873464
+  },
+  "payload_chassis_horizontal_separating_gap_m": 0.03640117214954852,
+  "perceived_target_bottom_map_z_m": 0.0014739777528905984,
+  "required_opening_m": 0.055,
+  "source": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-execution-batch/launch-08-moderate-grasp-diagnostic",
+  "target_arm_xyz": [
+    0.3282508269114158,
+    -0.45956800646109847,
+    -0.4230260222471094
+  ],
+  "target_base_xyz": [
+    0.47825082691141585,
+    -0.45956800646109847,
+    -0.3010260222471094
+  ],
+  "target_map": [
+    2.05857697767611,
+    0.079610809295626,
+    0.0589739777528906,
+    0.055804534739021916
+  ],
+  "target_source": "GROUND_REFINED"
+}

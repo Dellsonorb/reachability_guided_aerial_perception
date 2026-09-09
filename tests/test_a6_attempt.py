@@ -199,6 +199,19 @@ class AttemptTests(unittest.TestCase):
         for arg in added: include.remove(arg)
         self.assertEqual(ET.tostring(result), ET.tostring(ET.fromstring(source)))
 
+    def test_development_solver_contrast_changes_only_ode_solver(self):
+        self.assertTrue(callable(getattr(attempt, 'solver_contrast_world', None)))
+        source = '<sdf version="1.6"><world name="w"><include><uri>model://ground_plane</uri></include><physics name="default" type="ode"><max_step_size>0.001</max_step_size><ode><solver><type>quick</type><iters>50</iters></solver><constraints><erp>0.2</erp></constraints></ode></physics></world></sdf>'
+        result = ET.fromstring(attempt.solver_contrast_world(source, 'world', 'DEVELOPMENT_BATCH'))
+        typ = result.find('world/physics/ode/solver/type')
+        self.assertEqual(typ.text, 'world')
+        typ.text = 'quick'
+        self.assertEqual(ET.tostring(result), ET.tostring(ET.fromstring(source)))
+        with self.assertRaises(ValueError):
+            attempt.solver_contrast_world(source, 'world', 'FROZEN_FOR_FORMAL')
+        minimal = ET.fromstring(attempt.solver_contrast_world('<sdf><world name="w"/></sdf>', 'world', 'DEVELOPMENT_BATCH'))
+        self.assertEqual(minimal.find('world/physics/ode/solver/type').text, 'world')
+
 
 class GripperDiagnosticsTests(unittest.TestCase):
     def test_only_formal_status_adds_exactly_five_passive_topics(self):

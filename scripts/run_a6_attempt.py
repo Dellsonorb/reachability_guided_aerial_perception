@@ -59,13 +59,34 @@ def box_sdf(box):
             '</link></model></sdf>')
 
 
-def runtime_launch(source, launch_pose):
+def solver_contrast_world(source, solver, status):
+    """One development physics contrast; retain every other world setting."""
+    if status != 'DEVELOPMENT_BATCH' or solver not in ('quick', 'world'):
+        raise ValueError('ODE solver contrast is development only')
+    root = ET.fromstring(source)
+    world = root.find('world')
+    physics = world.find('physics')
+    if physics is None:
+        physics = ET.SubElement(world, 'physics', name='default_physics', type='ode')
+    if physics.get('type') != 'ode':
+        raise ValueError('solver contrast requires an ODE source world')
+    node = physics
+    for tag in ('ode', 'solver', 'type'):
+        child = node.find(tag)
+        node = ET.SubElement(node, tag) if child is None else child
+    node.text = solver
+    return ET.tostring(root, encoding='unicode')
+
+
+def runtime_launch(source, launch_pose, world=None):
     """Forward existing public spawn arguments; retain every demo node/setting."""
     root = ET.fromstring(source)
     include = next(node for node in root.findall('include')
                    if node.get('file', '').endswith('/launch/air_ground_standalone.launch'))
     for axis, value in zip(('x', 'y', 'z', 'yaw'), launch_pose):
         ET.SubElement(include, 'arg', name='uav1_init_'+axis, value=str(value))
+    if world is not None:
+        ET.SubElement(include, 'arg', name='world', value=str(world))
     return ET.tostring(root, encoding='unicode')
 
 
@@ -249,6 +270,19 @@ def validate_replay_scene(recorded, scene):
         raise ValueError('Ground replay must use the archived scene setup unchanged')
 
 
+def ground_dynamics_environment(status, output, replay_from):
+    """Physical state is a diagnostic output, never an algorithm observation."""
+    if status != 'DEVELOPMENT_BATCH' or replay_from is None:
+        raise ValueError('physics tracing is confined to Ground development replay')
+    return {'P450_GROUND_DYNAMICS_CSV': str(output / 'ground-dynamics.csv')}
+
+
+def integrated_feedback_environment(status):
+    if status != 'DEVELOPMENT_BATCH':
+        raise ValueError('integrated-pose velocity validation is development only')
+    return {'P450_GROUND_INTEGRATED_VELOCITY': '1'}
+
+
 def navigation_outcome(events, adapter_exit):
     success = adapter_exit == 0 and any(e.get('state') == 'GROUND_STOPPED' for e in events)
     return dict(retrieval_success=None, navigation_success=success,
@@ -385,8 +419,19 @@ def main(argv=None):
     parser.add_argument('--ground-navigation-only', action='store_true')
     parser.add_argument('--ground-at-candidate', action='store_true')
     parser.add_argument('--diagnose-grasp-failure', action='store_true')
+    parser.add_argument('--ground-dynamics', action='store_true')
+    parser.add_argument('--post-failure-load-contrast', action='store_true')
+    parser.add_argument('--ode-solver', choices=('quick', 'world'))
+    parser.add_argument('--integrated-joint-velocity', action='store_true')
+    parser.add_argument('--full-robot-manipulation', action='store_true')
     args = parser.parse_args(argv)
     config = json.loads(args.config.read_text())
+    if args.ode_solver is not None and config['status'] != 'DEVELOPMENT_BATCH':
+        raise ValueError('ODE solver contrast is development only')
+    if args.integrated_joint_velocity:
+        integrated_feedback_environment(config['status'])
+    if args.full_robot_manipulation and config['status'] != 'DEVELOPMENT_BATCH':
+        raise ValueError('full-robot manipulation validation is development only')
     if args.setup_scene:
         scene = next(s for s in config['scenes'] if s['id'] == args.setup_scene)
         slot = dict(scene=scene['id'], method='SETUP_CHECK', slot=None)
@@ -401,6 +446,10 @@ def main(argv=None):
         raise ValueError('camera-only candidate setup requires a Ground replay, not a navigation test')
     if args.diagnose_grasp_failure and args.ground_replay_from is None:
         raise ValueError('post-failure IK probe is confined to Ground development diagnostics')
+    if args.post_failure_load_contrast and (not args.ground_dynamics or args.ground_navigation_only):
+        raise ValueError('load contrast requires a traced Ground manipulation replay')
+    if args.ground_dynamics:
+        ground_dynamics_environment(config['status'], args.output_dir, args.ground_replay_from)
     launch_scene = scene
     if args.ground_replay_from is not None:
         if args.setup_scene or config['status'] != 'DEVELOPMENT_BATCH':
@@ -414,9 +463,15 @@ def main(argv=None):
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=False)
     environment = os.environ.copy()
+    environment.pop('P450_GROUND_DYNAMICS_CSV', None)
+    environment.pop('P450_GROUND_INTEGRATED_VELOCITY', None)
+    if args.integrated_joint_velocity:
+        environment.update(integrated_feedback_environment(config['status']))
     environment.update(P450_PX4_ROOT=PX4, SIM_ROOT=str(args.sim_root),
                        ROS_MASTER_URI='http://127.0.0.1:11951', GAZEBO_MASTER_URI='http://127.0.0.1:11952',
                        ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
+    if args.ground_dynamics:
+        environment.update(ground_dynamics_environment(config['status'], output, args.ground_replay_from))
     os.environ.update(environment)
     children, logs = [], []
     expected_kind = (attempt_kind(config['status']) if not args.setup_scene
@@ -427,6 +482,13 @@ def main(argv=None):
                   operational_gating=config.get('operational_gating', 'v1'),
                   kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else expected_kind,
                   status='INVALID_TRIAL', task_started=False, activation_wall=time.time())
+    if args.ground_dynamics:
+        record.update(ground_dynamics_csv=environment['P450_GROUND_DYNAMICS_CSV'],
+                      physics_state_use='diagnosis_only_never_algorithm_input',
+                      post_failure_load_contrast=args.post_failure_load_contrast)
+    record['joint_velocity_feedback'] = ('integrated_pose_interval_velocity' if args.integrated_joint_velocity
+                                         else 'native_ode_rate')
+    record['full_robot_manipulation'] = args.full_robot_manipulation
     if args.ground_replay_from is not None:
         record.update(kind='GROUND_NAVIGATION_DIAGNOSTIC' if args.ground_navigation_only else
                       'GROUND_SEGMENT_DIAGNOSTIC', ground_replay_from=str(args.ground_replay_from.resolve()),
@@ -461,7 +523,14 @@ def main(argv=None):
     try:
         source = args.sim_root/'src/demos/air_ground_pick_demo/launch/air_ground_pick_demo.launch'
         launch_file = output/'runtime.launch'
-        launch_file.write_text(runtime_launch(source.read_text(), config['uav_launch_pose']))
+        world = None
+        if args.ode_solver is not None:
+            world_source = args.sim_root/'src/platform/sim_platform_bringup/worlds/air_ground_v1.world'
+            world = output/'solver-contrast.world'
+            world.write_text(solver_contrast_world(world_source.read_text(), args.ode_solver, config['status']))
+            record.update(ode_solver=args.ode_solver, physics_contrast_world=str(world))
+            save()
+        launch_file.write_text(runtime_launch(source.read_text(), config['uav_launch_pose'], world))
         runtime = start(['roslaunch', str(launch_file), 'gui:=false', 'run_demo:=false',
                          'enable_mid360:=true', 'px4_workdir:=sitl_a6_%d_%d' % (time.time_ns(), os.getpid()),
                          *scene_launch_args(launch_scene)], 'runtime')
@@ -469,10 +538,17 @@ def main(argv=None):
         record['ready_sim'] = prepare_scene(scene, runtime)
         print('READY', slot, record['ready_sim'], flush=True)
         record_command = diagnostic_command(config, output)
+        if record_command is not None and args.ground_dynamics:
+            record_command += ['/gazebo/model_states', '/gazebo/link_states',
+                               '/ground/gripper_controller/state',
+                               '/ground/gripper_controller/follow_joint_trajectory/goal',
+                               '/ground/gripper_controller/follow_joint_trajectory/result']  # diagnostic recorder only
         if record_command is not None:
             record['diagnostic_command'] = record_command
             recorder = start(record_command, 'diagnostics')
         common = adapter_args(config, output/'data', args.sim_root, args.rm4d_root)
+        if args.full_robot_manipulation:
+            common += ['--full-robot-manipulation']
         if args.setup_scene:
             command = ['/usr/bin/python3', str(ROOT/'scripts/a6_setup_check.py'), *common,
                        '--scene-file', str(args.config.resolve()), '--scene-id', scene['id']]
@@ -482,6 +558,7 @@ def main(argv=None):
             command += (['--ground-navigation-only'] if args.ground_navigation_only else
                         ['--wait-for-status-subscriber'])
             if args.diagnose_grasp_failure: command += ['--diagnose-grasp-failure']
+            if args.post_failure_load_contrast: command += ['--post-failure-load-contrast']
         else:
             command = ['/usr/bin/python3', str(ROOT/'scripts/run_a6_sim.py'), *common,
                        '--method', slot['method'], '--wait-for-status-subscriber']

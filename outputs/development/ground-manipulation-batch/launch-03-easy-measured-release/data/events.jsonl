@@ -1,0 +1,36 @@
+{"conditioned_on_archived_confirmation": true, "navigation_only": false, "ros_time": 11.831, "source": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-06-easy-generic", "state": "GROUND_REPLAY_START", "target_map": [1.904993599503438, -0.11852446938690532, 0.06045286749948774, 0.23847074857238787], "wall_monotonic": 177440.113073345}
+{"ambiguous_subcell": {"aliased_clear_cell_ids": [781], "coarse_ambiguous_cell_ids": [781], "intersecting_endpoint_indices": [], "legacy_fallback_cell_ids": []}, "candidate_id": "candidate-000008", "confirmed": true, "evaluation_index": 8, "footprint_clipped": false, "free_cells": 106, "mean_unknown_score": 0.22448295716733652, "occupied_cells": 1, "operational": {"ambiguous_cells": 1, "blocked": false, "covered_cells": [343, 344, 345, 383, 384, 385, 386, 387, 422, 423, 424, 425, 426, 427, 428, 462, 463, 464, 465, 466, 467, 468, 469, 470, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 619, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 699, 700, 701, 702, 703, 704, 705, 706, 707, 708, 740, 741, 742, 743, 744, 745, 746, 747, 781, 782, 783, 784, 785, 786, 787, 823, 824, 825, 826, 865], "environment_cells": 0, "footprint_clipped": false, "ground_missing_cells": 0, "ground_supported": true, "ground_supported_cells": 107, "target_cells": 0, "target_collision": false}, "relevance": 1.0, "representative_blocked": false, "ros_time": 11.831, "source_id": 585, "state": "A5_SELECTED", "unknown_cells": 0, "wall_monotonic": 177440.113299556, "x": 2.407999447601559, "y": -0.6332153951154703, "yaw": 2.094395102393195}
+{"ros_time": 11.831, "stage": "ground_navigation", "state": "A6_STAGE_START", "wall_monotonic": 177440.113870286}
+{"candidate_count": 1, "ros_time": 11.831, "state": "RM4D_CANDIDATES", "top_candidate_id": "candidate-000008", "top_candidate_pose_map": [2.407999447601559, -0.6332153951154703, 2.094395102393195], "top_candidate_score": 1.0, "wall_monotonic": 177440.114398902}
+{"navigation_goal_map": [2.407999447601559, -0.6332153951154703, 2.094395102393195], "ros_time": 11.836, "start_map": [2.4079998592989953, -0.6332144673851748, 2.0943953421778345], "state": "GROUND_APPROACH", "target_map": [1.904993599503438, -0.11852446938690532, 0.06045286749948774, 0.23847074857238787], "top_candidate_id": "candidate-000008", "top_candidate_score": 1.0, "wall_monotonic": 177440.123686532}
+{"actual_pose_map": [2.4079998663681232, -0.6332144654926843, 2.0943952994141948], "goal_pose_map": [2.407999447601559, -0.6332153951154703, 2.094395102393195], "ros_time": 11.919, "state": "GROUND_ARRIVAL_MEASURED", "wall_monotonic": 177440.221754075}
+{"actual_pose_map": [2.4079998663681232, -0.6332144654926843, 2.0943952994141948], "ground_travel": 7.3180660185998105e-09, "navigation_goal_map": [2.407999447601559, -0.6332153951154703, 2.094395102393195], "ros_time": 11.921, "state": "GROUND_STOPPED", "target_distance": 0.7196673513481864, "top_candidate_id": "candidate-000008", "top_candidate_score": 1.0, "wall_monotonic": 177440.224274868}
+{"ros_time": 11.923, "stage": "ground_navigation", "state": "A6_STAGE_END", "wall_monotonic": 177440.22662665}
+{"ros_time": 11.923, "stage": "ground_refine", "state": "A6_STAGE_START", "wall_monotonic": 177440.226681125}
+{"mode": "camera_centered_v1", "ros_time": 11.923, "state": "GROUND_OBSERVE", "wall_monotonic": 177440.22717978}
+{"reason": "near-field D435 observation timed out", "ros_time": 15.329, "state": "GROUND_VIEW_REJECTED", "view": "current", "wall_monotonic": 177445.719519386}
+{"aim_map": [1.904993599503438, -0.11852446938690532, 0.06045286749948774, 0.23847074857238787], "error_code": 1, "ros_time": 16.382, "state": "GROUND_VIEW_PLAN", "success": true, "tcp_map": [1.8321160735533588, -0.13624073906749726, 0.47295286749948784], "view": 0, "wall_monotonic": 177447.463418567}
+{"measured_gripper_opening": 0.09492301690072788, "observation_stamp": 23.803, "ros_time": 23.955, "state": "GROUND_REFINED", "target_map": [1.910658804942377, -0.12490782547714169, 0.058147139114142, 0.21854217366932338], "wall_monotonic": 177460.385268283}
+{"ros_time": 23.955, "stage": "ground_refine", "state": "A6_STAGE_END", "wall_monotonic": 177460.388566255}
+{"ros_time": 23.955, "stage": "refined_pregrasp", "state": "A6_STAGE_START", "wall_monotonic": 177460.388680582}
+{"ros_time": 23.955, "state": "PREGRASP", "wall_monotonic": 177460.389283718}
+{"ros_time": 23.955, "stage": "refined_pregrasp", "state": "A6_STAGE_START", "wall_monotonic": 177460.391787054}
+{"attempt": 1, "error_code": 1, "ros_time": 23.959, "stage": "grasp_ik", "state": "GROUND_MANIPULATION_PLAN", "wall_monotonic": 177460.418087229}
+{"attempt": 1, "error_code": 1, "fraction": 1.0, "ros_time": 23.974, "stage": "reverse_approach", "state": "GROUND_MANIPULATION_PLAN", "wall_monotonic": 177460.436613683}
+{"attempt": 1, "error_code": null, "ros_time": 24.016, "stage": "pregrasp_trajectory", "state": "GROUND_MANIPULATION_PLAN", "success": true, "wall_monotonic": 177460.536584924}
+{"attempt": 1, "error_code": 1, "fraction": 1.0, "ros_time": 24.016, "stage": "forward_approach", "state": "GROUND_MANIPULATION_PLAN", "wall_monotonic": 177460.548074048}
+{"ros_time": 33.629, "stage": "refined_pregrasp", "state": "A6_STAGE_END", "wall_monotonic": 177476.514999767}
+{"ros_time": 33.63, "state": "A6_EXEC_READY", "wall_monotonic": 177476.515271653}
+{"ros_time": 33.63, "state": "GRASP", "wall_monotonic": 177476.515325988}
+{"ros_time": 33.633, "stage": "descend", "state": "A6_STAGE_START", "wall_monotonic": 177476.519372016}
+{"ros_time": 38.15, "stage": "descend", "state": "A6_STAGE_END", "wall_monotonic": 177484.345374644}
+{"ros_time": 38.15, "stage": "close", "state": "A6_STAGE_START", "wall_monotonic": 177484.345420109}
+{"ros_time": 39.661, "stage": "close", "state": "A6_STAGE_END", "wall_monotonic": 177486.618092588}
+{"ros_time": 39.661, "state": "LIFTING", "wall_monotonic": 177486.618175977}
+{"ros_time": 39.662, "stage": "lift", "state": "A6_STAGE_START", "wall_monotonic": 177486.620759979}
+{"reason": "lift Cartesian execution failed: max_joint_speed=0.2105 joint=wrist_3_joint", "ros_time": 46.291, "stage": "lift", "state": "A6_STAGE_FAILED", "wall_monotonic": 177497.985156606}
+{"reason": "lift Cartesian execution failed: max_joint_speed=0.2105 joint=wrist_3_joint", "ros_time": 46.291, "state": "FAILED", "wall_monotonic": 177497.985335046}
+{"grasp_confirmed": true, "original_failure_retained": true, "phase": "closed_hold", "ros_time": 46.294, "state": "GROUND_LOAD_DIAGNOSTIC_BEGIN", "wall_monotonic": 177497.990655933}
+{"grasp_confirmed": true, "original_failure_retained": true, "phase": "closed_hold", "ros_time": 48.317, "state": "GROUND_LOAD_DIAGNOSTIC_END", "wall_monotonic": 177501.552670575}
+{"original_failure_retained": true, "reason": "AG95 open controller action failed: state=4 status=", "ros_time": 49.32, "state": "GROUND_LOAD_DIAGNOSTIC_FAILED", "wall_monotonic": 177503.523354188}
+{"ros_time": 49.322, "state": "GROUND_REPLAY_END", "success": false, "wall_monotonic": 177503.530708533}

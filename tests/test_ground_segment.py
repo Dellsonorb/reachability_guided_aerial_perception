@@ -281,4 +281,83 @@ class GroundReportingTests(unittest.TestCase):
                     self.ground.materialize_ground_metrics(root)
 
 
+class GroundDynamicsDiagnosticTests(unittest.TestCase):
+    def test_full_robot_planning_opt_in_preserves_other_parameters(self):
+        import run_a5_sim as adapter
+        from types import SimpleNamespace as N
+        options = N(view_position=None, view_yaw=None, max_ground_travel=None,
+                    navigation_timeout=None, full_robot_manipulation=True)
+        original = dict(full_robot_manipulation=False, pose_position_tolerance=.02)
+        result = adapter.build_demo_parameters(original, options)
+        self.assertTrue(result['full_robot_manipulation'])
+        self.assertEqual(result['pose_position_tolerance'], .02)
+        self.assertFalse(original['full_robot_manipulation'])
+        options.full_robot_manipulation = False
+        self.assertFalse(adapter.build_demo_parameters(original, options)['full_robot_manipulation'])
+
+    def test_integrated_feedback_is_explicit_development_only(self):
+        import run_a6_attempt as attempt
+        self.assertTrue(callable(getattr(attempt, 'integrated_feedback_environment', None)))
+        self.assertEqual(attempt.integrated_feedback_environment('DEVELOPMENT_BATCH'),
+                         {'P450_GROUND_INTEGRATED_VELOCITY': '1'})
+        for status in ('FROZEN_FOR_FORMAL', 'FROZEN_FOR_PILOT'):
+            with self.assertRaises(ValueError):
+                attempt.integrated_feedback_environment(status)
+
+    def test_load_contrast_requires_recorded_lift_progress_not_error_text(self):
+        import run_ground_sim as ground
+        self.assertTrue(callable(getattr(ground, 'lift_started', None)))
+        self.assertFalse(ground.lift_started([]))
+        self.assertFalse(ground.lift_started([dict(state='A6_STAGE_START', stage='close')]))
+        self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='lift')]))
+        self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='retention')]))
+
+    def test_physics_trace_is_explicit_ground_development_only(self):
+        import run_a6_attempt as attempt
+        self.assertTrue(callable(getattr(attempt, 'ground_dynamics_environment', None)))
+        result = attempt.ground_dynamics_environment('DEVELOPMENT_BATCH', Path('/tmp/run'), Path('/tmp/old'))
+        self.assertEqual(result, {'P450_GROUND_DYNAMICS_CSV': '/tmp/run/ground-dynamics.csv'})
+        for status, source in [('FROZEN_FOR_FORMAL', Path('/tmp/old')), ('DEVELOPMENT_BATCH', None)]:
+            with self.assertRaises(ValueError):
+                attempt.ground_dynamics_environment(status, Path('/tmp/run'), source)
+
+    def test_post_failure_contrast_is_two_bounded_holds_and_real_open(self):
+        import run_ground_sim as ground
+        from types import SimpleNamespace as N
+        self.assertTrue(callable(getattr(ground, 'post_failure_load_contrast', None)))
+        clock = [0.]
+        events = []
+        closed = [True]
+        def opened():
+            events.append(('open_action', {}))
+            closed[0] = False
+        owner = N(_publish_status=lambda state, **values: events.append((state, values)),
+                  _open_gripper=opened, _grasp_confirmation_current=lambda: closed[0],
+                  _wait_step=lambda: clock.__setitem__(0, clock[0] + .1))
+        ros = N(Time=N(now=lambda: N(to_sec=lambda: clock[0])), is_shutdown=lambda:False)
+        ground.post_failure_load_contrast(owner, ros)
+        phases = [v['phase'] for k, v in events if k == 'GROUND_LOAD_DIAGNOSTIC_BEGIN']
+        self.assertEqual(phases, ['closed_hold', 'open_hold'])
+        self.assertEqual(sum(k == 'open_action' for k, _ in events), 1)
+        self.assertGreaterEqual(clock[0], 4.)
+        self.assertLess(clock[0], 4.3)
+        self.assertFalse(any(k in ('LIFT', 'A6_EXEC_READY', 'GROUND_REFINED') for k, _ in events))
+        self.assertTrue(all(v['original_failure_retained'] for k, v in events if k != 'open_action'))
+
+    def test_failed_gripper_open_does_not_claim_unloaded_hold(self):
+        import run_ground_sim as ground
+        from types import SimpleNamespace as N
+        self.assertTrue(callable(getattr(ground, 'post_failure_load_contrast', None)))
+        clock = [0.]
+        events = []
+        def opened(): raise RuntimeError('gripper failed')
+        owner = N(_publish_status=lambda state, **values: events.append((state, values)),
+                  _open_gripper=opened, _grasp_confirmation_current=lambda:True,
+                  _wait_step=lambda: clock.__setitem__(0, clock[0] + .1))
+        ros = N(Time=N(now=lambda: N(to_sec=lambda: clock[0])), is_shutdown=lambda:False)
+        with self.assertRaisesRegex(RuntimeError, 'gripper failed'):
+            ground.post_failure_load_contrast(owner, ros)
+        self.assertNotIn('open_hold', [v.get('phase') for _, v in events])
+
+
 if __name__ == '__main__': unittest.main()

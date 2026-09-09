@@ -59,6 +59,8 @@ def build_parser():
     parser.add_argument("--uav-base-frame", default="uav1/base_link")
     parser.add_argument("--check-imports", action="store_true",
                         help="load ROS and the inherited demo without initializing a node or moving robots")
+    parser.add_argument("--full-robot-manipulation", action="store_true",
+                        help="Use shared perceived-target/payload planning and target-sized gripper preshape")
     return parser
 
 
@@ -104,6 +106,8 @@ def validate_options(parser, options):
 def build_demo_parameters(parameters, options):
     """Keep SIM defaults unless the run explicitly overrides a scene setting."""
     parameters = dict(parameters, placement_mode="rm4d")
+    if getattr(options, 'full_robot_manipulation', False):
+        parameters['full_robot_manipulation'] = True
     for name in ("view_position", "view_yaw", "max_ground_travel", "navigation_timeout"):
         if getattr(options, name) is not None:
             parameters[name] = getattr(options, name)

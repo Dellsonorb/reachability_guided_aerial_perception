@@ -5,6 +5,7 @@ import json
 import math
 from pathlib import Path
 import sys
+import time
 
 
 GROUND_KINDS = ('GROUND_NAVIGATION_DIAGNOSTIC', 'GROUND_SEGMENT_DIAGNOSTIC',
@@ -150,6 +151,33 @@ def diagnose_grasp_failure(owner, rospy, request_type, compute_ik, validity):
     owner._publish_status('GROUND_POST_FAILURE_IK_DIAGNOSTIC', **details)
 
 
+def lift_started(events):
+    return any(row.get('state') == 'A6_STAGE_START' and
+               row.get('stage') in ('lift', 'retention') for row in events)
+
+
+def post_failure_load_contrast(owner, rospy):
+    """Two fixed holds around real opening; never reclassify the failed task."""
+    def hold(phase):
+        started = rospy.Time.now().to_sec()
+        wall_deadline = time.monotonic() + 10.
+        owner._publish_status('GROUND_LOAD_DIAGNOSTIC_BEGIN', phase=phase,
+                              grasp_confirmed=owner._grasp_confirmation_current(),
+                              original_failure_retained=True)
+        while not rospy.is_shutdown() and rospy.Time.now().to_sec() - started < 2.:
+            if time.monotonic() >= wall_deadline:
+                raise RuntimeError('post-failure diagnostic clock stalled')
+            owner._wait_step()
+        if rospy.is_shutdown():
+            raise RuntimeError('post-failure diagnostic interrupted')
+        owner._publish_status('GROUND_LOAD_DIAGNOSTIC_END', phase=phase,
+                              grasp_confirmed=owner._grasp_confirmation_current(),
+                              original_failure_retained=True)
+    hold('closed_hold')
+    owner._open_gripper()
+    hold('open_hold')
+
+
 def main(argv=None):
     argv = sys.argv if argv is None else argv
     if '--materialize-metrics' in argv:
@@ -166,6 +194,7 @@ def main(argv=None):
     parser.add_argument('--ground-replay-from', type=Path, required=True)
     parser.add_argument('--ground-navigation-only', action='store_true')
     parser.add_argument('--diagnose-grasp-failure', action='store_true')
+    parser.add_argument('--post-failure-load-contrast', action='store_true')
     options = parser.parse_args(rospy.myargv(argv=argv)[1:])
     a6.validate_options(parser, options)
     events = [json.loads(line) for line in
@@ -205,6 +234,13 @@ def main(argv=None):
             adapter._publish_status('FAILED' if replay_started else 'GROUND_REPLAY_STARTUP_FAILED',
                                     reason=str(error))
         rospy.logerr('Ground diagnostic failed: %s', error)
+        if (options.post_failure_load_contrast and adapter is not None and
+                lift_started(adapter._a6_events)):
+            try:
+                post_failure_load_contrast(adapter, rospy)
+            except Exception as diagnostic_error:
+                adapter._publish_status('GROUND_LOAD_DIAGNOSTIC_FAILED',
+                                        reason=str(diagnostic_error), original_failure_retained=True)
         if options.diagnose_grasp_failure and adapter is not None and hasattr(adapter, '_ground_last_grasp'):
             from moveit_msgs.srv import GetPositionIK, GetPositionIKRequest, GetStateValidity
             try:

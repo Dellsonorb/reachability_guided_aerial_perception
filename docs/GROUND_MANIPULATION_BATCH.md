@@ -41,7 +41,10 @@ Increasing settling time cannot distinguish a feedback discrepancy from actual
 oscillation. Replacing velocity with finite differences risks hiding unresolved
 physics. Start instead with simultaneous native hinge angle/rate and parent/
 child pose/angular velocity at every physics step, before/after base actuation
-and after physics. Difference velocities remain diagnostic, never acceptance.
+and after physics. Initially, difference velocities remain diagnostic, never
+acceptance. Any later feedback revision requires independent joint/link-motion
+validation first, as recorded in the execution decisions below; a controller
+PASS alone is not that validation.
 Record physical target motion separately for loaded/unloaded and retention
 checks, never pass it to perception, planning, support or ranking.
 
@@ -102,3 +105,122 @@ only. Empty motion and released-object checks cannot count as retrieval. No
 unresolved design question needs user approval under the current autonomy.
 
 **Startup ledger at plan commit: 0/8.**
+
+## Execution ledger
+
+1. `launch-01-easy-loaded-unloaded`: original Easy Ours archived exact station,
+   conditioned on arrival; original gains/controller/trajectory behavior. Opt-in
+   physics trace and, only after recorded lift failure, two2s holds around one
+   real gripper opening. Independent logger review and69 Ground/adapter tests
+   passed before activation. No post-failure phase may revise the task outcome.
+   Result: original controls passed; TCP149.76mm and target149.40mm actual lift,
+   grasp retained. No release contrast triggered. This is a success control,
+   not a fix claim; compare its exact joint trajectory with historical failures.
+2. `launch-02-easy-generic-original`: archived Easy Generic station that failed
+   in prior batch launch03, again conditioned on arrival with unchanged control
+   and the same trace/post-failure contrast. Tests the previously failing local
+   station rather than repeating until success.
+   Result: native wrist speed0.1897rad/s caused retained lift failure. During
+   the post-command2s interval, all1kHz speeds are negative; integral−0.336535rad
+   versus joint/relative-link rotation−0.00001788rad. Base setters change neither
+   wrist angle nor velocity immediately. Physical target rose149.30mm and stayed
+   held; this does not override the failed controller acceptance. Closed hold
+   completed, opening failed before open hold: stale desired0.700rad versus
+   actual0.517rad violates the unchanged0.08rad opening-path constraint.
+
+Source-based next hypothesis: Gazebo11 `quickstep_update_bodies.cpp` integrates
+pose using `caccel_erp`, then removes that ERP contribution from stored body
+velocities. This exactly permits the observed persistent native-rate/pose
+disagreement. Verify real release first, then one ODE `world` solver contrast
+with unchanged robot/contact/control/acceptance. Do not replace native velocity.
+
+3. `launch-03-easy-measured-release`: same archived Easy Generic station and
+   QuickStep; only production behavior change is fresh measured q/dq as the
+   explicit opening-trajectory start (future t=0 point). Endpoint, duration,
+   close behavior and all constraints unchanged. Independent review and5
+   native release tests plus70 AGENT tests passed. Record gripper goal/results
+   as well as states. Retain any primary lift failure before the release probe.
+   Result: lift still fails0.2105rad/s. Revised release starts from actual
+   0.51122rad, native0.26772rad/s and no longer aborts immediately; later it
+   genuinely lags the requested opening and violates the same0.08rad path
+   bound after1s. Do not claim complete release or an empty-hand hold.
+4. `launch-04-easy-world-solver`: same archived Easy Generic station,
+   measured-start opening retained, only ODE solver `quick`→`world` in an
+   attempt-local copy of the current platform world. Timestep1ms, all contact,
+   friction, robot, gains, motion generation and success constraints unchanged.
+   Native rate vs actual joint/link motion and physical object holding are the
+   endpoints; a PASS alone is insufficient. No default SIM world change yet.
+   Result: rejected alternative. Direct solver produces LCP `s<=0` numerical
+   errors and fails initial opening, before camera/grasp/lift. Keep original
+   recorded task failure; diagnose it as the counterfactual solver's platform
+   numerical failure, not evidence of Ground-task infeasibility. Do not adopt
+   `world` or relax contacts to make it work.
+
+Launch03's release attempt did change the constraint regime: after48.520s,
+native wrist-rate median−0.000041rad/s versus−0.163121 while firmly closed.
+Target remains elevated, with only3.317mm relative-hand displacement; this
+isolates a gripping-constraint contribution, **not** an unloaded-weight contrast.
+
+Next correction under independent review: a SIM-only hardware-feedback adapter
+reporting explicitly named per-physics-step **integrated-pose joint velocity**,
+not QuickStep's stored post-ERP velocity. Before activation, validate position
+increments against independent link-relative quaternion motion over substantial
+unloaded wrist rotation and loaded holding. Preserve native diagnostics and
+all control/gain/collision/acceptance settings. Do not infer validity from PASS;
+require actual motion-rate agreement and physical retention in the next run.
+
+5. `launch-05-easy-integrated-feedback`: same Easy Generic station, original
+   QuickStep/robot/gains/trajectory/acceptance, with the explicitly opt-in SIM
+   `IntegratedVelocityRobotHWSim` interval-average feedback. Stock readSim runs
+   first; velocity elements update in place, writeSim remains stock. Invalid
+   native samples and first/reset samples are not replaced with invented zeros.
+   Raw native trace is retained. Before activation:8 numeric/registration tests,
+   actual offline Pluginlib construction,36 relevant SIM regressions and132
+   AGENT tests passed. This run must validate nonzero pre-close motion, loaded
+   motion/hold, public corrected feedback, and real object lift/retention.
+   New target/payload/preshape planning remains disabled to isolate this change.
+   Result: CHECKS_PASS. Same archived Generic station now executes the lift;
+   checker TCP149.7548mm/target149.4129mm, with physical grasp retention. Across
+   whole observation/pregrasp/lift/retention phases, all six public arm joints
+   exactly match same-stamp preceding1ms native-position increments; positions
+   also match exactly, with no missing/nonfinite samples. Independent wrist
+   relative-quaternion rate errors max0.003887rad/s during observation,
+   0.0006454 during pregrasp, <8e-8 during loaded lift/retention. Actual wrist
+   travel is +2.4653/−3.1963rad before close, not suppressed motion. Native ODE
+   bias remains−0.139rad/s median in retention, while real1kHz pose-rate max is
+   0.08399rad/s. Target-hand movement max1.466mm during lift and0.1446mm during
+   the existing0.797s retention stage. Only49.4ms elapses from nominal lift
+   endpoint to stage end: no claim of an added2s settling check. This is a
+   successful independently checked development contrast, not a reliability
+   rate estimate or a fix to the underlying ODE solver. See
+   `outputs/development/ground-manipulation-batch/dynamics-analysis/launch-05-public/`.
+
+Before launch06, offline review caught two defects in the new MoveIt scene
+helper: ignoring Noetic CollisionObject.pose when attaching a round-tripped
+world box, and issuing redundant world REMOVE after attachment ADD. Both must
+pass a real native PlanningScene round-trip test before activation. This new
+planning mode remains opt-in and shared across methods; it was disabled in05.
+
+6. `launch-06-moderate-full-robot`: archived Moderate Generic source624 at its
+   exact station (arrival-conditioned), QuickStep plus integrated feedback and
+   the shared full-robot perceived-target/payload/preshape path. No candidate,
+   target pose, TCP insertion or IK budget change. Record physics and one
+   existing read-only post-failure IK diagnosis; never execute a diagnostic
+   collision-disabled solution. Native scene round-trip18 tests and runtime19
+   tests independently passed; full SIM review74 tests passed. Both attachment
+   defects fixed before activation. New path built successfully, defaults off.
+   Result: camera/refine and measured preshape pass (q0.290640rad,
+   conservative aperture65.448mm). First grasp IK succeeds, both approach
+   fractions1.0, pregrasp executes and original D_exec is recorded at37.413s.
+   At37.424s measured whole-robot validity rejects left_finger/base_link before
+   descend; close/lift not reached. No diagnostic solution is executed. Thus
+   candidate planning improved, but full manipulation is not yet feasible at
+   the measured pregrasp; D_exec does not certify the entire grasp chain.
+
+7. `launch-07-easy-full-e2e`: original development Easy scene, Ours, normal UAV
+   initial observation/A1–A4 loop and Ground navigation, no replay/arrival
+   conditioning. Shared integrated feedback plus full-robot manipulation.
+   Same scene/config/initial pose/budget/gates; no GT-derived algorithm geometry.
+   This is the sole full aerial E2E invocation in the batch, after05's locally
+   validated real grasp/lift. A failure remains a failure, not a reason to
+   repeat the complete aerial task until success.
