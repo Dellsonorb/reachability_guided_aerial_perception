@@ -1,0 +1,15 @@
+[INFO] [1788924168.606991, 683.943000]: A5 adapter ready; waiting for status subscriber
+[INFO] [1788924169.195012, 684.474000]: [air_ground_pick_demo] PREFLIGHT {}
+[INFO] [1788924169.197117, 684.476000]: [air_ground_pick_demo] ARMING {}
+[INFO] [1788924169.199702, 684.479000]: [air_ground_pick_demo] COMMAND_CONTROL {}
+[INFO] [1788924169.201831, 684.481000]: [air_ground_pick_demo] TAKEOFF {}
+[INFO] [1788924180.938200, 694.985000]: [air_ground_pick_demo] AIR_VIEW {}
+[INFO] [1788924180.943533, 694.990000]: [air_ground_pick_demo] A5_VIEWPOINT {"goal_map": [-0.5, 0.0, 1.5, 0.0], "rescan": false}
+[INFO] [1788924185.883443, 699.378000]: [air_ground_pick_demo] A5_SETTLED {"uav_pose_map": [-0.5133483383329303, 0.011631833337195986, 1.5281323675856244, -0.00034539936146002085]}
+[INFO] [1788924185.887751, 699.383000]: [air_ground_pick_demo] AIR_OBSERVE {}
+[INFO] [1788924186.141155, 699.607000]: [air_ground_pick_demo] AIR_HANDOFF {"observation_stamp": 699.087, "target_map": [1.9985968356676798, 0.006179878814314566, 0.06106529187474052, -0.0014692119657693239]}
+[INFO] [1788924186.142515, 699.607000]: [air_ground_pick_demo] TARGET_REFERENCE {"frame_id": "map", "mask_pixels": 364, "perceived_target": {"center_xyz": [1.9985968356676798, 0.006179878814314566, 0.06106529187474052], "size_xyz": [0.24, 0.053, 0.115], "yaw_rad": -0.0014692119657693239}, "points": 171, "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/v13-development/natural-attempt-03/target_reference.npz", "stamp_s": 699.087, "status": "AVAILABLE"}
+[INFO] [1788924186.144245, 699.607000]: [air_ground_pick_demo] A5_CORE {"label": "init", "operation": "init"}
+[INFO] [1788924209.408648, 719.884000]: [air_ground_pick_demo] A5_CAPTURE_ANCHOR {"capture_anchor_map": [-0.37952997209290285, -0.048424032373698224, 1.2177168160350733, -0.008363669176859555], "position_discrepancy_m": 0.31071161948765674, "requested_viewpoint": [-0.5, 0.0, 1.5, 0.0], "yaw_discrepancy_rad": -0.008363669176859555}
+[ERROR] [1788924254.423607, 760.378000]: air-ground pick demo failed: A5 UAV position/yaw/speed did not settle
+[INFO] [1788924254.425467, 760.380000]: [air_ground_pick_demo] FAILED {"reason": "A5 UAV position/yaw/speed did not settle"}

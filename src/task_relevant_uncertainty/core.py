@@ -194,5 +194,5 @@ def build_task_uncertainty(a1_field, a2_belief, footprint=FootprintSpec(), *, op
         arrays.append(array)
     return TaskRelevantUncertaintyField(grid, a1_field.grasp_id, a1_field.status,
                                         a1_field.coverage, footprint, *arrays, tuple(poses),
-                                        'v1' if operational is None else 'object-aware-v1.1',
+                                        'v1' if operational is None else operational.operational_semantics,
                                         'exact-validated-winner-v1.2' if exact else 'cell-center', anchors)

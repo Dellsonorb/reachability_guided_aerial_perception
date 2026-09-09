@@ -22,7 +22,7 @@ def field_summary(field):
     coverage = {f.name: getattr(field.a1_coverage, f.name) for f in fields(field.a1_coverage)}
     coverage['rejected_by_reason'] = dict(coverage['rejected_by_reason'])
     values = field.task_relevant_uncertainty[np.isfinite(field.task_relevant_uncertainty)]
-    object_aware = field.operational_semantics == 'object-aware-v1.1'
+    object_aware = field.operational_semantics in ('object-aware-v1.1', 'object-aware-v1.3')
     summary = {
         'schema_version': 1, 'field_type': 'task_relevant_observation_deficit',
         'frame_id': field.frame_id, 'grasp_id': field.grasp_id,
@@ -102,7 +102,7 @@ def render_task_field(field, output_path, title='A3 footprint-aware task uncerta
     axes = figure.subplots(2, 4).ravel()
     raster = dict(origin='lower', interpolation='none', aspect='equal', extent=field.grid.extent)
     cmap = colormaps['viridis'].with_extremes(bad='#dedede')
-    gate = 'object-aware' if field.operational_semantics == 'object-aware-v1.1' else 'A2-occupied'
+    gate = 'object-aware' if field.operational_semantics in ('object-aware-v1.1', 'object-aware-v1.3') else 'A2-occupied'
 
     def score(axis, values, label):
         im = axis.imshow(values, cmap=cmap, vmin=0, vmax=1, **raster)

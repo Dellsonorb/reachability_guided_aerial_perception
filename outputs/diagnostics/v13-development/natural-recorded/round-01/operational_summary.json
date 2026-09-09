@@ -1,0 +1,41 @@
+{
+  "operational_semantics": "object-aware-v1.3",
+  "association_status": "AVAILABLE",
+  "association_rule": "interior_red_mask_AND_registered_depth_AND_expanded_known_object_geometry",
+  "reference_scope": "static_initial_air_phase_only",
+  "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/v12-integration/natural-attempt-02/target_reference.npz",
+  "target": {
+    "center_xyz": [
+      1.9930620816835394,
+      0.0007326276523584068,
+      0.05959720943262217
+    ],
+    "yaw_rad": 0.0008189250753363188,
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "geometry_allowance_m": 0.043839483399633145,
+    "frame_id": "map"
+  },
+  "geometry_allowance_semantics": "declared_sensor_budget_not_calibrated_accuracy",
+  "raw_a2_unchanged": true,
+  "ground_semantics": "actual_ground_votes_with_environment_or_ambiguous_priority",
+  "observation_windows": 1,
+  "ambiguous_endpoint_profile": {
+    "name": "public-map-tf-conditional-disk33mm-v1",
+    "radius_m": 0.033,
+    "scope": "declared_engineering_disk_conditional_on_public_map_TF_not_calibrated_accuracy",
+    "point_count": 0,
+    "complete_window_votes": 0,
+    "source_identity": "observation_index_and_original_retained_observation_row",
+    "history_missing_policy": "legacy_cell_blocking_no_endpoint_imputation"
+  },
+  "votes": {
+    "environment_occupied_votes": 0,
+    "ambiguous_occupied_votes": 0,
+    "target_occupied_votes": 0,
+    "ground_votes": 337
+  }
+}

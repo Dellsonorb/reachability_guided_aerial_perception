@@ -329,7 +329,7 @@ class CaptureWindowTests(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.node._a5_output = Path(self.temporary.name)
         self.goal = [0., 0., 1.5, 0.]
-        self.node._a5_wait_settled = lambda _goal: self.goal
+        self.node._a5_wait_settled = lambda _goal, **_kwargs: list(_goal)
         self.node._a5_settled_now = lambda _goal, **_kwargs: (True, self.goal)
         self.node._a5_measured_pose = lambda stamp=None, **_kwargs: (
             self.goal if stamp is None else [.02 * (stamp.to_sec() - 10.), 0., 1.5, 0.])
@@ -567,8 +567,9 @@ class CaptureWindowTests(unittest.TestCase):
         self.node._a5_measured_pose = lambda stamp=None, **_kwargs: list(anchor)
         settling_goals = []
 
-        def wait_settled(goal):
+        def wait_settled(goal, **kwargs):
             settling_goals.append(list(goal))
+            self.assertTrue(kwargs['reacquire_anchor'])
             self.assertTrue(support.pose_settled(anchor, goal, [0., 0., 0.], .1, .1, .1))
             return list(anchor)
 
@@ -641,6 +642,63 @@ class CaptureWindowTests(unittest.TestCase):
             self.capture([(10.1, "uav1/livox"), (10.5, "uav1/livox")])
         self.assertEqual(self.node._a5_observations, [])
         self.assertFalse(any(status == "A5_CAPTURE_ANCHOR" for status, _ in self.statuses))
+
+    def wait_from_samples(self, samples, *, reacquire_anchor):
+        self.options.settle_timeout = 2.
+        self.node._flight_health_max_age = .5
+
+        def sample():
+            return samples[min(int(round(self.clock.wall * 10)), len(samples) - 1)]
+
+        self.node._a5_measured_pose = lambda **_kwargs: list(sample()[0])
+        self.node._air_snapshot = lambda: (
+            SimpleNamespace(velocity=list(sample()[1])), None, self.clock.wall, None)
+        self.node._a5_settled_now = type(self.node)._a5_settled_now.__get__(self.node)
+        self.node._wait_step = lambda: setattr(self.clock, 'wall', self.clock.wall + .1)
+        wait = type(self.node)._a5_wait_settled.__get__(self.node)
+        with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
+            return wait(self.goal, reacquire_anchor=reacquire_anchor)
+
+    def test_capture_dwell_reacquires_uncommanded_transient_anchor(self):
+        later = [.2, 0., 1.5, 0.]
+        samples = [(self.goal, [.15, 0., 0.]), (later, [0., 0., 0.])]
+        self.assertEqual(self.wait_from_samples(samples, reacquire_anchor=True), later)
+        self.assertGreaterEqual(self.clock.wall, .6)
+
+    def test_arrival_dwell_still_requires_the_commanded_position(self):
+        with self.assertRaisesRegex(RuntimeError, 'did not settle'):
+            self.wait_from_samples([([.2, 0., 1.5, 0.], [0., 0., 0.])], reacquire_anchor=False)
+
+    def test_reacquired_capture_dwell_preserves_speed_yaw_and_bounds(self):
+        for pose, velocity in [(self.goal, [.11, 0., 0.]),
+                               ([0., 0., 1.5, .11], [0., 0., 0.]),
+                               ([0., 0., .4, 0.], [0., 0., 0.])]:
+            with self.subTest(pose=pose, velocity=velocity):
+                self.clock.wall = 0.
+                with self.assertRaisesRegex(RuntimeError, 'did not settle'):
+                    self.wait_from_samples([(pose, velocity)], reacquire_anchor=True)
+
+    def test_reacquired_capture_dwell_cannot_follow_rapid_position_jumps(self):
+        samples = [([.2 * (n % 2), 0., 1.5, 0.], [0., 0., 0.]) for n in range(25)]
+        with self.assertRaisesRegex(RuntimeError, 'did not settle'):
+            self.wait_from_samples(samples, reacquire_anchor=True)
+
+    def test_capture_cannot_compound_yaw_tolerance_after_dwell(self):
+        settled = [0., 0., 1.5, .09]
+        capture_pose = [0., 0., 1.5, .18]
+        self.node._a5_wait_settled = lambda _goal, **_kwargs: settled
+        reads = []
+
+        def measured(stamp=None, **_kwargs):
+            reads.append(stamp)
+            return self.goal if len(reads) == 1 else capture_pose
+
+        self.node._a5_measured_pose = measured
+        self.node._a5_settled_now = lambda goal, **_kwargs: (
+            support.pose_settled(capture_pose, goal, [0., 0., 0.], .1, .1, .1), capture_pose)
+        with self.assertRaisesRegex(RuntimeError, 'timed out'):
+            self.capture([(10.1, 'uav1/livox'), (10.2, 'uav1/livox'), (10.5, 'uav1/livox')])
+        self.assertEqual(self.node._a5_observations, [])
 
     def test_capture_wall_timeout_does_not_save_an_incomplete_window(self):
         with self.assertRaisesRegex(RuntimeError, "timed out"):

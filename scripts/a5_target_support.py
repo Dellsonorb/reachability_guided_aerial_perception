@@ -164,7 +164,7 @@ def build_object_aware_adapter(parent_class, options):
             self._target_bundles = deque(maxlen=32)
             self._target_bundle_lock = threading.Lock()
             self._target_reference_done = False
-            self._operational_init = {'operational_gating': 'v1.1',
+            self._operational_init = {'operational_gating': getattr(options, 'operational_gating', 'v1.1'),
                                       'target_reference_file': None,
                                       'target_reference_status': 'UNAVAILABLE'}
             super().__init__()
@@ -231,7 +231,7 @@ def build_object_aware_adapter(parent_class, options):
                 # the inherited observer's acceptance or execution parameters.
                 metadata['reason'] = '%s: %s' % (type(error).__name__, error)
             self._operational_init = dict(
-                operational_gating='v1.1', perceived_target=target,
+                operational_gating=getattr(options, 'operational_gating', 'v1.1'), perceived_target=target,
                 target_reference_file=metadata['reference_file'],
                 target_reference_status=metadata['status'], target_reference_reason=metadata['reason'])
             try:
