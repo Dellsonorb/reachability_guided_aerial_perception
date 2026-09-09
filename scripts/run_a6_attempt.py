@@ -272,8 +272,8 @@ def validate_replay_scene(recorded, scene):
 
 def ground_dynamics_environment(status, output, replay_from):
     """Physical state is a diagnostic output, never an algorithm observation."""
-    if status != 'DEVELOPMENT_BATCH' or replay_from is None:
-        raise ValueError('physics tracing is confined to Ground development replay')
+    if status != 'DEVELOPMENT_BATCH':
+        raise ValueError('physics tracing is confined to development runs')
     return {'P450_GROUND_DYNAMICS_CSV': str(output / 'ground-dynamics.csv')}
 
 
@@ -446,7 +446,8 @@ def main(argv=None):
         raise ValueError('camera-only candidate setup requires a Ground replay, not a navigation test')
     if args.diagnose_grasp_failure and args.ground_replay_from is None:
         raise ValueError('post-failure IK probe is confined to Ground development diagnostics')
-    if args.post_failure_load_contrast and (not args.ground_dynamics or args.ground_navigation_only):
+    if args.post_failure_load_contrast and (not args.ground_dynamics or args.ground_navigation_only
+                                            or args.ground_replay_from is None):
         raise ValueError('load contrast requires a traced Ground manipulation replay')
     if args.ground_dynamics:
         ground_dynamics_environment(config['status'], args.output_dir, args.ground_replay_from)

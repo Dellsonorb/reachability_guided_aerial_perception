@@ -312,14 +312,23 @@ class GroundDynamicsDiagnosticTests(unittest.TestCase):
         self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='lift')]))
         self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='retention')]))
 
-    def test_physics_trace_is_explicit_ground_development_only(self):
+    def test_physics_trace_is_explicit_development_only(self):
         import run_a6_attempt as attempt
         self.assertTrue(callable(getattr(attempt, 'ground_dynamics_environment', None)))
         result = attempt.ground_dynamics_environment('DEVELOPMENT_BATCH', Path('/tmp/run'), Path('/tmp/old'))
         self.assertEqual(result, {'P450_GROUND_DYNAMICS_CSV': '/tmp/run/ground-dynamics.csv'})
-        for status, source in [('FROZEN_FOR_FORMAL', Path('/tmp/old')), ('DEVELOPMENT_BATCH', None)]:
+        self.assertEqual(attempt.ground_dynamics_environment(
+            'DEVELOPMENT_BATCH', Path('/tmp/run'), None), result)
+        for status, source in [('FROZEN_FOR_FORMAL', Path('/tmp/old')), ('FROZEN_FOR_FORMAL', None)]:
             with self.assertRaises(ValueError):
                 attempt.ground_dynamics_environment(status, Path('/tmp/run'), source)
+
+    def test_full_development_trace_does_not_enable_post_failure_replay_motion(self):
+        import run_a6_attempt as attempt
+        with self.assertRaisesRegex(ValueError, 'traced Ground manipulation replay'):
+            attempt.main(['--config', str(ROOT / 'configs/dev_operational_batch_v14.json'),
+                          '--slot', '4', '--output-dir', '/tmp/not-created-full-contrast',
+                          '--ground-dynamics', '--post-failure-load-contrast'])
 
     def test_post_failure_contrast_is_two_bounded_holds_and_real_open(self):
         import run_ground_sim as ground
