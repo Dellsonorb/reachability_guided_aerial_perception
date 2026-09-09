@@ -1,238 +1,65 @@
-# A1 — Validated Manipulation Interest Field
+# Reachability-guided aerial perception and Ground retrieval
 
-当前开发分支为 `feature/dev-operational-consistency`，已完成
-[Ground 执行可靠性开发批次](docs/GROUND_EXECUTION_BATCH_RESULTS.md)：8/8 次启动，
-全部为针对性 Ground 诊断，未重跑无人机全链路或 formal matrix。
-XY latch 安装后仍失败；进一步修复实际速度反馈、SDFormat surface 保留、
-重复重规划清除 latch、CoG/base 原点速度变换。最终 Easy 实际到位、D435 精定位、
-D_exec、下降和夹持通过，但 lift 腕关节停止检查仍失败；Moderate 精定位通过后，
-grasp IK/collision 仍阻断。operational gate 未修改，整体仍未达到 formal readiness。
-当前八次在线预算已用完；SIM 修复保留独立开发分支，不宣称 retrieval 已解决。
+P450 使用正常 RGB-D / MID360 感知发现目标并观察环境；AGENT 用 manipulation
+relevance 引导后续观测，选择 BUNKER 的 exact validated 站位；SIM 通过导航、
+D435 精定位、AUBO i5 / AG95 的碰撞感知规划与物理夹持完成提升和保持。
 
-此前完成
-[有界开发批次](docs/DEV_OPERATIONAL_BATCH_RESULTS.md)：12 次启动（2 次启动无效），
-三组新 Generic/Ours 配对全部完成。v1.4 将真实 ground presence 与碰撞阻断独立累计，
-修复 v1.3 的 coarse-cell ground-vote suppression；A2 raw evidence 不变。
-已知 Moderate 回归完成真实 grasp/lift；新配对均未 retrieval 成功，整体尚不适合结束开发。
-该历史批次停止时，SIM namespace 修正仅离线测试、尚未部署；当前状态见上文。
-
-历史开发分支 `feature/v13-operational-geometry`：按新的自主研发授权，
-使用 endpoint-local AMBIGUOUS geometry 解决 coarse-cell aliasing；
-见 [v1.3 设计与来源诊断](docs/superpowers/specs/2026-09-09-v13-ambiguous-subcell-design.md)
-及 [开发回放、自然回归与交付记录](docs/V13_OPERATIONAL_GEOMETRY_CHECKPOINT.md)。
-历史冻结用于保留版本，不再作为必要局部迭代的审批障碍。
-新开发结果与历史验证、最终测试分开；不恢复剩余验证或 formal matrix。
-
-A6 历史 [fresh-seed validation 科研审查 checkpoint](docs/V12_FRESH_VALIDATION_RESULTS.md)：
-已冻结六次配对验证；完成3/6，Easy Generic/Ours 均 E2E 成功，Moderate Ours
-出现 AMBIGUOUS cell 永久阻断的结构性死锁，按批准条件停止，未启动 slots4–6。
-未修改冻结算法或参数，尚未达到 formal readiness，PR#6 保持 Draft。
-此前 [v1.2 integration-complete checkpoint](docs/V12_INTEGRATION_CHECKPOINT.md) 的
-exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为0.1487m。
-[Pilot-1](docs/A6_PILOT_RESULTS.md)、[Pilot-2](docs/A6_PILOT2_RESULTS.md) 保留原结果；
-历史 16 个 v1.1 formal slots 永久作为 development diagnostics，不进入 v1.2 statistics。
-没有恢复 slot 17 或 formal matrix，A6 分支未合并 main。
-[fresh validation 冻结协议](docs/V12_FRESH_VALIDATION_PROTOCOL.md) 与
-[结果和机制诊断](docs/V12_FRESH_VALIDATION_RESULTS.md) 已记录；不自行恢复验证或 formal。
-方法定义见 [v1.1 object-aware gating](docs/OBJECT_AWARE_GATING_V11.md) 与
-[v1.2 exact-pose anchoring](docs/EXACT_POSE_SUPPORT_V12.md)；non-winner 仅作诊断。
-
-项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
-详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
-及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1/A2/A4 与 RM4D 保持不变；
-A3/A5 在该历史版本包含 v1.1/v1.2 修订；当前分支额外以显式 opt-in 接入 v1.3/v1.4。
-
-本仓库实现 Paper 1 的最小 A1 原型：把 `map` 下的 Brick grasp TCP 交给冻结的 AUBO RM4D planner，并将 planner **实际验证过的候选**投影成 0.10 m 二维地面场。这里的
-
-\[
-q=(x,y)
-\]
-
-是 `map` 中 BUNKER `base_link` 的地面位置。该结果称为 **Validated Manipulation Interest Field (VMIF)**；它是 grasp-specific、budget-limited 的部分评估结果，不是完整 RM4D capability map。
-
-冻结依赖为 `rm4d-aubo-baseline-v1 @ e9d431299053f38a4a4319aed3dfeccc261b9fac`，本仓库不修改该 baseline。
-
-## 方法定义
-
-对冻结 planner 返回的 `evaluated_candidates` 记为 `E`。在当前 baseline 中，
-
-\[
-|E| \leq \texttt{validation\_limit}=256.
-\]
-
-候选 `i` 的 validity gate 为
-
-\[
-g_i = \mathbf{1}\left[
-\texttt{valid}
-\land \texttt{rm4d\_reachable}
-\land \texttt{ik\_valid}
-\land \texttt{collision\_free}
-\land \neg\texttt{footprint\_collision}
-\land m_i \geq 0.01\ \mathrm{rad}
-\right],
-\]
-
-其中 `m_i` 是 `joint_margin_rad`。连续候选 relevance 只由 joint-limit margin 决定：
-
-\[
-v_i =
-\begin{cases}
-\operatorname{clip}(m_i / 0.5, 0, 1), & g_i=1,\\
-0, & g_i=0.
-\end{cases}
-\]
-
-`fk_position_residual_m` 和 `fk_orientation_residual_rad` 仅保留作数值诊断；通过 baseline acceptance 后，它们不参与 `v_i`。冻结 planner 的 `final_score` 也不参与 VMIF。
-
-默认网格为以 grasp XY 为中心的 3 m × 3 m 网格，分辨率 `Delta=0.10 m`，共 30 × 30 个 cell。数组为 row-major `[y, x]`。cell `C_{r,c}` 使用半开边界：
-
-\[
-C_{r,c}=[x_0+c\Delta,x_0+(c+1)\Delta)
-\times[y_0+r\Delta,y_0+(r+1)\Delta).
-\]
-
-令 `E_{r,c}` 为 `E` 中落入该 cell 的候选（包括不同 yaw）。不做插值或 smoothing：
-
-\[
-R_{r,c}=
-\begin{cases}
-\mathrm{NaN}, & E_{r,c}=\varnothing,\\
-\max_{i\in E_{r,c}} v_i, & \exists i\in E_{r,c}: g_i=1,\\
-0, & \text{otherwise}.
-\end{cases}
-\]
-
-每个 cell 的语义为：
-
-- `UNASSESSED = -1`：没有实际验证候选落入；不能解释为 unreachable 或 infeasible。
-- `INFEASIBLE = 0`：cell 被评估，但其中没有候选通过完整 gate。
-- `LOW = 1`：`0 < R < 0.8`。
-- `HIGH = 2`：`R >= 0.8`。
-
-若 `summary.inverse_reachable == 0`，field-level status 为 `NO_INVERSE_REACHABLE`，900 个 cell 全部保持 `UNASSESSED`，relevance 全部为 `NaN`。否则状态为 `PARTIALLY_ASSESSED`。
-
-### Assessment coverage
-
-VMIF 明确保留 `inverse_reachable`、`deduplicated`、`validation_limit`、`evaluated`、`valid`、`rejected_by_reason`、assessed cell 数量和覆盖比例。尤其当 `deduplicated > evaluated` 时，只能描述这 256 个被验证候选所覆盖的空间；其余 cell 不得由缺失证据推断为不可达。
-
-## 使用的 RM4D 信息
-
-使用 result 的 `schema_version`、`frame_id`、`grasp_id`，以及 summary 中上述 coverage 计数。对每个 `evaluated_candidate` 使用：
-
-- `bunker_x`、`bunker_y`、`bunker_yaw`；
-- `rm4d_reachable`、`ik_valid`、`collision_free`、`footprint_collision`、`valid`；
-- `joint_margin_rad`；
-- 仅供诊断的 FK position/orientation residual 和 `rejection_reason`。
-
-不使用返回的 top-K `candidates` 集合，也不使用 baseline `final_score`。调用时传 `top_k=1` 只缩小 top-candidate 输出；场构建仍消费完整 `evaluated_candidates`。
-
-## API 与数据结构
-
-ROS-independent 公共接口位于 `reachability_guided_aerial_perception`：
-
-- `GraspTCP`：只接受已解析到 `map` 的 grasp ID、position 和 unit quaternion。
-- `GridSpec`、`FieldConfig`：网格几何及 margin/分类阈值。
-- `FieldStatus`、`CellState`、`AssessmentCoverage`。
-- `ManipulationInterestField`：`relevance`、cell state、每 cell evaluated/feasible count、代表性 best yaw/margin 和 residual diagnostics。
-- `candidate_relevance(...)`、`build_field_from_result(...)`：纯数据评分和 rasterization。
-- `build_field(...)`：对一个 grasp 调用一次冻结 `BasePlacementAPI.plan(..., top_k=1)`。
-- `field_summary(...)`、`save_field_bundle(...)`、`render_field(...)`。
-- `to_occupancy_grid_payload(...)`：RViz/ROS adapter seam；返回与 `nav_msgs/OccupancyGrid` 核心布局一致的普通字典，含 `header.frame_id`、origin、resolution、width、height、row-major `data` 和额外 `field_status`。`data` 中 `-1` 为 unassessed、`0` 为 assessed infeasible、`1..100` 为 feasible relevance。此处不依赖或发布 ROS message。
-
-每个输出目录只包含：
-
-- `field.npz`：`relevance`、`state`、`evaluated_count`、`valid_count` 栅格及必要的 grasp/frame/status/grid metadata；
-- `summary.json`：方法语义、阈值、网格、coverage 和 cell state 计数；
-- `candidate_diagnostics.csv`：全部实际验证候选的 pose、gate、margin、residual、field score 和 rejection reason；
-- `field.png`：无 smoothing 的三联图（raw field、categorical state、candidate scatter）。
-
-## Quick start
-
-项目要求 Python 3.10。若只安装本包，可使用：
+## 当前启动入口
 
 ```bash
-python3.10 -m venv .venv
-.venv/bin/python -m pip install -e .
+# 查看实际共用配置，不启动机器人
+python3 scripts/run_retrieval.py run --dry-run --output-dir outputs/tasks/natural-001
+
+# 一次自然任务（默认 Ours；--method generic 使用共用执行层）
+python3 scripts/run_retrieval.py run --output-dir outputs/tasks/natural-001
+
+# 另一个终端查看当前状态／原始失败
+python3 scripts/run_retrieval.py status outputs/tasks/natural-001
 ```
 
-真实 RM4D 调用还需要冻结仓库自带的 Python 环境和本地 10M map。下面命令使用一份长生命周期 `BasePlacementAPI` 依次运行三个离线场景，每个场景只调用一次 planner：
+[完整启动说明、依赖、正常任务输入和状态解释](docs/CURRENT_SIM_TASK.md)。
+当前入口使用既有本机 SIM / PX4 / RM4D 环境；不是“一条命令安装所有依赖”。
+仅适用于仿真，不能直接发送到实机。
 
-```bash
-mkdir -p /tmp/rgap-mpl-cache
-MPLCONFIGDIR=/tmp/rgap-mpl-cache \
-PYTHONPATH=src \
-/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python \
-  scripts/run_offline_validation.py \
-  --rm4d-root /media/lu/P450_PAPER/RM4D_AUBO \
-  --rm4d-config /media/lu/P450_PAPER/RM4D_AUBO/configs/mr4_offline_base_placement.json \
-  --rm4d-map /media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy \
-  --output-root outputs/a1
-```
+## 已做到哪里
 
-`configs/rm4d_aubo_baseline_v1.json` 是 release manifest；其中 `frozen_artifacts.planner_config_path` 指向上面传给 `BasePlacementAPI.from_files(...)` 的 runtime planner config。它本身不是 `--rm4d-config` 输入。
+[最近六场景 Generic/Ours 配对开发结果](docs/DEV_MULTISCENE_PAIRED_RESULTS.md)：
+12 次自然任务中，8 次 confirmed，8 次完成实际 Ground 抓取/提升/保持，7 次原独立
+retrieval 检查通过；4 次 Hard 缺真实地面支持，1 次检查器缺早期观测。历史原结果保留。
 
-单 grasp CLI 为：
+当前开发在此基础上修复检查器观测保留，提供统一任务入口，并增加共用
+`screened_candidate` 停止规则：真实观测确认 + 完整机器人操作预检通过后交接，
+无需仅因尚有未知区域就耗完三窗。到位后仍用实际姿态和新近场感知重新规划；
+预检不等于实际 `D_exec`。在线修订结果见后续开发报告，不与历史数据混合。
 
-```bash
-MPLCONFIGDIR=/tmp/rgap-mpl-cache \
-PYTHONPATH=src \
-/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python \
-  -m reachability_guided_aerial_perception.cli \
-  --rm4d-root /media/lu/P450_PAPER/RM4D_AUBO \
-  --rm4d-config /media/lu/P450_PAPER/RM4D_AUBO/configs/mr4_offline_base_placement.json \
-  --rm4d-map /media/lu/P450_PAPER/RM4D_AUBO/runs/formal-10m/data/rm4d_aubo_i5_joint_42/10000000/rmap.npy \
-  --grasp examples/scenarios/nominal.json \
-  --output-dir outputs/one_grasp
-```
+[当前设计](docs/superpowers/specs/2026-09-10-task-handoff-design.md)；
+[Hard 理想观测机会与真实支持诊断](outputs/development/task-handoff-analysis/REPORT.md)。
+尚未证明 Ours 的统计优势，未启动新的正式矩阵。
 
-将绝对路径替换为另一台机器上同一冻结仓库、planner config 和 map 的明确路径即可。
+## 代码边界
 
-## 三个离线场景的实测结果
+- `src/reachability_guided_aerial_perception`：A1 joint-margin manipulation field。
+- `src/environment_belief`：A2 原始 Free / Occupied / Unknown 与 observation deficit。
+- `src/operational_gating`、`src/task_relevant_uncertainty`：真实 endpoint/物体几何、
+  exact footprint 支持和 task uncertainty；不把 UNKNOWN 当 FREE。
+- `src/reachability_guided_nbv`：共用候选、visibility、cost 与两种 gain。
+- `src/sim_active_perception`、`scripts/run_a5_sim.py`：数值/ROS 边界和任务交接。
+- `scripts/run_retrieval.py`：当前单任务入口；复用既有 runner，不自动批量/重试。
+- SIM 独立仓库：公共 TF、飞行、导航、相机、MoveIt、夹爪和物理执行。
+- 原 RM4D baseline 不改；Ground 使用[独立负z任务域 asset](docs/A5_TASK_DOMAIN_ASSET.md)。
 
-以下是对冻结 map 的一次三场景运行，不是 benchmark。candidate coverage 为 `evaluated / deduplicated`，cell coverage 为 `assessed / 900`。
+Generic/Ours 公平共享感知、候选、可见性、成本、预算、操作筛选和物理成功条件。
+Gazebo GT 只用于仿真场景初始化和外部结果测量，从不作为算法感知输入。
 
-| Scenario | Field status | Inverse / dedup / evaluated / valid | UNASSESSED / INFEASIBLE / LOW / HIGH | max R | Candidate coverage | Cell coverage | Artifacts |
-|---|---|---|---|---:|---:|---:|---|
-| nominal | `PARTIALLY_ASSESSED` | 30564 / 30295 / 256 / 254 | 811 / 1 / 7 / 81 | 1.0 | 0.8450% | 9.8889% (89/900) | [图](outputs/a1/nominal/field.png) · [summary](outputs/a1/nominal/summary.json) · [CSV](outputs/a1/nominal/candidate_diagnostics.csv) · [NPZ](outputs/a1/nominal/field.npz) |
-| boundary | `PARTIALLY_ASSESSED` | 35820 / 33544 / 256 / 246 | 807 / 0 / 9 / 84 | 1.0 | 0.7632% | 10.3333% (93/900) | [图](outputs/a1/boundary/field.png) · [summary](outputs/a1/boundary/summary.json) · [CSV](outputs/a1/boundary/candidate_diagnostics.csv) · [NPZ](outputs/a1/boundary/field.npz) |
-| no_inverse | `NO_INVERSE_REACHABLE` | 0 / 0 / 0 / 0 | 900 / 0 / 0 / 0 | — | 0% | 0% (0/900) | [图](outputs/a1/no_inverse/field.png) · [summary](outputs/a1/no_inverse/summary.json) · [CSV](outputs/a1/no_inverse/candidate_diagnostics.csv) · [NPZ](outputs/a1/no_inverse/field.npz) |
+## 范围与历史
 
-nominal 与 boundary 的已评估 cell 都呈围绕 grasp 的稀疏环状/弧状分布，这与从不同 BUNKER base pose 和 yaw 到达同一 TCP 的移动操作几何一致；不同姿态造成了不对称的低 margin 区域。nominal 中观察到 1 个 assessed-infeasible cell；boundary 虽有 10 个 invalid candidate，但每个含 invalid candidate 的已评估 cell 也至少有一个通过 gate 的候选，因此没有 `INFEASIBLE` cell。离散 cell 和候选点在图中原样保留，没有连续化。no_inverse 图为空白/灰色并显式标注 field status，未将无候选扩散成不可达区域。
+当前是已知砖块类型、初始相机搜索区域、静态水平地面和有界作业区内的开发程序，
+不是任意场景/物体搜索。LiDAR 可见性是理想 endpoint opportunity，不保证实际
+回波；12mm 是开发净空余量，不是校准安全保证。未满足真实支持、规划或抓取
+条件时报告失败，不补票、不瞬移、不伪造抓取。
 
-![Nominal validated field](outputs/a1/nominal/field.png)
-
-![Boundary validated field](outputs/a1/boundary/field.png)
-
-![No-inverse field](outputs/a1/no_inverse/field.png)
-
-## 与 top-K candidates 的区别
-
-top-K 只给少量经过 baseline 综合排序的离散落脚方案，并混合 IK quality、joint margin 和 travel 等 ranking 项。VMIF 不重新排序 top-K，而是对全部实际验证候选按地面 cell 与 yaw 聚合，只用 joint margin 形成 manipulation relevance；同时保留 assessed-infeasible 与 `UNASSESSED` 的区别。因此它能表达局部空间结构和备选 yaw，但仍严格受 256-candidate validation budget 限制，不能声称覆盖了所有 inverse-reachable candidates。
-
-## 后续 MID360 融合边界（仅设计）
-
-令 MID360 在环境位置 `x` 上维护
-
-\[
-B(x)=(p_{\mathrm{free}}(x),p_{\mathrm{occupied}}(x),p_{\mathrm{unknown}}(x)),
-\quad \sum p(x)=1.
-\]
-
-对已验证可行的 cell/yaw `(c, psi)`，把 BUNKER footprint 变换到 `map`。一个最小的 task-relevant uncertainty 定义可以是
-
-\[
-U_{\mathrm{task}}(x)=p_{\mathrm{unknown}}(x)
-\max_{(c,\psi):\;x\in\mathrm{Footprint}(c,\psi)}R(c),
-\]
-
-其中最大值只取 validated feasible representatives；没有覆盖时取 0。`p_occupied` 应在将来作为实际部署的 operational-feasibility gate，而不是回写或篡改 RM4D relevance。RM4D manipulation field 与 environmental belief 在融合前保持为两个独立量。
-
-当前 cell-level field 只保存一个最高 relevance 的代表 yaw；`candidate_diagnostics.csv` 保留所有实际验证 yaw，可供后续 footprint-aware fusion 使用。本阶段未实现该融合。
-
-## 限制与范围
-
-- 输入 grasp 必须已解析到 `map`。冻结 API 只把 `map` 当作 baseline `world` 的数值 identity alias；若 `T_map_world` 非 identity，调用方必须先完成变换，本仓库不订阅 TF。
-- field 只对应一个 grasp 和有限验证预算；网格外候选不参与栅格聚合，`UNASSESSED` 不代表不可达。
-- 未输入 MID360 `Free / Occupied / Unknown`，也未实现环境不确定性、uncertainty-aware RM4D、active mapping、NBV、information gain、RL 或 World Model。
-- 未实现 smoothing、插值、benchmark 或额外 safety/evidence framework。
+历史[原A5](docs/A5_SIM_ACTIVE_PERCEPTION.md)、[v1.1](docs/OBJECT_AWARE_GATING_V11.md)、
+[v1.2](docs/EXACT_POSE_SUPPORT_V12.md)、[Pilot-1](docs/A6_PILOT_RESULTS.md)和后续
+开发记录保留。A1 原始定义/离线用法可在 `06c695d:README.md` 查看
+（`git show 06c695d:README.md`）；那是阶段存档，不代表当前尚未实现 A2–A5。
+原配置和 legacy 停止默认仍可复现旧版本；不恢复旧560次 formal matrix。

@@ -63,10 +63,14 @@ def build_parser():
                         help="Use shared perceived-target/payload planning and target-sized gripper preshape")
     parser.add_argument("--execution-clearance", action="store_true",
                         help="Shared development chassis-clearance and whole-manipulation screening")
+    parser.add_argument('--handoff-stop', choices=('legacy', 'screened_candidate'), default='legacy',
+                        help='Stop sensing after real confirmation AND shared execution preview; legacy preserves historical runs')
     return parser
 
 
 def validate_options(parser, options):
+    if options.handoff_stop == 'screened_candidate' and not options.execution_clearance:
+        parser.error('--handoff-stop screened_candidate requires --execution-clearance')
     if options.execution_clearance and not options.full_robot_manipulation:
         parser.error('--execution-clearance requires --full-robot-manipulation')
     if options.max_viewpoints < 1:
@@ -513,6 +517,7 @@ def build_adapter_class(demo_module, options):
                         "observations": list(self._a5_observations), "uav_pose": pose,
                         "output_dir": str(self._a5_output),
                     }, "round-%02d" % round_number)
+                    response = self._a5_prepare_handoff(response, target_map)
                     self._publish_status("A5_DECISION", **{key: response[key] for key in (
                         "round", "stop_reason", "next_viewpoint", "selected_candidate")})
                     if response["stop_reason"] is not None:
@@ -520,7 +525,12 @@ def build_adapter_class(demo_module, options):
                         if self._a5_selected is None:
                             raise DemoError("A5 stopped (%s) without a confirmed exact candidate" % response["stop_reason"])
                         if getattr(self, '_execution_clearance', False):
-                            self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
+                            if response.get('execution_screen_attempted'):
+                                self._a5_selected = response.get('screened_candidate')
+                                if self._a5_selected is None:
+                                    raise DemoError('no confirmed exact candidate passing bounded execution screen')
+                            else:
+                                self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
                             self._execution_rm_seed = self._a5_execution_seeds.get(self._a5_selected['candidate_id'])
                         self._a5_candidate_count = response.get("candidate_count", self._a5_candidate_count)
                         self._publish_status("A5_SELECTED", **self._a5_selected)
@@ -536,13 +546,26 @@ def build_adapter_class(demo_module, options):
             except (WorkerError, OSError, ValueError) as error:
                 raise DemoError("A5 adapter failed: %s" % error) from error
 
-        def _screen_ground_candidates(self, assessments, target_map):
+        def _a5_prepare_handoff(self, response, target_map):
+            # A task stop, not a new NBV gain or an assertion of D_exec. Actual
+            # arrival and near-field refinement still replan the real robot.
+            if (getattr(options, 'handoff_stop', 'legacy') != 'screened_candidate'
+                    or response['confirmed_candidate_count'] == 0):
+                return response
+            selected = self._screen_ground_candidates(response['assessments'], target_map, False)
+            response = dict(response, execution_screen_attempted=True, screened_candidate=selected)
+            if selected is not None:
+                response.update(stop_reason='SCREENED_CANDIDATE_READY', next_viewpoint=None,
+                                selected_candidate=selected)
+            return response
+
+        def _screen_ground_candidates(self, assessments, target_map, required=True):
             from a5_execution_selection import select_execution_candidate
             selected = select_execution_candidate(
                 assessments, lambda candidate: self._preview_ground_candidate(
                     target_map, candidate, self._a5_execution_seeds.get(candidate['candidate_id'])),
                 self._publish_status)
-            if selected is None:
+            if selected is None and required:
                 raise DemoError('no confirmed exact candidate passing bounded execution screen')
             return selected
 

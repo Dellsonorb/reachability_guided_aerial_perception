@@ -122,6 +122,12 @@ def _stage_summary(events, terminal, clock_reset):
             stage = {'GROUND_STOPPED': 'ground_navigation', 'A6_LANDED': 'landing',
                      'GROUND_REFINED': 'ground_refine', 'A6_ACTIVE_STOP': 'active'}[state]
             finish(stage, timestamp, 'SUCCEEDED')
+            if state == 'A6_ACTIVE_STOP' and stages['active']['start_sim'] is not None:
+                # Current task mode may interleave a planning-only preview
+                # with sensing. Active is the elapsed span to the common stop,
+                # including that compute/hover time, not a sum of stage times.
+                stages['active'].update(status='SUCCEEDED', end_sim=timestamp,
+                    duration_sim_s=_duration(stages['active']['start_sim'], timestamp, clock_reset))
         elif state == 'FAILED':
             finish(current, timestamp, 'FAILED')
             if failure_stage is None:
@@ -129,6 +135,26 @@ def _stage_summary(events, terminal, clock_reset):
         if row is terminal:
             finish(current, timestamp, 'FAILED' if state == 'FAILED' else 'SUCCEEDED')
             break
+    # A shared task can screen after more than one observation. Preserve the
+    # first-start/last-end envelope but sum ONLY actual preview intervals,
+    # not the intervening flights or sensor windows.
+    starts, intervals = None, []
+    for row in events:
+        if row.get('stage') == 'execution_screen':
+            if row['state'] == 'A6_STAGE_START':
+                starts = row['ros_time']
+            elif row['state'] in ('A6_STAGE_END', 'A6_STAGE_FAILED') and starts is not None:
+                intervals.append((starts, row['ros_time']))
+                starts = None
+        if row is terminal:
+            if starts is not None:
+                intervals.append((starts, row['ros_time']))
+            break
+    if intervals:
+        durations = [_duration(start, end, clock_reset) for start, end in intervals]
+        stages['execution_screen'].update(start_sim=intervals[0][0], end_sim=intervals[-1][1],
+            duration_sim_s=None if any(value is None for value in durations) else sum(durations),
+            attempt_count=len(intervals))
     return stages, failure_stage, failure_reason
 
 
@@ -177,6 +203,9 @@ def summarize_metrics(events, samples, method, run_result=None):
         paths['uav_active'].update(start_sim=None, end_sim=None, complete=True, distance_m=0.,
                                    yaw_travel_rad=0.)
     stages, failed_stage, failed_reason = _stage_summary(primary, terminal, reset)
+    if active_start is not None and first('A6_ACTIVE_STOP') is None and failed_stage == 'execution_screen':
+        stages['active'].update(status='FAILED', end_sim=task_end,
+                                duration_sim_s=_duration(active_start, task_end, reset))
     return dict(schema_version=1, method=method, efficiency_clock='simulation',
                 clock_reset_detected=reset, cleanup_clock_reset_detected=cleanup_reset,
                 task_start_sim=task_start, task_end_sim=task_end,

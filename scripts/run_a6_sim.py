@@ -126,9 +126,13 @@ def build_adapter_class(demo_module, options):
                 self._a6_event('A6_ENV_RESULT', round=response['round'],
                                confirmed_candidate_count=response['confirmed_candidate_count'],
                                candidate_count=response['candidate_count'], output_dir=str(directory))
-                if response['stop_reason'] is not None:
-                    self._a6_event('A6_ACTIVE_STOP', round=response['round'], stop_reason=response['stop_reason'])
-                    self._a6_sample_trajectory(None)
+            return response
+
+        def _a5_prepare_handoff(self, response, target_map):
+            response = super()._a5_prepare_handoff(response, target_map)
+            if response['stop_reason'] is not None:
+                self._a6_event('A6_ACTIVE_STOP', round=response['round'], stop_reason=response['stop_reason'])
+                self._a6_sample_trajectory(None)
             return response
 
         def _a5_fly_and_hover(self, goal, label, force_flight=False):
@@ -201,9 +205,9 @@ def build_adapter_class(demo_module, options):
             except (WorkerError, OSError, ValueError, KeyError, TypeError) as error:
                 raise DemoError('A6 RM4D-only adapter failed: %s' % error) from error
 
-        def _screen_ground_candidates(self, assessments, target_map):
+        def _screen_ground_candidates(self, assessments, target_map, required=True):
             return self._a6_stage_call('execution_screen', super()._screen_ground_candidates,
-                                      assessments, target_map)
+                                      assessments, target_map, required)
 
         def _select_rm4d_candidate(self, target_map):
             if options.method != 'rm4d_only':

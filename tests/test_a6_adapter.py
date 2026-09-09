@@ -216,8 +216,11 @@ class AdapterTests(unittest.TestCase):
             '--rm4d-root', str(self.output), '--rm4d-config', str(self.output / 'config.yaml'),
             '--rm4d-map', str(self.output / 'map.npz')])
 
-    def node(self, method='ours'):
-        cls = self.adapter.build_adapter_class(self.demo, self.options(method))
+    def node(self, method='ours', handoff_stop=None):
+        options = self.options(method)
+        if handoff_stop is not None:
+            options.handoff_stop = handoff_stop
+        cls = self.adapter.build_adapter_class(self.demo, options)
         self.assertEqual(cls.__mro__[1].__name__, 'A5AirGroundPickDemo')
         node = cls()
         self.addCleanup(node._a6_close_evidence)
@@ -347,6 +350,80 @@ class AdapterTests(unittest.TestCase):
     def test_ours_uses_shared_bounded_exact_execution_screen(self):
         self.assert_shared_execution_screen('ours')
 
+    def assert_screened_handoff(self, method, reject_first=False, interface_failure=False):
+        node = self.node(method, handoff_stop='screened_candidate')
+        node._execution_clearance = True
+        original = self.worker
+        previews = []
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                Path(result['initial_file']).write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result['assessments'] = [dict(self.selected, confirmed=True)]
+            return result
+        def preview(*args):
+            previews.append(len(self.worker_calls) - 1)
+            self.clock.sim += 7.
+            if interface_failure:
+                raise RuntimeError('MoveIt interface unavailable')
+            return dict(feasible=not reject_first or len(previews) > 1)
+        node._preview_ground_candidate = preview
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            result = node.run()
+        expected = 2 if reject_first else 1
+        self.assertEqual(len([r for r in self.worker_calls if r['request']['op'] == 'observe']), expected)
+        self.assertEqual(len(previews), expected, 'no repeated successful screen at handoff')
+        self.assertEqual(result, not interface_failure)
+        if interface_failure:
+            failed = next(e for e in self.events() if e['state'] == 'FAILED')
+            self.assertIn('MoveIt interface unavailable', failed['reason'])
+            metrics = json.loads((self.output/'metrics.json').read_text())
+            self.assertEqual(metrics['stages']['active']['status'], 'FAILED')
+            self.assertAlmostEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
+        else:
+            stop = next(e for e in self.events() if e['state'] == 'A6_ACTIVE_STOP')
+            self.assertEqual(stop['stop_reason'], 'SCREENED_CANDIDATE_READY')
+            self.assertEqual(stop['round'], expected)
+            self.assertEqual(node.handoff[1], self.selected['candidate_id'])
+            metrics = json.loads((self.output/'metrics.json').read_text())
+            self.assertEqual(metrics['counts']['voted_windows'], expected)
+            self.assertAlmostEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
+            self.assertAlmostEqual(metrics['stages']['execution_screen']['duration_sim_s'], 7. * expected)
+
+    def test_generic_shared_screened_stop_before_next_observation(self):
+        self.assert_screened_handoff('generic')
+
+    def test_ours_shared_screened_stop_before_next_observation(self):
+        self.assert_screened_handoff('ours')
+
+    def test_screening_rejection_can_continue_real_sensing(self):
+        self.assert_screened_handoff('ours', reject_first=True)
+
+    def test_screening_interface_error_is_not_a_sensing_retry(self):
+        self.assert_screened_handoff('generic', interface_failure=True)
+
+    def test_new_stop_keeps_terminal_rejection_as_execution_failure(self):
+        node = self.node('ours', handoff_stop='screened_candidate')
+        node._execution_clearance = True
+        original = self.worker
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                Path(result['initial_file']).write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result['assessments'] = [dict(self.selected, confirmed=True)]
+            return result
+        count = []
+        node._preview_ground_candidate = lambda *args: (count.append(1) or dict(feasible=False))
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            self.assertFalse(node.run())
+        self.assertEqual(len(count), 3)
+        metrics = json.loads((self.output/'metrics.json').read_text())
+        self.assertEqual(metrics['terminal_failure_stage'], 'execution_screen')
+        self.assertEqual(metrics['stages']['execution_screen']['status'], 'FAILED')
+        self.assertFalse(metrics['D_exec'])
+
     def test_execution_rejection_preserves_successful_active_stage_and_original_confirmation(self):
         node = self.node('ours')
         node._execution_clearance = True
@@ -375,7 +452,7 @@ class AdapterTests(unittest.TestCase):
         self.assertGreaterEqual(metrics['stages']['execution_screen']['duration_sim_s'], 40.)
 
     def test_no_confirmed_candidate_remains_perception_handoff_failure_not_execution_screen(self):
-        node = self.node('ours'); node._execution_clearance = True
+        node = self.node('ours', handoff_stop='screened_candidate'); node._execution_clearance = True
         original = self.worker
         def worker(*args):
             result = original(*args)
