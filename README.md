@@ -1,12 +1,16 @@
 # A1 — Validated Manipulation Interest Field
 
-A6 当前停在 [v1.2 integration-complete checkpoint](docs/V12_INTEGRATION_CHECKPOINT.md)：
-exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为 0.1487 m。
-本轮只修复 exact TF 的 callback/readiness 时序，未改变冻结算法或参数。
+A6 当前停在 [fresh-seed validation 科研审查 checkpoint](docs/V12_FRESH_VALIDATION_RESULTS.md)：
+已冻结六次配对验证；完成3/6，Easy Generic/Ours 均 E2E 成功，Moderate Ours
+出现 AMBIGUOUS cell 永久阻断的结构性死锁，按批准条件停止，未启动 slots4–6。
+未修改冻结算法或参数，尚未达到 formal readiness，PR#6 保持 Draft。
+此前 [v1.2 integration-complete checkpoint](docs/V12_INTEGRATION_CHECKPOINT.md) 的
+exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为0.1487m。
 [Pilot-1](docs/A6_PILOT_RESULTS.md)、[Pilot-2](docs/A6_PILOT2_RESULTS.md) 保留原结果；
 历史 16 个 v1.1 formal slots 永久作为 development diagnostics，不进入 v1.2 statistics。
 没有恢复 slot 17 或 formal matrix，A6 分支未合并 main。
-[小规模 fresh-seed validation 提案](docs/V12_FRESH_SEED_VALIDATION_PROPOSAL.md) 已准备，尚未执行。
+[fresh validation 冻结协议](docs/V12_FRESH_VALIDATION_PROTOCOL.md) 与
+[结果和机制诊断](docs/V12_FRESH_VALIDATION_RESULTS.md) 已记录；不自行恢复验证或 formal。
 方法定义见 [v1.1 object-aware gating](docs/OBJECT_AWARE_GATING_V11.md) 与
 [v1.2 exact-pose anchoring](docs/EXACT_POSE_SUPPORT_V12.md)；non-winner 仅作诊断。
 

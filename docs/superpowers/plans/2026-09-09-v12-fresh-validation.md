@@ -14,6 +14,10 @@ frozen six-slot configuration. No research-source or dependency changes.
 
 **Tech Stack:** Existing ROS Noetic/Python3.8, core Python3.10, SIM/PX4, NumPy.
 
+**Scientific stop:** Slot3 Moderate/Ours exposes persistent AMBIGUOUS-cell
+blocking of all34 exact winners, including5 continuous-clear winners. Slots4–6
+must not start; final checkpoint is research review, not formal readiness.
+
 ## 1. Freeze the complete setup before any method
 
 - [x] Read approved proposal, existing protocol, launcher and seed metadata;
@@ -62,18 +66,21 @@ frozen six-slot configuration. No research-source or dependency changes.
   `--setup-scene`, fresh output directory per activation. Do not call any formal
   generator/matrix or select order from results. Inspect the terminal result
   and structural gate diagnostics before the next slot.
-- [ ] Record every valid result and separately every proven INVALID retry;
+  Interrupted at3/6: Easy pair succeeds; Moderate/Ours valid active failure.
+- [x] Record every valid result and separately every proven INVALID retry;
   resolve ordinary runtime bugs with focused reproduction/TDD only. Stop if
   frozen semantics must change or a new structural deadlock is established.
 
 ## 3. Analysis, review and stop
 
-- [ ] Generate existing per-round operational and dual-score reports; verify
+- [x] Generate existing per-round operational and dual-score reports; verify
   actual saved exact-winner support and non-winner diagnostics. Include raw and
   derived evidence, confirmation, D_exec, retrieval and failure stages.
-- [ ] Report all three paired binary outcomes/discordants and simulation-clock
+- [x] Report all three paired binary outcomes/discordants and simulation-clock
   resources with missingness, not formal inference or outcome-driven tuning.
-- [ ] Run full core, native Noetic and actual task-map regressions plus frozen
+  Only Easy is a complete pair; remaining pairs explicitly incomplete/not run.
+- [x] Run full core, native Noetic and actual task-map regressions plus frozen
   source/old-output diff checks; independently review claims and completeness.
+  Core562/22skips, native93, actualmap9; no failures. Final delivery review PASS.
 - [ ] Update results/readiness report and README, retain old data, commit/push
   checkpoint and update Draft PR#6. Close owned processes. Stop; no formal run.
