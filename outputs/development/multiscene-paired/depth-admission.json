@@ -1,0 +1,188 @@
+{
+  "check": "necessary_rgbd_depth_admission",
+  "simulation_started": false,
+  "activated_attempts": 0,
+  "config": "configs/dev_multiscene_paired.json",
+  "sensor_contract": {
+    "optical_xyz": [
+      0.13614773689465415,
+      0.0,
+      0.11272472554168546
+    ],
+    "optical_rpy": [
+      -1.9207963267948966,
+      0.0,
+      -1.5707963267948966
+    ],
+    "min_depth": 0.25,
+    "max_depth": 4.0,
+    "target_size": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "sources": [
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/platform/sim_platform_bringup/launch/p450_runtime.launch",
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/air_observer.yaml",
+      "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/demo.yaml"
+    ]
+  },
+  "scenes": [
+    {
+      "scene_id": "paired-easy-01",
+      "seed": 325746326,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.370554803556132,
+        3.6355225130826385
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "paired-moderate-01",
+      "seed": 1460872549,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4863568813922683,
+        3.7547936639503408
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "paired-hard-01",
+      "seed": 1973399495,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.324530438667539,
+        3.5942455445809403
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "paired-easy-02",
+      "seed": 2001349247,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3249048192443134,
+        3.5907261373520747
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "paired-moderate-02",
+      "seed": 1293116599,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.450057004880734,
+        3.7203715513428333
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    },
+    {
+      "scene_id": "paired-hard-02",
+      "seed": 1301813125,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2367989766239615,
+        3.506315380753257
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null
+    }
+  ]
+}

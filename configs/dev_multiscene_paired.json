@@ -1,0 +1,339 @@
+{
+  "protocol": "docs/DEV_MULTISCENE_PAIRED_BATCH.md",
+  "status": "DEVELOPMENT_BATCH",
+  "attempt_limit": 16,
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5,
+  "capture_wall_guard_s": 20,
+  "task_wall_guard_s": 1200,
+  "efficiency_clock": "simulation",
+  "primary_comparison": [
+    "ours",
+    "generic"
+  ],
+  "order_rule": "Scene blocks: easy01 moderate01 hard01 easy02 moderate02 hard02. Alternate Generic/Ours and Ours/Generic by block index; each tier has both first-method orders. All fixed before method runs.",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4,
+    "grid_height_m": 4,
+    "ground_z_m": 0,
+    "xy_offsets_m": [
+      -2,
+      0,
+      2
+    ],
+    "flight_bounds": [
+      -4,
+      4,
+      -3,
+      3,
+      0.5,
+      3
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3,
+    "navigation_timeout": 120,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45,
+    "core_timeout": 900,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1
+  },
+  "scenes": [
+    {
+      "id": "paired-easy-01",
+      "tier": "easy",
+      "seed": 325746326,
+      "target_xy": [
+        2.007080360383031,
+        -0.09937071027260144
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.4329759080500166,
+      "bunker_xy": [
+        2.9854165610084475,
+        -2.4974039432532225
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.17329504538899,
+      "boxes": [],
+      "replicate": 1
+    },
+    {
+      "id": "paired-moderate-01",
+      "tier": "moderate",
+      "seed": 1460872549,
+      "target_xy": [
+        2.1322028093794985,
+        -0.041156495807098015
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.34497020107950194,
+      "bunker_xy": [
+        2.9576778081757658,
+        -2.492075455922471
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.099705136009971,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "replicate": 1
+    },
+    {
+      "id": "paired-hard-01",
+      "tier": "hard",
+      "seed": 1973399495,
+      "target_xy": [
+        1.9606124716545688,
+        0.10657168111745
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.14526929015882634,
+      "bunker_xy": [
+        2.9323945062140915,
+        -2.4752966390382576
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1079197831985863,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "replicate": 1
+    },
+    {
+      "id": "paired-easy-02",
+      "tier": "easy",
+      "seed": 2001349247,
+      "target_xy": [
+        1.9589384680300874,
+        0.0046004133277763315
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.019735945501451857,
+      "bunker_xy": [
+        3.0201689171507478,
+        -2.482349090930963
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.200792066175904,
+      "boxes": [],
+      "replicate": 2
+    },
+    {
+      "id": "paired-moderate-02",
+      "tier": "moderate",
+      "seed": 1293116599,
+      "target_xy": [
+        2.0945596097464834,
+        0.13221008614566584
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.21716124729652198,
+      "bunker_xy": [
+        3.048632709709797,
+        -2.4662001538295573
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1114557128956726,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "replicate": 2
+    },
+    {
+      "id": "paired-hard-02",
+      "tier": "hard",
+      "seed": 1301813125,
+      "target_xy": [
+        1.8671130419453514,
+        -0.047167261890300724
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.30051892297824556,
+      "bunker_xy": [
+        2.9204000291459256,
+        -2.5030466947588943
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1167042480908913,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "replicate": 2
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "paired-easy-01",
+      "method": "generic"
+    },
+    {
+      "slot": 2,
+      "scene": "paired-easy-01",
+      "method": "ours"
+    },
+    {
+      "slot": 3,
+      "scene": "paired-moderate-01",
+      "method": "ours"
+    },
+    {
+      "slot": 4,
+      "scene": "paired-moderate-01",
+      "method": "generic"
+    },
+    {
+      "slot": 5,
+      "scene": "paired-hard-01",
+      "method": "generic"
+    },
+    {
+      "slot": 6,
+      "scene": "paired-hard-01",
+      "method": "ours"
+    },
+    {
+      "slot": 7,
+      "scene": "paired-easy-02",
+      "method": "ours"
+    },
+    {
+      "slot": 8,
+      "scene": "paired-easy-02",
+      "method": "generic"
+    },
+    {
+      "slot": 9,
+      "scene": "paired-moderate-02",
+      "method": "generic"
+    },
+    {
+      "slot": 10,
+      "scene": "paired-moderate-02",
+      "method": "ours"
+    },
+    {
+      "slot": 11,
+      "scene": "paired-hard-02",
+      "method": "ours"
+    },
+    {
+      "slot": 12,
+      "scene": "paired-hard-02",
+      "method": "generic"
+    }
+  ],
+  "experiment": "MULTISCENE_PAIRED_DEVELOPMENT",
+  "record_diagnostics": true,
+  "operational_gating": "v1.4",
+  "seed_draw_seed": 2026090921,
+  "support_anchor": "exact_winner",
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "scheduled_slots": 12,
+  "reserve_launches": 4,
+  "seed_draw_rule": "First unique Random(2026090921).randrange(1,2**31) draws; exclude all seeds in configs/*.json present at baseline 6dfef58. Assignment replicate 1,2 then easy/moderate/hard; no outcome or mechanism filtering.",
+  "revision_note": "Evaluation only; same runtime/method code and configuration as successful natural clearance E2E. No method modification.",
+  "baseline_versions": {
+    "agent": "6dfef58e54401f81188ff8d62b126e8dae43d961",
+    "sim": "e4e4f692f1524ded98e78abb82e39fd2dc7a86d2",
+    "sim_runtime_code": "fbb191b"
+  },
+  "required_runner_flags": [
+    "--integrated-joint-velocity",
+    "--full-robot-manipulation",
+    "--execution-clearance",
+    "--ground-dynamics"
+  ]
+}
