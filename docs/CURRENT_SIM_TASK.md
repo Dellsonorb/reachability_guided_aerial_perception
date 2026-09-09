@@ -43,6 +43,11 @@ old Gazebo LAN reconnect from entering a recycled TCPROS port. It is not the
 network configuration for distributed/real robots. Before arming, the task also
 waits for its own fresh public UAV/Ground TF, bounded by the existing30s preflight
 timeout; another node's ready buffer is insufficient.
+Current-pose reads also wait within the existing `tf_timeout` wall-time allowance
+for an actually fresh sample. They do not accept a negative or excessive age;
+explicit timestamp queries and immediate timeout-zero capture checks are unchanged.
+This final callback-readiness patch was tested offline after the four-start cap;
+the latest complete online retrieval used commit `846debc`, before this patch.
 If the local Gazebo renderer needs an existing X session, set the same
 `P450_GAZEBO_DISPLAY`/`P450_GAZEBO_XAUTHORITY` pair used by SIM; these are platform
 environment inputs, not perception data. No GUI/GT clicking is needed.

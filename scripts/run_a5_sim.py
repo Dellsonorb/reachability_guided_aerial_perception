@@ -252,15 +252,33 @@ def build_adapter_class(demo_module, options):
                     'T_bunker_aubo': self._a5_matrix(bunker_aubo).tolist()}
 
         def _a5_measured_pose(self, stamp=None, timeout_s=None):
-            transform = self._tf_buffer.lookup_transform(
-                self._map_frame, normalized_frame(options.uav_base_frame),
-                rospy.Time(0) if stamp is None else stamp,
-                rospy.Duration(options.tf_timeout if timeout_s is None else timeout_s))
-            if stamp is None:
-                age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
-                if not 0 <= age <= options.tf_max_age:
-                    raise DemoError("A5 UAV map TF is stale")
-            return pose_xyzyaw(self._a5_matrix(transform))
+            timeout = options.tf_timeout if timeout_s is None else timeout_s
+            frame = normalized_frame(options.uav_base_frame)
+            if stamp is not None:
+                transform = self._tf_buffer.lookup_transform(
+                    self._map_frame, frame, stamp, rospy.Duration(timeout))
+                return pose_xyzyaw(self._a5_matrix(transform))
+            # /clock and /tf arrive on different callbacks. A current transform
+            # can briefly lead this node's clock; wait for an actually fresh
+            # sample, never accept negative age or relax the existing age gate.
+            deadline, last_error = time.monotonic() + timeout, None
+            while not rospy.is_shutdown():
+                if last_error is not None and time.monotonic() >= deadline:
+                    raise last_error
+                try:
+                    transform = self._tf_buffer.lookup_transform(
+                        self._map_frame, frame, rospy.Time(0), rospy.Duration(0.))
+                    age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
+                    if not 0 <= age <= options.tf_max_age:
+                        raise DemoError('A5 UAV map TF is stale: age_s=%.9f' % age)
+                except (DemoError, tf2_ros.TransformException) as error:
+                    last_error = error
+                    if time.monotonic() >= deadline:
+                        raise
+                    self._wait_step()
+                    continue
+                return pose_xyzyaw(self._a5_matrix(transform))
+            raise DemoError('A5 current-pose TF wait interrupted by shutdown')
 
         def _a5_settled_now(self, goal, timeout_s=None, acquisition=False):
             pose = self._a5_measured_pose(timeout_s=timeout_s)

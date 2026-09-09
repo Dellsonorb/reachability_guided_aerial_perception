@@ -4,7 +4,7 @@ User authorization: autonomous development toward reusable sensor-driven aerial/
 
 ## Evidence and choice
 
-The twelve-task development batch has eight successful robot executions but one incomplete independent verification. README describes an obsolete failure state; successful configurations require multiple scattered opt-ins. Five tasks already confirmed candidates in window two, but all twelve continued through window three because uncertainty gain remained positive. Hard still lacks real repeated ground support. These are different problems.
+The twelve-task development batch has eight successful robot executions but one incomplete independent verification. README describes an obsolete failure state; successful configurations require multiple scattered opt-ins. Four tasks already confirmed candidates in window two (slots 04/08/09/10, checked from saved decisions), but all twelve continued through window three because uncertainty gain remained positive. Hard still lacks real repeated ground support. These are different problems.
 
 Options considered: only document existing behavior; replace A4 with a new footprint-completion objective now; or first make the existing task executable/reusable and stop when its actual prerequisites pass, while diagnosing Hard's attainable coverage. Choose the third: it directly removes wasted sensing and a reproduced checker defect without inventing a new score from four failures.
 
@@ -56,3 +56,14 @@ version. This explicitly replaces the planned Hard02 online pair to validate
 the demonstrated runtime defect within the unchanged four-start cap, not to
 select favorable scenes. Hard analysis remains recorded-state only this stage.
 Do not pool starts 1/2 with starts 3/4 as a same-version comparison.
+
+After start 3, preserve start 4 at the same runtime commit to keep that pair
+version-consistent. Start 3 had healthy TF publication around its capture-entry
+failure, but reported only "stale", without the failed age. A one-millisecond
+future-transform / local-clock mismatch reproduces that premature abort; it is
+a plausible mechanism, not a proven reconstruction of the unlogged failed read.
+Only after start 4 finishes, extend current-pose reads to wait for real freshness
+inside the existing tf_timeout (wall time); zero-timeout reads, exact timestamp
+queries, age thresholds and hover conditions stay unchanged. Persistent failure
+now includes the actual age. The resulting patch is offline-validated only in
+this capped stage; no fifth start or retrospective result change.
