@@ -73,3 +73,11 @@ scores unchanged; confirmation becomes Moderate 0/3/3, Hard 0/0/1.
 Allocate reserve launches04/05 to one online Moderate and one Hard repair
 regression. Launches06–11 then execute original paired slots03–08 on v1.4.
 Only launch12 remains for a justified issue. No outcome will erase launches02/03.
+
+Launch11 failed common startup readiness before any method action: PX4 startup
+returned 2, no usable `/uav1/prometheus/state`, and the public UAV TF tree stayed
+disconnected. It is INVALID_TRIAL, not a sensing or retrieval failure. Allocate
+launch12 to the same Hard/Ours slot08, seed and unchanged runtime configuration.
+The proposed focused online Ground latch check is cancelled to preserve the
+12-launch cap. Its namespace correction can receive offline tests only here;
+no claim of online navigation recovery is permitted in this batch.
