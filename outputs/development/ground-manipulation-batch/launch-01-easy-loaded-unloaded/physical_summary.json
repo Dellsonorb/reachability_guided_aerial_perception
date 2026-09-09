@@ -1,0 +1,45 @@
+{
+  "arm_controller": {
+    "goal_ids": [
+      "/move_group-2-25.121000000",
+      "/move_group-3-34.701000000",
+      "/move_group-4-40.721000000"
+    ],
+    "success_count": 3
+  },
+  "flight": null,
+  "grasp": {
+    "grasp_confirmed": true
+  },
+  "kind": "GROUND_SEGMENT_CHECK",
+  "observations": {
+    "aerial": null,
+    "ground": {
+      "age_s": 0.33899999999999864,
+      "frame": "map",
+      "stamp": 24.69
+    }
+  },
+  "physical_target": {
+    "baseline_z_m": 0.056499510222151834,
+    "final_z_m": 0.20589765484237793,
+    "target_lift_m": 0.1493981446202261
+  },
+  "sequence": {
+    "ground_travel_m": 3.5355386770868054e-08,
+    "landing_count": 0,
+    "states": [
+      "GROUND_APPROACH",
+      "GROUND_STOPPED",
+      "GROUND_OBSERVE",
+      "GROUND_REFINED",
+      "PREGRASP",
+      "GRASP",
+      "LIFTING",
+      "LIFT"
+    ],
+    "takeoff_count": 0,
+    "tcp_lift_m": 0.14976046655825423
+  },
+  "status": "CHECKS_PASS"
+}

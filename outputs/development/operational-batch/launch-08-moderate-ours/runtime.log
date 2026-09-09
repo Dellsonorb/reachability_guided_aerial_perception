@@ -1,0 +1,1173 @@
+... logging to /media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-08-moderate-ours/ros/d3be38b4-ac18-11f1-98f0-252022cc4023/roslaunch-lu-Lenovo-ThinkBook-16p-Gen-2-1548828.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-08-moderate-ours/runtime.launch
+[1mstarted roslaunch server http://lu-Lenovo-ThinkBook-16p-Gen-2:45439/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /air_target_observer/ambiguity_ratio: 0.65
+ * /air_target_observer/camera_optical_frame: uav1/camera_link
+ * /air_target_observer/color_info_topic: /uav1/camera/colo...
+ * /air_target_observer/color_topic: /uav1/camera/colo...
+ * /air_target_observer/depth_info_topic: /uav1/camera/dept...
+ * /air_target_observer/depth_topic: /uav1/camera/dept...
+ * /air_target_observer/max_depth: 4.0
+ * /air_target_observer/max_future_skew: 0.1
+ * /air_target_observer/max_observation_age: 1.0
+ * /air_target_observer/max_position_spread: 0.15
+ * /air_target_observer/max_yaw_spread: 0.35
+ * /air_target_observer/min_depth: 0.25
+ * /air_target_observer/min_pixels: 25
+ * /air_target_observer/minimum_points: 25
+ * /air_target_observer/output_topic: /air_observer/tar...
+ * /air_target_observer/runtime_ready_topic: /ground/runtime_r...
+ * /air_target_observer/stable_frames: 3
+ * /air_target_observer/status_topic: /air_observer/status
+ * /air_target_observer/sync_queue_size: 10
+ * /air_target_observer/sync_slop: 0.06
+ * /air_target_observer/target_frame: map
+ * /air_target_observer/target_height: 0.115
+ * /air_target_observer/tf_timeout: 0.25
+ * /air_target_observer/top_surface_tolerance: 0.02
+ * /gazebo/enable_ros_network: True
+ * /gazebo_grasp_confirmation/contact_max_age: 0.3
+ * /gazebo_grasp_confirmation/contact_topic: /pick_target/cont...
+ * /gazebo_grasp_confirmation/joint_max_age: 0.5
+ * /gazebo_grasp_confirmation/joint_state_topic: /ground/joint_states
+ * /gazebo_grasp_confirmation/minimum_closed_joint: 0.2
+ * /gazebo_grasp_confirmation/output_topic: /ground/gripper/g...
+ * /ground/arm_controller/action_monitor_rate: 20
+ * /ground/arm_controller/constraints/elbow_joint/goal: 0.05
+ * /ground/arm_controller/constraints/goal_time: 2.0
+ * /ground/arm_controller/constraints/shoulder_lift_joint/goal: 0.05
+ * /ground/arm_controller/constraints/shoulder_pan_joint/goal: 0.05
+ * /ground/arm_controller/constraints/stopped_velocity_tolerance: 0.1
+ * /ground/arm_controller/constraints/wrist_1_joint/goal: 0.05
+ * /ground/arm_controller/constraints/wrist_2_joint/goal: 0.05
+ * /ground/arm_controller/constraints/wrist_3_joint/goal: 0.05
+ * /ground/arm_controller/joints: ['shoulder_pan_jo...
+ * /ground/arm_controller/state_publish_rate: 100
+ * /ground/arm_controller/stop_trajectory_duration: 0.5
+ * /ground/arm_controller/type: position_controll...
+ * /ground/gazebo_ros_control/pid_gains/elbow_joint/d: 20.0
+ * /ground/gazebo_ros_control/pid_gains/elbow_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/elbow_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/elbow_joint/p: 3000.0
+ * /ground/gazebo_ros_control/pid_gains/left_outer_knuckle_joint/d: 0.1
+ * /ground/gazebo_ros_control/pid_gains/left_outer_knuckle_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/left_outer_knuckle_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/left_outer_knuckle_joint/p: 10.0
+ * /ground/gazebo_ros_control/pid_gains/right_outer_knuckle_joint/d: 0.1
+ * /ground/gazebo_ros_control/pid_gains/right_outer_knuckle_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/right_outer_knuckle_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/right_outer_knuckle_joint/p: 20.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_lift_joint/d: 200.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_lift_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_lift_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_lift_joint/p: 12000.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_pan_joint/d: 200.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_pan_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_pan_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/shoulder_pan_joint/p: 5000.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_1_joint/d: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_1_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_1_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_1_joint/p: 1000.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_2_joint/d: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_2_joint/i: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_2_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_2_joint/p: 500.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_3_joint/d: 0.1
+ * /ground/gazebo_ros_control/pid_gains/wrist_3_joint/i: 0.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_3_joint/i_clamp: 1.0
+ * /ground/gazebo_ros_control/pid_gains/wrist_3_joint/p: 100.0
+ * /ground/gripper_controller/action_monitor_rate: 20
+ * /ground/gripper_controller/constraints/goal_time: 1.0
+ * /ground/gripper_controller/constraints/left_outer_knuckle_joint/goal: 0.05
+ * /ground/gripper_controller/constraints/left_outer_knuckle_joint/trajectory: 0.08
+ * /ground/gripper_controller/constraints/stopped_velocity_tolerance: 0.05
+ * /ground/gripper_controller/joints: ['left_outer_knuc...
+ * /ground/gripper_controller/state_publish_rate: 100
+ * /ground/gripper_controller/stop_trajectory_duration: 0.3
+ * /ground/gripper_controller/type: position_controll...
+ * /ground/joint_state_controller/publish_rate: 100
+ * /ground/joint_state_controller/type: joint_state_contr...
+ * /ground/move_base/DWAPlannerROS/acc_lim_theta: 1.2
+ * /ground/move_base/DWAPlannerROS/acc_lim_x: 0.6
+ * /ground/move_base/DWAPlannerROS/acc_lim_y: 0.0
+ * /ground/move_base/DWAPlannerROS/angular_sim_granularity: 0.025
+ * /ground/move_base/DWAPlannerROS/forward_point_distance: 0.0
+ * /ground/move_base/DWAPlannerROS/goal_distance_bias: 20.0
+ * /ground/move_base/DWAPlannerROS/holonomic_robot: False
+ * /ground/move_base/DWAPlannerROS/latch_xy_goal_tolerance: True
+ * /ground/move_base/DWAPlannerROS/max_vel_theta: 0.3
+ * /ground/move_base/DWAPlannerROS/max_vel_trans: 0.4
+ * /ground/move_base/DWAPlannerROS/max_vel_x: 0.4
+ * /ground/move_base/DWAPlannerROS/max_vel_y: 0.0
+ * /ground/move_base/DWAPlannerROS/min_vel_theta: 0.2
+ * /ground/move_base/DWAPlannerROS/min_vel_trans: 0.0
+ * /ground/move_base/DWAPlannerROS/min_vel_x: -0.2
+ * /ground/move_base/DWAPlannerROS/min_vel_y: 0.0
+ * /ground/move_base/DWAPlannerROS/occdist_scale: 0.01
+ * /ground/move_base/DWAPlannerROS/odom_topic: /ground/odom
+ * /ground/move_base/DWAPlannerROS/path_distance_bias: 32.0
+ * /ground/move_base/DWAPlannerROS/sim_granularity: 0.025
+ * /ground/move_base/DWAPlannerROS/sim_time: 1.5
+ * /ground/move_base/DWAPlannerROS/vth_samples: 30
+ * /ground/move_base/DWAPlannerROS/vx_samples: 10
+ * /ground/move_base/DWAPlannerROS/vy_samples: 1
+ * /ground/move_base/DWAPlannerROS/xy_goal_tolerance: 0.06
+ * /ground/move_base/DWAPlannerROS/yaw_goal_tolerance: 0.08
+ * /ground/move_base/base_global_planner: navfn/NavfnROS
+ * /ground/move_base/base_local_planner: dwa_local_planner...
+ * /ground/move_base/clearing_rotation_allowed: True
+ * /ground/move_base/controller_frequency: 15.0
+ * /ground/move_base/controller_patience: 8.0
+ * /ground/move_base/global_costmap/always_send_full_costmap: True
+ * /ground/move_base/global_costmap/footprint: [[-0.5, -0.37], [...
+ * /ground/move_base/global_costmap/footprint_padding: 0.02
+ * /ground/move_base/global_costmap/global_frame: map
+ * /ground/move_base/global_costmap/height: 12.0
+ * /ground/move_base/global_costmap/inflation_layer/cost_scaling_factor: 5.0
+ * /ground/move_base/global_costmap/inflation_layer/inflation_radius: 0.15
+ * /ground/move_base/global_costmap/obstacle_layer/observation_sources: scan
+ * /ground/move_base/global_costmap/obstacle_layer/scan/clearing: True
+ * /ground/move_base/global_costmap/obstacle_layer/scan/data_type: LaserScan
+ * /ground/move_base/global_costmap/obstacle_layer/scan/inf_is_valid: True
+ * /ground/move_base/global_costmap/obstacle_layer/scan/marking: True
+ * /ground/move_base/global_costmap/obstacle_layer/scan/obstacle_range: 5.5
+ * /ground/move_base/global_costmap/obstacle_layer/scan/raytrace_range: 6.0
+ * /ground/move_base/global_costmap/obstacle_layer/scan/sensor_frame: ground/lidar_2d_link
+ * /ground/move_base/global_costmap/obstacle_layer/scan/topic: /ground/scan
+ * /ground/move_base/global_costmap/plugins: [{'name': 'obstac...
+ * /ground/move_base/global_costmap/publish_frequency: 2.0
+ * /ground/move_base/global_costmap/resolution: 0.05
+ * /ground/move_base/global_costmap/robot_base_frame: ground/base_link
+ * /ground/move_base/global_costmap/rolling_window: True
+ * /ground/move_base/global_costmap/track_unknown_space: False
+ * /ground/move_base/global_costmap/transform_tolerance: 0.3
+ * /ground/move_base/global_costmap/update_frequency: 5.0
+ * /ground/move_base/global_costmap/width: 12.0
+ * /ground/move_base/local_costmap/always_send_full_costmap: True
+ * /ground/move_base/local_costmap/footprint: [[-0.5, -0.37], [...
+ * /ground/move_base/local_costmap/footprint_padding: 0.02
+ * /ground/move_base/local_costmap/global_frame: ground/odom
+ * /ground/move_base/local_costmap/height: 4.0
+ * /ground/move_base/local_costmap/inflation_layer/cost_scaling_factor: 5.0
+ * /ground/move_base/local_costmap/inflation_layer/inflation_radius: 0.15
+ * /ground/move_base/local_costmap/obstacle_layer/observation_sources: scan
+ * /ground/move_base/local_costmap/obstacle_layer/scan/clearing: True
+ * /ground/move_base/local_costmap/obstacle_layer/scan/data_type: LaserScan
+ * /ground/move_base/local_costmap/obstacle_layer/scan/inf_is_valid: True
+ * /ground/move_base/local_costmap/obstacle_layer/scan/marking: True
+ * /ground/move_base/local_costmap/obstacle_layer/scan/obstacle_range: 5.5
+ * /ground/move_base/local_costmap/obstacle_layer/scan/raytrace_range: 6.0
+ * /ground/move_base/local_costmap/obstacle_layer/scan/sensor_frame: ground/lidar_2d_link
+ * /ground/move_base/local_costmap/obstacle_layer/scan/topic: /ground/scan
+ * /ground/move_base/local_costmap/plugins: [{'name': 'obstac...
+ * /ground/move_base/local_costmap/publish_frequency: 5.0
+ * /ground/move_base/local_costmap/resolution: 0.05
+ * /ground/move_base/local_costmap/robot_base_frame: ground/base_link
+ * /ground/move_base/local_costmap/rolling_window: True
+ * /ground/move_base/local_costmap/track_unknown_space: False
+ * /ground/move_base/local_costmap/transform_tolerance: 0.3
+ * /ground/move_base/local_costmap/update_frequency: 10.0
+ * /ground/move_base/local_costmap/width: 4.0
+ * /ground/move_base/oscillation_distance: 0.05
+ * /ground/move_base/oscillation_timeout: 0.0
+ * /ground/move_base/planner_frequency: 2.0
+ * /ground/move_base/planner_patience: 5.0
+ * /ground/move_base/recovery_behavior_enabled: False
+ * /ground/move_base/shutdown_costmaps: False
+ * /ground/robot_description: <?xml version='1....
+ * /ground/spawn_ground_robot/controller_timeout: 30.0
+ * /ground/spawn_ground_robot/model_timeout: 30.0
+ * /ground/spawn_ground_robot/pitch: 0.0
+ * /ground/spawn_ground_robot/roll: 0.0
+ * /ground/spawn_ground_robot/x: 3.0342664403624067
+ * /ground/spawn_ground_robot/y: -2.5435373395497898
+ * /ground/spawn_ground_robot/yaw: 3.1802719115074476
+ * /ground/spawn_ground_robot/z: 0.36
+ * /ground_target_observer/ambiguity_ratio: 0.65
+ * /ground_target_observer/camera_optical_frame: ground/d435_color...
+ * /ground_target_observer/color_info_topic: /ground/d435/colo...
+ * /ground_target_observer/color_topic: /ground/d435/colo...
+ * /ground_target_observer/depth_info_topic: /ground/d435/dept...
+ * /ground_target_observer/depth_topic: /ground/d435/dept...
+ * /ground_target_observer/max_depth: 2.5
+ * /ground_target_observer/max_future_skew: 0.1
+ * /ground_target_observer/max_observation_age: 1.0
+ * /ground_target_observer/max_position_spread: 0.05
+ * /ground_target_observer/max_yaw_spread: 0.2
+ * /ground_target_observer/min_depth: 0.12
+ * /ground_target_observer/min_pixels: 40
+ * /ground_target_observer/minimum_points: 40
+ * /ground_target_observer/output_topic: /ground_observer/...
+ * /ground_target_observer/runtime_ready_topic: /ground/runtime_r...
+ * /ground_target_observer/stable_frames: 4
+ * /ground_target_observer/status_topic: /ground_observer/...
+ * /ground_target_observer/sync_queue_size: 10
+ * /ground_target_observer/sync_slop: 0.06
+ * /ground_target_observer/target_frame: map
+ * /ground_target_observer/target_height: 0.115
+ * /ground_target_observer/tf_timeout: 0.25
+ * /ground_target_observer/top_surface_tolerance: 0.015
+ * /move_group/allow_trajectory_execution: True
+ * /move_group/controller_list: [{'name': '/groun...
+ * /move_group/manipulator/default_planner_config: RRTConnectkConfig...
+ * /move_group/manipulator/longest_valid_segment_fraction: 0.005
+ * /move_group/manipulator/planner_configs: ['RRTConnectkConf...
+ * /move_group/manipulator/projection_evaluator: joints(shoulder_p...
+ * /move_group/moveit_controller_manager: moveit_simple_con...
+ * /move_group/planner_configs/RRTConnectkConfigDefault/range: 0.0
+ * /move_group/planner_configs/RRTConnectkConfigDefault/type: geometric::RRTCon...
+ * /move_group/planning_plugin: ompl_interface/OM...
+ * /move_group/planning_scene_monitor/publish_geometry_updates: True
+ * /move_group/planning_scene_monitor/publish_planning_scene: True
+ * /move_group/planning_scene_monitor/publish_state_updates: True
+ * /move_group/planning_scene_monitor/publish_transforms_updates: True
+ * /move_group/request_adapters: default_planner_r...
+ * /move_group/start_state_max_bounds_error: 0.1
+ * /move_group/trajectory_execution/allowed_execution_duration_scaling: 1.5
+ * /move_group/trajectory_execution/allowed_goal_duration_margin: 1.0
+ * /move_group/trajectory_execution/allowed_start_tolerance: 0.05
+ * /p450_flight_facade/action_name: /uav1/runtime/flight
+ * /p450_flight_facade/command_topic: /uav1/prometheus/...
+ * /p450_flight_facade/control_state_topic: /uav1/prometheus/...
+ * /p450_flight_facade/fly_to_position_tolerance: 0.05
+ * /p450_flight_facade/odom_frame: uav1/odom
+ * /p450_flight_facade/odom_topic: /uav1/prometheus/...
+ * /p450_flight_facade/position_tolerance: 0.15
+ * /p450_flight_facade/setup_topic: /uav1/prometheus/...
+ * /p450_flight_facade/state_topic: /uav1/prometheus/...
+ * /robot_description: <?xml version='1....
+ * /robot_description_kinematics/manipulator/kinematics_solver: kdl_kinematics_pl...
+ * /robot_description_kinematics/manipulator/kinematics_solver_search_resolution: 0.005
+ * /robot_description_kinematics/manipulator/kinematics_solver_timeout: 0.08
+ * /robot_description_planning/joint_limits/elbow_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/elbow_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/elbow_joint/max_acceleration: 2.0
+ * /robot_description_planning/joint_limits/elbow_joint/max_velocity: 1.5
+ * /robot_description_planning/joint_limits/left_outer_knuckle_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/left_outer_knuckle_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/left_outer_knuckle_joint/max_acceleration: 2.0
+ * /robot_description_planning/joint_limits/left_outer_knuckle_joint/max_velocity: 1.0
+ * /robot_description_planning/joint_limits/shoulder_lift_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/shoulder_lift_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/shoulder_lift_joint/max_acceleration: 2.0
+ * /robot_description_planning/joint_limits/shoulder_lift_joint/max_velocity: 1.5
+ * /robot_description_planning/joint_limits/shoulder_pan_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/shoulder_pan_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/shoulder_pan_joint/max_acceleration: 2.0
+ * /robot_description_planning/joint_limits/shoulder_pan_joint/max_velocity: 1.5
+ * /robot_description_planning/joint_limits/wrist_1_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/wrist_1_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/wrist_1_joint/max_acceleration: 2.5
+ * /robot_description_planning/joint_limits/wrist_1_joint/max_velocity: 1.8
+ * /robot_description_planning/joint_limits/wrist_2_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/wrist_2_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/wrist_2_joint/max_acceleration: 2.5
+ * /robot_description_planning/joint_limits/wrist_2_joint/max_velocity: 1.8
+ * /robot_description_planning/joint_limits/wrist_3_joint/has_acceleration_limits: True
+ * /robot_description_planning/joint_limits/wrist_3_joint/has_velocity_limits: True
+ * /robot_description_planning/joint_limits/wrist_3_joint/max_acceleration: 2.5
+ * /robot_description_planning/joint_limits/wrist_3_joint/max_velocity: 1.8
+ * /robot_description_semantic: <?xml version="1....
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+ * /spawn_pick_target/air_image_topic: /uav1/camera/colo...
+ * /spawn_pick_target/ground_image_topic: /ground/d435/colo...
+ * /spawn_pick_target/model_name: pick_target
+ * /spawn_pick_target/model_path: /media/lu/P450_PA...
+ * /spawn_pick_target/reference_frame: world
+ * /spawn_pick_target/runtime_ready_topic: /ground/runtime_r...
+ * /spawn_pick_target/x: 2.0576518144080187
+ * /spawn_pick_target/y: 0.07824714870602131
+ * /spawn_pick_target/yaw: 0.05552549169191734
+ * /spawn_pick_target/z: 0.0575
+ * /uav1/mavros/cmd/use_comp_id_system_control: False
+ * /uav1/mavros/conn/heartbeat_rate: 1.0
+ * /uav1/mavros/conn/system_time_rate: 1.0
+ * /uav1/mavros/conn/timeout: 10.0
+ * /uav1/mavros/conn/timesync_rate: 10.0
+ * /uav1/mavros/fcu_url: udp://:14540@loca...
+ * /uav1/mavros/gcs_url: 
+ * /uav1/mavros/global_position/child_frame_id: base_link
+ * /uav1/mavros/global_position/frame_id: map
+ * /uav1/mavros/global_position/gps_uere: 1.0
+ * /uav1/mavros/global_position/rot_covariance: 99999.0
+ * /uav1/mavros/global_position/tf/child_frame_id: map_base_link
+ * /uav1/mavros/global_position/tf/frame_id: map
+ * /uav1/mavros/global_position/tf/global_frame_id: earth
+ * /uav1/mavros/global_position/tf/send: False
+ * /uav1/mavros/global_position/use_relative_alt: True
+ * /uav1/mavros/imu/angular_velocity_stdev: 0.0003490659 // 0...
+ * /uav1/mavros/imu/frame_id: base_link
+ * /uav1/mavros/imu/linear_acceleration_stdev: 0.0003
+ * /uav1/mavros/imu/magnetic_stdev: 0.0
+ * /uav1/mavros/imu/orientation_stdev: 1.0
+ * /uav1/mavros/local_position/frame_id: map
+ * /uav1/mavros/local_position/tf/child_frame_id: map_base_link
+ * /uav1/mavros/local_position/tf/frame_id: map
+ * /uav1/mavros/local_position/tf/send: False
+ * /uav1/mavros/local_position/tf/send_fcu: False
+ * /uav1/mavros/plugin_blacklist: ['actuator_contro...
+ * /uav1/mavros/plugin_whitelist: ['altitude', 'com...
+ * /uav1/mavros/setpoint_raw/thrust_scaling: 1.0
+ * /uav1/mavros/startup_px4_usb_quirk: True
+ * /uav1/mavros/sys/disable_diag: False
+ * /uav1/mavros/sys/min_voltage: 10.0
+ * /uav1/mavros/target_component_id: 1
+ * /uav1/mavros/target_system_id: 1
+ * /uav1/mavros/time/publish_sim_time: False
+ * /uav1/mavros/time/time_ref_source: fcu
+ * /uav1/mavros/time/timesync_avg_alpha: 0.6
+ * /uav1/mavros/time/timesync_mode: MAVLINK
+ * /uav1/mavros/vision_pose/tf/child_frame_id: vision_estimate
+ * /uav1/mavros/vision_pose/tf/frame_id: map
+ * /uav1/mavros/vision_pose/tf/listen: False
+ * /uav1/mavros/vision_pose/tf/rate_limit: 10.0
+ * /uav1/mavros/vision_speed/listen_twist: True
+ * /uav1/mavros/vision_speed/twist_cov: True
+ * /uav1/sdf_p450_D435i_0: <?xml version='1....
+ * /uav_control_main_1/BSA_SLAM/offset_pitch: 0.0
+ * /uav_control_main_1/BSA_SLAM/offset_roll: 0.0
+ * /uav_control_main_1/BSA_SLAM/offset_x: 0.0
+ * /uav_control_main_1/BSA_SLAM/offset_y: 0.0
+ * /uav_control_main_1/BSA_SLAM/offset_yaw: 0.0
+ * /uav_control_main_1/BSA_SLAM/offset_z: 0.0
+ * /uav_control_main_1/D435i/offset_pitch: 0.0
+ * /uav_control_main_1/D435i/offset_roll: -1.9207963267948966
+ * /uav_control_main_1/D435i/offset_x: 0.13614773689465415
+ * /uav_control_main_1/D435i/offset_y: 0.0
+ * /uav_control_main_1/D435i/offset_yaw: -1.5707963267948966
+ * /uav_control_main_1/D435i/offset_z: 0.11272472554168546
+ * /uav_control_main_1/Lidar/offset_pitch: 0.35
+ * /uav_control_main_1/Lidar/offset_roll: 0.0
+ * /uav_control_main_1/Lidar/offset_x: 0.14714489037277256
+ * /uav_control_main_1/Lidar/offset_y: 0.0
+ * /uav_control_main_1/Lidar/offset_yaw: 0.0
+ * /uav_control_main_1/Lidar/offset_z: 0.27696863564236895
+ * /uav_control_main_1/T265/offset_pitch: 0.0
+ * /uav_control_main_1/T265/offset_roll: 0.0
+ * /uav_control_main_1/T265/offset_x: 0.0
+ * /uav_control_main_1/T265/offset_y: 0.0
+ * /uav_control_main_1/T265/offset_yaw: 0.0
+ * /uav_control_main_1/T265/offset_z: 0.0
+ * /uav_control_main_1/control/COMMAND_MPC_ACC_HOR: 2.0
+ * /uav_control_main_1/control/COMMAND_MPC_XY_VEL_MAX: 1.0
+ * /uav_control_main_1/control/Disarm_height: 0.1
+ * /uav_control_main_1/control/Land_speed: 0.2
+ * /uav_control_main_1/control/Takeoff_height: 1.5
+ * /uav_control_main_1/control/enable_external_control: False
+ * /uav_control_main_1/control/location_source: 4
+ * /uav_control_main_1/control/maximum_safe_vel_xy: 5.0
+ * /uav_control_main_1/control/maximum_safe_vel_z: 4.0
+ * /uav_control_main_1/control/maximum_vel_error_for_Odom: 0.8
+ * /uav_control_main_1/control/maximum_vel_error_for_vision: 2.0
+ * /uav_control_main_1/control/pos_controller: 0
+ * /uav_control_main_1/enable_px4_params_load: False
+ * /uav_control_main_1/flag_printf: False
+ * /uav_control_main_1/geo_fence/x_max: 1000.0
+ * /uav_control_main_1/geo_fence/x_min: -1000.0
+ * /uav_control_main_1/geo_fence/y_max: 1000.0
+ * /uav_control_main_1/geo_fence/y_min: -1000.0
+ * /uav_control_main_1/geo_fence/z_max: 1000.0
+ * /uav_control_main_1/geo_fence/z_min: -50.0
+ * /uav_control_main_1/px4_params/EKF2_AID_MASK: 1
+ * /uav_control_main_1/px4_params/EKF2_HGT_MODE: 0
+ * /uav_control_main_1/px4_params/MC_YAWRATE_MAX: 30.0
+ * /uav_control_main_1/px4_params/MPC_ACC_HOR: 3.0
+ * /uav_control_main_1/px4_params/MPC_VEL_MANUAL: 3.0
+ * /uav_control_main_1/px4_params/MPC_XY_VEL_MAX: 3.0
+ * /uav_control_main_1/sim_mode: True
+ * /uav_control_main_1/tf_parent_frame: uav1/odom
+ * /uav_control_main_1/uav_id: 1
+ * /use_sim_time: True
+
+NODES
+  /
+    air_target_observer (air_ground_pick_demo/red_target_observer.py)
+    gazebo (gazebo_ros/gzserver)
+    gazebo_grasp_confirmation (ground_manipulator_runtime/gazebo_grasp_confirmation.py)
+    ground_target_observer (air_ground_pick_demo/red_target_observer.py)
+    move_group (moveit_ros_move_group/move_group)
+    p450_flight_facade (p450_flight_facade/p450_flight_facade_node.py)
+    sim_localization_ground (tf2_ros/static_transform_publisher)
+    sim_localization_uav1 (sim_platform_bringup/sim_uav_localization.py)
+    sim_world_to_map (tf2_ros/static_transform_publisher)
+    spawn_pick_target (air_ground_pick_demo/spawn_pick_target.py)
+    uav_control_main_1 (prometheus_uav_control/uav_control_main)
+  /ground/
+    controller_spawner (controller_manager/spawner)
+    move_base (move_base/move_base)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    runtime_stop (bunker_navigation/ground_stop_server.py)
+    spawn_ground_robot (ground_manipulator_runtime/spawn_ground_robot.py)
+    velocity_guard (bunker_sim_runtime/velocity_guard.py)
+  /uav1/
+    mavros (mavros/mavros_node)
+    p450_D435i_1_spawn (gazebo_ros/spawn_model)
+    p450_tf_camera_color_optical (tf2_ros/static_transform_publisher)
+    p450_tf_camera_d435i (tf2_ros/static_transform_publisher)
+    p450_tf_camera_depth (tf2_ros/static_transform_publisher)
+    p450_tf_camera_imu (tf2_ros/static_transform_publisher)
+    p450_tf_camera_ired1 (tf2_ros/static_transform_publisher)
+    p450_tf_camera_ired2 (tf2_ros/static_transform_publisher)
+    p450_tf_depth_optical (tf2_ros/static_transform_publisher)
+    sitl_1 (sim_platform_bringup/px4_sitl_node.bash)
+[rcS] Info: found model autostart file as SYS_AUTOSTART=1045
+INFO  [param] selected parameter default file eeprom/parameters_1045
+[rcS] parameter file not found, creating eeprom/parameters_1045
+  SYS_AUTOCONFIG: curr: 0 -> new: 1
+  SYS_AUTOSTART: curr: 0 -> new: 1045
+  CAL_ACC0_ID: curr: 0 -> new: 1310988
+  CAL_GYRO0_ID: curr: 0 -> new: 1310988
+  CAL_ACC1_ID: curr: 0 -> new: 1310996
+  CAL_GYRO1_ID: curr: 0 -> new: 1310996
+  CAL_ACC2_ID: curr: 0 -> new: 1311004
+  CAL_GYRO2_ID: curr: 0 -> new: 1311004
+  CAL_MAG0_ID: curr: 0 -> new: 197388
+  CAL_MAG1_ID: curr: 0 -> new: 197644
+  SENS_BOARD_X_OFF: curr: 0.0000 -> new: 0.0000
+  SENS_DPRES_OFF: curr: 0.0000 -> new: 0.0010
+[rcS] COM_DL_LOSS_T set to 10.0
+[rcS] COM_RC_LOSS_T set to .5
+[rcS] COM_OF_LOSS_T set to .5
+  COM_OF_LOSS_T: curr: 1.0000 -> new: 0.5000
+[rcS] COM_OBC_LOSS_T set to 5.0
+[33m[WARN] [1788935807.329696955]: The root link ground/base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.[0m
+[33m[WARN] [1788935807.380489836]: DS: plugin not configured![0m
+[0m[INFO] [1788935807.334288699]: FCU URL: udp://:14540@localhost:14580[0m
+[0m[INFO] [1788935807.336851852]: udp0: Bind address: 0.0.0.0:14540[0m
+[0m[INFO] [1788935807.336986435]: udp0: Remote address: 127.0.0.1:14580[0m
+[0m[INFO] [1788935807.337066123]: GCS bridge disabled[0m
+[0m[INFO] [1788935807.343626047]: Plugin 3dr_radio blacklisted[0m
+[0m[INFO] [1788935807.343666066]: Plugin actuator_control blacklisted[0m
+[0m[INFO] [1788935807.343695189]: Plugin adsb blacklisted[0m
+[0m[INFO] [1788935807.357713608]: Plugin altitude loaded[0m
+[0m[INFO] [1788935807.358869331]: Plugin altitude initialized[0m
+[0m[INFO] [1788935807.358903623]: Plugin cam_imu_sync blacklisted[0m
+[0m[INFO] [1788935807.358919826]: Plugin camera blacklisted[0m
+[0m[INFO] [1788935807.366490275]: Plugin cellular_status loaded[0m
+[0m[INFO] [1788935807.369541753]: Plugin cellular_status initialized[0m
+[0m[INFO] [1788935807.369710279]: Plugin command loaded[0m
+[0m[INFO] [1788935807.376253930]: Plugin command initialized[0m
+[0m[INFO] [1788935807.376466665]: Plugin companion_process_status loaded[0m
+[0m[INFO] [1788935807.379388519]: Plugin companion_process_status initialized[0m
+[0m[INFO] [1788935807.379461921]: Plugin debug_value blacklisted[0m
+[0m[INFO] [1788935807.379696795]: Plugin distance_sensor loaded[0m
+[0m[INFO] [1788935807.380564705]: Plugin distance_sensor initialized[0m
+[0m[INFO] [1788935807.380673377]: Plugin esc_status blacklisted[0m
+[0m[INFO] [1788935807.380721428]: Plugin esc_telemetry blacklisted[0m
+[0m[INFO] [1788935807.380761307]: Plugin fake_gps blacklisted[0m
+[0m[INFO] [1788935807.380801256]: Plugin ftp blacklisted[0m
+[0m[INFO] [1788935807.380842392]: Plugin geofence blacklisted[0m
+[0m[INFO] [1788935807.381009870]: Plugin global_position loaded[0m
+[0m[INFO] [1788935807.402175852]: Plugin global_position initialized[0m
+[0m[INFO] [1788935807.402254213]: Plugin gps_input blacklisted[0m
+[0m[INFO] [1788935807.402408700]: Plugin gps_rtk loaded[0m
+[0m[INFO] [1788935807.405085763]: Plugin gps_rtk initialized[0m
+[0m[INFO] [1788935807.405263507]: Plugin gps_status loaded[0m
+[0m[INFO] [1788935807.407549323]: Plugin gps_status initialized[0m
+[0m[INFO] [1788935807.407720153]: Plugin guided_target loaded[0m
+[0m[INFO] [1788935807.411568723]: Plugin guided_target initialized[0m
+[0m[INFO] [1788935807.411639332]: Plugin hil blacklisted[0m
+[0m[INFO] [1788935807.411801851]: Plugin home_position loaded[0m
+[0m[INFO] [1788935807.415556206]: Plugin home_position initialized[0m
+[0m[INFO] [1788935807.415737163]: Plugin imu loaded[0m
+[0m[INFO] [1788935807.422810067]: Plugin imu initialized[0m
+[0m[INFO] [1788935807.422853438]: Plugin landing_target blacklisted[0m
+[0m[INFO] [1788935807.422980338]: Plugin local_position loaded[0m
+[0m[INFO] [1788935807.428152878]: Plugin local_position initialized[0m
+[0m[INFO] [1788935807.428187169]: Plugin log_transfer blacklisted[0m
+[0m[INFO] [1788935807.428204560]: Plugin mag_calibration_status blacklisted[0m
+[0m[INFO] [1788935807.428214477]: Plugin manual_control blacklisted[0m
+[0m[INFO] [1788935807.428227607]: Plugin mocap_pose_estimate blacklisted[0m
+[0m[INFO] [1788935807.428241017]: Plugin mount_control blacklisted[0m
+[0m[INFO] [1788935807.428252680]: Plugin nav_controller_output blacklisted[0m
+[0m[INFO] [1788935807.428267975]: Plugin obstacle_distance blacklisted[0m
+[0m[INFO] [1788935807.428277543]: Plugin odom blacklisted[0m
+[0m[INFO] [1788935807.428289835]: Plugin onboard_computer_status blacklisted[0m
+[0m[INFO] [1788935807.428389079]: Plugin param loaded[0m
+[0m[INFO] [1788935807.430804937]: Plugin param initialized[0m
+[0m[INFO] [1788935807.430838810]: Plugin play_tune blacklisted[0m
+[0m[INFO] [1788935807.430856759]: Plugin px4flow blacklisted[0m
+[0m[INFO] [1788935807.430871914]: Plugin rallypoint blacklisted[0m
+[0m[INFO] [1788935807.430882740]: Plugin rangefinder blacklisted[0m
+[0m[INFO] [1788935807.430984847]: Plugin rc_io loaded[0m
+[0m[INFO] [1788935807.434549445]: Plugin rc_io initialized[0m
+[0m[INFO] [1788935[33m[WARN] [1788935807.500197924]: Falling back to using the move_group node's namespace (deprecated Melodic behavior).[0m
+* SYS_AUTOCONFIG: curr: 1 -> new: 0
+  IMU_INTEG_RATE: curr: 200 -> new: 250
+PX4 SIM HOST: localhost
+[33m[WARN] [1788935807.820439306]: Link ground/wheel1_1_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820477439]: Link ground/wheel1_2_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820490010]: Link ground/wheel1_3_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820501255]: Link ground/wheel1_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820513547]: Link ground/wheel2_1_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820531565]: Link ground/wheel2_2_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820543369]: Link ground/wheel2_3_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820554892]: Link ground/wheel2_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820566835]: Link ground/wheel3_1_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820579616]: Link ground/wheel3_2_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820591140]: Link ground/wheel3_3_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820603012]: Link ground/wheel3_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820614466]: Link ground/wheel4_1_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820625501]: Link ground/wheel4_2_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820650295]: Link ground/wheel4_3_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.820661679]: Link ground/wheel4_Link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.[0m
+[33m[WARN] [1788935807.843562503]: The root link ground/base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.[0m
+[33m[WARN] [1788935808.236735419]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead[0m
+[0m[INFO] [1788935808.026435117]: Finished loading Gazebo ROS API Plugin.[0m
+[0m[INFO] [1788935808.027257631]: waitForService: Service [/gazebo/set_physics_properties] has not been advertised, waiting...[0m
+[0m[INFO] [1788935808.991335249, 0.003000000]: waitForService: Service [/gazebo/set_physics_properties] is now available.[0m
+[0m[INFO] [1788935809.003962302, 0.015000000]: Physics dynamic reconfigure ready.[0m
+[0m[INFO] [1788935809.360986041, 0.163000000]: <robotNamespace> set to: /ground/[0m
+[0m[INFO] [1788935809.361015095, 0.163000000]: <topicName> set to: imu/data[0m
+[0m[INFO] [1788935809.361025152, 0.163000000]: <frameName> set to: ground/imu_link[0m
+[0m[INFO] [1788935809.361049946, 0.163000000]: <updateRateHZ> set to: 100[0m
+[0m[INFO] [1788935809.361063774, 0.163000000]: <gaussianNoise> set to: 0.002[0m
+[0m[INFO] [1788935809.361098136, 0.163000000]: <xyzOffset> set to: 0 0 0[0m
+[0m[INFO] [1788935809.361123837, 0.163000000]: <rpyOffset> set to: 0 -0 0[0m
+[0m[INFO] [1788935809.543820734, 0.163000000]: Laser Plugin: Using the 'robotNamespace' param: '/ground'[0m
+[0m[INFO] [1788935809.543872765, 0.163000000]: Starting Laser Plugin (ns = /ground)[0m
+[0m[INFO] [1788935809.544862966, 0.163000000]: Laser Plugin (ns = /ground)  <tf_prefix_>, set to ""[0m
+[0m[INFO] [1788935810.951486532, 0.163000000]: Camera Plugin: Using the 'robotNamespace' param: '/ground'[0m
+[0m[INFO] [1788935810.954881696, 0.163000000]: Camera Plugin (ns = /ground)  <tf_prefix_>, set to ""[0m
+[0m[INFO] [1788935810.967014486, 0.163000000]: Camera Plugin: Using the 'robotNamespace' param: '/ground'[0m
+[0m[INFO] [1788935810.968657837, 0.163000000]: Camera Plugin (ns = /ground)  <tf_prefix_>, set to ""[0m
+[0m[INFO] [1788935811.209529427, 0.163000000]: MimicJointPlugin loaded! Joint: "left_outer_knuckle_joint", Mimic joint: "right_outer_knuckle_joint", Multiplier: 1, Offset: 0, MaxEffort: 50, Sensitiveness: 0[0m
+[0m[INFO] [1788935811.218322227, 0.163000000]: BUNKER planar move ready on /ground/cmd_vel[0m
+[0m[INFO] [1788935811.236779858, 0.163000000]: Loading gazebo_ros_control plugin[0m
+[0m[INFO] [1788935811.236852702, 0.163000000]: Starting gazebo_ros_control plugin in namespace: /ground[0m
+[0m[INFO] [1788935811.237201975, 0.163000000]: gazebo_ros_control plugin is waiting for model URDF in parameter [/ground/robot_description] on the ROS param server.[0m
+[0m[INFO] [1788935811.428834847, 0.163000000]: Loaded gazebo_ros_control.[0m
+[1;33mWarning [parser.cc:833][0m XML Attribute[version] in element[sdf] not defined in SDF, ignoring.
+[1;33mWarning [parser.cc:833][0m XML Attribute[version] in element[sdf] not defined in SDF, ignoring.
+[INFO] [1788935807.725006, 0.000000]: Loading model XML from ros parameter sdf_p450_D435i_0
+[INFO] [1788935807.730996, 0.000000]: Waiting for service /gazebo/spawn_sdf_model
+[INFO] [1788935809.238404, 0.163000]: Calling service /gazebo/spawn_sdf_model
+[INFO] [1788935811.963542, 0.362000]: Spawn status: SpawnModel: Successfully spawned entity
+[0m[INFO] [1788935812.141818239, 0.362000000]: <robotNamespace> set to: /uav1/[0m
+[0m[INFO] [1788935812.141847852, 0.362000000]: <topicName> set to: /uav1/camera/imu[0m
+[0m[INFO] [1788935812.141858956, 0.362000000]: <frameName> set to: /uav1/camera_imu_link[0m
+[0m[INFO] [1788935812.141877813, 0.362000000]: <updateRateHZ> set to: 100[0m
+[0m[INFO] [1788935812.141891851, 0.362000000]: <gaussianNoise> set to: 0[0m
+[0m[INFO] [1788935812.141905470, 0.362000000]: <xyzOffset> set to: 0 0 0[0m
+[0m[INFO] [1788935812.141922162, 0.362000000]: <rpyOffset> set to: 0 -0 0[0m
+[0m[INFO] [1788935812.147812803, 0.362000000]: load csv file name:/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/scan_mode/mid360.csv[0m
+cannot convert str:
+data size:800000
+[0m[INFO] [1788935812.684402349, 0.362000000]: ros topic name:/uav1/livox/lidar[0m
+[0m[INFO] [1788935812.684437339, 0.362000000]: ros frame id: uav1/lidar_link[0m
+[0m[INFO] [1788935812.699174488, 0.362000000]: scan info size:800000[0m
+[0m[INFO] [1788935812.699664630, 0.362000000]: sample:10000[0m
+[0m[INFO] [1788935812.699686141, 0.362000000]: downsample:1[0m
+[0m[INFO] [1788935812.699696966, 0.362000000]: publish_pointcloud_type: 2[0m
+[0m[INFO] [1788935815.078352692, 0.362000000]: Realsense Gazebo ROS plugin loading.[0m
+
+RealSensePlugin: The realsense_camera plugin is attached to model p450_D435i_0
+RealSensePlugin: Camera renderers are ready for model p450_D435i_0
+etc/init.d-posix/rcS: 228: tone_alarm: not found
+INFO  [init] Mixer: etc/mixers/quad_x.main.mix on /dev/pwm_output0
+  PWM_AUX_OUT: curr: 0 -> new: 1234
+WARN  [mc_pos_control] Cruise speed has been constrained by max speed
+WARN  [mc_pos_control] Manual speed has been constrained by max speed
+[33m[WARN] [1788935815.291380557, 0.477000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame ground/base_link (parent ground/odom) at time 0.439000 according to authority unknown_publisher[0m
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame ground/base_link (parent ground/odom) at time 0.439000 according to authority /gazeboTF_REPEATED_DATA ignoring data with redundant timestamp for frame ground/base_link (parent ground/odom) at time 0.439000 according to authority /gazebo
+[33m[WARN] [1788935815.291427909, 0.477000000]: TF_REPEATED_DATA ignoring data with redundant timestamp for frame ground/base_link (parent ground/odom) at time 0.439000 according to authority unknown_publisher[0m
+         at line 
+277         at line  in 277/tmp/binarydeb/ros-noetic-tf2-0.7.10/src/buffer_core.cpp in 
+/tmp/binarydeb/ros-noetic-tf2-0.7.10/src/buffer_core.cpp
+[0m[INFO] [1788935811.452134182, 0.186000000]: global_costmap: Using plugin "obstacle_layer"[0m
+[0m[INFO] [1788935811.459346698, 0.193000000]:     Subscribed to Topics: scan[0m
+[0m[INFO] [1788935811.470119411, 0.204000000]: global_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1788935811.505186270, 0.239000000]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[INFO] [1788935811.507930380, 0.241000000]:     Subscribed to Topics: scan[0m
+[0m[INFO] [1788935811.518150653, 0.251000000]: local_costmap: Using plugin "inflation_layer"[0m
+[0m[INFO] [1788935811.544661961, 0.278000000]: Created local_planner dwa_local_planner/DWAPlannerROS[0m
+[0m[INFO] [1788935811.546671487, 0.280000000]: Sim period is set to 0.07[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame ground/base_link (parent ground/odom) at time 0.439000 according to authority unknown_publisher
+         at line 277 in /tmp/binarydeb/ros-noetic-tf2-0.7.10/src/buffer_core.cpp
+INFO  [ekf2] starting instance 0, IMU:0 (1310988), MAG:0 (197388)
+INFO  [ekf2] starting instance 1, IMU:1 (1310996), MAG:0 (197388)
+INFO  [ekf2] starting instance 2, IMU:2 (1311004), MAG:0 (197388)
+INFO  [ekf2] starting instance 3, IMU:0 (1310988), MAG:1 (197644)
+INFO  [ekf2] starting instance 4, IMU:1 (1310996), MAG:1 (197644)
+INFO  [ekf2] starting instance 5, IMU:2 (1311004), MAG:1 (197644)
+INFO  [mavlink] MAVLink only on localhost (set param MAV_{i}_BROADCAST = 1 to enable network)
+INFO  [mavlink] MAVLink only on localhost (set param MAV_{i}_BROADCAST = 1 to enable network)
+[0m[INFO] [1788935807.515058621]: Loading robot model 'bunker_aubo'...[0m
+[0m[INFO] [1788935807.515156468]: No root/virtual joint specified in SRDF. Assuming fixed joint[0m
+[0m[INFO] [1788935808.228922973]: Publishing maintained planning scene on 'monitored_planning_scene'[0m
+[0m[INFO] [1788935808.230534825]: Listening to 'joint_states' for joint states[0m
+[0m[INFO] [1788935808.233185837]: Listening to '/attached_collision_object' for attached collision objects[0m
+[0m[INFO] [1788935808.233203507]: Starting planning scene monitor[0m
+[0m[INFO] [1788935808.234402183]: Listening to '/planning_scene'[0m
+[0m[INFO] [1788935808.234417757]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.[0m
+[0m[INFO] [1788935808.235501056]: Listening to '/collision_object'[0m
+[0m[INFO] [1788935808.236520799]: Listening to '/planning_scene_world' for planning scene world geometry[0m
+[0m[INFO] [1788935808.236932300]: No 3D sensor plugin(s) defined for octomap updates[0m
+[0m[INFO] [1788935808.679964888]: Loading planning pipeline ''[0m
+[0m[INFO] [1788935808.723371141]: Using planning interface 'OMPL'[0m
+[0m[INFO] [1788935808.726578783]: Param 'default_workspace_bounds' was not set. Using default value: 10[0m
+[0m[INFO] [1788935808.726837124]: Param 'start_state_max_bounds_error' was set to 0.1[0m
+[0m[INFO] [1788935808.727069484]: Param 'start_state_max_dt' was not set. Using default value: 0.5[0m
+[0m[INFO] [1788935808.727303660]: Param 'start_state_max_dt' was not set. Using default value: 0.5[0m
+[0m[INFO] [1788935808.727521772]: Param 'jiggle_fraction' was not set. Using default value: 0.02[0m
+[0m[INFO] [1788935808.727735834]: Param 'max_sampling_attempts' was not set. Using default value: 100[0m
+[0m[INFO] [1788935808.727768310]: Using planning request adapter 'Add Time Parameterization'[0m
+[0m[INFO] [1788935808.727784094]: Using planning request adapter 'Fix Workspace Bounds'[0m
+[0m[INFO] [1788935808.727796944]: Using planning request adapter 'Fix Start State Bounds'[0m
+[0m[INFO] [1788935808.727808957]: Using planning request adapter 'Fix Start State In Collision'[0m
+[0m[INFO] [1788935808.727820760]: Using planning request adapter 'Fix Start State Path Constraints'[0m
+[0m[INFO] [1788935815.462900996, 0.630000000]: Added FollowJointTrajectory controller for /ground/arm_controller[0m
+[0m[INFO] [1788935815.897304781, 1.031000000]: Added FollowJointTrajectory controller for /ground/gripper_controller[0m
+[0m[INFO] [1788935815.897475612, 1.031000000]: Returned 2 controllers in list[0m
+[0m[INFO] [1788935815.905734829, 1.039000000]: Trajectory execution is not managing controllers[0m
+[0m[INFO] [1788935815.905766188, 1.039000000]: MoveGroup debug mode is OFF[0m
+[96mLoading 'move_group/ApplyPlanningSceneService'...
+[0m[96mLoading 'move_group/ClearOctomapService'...
+[0m[96mLoading 'move_group/MoveGroupCartesianPathService'...
+[0m[96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...
+[0m[96mLoading 'move_group/MoveGroupGetPlanningSceneService'...
+[0m[96mLoading 'move_group/MoveGroupKinematicsService'...
+[0m[96mLoading 'move_group/MoveGroupMoveAction'...
+[0m[96mLoading 'move_group/MoveGroupPickPlaceAction'...
+[0m[96mLoading 'move_group/MoveGroupPlanService'...
+[0m[96mLoading 'move_group/MoveGroupQueryPlannersService'...
+[0m[96mLoading 'move_group/MoveGroupStateValidationService'...
+[0m[0m[INFO] [1788935815.966979019, 1.101000000]: 
+
+********************************************************
+* MoveGroup using: 
+*     - ApplyPlanningSceneService
+*     - ClearOctomapService
+*     - CartesianPathService
+*     - ExecuteTrajectoryAction
+*     - GetPlanningSceneService
+*     - KinematicsService
+*     - MoveAction
+*     - PickPlaceAction
+*     - MotionPlanService
+*     - QueryPlannersService
+*     - StateValidationService
+********************************************************
+[0m
+[0m[INFO] [1788935815.967358952, 1.101000000]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner[0m
+[0m[INFO] [1788935815.967403720, 1.101000000]: MoveGroup context initialization complete[0m
+[92m
+You can start planning now!
+
+[0m[0;1;32m>>>>>>>>>>>>>>>> UAV estimator Param <<<<<<<<<<<<<<<<[0m
+[0;1;32muav_id                        : 1 [0m
+[0;1;32mmaximum_safe_vel_xy           : 5 [m/s] [0m
+[0;1;32mmaximum_safe_vel_z            : 4 [m/s] [0m
+[0;1;32mmaximum_vel_error_for_vision  : 2 [m/s] [0m
+[0;1;32mmaximum_vel_error_for_Odom    : 0.8 [m/s] [0m
+[0;1;32mlocation_source: [GPS] [0m
+[0;1;32m[uav_estimator_uav1] init! [0m
+[0;1;32m>>>>>>>>>>>>>>>> UAV controller Param <<<<<<<<<<<<<<<<[0m
+[0;1;32muav_id                    : 1 [0m
+[0;1;32msim_mode                  : 1 [0m
+[0;1;32mpos_controller            : 0[0m
+[0;1;32menable_external_control   : 0[0m
+[0;1;32mTakeoff_height            : 1.5 [m] [0m
+[0;1;32mDisarm_height             : 0.1 [m] [0m
+[0;1;32mLand_speed                : 0.2 [m/s] [0m
+[0;1;32mgeo_fence_x : -1000 [m]  to  -1000 [m][0m
+[0;1;32mgeo_fence_y : -1000 [m]  to  1000 [m][0m
+[0;1;32mgeo_fence_z : -50 [m]  to  1000 [m][0m
+[0;1;32m[uav_controller_uav1] init! [0m
+[0;1;32m[uav_controller_uav1] Using the PX4 original controller... [0m
+[31m[ERROR] [1788935816.106338599, 1.222000000]: Waiting for connect PX4![0m
+[31m[ERROR] [1788935824.381491629, 8.649000000]: GetModelState: model [pick_target] does not exist[0m
+[INFO] [1788935824.529374, 8.742000]: Spawned pick_target after ground runtime and both D435 streams became ready
+INFO  [px4] Creating symlink /media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4/ROMFS/px4fmu_common -> /media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/logs/ros/sitl_a6_1788935805521582961_1548325/etc
+
+██████  ██████   ██████  ███    ███ ███████ ████████ ██   ██ ███████ ██    ██ ███████
+██   ██ ██   ██ ██    ██ ████  ████ ██         ██    ██   ██ ██      ██    ██ ██      
+██████  ██████  ██    ██ ██ ████ ██ █████      ██    ███████ █████   ██    ██ ███████ 
+██      ██   ██ ██    ██ ██  ██  ██ ██         ██    ██   ██ ██      ██    ██      ██ 
+██      ██   ██  ██████  ██      ██ ███████    ██    ██   ██ ███████  ██████  ███████ 
+
+px4 starting.
+
+INFO  [px4] Calling startup script: /bin/sh etc/init.d-posix/rcS 0
+INFO  [dataman] Unknown restart, data manager file './dataman' size is 11798680 bytes
+INFO  [simulator] Waiting for simulator to accept connection on TCP port 4560
+INFO  [simulator] Simulator connected on TCP port 4560.
+INFO  [commander] LED: open /dev/led0 failed (22)
+INFO  [mavlink] mode: Normal, data rate: 4000000 B/s on udp port 18570 remote port 14550
+INFO  [mavlink] mode: Onboard, data rate: 4000000 B/s on udp port 14580 remote port 14540
+INFO  [mavlink] mode: Onboard, data rate: 4000 B/s on udp port 14280 remote port 14030
+INFO  [mavlink] mode: Gimbal, data rate: 400000 B/s on udp port 13030 remote port 13280
+INFO  [logger] logger started (mode=all)
+INFO  [logger] Start file log (type: full)
+INFO  [logger] [logger] ./log/2026-09-09/06_36_55.ulg
+INFO  [logger] Opened full log file: ./log/2026-09-09/06_36_55.ulg
+INFO  [px4] Startup script returned successfully
+INFO  [mavlink] partner IP: 127.0.0.1
+INFO  INFO  [ecl/EKF] reset position to last known position
+INFO  [ecl/EKF] reset velocity to zero
+[ecl/EKF] reset position to last known position
+INFO  INFO  [ecl/EKF] [ecl/EKF] reset velocity to zero
+reset position to last known position
+INFO  [ecl/EKF] reset velocity to zero
+INFO  [ecl/EKF] reset position to last known position
+INFO  [ecl/EKF] reset velocity to zero
+INFO  [ecl/EKF] reset position to last known position
+INFO  [ecl/EKF] reset velocity to zero
+INFO  [ecl/EKF] reset position to last known position
+INFO  [ecl/EKF] reset velocity to zero
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] GPS checks passed
+INFO  [ecl/EKF] 6880000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] 6880000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] 6884000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] 6888000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] 6944000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] 6948000: EKF aligned, (baro hgt, IMU buf: 12, OBS buf: 9)
+INFO  [ecl/EKF] reset position to GPSINFO  [ecl/EKF] reset position to GPS
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] starting GPS fusion
+
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] starting GPS fusion
+INFO  [ecl/EKF] reset position to GPSINFO  [ecl/EKF] reset position to GPS
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] starting GPS fusion
+
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] starting GPS fusion
+INFO  [ecl/EKF] reset position to GPS
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] reset position to GPS
+INFO  [ecl/EKF] reset velocity to GPS
+INFO  [ecl/EKF] starting GPS fusion
+INFO  [ecl/EKF] starting GPS fusion
+WARN  [flight_mode_manager] Position-Ctrl activation failed with error: Activation Fail[33m[WARN] [1788935826.203597771, 10.231000000]: CMD: Unexpected command 176, result 0[0m
+[0;1;32m[uav_controller_uav1]vehicle arming, success![0m
+[0;1;32m[uav_controller_uav1]vehicle arming, success![0m
+[0;1;32m[uav_controller_uav1]vehicle arming, success![0m
+[0;1;32m[uav_controller_uav1]vehicle arming, success![0m
+[0;1;32m[uav_controller_uav1]vehicle arming, success![0m
+[0;1;32mSet Takeoff_position [X Y Z] : 0.00123156 [ m ] 0.00267278 [ m ] -0.0629871 [ m ] [0m
+[0;1;32mSet Takeoff_yaw : -0.239758 [ deg ] [0m
+[0;1;32m[uav_controller_uav1] Switch to COMMAND_CONTROL by uav_setup cmd[0m
+[0;1;32mset px4 param success ! MPC_XY_VEL_MAX : 1
+[0;1;32mset px4 param success ! MPC_ACC_HOR : 2
+[33m[WARN] [1788935838.254415497, 20.322000000]: CMD: Unexpected command 176, result 0[0m
+[33m[WARN] [1788935975.961908330, 115.559000000]: CMD: Unexpected command 176, result 0[0m
+[0m[INFO] [1788935828.978437327, 12.628000000]: Parameter 'MPC_XY_VEL_MAX' set success: 1.000000[0m
+[0m[INFO] [1788935828.978465962, 12.628000000]: Parameter 'MPC_ACC_HOR' set success: 2.000000[0m
+[0;1;32mset px4 param success ! MC_YAWRATE_MAX : 30
+[33m[WARN] [1788935990.715889197, 125.560000000]: CMD: Unexpected command 176, result 0[0m
+[0m[INFO] [1788935815.300979110, 0.488000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1788935815.308092801, 0.495000000]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[INFO] [1788935815.328201186, 0.505000000]: odom received![0m
+[0m[INFO] [1788935989.492463761, 124.699000000]: Got new plan[0m
+[0m[INFO] [1788935990.182859124, 125.167000000]: Got new plan[0m
+[0m[INFO] [1788935991.010337548, 125.700000000]: Got new plan[0m
+[0m[INFO] [1788935991.706676846, 126.166000000]: Got new plan[0m
+[0m[INFO] [1788935992.424396133, 126.699000000]: Got new plan[0m
+[0m[INFO] [1788935993.088135398, 127.166000000]: Got new plan[0m
+[0m[INFO] [1788935993.909225080, 127.700000000]: Got new plan[0m
+[0m[INFO] [1788935994.554565512, 128.166000000]: Got new plan[0m
+[0m[INFO] [1788935995.727994445, 128.700000000]: Got new plan[0m
+[0m[INFO] [1788935996.503819183, 129.167000000]: Got new plan[0m
+[0m[INFO] [1788935997.243801042, 129.699000000]: Got new plan[0m
+[0m[INFO] [1788935997.953760827, 130.166000000]: Got new plan[0m
+[0m[INFO] [1788935998.804790393, 130.701000000]: Got new plan[0m
+[0m[INFO] [1788935999.655318925, 131.166000000]: Got new plan[0m
+[0m[INFO] [1788936000.644514300, 131.699000000]: Got new plan[0m
+[0m[INFO] [1788936001.408281398, 132.166000000]: Got new plan[0m
+[0m[INFO] [1788936002.348187885, 132.699000000]: Got new plan[0m
+[0m[INFO] [1788936003.128716827, 133.166000000]: Got new plan[0m
+[0m[INFO] [1788936004.024140442, 133.701000000]: Got new plan[0m
+[0m[INFO] [1788936004.711519272, 134.168000000]: Got new plan[0m
+[0m[INFO] [1788936005.493431484, 134.699000000]: Got new plan[0m
+[0m[INFO] [1788936006.154881463, 135.166000000]: Got new plan[0m
+[0m[INFO] [1788936007.158846978, 135.699000000]: Got new plan[0m
+[0m[INFO] [1788936007.816164905, 136.168000000]: Got new plan[0m
+[0m[INFO] [1788936008.635983518, 136.699000000]: Got new plan[0m
+[0m[INFO] [1788936009.298610668, 137.167000000]: Got new plan[0m
+[0m[INFO] [1788936010.075517196, 137.699000000]: Got new plan[0m
+[0m[INFO] [1788936010.757856121, 138.166000000]: Got new plan[0m
+[0m[INFO] [1788936011.559258793, 138.700000000]: Got new plan[0m
+[0m[INFO] [1788936012.368514915, 139.166000000]: Got new plan[0m
+[0m[INFO] [1788936013.200771330, 139.699000000]: Got new plan[0m
+[0m[INFO] [1788936013.997681503, 140.166000000]: Got new plan[0m
+[0m[INFO] [1788936014.825559887, 140.700000000]: Got new plan[0m
+[0m[INFO] [1788936015.560585396, 141.166000000]: Got new plan[0m
+[0m[INFO] [1788936016.390794438, 141.699000000]: Got new plan[0m
+[0m[INFO] [1788936017.052019689, 142.166000000]: Got new plan[0m
+[0m[INFO] [1788936017.839649156, 142.700000000]: Got new plan[0m
+[0m[INFO] [1788936018.590976262, 143.166000000]: Got new plan[0m
+[0m[INFO] [1788936019.444502749, 143.699000000]: Got new plan[0m
+[0m[INFO] [1788936020.172845488, 144.166000000]: Got new plan[0m
+[0m[INFO] [1788936020.873211646, 144.699000000]: Got new plan[0m
+[0m[INFO] [1788936021.509127398, 145.166000000]: Got new plan[0m
+[0m[INFO] [1788936022.251088871, 145.699000000]: Got new plan[0m
+[0m[INFO] [1788936022.899727787, 146.166000000]: Got new plan[0m
+[0m[INFO] [1788936023.808894425, 146.699000000]: Got new plan[0m
+[0m[INFO] [1788936024.629889678, 147.166000000]: Got new plan[0m
+[0m[INFO] [1788936025.458790134, 147.699000000]: Got new plan[0m
+[0m[INFO] [1788936026.100616862, 148.166000000]: Got new plan[0m
+[0m[INFO] [1788936026.902769584, 148.699000000]: Got new plan[0m
+[0m[INFO] [1788936027.533675742, 149.167000000]: Got new plan[0m
+[0m[INFO] [1788936028.305812116, 149.700000000]: Got new plan[0m
+[0m[INFO] [1788936028.991579553, 150.166000000]: Got new plan[0m
+[0m[INFO] [1788936029.879843996, 150.699000000]: Got new plan[0m
+[0m[INFO] [1788936030.665927565, 151.166000000]: Got new plan[0m
+[0m[INFO] [1788936031.457997672, 151.699000000]: Got new plan[0m
+[0m[INFO] [1788936032.154699796, 152.166000000]: Got new plan[0m
+[0m[INFO] [1788936033.063856956, 152.699000000]: Got new plan[0m
+[0m[INFO] [[33m[WARN] [1788936051.453313632, 163.771000000]: Unable to transform object from frame 'odom_ned' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom_ned' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.453454431, 163.771000000]: Unable to transform object from frame 'odom' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.453502830, 163.771000000]: Unable to transform object from frame 'base_link_frd' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link_frd' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.453534328, 163.771000000]: Unable to transform object from frame 'base_link' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.507401776, 163.791000000]: Unable to transform object from frame 'odom_ned' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom_ned' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.507553609, 163.791000000]: Unable to transform object from frame 'odom' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.507590346, 163.791000000]: Unable to transform object from frame 'base_link_frd' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link_frd' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.507617514, 163.791000000]: Unable to transform object from frame 'base_link' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.531167245, 163.791000000]: Unable to transform object from frame 'odom_ned' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom_ned' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.531244209, 163.791000000]: Unable to transform object from frame 'odom' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.531268514, 163.791000000]: Unable to transform object from frame 'base_link_frd' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link_frd' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.531288558, 163.791000000]: Unable to transform object from frame 'base_link' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.558281856, 163.801000000]: Unable to transform object from frame 'odom_ned' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom_ned' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.558497175, 163.802000000]: Unable to transform object from frame 'odom' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.558565409, 163.802000000]: Unable to transform object from frame 'base_link_frd' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link_frd' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.558608012, 163.802000000]: Unable to transform object from frame 'base_link' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.643201674, 163.863000000]: Unable to transform object from frame 'odom_ned' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom_ned' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.643289464, 163.863000000]: Unable to transform object from frame 'odom' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'odom' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.643320892, 163.863000000]: Unable to transform object from frame 'base_link_frd' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link_frd' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[33m[WARN] [1788936051.643404072, 163.863000000]: Unable to transform object from frame 'base_link' to planning frame 'ground/base_link' (Could not find a connection between 'ground/base_link' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.)[0m
+[WARN] [1788935824.479983, 8.732000]: red target observation rejected: no usable red target component
+[WARN] [1788935826.786464, 10.751000]: red target observation rejected: no usable red target component
+[WARN] [1788935829.173465, 12.756000]: red target observation rejected: no usable red target component
+[WARN] [1788935831.553470, 14.757000]: red target observation rejected: no usable red target component
+[WARN] [1788935834.113334, 16.822000]: red target observation rejected: no usable red target component
+[WARN] [1788935836.504096, 18.898000]: red target observation rejected: no usable red target component
+[WARN] [1788935839.163589, 20.900000]: red target observation rejected: no usable red target component
+[WARN] [1788935841.451258, 22.901000]: red target observation rejected: no usable red target component
+[WARN] [1788935843.867545, 24.976000]: red target observation rejected: no usable red target component
+[WARN] [1788935846.551804, 27.038000]: red target observation rejected: no usable red target component
+[WARN] [1788935849.247072, 29.051000]: red target observation rejected: no usable red target component
+[WARN] [1788935852.155205, 31.114000]: red target observation rejected: no usable red target component
+[WARN] [1788935855.318848, 33.187000]: red target observation rejected: no usable red target component
+[WARN] [1788935858.142526, 35.239000]: red target observation rejected: no usable red target component
+[WARN] [1788935861.290791, 37.240000]: red target observation rejected: no usable red target component
+[WARN] [1788935864.235599, 39.251000]: red target observation rejected: no usable red target component
+[WARN] [1788935867.407119, 41.338000]: red target observation rejected: no usable red target component
+[WARN] [1788935870.462783, 43.367000]: red target observation rejected: no usable red target component
+[WARN] [1788935873.597940, 45.394000]: red target observation rejected: no usable red target component
+[WARN] [1788935876.656190, 47.396000]: red target observation rejected: no usable red target component
+[WARN] [1788935879.730450, 49.455000]: red target observation rejected: no usable red target component
+[WARN] [1788935882.737499, 51.474000]: red target observation rejected: no usable red target component
+[WARN] [1788935885.629695, 53.518000]: red target observation rejected: no usable red target component
+[WARN] [1788935888.607903, 55.574000]: red target observation rejected: no usable red target component
+[WARN] [1788935891.373837, 57.608000]: red target observation rejected: no usable red target component
+[WARN] [1788935894.831947, 59.670000]: red target observation rejected: no usable red target component
+[WARN] [1788935898.165317, 61.715000]: red target observation rejected: no usable red target component
+[WARN] [1788935901.450119, 63.787000]: red target observation rejected: no usable red target component
+[WARN] [1788935904.263068, 65.813000]: red target observation rejected: no usable red target component
+[WARN] [1788935906.972453, 67.862000]: red target observation rejected: no usable red target component
+[WARN] [1788935909.793756, 69.936000]: red target observation rejected: no usable red target component
+[WARN] [1788935912.538533, 72.004000]: red target observation rejected: no usable red target component
+[WARN] [1788935915.378865, 74.033000]: red target observation rejected: no usable red target component
+[WARN] [1788935918.358566, 76.079000]: red target observation rejected: no usable red target component
+[WARN] [1788935921.253782, 78.143000]: red target observation rejected: no usable red target component
+[WARN] [1788935924.099728, 80.153000]: red target observation rejected: no usable red target component
+[WARN] [1788935926.985083, 82.183000]: red target observation rejected: no usable red target component
+[WARN] [1788935930.025243, 84.214000]: red target observation rejected: no usable red target component
+[WARN] [1788935933.361915, 86.300000]: red target observation rejected: no usable red target component
+[WARN] [1788935936.305552, 88.336000]: red target observation rejected: no usable red target component
+[WARN] [1788935939.180109, 90.402000]: red target observation rejected: no usable red target component
+[WARN] [1788935942.288831, 92.416000]: red target observation rejected: no usable red target component
+[WARN] [1788935945.446736, 94.457000]: red target observation rejected: no usable red target component
+[WARN] [1788935948.438593, 96.513000]: red target observation rejected: no usable red target component
+[WARN] [1788935951.462441, 98.514000]: red target observation rejected: no usable red target component
+[WARN] [1788935954.394415, 100.562000]: red target observation rejected: no usable red target component
+[WARN] [1788935957.400689, 102.574000]: red target observation rejected: no usable red target component
+[WARN] [1788935960.392149, 104.592000]: red target observation rejected: no usable red target component
+[WARN] [1788935963.485949, 106.626000]: red target observation rejected: no usable red target component
+[WARN] [1788935966.318813, 108.684000]: red target observation rejected: no usable red target component
+[WARN] [1788935969.227686, 110.749000]: red target observation rejected: no usable red target component
+[WARN] [1788935972.057456, 112.776000]: red target observation rejected: no usable red target component
+[WARN] [1788935974.920145, 114.793000]: red target observation rejected: no usable red target component
+[WARN] [1788935977.891160, 116.794000]: red target observation rejected: no usable red target component
+[WARN] [1788935980.874893, 118.797000]: red target observation rejected: no usable red target component
+[WARN] [1788935983.808939, 120.844000]: red target observation rejected: no usable red target component
+[WARN] [1788935986.781844, 122.872000]: red target observation rejected: no usable red target component
+[WARN] [1788935989.835912, 124.897000]: red target observation rejected: no usable red target component
+[WARN] [1788935992.741756, 126.921000]: red target observation rejected: no usable red target component
+[WARN] [1788935996.202814, 128.995000]: red target observation rejected: no usable red target component
+[WARN] [1788936000.256054, 131.507000]: red target observation rejected: no usable red target component
+[WARN] [1788936003.756017, 133.559000]: red target observation rejected: no usable red target component
+[WARN] [1788936007.020525, 135.609000]: red target observation rejected: no usable red target component
+[WARN] [1788936010.040259, 137.666000]: red target observation rejected: no usable red target component
+[WARN] [1788936013.214140, 139.707000]: red target observation rejected: no usable red target component
+[WARN] [1788936016.404655, 141.710000]: red target observation rejected: no usable red target component
+[WARN] [1788936019.542458, 143.782000]: red target observation rejected: no usable red target component
+[WARN] [1788936022.434831, 145.824000]: red target observation rejected: no usable red target component
+[WARN] [1788936025.679183, 147.850000]: red target observation rejected: no usable red target component
+[WARN] [1788936028.560642, 149.870000]: red target observation rejected: no usable red target component
+[WARN] [1788936031.727057, 151.871000]: red target observation rejected: no usable red target component
+[WARN] [1788936034.807054, 153.872000]: red target observation rejected: no usable red target component
+[WARN] [1788936037.797491, 155.924000]: red target observation rejected: no usable red target component
+[WARN] [1788936041.406008, 158.138000]: red target observation rejected: target pose window is unstable
+[WARN] [1788936052.973693, 164.654000]: red target observation rejected: target pose window is unstable
+[WARN] [1788936055.898523, 166.681000]: red target observation rejected: no usable red target component
+[WARN] [1788936058.896132, 168.692000]: red target observation rejected: no usable red target component
+[WARN] [1788936062.022704, 170.704000]: red target observation rejected: no usable red target component
+[WARN] [1788936065.144496, 172.748000]: red target observation rejected: no usable red target component
+1788936033.743132987, 153.166000000]: Got new plan[0m
+[0m[INFO] [1788936034.551536608, 153.699000000]: Got new plan[0m
+[0m[INFO] [1788936035.259705815, 154.166000000]: Got new plan[0m
+[0m[INFO] [1788936036.127719956, 154.699000000]: Got new plan[0m
+[0m[INFO] [1788936036.722877879, 155.166000000]: Got new plan[0m
+[0m[INFO] [1788936037.493687366, 155.699000000]: Got new plan[0m
+[0m[INFO] [1788936038.131327233, 156.166000000]: Got new plan[0m
+[0m[INFO] [1788936038.939519595, 156.699000000]: Got new plan[0m
+[0m[INFO] [1788936039.608233693, 157.168000000]: Got new plan[0m
+[0m[INFO] [1788936040.521436254, 157.700000000]: Got new plan[0m
+[0m[INFO] [1788936041.442901114, 158.169000000]: Got new plan[0m
+[0m[INFO] [1788936042.254300149, 158.700000000]: Got new plan[0m
+[0m[INFO] [1788936043.063223891, 159.167000000]: Got new plan[0m
+[0m[INFO] [1788936044.033338193, 159.699000000]: Got new plan[0m
+[0m[INFO] [1788936044.884064471, 160.166000000]: Got new plan[0m
+[0m[INFO] [1788936045.753112695, 160.699000000]: Got new plan[0m
+[0m[INFO] [1788936046.006103219, 160.833000000]: Goal reached[0m
+[0m[INFO] [1788936051.530984681, 163.791000000]: Received request to compute Cartesian path[0m
+[0m[INFO] [1788936051.531493680, 163.791000000]: Attempting to follow 1 waypoints for link 'ground/gripper_tcp_link' using a step of 0.005000 m (in global reference frame)[0m
+[0m[INFO] [1788936051.537216708, 163.791000000]: Computed Cartesian path with 31 points (followed 100.000000% of requested trajectory)[0m
+[0m[INFO] [1788936051.558923762, 163.802000000]: Planning request received for MoveGroup action. Forwarding to planning pipeline.[0m
+[0m[INFO] [1788936051.577111891, 163.816000000]: Planner configuration 'manipulator[RRTConnectkConfigDefault]' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.[0m
+[0m[INFO] [1788936051.589149079, 163.828000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Starting planning with 1 states already in datastructure[0m
+[0m[INFO] [1788936051.589252932, 163.828000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Starting planning with 1 states already in datastructure[0m
+[0m[INFO] [1788936051.589288900, 163.828000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Starting planning with 1 states already in datastructure[0m
+[0m[INFO] [1788936051.589330944, 163.828000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Starting planning with 1 states already in datastructure[0m
+[0m[INFO] [1788936051.594754355, 163.831000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Created 4 states (2 start + 2 goal)[0m
+[0m[INFO] [1788936051.595409810, 163.831000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Created 5 states (2 start + 3 goal)[0m
+[0m[INFO] [1788936051.596777222, 163.831000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Created 5 states (2 start + 3 goal)[0m
+[0m[INFO] [1788936051.596893926, 163.831000000]: manipulator/manipulator[RRTConnectkConfigDefault]: Created 4 states (2 start + 2 goal)[0m
+[0m[INFO] [1788936051.598104195, 163.832000000]: ParallelPlan::solve(): Solution found by one or more threads in 0.009999 seconds[0m
+[0m[INFO] [1788936051.626851124, 163.855000000]: SimpleSetup: Path simplification took 0.028236 seconds and changed from 3 to 2 states[0m
+[0m[INFO] [1788936051.642994247, 163.863000000]: Received request to compute Cartesian path[0m
+[0m[INFO] [1788936051.643602490, 163.863000000]: Attempting to follow 1 waypoints for link 'ground/gripper_tcp_link' using a step of 0.005000 m (in global reference frame)[0m
+[0m[INFO] [1788936051.648972193, 163.866000000]: Computed Cartesian path with 31 points (followed 100.000000% of requested trajectory)[0m
+[0m[INFO] [1788936051.652131019, 163.871000000]: Execution request received[0m
+[0m[INFO] [1788936064.540686410, 172.381000000]: Controller '/ground/arm_controller' successfully finished[0m
+[0m[INFO] [1788936064.597231692, 172.390000000]: Completed trajectory execution with status SUCCEEDED ...[0m
+[0m[INFO] [1788936064.597640819, 172.390000000]: Execution completed: SUCCEEDED[0m
+[0m[INFO] [1788936064.598837749, 172.391000000]: Received event 'stop'[0m
+[0m[INFO] [1788936087.528945726, 186.082000000]: [uav_controller_node] exit...[0m
+[WARN] [1788936068.168231, 174.776000]: red target observation rejected: no usable red target component
+[WARN] [1788936071.312756, 176.780000]: red target observation rejected: no usable red target component
+[WARN] [1788936074.810819, 178.783000]: red target observation rejected: no usable red target component
+[WARN] [1788936078.358903, 180.810000]: red target observation rejected: no usable red target component
+[WARN] [1788936082.143901, 182.884000]: red target observation rejected: no usable red target component
+[WARN] [1788936085.591821, 184.891000]: red target observation rejected: no usable red target component
+[WARN] [1788935824.455266, 8.707000]: red target observation rejected: no usable red target component
+[WARN] [1788935826.921418, 10.875000]: red target observation rejected: Lookup would require extrapolation 0.104000000s into the past.  Requested time 10.221000000 but the earliest data is at time 10.325000000, when looking up transform from frame [uav1/camera_link] to frame [map]
+[WARN] [1788935834.204015, 16.909000]: red target observation rejected: target pose window is unstable
+[WARN] [1788935978.773599, 117.349000]: red target observation rejected: target pose window is unstable
+[WARN] [1788936014.817163, 140.694000]: red target observation rejected: target pose window is unstable
+[WARN] [1788936021.191908, 144.941000]: red target observation rejected: target pose window is unstable
+[WARN] [1788936029.154047, 150.286000]: red target observation rejected: target pose window is unstable
+[INFO] [1788935807.809820, 0.000000]: Waiting for service /gazebo/spawn_urdf_model
+[INFO] [1788935809.017828, 0.027000]: Calling service /gazebo/spawn_urdf_model
+[INFO] [1788935810.962825, 0.163000]: Spawn status: SpawnModel: Successfully spawned entity
+[INFO] [1788935815.513101, 0.680000]: Ground arm home feedback: desired=[2.654238208568396e-05, 0.000630511613506986, -0.0010779725229648736, 0.0005875350061232266, 1.1052531456482189e-05, -0.00016360225008520794] actual=[-2.441458300772581e-05, 0.0007134630021559119, -0.0013094815348786426, 0.0006737266122991414, -0.00013153360675044468, -0.00012520624989953433] error=[5.0956965093273965e-05, -8.295138864911067e-05, 0.0002315090119138219, -8.619160617584498e-05, 0.00014258613820672394, -3.839600018551437e-05]
+[INFO] [1788935815.513438, 0.680000]: Ground gripper home feedback: desired=[0.0023149347007550866] actual=[0.0020849859706553175] error=[0.00022994873009984929]
+[INFO] [1788935816.284752, 1.380000]: Ground arm home feedback: desired=[-2.8298577927338526e-05, 0.00220431197856643, 0.08718771543297632, 0.0018895889145504668, 0.09069658764322863, -0.0005791341510996384] actual=[-5.338834056267672e-05, 0.002061836963514807, 0.08793708855884574, 0.0014142243047601255, 0.09104769338183338, -0.0006221683227298769] error=[2.5089762635488455e-05, 0.00014247501505160187, -0.0007493731258696457, 0.00047536460979014095, -0.00035110573860475114, 4.3034171630207396e-05]
+[INFO] [1788935816.285133, 1.380000]: Ground gripper home feedback: desired=[0.003990425142354875] actual=[0.004402619719733103] error=[-0.00041219457737806664]
+[INFO] [1788935817.037768, 2.080000]: Ground arm home feedback: desired=[-4.590422149449732e-05, 0.0024512707146191006, 0.29331601676457864, 0.0020816812065604005, 0.2971824274919983, -0.0006448717442394471] actual=[-5.3468221965502494e-05, 0.0017609832330842679, 0.29618487723379516, 0.00038274153279882484, 0.298593984686196, -0.0008025015509129929] error=[7.564000470861032e-06, 0.0006902874815346571, -0.0028688604692166386, 0.001698939673761668, -0.0014115571941974991, 0.00015762980667366477]
+[INFO] [1788935817.038579, 2.080000]: Ground gripper home feedback: desired=[0.0013609327868546097] actual=[0.003298855779644505] error=[-0.0019379229927900532]
+[INFO] [1788935817.800576, 2.780000]: Ground arm home feedback: desired=[-3.915268187080238e-05, 0.0018661349122109576, 0.5518663084465847, 0.0015790560892033866, 0.5547994133037606, -0.0004911852882138839] actual=[-3.038556127687997e-05, 0.0005453640421988482, 0.5571555847945184, -0.0013987637330759028, 0.5571616578664003, -0.0007494387523099277] error=[-8.767120593944355e-06, 0.0013207708700120335, -0.005289276347933747, 0.002977819822279404, -0.0023622445626396704, 0.00025825346409602545]
+[INFO] [1788935818.659431, 3.481000]: Ground arm home feedback: desired=[-2.089398316881095e-05, 0.0009423286209153444, 0.7977081856495618, 0.0007958387365803272, 0.7991865258703336, -0.00024809678339977274] actual=[-2.0706527390501606e-05, -0.0008727246026687396, 0.8048900519546578, -0.003002274822721418, 0.8018739445904401, -0.0005387850649309911] error=[-1.8745577845535877e-07, 0.0018150532235838845, -0.007181866305096207, 0.003798113559301708, -0.0026874187201064714, 0.0002906882815310041]
+[INFO] [1788935819.419228, 4.180000]: Ground arm home feedback: desired=[-4.090586070891033e-06, 0.00017856805419608733, 0.9644703707607793, 0.0001506304545899565, 0.9647501877202451, -4.7021263503649845e-05] actual=[1.7385307469197642e-05, -0.001896235045858674, 0.9726737475713447, -0.003943364283609085, 0.9672780791030773, -0.0003184525598207699] error=[-2.147589353995727e-05, 0.0020748031000548117, -0.008203376810565377, 0.004093994738199047, -0.002527891382832159, 0.0002714312963170151]
+[INFO] [1788935820.189970, 4.880000]: Ground arm home feedback: desired=[0.0, -0.005615234375, 1.0, 0.0, 1.0, 0.0] actual=[-2.8397856245199193e-05, -0.007637225383460233, 1.0081307956028525, -0.004005682532898014, 1.002334064758002, -0.00024635694048313894] error=[2.8397856245199193e-05, 0.0020219910084602333, -0.008130795602852459, 0.004005682532898014, -0.002334064758001908, 0.00024635694048313894]
+[INFO] [1788935820.944200, 5.480000]: Ground arm home feedback: desired=[0.0, -0.05813867187499996, 1.0, 0.0, 1.0, 0.0] actual=[-1.7205267403674895e-05, -0.06049339135838139, 1.0084145197969168, -0.004021206911028585, 1.0024341938374137, -0.0002585489326616397] error=[1.7205267403674895e-05, 0.0023547194833812846, -0.008414519796916764, 0.004021206911028585, -0.002434193837413723, 0.0002585489326616397]
+[INFO] [1788935821.750352, 6.230000]: Ground arm home feedback: desired=[0.0, -0.17599999999999993, 1.0, 0.0, 1.0, 0.0] actual=[-1.5057306939070259e-05, -0.17903200884988735, 1.0088428177033801, -0.003963209196389705, 1.0025814160863753, -0.0002724923814074742] error=[1.5057306939070259e-05, 0.003032008849887191, -0.008842817703380135, 0.003963209196389705, -0.002581416086375299, 0.0002724923814074742]
+[INFO] [1788935822.502460, 6.930000]: Ground arm home feedback: desired=[0.0, -0.305828125, 1.0, 0.0, 1.0, 0.0] actual=[1.2567203640401203e-05, -0.3095558314219513, 1.0091659246485838, -0.003838285713946732, 1.002703931214059, -0.00028547381274890427] error=[-1.2567203640401203e-05, 0.0037277064219511935, -0.00916592464858379, 0.003838285713946732, -0.0027039312140590965, 0.00028547381274890427]
+[INFO] [1788935823.275234, 7.630000]: Ground arm home feedback: desired=[0.0, -0.421875, 1.0, 0.0, 1.0, 0.0] actual=[1.4398966012407755e-05, -0.42618056033970575, 1.009331391583678, -0.0036752560189539096, 1.002792287165799, -0.0002979967145408935] error=[-1.4398966012407755e-05, 0.00430556033970575, -0.009331391583677906, 0.0036752560189539096, -0.0027922871657990456, 0.0002979967145408935]
+[INFO] [1788935824.034156, 8.331000]: Ground arm home feedback: desired=[0.0, -0.4919843749999998, 1.0, 0.0, 1.0, 0.0] actual=[1.5875882481530823e-05, -0.49662373230820656, 1.0093881630426127, -0.0035571940547072245, 1.002808088915586, -0.0002977980558336313] error=[-1.5875882481530823e-05, 0.0046393573082066375, -0.009388163042612696, 0.0035571940547072245, -0.0028080889155859268, 0.0002977980558336313]
+[INFO] [1788935824.364022, 8.631000]: Ground robot model and controller-driven home pose are ready
+[INFO] [1788935807.801962, 0.000000]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1788935811.723247, 0.362000]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1788935811.725741, 0.362000]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1788935811.739049, 0.362000]: Loading controller: joint_state_controller
+[INFO] [1788935815.174604, 0.363000]: Loading controller: arm_controller
+[INFO] [1788935815.224342, 0.412000]: Loading controller: gripper_controller
+[INFO] [1788935815.249354, 0.437000]: Controller Spawner: Loaded controllers: joint_state_controller, arm_controller, gripper_controller
+[INFO] [1788935815.292608, 0.480000]: Started controllers: joint_state_controller, arm_controller, gripper_controller
+[INFO] [1788936087.230407, 185.864000]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1788936087.235720, 185.868000]: Stopping all controllers...
+[INFO] [1788936087.247521, 185.876000]: Unloading all loaded controllers...
+[INFO] [1788936087.251367, 185.880000]: Trying to unload gripper_controller
+[INFO] [1788936087.267489, 185.893000]: Succeeded in unloading gripper_controller
+[INFO] [1788936087.268571, 185.894000]: Trying to unload arm_controller
+[INFO] [1788936087.277470, 185.900000]: Succeeded in unloading arm_controller
+[INFO] [1788936087.279726, 185.903000]: Trying to unload joint_state_controller
+[INFO] [1788936087.290349, 185.911000]: Succeeded in unloading joint_state_controller
+ed
+WARN  [flight_mode_manager] Altitude-Ctrl activation failed with error: Activation Failed
+INFO  [commander] Armed by external command
+WARN  [commander] Failsafe enabled: No manual control stick input
+INFO  [commander] Failsafe mode activated
+INFO  [commander] Failsafe mode deactivated
+WARN  [mc_pos_control] Cruise speed has been constrained by max speed
+WARN  [mc_pos_control] Manual speed has been constrained by max speed
+INFO  [commander] Takeoff detected
+INFO  [commander] Landing detected
+INFO  [commander] Disarmed by landing
+WARN  [flight_mode_manager] Position-Ctrl activation failed with error: Activation Failed
+WARN  [flight_mode_manager] Altitude-Ctrl activation failed with error: Activation Failed
+INFO  [logger] closed logfile, bytes written: 6508302
+
+PX4 Exiting...
+Exiting NOW.
+recvfrom error: Connection reset by peer
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+Connection closed by client.
+807.434610136]: Plugin safety_area blacklisted[0m
+[0m[INFO] [1788935807.434672155]: Plugin setpoint_accel blacklisted[0m
+[0m[INFO] [1788935807.434694993]: Plugin setpoint_attitude blacklisted[0m
+[0m[INFO] [1788935807.434714129]: Plugin setpoint_position blacklisted[0m
+[0m[INFO] [1788935807.434857232]: Plugin setpoint_raw loaded[0m
+[0m[INFO] [1788935807.450279169]: Plugin setpoint_raw initialized[0m
+[0m[INFO] [1788935807.450335879]: Plugin setpoint_trajectory blacklisted[0m
+[0m[INFO] [1788935807.450371638]: Plugin setpoint_velocity blacklisted[0m
+[0m[INFO] [1788935807.450584861]: Plugin sys_status loaded[0m
+[0m[INFO] [1788935807.480403613]: Plugin sys_status initialized[0m
+[0m[INFO] [1788935807.480614043]: Plugin sys_time loaded[0m
+[0m[INFO] [1788935807.489676707]: TM: Timesync mode: MAVLINK[0m
+[0m[INFO] [1788935807.491121082]: TM: Not publishing sim time[0m
+[0m[INFO] [1788935807.492657437]: Plugin sys_time initialized[0m
+[0m[INFO] [1788935807.492855994]: Plugin terrain loaded[0m
+[0m[INFO] [1788935807.493662933]: Plugin terrain initialized[0m
+[0m[INFO] [1788935807.493699041]: Plugin trajectory blacklisted[0m
+[0m[INFO] [1788935807.493730748]: Plugin tunnel blacklisted[0m
+[0m[INFO] [1788935807.493761758]: Plugin vfr_hud blacklisted[0m
+[0m[INFO] [1788935807.493796608]: Plugin vibration blacklisted[0m
+[0m[INFO] [1788935807.493819027]: Plugin vision_pose_estimate blacklisted[0m
+[0m[INFO] [1788935807.493842424]: Plugin vision_speed_estimate blacklisted[0m
+[0m[INFO] [1788935807.493966740]: Plugin waypoint loaded[0m
+[0m[INFO] [1788935807.500884737]: Plugin waypoint initialized[0m
+[0m[INFO] [1788935807.500993828]: Plugin wheel_odometry blacklisted[0m
+[0m[INFO] [1788935807.501022952]: Plugin wind_estimation blacklisted[0m
+[0m[INFO] [1788935807.501155091]: Autostarting mavlink via USB on PX4[0m
+[0m[INFO] [1788935807.501201465]: Built-in SIMD instructions: SSE, SSE2[0m
+[0m[INFO] [1788935807.501228214]: Built-in MAVLink package version: 2025.5.5[0m
+[0m[INFO] [1788935807.501255382]: Known MAVLink dialects: common ardupilotmega ASLUAV AVSSUAS all csAirLink cubepilot development icarous loweheiser matrixpilot paparazzi standard storm32 uAvionix ualberta[0m
+[0m[INFO] [1788935807.501277242]: MAVROS started. MY ID 1.240, TARGET ID 1.1[0m
+[0m[INFO] [1788935815.390491100, 0.567000000]: udp0: Remote address: 127.0.0.1:14580[0m
+[0m[INFO] [1788935815.390602356, 0.568000000]: IMU: High resolution IMU detected![0m
+[0m[INFO] [1788935816.451791146, 1.539000000]: CON: Got HEARTBEAT, connected. FCU: PX4 Autopilot[0m
+[0m[INFO] [1788935816.453308993, 1.540000000]: IMU: High resolution IMU detected![0m
+[0m[INFO] [1788935817.458367121, 2.463000000]: WP: Using MISSION_ITEM_INT[0m
+[0m[INFO] [1788935817.458440454, 2.463000000]: VER: 1.1: Capabilities         0x000000000000e4ef[0m
+[0m[INFO] [1788935817.458475723, 2.464000000]: VER: 1.1: Flight software:     010c0300 (713814f4ee160714)[0m
+[0m[INFO] [1788935817.458492555, 2.464000000]: VER: 1.1: Middleware software: 010c0300 (713814f4ee000000)[0m
+[0m[INFO] [1788935817.458507710, 2.464000000]: VER: 1.1: OS software:         050f00ff (bf660cba2af81f05)[0m
+[0m[INFO] [1788935817.458521678, 2.464000000]: VER: 1.1: Board hardware:      00000001[0m
+[0m[INFO] [1788935817.458537183, 2.464000000]: VER: 1.1: VID/PID:             0000:0000[0m
+[0m[INFO] [1788935817.458551012, 2.464000000]: VER: 1.1: UID:                 4954414c44494e4f[0m
+[0m[INFO] [1788935822.983583408, 7.367000000]: IMU: Attitude quaternion IMU detected![0m
+[0m[INFO] [1788935833.784715924, 16.539000000]: WP: mission received[0m
+
+auto-starting new master
+[1mprocess[master]: started with pid [1548933][0m
+[1mROS_MASTER_URI=http://127.0.0.1:11951[0m
+]2;/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-08-moderate-ours/runtime.launch http://127.0.0.1:11951
+[1msetting /run_id to d3be38b4-ac18-11f1-98f0-252022cc4023[0m
+[1mprocess[rosout-1]: started with pid [1548956][0m
+started core service [/rosout]
+[1mprocess[gazebo-2]: started with pid [1548969][0m
+[1mprocess[sim_world_to_map-3]: started with pid [1548972][0m
+[1mprocess[sim_localization_uav1-4]: started with pid [1548976][0m
+[1mprocess[sim_localization_ground-5]: started with pid [1548977][0m
+[1mprocess[uav1/p450_D435i_1_spawn-6]: started with pid [1548983][0m
+[1mprocess[uav1/sitl_1-7]: started with pid [1548986][0m
+[1mprocess[uav1/mavros-8]: started with pid [1548991][0m
+[1mprocess[uav1/p450_tf_camera_depth-9]: started with pid [1548994][0m
+[1mprocess[uav1/p450_tf_camera_ired1-10]: started with pid [1549016][0m
+[1mprocess[uav1/p450_tf_camera_ired2-11]: started with pid [1549029][0m
+[1mprocess[uav1/p450_tf_camera_imu-12]: started with pid [1549046][0m
+[1mprocess[uav1/p450_tf_camera_d435i-13]: started with pid [1549059][0m
+[1mprocess[uav1/p450_tf_camera_color_optical-14]: started with pid [1549071][0m
+[1mprocess[uav1/p450_tf_depth_optical-15]: started with pid [1549087][0m
+[1mprocess[uav_control_main_1-16]: started with pid [1549099][0m
+[1mprocess[ground/velocity_guard-17]: started with pid [1549110][0m
+[1mprocess[ground/spawn_ground_robot-18]: started with pid [1549121][0m
+[1mprocess[ground/controller_spawner-19]: started with pid [1549130][0m
+[1mprocess[ground/robot_state_publisher-20]: started with pid [1549137][0m
+[1mprocess[p450_flight_facade-21]: started with pid [1549144][0m
+[1mprocess[ground/move_base-22]: started with pid [1549150][0m
+[1mprocess[ground/runtime_stop-23]: started with pid [1549164][0m
+[1mprocess[move_group-24]: started with pid [1549175][0m
+[1mprocess[air_target_observer-25]: started with pid [1549191][0m
+[1mprocess[ground_target_observer-26]: started with pid [1549204][0m
+[1mprocess[gazebo_grasp_confirmation-27]: started with pid [1549211][0m
+[1mprocess[spawn_pick_target-28]: started with pid [1549217][0m
+[1m[uav1/p450_D435i_1_spawn-6] process has finished cleanly
+log file: /media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-08-moderate-ours/ros/d3be38b4-ac18-11f1-98f0-252022cc4023/uav1-p450_D435i_1_spawn-6*.log[0m
+[1m[spawn_pick_target-28] process has finished cleanly
+log file: /media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-08-moderate-ours/ros/d3be38b4-ac18-11f1-98f0-252022cc4023/spawn_pick_target-28*.log[0m
+[gazebo_grasp_confirmation-27] killing on exit
+[ground_target_observer-26] killing on exit
+[air_target_observer-25] killing on exit
+[move_group-24] killing on exit
+[ground/runtime_stop-23] killing on exit
+[p450_flight_facade-21] killing on exit
+[ground/robot_state_publisher-20] killing on exit
+[ground/controller_spawner-19] killing on exit
+[ground/move_base-22] killing on exit
+[ground/spawn_ground_robot-18] killing on exit
+[ground/velocity_guard-17] killing on exit
+[uav_control_main_1-16] killing on exit
+[uav1/p450_tf_depth_optical-15] killing on exit
+[uav1/p450_tf_camera_color_optical-14] killing on exit
+[uav1/p450_tf_camera_d435i-13] killing on exit
+[uav1/p450_tf_camera_imu-12] killing on exit
+[uav1/p450_tf_camera_ired2-11] killing on exit
+[uav1/p450_tf_camera_ired1-10] killing on exit
+[uav1/p450_tf_camera_depth-9] killing on exit
+[uav1/mavros-8] killing on exit
+[sim_localization_ground-5] killing on exit
+[uav1/sitl_1-7] killing on exit
+[sim_localization_uav1-4] killing on exit
+[sim_world_to_map-3] killing on exit
+[gazebo-2] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

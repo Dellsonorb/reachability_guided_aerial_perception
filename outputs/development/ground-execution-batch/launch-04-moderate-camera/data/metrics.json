@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "kind": "GROUND_REPLAY_METRICS",
+  "descriptive_only": true,
+  "method": "generic",
+  "comparison_role": "conditioned_ground_diagnostic",
+  "efficiency_clock": "simulation",
+  "conditioned_on_archived_confirmation": true,
+  "conditioned_on_arrival": true,
+  "navigation_only": false,
+  "task_started": true,
+  "clock_reset_detected": false,
+  "task_start_sim": 11.983,
+  "task_end_sim": 70.069,
+  "replay_end_sim": 70.083,
+  "exec_ready_sim": null,
+  "T_task_sim": 58.086,
+  "T_exec_ready_sim": null,
+  "D_env": null,
+  "D_exec": false,
+  "navigation_success": null,
+  "ground_stopped_recorded": true,
+  "arrival_assessment": "NOT_ASSESSED_CONDITIONED_ON_ARRIVAL",
+  "arrival_xy_error_m": null,
+  "arrival_yaw_error_rad": null,
+  "retrieval_success": false,
+  "retrieval_assessment": "RECORDED_ATTEMPT",
+  "physical_success": null,
+  "adapter_run_result": false,
+  "terminal_status": "FAILED",
+  "terminal_failure_stage": "refined_pregrasp",
+  "terminal_failure_reason": "MoveIt refined pregrasp planning failed",
+  "stages": {
+    "ground_navigation": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.987,
+      "end_sim": 12.064,
+      "duration_sim_s": 0.07699999999999996
+    },
+    "ground_refine": {
+      "status": "SUCCEEDED",
+      "start_sim": 12.067,
+      "end_sim": 24.683,
+      "duration_sim_s": 12.616
+    },
+    "refined_pregrasp": {
+      "status": "FAILED",
+      "start_sim": 24.686,
+      "end_sim": 70.069,
+      "duration_sim_s": 45.383
+    },
+    "descend": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "close": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "lift": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "retention": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    }
+  },
+  "paths": {
+    "ground_total": {
+      "start_sim": 11.983,
+      "end_sim": 70.069,
+      "complete": false,
+      "distance_m": null,
+      "observed_distance_lower_bound_m": 0.0010594391540771004,
+      "yaw_travel_rad": null,
+      "observed_yaw_lower_bound_rad": 1.3160115953869678e-05,
+      "sample_count": 574,
+      "missing_samples": 2,
+      "gap_count": 0,
+      "clock_reset": false
+    }
+  },
+  "note": "Conditioned on the archived confirmed candidate; arrival conditioning is explicit. No aerial discovery, windows, flight metrics or E2E comparison are inferred. LIFT and diagnostic IK do not establish physical retrieval; original outcomes remain authoritative.",
+  "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-execution-batch/launch-04-moderate-camera",
+  "source": "saved_ground_replay_events_and_online_public_tf",
+  "missing_files": [],
+  "outcome_source": "attempt.json",
+  "original_outcome_unchanged": true
+}

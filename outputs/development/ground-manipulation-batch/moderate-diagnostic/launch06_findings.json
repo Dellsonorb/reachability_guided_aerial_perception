@@ -1,0 +1,940 @@
+{
+  "T_base_map_from_perceived_scene": [
+    [
+      -0.9999999999998318,
+      5.804327612851656e-07,
+      0.0,
+      2.536828371485191
+    ],
+    [
+      -5.804327612921045e-07,
+      -0.9999999999998318,
+      0.0,
+      -0.3799553360670912
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      -0.36
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "accepted_refined": {
+    "measured_gripper_opening": 0.09495337058102202,
+    "observation_stamp": 23.346,
+    "ros_time": 23.824,
+    "state": "GROUND_REFINED",
+    "target_map": [
+      2.058489459985013,
+      0.07944843012284865,
+      0.05857919684434868,
+      0.05584618446422396
+    ],
+    "wall_monotonic": 179581.160100647
+  },
+  "arm_goals": [
+    {
+      "duration": 7.83858131,
+      "endpoint": [
+        1.4125861940131312,
+        -0.622640486195826,
+        -0.522404643637408,
+        0.45864379877510714,
+        1.5595828424283245,
+        2.5695957202592288
+      ],
+      "joint_names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 15.913,
+      "trajectory_stamp": 0.0
+    },
+    {
+      "duration": 11.26148987,
+      "endpoint": [
+        -1.1471334737526997,
+        1.1445852820968205,
+        1.9743416294604348,
+        2.4206270325366623,
+        1.5707084565091536,
+        -1.2229095867188269
+      ],
+      "joint_names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 26.103,
+      "trajectory_stamp": 0.0
+    }
+  ],
+  "arm_results": [
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 23.765,
+      "status": 3
+    },
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 37.404,
+      "status": 3
+    }
+  ],
+  "candidate": {
+    "source_id": 624,
+    "x": 2.5368278045875257,
+    "y": -0.3799571971654724,
+    "yaw": -3.141592653589793
+  },
+  "cases": {
+    "actual_arm_preshape_gripper": {
+      "T_base_tcp": [
+        [
+          -0.0026608254763135666,
+          0.05485722133557243,
+          -0.998490663589362,
+          0.47676639823574574
+        ],
+        [
+          0.003920658128126142,
+          -0.9984859516857054,
+          -0.05486741041941719,
+          -0.45708883682302553
+        ],
+        [
+          -0.9999887741608037,
+          -0.004060733139523126,
+          0.002441720447270781,
+          -0.13368209488010319
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "collision_meshes": {
+        "ground/left_finger": {
+          "collision_origin_T_base": [
+            [
+              -0.0548572213355723,
+              0.998490663589362,
+              -0.002660825476313508,
+              0.4787403749670143
+            ],
+            [
+              0.9984859516857053,
+              0.05486741041941706,
+              0.003920658128126309,
+              -0.48626436441044896
+            ],
+            [
+              0.004060733139523154,
+              -0.00244172044727072,
+              -0.9999887741608038,
+              0.017937100669471878
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 80,
+          "maximum_axis_gap_m": -0.0017384418456621864,
+          "triangle_box_intersections": 38,
+          "witness_inside_depth_m": 0.0017384418456621864,
+          "witness_xyz_base_m": [
+            0.48363219426278026,
+            -0.3882765751543378,
+            -0.0800388013716672
+          ]
+        },
+        "ground/left_outer_knuckle": {
+          "collision_origin_T_base": [
+            [
+              -0.028642464317283577,
+              0.998490663589362,
+              0.04686154033649027,
+              0.47146735818230884
+            ],
+            [
+              0.48227875238028256,
+              0.05486741041941706,
+              -0.8742978738830287,
+              -0.35258160426467405
+            ],
+            [
+              -0.8755494356347624,
+              -0.00244172044727072,
+              -0.48312236934435815,
+              0.047747028887486956
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 118,
+          "maximum_axis_gap_m": -0.001378473646874101,
+          "triangle_box_intersections": 58,
+          "witness_inside_depth_m": 0.001378473646874101,
+          "witness_xyz_base_m": [
+            0.477365280476054,
+            -0.38863654335312586,
+            -0.08044420207340318
+          ]
+        }
+      },
+      "gripper_joint": 0.2906329552553677,
+      "tcp_minus_required_base_xyz_m": [
+        -0.0015725593792503822,
+        0.0023161241816223033,
+        -0.004161291724451871
+      ],
+      "tcp_position_error_norm_m": 0.0050153487457958055,
+      "tcp_quaternion_xyzw_base": [
+        -0.7059361525241006,
+        -0.0208155791616339,
+        0.7077408596388387,
+        -0.01799266020667483
+      ],
+      "tcp_rotation_error_rad": 0.004833918440354549
+    },
+    "executed_feedback": {
+      "T_base_tcp": [
+        [
+          -0.0026608254763135666,
+          0.05485722133557243,
+          -0.998490663589362,
+          0.47676639823574574
+        ],
+        [
+          0.003920658128126142,
+          -0.9984859516857054,
+          -0.05486741041941719,
+          -0.45708883682302553
+        ],
+        [
+          -0.9999887741608037,
+          -0.004060733139523126,
+          0.002441720447270781,
+          -0.13368209488010319
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "collision_meshes": {
+        "ground/left_finger": {
+          "collision_origin_T_base": [
+            [
+              -0.0548572213355723,
+              0.998490663589362,
+              -0.0026608254763135133,
+              0.47883244458837454
+            ],
+            [
+              0.9984859516857053,
+              0.05486741041941706,
+              0.003920658128126253,
+              -0.487980321347514
+            ],
+            [
+              0.004060733139523154,
+              -0.00244172044727072,
+              -0.9999887741608036,
+              0.017028128390487604
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 4,
+          "maximum_axis_gap_m": -2.248490859713126e-05,
+          "triangle_box_intersections": 4,
+          "witness_inside_depth_m": 2.248490859713126e-05,
+          "witness_xyz_base_m": [
+            0.48372426388414047,
+            -0.38999253209140283,
+            -0.08094777365065146
+          ]
+        },
+        "ground/left_outer_knuckle": {
+          "collision_origin_T_base": [
+            [
+              -0.02696847120164314,
+              0.998490663589362,
+              0.04784450110432245,
+              0.47130930740271343
+            ],
+            [
+              0.4510795353427376,
+              0.05486741041941706,
+              -0.8907956107148521,
+              -0.349815113929162
+            ],
+            [
+              -0.892076204343567,
+              -0.00244172044727072,
+              -0.45187839475375613,
+              0.04528070759100351
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.00035533974346069197,
+          "triangle_box_intersections": 0
+        }
+      },
+      "gripper_joint": 0.3259806223720947,
+      "tcp_minus_required_base_xyz_m": [
+        -0.0015725593792503822,
+        0.0023161241816223033,
+        -0.004161291724451871
+      ],
+      "tcp_position_error_norm_m": 0.0050153487457958055,
+      "tcp_quaternion_xyzw_base": [
+        -0.7059361525241006,
+        -0.0208155791616339,
+        0.7077408596388387,
+        -0.01799266020667483
+      ],
+      "tcp_rotation_error_rad": 0.004833918440354549
+    },
+    "planned_arm_actual_gripper": {
+      "T_base_tcp": [
+        [
+          0.0001004077328241215,
+          0.05563964346438284,
+          -0.9984509101570511,
+          0.4783130198055565
+        ],
+        [
+          -1.6073626527178388e-05,
+          -0.9984509149713199,
+          -0.05563964534908329,
+          -0.45944786999729853
+        ],
+        [
+          -0.9999999948299628,
+          2.1635377680162273e-05,
+          -9.935786185921045e-05,
+          -0.1295151536109715
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "collision_meshes": {
+        "ground/left_finger": {
+          "collision_origin_T_base": [
+            [
+              -0.05563964346438272,
+              0.9984509101570511,
+              0.00010040773282417662,
+              0.4799863185765603
+            ],
+            [
+              0.9984509149713198,
+              0.05563964534908317,
+              -1.6073626527002283e-05,
+              -0.48974449379549934
+            ],
+            [
+              -2.163537767996271e-05,
+              9.935786185927169e-05,
+              -0.9999999948299627,
+              0.02132064591812735
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.002124145375309916,
+          "triangle_box_intersections": 0
+        },
+        "ground/left_outer_knuckle": {
+          "collision_origin_T_base": [
+            [
+              -0.024850910417680186,
+              0.9984509101570511,
+              0.04978164579409636,
+              0.47227836882597674
+            ],
+            [
+              0.4475447599984793,
+              0.05563964534908317,
+              -0.89252894500029,
+              -0.3514751281312637
+            ],
+            [
+              -0.8939161705939296,
+              9.935786185927169e-05,
+              -0.44823416879874256,
+              0.04900819537640051
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.0025092332640192505,
+          "triangle_box_intersections": 0
+        }
+      },
+      "gripper_joint": 0.3259806223720947,
+      "tcp_minus_required_base_xyz_m": [
+        -2.5937809439602333e-05,
+        -4.2908992650692035e-05,
+        5.64954467982548e-06
+      ],
+      "tcp_position_error_norm_m": 5.045660476004714e-05,
+      "tcp_quaternion_xyzw_base": [
+        0.7068682127111819,
+        0.01967253896752279,
+        -0.7067975575397523,
+        0.019685876279991247
+      ],
+      "tcp_rotation_error_rad": 0.00020532114141284864
+    },
+    "planned_endpoint": {
+      "T_base_tcp": [
+        [
+          0.0001004077328241215,
+          0.05563964346438284,
+          -0.9984509101570511,
+          0.4783130198055565
+        ],
+        [
+          -1.6073626527178388e-05,
+          -0.9984509149713199,
+          -0.05563964534908329,
+          -0.45944786999729853
+        ],
+        [
+          -0.9999999948299628,
+          2.1635377680162273e-05,
+          -9.935786185921045e-05,
+          -0.1295151536109715
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "collision_meshes": {
+        "ground/left_finger": {
+          "collision_origin_T_base": [
+            [
+              -0.05563964346438272,
+              0.9984509101570511,
+              0.00010040773282417488,
+              0.47989041094240337
+            ],
+            [
+              0.9984509149713199,
+              0.05563964534908317,
+              -1.6073626527168816e-05,
+              -0.488025046304818
+            ],
+            [
+              -2.1635377680129242e-05,
+              9.935786185927169e-05,
+              -0.9999999948299628,
+              0.02222259806846627
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.000404697884628602,
+          "triangle_box_intersections": 0
+        },
+        "ground/left_outer_knuckle": {
+          "collision_origin_T_base": [
+            [
+              -0.026594685584170497,
+              0.9984509101570511,
+              0.0488723102097246,
+              0.4724317387166822
+            ],
+            [
+              0.4788074416472295,
+              0.05563964534908317,
+              -0.8761550454620816,
+              -0.3542317682403576
+            ],
+            [
+              -0.8775170405877676,
+              9.935786185927169e-05,
+              -0.47954544477671934,
+              0.051485815716254865
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.0007711682163100142,
+          "triangle_box_intersections": 0
+        }
+      },
+      "gripper_joint": 0.2906329552553677,
+      "tcp_minus_required_base_xyz_m": [
+        -2.5937809439602333e-05,
+        -4.2908992650692035e-05,
+        5.64954467982548e-06
+      ],
+      "tcp_position_error_norm_m": 5.045660476004714e-05,
+      "tcp_quaternion_xyzw_base": [
+        0.7068682127111819,
+        0.01967253896752279,
+        -0.7067975575397523,
+        0.019685876279991247
+      ],
+      "tcp_rotation_error_rad": 0.00020532114141284864
+    },
+    "public_tf_meshes": {
+      "T_base_tcp": [
+        [
+          -0.002704410268601859,
+          0.05488192472949999,
+          -0.9984891889765686,
+          0.47676641001309
+        ],
+        [
+          0.003934683488529324,
+          -0.9984845270995891,
+          -0.054892325588881796,
+          -0.4570689762860745
+        ],
+        [
+          -0.9999886021505173,
+          -0.0040771902943314235,
+          0.0024843688050764407,
+          -0.1336927109154628
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "collision_meshes": {
+        "ground/left_finger": {
+          "collision_origin_T_base": [
+            [
+              -0.05488192472949978,
+              0.9984891889765686,
+              -0.002704410268601423,
+              0.47884078260192586
+            ],
+            [
+              0.9984845270995892,
+              0.054892325588881574,
+              0.0039346834885296,
+              -0.48798119623224173
+            ],
+            [
+              0.004077190294331845,
+              -0.0024843688050762195,
+              -0.9999886021505174,
+              0.01700752374245587
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 4,
+          "maximum_axis_gap_m": -2.311253913717115e-05,
+          "triangle_box_intersections": 4,
+          "witness_inside_depth_m": 2.311253913717115e-05,
+          "witness_xyz_base_m": [
+            0.4837258995174394,
+            -0.3899919044608628,
+            -0.08096720999519062
+          ]
+        },
+        "ground/left_outer_knuckle": {
+          "collision_origin_T_base": [
+            [
+              -0.027000278636490585,
+              0.9984891889765686,
+              0.04785733434351798,
+              0.4713127487414641
+            ],
+            [
+              0.4507521044002925,
+              0.054892325588881574,
+              -0.8909598043515504,
+              -0.34976857748988693
+            ],
+            [
+              -0.8922407328363017,
+              -0.0024843688050762195,
+              -0.4515532112380347,
+              0.04524473410884052
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "inside_vertex_count": 0,
+          "maximum_axis_gap_m": 0.00035508939252915095,
+          "triangle_box_intersections": 0
+        }
+      },
+      "gripper_joint": 0.3259806223720947,
+      "tcp_minus_required_base_xyz_m": [
+        -0.0015725476019061158,
+        0.002335984718573325,
+        -0.004171907759811494
+      ],
+      "tcp_position_error_norm_m": 0.005033343314541949,
+      "tcp_quaternion_xyzw_base": [
+        -0.7059206308123303,
+        -0.020829752542558245,
+        0.7077558382262324,
+        -0.017996051211903077
+      ],
+      "tcp_rotation_error_rad": 0.004864551558795812
+    }
+  },
+  "chassis_box_base_minmax_m": [
+    [
+      -0.4951086975,
+      -0.39001501699999996,
+      -0.35799813199999997
+    ],
+    [
+      0.5312265214999999,
+      0.392729919,
+      0.037156649999999986
+    ]
+  ],
+  "controller_samples_at_failure": {
+    "/ground/arm_controller/state": {
+      "actual_position": [
+        1.973968116834378,
+        1.1499843718164158,
+        -1.1511316867293289,
+        2.415932011081688,
+        1.5717008650457327,
+        -1.2224993294927238
+      ],
+      "desired_position": [
+        1.974341629460433,
+        1.1445852820968205,
+        -1.1471334737526986,
+        2.420627032536664,
+        1.5707084565091511,
+        -1.2229095867188282
+      ],
+      "joint_names": [
+        "shoulder_pan_joint",
+        "shoulder_lift_joint",
+        "elbow_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "position_error": [
+        0.0003735126260551169,
+        -0.005399089719595018,
+        0.003998212976630278,
+        0.004695021454975912,
+        -0.0009924085365815571,
+        -0.00041025722610443793
+      ],
+      "stamp": 37.424
+    },
+    "/ground/gripper_controller/state": {
+      "actual_position": [
+        0.3259523440283534
+      ],
+      "desired_position": [
+        0.29271008403361354
+      ],
+      "joint_names": [
+        "left_outer_knuckle_joint"
+      ],
+      "position_error": [
+        -0.03324225999473995
+      ],
+      "stamp": 37.424
+    }
+  },
+  "failure": {
+    "reason": "grasp approach start full robot state invalid; collisions=['ground/left_finger/ground/base_link']",
+    "ros_time": 37.424,
+    "state": "FAILED",
+    "wall_monotonic": 179604.193130159
+  },
+  "failure_conservative_aperture_m": 0.061830800806641495,
+  "joint_samples": {
+    "failed": {
+      "positions": {
+        "elbow_joint": -1.1511326607445165,
+        "left_outer_knuckle_joint": 0.3259806223720947,
+        "shoulder_lift_joint": 1.1499854304829906,
+        "shoulder_pan_joint": 1.9739708748931424,
+        "wrist_1_joint": 2.415932185755203,
+        "wrist_2_joint": 1.5717037422613327,
+        "wrist_3_joint": -1.2225000345662025
+      },
+      "stamp": 37.423
+    },
+    "preshape": {
+      "positions": {
+        "elbow_joint": 1.4208376336079818,
+        "left_outer_knuckle_joint": 0.2906329552553677,
+        "shoulder_lift_joint": -0.6274929727218872,
+        "shoulder_pan_joint": -0.5224044678106026,
+        "wrist_1_joint": 0.45546568232055407,
+        "wrist_2_joint": 1.5596043699157907,
+        "wrist_3_joint": 2.569594204736431
+      },
+      "stamp": 26.003
+    }
+  },
+  "measured_minus_planned_tcp": {
+    "first_minus_second_xyz_m": [
+      -0.00154662156981078,
+      0.0023590331742729953,
+      -0.0041669412691316965
+    ],
+    "orientation_error_rad": 0.004871172151129968,
+    "position_error_norm_m": 0.005031945482407114
+  },
+  "planning_outcomes": [
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "ros_time": 26.023,
+      "stage": "grasp_ik",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 179585.716939805
+    },
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "fraction": 1.0,
+      "ros_time": 26.028,
+      "stage": "reverse_approach",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 179585.734828667
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "ros_time": 26.079,
+      "stage": "pregrasp_trajectory",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "success": true,
+      "wall_monotonic": 179585.821734057
+    },
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "fraction": 1.0,
+      "ros_time": 26.092,
+      "stage": "forward_approach",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 179585.845808292
+    }
+  ],
+  "preshape": {
+    "commanded_joint": 0.29271008403361354,
+    "measured_joint": 0.2906401077395726,
+    "measured_opening": 0.06544845348730398,
+    "required_opening": 0.055,
+    "ros_time": 26.006,
+    "state": "GROUND_GRIPPER_PRESHAPE",
+    "tracking_tolerance": 0.1,
+    "wall_monotonic": 179585.678570083
+  },
+  "public_tf_T_base_tcp": [
+    [
+      -0.002704410268601859,
+      0.05488192472949999,
+      -0.9984891889765686,
+      0.47676641001309
+    ],
+    [
+      0.003934683488529324,
+      -0.9984845270995891,
+      -0.054892325588881796,
+      -0.4570689762860745
+    ],
+    [
+      -0.9999886021505173,
+      -0.0040771902943314235,
+      0.0024843688050764407,
+      -0.1336927109154628
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "public_tf_edge_stamps": {
+    "ground/ag95_base_link": 0.157,
+    "ground/ag95_body": 0.157,
+    "ground/aubo_i5_base_link": 0.157,
+    "ground/aubo_mount_link": 0.157,
+    "ground/base_link": 37.415,
+    "ground/d435_color_optical_frame": 0.157,
+    "ground/d435_depth_optical_frame": 0.157,
+    "ground/d435_link": 0.157,
+    "ground/d435_mount_link": 0.157,
+    "ground/ee_link": 0.157,
+    "ground/forearm_link": 37.413,
+    "ground/gripper_tcp_link": 0.157,
+    "ground/imu_link": 0.157,
+    "ground/left_finger": 37.413,
+    "ground/left_finger_pad": 0.157,
+    "ground/left_inner_knuckle": 37.413,
+    "ground/left_outer_knuckle": 37.413,
+    "ground/lidar_2d_link": 0.157,
+    "ground/odom": 0.0,
+    "ground/right_finger": 37.413,
+    "ground/right_finger_pad": 0.157,
+    "ground/right_inner_knuckle": 37.413,
+    "ground/right_outer_knuckle": 37.413,
+    "ground/shoulder_link": 37.413,
+    "ground/upper_arm_link": 37.413,
+    "ground/wheel1_1_Link": 0.157,
+    "ground/wheel1_2_Link": 0.157,
+    "ground/wheel1_3_Link": 0.157,
+    "ground/wheel1_Link": 0.158,
+    "ground/wheel2_1_Link": 0.158,
+    "ground/wheel2_2_Link": 0.158,
+    "ground/wheel2_3_Link": 0.158,
+    "ground/wheel2_Link": 0.158,
+    "ground/wheel3_1_Link": 0.158,
+    "ground/wheel3_2_Link": 0.158,
+    "ground/wheel3_3_Link": 0.158,
+    "ground/wheel3_Link": 0.158,
+    "ground/wheel4_1_Link": 0.158,
+    "ground/wheel4_2_Link": 0.158,
+    "ground/wheel4_3_Link": 0.158,
+    "ground/wheel4_Link": 0.158,
+    "ground/wrist_1_link": 37.413,
+    "ground/wrist_2_link": 37.413,
+    "ground/wrist_3_link": 37.413
+  },
+  "public_tf_minus_feedback_fk_tcp": {
+    "first_minus_second_xyz_m": [
+      1.1777344266494794e-08,
+      1.9860536951021857e-05,
+      -1.0616035359622966e-05
+    ],
+    "orientation_error_rad": 5.206399617120587e-05,
+    "position_error_norm_m": 2.2519797366883826e-05
+  },
+  "public_tf_minus_planned_tcp": {
+    "first_minus_second_xyz_m": [
+      -0.0015466097924665134,
+      0.002378893711224017,
+      -0.0041775573044913195
+    ],
+    "orientation_error_rad": 0.004903414466933755,
+    "position_error_norm_m": 0.005050061600788971
+  },
+  "required_pregrasp_T_base_tcp": [
+    [
+      4.027561348909675e-24,
+      0.055817739706072,
+      -0.9984409746870898,
+      0.4783389576149961
+    ],
+    [
+      -6.938893903906061e-18,
+      -0.9984409746870897,
+      -0.055817739706072005,
+      -0.45940496100464784
+    ],
+    [
+      -1.0000000000000002,
+      0.0,
+      0.0,
+      -0.12952080315565132
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "run": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-manipulation-batch/launch-06-moderate-full-robot",
+  "scope": {
+    "first_collision": "first recorded full-state validity failure, not proof of first physical contact time",
+    "inputs": "accepted perception events, public JointState/controller/action/TF topics, existing rendered URDF and STL collision meshes",
+    "mesh_test": "strict vertex-inside-box plus triangle-box separating-axis test; not AABB-overlap inference",
+    "no_gt": true,
+    "no_runtime_calls": true,
+    "planned_gripper": "recorded preshape feedback; exact planning-service request state was not recorded",
+    "unverified": "physical contact force, all arm branches, attached payload and complete lift path"
+  }
+}

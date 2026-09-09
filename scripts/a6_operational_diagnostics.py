@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Describe saved v1.1 gate evidence without replay, GT, queries or policy changes.
+"""Describe saved operational gate evidence without replay, GT, queries or policy changes.
 
 Class cell counts overlap. Exact TARGET alias retention is not confirmation,
 execution readiness or retrieval. Missing evidence is null, never a zero count.
@@ -25,12 +25,27 @@ def _positive(value):
     return None if value is None else bool(value > 0)
 
 
+def _ambiguous_blocked(candidate, semantics):
+    """Use saved endpoint hits/fallback; coarse cells only certify legacy blocking."""
+    if 'ambiguous_subcell' not in candidate and semantics not in ('object-aware-v1.3', 'object-aware-v1.4'):
+        return _positive((candidate.get('operational') or {}).get('ambiguous_cells'))
+    sidecar = candidate.get('ambiguous_subcell')
+    if not isinstance(sidecar, dict):
+        return None
+    causes = [sidecar.get(key) for key in (
+        'intersecting_endpoint_indices', 'legacy_fallback_cell_ids')]
+    if any(isinstance(values, (list, tuple)) and len(values) > 0 for values in causes):
+        return True
+    return False if all(isinstance(values, (list, tuple)) for values in causes) else None
+
+
 def describe_round(decision, operational_summary, arrays):
     """Project saved exact assessments and vote arrays; do not infer missing gates."""
     unavailable = [name for name, value in (
         ('decision.json', decision), ('operational_summary.json', operational_summary),
         ('operational_evidence.npz', arrays)) if value is None]
     decision, summary = decision or {}, operational_summary or {}
+    semantics = summary.get('operational_semantics') or decision.get('operational_semantics')
     applicable = decision.get('policy_method') != 'rm4d_only'
     association = summary.get('association_status', 'UNAVAILABLE')
     if association != 'AVAILABLE':
@@ -63,7 +78,7 @@ def describe_round(decision, operational_summary, arrays):
         row['operational_blocked'] = gate.get('blocked')
         row['raw_grid_blocked'] = _positive(row['occupied_cells'])
         row['environment_blocked'] = _positive(row['environment_cells'])
-        row['ambiguous_blocked'] = _positive(row['ambiguous_cells'])
+        row['ambiguous_blocked'] = _ambiguous_blocked(candidate, semantics)
         exact, representative = row['operational_blocked'], row['representative_blocked']
         row['combined_blocked'] = (True if exact is True or representative is True else
                                    False if exact is False and representative is False else None)
@@ -80,7 +95,7 @@ def describe_round(decision, operational_summary, arrays):
     result = dict(
         status='UNAVAILABLE' if not decision else 'PARTIAL' if unavailable else 'AVAILABLE',
         mechanism_applicable=applicable, round=decision.get('round'),
-        operational_semantics=summary.get('operational_semantics', decision.get('operational_semantics')),
+        operational_semantics=semantics,
         association_status=association, reference_file=summary.get('reference_file'),
         target=summary.get('target'), observation_windows=summary.get('observation_windows'),
         occupied_classes=classes, occupied_class_cell_counts_exclusive=False,

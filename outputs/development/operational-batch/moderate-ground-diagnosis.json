@@ -1,0 +1,166 @@
+{
+  "runtime_geometry_only": true,
+  "data": "outputs/development/operational-batch/launch-02-moderate-regression/data",
+  "footprint_half_sizes_m": [
+    0.52,
+    0.39
+  ],
+  "candidates": [
+    {
+      "source_id": 705,
+      "pose": [
+        2.627148928244229,
+        -0.29954544384835335,
+        -2.617993877991494
+      ],
+      "missing_cells": [
+        781
+      ],
+      "cells": [
+        {
+          "cell_id": 781,
+          "observations": [
+            {
+              "round": 1,
+              "ground_endpoints": 19,
+              "ground_inside_exact_footprint": 6,
+              "ambiguous_endpoints": 1,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.0944329557978924
+            },
+            {
+              "round": 2,
+              "ground_endpoints": 31,
+              "ground_inside_exact_footprint": 7,
+              "ambiguous_endpoints": 4,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08749143292549111
+            },
+            {
+              "round": 3,
+              "ground_endpoints": 27,
+              "ground_inside_exact_footprint": 4,
+              "ambiguous_endpoints": 3,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08623615049123401
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": 584,
+      "pose": [
+        2.5485481391754132,
+        -0.51549933696624,
+        1.919862177193762
+      ],
+      "missing_cells": [
+        780,
+        781
+      ],
+      "cells": [
+        {
+          "cell_id": 780,
+          "observations": [
+            {
+              "round": 1,
+              "ground_endpoints": 16,
+              "ground_inside_exact_footprint": 0,
+              "ambiguous_endpoints": 3,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.09455529713263977
+            },
+            {
+              "round": 2,
+              "ground_endpoints": 29,
+              "ground_inside_exact_footprint": 0,
+              "ambiguous_endpoints": 20,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08596593193160662
+            },
+            {
+              "round": 3,
+              "ground_endpoints": 37,
+              "ground_inside_exact_footprint": 0,
+              "ambiguous_endpoints": 17,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.0863696706062771
+            }
+          ]
+        },
+        {
+          "cell_id": 781,
+          "observations": [
+            {
+              "round": 1,
+              "ground_endpoints": 19,
+              "ground_inside_exact_footprint": 13,
+              "ambiguous_endpoints": 1,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08760882448990759
+            },
+            {
+              "round": 2,
+              "ground_endpoints": 31,
+              "ground_inside_exact_footprint": 8,
+              "ambiguous_endpoints": 4,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08369352271695929
+            },
+            {
+              "round": 3,
+              "ground_endpoints": 27,
+              "ground_inside_exact_footprint": 5,
+              "ambiguous_endpoints": 3,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08322549267596879
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": 623,
+      "pose": [
+        2.422245117676563,
+        -0.5044492544160193,
+        1.0471975511965974
+      ],
+      "missing_cells": [
+        781
+      ],
+      "cells": [
+        {
+          "cell_id": 781,
+          "observations": [
+            {
+              "round": 1,
+              "ground_endpoints": 19,
+              "ground_inside_exact_footprint": 8,
+              "ambiguous_endpoints": 1,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.08557705802221938
+            },
+            {
+              "round": 2,
+              "ground_endpoints": 31,
+              "ground_inside_exact_footprint": 8,
+              "ambiguous_endpoints": 4,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.07115551878174142
+            },
+            {
+              "round": 3,
+              "ground_endpoints": 27,
+              "ground_inside_exact_footprint": 7,
+              "ambiguous_endpoints": 3,
+              "environment_endpoints": 0,
+              "nearest_ambiguous_distance_m": 0.06785652087344685
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

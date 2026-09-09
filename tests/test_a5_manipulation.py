@@ -136,6 +136,7 @@ class RefinedPregraspTests(unittest.TestCase):
         self.assertEqual(reverse.jump_threshold, 0.)
         self.assertTrue(reverse.avoid_collisions)
         self.assertEqual((self.pregrasp, self.grasp), before)
+        self.assertIs(self.node._ground_last_grasp, self.grasp)
         self.assertIn(("joint_target", {"j1": .7, "j2": .8}), self.group.calls)
 
     def test_all_validation_precedes_execution(self):
@@ -150,6 +151,13 @@ class RefinedPregraspTests(unittest.TestCase):
 
     def test_failed_ik_never_executes(self):
         self.ik_response.error_code.val = -31
+        logged = []
+        self.node._publish_status = lambda state, **values: logged.append(dict(state=state, **values))
+        self.assert_no_execution()
+        self.assertEqual([row['error_code'] for row in logged if row['stage'] == 'grasp_ik'], [-31, -31])
+
+    def test_missing_reverse_response_remains_a_rejected_plan(self):
+        self.reverse_response = None
         self.assert_no_execution()
 
     def test_each_retry_uses_fresh_joint_feedback(self):
@@ -291,6 +299,38 @@ class AdapterOverrideTests(unittest.TestCase):
         self.assertEqual(pose_calls, [(exact, "map", stamp)])
         self.assertEqual(transform_calls, [(message, "planning")])
         self.assertEqual(inherited_scopes, [transformed])
+        self.assertIsNone(node._a5_refined_grasp)
+
+    def test_full_robot_pick_cache_uses_shared_contact_configuration_grasp(self):
+        adapter = load_script("run_a5_sim")
+        exact = object()
+        calls = []
+
+        class Base:
+            def _generate_ground_grasp(self, target):
+                calls.append(("generate", target))
+                return SimpleNamespace(grasp=exact)
+
+            def _pick_and_lift(self, sensor_pose, target):
+                calls.append(("execute", target, self._a5_refined_grasp))
+                return "physical-result"
+
+        fake = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=Base)
+        with patch.dict(sys.modules, self.adapter_modules()):
+            cls = adapter.build_adapter_class(fake, SimpleNamespace())
+        node = object.__new__(cls)
+        node._full_robot_manipulation = True
+        node._map_frame = "map"
+        node._initialize_moveit = lambda: SimpleNamespace(get_planning_frame=lambda: "planning")
+        node._pose_message = lambda value, frame, stamp: (value, frame, stamp)
+        node._transform_pose = lambda value, frame: (value, frame)
+        sensor = SimpleNamespace(header=SimpleNamespace(stamp=12.3))
+        result = node._pick_and_lift(sensor, "runtime-refined-target")
+        self.assertEqual("physical-result", result)
+        self.assertEqual([
+            ("generate", "runtime-refined-target"),
+            ("execute", "runtime-refined-target", ((exact, "map", 12.3), "planning")),
+        ], calls)
         self.assertIsNone(node._a5_refined_grasp)
 
     def test_implicit_refined_pregrasp_routes_to_helper(self):

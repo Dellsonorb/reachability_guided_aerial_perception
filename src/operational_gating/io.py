@@ -14,7 +14,7 @@ def record_initial_context(initial_path, request):
     revision = request.get('operational_gating', 'v1')
     if revision == 'v1':
         return
-    if revision not in ('v1.1', 'v1.3'):
+    if revision not in ('v1.1', 'v1.3', 'v1.4'):
         raise ValueError('unsupported operational gating revision')
     target = PerceivedTarget(**request['perceived_target'])
     if target.geometry_allowance_m != 0:
@@ -46,7 +46,7 @@ def build_operational_context(initial, grid, observations, config):
     revision = initial.get('operational_gating', 'v1')
     if revision == 'v1':
         return None, None
-    if revision not in ('v1.1', 'v1.3'):
+    if revision not in ('v1.1', 'v1.3', 'v1.4'):
         raise ValueError('unsupported operational gating revision')
     target = PerceivedTarget(**initial['perceived_target'])
     if target.geometry_allowance_m != 0:
@@ -67,7 +67,8 @@ def build_operational_context(initial, grid, observations, config):
         mapped[finite] = points[finite] @ t[:3, :3].T + t[:3, 3]
         labels.append(associate_returns(mapped, target, reference))
     view = derive_operational_evidence(grid, observations, target, labels=labels, config=config,
-                                      retain_ambiguous_endpoints=revision == 'v1.3')
+                                      retain_ambiguous_endpoints=revision in ('v1.3', 'v1.4'),
+                                      retain_ground_presence=revision == 'v1.4')
     metadata = dict(
         operational_semantics=view.operational_semantics,
         association_status='AVAILABLE' if reference is not None else 'UNAVAILABLE',
@@ -76,6 +77,9 @@ def build_operational_context(initial, grid, observations, config):
         target=asdict(target), geometry_allowance_semantics='declared_sensor_budget_not_calibrated_accuracy',
         raw_a2_unchanged=True, ground_semantics='actual_ground_votes_with_environment_or_ambiguous_priority',
         observation_windows=len(observations))
+    if view.ground_presence_votes is not None:
+        metadata['ground_semantics'] = (
+            'actual_ground_presence_before_occupied_suppression_with_independent_blocking')
     if view.ambiguous_endpoints is not None:
         sidecar = view.ambiguous_endpoints
         metadata['ambiguous_endpoint_profile'] = dict(
@@ -94,6 +98,8 @@ def save_operational(directory, view, metadata):
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     names = ('environment_occupied_votes', 'ambiguous_occupied_votes', 'target_occupied_votes', 'ground_votes')
+    if view.ground_presence_votes is not None:
+        names += ('ground_presence_votes',)
     endpoint_arrays = {}
     if view.ambiguous_endpoints is not None:
         sidecar = view.ambiguous_endpoints

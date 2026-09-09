@@ -111,11 +111,15 @@ class OperationalEvidenceView:
     target_occupied_votes: np.ndarray
     ground_votes: np.ndarray
     ambiguous_endpoints: AmbiguousEndpointEvidence | None = None
+    ground_presence_votes: np.ndarray | None = None
 
     def __post_init__(self):
         _validate_context(self.grid, self.config, self.target)
-        for name in ('environment_occupied_votes', 'ambiguous_occupied_votes',
-                     'target_occupied_votes', 'ground_votes'):
+        count_names = ('environment_occupied_votes', 'ambiguous_occupied_votes',
+                       'target_occupied_votes', 'ground_votes')
+        if self.ground_presence_votes is not None:
+            count_names += ('ground_presence_votes',)
+        for name in count_names:
             values = np.asarray(getattr(self, name))
             if (values.shape != self.grid.shape or values.dtype.kind not in 'iu'
                     or np.any(values < 0) or np.any(values > np.iinfo(np.int64).max)):
@@ -145,11 +149,13 @@ class OperationalEvidenceView:
 
     @property
     def operational_semantics(self):
+        if self.ground_presence_votes is not None:
+            return 'object-aware-v1.4'
         return 'object-aware-v1.3' if self.ambiguous_endpoints is not None else 'object-aware-v1.1'
 
 
 def derive_operational_evidence(grid, observations, target, *, labels=None, config=BeliefConfig(),
-                                retain_ambiguous_endpoints=False):
+                                retain_ambiguous_endpoints=False, retain_ground_presence=False):
     """Replay endpoints with A2's filtering, retaining each occupied class.
 
     Labels are aligned to original rows, before valid-return/range/grid filters.
@@ -159,6 +165,9 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
     that window; TARGET neither supplies nor suppresses ground evidence.
     Optional endpoint retention changes no votes or labels. Completeness comes
     from replaying every accepted endpoint in each supplied observation.
+    Optional v1.4 ground presence counts real ground endpoints BEFORE legacy
+    cell-wide occupied suppression. It is positive evidence, never FREE or a
+    collision exemption; the independent operational blocker still applies.
     """
     _validate_context(grid, config, target)
     observations = tuple(observations)
@@ -170,6 +179,7 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
             raise ValueError('labels must have one array per observation')
     occupied = np.zeros((3,) + grid.shape, dtype=np.int64)
     ground_counts = np.zeros(grid.shape, dtype=np.int64)
+    ground_presence = np.zeros(grid.shape, dtype=np.int64) if retain_ground_presence else None
     endpoint_points, endpoint_observations, endpoint_rows, endpoint_cells = [], [], [], []
     x_edges = grid.origin_xy[0] + np.arange(grid.width_cells + 1) * grid.resolution_m
     y_edges = grid.origin_xy[1] + np.arange(grid.height_cells + 1) * grid.resolution_m
@@ -235,6 +245,8 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
             window_occupied[occupied_class, xy[selected, 1], xy[selected, 0]] = True
         window_ground = np.zeros(grid.shape, dtype=bool)
         window_ground[xy[ground, 1], xy[ground, 0]] = True
+        if ground_presence is not None:
+            ground_presence += window_ground
         window_ground &= ~(window_occupied[OccupiedClass.ENVIRONMENT]
                            | window_occupied[OccupiedClass.AMBIGUOUS])
         occupied += window_occupied
@@ -248,7 +260,8 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
             np.concatenate(endpoint_cells) if endpoint_cells else np.empty(0, dtype=np.int64),
             occupied[OccupiedClass.AMBIGUOUS],
         )
-    return OperationalEvidenceView(grid, config, target, *occupied, ground_counts, endpoints)
+    return OperationalEvidenceView(grid, config, target, *occupied, ground_counts, endpoints,
+                                   ground_presence)
 
 
 @dataclass(frozen=True)
@@ -314,7 +327,8 @@ def assess_footprint(view, xy, yaw, footprint=FootprintSpec()):
     environment = int(np.count_nonzero(view.environment_occupied_votes.ravel()[cells]))
     ambiguous = int(np.count_nonzero(view.ambiguous_occupied_votes.ravel()[cells]))
     target = int(np.count_nonzero(view.target_occupied_votes.ravel()[cells]))
-    supported = int(np.count_nonzero(view.ground_votes.ravel()[cells] >= view.config.free_observations))
+    ground = view.ground_votes if view.ground_presence_votes is None else view.ground_presence_votes
+    supported = int(np.count_nonzero(ground.ravel()[cells] >= view.config.free_observations))
     collision = _rectangles_overlap(footprint_vertices(xy, yaw, footprint), view.target.xy_vertices)
     ambiguous_blocked = bool(ambiguous)
     if view.ambiguous_endpoints is not None:

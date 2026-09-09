@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "kind": "GROUND_REPLAY_METRICS",
+  "descriptive_only": true,
+  "method": "generic",
+  "comparison_role": "conditioned_ground_diagnostic",
+  "efficiency_clock": "simulation",
+  "conditioned_on_archived_confirmation": true,
+  "conditioned_on_arrival": true,
+  "navigation_only": false,
+  "task_started": true,
+  "clock_reset_detected": false,
+  "task_start_sim": 11.8,
+  "task_end_sim": 11.991,
+  "replay_end_sim": 11.994,
+  "exec_ready_sim": null,
+  "T_task_sim": 0.19099999999999895,
+  "T_exec_ready_sim": null,
+  "D_env": null,
+  "D_exec": false,
+  "navigation_success": null,
+  "ground_stopped_recorded": true,
+  "arrival_assessment": "NOT_ASSESSED_CONDITIONED_ON_ARRIVAL",
+  "arrival_xy_error_m": 2.488825380974621e-07,
+  "arrival_yaw_error_rad": 6.823625708918257e-08,
+  "retrieval_success": false,
+  "retrieval_assessment": "RECORDED_ATTEMPT",
+  "physical_success": null,
+  "adapter_run_result": false,
+  "terminal_status": "FAILED",
+  "terminal_failure_stage": "ground_refine",
+  "terminal_failure_reason": "AG95 open controller action failed: state=4 status=",
+  "stages": {
+    "ground_navigation": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.8,
+      "end_sim": 11.877,
+      "duration_sim_s": 0.07699999999999996
+    },
+    "ground_refine": {
+      "status": "FAILED",
+      "start_sim": 11.88,
+      "end_sim": 11.99,
+      "duration_sim_s": 0.10999999999999943
+    },
+    "refined_pregrasp": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "descend": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "close": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "lift": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "retention": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    }
+  },
+  "paths": {
+    "ground_total": {
+      "start_sim": 11.8,
+      "end_sim": 11.991,
+      "complete": true,
+      "distance_m": 0.0,
+      "observed_distance_lower_bound_m": 0.0,
+      "yaw_travel_rad": 0.0,
+      "observed_yaw_lower_bound_rad": 0.0,
+      "sample_count": 1,
+      "missing_samples": 0,
+      "gap_count": 0,
+      "clock_reset": false
+    }
+  },
+  "note": "Conditioned on the archived confirmed candidate; arrival conditioning is explicit. No aerial discovery, windows, flight metrics or E2E comparison are inferred. LIFT and diagnostic IK do not establish physical retrieval; original outcomes remain authoritative.",
+  "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-manipulation-batch/launch-04-easy-world-solver",
+  "source": "saved_ground_replay_events_and_online_public_tf",
+  "missing_files": [],
+  "outcome_source": "attempt.json",
+  "original_outcome_unchanged": true
+}

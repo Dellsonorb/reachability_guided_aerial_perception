@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "kind": "GROUND_REPLAY_METRICS",
+  "descriptive_only": true,
+  "method": "generic",
+  "comparison_role": "conditioned_ground_diagnostic",
+  "efficiency_clock": "simulation",
+  "conditioned_on_archived_confirmation": true,
+  "conditioned_on_arrival": true,
+  "navigation_only": false,
+  "task_started": true,
+  "clock_reset_detected": false,
+  "task_start_sim": 11.831,
+  "task_end_sim": 46.291,
+  "replay_end_sim": 49.322,
+  "exec_ready_sim": 33.63,
+  "T_task_sim": 34.459999999999994,
+  "T_exec_ready_sim": 21.799000000000003,
+  "D_env": null,
+  "D_exec": true,
+  "navigation_success": null,
+  "ground_stopped_recorded": true,
+  "arrival_assessment": "NOT_ASSESSED_CONDITIONED_ON_ARRIVAL",
+  "arrival_xy_error_m": 1.019590093812381e-06,
+  "arrival_yaw_error_rad": 1.970209999591077e-07,
+  "retrieval_success": false,
+  "retrieval_assessment": "RECORDED_ATTEMPT",
+  "physical_success": null,
+  "adapter_run_result": false,
+  "terminal_status": "FAILED",
+  "terminal_failure_stage": "lift",
+  "terminal_failure_reason": "lift Cartesian execution failed: max_joint_speed=0.2105 joint=wrist_3_joint",
+  "stages": {
+    "ground_navigation": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.831,
+      "end_sim": 11.921,
+      "duration_sim_s": 0.08999999999999986
+    },
+    "ground_refine": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.923,
+      "end_sim": 23.955,
+      "duration_sim_s": 12.031999999999998
+    },
+    "refined_pregrasp": {
+      "status": "SUCCEEDED",
+      "start_sim": 23.955,
+      "end_sim": 33.629,
+      "duration_sim_s": 9.674
+    },
+    "descend": {
+      "status": "SUCCEEDED",
+      "start_sim": 33.633,
+      "end_sim": 38.15,
+      "duration_sim_s": 4.516999999999996
+    },
+    "close": {
+      "status": "SUCCEEDED",
+      "start_sim": 38.15,
+      "end_sim": 39.661,
+      "duration_sim_s": 1.5110000000000028
+    },
+    "lift": {
+      "status": "FAILED",
+      "start_sim": 39.662,
+      "end_sim": 46.291,
+      "duration_sim_s": 6.628999999999998
+    },
+    "retention": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    }
+  },
+  "paths": {
+    "ground_total": {
+      "start_sim": 11.831,
+      "end_sim": 46.291,
+      "complete": false,
+      "distance_m": null,
+      "observed_distance_lower_bound_m": 0.00022116533713685535,
+      "yaw_travel_rad": null,
+      "observed_yaw_lower_bound_rad": 0.0007552862694768514,
+      "sample_count": 337,
+      "missing_samples": 0,
+      "gap_count": 1,
+      "clock_reset": false
+    }
+  },
+  "note": "Conditioned on the archived confirmed candidate; arrival conditioning is explicit. No aerial discovery, windows, flight metrics or E2E comparison are inferred. LIFT and diagnostic IK do not establish physical retrieval; original outcomes remain authoritative.",
+  "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-manipulation-batch/launch-03-easy-measured-release",
+  "source": "saved_ground_replay_events_and_online_public_tf",
+  "missing_files": [],
+  "outcome_source": "attempt.json",
+  "original_outcome_unchanged": true
+}

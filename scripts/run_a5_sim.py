@@ -25,8 +25,8 @@ def build_parser():
     parser.add_argument("--rm4d-map", type=Path, required=True)
     parser.add_argument("--rm4d-task-asset", type=Path,
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
-    parser.add_argument("--operational-gating", choices=("v1", "v1.1", "v1.3"), default="v1",
-                        help="explicit object-aware gate; v1.3 adds sub-cell ambiguity; default preserves v1")
+    parser.add_argument("--operational-gating", choices=("v1", "v1.1", "v1.3", "v1.4"), default="v1",
+                        help="explicit object-aware gate; v1.3 adds sub-cell ambiguity; v1.4 separates measured ground presence")
     parser.add_argument("--support-anchor", choices=("cell_center", "exact_winner"), default="cell_center",
                         help="explicit v1.2 original-winner support; default preserves legacy cell centers")
     parser.add_argument("--max-viewpoints", type=int, default=3,
@@ -59,6 +59,8 @@ def build_parser():
     parser.add_argument("--uav-base-frame", default="uav1/base_link")
     parser.add_argument("--check-imports", action="store_true",
                         help="load ROS and the inherited demo without initializing a node or moving robots")
+    parser.add_argument("--full-robot-manipulation", action="store_true",
+                        help="Use shared perceived-target/payload planning and target-sized gripper preshape")
     return parser
 
 
@@ -104,6 +106,8 @@ def validate_options(parser, options):
 def build_demo_parameters(parameters, options):
     """Keep SIM defaults unless the run explicitly overrides a scene setting."""
     parameters = dict(parameters, placement_mode="rm4d")
+    if getattr(options, 'full_robot_manipulation', False):
+        parameters['full_robot_manipulation'] = True
     for name in ("view_position", "view_yaw", "max_ground_travel", "navigation_timeout"):
         if getattr(options, name) is not None:
             parameters[name] = getattr(options, name)
@@ -526,10 +530,15 @@ def build_adapter_class(demo_module, options):
                     chosen["relevance"], self._a5_candidate_count)
 
         def _pick_and_lift(self, sensor_pose, target):
-            generated = demo_module.generate_top_down_grasp(
-                target, self._target_size, self._pregrasp_height,
-                self._lift_height, self._finger_pad_lower_edge_offset,
-                self._contact_overlap, self._surface_clearance)
+            if getattr(self, "_full_robot_manipulation", False):
+                # The grasp-seeded approach and SIM execution must use the
+                # same contact-configuration pad geometry after refinement.
+                generated = self._generate_ground_grasp(target)
+            else:
+                generated = demo_module.generate_top_down_grasp(
+                    target, self._target_size, self._pregrasp_height,
+                    self._lift_height, self._finger_pad_lower_edge_offset,
+                    self._contact_overlap, self._surface_clearance)
             group = self._initialize_moveit()
             exact_grasp = self._pose_message(
                 generated.grasp, self._map_frame, sensor_pose.header.stamp)
@@ -547,7 +556,7 @@ def build_adapter_class(demo_module, options):
             return execute_refined_pregrasp(
                 self, target, grasp, DemoError)
 
-    if getattr(options, 'operational_gating', 'v1') in ('v1.1', 'v1.3'):
+    if getattr(options, 'operational_gating', 'v1') in ('v1.1', 'v1.3', 'v1.4'):
         from a5_target_support import build_object_aware_adapter
         return build_object_aware_adapter(A5AirGroundPickDemo, options)
     return A5AirGroundPickDemo

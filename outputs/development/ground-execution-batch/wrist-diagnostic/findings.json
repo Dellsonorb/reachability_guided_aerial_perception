@@ -1,0 +1,523 @@
+{
+  "configuration_unchanged": {
+    "goal_position_rad": 0.05,
+    "goal_time_s": 2.0,
+    "state_publish_Hz": 100,
+    "stopped_velocity_rad_s": 0.1
+  },
+  "integral_caveat": "Trapezoid integral of 100 Hz sampled velocity is not an integral of unrecorded physics-step velocity.",
+  "method": "Public native ROS bag only; no GT, nodes, services, launches, or production changes.",
+  "runs": {
+    "launch-03-easy-camera": {
+      "abort_minus_estimated_end_s": 2.0011173540000087,
+      "bag": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-execution-batch/launch-03-easy-camera/diagnostics.bag",
+      "clock_dt_min_median_max_s": [
+        0.0009999999999976694,
+        0.0009999999999994458,
+        0.0010000000000047748
+      ],
+      "estimated_lift_trajectory_end_s": 45.585882645999995,
+      "lift_goal": {
+        "duration_s": 4.602882646,
+        "goal_time_tolerance_s": 0.0,
+        "goal_tolerance_count": 0,
+        "id": "/move_group-4-40.983000000",
+        "receipt_s": 40.983,
+        "trajectory_header_s": 0.0
+      },
+      "lift_result": {
+        "error_code": -5,
+        "error_string": "wrist_3_joint goal error 0.000035",
+        "id": "/move_group-4-40.983000000",
+        "receipt_s": 47.587,
+        "status": 4
+      },
+      "prelift_grasp_hold_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.00999999999999801,
+          0.00999999999999801,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          39.544,
+          40.924
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.006272661528116256,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.019625411612612616,
+          -3.1818281343014185e-08,
+          0.011230078723295317
+        ],
+        "position_error_abs_max_rad": 0.0004660486953889098,
+        "q_net_change_rad": -0.00014995394445627142,
+        "q_range_rad": 0.0006183730059925452,
+        "sampled_velocity_trapezoid_integral_rad": -0.00048518678370621134,
+        "samples": 139,
+        "velocity_above_configured_0_10_count": 0,
+        "velocity_min_median_max_rad_s": [
+          -0.05220553608851661,
+          -4.243002279291619e-09,
+          0.01220855101347275
+        ]
+      },
+      "same_window_paired_streams": {
+        "caveat": "Common hardware feedback, not independent sensors; header phases differ by 1 ms.",
+        "controller_minus_nearest_joint_header_min_median_max_s": [
+          0.0009999999999976694,
+          0.0009999999999976694,
+          0.0010000000000047748
+        ],
+        "paired_position_difference_velocity_min_median_max_rad_s": [
+          -0.029570532433422864,
+          -0.008616209699516916,
+          0.0193926978137211
+        ],
+        "paired_reported_velocity_mean_min_median_max_rad_s": [
+          -0.20220729014080668,
+          -0.15922439753747014,
+          -0.14469384121709572
+        ],
+        "samples": 189
+      },
+      "settle_all_arm_joint_velocity_min_median_max_rad_s": {
+        "elbow_joint": [
+          -0.002655211191737992,
+          -0.0002606081204245288,
+          0.0006879233905843959
+        ],
+        "shoulder_lift_joint": [
+          -0.0017891946315885913,
+          7.766453300227508e-05,
+          0.00036386509840703355
+        ],
+        "shoulder_pan_joint": [
+          -0.0003043872185261378,
+          -0.00011722276299594138,
+          0.0013757769301582198
+        ],
+        "wrist_1_joint": [
+          -0.008012831158897938,
+          -0.004074975921931155,
+          0.0011158136713462273
+        ],
+        "wrist_2_joint": [
+          -0.013801737573328844,
+          -0.009452356926670197,
+          0.0017282524236639058
+        ],
+        "wrist_3_joint": [
+          -0.20981185903895522,
+          -0.16534862353329827,
+          -0.14293281631177246
+        ]
+      },
+      "settle_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.00999999999999801,
+          0.00999999999999801,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          45.694,
+          47.574
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.005159193375927409,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.0066680807304175,
+          0.00010025348302635569,
+          0.006736327099422742
+        ],
+        "position_error_abs_max_rad": 8.111710978964126e-05,
+        "q_net_change_rad": -1.886498848779894e-05,
+        "q_range_rad": 8.403022892000678e-05,
+        "sampled_velocity_trapezoid_integral_rad": -0.3114976130155074,
+        "samples": 189,
+        "velocity_above_configured_0_10_count": 189,
+        "velocity_min_median_max_rad_s": [
+          -0.20981185903895522,
+          -0.16534862353329827,
+          -0.14293281631177246
+        ]
+      },
+      "settle_joint_state": {
+        "dt_min_median_max_s": [
+          0.00999999999999801,
+          0.00999999999999801,
+          0.010000000000005116
+        ],
+        "effort_min_median_max_Nm": [
+          -0.0007787433545569655,
+          0.004638201520501539,
+          0.011869901418437578
+        ],
+        "first_last_header_s": [
+          45.693,
+          47.573
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.005111365951041465,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.006383386597616013,
+          0.00022006818976015127,
+          0.00716961233573486
+        ],
+        "q_net_change_rad": -2.3688882092365304e-05,
+        "q_range_rad": 8.674302491407104e-05,
+        "sampled_velocity_trapezoid_integral_rad": -0.28902630099327825,
+        "samples": 189,
+        "velocity_above_configured_0_10_count": 189,
+        "velocity_min_median_max_rad_s": [
+          -0.20958463753977755,
+          -0.1526502678329469,
+          -0.13759252547861336
+        ]
+      },
+      "settle_window_requested_s": [
+        45.685882645999996,
+        47.577000000000005
+      ]
+    },
+    "launch-06-easy-ground-latched": {
+      "abort_minus_estimated_end_s": 2.002706154000009,
+      "bag": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-execution-batch/launch-06-easy-ground-latched/diagnostics.bag",
+      "clock_dt_min_median_max_s": [
+        0.000999999999990564,
+        0.0009999999999994458,
+        0.0010000000000047748
+      ],
+      "estimated_lift_trajectory_end_s": 67.12829384599999,
+      "lift_goal": {
+        "duration_s": 4.978293846,
+        "goal_time_tolerance_s": 0.0,
+        "goal_tolerance_count": 0,
+        "id": "/move_group-4-62.150000000",
+        "receipt_s": 62.15,
+        "trajectory_header_s": 0.0
+      },
+      "lift_result": {
+        "error_code": -5,
+        "error_string": "wrist_3_joint goal error 0.000033",
+        "id": "/move_group-4-62.150000000",
+        "receipt_s": 69.131,
+        "status": 4
+      },
+      "prelift_grasp_hold_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.00999999999999801,
+          0.00999999999999801,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          60.731,
+          62.091
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.011976673375979845,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.018110853344669716,
+          -1.8469759055509747e-08,
+          0.019626223588166077
+        ],
+        "position_error_abs_max_rad": 0.0005224375816661464,
+        "q_net_change_rad": -0.0005176105626887306,
+        "q_range_rad": 0.0010283280148115637,
+        "sampled_velocity_trapezoid_integral_rad": -0.00026558874773438464,
+        "samples": 137,
+        "velocity_above_configured_0_10_count": 0,
+        "velocity_min_median_max_rad_s": [
+          -0.02189423212254501,
+          -2.085837755668173e-08,
+          0.018893443667435963
+        ]
+      },
+      "same_window_paired_streams": {
+        "caveat": "Common hardware feedback, not independent sensors; header phases differ by 1 ms.",
+        "controller_minus_nearest_joint_header_min_median_max_s": [
+          0.000999999999990564,
+          0.0010000000000047748,
+          0.0010000000000047748
+        ],
+        "paired_position_difference_velocity_min_median_max_rad_s": [
+          -0.012448871389853849,
+          0.008425027531641784,
+          0.039433147428081135
+        ],
+        "paired_reported_velocity_mean_min_median_max_rad_s": [
+          -0.20803038527860856,
+          -0.17355956602877765,
+          -0.15965271061949243
+        ],
+        "samples": 190
+      },
+      "settle_all_arm_joint_velocity_min_median_max_rad_s": {
+        "elbow_joint": [
+          -0.00044322341176454864,
+          0.00041342065921635485,
+          0.0012846904948942608
+        ],
+        "shoulder_lift_joint": [
+          0.00014315434917908424,
+          0.00043885066384096924,
+          0.0010407908918293124
+        ],
+        "shoulder_pan_joint": [
+          -0.00029027314128548956,
+          -0.00010269370530222705,
+          0.00013818487736649938
+        ],
+        "wrist_1_joint": [
+          -0.002956710643184946,
+          0.002146750487187354,
+          0.00744669055144461
+        ],
+        "wrist_2_joint": [
+          0.00023552736918018102,
+          0.0056278315232639,
+          0.010519122943747664
+        ],
+        "wrist_3_joint": [
+          -0.23939061051719782,
+          -0.1671600217385936,
+          -0.15174519770752048
+        ]
+      },
+      "settle_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.009999999999990905,
+          0.010000000000005116,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          67.231,
+          69.121
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.007917858838411415,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.013453186717183896,
+          7.237473447225727e-05,
+          0.01066628477914287
+        ],
+        "position_error_abs_max_rad": 0.00010057698200904852,
+        "q_net_change_rad": -2.7349497155881863e-06,
+        "q_range_rad": 0.00014714851525532424,
+        "sampled_velocity_trapezoid_integral_rad": -0.32193624933674314,
+        "samples": 190,
+        "velocity_above_configured_0_10_count": 190,
+        "velocity_min_median_max_rad_s": [
+          -0.23939061051719782,
+          -0.1671600217385936,
+          -0.15174519770752048
+        ]
+      },
+      "settle_joint_state": {
+        "dt_min_median_max_s": [
+          0.009999999999990905,
+          0.010000000000005116,
+          0.010000000000005116
+        ],
+        "effort_min_median_max_Nm": [
+          -0.006611155997893192,
+          0.0014573364303327452,
+          0.008274513587602783
+        ],
+        "first_last_header_s": [
+          67.23,
+          69.12
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.008224581941967127,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.01283007845280136,
+          0.00012474143602496938,
+          0.010741309806593158
+        ],
+        "q_net_change_rad": -6.186963918963784e-07,
+        "q_range_rad": 0.0001382729729435539,
+        "sampled_velocity_trapezoid_integral_rad": -0.34122677516771593,
+        "samples": 190,
+        "velocity_above_configured_0_10_count": 190,
+        "velocity_min_median_max_rad_s": [
+          -0.22462093638437103,
+          -0.17960807299430015,
+          -0.16713765589856813
+        ]
+      },
+      "settle_window_requested_s": [
+        67.22829384599999,
+        69.121
+      ]
+    },
+    "launch-07-easy-ground-origin": {
+      "abort_minus_estimated_end_s": 2.0026289030000015,
+      "bag": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-execution-batch/launch-07-easy-ground-origin/diagnostics.bag",
+      "clock_dt_min_median_max_s": [
+        0.000999999999990564,
+        0.0009999999999994458,
+        0.003999999999990678
+      ],
+      "estimated_lift_trajectory_end_s": 71.808371097,
+      "lift_goal": {
+        "duration_s": 5.206371097,
+        "goal_time_tolerance_s": 0.0,
+        "goal_tolerance_count": 0,
+        "id": "/move_group-4-66.602000000",
+        "receipt_s": 66.602,
+        "trajectory_header_s": 0.0
+      },
+      "lift_result": {
+        "error_code": -5,
+        "error_string": "wrist_3_joint goal error 0.000037",
+        "id": "/move_group-4-66.602000000",
+        "receipt_s": 73.811,
+        "status": 4
+      },
+      "prelift_grasp_hold_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.009999999999990905,
+          0.010000000000005116,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          65.163,
+          66.543
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.0071770923458872515,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.021673196258997787,
+          -1.2226220036384411e-08,
+          0.01755441586012364
+        ],
+        "position_error_abs_max_rad": 0.0005984888501129326,
+        "q_net_change_rad": 0.00015572188362433792,
+        "q_range_rad": 0.0006104432506042201,
+        "sampled_velocity_trapezoid_integral_rad": 0.0010067999347051029,
+        "samples": 139,
+        "velocity_above_configured_0_10_count": 0,
+        "velocity_min_median_max_rad_s": [
+          -0.027541708685961893,
+          -8.56849820157757e-09,
+          0.035388999020166706
+        ]
+      },
+      "same_window_paired_streams": {
+        "caveat": "Common hardware feedback, not independent sensors; header phases differ by 1 ms.",
+        "controller_minus_nearest_joint_header_min_median_max_s": [
+          0.000999999999990564,
+          0.0010000000000047748,
+          0.0010000000000047748
+        ],
+        "paired_position_difference_velocity_min_median_max_rad_s": [
+          -0.018525363042610016,
+          0.007817591333354888,
+          0.021413318990173288
+        ],
+        "paired_reported_velocity_mean_min_median_max_rad_s": [
+          -0.18675721088665942,
+          -0.16021237278999673,
+          -0.1453628690292394
+        ],
+        "samples": 189
+      },
+      "settle_all_arm_joint_velocity_min_median_max_rad_s": {
+        "elbow_joint": [
+          -0.00023493136424935915,
+          0.00035368526516552947,
+          0.001319239764069914
+        ],
+        "shoulder_lift_joint": [
+          0.00015552158800029487,
+          0.0004012684859520653,
+          0.0008623191880033239
+        ],
+        "shoulder_pan_joint": [
+          -0.00034144723504342834,
+          -0.0001883844273990552,
+          -2.4077977422533945e-05
+        ],
+        "wrist_1_joint": [
+          -0.0014624121973766972,
+          0.0025055182889670014,
+          0.008841608613723899
+        ],
+        "wrist_2_joint": [
+          0.002130929849811687,
+          0.008555462552998466,
+          0.012002284495879709
+        ],
+        "wrist_3_joint": [
+          -0.20845114107907733,
+          -0.15310598216230595,
+          -0.1432090368518804
+        ]
+      },
+      "settle_controller_state": {
+        "desired_velocity_abs_max_rad_s": 0.0,
+        "dt_min_median_max_s": [
+          0.009999999999990905,
+          0.010000000000005116,
+          0.010000000000005116
+        ],
+        "first_last_header_s": [
+          71.913,
+          73.793
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.0037912884486671107,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.005484385953022333,
+          5.2753478829687605e-05,
+          0.0061295121957596075
+        ],
+        "position_error_abs_max_rad": 7.146933135038225e-05,
+        "q_net_change_rad": 1.283771936755329e-05,
+        "q_range_rad": 7.3906157039616e-05,
+        "sampled_velocity_trapezoid_integral_rad": -0.29113407021249554,
+        "samples": 189,
+        "velocity_above_configured_0_10_count": 189,
+        "velocity_min_median_max_rad_s": [
+          -0.20845114107907733,
+          -0.15310598216230595,
+          -0.1432090368518804
+        ]
+      },
+      "settle_joint_state": {
+        "dt_min_median_max_s": [
+          0.009999999999990905,
+          0.010000000000005116,
+          0.010000000000005116
+        ],
+        "effort_min_median_max_Nm": [
+          -0.00044682755633296267,
+          0.0026432305662904554,
+          0.00829815320577687
+        ],
+        "first_last_header_s": [
+          71.912,
+          73.792
+        ],
+        "position_difference_velocity_abs_p95_rad_s": 0.003973265330712236,
+        "position_difference_velocity_min_median_max_rad_s": [
+          -0.006244344701574892,
+          4.7853323792436105e-05,
+          0.0052739850945089034
+        ],
+        "q_net_change_rad": 1.1719236098883812e-05,
+        "q_range_rad": 7.127299150333499e-05,
+        "sampled_velocity_trapezoid_integral_rad": -0.31581764112082933,
+        "samples": 189,
+        "velocity_above_configured_0_10_count": 189,
+        "velocity_min_median_max_rad_s": [
+          -0.2110122136587267,
+          -0.166613527488923,
+          -0.1467515771351393
+        ]
+      },
+      "settle_window_requested_s": [
+        71.908371097,
+        73.801
+      ]
+    }
+  },
+  "units": "simulation seconds; joint radians; rad/s; reported joint effort Nm"
+}

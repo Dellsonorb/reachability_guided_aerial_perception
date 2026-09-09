@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "kind": "GROUND_REPLAY_METRICS",
+  "descriptive_only": true,
+  "method": "generic",
+  "comparison_role": "conditioned_ground_diagnostic",
+  "efficiency_clock": "simulation",
+  "conditioned_on_archived_confirmation": true,
+  "conditioned_on_arrival": true,
+  "navigation_only": false,
+  "task_started": true,
+  "clock_reset_detected": false,
+  "task_start_sim": 11.783,
+  "task_end_sim": 37.424,
+  "replay_end_sim": 37.429,
+  "exec_ready_sim": 37.413,
+  "T_task_sim": 25.641,
+  "T_exec_ready_sim": 25.629999999999995,
+  "D_env": null,
+  "D_exec": true,
+  "navigation_success": null,
+  "ground_stopped_recorded": true,
+  "arrival_assessment": "NOT_ASSESSED_CONDITIONED_ON_ARRIVAL",
+  "arrival_xy_error_m": 1.5345077638131012e-07,
+  "arrival_yaw_error_rad": 5.851519677690931e-07,
+  "retrieval_success": false,
+  "retrieval_assessment": "RECORDED_ATTEMPT",
+  "physical_success": null,
+  "adapter_run_result": false,
+  "terminal_status": "FAILED",
+  "terminal_failure_stage": "descend",
+  "terminal_failure_reason": "grasp approach start full robot state invalid; collisions=['ground/left_finger/ground/base_link']",
+  "stages": {
+    "ground_navigation": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.783,
+      "end_sim": 11.872,
+      "duration_sim_s": 0.08900000000000041
+    },
+    "ground_refine": {
+      "status": "SUCCEEDED",
+      "start_sim": 11.875,
+      "end_sim": 23.824,
+      "duration_sim_s": 11.949000000000002
+    },
+    "refined_pregrasp": {
+      "status": "SUCCEEDED",
+      "start_sim": 23.826,
+      "end_sim": 37.413,
+      "duration_sim_s": 13.586999999999996
+    },
+    "descend": {
+      "status": "FAILED",
+      "start_sim": 37.414,
+      "end_sim": 37.424,
+      "duration_sim_s": 0.00999999999999801
+    },
+    "close": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "lift": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    },
+    "retention": {
+      "status": "NOT_REACHED",
+      "start_sim": null,
+      "end_sim": null,
+      "duration_sim_s": null
+    }
+  },
+  "paths": {
+    "ground_total": {
+      "start_sim": 11.783,
+      "end_sim": 37.424,
+      "complete": false,
+      "distance_m": null,
+      "observed_distance_lower_bound_m": 0.0004149476535815294,
+      "yaw_travel_rad": null,
+      "observed_yaw_lower_bound_rad": 0.0016850875565281934,
+      "sample_count": 250,
+      "missing_samples": 1,
+      "gap_count": 1,
+      "clock_reset": false
+    }
+  },
+  "note": "Conditioned on the archived confirmed candidate; arrival conditioning is explicit. No aerial discovery, windows, flight metrics or E2E comparison are inferred. LIFT and diagnostic IK do not establish physical retrieval; original outcomes remain authoritative.",
+  "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-manipulation-batch/launch-06-moderate-full-robot",
+  "source": "saved_ground_replay_events_and_online_public_tf",
+  "missing_files": [],
+  "outcome_source": "attempt.json",
+  "original_outcome_unchanged": true
+}

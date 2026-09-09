@@ -1,0 +1,89 @@
+{
+  "slot": 8,
+  "scene": "dev-hard",
+  "method": "ours",
+  "seed": 1448047368,
+  "scene_spec": {
+    "id": "dev-hard",
+    "tier": "hard",
+    "seed": 1448047368,
+    "target_xy": [
+      2.0118863382997163,
+      0.1325291544290921
+    ],
+    "target_z": 0.0575,
+    "target_yaw": -0.29771096792902724,
+    "bunker_xy": [
+      3.0590317487041685,
+      -2.420658412418086
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.1731298861769486,
+    "boxes": [
+      {
+        "name": "a6_wall_h1",
+        "center_xy": [
+          0.3,
+          0.5
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1
+        ],
+        "yaw": 0
+      },
+      {
+        "name": "a6_wall_h2",
+        "center_xy": [
+          0.5,
+          -0.4
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1
+        ],
+        "yaw": 0
+      }
+    ]
+  },
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "config_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/configs/dev_operational_batch_v14.json",
+  "protocol": "docs/DEV_OPERATIONAL_BATCH.md",
+  "operational_gating": "v1.4",
+  "kind": "DEVELOPMENT_ATTEMPT",
+  "status": "INVALID_TRIAL",
+  "task_started": false,
+  "activation_wall": 1788936577.3007624,
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "diagnostic_image_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-11-hard-ours/diagnostics-images.bag",
+    "/ground/d435/color/image_raw",
+    "/ground/d435/depth/image_raw"
+  ],
+  "diagnostic_image_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-11-hard-ours/diagnostics-images.bag",
+  "diagnostic_image_start_trigger": null,
+  "reason": "RuntimeError: common platform/TF/action readiness timeout: {\"error\": \"timeout exceeded while waiting for message on topic /uav1/prometheus/state\"}",
+  "runtime_exit": 0,
+  "diagnostic_image_exit": null,
+  "diagnostic_image_bag_finalized": false,
+  "finish_wall": 1788936760.3950973
+}

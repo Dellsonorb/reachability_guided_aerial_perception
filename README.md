@@ -1,6 +1,22 @@
 # A1 — Validated Manipulation Interest Field
 
-当前开发分支为 `feature/v13-operational-geometry`：按新的自主研发授权，
+当前开发分支为 `feature/dev-operational-consistency`，已完成
+[Ground 执行可靠性开发批次](docs/GROUND_EXECUTION_BATCH_RESULTS.md)：8/8 次启动，
+全部为针对性 Ground 诊断，未重跑无人机全链路或 formal matrix。
+XY latch 安装后仍失败；进一步修复实际速度反馈、SDFormat surface 保留、
+重复重规划清除 latch、CoG/base 原点速度变换。最终 Easy 实际到位、D435 精定位、
+D_exec、下降和夹持通过，但 lift 腕关节停止检查仍失败；Moderate 精定位通过后，
+grasp IK/collision 仍阻断。operational gate 未修改，整体仍未达到 formal readiness。
+当前八次在线预算已用完；SIM 修复保留独立开发分支，不宣称 retrieval 已解决。
+
+此前完成
+[有界开发批次](docs/DEV_OPERATIONAL_BATCH_RESULTS.md)：12 次启动（2 次启动无效），
+三组新 Generic/Ours 配对全部完成。v1.4 将真实 ground presence 与碰撞阻断独立累计，
+修复 v1.3 的 coarse-cell ground-vote suppression；A2 raw evidence 不变。
+已知 Moderate 回归完成真实 grasp/lift；新配对均未 retrieval 成功，整体尚不适合结束开发。
+该历史批次停止时，SIM namespace 修正仅离线测试、尚未部署；当前状态见上文。
+
+历史开发分支 `feature/v13-operational-geometry`：按新的自主研发授权，
 使用 endpoint-local AMBIGUOUS geometry 解决 coarse-cell aliasing；
 见 [v1.3 设计与来源诊断](docs/superpowers/specs/2026-09-09-v13-ambiguous-subcell-design.md)
 及 [开发回放、自然回归与交付记录](docs/V13_OPERATIONAL_GEOMETRY_CHECKPOINT.md)。
@@ -24,7 +40,7 @@ exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为0
 项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
 详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
 及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1/A2/A4 与 RM4D 保持不变；
-A3/A5 在该历史版本包含 v1.1/v1.2 修订；当前分支额外以显式 opt-in 接入 v1.3。
+A3/A5 在该历史版本包含 v1.1/v1.2 修订；当前分支额外以显式 opt-in 接入 v1.3/v1.4。
 
 本仓库实现 Paper 1 的最小 A1 原型：把 `map` 下的 Brick grasp TCP 交给冻结的 AUBO RM4D planner，并将 planner **实际验证过的候选**投影成 0.10 m 二维地面场。这里的
 

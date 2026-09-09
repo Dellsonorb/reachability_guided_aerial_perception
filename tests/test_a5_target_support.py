@@ -204,6 +204,14 @@ class TargetSupportTests(unittest.TestCase):
             self.assertEqual(adapter._operational_init['operational_gating'], 'v1.3')
             self.assertEqual(adapter._operational_init['target_reference_status'], 'UNAVAILABLE')
 
+    def test_v14_revision_reaches_initial_payload_even_without_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            adapter, _ = self.make_adapter(directory, revision='v1.4')
+            self.assertEqual(adapter._operational_init['operational_gating'], 'v1.4')
+            adapter._publish_status('AIR_HANDOFF', target_map=self.target, observation_stamp=10.)
+            self.assertEqual(adapter._operational_init['operational_gating'], 'v1.4')
+            self.assertEqual(adapter._operational_init['target_reference_status'], 'UNAVAILABLE')
+
     def test_missing_reference_preserves_handoff_and_blocks_without_waiting(self):
         with tempfile.TemporaryDirectory() as directory:
             adapter, statuses = self.make_adapter(directory)

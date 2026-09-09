@@ -1,0 +1,26 @@
+{
+  "source_run": "launch-06-easy-generic",
+  "rgb_depth_stamp_s": 158.531,
+  "bag_receipt_stamps_s": {"color": 158.561, "depth": 158.561},
+  "color_frame": "ground/d435_color_optical_frame",
+  "depth_frame": "ground/d435_depth_optical_frame",
+  "map_transform_source": "findings.json runs.launch-06-easy-generic.map_from_camera[0]; extracted from historical public TF",
+  "perception_source_sha256": "c150d4bcb14af488a84786739aa125283295f94a19d1af2ffc8efa818bfe907d",
+  "red_mask_pixels": 4658,
+  "finite_measured_map_points": 4658,
+  "red_bbox_xyxy_inclusive": [431, 412, 566, 479],
+  "legacy_estimate_xyzyaw": [1.8862037481322425, -0.24454301381893218, 0.015178686330040124, -0.5313018427497118],
+  "selected_top_normal_xyz": [-0.5043105835425755, -0.8635148948643647, -0.003586317656296467],
+  "strict_parameters": {
+    "target_height": 0.115,
+    "top_surface_tolerance": 0.015,
+    "target_top_size": [0.24, 0.053],
+    "minimum_top_span_fraction": 0.9,
+    "maximum_top_tilt_degrees": 15.0
+  },
+  "strict_estimator_accepted": false,
+  "strict_rejection": "target top surface is not gravity-horizontal",
+  "observer_border_gate_would_reject": true,
+  "ground_truth_used": false,
+  "new_runtime_starts": 0
+}
