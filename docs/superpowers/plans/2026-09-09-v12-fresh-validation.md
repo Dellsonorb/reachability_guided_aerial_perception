@@ -20,20 +20,22 @@ frozen six-slot configuration. No research-source or dependency changes.
   retain feature checkout and four unrelated untracked A5 directories.
 - [x] Determine first three eligible seeds with draw2026090901, excluded prior
   config union; freeze pair order with shuffle2026090902 and tier alternation.
-- [ ] Add `tests/test_a6_v12_validation.py`: assert configuration exists, frozen
+- [x] Add `tests/test_a6_v12_validation.py`: assert configuration exists, frozen
   common parameters equal Pilot-2, seeds equal first eligible draws, all scene
   values reproduce original six draws, boxes/z unchanged, six exact slots only.
-- [ ] RED launcher test: compare `adapter_args` before/after adding
+- [x] RED launcher test: compare `adapter_args` before/after adding
   `support_anchor='exact_winner'`; require only the two CLI words to differ.
-- [ ] Minimal launcher patch in `scripts/run_a6_attempt.py`:
+- [x] Minimal launcher patch in `scripts/run_a6_attempt.py`:
   `if 'support_anchor' in config: args += ['--support-anchor', config['support_anchor']]`.
   Test both explicit values and unchanged legacy omission; no default change.
-- [ ] Create `configs/a6_v12_validation.json` by copying common Pilot-2 settings,
+- [x] Create `configs/a6_v12_validation.json` by copying common Pilot-2 settings,
   changing only experiment/protocol/count/seeds/order, explicit exact anchor and
   diagnostic image scope `ground_handoff_to_end` already supported by launcher.
-- [ ] Run `PYTHONPATH=src:tests CORE -m unittest test_a6_v12_validation
+- [x] Run `PYTHONPATH=src:tests CORE -m unittest test_a6_v12_validation
   test_a6_attempt test_a6_pilot2 test_exact_support -q`; independent spec then
   quality review, commit and push seed/protocol/config freeze before any run.
+  Verification: 56 relevant tests pass; native Python3.8 new6 tests pass;
+  independent specification and quality reviews pass without findings.
 
 ## 2. Prepare diagnostic reuse and execute serially
 
@@ -41,6 +43,11 @@ frozen six-slot configuration. No research-source or dependency changes.
   Exact A6 snapshots must not use the legacy-cell-center `replay_attempt` path.
   Any small reporting addition first receives a test using recorded data;
   diagnostics never participate in selection or rewrite previous results.
+- [ ] Add read-only `scripts/a6_exact_support_diagnostics.py` and focused tests:
+  rebuild support from saved initial/A2/operational arrays, compare exact winner
+  identities, poses, assessments and A3 arrays, and call the existing diagnostic
+  non-winner helper. Test unchanged recorded natural data and deliberate saved
+  anchor/array mismatches. No new query, observation or selection occurs.
 - [ ] For each scene run existing `scripts/run_a6_attempt.py --config
   configs/a6_v12_validation.json --setup-scene TIER --output-dir NEW_SETUP_DIR`
   in SIM's pinned Noetic environment with dedicated11951/11952 ports. No pose override.

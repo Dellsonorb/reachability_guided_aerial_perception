@@ -77,6 +77,8 @@ def adapter_args(config, output, sim, rm):
         args += list(map(str, value)) if isinstance(value, list) else [str(value)]
     if 'operational_gating' in config:
         args += ['--operational-gating', config['operational_gating']]
+    if 'support_anchor' in config:
+        args += ['--support-anchor', config['support_anchor']]
     return args
 
 
