@@ -61,10 +61,14 @@ def build_parser():
                         help="load ROS and the inherited demo without initializing a node or moving robots")
     parser.add_argument("--full-robot-manipulation", action="store_true",
                         help="Use shared perceived-target/payload planning and target-sized gripper preshape")
+    parser.add_argument("--execution-clearance", action="store_true",
+                        help="Shared development chassis-clearance and whole-manipulation screening")
     return parser
 
 
 def validate_options(parser, options):
+    if options.execution_clearance and not options.full_robot_manipulation:
+        parser.error('--execution-clearance requires --full-robot-manipulation')
     if options.max_viewpoints < 1:
         parser.error("--max-viewpoints must be positive")
     if options.max_ground_travel is not None and (
@@ -108,6 +112,8 @@ def build_demo_parameters(parameters, options):
     parameters = dict(parameters, placement_mode="rm4d")
     if getattr(options, 'full_robot_manipulation', False):
         parameters['full_robot_manipulation'] = True
+    if getattr(options, 'execution_clearance', False):
+        parameters['execution_clearance'] = True
     for name in ("view_position", "view_yaw", "max_ground_travel", "navigation_timeout"):
         if getattr(options, name) is not None:
             parameters[name] = getattr(options, name)
@@ -494,6 +500,11 @@ def build_adapter_class(demo_module, options):
                     **getattr(self, '_operational_init', {}),
                 }, "init")
                 self._a5_candidate_count = initial.get("candidate_count", 0)
+                if getattr(self, '_execution_clearance', False):
+                    import json
+                    original = json.loads(Path(initial['initial_file']).read_text())
+                    self._a5_execution_seeds = {row['candidate_id']: row.get('joint_configuration')
+                                               for row in original['result']['evaluated_candidates']}
                 goal = initial_view
                 for round_number in range(1, options.max_viewpoints + 1):
                     pose = self._a5_capture(goal)
@@ -506,8 +517,14 @@ def build_adapter_class(demo_module, options):
                         "round", "stop_reason", "next_viewpoint", "selected_candidate")})
                     if response["stop_reason"] is not None:
                         self._a5_selected = response["selected_candidate"]
+                        if getattr(self, '_execution_clearance', False):
+                            self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
+                            self._execution_rm_seed = self._a5_execution_seeds.get(self._a5_selected['candidate_id'])
                         if self._a5_selected is None:
-                            raise DemoError("A5 stopped (%s) without a confirmed exact candidate" % response["stop_reason"])
+                            suffix = (' passing bounded execution screen' if
+                                      getattr(self, '_execution_clearance', False) else '')
+                            raise DemoError("A5 stopped (%s) without a confirmed exact candidate%s" %
+                                            (response["stop_reason"], suffix))
                         self._a5_candidate_count = response.get("candidate_count", self._a5_candidate_count)
                         self._publish_status("A5_SELECTED", **self._a5_selected)
                         self._a5_fly_and_hover(initial_view, "A5 return to clear landing location")
@@ -521,6 +538,16 @@ def build_adapter_class(demo_module, options):
                 raise DemoError("A5 observation loop ended without a selection")
             except (WorkerError, OSError, ValueError) as error:
                 raise DemoError("A5 adapter failed: %s" % error) from error
+
+        def _screen_ground_candidates(self, assessments, target_map):
+            from a5_execution_selection import select_execution_candidate
+            selected = select_execution_candidate(
+                assessments, lambda candidate: self._preview_ground_candidate(
+                    target_map, candidate, self._a5_execution_seeds.get(candidate['candidate_id'])),
+                self._publish_status)
+            if selected is None:
+                raise DemoError('no confirmed exact candidate passing bounded execution screen')
+            return selected
 
         def _select_rm4d_candidate(self, _target_map):
             if self._a5_selected is None:
@@ -550,6 +577,8 @@ def build_adapter_class(demo_module, options):
                 self._a5_refined_grasp = None
 
         def _execute_pregrasp(self, target, continuation=None):
+            if getattr(self, '_execution_clearance', False):
+                return super()._execute_pregrasp(target, continuation)
             grasp = continuation if continuation is not None else self._a5_refined_grasp
             if grasp is None:
                 return super()._execute_pregrasp(target, continuation)

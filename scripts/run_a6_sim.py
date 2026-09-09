@@ -201,6 +201,10 @@ def build_adapter_class(demo_module, options):
             except (WorkerError, OSError, ValueError, KeyError, TypeError) as error:
                 raise DemoError('A6 RM4D-only adapter failed: %s' % error) from error
 
+        def _screen_ground_candidates(self, assessments, target_map):
+            return self._a6_stage_call('execution_screen', super()._screen_ground_candidates,
+                                      assessments, target_map)
+
         def _select_rm4d_candidate(self, target_map):
             if options.method != 'rm4d_only':
                 return super()._select_rm4d_candidate(target_map)

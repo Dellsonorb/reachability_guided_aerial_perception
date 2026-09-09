@@ -307,6 +307,73 @@ class AdapterTests(unittest.TestCase):
         self.assertGreater(metrics['paths']['uav_active']['observed_distance_lower_bound_m'], 0.)
         self.assertEqual(metrics['counts']['voted_windows'], 3)
 
+    def assert_shared_execution_screen(self, method):
+        node = self.node(method)
+        node._execution_clearance = True
+        first = dict(self.selected, confirmed=True)
+        second = dict(first, candidate_id='exact-alternative', source_id=5, x=.2123456789)
+        original = self.worker
+        seen = []
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                path = Path(result['initial_file'])
+                data = json.loads(path.read_text())
+                data['result']['evaluated_candidates'] = [dict(candidate_id=c['candidate_id'],
+                                                               joint_configuration=[i]*6)
+                                                         for i, c in enumerate((first, second))]
+                path.write_text(json.dumps(data))
+            else:
+                result['assessments'] = [first, second]
+            return result
+        def preview(target, candidate, seed):
+            seen.append((candidate['candidate_id'], seed))
+            return dict(feasible=candidate['candidate_id'] == second['candidate_id'],
+                        reason='whole-chain prediction')
+        node._preview_ground_candidate = preview
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            self.assertTrue(node.run())
+        self.assertEqual(seen, [(first['candidate_id'], [0]*6), (second['candidate_id'], [1]*6)])
+        self.assertEqual(node.handoff[0], (second['x'], second['y'], second['yaw']))
+        self.assertEqual(node.handoff[1], second['candidate_id'])
+        self.assertEqual(node._execution_rm_seed, [1]*6)
+        self.assertEqual(sum(e['state'] == 'A5_SELECTED' for e in self.events()), 1)
+        self.assertEqual(sum(e['state'] == 'GROUND_EXECUTION_SCREEN' for e in self.events()), 2)
+        self.assertEqual(len([r for r in self.worker_calls if r['request']['op'] == 'observe']), 3)
+
+    def test_generic_uses_shared_bounded_exact_execution_screen(self):
+        self.assert_shared_execution_screen('generic')
+
+    def test_ours_uses_shared_bounded_exact_execution_screen(self):
+        self.assert_shared_execution_screen('ours')
+
+    def test_execution_rejection_preserves_successful_active_stage_and_original_confirmation(self):
+        node = self.node('ours')
+        node._execution_clearance = True
+        original = self.worker
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                path = Path(result['initial_file'])
+                path.write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result['assessments'] = [dict(self.selected, confirmed=True)]
+            return result
+        def preview(*args):
+            self.clock.sim += 40.
+            return dict(feasible=False, reason='closure blocked')
+        node._preview_ground_candidate = preview
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            self.assertFalse(node.run())
+        metrics = json.loads((self.output/'metrics.json').read_text())
+        self.assertTrue(metrics['D_env'])
+        self.assertFalse(metrics['D_exec'])
+        self.assertEqual(metrics['terminal_failure_stage'], 'execution_screen')
+        self.assertEqual(metrics['stages']['active']['status'], 'SUCCEEDED')
+        self.assertEqual(metrics['stages']['execution_screen']['status'], 'FAILED')
+        self.assertEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
+        self.assertGreaterEqual(metrics['stages']['execution_screen']['duration_sim_s'], 40.)
+
     def test_rm4d_only_uses_initial_query_without_mid_windows_and_original_score(self):
         node = self.node('rm4d_only')
         with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):

@@ -282,6 +282,15 @@ class GroundReportingTests(unittest.TestCase):
 
 
 class GroundDynamicsDiagnosticTests(unittest.TestCase):
+    def test_chassis_clearance_is_explicit_shared_full_robot_mode(self):
+        import run_a5_sim as adapter
+        from types import SimpleNamespace as N
+        options = N(view_position=None, view_yaw=None, max_ground_travel=None,
+                    navigation_timeout=None, full_robot_manipulation=True, execution_clearance=True)
+        self.assertTrue(adapter.build_demo_parameters({}, options)['execution_clearance'])
+        options.execution_clearance = False
+        self.assertNotIn('execution_clearance', adapter.build_demo_parameters({}, options))
+
     def test_full_robot_planning_opt_in_preserves_other_parameters(self):
         import run_a5_sim as adapter
         from types import SimpleNamespace as N
