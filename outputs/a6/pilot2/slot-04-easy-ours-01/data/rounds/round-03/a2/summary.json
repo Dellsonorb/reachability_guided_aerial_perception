@@ -1,0 +1,41 @@
+{
+  "cells": {
+    "free": 931,
+    "occupied": 6,
+    "unknown": 663
+  },
+  "config": {
+    "free_observations": 2,
+    "ground_tolerance_m": 0.02,
+    "ground_z_m": 0.0,
+    "max_range_m": 40.0,
+    "min_range_m": 0.2,
+    "obstacle_min_height_m": 0.05,
+    "unknown_scale": 2.0
+  },
+  "field_type": "endpoint_environment_belief",
+  "frame_id": "map",
+  "free_semantics": "repeated_ground_support_without_observed_obstacle",
+  "free_votes": 2780,
+  "grid": {
+    "array_convention": "row-major [y, x]; half-open cells",
+    "height_cells": 40,
+    "origin_xy": [
+      -0.049006878561475675,
+      -1.8656543344685703
+    ],
+    "resolution_m": 0.1,
+    "width_cells": 40
+  },
+  "informative_cell_observations": 2798,
+  "observed_cells": 997,
+  "occupied_priority": true,
+  "occupied_votes": 18,
+  "ray_carving": false,
+  "scene_assumption": "static_horizontal_ground",
+  "schema_version": 1,
+  "score_semantics": "observation_deficit_heuristic_not_probability",
+  "unknown_score_formula": "exp(-observation_count / unknown_scale)",
+  "unknown_score_mean": 0.536894685722823,
+  "unknown_score_min": 0.22313016014842982
+}

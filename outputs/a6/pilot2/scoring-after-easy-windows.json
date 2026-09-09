@@ -1,0 +1,5085 @@
+{
+  "kind": "same_state_shared_mask_scoring_diagnostics",
+  "snapshots": [
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 104.29062017200977,
+      "generic_unknown_mass": 1236.4343295744732,
+      "never_observed_area_m2": 6.76,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 32.45656572160199,
+          "generic_gain": 199.42858560364073,
+          "common_penalty": 0.0,
+          "visible_cells": 835
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 36.023485927875996,
+          "generic_gain": 469.7934146684371,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 1530
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 35.7848347093348,
+          "generic_gain": 462.7947996400595,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1513
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 8.83009508602407,
+          "generic_gain": 221.22806499891155,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 746
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 34.997896028760074,
+          "generic_gain": 177.49290749504684,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 710
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 34.352927398087665,
+          "generic_gain": 473.1345317280138,
+          "common_penalty": 0.49999999999999994,
+          "visible_cells": 1544
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 35.54618349079362,
+          "generic_gain": 376.2700889923704,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1299
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 15.273677986636232,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 64
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 0.2386512185411911,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 1
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 33.87562496100528,
+          "generic_gain": 339.613199986426,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1196
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 31.250461557052176,
+          "generic_gain": 466.4522976088604,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 1516
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 25.05837794682507,
+          "generic_gain": 212.28523437430522,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 824
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 17.576357075253128,
+          "generic_gain": 163.17639942105498,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 554
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 31.48911277559337,
+          "generic_gain": 446.4691943509997,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1466
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 37.932695676205526,
+          "generic_gain": 214.56767946572643,
+          "common_penalty": 0.49999999999999994,
+          "visible_cells": 866
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 37.45539323912314,
+          "generic_gain": 318.3536487986843,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1116
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.2386512185411911,
+          "generic_gain": 159.59663114293713,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 539
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 24.581075509742682,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 103
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 28.386646934557884,
+          "generic_gain": 207.95643037152425,
+          "common_penalty": 0.5,
+          "visible_cells": 837
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 41.76396324470844,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 175
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 3.8184194966590574,
+          "generic_gain": 109.85921399849067,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 376
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 28.863949371640267,
+          "generic_gain": 275.98872328532707,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 980
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 37.22959009242581,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 156
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 5.9662804635297775,
+          "generic_gain": 106.25857046355726,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 418
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 117.90301166355992,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 387
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 11.804080208620997,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 30
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 20.046702357460056,
+          "common_penalty": 0.5,
+          "visible_cells": 84
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 15.750980423718614,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 66
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 6.6822341191533505,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 28
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 30.786007191813653,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 129
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.7869386805747332,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 2
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.0,
+          "generic_gain": 64.16666075702054,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 204
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 3.8184194966590574,
+          "generic_gain": 63.50081686953257,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 257
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-01/data/rounds/round-01",
+      "actual_method": "fixed",
+      "round": 1,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 66.3450764239604,
+      "generic_unknown_mass": 1030.4783279734254,
+      "never_observed_area_m2": 6.76,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 22.4860214262753,
+          "generic_gain": 139.50636257181003,
+          "common_penalty": 0.0,
+          "visible_cells": 889
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 22.775519988321328,
+          "generic_gain": 395.4739274975444,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1531
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 22.92026926934434,
+          "generic_gain": 388.92969799368217,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1515
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 4.776726273759412,
+          "generic_gain": 177.14361770115005,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 732
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 22.92026926934434,
+          "generic_gain": 142.69699800735265,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 804
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 22.775519988321324,
+          "generic_gain": 398.8031609610737,
+          "common_penalty": 0.5,
+          "visible_cells": 1554
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 22.775519988321324,
+          "generic_gain": 305.2714975916449,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1314
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 8.395458299334726,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 58
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 3.4739827445522993,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 24
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 22.341272145252287,
+          "generic_gain": 291.415734444903,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1272
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 20.1700329299071,
+          "generic_gain": 393.064037063658,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1515
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 16.34887600610892,
+          "generic_gain": 155.1470531264241,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 850
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 15.972303780239738,
+          "generic_gain": 160.00066940511422,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 654
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 20.025283648884088,
+          "generic_gain": 382.68908493516346,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1488
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 23.93351423650543,
+          "generic_gain": 155.99711835501478,
+          "common_penalty": 0.5,
+          "visible_cells": 908
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 23.788764955482417,
+          "generic_gain": 250.42501003728754,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1122
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 127.25544269320778,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 530
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 22.29138927754392,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 154
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 18.28829227660794,
+          "generic_gain": 157.0765983604318,
+          "common_penalty": 0.5,
+          "visible_cells": 888
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 27.357614113349364,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 189
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 6.0286224594616895,
+          "generic_gain": 113.29095878152938,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 463
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 18.28829227660794,
+          "generic_gain": 241.21286787111603,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1070
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 27.068115551303336,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 187
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 3.618732025575312,
+          "generic_gain": 71.42049030840553,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 413
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 94.43347468987695,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 369
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 10.623672187758897,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 18.09366012787656,
+          "common_penalty": 0.5,
+          "visible_cells": 125
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 9.698201828541837,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 67
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 8.395458299334724,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 58
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 26.489118427211288,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 183
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 6.295509444597865,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 16
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.43424784306903746,
+          "generic_gain": 81.01955433146377,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 300
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 6.513717646035561,
+          "generic_gain": 63.837625029351685,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 360
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-01/data/rounds/round-02",
+      "actual_method": "fixed",
+      "round": 2,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 40.24032297210978,
+      "generic_unknown_mass": 820.1774928678269,
+      "never_observed_area_m2": 4.96,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 13.63846140999117,
+          "generic_gain": 107.6270977917538,
+          "common_penalty": 0.0,
+          "visible_cells": 987
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 13.901846040726621,
+          "generic_gain": 316.7446454072466,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1532
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 13.901846040726621,
+          "generic_gain": 315.3463577999208,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1530
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 4.301948968679039,
+          "generic_gain": 149.88408672774412,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 791
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 13.901846040726621,
+          "generic_gain": 119.07303587219593,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 935
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 13.814051163814803,
+          "generic_gain": 318.67613269930655,
+          "common_penalty": 0.5,
+          "visible_cells": 1554
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 13.814051163814803,
+          "generic_gain": 250.71032539545635,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1375
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 8.164923552798992,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 93
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 5.706666999268114,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 65
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 13.63846140999117,
+          "generic_gain": 244.8377270519421,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1355
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 12.321538256313913,
+          "generic_gain": 315.37076784945816,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1517
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 11.762548002926072,
+          "generic_gain": 123.09386381849282,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 944
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 11.18020485646029,
+          "generic_gain": 140.8012498248773,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 732
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 12.233743379402094,
+          "generic_gain": 312.6164824674466,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1510
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 14.516410179109341,
+          "generic_gain": 124.15397620364227,
+          "common_penalty": 0.5,
+          "visible_cells": 1014
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 14.340820425285706,
+          "generic_gain": 205.90601487246337,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1198
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.43897438455908566,
+          "generic_gain": 109.07739290512305,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 582
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.08779487691181713,
+          "generic_gain": 20.71959095118884,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 236
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 10.916820225724837,
+          "generic_gain": 121.20375264155791,
+          "common_penalty": 0.5,
+          "visible_cells": 981
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 22.475488489425185,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 256
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 5.413822414848354,
+          "generic_gain": 101.68096165251175,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 530
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 11.267999733372106,
+          "generic_gain": 199.87810068551934,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1155
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 23.441232135455174,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 267
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 4.1263592148554045,
+          "generic_gain": 63.026009148643986,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 510
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 84.10433736300828,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 415
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 13.377957569770462,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 34
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 18.87589853604068,
+          "common_penalty": 0.5,
+          "visible_cells": 215
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 9.394051829564432,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 107
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 8.51610306044626,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 97
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 21.860924351042463,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 249
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 9.836733507184164,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 25
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.7901538922063541,
+          "generic_gain": 76.07180557856357,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 352
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 5.443282368532662,
+          "generic_gain": 54.9232389077333,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 441
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-01/data/rounds/round-03",
+      "actual_method": "fixed",
+      "round": 3,
+      "confirmed_candidate_count": 2
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 82.02939378350443,
+      "generic_unknown_mass": 1239.9755536370594,
+      "never_observed_area_m2": 6.8500000000000005,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 27.754526375729327,
+          "generic_gain": 203.69861139369448,
+          "common_penalty": 0.0,
+          "visible_cells": 849
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 30.605492926379767,
+          "generic_gain": 470.94812654561144,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 30.605492926379767,
+          "generic_gain": 464.73645019780867,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1514
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 4.057070715200249,
+          "generic_gain": 223.67271413743077,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 753
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 30.2120235860924,
+          "generic_gain": 184.34955247352207,
+          "common_penalty": 0.7561941663988879,
+          "visible_cells": 729
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 29.41223683367381,
+          "generic_gain": 474.7665460422706,
+          "common_penalty": 0.49999999999999994,
+          "visible_cells": 1545
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 29.41223683367381,
+          "generic_gain": 381.4433273692135,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1309
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 15.989631642259804,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 67
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 0.4773024370823822,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 2
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 29.17358561513262,
+          "generic_gain": 346.68280003975474,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1212
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 23.207305151602842,
+          "generic_gain": 467.845660704576,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 1516
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 16.94423651642457,
+          "generic_gain": 217.96147133191837,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 840
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 18.685780071164068,
+          "generic_gain": 169.4009238407017,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 571
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 23.684607588685225,
+          "generic_gain": 449.59125292961096,
+          "common_penalty": 0.7561941663988879,
+          "visible_cells": 1470
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 31.32144658200334,
+          "generic_gain": 220.8631889103243,
+          "common_penalty": 0.5,
+          "visible_cells": 882
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 31.08279536346215,
+          "generic_gain": 323.0752808821327,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1128
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 161.97029525650518,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 547
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 26.96758769515459,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 113
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 19.627536873484974,
+          "generic_gain": 214.08427362253207,
+          "common_penalty": 0.5,
+          "visible_cells": 851
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 44.15047543012035,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 185
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 5.011675589365012,
+          "generic_gain": 115.05814851902147,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 390
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 20.104839310567357,
+          "generic_gain": 282.98733831370464,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 997
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 40.093404714920105,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 168
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 109.34818823274887,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 429
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 122.16018938176978,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 399
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 11.804080208620997,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 30
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 23.626470635577917,
+          "common_penalty": 0.5,
+          "visible_cells": 99
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 16.944236516424567,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 71
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 7.398187774776924,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 31
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 33.64982181430795,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 141
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 1.1804080208620997,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.0,
+          "generic_gain": 70.93947263870078,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 222
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 3.8184194966590574,
+          "generic_gain": 67.37737331929893,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 270
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-02/data/rounds/round-01",
+      "actual_method": "fixed",
+      "round": 1,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 52.91394512147913,
+      "generic_unknown_mass": 1033.064947161847,
+      "never_observed_area_m2": 6.8500000000000005,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 19.08302370667416,
+          "generic_gain": 140.13064857716554,
+          "common_penalty": 0.0,
+          "visible_cells": 888
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 19.806770111789223,
+          "generic_gain": 396.4916828431872,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1531
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 19.806770111789223,
+          "generic_gain": 389.69873328006065,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1515
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 1.4474928102301248,
+          "generic_gain": 175.92243117750627,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 727
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 19.806770111789223,
+          "generic_gain": 144.09815385255973,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 806
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 19.08302370667416,
+          "generic_gain": 399.9656655877395,
+          "common_penalty": 0.5,
+          "visible_cells": 1555
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 19.08302370667416,
+          "generic_gain": 304.2710588923461,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1308
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 7.9103631127608525,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 54
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 3.4739827445522993,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 24
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 19.08302370667416,
+          "generic_gain": 292.7229883525919,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1274
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 15.174793119052824,
+          "generic_gain": 394.0817924093009,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1515
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 10.609752108693256,
+          "generic_gain": 153.44856416569797,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 843
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 14.45104671393776,
+          "generic_gain": 160.61488656974655,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 654
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 15.174793119052824,
+          "generic_gain": 383.7068402808063,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 1488
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 20.09626867383525,
+          "generic_gain": 156.59347392943243,
+          "common_penalty": 0.5,
+          "visible_cells": 907
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 19.951519392812237,
+          "generic_gain": 249.7800414066151,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1118
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 125.73468876679482,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 524
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 22.436138558566935,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 155
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 13.003553903707639,
+          "generic_gain": 157.30741502549995,
+          "common_penalty": 0.5,
+          "visible_cells": 886
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 26.872518926775488,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 185
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 6.0286224594616895,
+          "generic_gain": 113.44072158092318,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 463
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 13.003553903707639,
+          "generic_gain": 242.23062321675894,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1070
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 27.0172682077985,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 186
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 70.88227168709516,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 411
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 93.6158263472437,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 364
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 9.443264166896798,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 24
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 18.332311346417754,
+          "common_penalty": 0.5,
+          "visible_cells": 126
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 9.647354485037003,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 66
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 8.395458299334724,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 58
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 26.29352180268344,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 181
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 6.295509444597865,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 16
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.43424784306903746,
+          "generic_gain": 81.10840094662959,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 300
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 4.487227711713387,
+          "generic_gain": 63.53300230423012,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 359
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-02/data/rounds/round-02",
+      "actual_method": "fixed",
+      "round": 2,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 32.09393004252882,
+      "generic_unknown_mass": 807.187991119973,
+      "never_observed_area_m2": 4.59,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 11.574438958120904,
+          "generic_gain": 104.90328055339593,
+          "common_penalty": 0.0,
+          "visible_cells": 973
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 12.01341334267999,
+          "generic_gain": 311.633674723857,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1532
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 12.01341334267999,
+          "generic_gain": 309.84191777624375,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 2.194871922795428,
+          "generic_gain": 145.40699310594061,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 784
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 12.01341334267999,
+          "generic_gain": 113.90253317818897,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 918
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 11.574438958120904,
+          "generic_gain": 313.56516201591694,
+          "common_penalty": 0.5,
+          "visible_cells": 1554
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 11.574438958120904,
+          "generic_gain": 244.16744740081953,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1369
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 7.782903572351102,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 88
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 5.53107724544448,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 63
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 11.574438958120904,
+          "generic_gain": 237.73371352342792,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1346
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 9.291772158413657,
+          "generic_gain": 310.2597971660685,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1517
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 8.494130686484628,
+          "generic_gain": 117.49344739068052,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 932
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 9.20397728150184,
+          "generic_gain": 138.6859986276555,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 729
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 9.291772158413657,
+          "generic_gain": 307.02424756685775,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 1508
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 12.189003096503622,
+          "generic_gain": 116.86944840969419,
+          "common_penalty": 0.5,
+          "visible_cells": 1001
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 12.101208219591806,
+          "generic_gain": 200.31128771763457,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1190
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 106.58563838571314,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 579
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 19.753847305158853,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 225
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 7.799259250912766,
+          "generic_gain": 115.32939779528607,
+          "common_penalty": 0.5,
+          "visible_cells": 970
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 21.830083878241844,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 248
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 5.093483380001707,
+          "generic_gain": 99.26719479077477,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 525
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 7.9748490047364,
+          "generic_gain": 193.41883962466932,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1141
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 22.795827524271832,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 259
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.61456413838272,
+          "generic_gain": 60.5977338815745,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 501
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 81.97702821071236,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 413
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 14.403547468886387,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 37
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 17.70372466338644,
+          "common_penalty": 0.5,
+          "visible_cells": 201
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 9.012031849116543,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 102
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 7.813744045151725,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 89
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 21.30331461677094,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 242
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 10.623672187758897,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.702359015294537,
+          "generic_gain": 73.4555702703191,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 344
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 3.599589953384502,
+          "generic_gain": 53.231950549849074,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 433
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-02-easy-fixed-02/data/rounds/round-03",
+      "actual_method": "fixed",
+      "round": 3,
+      "confirmed_candidate_count": 1
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 26,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 92.66857774178025,
+      "generic_unknown_mass": 1256.1077965888417,
+      "never_observed_area_m2": 7.26,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 29.496069930468824,
+          "generic_gain": 192.4820041222585,
+          "common_penalty": 0.0,
+          "visible_cells": 802
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 34.553034401097285,
+          "generic_gain": 477.29566953720473,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 34.553034401097285,
+          "generic_gain": 465.96889176566606,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1501
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 1.6705585297883376,
+          "generic_gain": 207.65064168575137,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 693
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 31.166628460257158,
+          "generic_gain": 170.2109936264845,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 673
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 33.12112708985014,
+          "generic_gain": 481.35274025240494,
+          "common_penalty": 0.5,
+          "visible_cells": 1546
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 33.12112708985014,
+          "generic_gain": 370.80070370349875,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1267
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 9.223564426311437,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 38
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 32.88247587130895,
+          "generic_gain": 335.9434952054011,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1167
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 25.72293931507322,
+          "generic_gain": 473.56108313734063,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1514
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 16.228282860800995,
+          "generic_gain": 202.0360800488778,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 783
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 17.25387275991692,
+          "generic_gain": 159.1646175871182,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 532
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 26.43889297069679,
+          "generic_gain": 449.8819376951475,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1455
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 34.327231254399955,
+          "generic_gain": 206.27302376989206,
+          "common_penalty": 0.5,
+          "visible_cells": 828
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 35.26898805672086,
+          "generic_gain": 309.3430394472263,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1075
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 146.98666077578557,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 492
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 20.762656013083625,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 87
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 22.38182225549654,
+          "generic_gain": 202.1645607673164,
+          "common_penalty": 0.5,
+          "visible_cells": 803
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 34.997896028760074,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 146
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 3.3411170595766753,
+          "generic_gain": 105.70546211465155,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 356
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 23.336427129661306,
+          "generic_gain": 275.0861519581576,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 960
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 28.07701069106553,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 117
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 92.45534400369972,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 366
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 103.9578151538001,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 337
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 5.902040104310498,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 15
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 13.757937578594067,
+          "common_penalty": 0.5,
+          "visible_cells": 57
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 11.610076611723347,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 48
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 5.2503268079062035,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 22
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 24.97454485003005,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 104
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.0,
+          "generic_gain": 62.79289039888069,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 195
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 4.29572193374144,
+          "generic_gain": 61.1014566122768,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 245
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-03-easy-generic-01/data/rounds/round-01",
+      "actual_method": "generic",
+      "round": 1,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 41,
+      "shared_visibility_shape": [
+        41,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 17,
+      "best_generic_id": 0,
+      "different_selection": true,
+      "task_uncertainty_mass": 56.20633359235343,
+      "generic_unknown_mass": 764.7317051577068,
+      "never_observed_area_m2": 0.0,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 20.088979064232777,
+          "generic_gain": 293.37151691203917,
+          "common_penalty": 0.0,
+          "visible_cells": 1548
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 20.95747475037085,
+          "generic_gain": 290.6212805726019,
+          "common_penalty": 0.5,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 20.95747475037085,
+          "generic_gain": 287.7144113560943,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1518
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 3.329233463529287,
+          "generic_gain": 139.02515227060667,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 760
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 20.95747475037085,
+          "generic_gain": 124.06318426363,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 776
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 15.457002071496378,
+          "generic_gain": 287.9218915766695,
+          "common_penalty": 0.49999999999999994,
+          "visible_cells": 1511
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 12.917947855569967,
+          "generic_gain": 140.18159074430952,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 864
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 14.2051058857941,
+          "generic_gain": 115.43063052023533,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 621
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 15.891249914565416,
+          "generic_gain": 280.8640497074434,
+          "common_penalty": 0.5490873852123404,
+          "visible_cells": 1483
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 21.536471874462897,
+          "generic_gain": 143.39315507822585,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 905
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 21.391722593439887,
+          "generic_gain": 201.43254662430454,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1136
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 100.17662887913798,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 550
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 0.0,
+          "generic_gain": 21.110016780885356,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 140
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 20.088979064232777,
+          "generic_gain": 134.80541311367858,
+          "common_penalty": 0.5,
+          "visible_cells": 882
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 5.500472678874474,
+          "generic_gain": 91.93585873877211,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 604
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 12.448438167979074,
+          "generic_gain": 78.06330600903738,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 514
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 13.430512137174205,
+          "generic_gain": 140.91683180185169,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 884
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 29.180714673652194,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 199
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 5.210974116828449,
+          "generic_gain": 81.00290199799221,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 437
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 13.864759980243242,
+          "generic_gain": 185.60363870567105,
+          "common_penalty": 0.7561941663988879,
+          "visible_cells": 1050
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-03-easy-generic-01/data/rounds/round-02",
+      "actual_method": "generic",
+      "round": 2,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 41,
+      "shared_visibility_shape": [
+        41,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 17,
+      "best_generic_id": 0,
+      "different_selection": true,
+      "task_uncertainty_mass": 34.38036315584449,
+      "generic_unknown_mass": 464.9912198806551,
+      "never_observed_area_m2": 0.0,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 12.184581724782387,
+          "generic_gain": 178.28054611822222,
+          "common_penalty": 0.0,
+          "visible_cells": 1548
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 12.711350986253292,
+          "generic_gain": 176.6124434568977,
+          "common_penalty": 0.5,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 12.711350986253292,
+          "generic_gain": 174.90629255742215,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1518
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 3.4240001995608678,
+          "generic_gain": 89.06169535894877,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 801
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 12.711350986253292,
+          "generic_gain": 75.53289701802548,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 776
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 9.638530294339692,
+          "generic_gain": 175.5019505298447,
+          "common_penalty": 0.5,
+          "visible_cells": 1517
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 7.9229263118840665,
+          "generic_gain": 86.9061733670116,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 877
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 8.87921687493396,
+          "generic_gain": 72.94276911523448,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 644
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 9.550735417427875,
+          "generic_gain": 170.9838823453307,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1485
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 13.06253049390056,
+          "generic_gain": 86.61643889873497,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 899
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 12.974735616988744,
+          "generic_gain": 123.32828309832925,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1142
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 64.85347022627626,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 583
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 0.0,
+          "generic_gain": 12.974735616988744,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 140
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 12.09678684787057,
+          "generic_gain": 81.72804913438287,
+          "common_penalty": 0.5,
+          "visible_cells": 879
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 3.511795076472685,
+          "generic_gain": 57.15245545819384,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 614
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 0.2633846307354514,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 7.725949168239907,
+          "generic_gain": 47.89594514430205,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 517
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 8.321607140662435,
+          "generic_gain": 85.43481194310063,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 881
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 18.515265945413315,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 207
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 3.599589953384502,
+          "generic_gain": 51.56536743356064,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 455
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 8.233812263750616,
+          "generic_gain": 112.94213778519365,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1049
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-03-easy-generic-01/data/rounds/round-03",
+      "actual_method": "generic",
+      "round": 3,
+      "confirmed_candidate_count": 3
+    },
+    {
+      "candidate_count": 65,
+      "shared_visibility_shape": [
+        65,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 25,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 82.81633246407917,
+      "generic_unknown_mass": 1246.2710630816573,
+      "never_observed_area_m2": 7.01,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 28.064162619221676,
+          "generic_gain": 201.6217354517749,
+          "common_penalty": 0.0,
+          "visible_cells": 839
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 30.915129169872117,
+          "generic_gain": 473.6638677120915,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 1530
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 30.915129169872117,
+          "generic_gain": 467.0587220240013,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1514
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 3.5797682781178666,
+          "generic_gain": 223.16971555666072,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 747
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 29.734721149010017,
+          "generic_gain": 178.71860439717238,
+          "common_penalty": 0.7561941663988879,
+          "visible_cells": 708
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 29.721873077166162,
+          "generic_gain": 477.00498477166815,
+          "common_penalty": 0.5,
+          "visible_cells": 1544
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 29.721873077166162,
+          "generic_gain": 381.71441939717425,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1303
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 15.512329205177423,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 65
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 29.483221858624972,
+          "generic_gain": 342.07744186252097,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1194
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 23.516941395095195,
+          "generic_gain": 470.0840994339736,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1515
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 16.94423651642457,
+          "generic_gain": 216.67153407057353,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 832
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 17.25387275991692,
+          "generic_gain": 162.98303708377725,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 548
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 23.994243832177574,
+          "generic_gain": 449.9461780543667,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1465
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 31.63108282549569,
+          "generic_gain": 219.0959492118971,
+          "common_penalty": 0.49999999999999994,
+          "visible_cells": 872
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 31.3924316069545,
+          "generic_gain": 323.8236753471758,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 1124
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 161.2286454571939,
+          "common_penalty": 0.5981747704246809,
+          "visible_cells": 540
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 24.34242429120149,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 102
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 19.937173116977323,
+          "generic_gain": 211.61392834032517,
+          "common_penalty": 0.5,
+          "visible_cells": 840
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 42.7185681188732,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 179
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 3.5797682781178666,
+          "generic_gain": 109.28523039276942,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 371
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 20.41447555405971,
+          "generic_gain": 277.83369267443726,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 978
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 0.0,
+          "generic_gain": 37.706892529508195,
+          "common_penalty": 0.7071067811865475,
+          "visible_cells": 158
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 109.01285584556881,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 425
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 119.46404095286552,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 389
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 10.623672187758897,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359095,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.854368936823569,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112285,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7561941663988879,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 0.0,
+          "generic_gain": 20.762656013083625,
+          "common_penalty": 0.5,
+          "visible_cells": 87
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 16.466934079342185,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 69
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 0.0,
+          "generic_gain": 6.443582900612159,
+          "common_penalty": 0.5490873852123405,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 0.0,
+          "generic_gain": 30.547355973272456,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 128
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.3934693402873666,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 1
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.0,
+          "generic_gain": 63.12822278606076,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 199
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 3.3411170595766753,
+          "generic_gain": 63.010666360606336,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 253
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-04-easy-ours-01/data/rounds/round-01",
+      "actual_method": "ours",
+      "round": 1,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 41,
+      "shared_visibility_shape": [
+        41,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 0,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 52.04317334410939,
+      "generic_unknown_mass": 1019.5321714703302,
+      "never_observed_area_m2": 6.5,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 19.898395958075728,
+          "generic_gain": 148.51445622382292,
+          "common_penalty": 0.0,
+          "visible_cells": 900
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 19.46414811500669,
+          "generic_gain": 390.87745195754326,
+          "common_penalty": 0.5,
+          "visible_cells": 1529
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 19.46414811500669,
+          "generic_gain": 385.2649104152788,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1516
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 2.4607377773912122,
+          "generic_gain": 176.26251355138152,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 757
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 19.46414811500669,
+          "generic_gain": 132.91647250168288,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 754
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 18.74040170989163,
+          "generic_gain": 393.3381897349345,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1546
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 18.74040170989163,
+          "generic_gain": 302.9217984744035,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1320
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 10.558904765188423,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 71
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 1.0132449671610875,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 7
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 18.74040170989163,
+          "generic_gain": 276.5019405896257,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 1234
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 18.595652428868615,
+          "generic_gain": 134.9999616544468,
+          "common_penalty": 0.5,
+          "visible_cells": 871
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 3.7634813065983246,
+          "generic_gain": 91.6843176444055,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 600
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 10.132449671610875,
+          "generic_gain": 76.99542818747273,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 491
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 0.0,
+          "generic_gain": 26.676922302247643,
+          "common_penalty": 0.5,
+          "visible_cells": 183
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 0.0,
+          "generic_gain": 72.91983674191853,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 436
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 98.47137219942734,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 399
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 11.804080208620997,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 30
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 0.0,
+          "generic_gain": 16.833971192682796,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 115
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 10.899250670739281,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 74
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 0.0,
+          "generic_gain": 5.645221959897487,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 39
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-04-easy-ours-01/data/rounds/round-02",
+      "actual_method": "ours",
+      "round": 2,
+      "confirmed_candidate_count": 1
+    },
+    {
+      "candidate_count": 41,
+      "shared_visibility_shape": [
+        41,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 0,
+      "best_generic_id": 9,
+      "different_selection": true,
+      "task_uncertainty_mass": 31.5657802619416,
+      "generic_unknown_mass": 859.0314971565167,
+      "never_observed_area_m2": 6.03,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 12.068987227674869,
+          "generic_gain": 96.52830652999282,
+          "common_penalty": 0.0,
+          "visible_cells": 913
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 11.80560259693942,
+          "generic_gain": 331.799960684305,
+          "common_penalty": 0.5,
+          "visible_cells": 1530
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 11.80560259693942,
+          "generic_gain": 327.77747240451953,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 1519
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 3.1606155688254165,
+          "generic_gain": 153.52365227304986,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 817
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 11.80560259693942,
+          "generic_gain": 98.9456101461465,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 777
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 11.366628212380334,
+          "generic_gain": 333.1738382420935,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 1545
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 11.366628212380334,
+          "generic_gain": 250.98425116630557,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 1340
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 9.740504795721654,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 109
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 1.3169231536772568,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 15
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 11.366628212380334,
+          "generic_gain": 227.06492689301612,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 1253
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 11.191038458556699,
+          "generic_gain": 86.8255488450852,
+          "common_penalty": 0.5,
+          "visible_cells": 878
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 2.9850258150017823,
+          "generic_gain": 60.604627772985666,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 631
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.5837236655820981,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 6
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 6.584615768386285,
+          "generic_gain": 53.7189895668586,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 513
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 0.0,
+          "generic_gain": 17.786792998808206,
+          "common_penalty": 0.5,
+          "visible_cells": 200
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 0.0,
+          "generic_gain": 54.46087718259188,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 473
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 88.9256024415319,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 444
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 23.204622236231465,
+          "common_penalty": 0.6472621556370215,
+          "visible_cells": 60
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5490873852123406,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 0.0,
+          "generic_gain": 10.969633072487092,
+          "common_penalty": 0.7071067811865476,
+          "visible_cells": 123
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 7.721222626749859,
+          "common_penalty": 0.756194166398888,
+          "visible_cells": 86
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 0.0,
+          "generic_gain": 4.038564337943588,
+          "common_penalty": 0.7561941663988881,
+          "visible_cells": 46
+        }
+      ],
+      "snapshot": "outputs/a6/pilot2/slot-04-easy-ours-01/data/rounds/round-03",
+      "actual_method": "ours",
+      "round": 3,
+      "confirmed_candidate_count": 1
+    }
+  ],
+  "snapshot_count": 12,
+  "all_identity_checks_pass": true,
+  "differing_selection_snapshots": 12,
+  "note": "Both scores use each saved snapshot's single ordered candidate set, visibility tensor and cost. This is not a claim that divergent closed-loop trials share later states. Ablation snapshots also retain the original shared ranking; variant decisions are separate."
+}

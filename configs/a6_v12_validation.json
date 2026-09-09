@@ -1,0 +1,191 @@
+{
+  "protocol": "docs/V12_FRESH_VALIDATION_PROTOCOL.md",
+  "status": "FROZEN_FOR_PILOT",
+  "attempt_limit": 6,
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5.0,
+  "capture_wall_guard_s": 20.0,
+  "task_wall_guard_s": 1200.0,
+  "efficiency_clock": "simulation",
+  "primary_comparison": [
+    "ours",
+    "generic"
+  ],
+  "order_seed": 2026090902,
+  "order_rule": "Shuffle [generic, ours] once with Random(order_seed); alternate pair order by tier index",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4.0,
+    "grid_height_m": 4.0,
+    "ground_z_m": 0.0,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ],
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3.0,
+    "navigation_timeout": 120.0,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45.0,
+    "core_timeout": 900.0,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1.0
+  },
+  "scenes": [
+    {
+      "id": "easy",
+      "seed": 1249652395,
+      "target_xy": [
+        1.9100830408001672,
+        -0.01821438029077188
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4184145637533241,
+      "bunker_xy": [
+        3.0686294198259896,
+        -2.4038705338184525
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1158112720930453,
+      "boxes": []
+    },
+    {
+      "id": "moderate",
+      "seed": 405111274,
+      "target_xy": [
+        2.0579662009378263,
+        -0.012100778521353939
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2555294440125043,
+      "bunker_xy": [
+        3.0273023484322334,
+        -2.4579953386121614
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2136650203772557,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ]
+    },
+    {
+      "id": "hard",
+      "seed": 1450983937,
+      "target_xy": [
+        1.9983181279798994,
+        -0.11877031770781689
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.12303421373538082,
+      "bunker_xy": [
+        2.9063762023545845,
+        -2.489530069646949
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1179484132187913,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "easy",
+      "method": "generic"
+    },
+    {
+      "slot": 2,
+      "scene": "easy",
+      "method": "ours"
+    },
+    {
+      "slot": 3,
+      "scene": "moderate",
+      "method": "ours"
+    },
+    {
+      "slot": 4,
+      "scene": "moderate",
+      "method": "generic"
+    },
+    {
+      "slot": 5,
+      "scene": "hard",
+      "method": "generic"
+    },
+    {
+      "slot": 6,
+      "scene": "hard",
+      "method": "ours"
+    }
+  ],
+  "experiment": "V12_FRESH_PAIRED_VALIDATION",
+  "record_diagnostics": true,
+  "operational_gating": "v1.1",
+  "seed_draw_seed": 2026090901,
+  "support_anchor": "exact_winner",
+  "diagnostic_image_scope": "ground_handoff_to_end"
+}

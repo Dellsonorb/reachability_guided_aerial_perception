@@ -1,0 +1,229 @@
+{
+  "protocol": "docs/A6_PILOT2_PROTOCOL.md",
+  "status": "FROZEN_FOR_PILOT",
+  "attempt_limit": 14,
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5.0,
+  "capture_wall_guard_s": 20.0,
+  "task_wall_guard_s": 1200.0,
+  "efficiency_clock": "simulation",
+  "primary_comparison": [
+    "ours",
+    "generic"
+  ],
+  "order_seed": 202609082,
+  "order_rule": "Shuffle all four methods with Random(order_seed); left rotate by tier index",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4.0,
+    "grid_height_m": 4.0,
+    "ground_z_m": 0.0,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ],
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3.0,
+    "navigation_timeout": 120.0,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45.0,
+    "core_timeout": 900.0,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1.0
+  },
+  "scenes": [
+    {
+      "id": "easy",
+      "seed": 1015873452,
+      "target_xy": [
+        1.9527193033219203,
+        0.1280628127779501
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.41093476332379053,
+      "bunker_xy": [
+        3.071822755296136,
+        -2.408231539254184
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.180387204656458,
+      "boxes": []
+    },
+    {
+      "id": "moderate",
+      "seed": 1240085801,
+      "target_xy": [
+        1.933988322860763,
+        -0.08159815961340365
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.4880321202150636,
+      "bunker_xy": [
+        3.0654797771975053,
+        -2.4803016061958854
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.090466777405675,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ]
+    },
+    {
+      "id": "hard",
+      "seed": 656391333,
+      "target_xy": [
+        2.0862799659309377,
+        0.022950987302217063
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.3628325222113328,
+      "bunker_xy": [
+        3.053706982794688,
+        -2.5094998085231555
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.204402173510061,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.0
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "easy",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 2,
+      "scene": "easy",
+      "method": "fixed"
+    },
+    {
+      "slot": 3,
+      "scene": "easy",
+      "method": "generic"
+    },
+    {
+      "slot": 4,
+      "scene": "easy",
+      "method": "ours"
+    },
+    {
+      "slot": 5,
+      "scene": "moderate",
+      "method": "fixed"
+    },
+    {
+      "slot": 6,
+      "scene": "moderate",
+      "method": "generic"
+    },
+    {
+      "slot": 7,
+      "scene": "moderate",
+      "method": "ours"
+    },
+    {
+      "slot": 8,
+      "scene": "moderate",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 9,
+      "scene": "hard",
+      "method": "generic"
+    },
+    {
+      "slot": 10,
+      "scene": "hard",
+      "method": "ours"
+    },
+    {
+      "slot": 11,
+      "scene": "hard",
+      "method": "rm4d_only"
+    },
+    {
+      "slot": 12,
+      "scene": "hard",
+      "method": "fixed"
+    },
+    {
+      "slot": 13,
+      "scene": "hard",
+      "method": "no_occlusion"
+    },
+    {
+      "slot": 14,
+      "scene": "hard",
+      "method": "no_cost"
+    }
+  ],
+  "experiment": "Pilot-2",
+  "record_diagnostics": true,
+  "operational_gating": "v1.1",
+  "seed_draw_seed": 202609082
+}

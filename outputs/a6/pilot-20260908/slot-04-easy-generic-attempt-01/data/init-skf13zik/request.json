@@ -1,0 +1,127 @@
+{
+  "config": {
+    "facade_position_tolerance": 0.05,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "max_viewpoints": 3,
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ]
+  },
+  "current_bunker_pose": [
+    3.098268607639037,
+    -2.4966198213692907,
+    3.0727967909321148
+  ],
+  "frame_calibration": {
+    "T_bunker_aubo": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.15
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_ground_odom_bunker": [
+      [
+        0.9999999909424223,
+        -0.00013459255280915663,
+        0.0,
+        0.00015485440995766098
+      ],
+      [
+        0.00013459255280915663,
+        0.9999999909424223,
+        0.0,
+        -0.00018363824891309832
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_map_ground_odom": [
+      [
+        -0.9976252366846861,
+        -0.06887588206203935,
+        0.0,
+        3.0984104460600483
+      ],
+      [
+        0.06887588206203935,
+        -0.9976252366846861,
+        0.0,
+        -2.496813689254904
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "grasp": {
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      1.9397754852453797,
+      0.0022805690436966597,
+      0.08227588741188088
+    ],
+    "quaternion_xyzw": [
+      0.05525304575665782,
+      0.7049447502709788,
+      -0.05525304575665783,
+      0.7049447502709789
+    ]
+  },
+  "method": "generic",
+  "op": "init",
+  "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/pilot-20260908/slot-04-easy-generic-attempt-01/data",
+  "rm4d_config": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo/configs/mr4_offline_base_placement.json",
+  "rm4d_map": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1/rmap.npy",
+  "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+  "rm4d_task_asset": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1",
+  "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation"
+}

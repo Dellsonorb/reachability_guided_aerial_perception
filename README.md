@@ -1,8 +1,23 @@
 # A1 — Validated Manipulation Interest Field
 
+A6 当前停在 [fresh-seed validation 科研审查 checkpoint](docs/V12_FRESH_VALIDATION_RESULTS.md)：
+已冻结六次配对验证；完成3/6，Easy Generic/Ours 均 E2E 成功，Moderate Ours
+出现 AMBIGUOUS cell 永久阻断的结构性死锁，按批准条件停止，未启动 slots4–6。
+未修改冻结算法或参数，尚未达到 formal readiness，PR#6 保持 Draft。
+此前 [v1.2 integration-complete checkpoint](docs/V12_INTEGRATION_CHECKPOINT.md) 的
+exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为0.1487m。
+[Pilot-1](docs/A6_PILOT_RESULTS.md)、[Pilot-2](docs/A6_PILOT2_RESULTS.md) 保留原结果；
+历史 16 个 v1.1 formal slots 永久作为 development diagnostics，不进入 v1.2 statistics。
+没有恢复 slot 17 或 formal matrix，A6 分支未合并 main。
+[fresh validation 冻结协议](docs/V12_FRESH_VALIDATION_PROTOCOL.md) 与
+[结果和机制诊断](docs/V12_FRESH_VALIDATION_RESULTS.md) 已记录；不自行恢复验证或 formal。
+方法定义见 [v1.1 object-aware gating](docs/OBJECT_AWARE_GATING_V11.md) 与
+[v1.2 exact-pose anchoring](docs/EXACT_POSE_SUPPORT_V12.md)；non-winner 仅作诊断。
+
 项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
 详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
-及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1–A4 方法保持不变。
+及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1/A2/A4 与 RM4D 保持不变；
+A3/A5 仅包含上述已批准的 v1.1/v1.2 修订。
 
 本仓库实现 Paper 1 的最小 A1 原型：把 `map` 下的 Brick grasp TCP 交给冻结的 AUBO RM4D planner，并将 planner **实际验证过的候选**投影成 0.10 m 二维地面场。这里的
 

@@ -1,0 +1,86 @@
+# v1.2 Fresh Paired Validation Execution Plan
+
+> **For agentic workers:** Use subagent-driven-development for bounded launcher
+> plumbing and diagnostic tasks, with specification then quality review. Root
+> owns the only serial SIM. The user approved the proposal and routine autonomy;
+> do not seek another approval except for the stated scientific stop conditions.
+
+**Goal:** Complete six fresh paired validation slots, or stop on demonstrated
+structural deadlock, then deliver a review checkpoint without formal execution.
+
+**Architecture:** Reuse existing single-slot launcher, A6 adapter/worker and
+diagnostic functions. Add only explicit exact-anchor plumbing and a standalone
+frozen six-slot configuration. No research-source or dependency changes.
+
+**Tech Stack:** Existing ROS Noetic/Python3.8, core Python3.10, SIM/PX4, NumPy.
+
+**Scientific stop:** Slot3 Moderate/Ours exposes persistent AMBIGUOUS-cell
+blocking of all34 exact winners, including5 continuous-clear winners. Slots4–6
+must not start; final checkpoint is research review, not formal readiness.
+
+## 1. Freeze the complete setup before any method
+
+- [x] Read approved proposal, existing protocol, launcher and seed metadata;
+  retain feature checkout and four unrelated untracked A5 directories.
+- [x] Determine first three eligible seeds with draw2026090901, excluded prior
+  config union; freeze pair order with shuffle2026090902 and tier alternation.
+- [x] Add `tests/test_a6_v12_validation.py`: assert configuration exists, frozen
+  common parameters equal Pilot-2, seeds equal first eligible draws, all scene
+  values reproduce original six draws, boxes/z unchanged, six exact slots only.
+- [x] RED launcher test: compare `adapter_args` before/after adding
+  `support_anchor='exact_winner'`; require only the two CLI words to differ.
+- [x] Minimal launcher patch in `scripts/run_a6_attempt.py`:
+  `if 'support_anchor' in config: args += ['--support-anchor', config['support_anchor']]`.
+  Test both explicit values and unchanged legacy omission; no default change.
+- [x] Create `configs/a6_v12_validation.json` by copying common Pilot-2 settings,
+  changing only experiment/protocol/count/seeds/order, explicit exact anchor and
+  diagnostic image scope `ground_handoff_to_end` already supported by launcher.
+- [x] Run `PYTHONPATH=src:tests CORE -m unittest test_a6_v12_validation
+  test_a6_attempt test_a6_pilot2 test_exact_support -q`; independent spec then
+  quality review, commit and push seed/protocol/config freeze before any run.
+  Verification: 56 relevant tests pass; native Python3.8 new6 tests pass;
+  independent specification and quality reviews pass without findings.
+
+## 2. Prepare diagnostic reuse and execute serially
+
+- [x] Confirm operational/scoring/metrics commands and non-winner helper reuse.
+  Exact A6 snapshots must not use the legacy-cell-center `replay_attempt` path.
+  Any small reporting addition first receives a test using recorded data;
+  diagnostics never participate in selection or rewrite previous results.
+- [x] Add read-only `scripts/a6_exact_support_diagnostics.py` and focused tests:
+  rebuild support from saved initial/A2/operational arrays, compare exact winner
+  identities, poses, assessments and A3 arrays, and call the existing diagnostic
+  non-winner helper. Test unchanged recorded natural data and deliberate saved
+  anchor/array mismatches. No new query, observation or selection occurs.
+  Six reporter tests pass; independent specification and quality reviews pass.
+  Reconstruction also verifies object-aware-v1.1 declarations; missing
+  reconstruction is not reported as zero non-winner alternatives.
+- [x] For each scene run existing `scripts/run_a6_attempt.py --config
+  configs/a6_v12_validation.json --setup-scene TIER --output-dir NEW_SETUP_DIR`
+  in SIM's pinned Noetic environment with dedicated11951/11952 ports. No pose override.
+- [x] Confirm all three existing setup checks pass. Keep every activation;
+  investigate genuine domain conflict instead of resampling.
+  All three first activations pass: Easy838/Moderate612/Hard405 ground cells;
+  windows5.029/5.022/5.033 simulation seconds. No redraw/override/retry.
+- [ ] Run explicit slots1–6 with the same command's `--slot N` instead of
+  `--setup-scene`, fresh output directory per activation. Do not call any formal
+  generator/matrix or select order from results. Inspect the terminal result
+  and structural gate diagnostics before the next slot.
+  Interrupted at3/6: Easy pair succeeds; Moderate/Ours valid active failure.
+- [x] Record every valid result and separately every proven INVALID retry;
+  resolve ordinary runtime bugs with focused reproduction/TDD only. Stop if
+  frozen semantics must change or a new structural deadlock is established.
+
+## 3. Analysis, review and stop
+
+- [x] Generate existing per-round operational and dual-score reports; verify
+  actual saved exact-winner support and non-winner diagnostics. Include raw and
+  derived evidence, confirmation, D_exec, retrieval and failure stages.
+- [x] Report all three paired binary outcomes/discordants and simulation-clock
+  resources with missingness, not formal inference or outcome-driven tuning.
+  Only Easy is a complete pair; remaining pairs explicitly incomplete/not run.
+- [x] Run full core, native Noetic and actual task-map regressions plus frozen
+  source/old-output diff checks; independently review claims and completeness.
+  Core562/22skips, native93, actualmap9; no failures. Final delivery review PASS.
+- [ ] Update results/readiness report and README, retain old data, commit/push
+  checkpoint and update Draft PR#6. Close owned processes. Stop; no formal run.

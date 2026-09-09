@@ -1,0 +1,30 @@
+{"method": "rm4d_only", "ros_time": 11.38, "state": "A6_TASK_START", "wall_monotonic": 33815.677639218}
+{"ros_time": 11.381, "state": "PREFLIGHT", "wall_monotonic": 33815.679210011}
+{"ros_time": 11.384, "state": "ARMING", "wall_monotonic": 33815.682122308}
+{"ros_time": 11.385, "state": "COMMAND_CONTROL", "wall_monotonic": 33815.683652244}
+{"ros_time": 11.387, "state": "TAKEOFF", "wall_monotonic": 33815.684919648}
+{"ros_time": 24.291, "state": "AIR_VIEW", "wall_monotonic": 33829.699679008}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 24.292, "state": "A5_VIEWPOINT", "view_role": "initial", "wall_monotonic": 33829.701734217}
+{"ros_time": 34.128, "state": "A5_SETTLED", "uav_pose_map": [-1.4343932032532867, -0.019756070666134995, 1.2196052250733567, -0.0003911603045885373], "wall_monotonic": 33840.152527792}
+{"ros_time": 34.131, "state": "AIR_OBSERVE", "wall_monotonic": 33840.155665187}
+{"observation_stamp": 33.784, "ros_time": 34.177, "state": "AIR_HANDOFF", "target_map": [1.9923869809722181, 0.11959155705188758, 0.05991039217039661, -0.3989823331146003], "wall_monotonic": 33840.207370881}
+{"label": "init", "operation": "init", "ros_time": 34.178, "state": "A5_CORE", "wall_monotonic": 33840.209771942}
+{"candidate_count": 1, "original_final_score": 0.8678963779662623, "ros_time": 52.049, "selected_candidate": {"T_aubo_flange": [[-0.388480807547676, -0.92145681513908, 9.214568150728297e-07, 0.11494508131912418], [-0.9214568151395407, 0.3884808075474818, -3.884808075504954e-07, -0.5639482496475541], [2.7755575615628914e-17, -9.999999998622222e-07, -0.9999999999995001, -0.20018960782970335], [0.0, 0.0, 0.0, 1.0]], "T_map_aubo": [[-0.9999999999999999, 1.3647838028084205e-17, 1.2243586460027435e-22, 2.1073322465827053], [-1.3248340249080298e-16, -1.0000000000000002, 2.242914300567602e-23, -0.444356770291828], [-1.2979920525159673e-23, 7.364046529634117e-23, 1.0, 0.482], [0.0, 0.0, 0.0, 1.0]], "T_map_bunker": [[-0.9999999999999999, 1.3647838028084205e-17, 1.2243586460027435e-22, 2.2573322465827053], [-1.3248340249080298e-16, -1.0000000000000002, 2.242914300567602e-23, -0.444356770291828], [-1.2979920525159673e-23, 7.364046529634117e-23, 1.0, 0.36], [0.0, 0.0, 0.0, 1.0]], "T_map_flange": [[0.3884808075476759, 0.92145681513908, -9.214568150728297e-07, 1.9923871652635812], [0.9214568151395407, -0.3884808075474817, 3.884808075504953e-07, 0.11959147935572607], [2.7755575615628914e-17, -9.999999998622222e-07, -0.9999999999995001, 0.28181039217029663], [0.0, 0.0, 0.0, 1.0]], "bunker_x": 2.2573322465827053, "bunker_y": -0.444356770291828, "bunker_yaw": -3.141592653589793, "candidate_id": "candidate-000000", "collision_free": true, "final_score": 0.8678963779662623, "fk_orientation_residual_rad": 1.5417373443315596e-13, "fk_position_residual_m": 5.865409098803554e-12, "footprint_collision": false, "ik_attempts": 2, "ik_seed": 721425858, "ik_valid": true, "joint_configuration": [1.5591602166200642, 1.220851343446539, -1.7150370289798782, -1.3650887501552593, -1.5707956912790324, 1.9581415316294215], "joint_margin_rad": 1.0818584683705785, "rejection_reason": null, "rm4d_reachable": true, "transform_roundtrip_error": 2.220446049250313e-16, "travel_cost": 2.126036865888825, "valid": true, "x": 2.2573322465827053, "y": -0.444356770291828, "yaw": -3.141592653589793}, "state": "A6_RM4D_SELECTED", "wall_monotonic": 33859.340466594}
+{"ros_time": 52.05, "stage": "return", "state": "A6_STAGE_START", "wall_monotonic": 33859.341025112}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 52.058, "state": "A5_VIEWPOINT", "view_role": "return", "wall_monotonic": 33859.341506037}
+{"ros_time": 55.081, "state": "A5_SETTLED", "uav_pose_map": [-1.3936544446981218, -0.04206812346771625, 1.2219673558742628, -0.0007122503433344662], "wall_monotonic": 33862.533536962}
+{"ros_time": 55.084, "stage": "return", "state": "A6_STAGE_END", "wall_monotonic": 33862.536960216}
+{"ros_time": 55.085, "state": "LANDING", "wall_monotonic": 33862.53707266}
+{"ros_time": 55.086, "stage": "landing", "state": "A6_STAGE_START", "wall_monotonic": 33862.538673973}
+{"ros_time": 63.387, "stage": "landing", "state": "A6_STAGE_END", "wall_monotonic": 33871.4683815}
+{"ros_time": 63.387, "state": "A6_LANDED", "wall_monotonic": 33871.468541436}
+{"ros_time": 63.388, "stage": "ground_navigation", "state": "A6_STAGE_START", "wall_monotonic": 33871.469282099}
+{"candidate_count": 1, "ros_time": 63.388, "state": "RM4D_CANDIDATES", "top_candidate_id": "candidate-000000", "top_candidate_pose_map": [2.2573322465827053, -0.444356770291828, -3.141592653589793], "top_candidate_score": 0.8678963779662623, "wall_monotonic": 33871.469661824}
+{"navigation_goal_map": [2.2573322465827053, -0.444356770291828, -3.141592653589793], "ros_time": 63.39, "start_map": [3.003032854554621, -2.4315234682774918, 3.127374490965336], "state": "GROUND_APPROACH", "target_map": [1.9923869809722181, 0.11959155705188758, 0.05991039217039661, -0.3989823331146003], "top_candidate_id": "candidate-000000", "top_candidate_score": 0.8678963779662623, "wall_monotonic": 33871.471114167}
+{"ground_travel": 2.076431846249831, "navigation_goal_map": [2.2573322465827053, -0.444356770291828, -3.141592653589793], "ros_time": 149.998, "state": "GROUND_STOPPED", "target_distance": 0.670432838461253, "top_candidate_id": "candidate-000000", "top_candidate_score": 0.8678963779662623, "wall_monotonic": 33965.832195361}
+{"ros_time": 150.0, "stage": "ground_navigation", "state": "A6_STAGE_END", "wall_monotonic": 33965.834582943}
+{"ros_time": 150.001, "stage": "ground_refine", "state": "A6_STAGE_START", "wall_monotonic": 33965.834807202}
+{"ros_time": 150.001, "state": "GROUND_OBSERVE", "wall_monotonic": 33965.834914897}
+{"reason": "near-field D435 observation timed out", "ros_time": 179.342, "stage": "ground_refine", "state": "A6_STAGE_FAILED", "wall_monotonic": 33997.817029527}
+{"reason": "near-field D435 observation timed out", "ros_time": 179.343, "state": "FAILED", "wall_monotonic": 33997.818306923}
+{"adapter_run_result": false, "ros_time": 179.348, "state": "A6_TASK_END", "wall_monotonic": 33997.82401295}

@@ -1,0 +1,1059 @@
+{
+  "status": "PASS",
+  "scope": "one original-natural-A5 v1.1 regression, not Pilot-2 or a comparison trial",
+  "operational_semantics": "object-aware-v1.1",
+  "initial_view_xyzyaw": [
+    -0.5,
+    0,
+    1.5,
+    0
+  ],
+  "initial_bunker_xyyaw": [
+    3,
+    -2.5,
+    3.141592653589793
+  ],
+  "max_viewpoints": 3,
+  "cloud_window_s": 5,
+  "max_ground_travel_m": 3,
+  "navigation_timeout_s": 120,
+  "facade_position_tolerance_m": 0.05,
+  "rm4d_summary": {
+    "inverse_reachable": 144,
+    "deduplicated": 144,
+    "validation_limit": 256,
+    "evaluated": 144,
+    "valid": 139,
+    "rejected_by_reason": {
+      "ik_no_valid_solution": 5
+    }
+  },
+  "target_reference": {
+    "frame_id": "map",
+    "mask_pixels": 373,
+    "perceived_target": {
+      "center_xyz": [
+        1.997621775348814,
+        0.006518819326212584,
+        0.060640599370727216
+      ],
+      "size_xyz": [
+        0.24,
+        0.053,
+        0.115
+      ],
+      "yaw_rad": 0.003751681801133833
+    },
+    "points": 189,
+    "reason": null,
+    "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/operational-v11/natural-a5-attempt-01/target_reference.npz",
+    "stamp_s": 135.093,
+    "status": "AVAILABLE"
+  },
+  "geometry_allowance_m": 0.0439527451016017,
+  "same_state_v1_vs_v11": [
+    {
+      "round": 1,
+      "catalog": 37,
+      "exact_blocked_v1": 0,
+      "exact_blocked_v11": 31,
+      "representative_blocked_v1": 0,
+      "representative_blocked_v11": 34,
+      "confirmed_v1": 0,
+      "confirmed_v11": 0,
+      "expanded_target_collision_count": 31,
+      "newly_unblocked": [],
+      "target_votes": 0,
+      "ambiguous_votes": 0,
+      "environment_votes": 0,
+      "ground_votes": 337,
+      "saved_v11_assessments_exact": true,
+      "nominal_relevance_unchanged": true,
+      "stop_reason": null
+    },
+    {
+      "round": 2,
+      "catalog": 37,
+      "exact_blocked_v1": 31,
+      "exact_blocked_v11": 32,
+      "representative_blocked_v1": 32,
+      "representative_blocked_v11": 34,
+      "confirmed_v1": 0,
+      "confirmed_v11": 0,
+      "expanded_target_collision_count": 31,
+      "newly_unblocked": [],
+      "target_votes": 6,
+      "ambiguous_votes": 6,
+      "environment_votes": 0,
+      "ground_votes": 1457,
+      "saved_v11_assessments_exact": true,
+      "nominal_relevance_unchanged": true,
+      "stop_reason": null
+    },
+    {
+      "round": 3,
+      "catalog": 37,
+      "exact_blocked_v1": 34,
+      "exact_blocked_v11": 34,
+      "representative_blocked_v1": 35,
+      "representative_blocked_v11": 35,
+      "confirmed_v1": 2,
+      "confirmed_v11": 2,
+      "expanded_target_collision_count": 31,
+      "newly_unblocked": [],
+      "target_votes": 11,
+      "ambiguous_votes": 13,
+      "environment_votes": 0,
+      "ground_votes": 2634,
+      "saved_v11_assessments_exact": true,
+      "nominal_relevance_unchanged": true,
+      "stop_reason": "VIEW_BUDGET_REACHED"
+    }
+  ],
+  "comparison_semantics": "gating replay on identical acquired states; not counterfactual v1 execution",
+  "raw_a2_final_exact": {
+    "state": true,
+    "occupied_evidence": true,
+    "free_evidence": true,
+    "observation_count": true,
+    "unknown_score": true
+  },
+  "physical_result": {
+    "arm_controller": {
+      "goal_ids": [
+        "/move_group-2-267.877000000",
+        "/move_group-3-278.457000000",
+        "/move_group-4-284.497000000"
+      ],
+      "success_count": 3
+    },
+    "flight": {
+      "armed_seen": true,
+      "landed_after_arm": true
+    },
+    "grasp": {
+      "grasp_confirmed": true
+    },
+    "observations": {
+      "aerial": {
+        "age_s": 0.5889999999999986,
+        "frame": "map",
+        "stamp": 135.093
+      },
+      "ground": {
+        "age_s": 0.4449999999999932,
+        "frame": "map",
+        "stamp": 267.343
+      }
+    },
+    "physical_target": {
+      "baseline_z_m": 0.056499510222921524,
+      "final_z_m": 0.20507957076984476,
+      "target_lift_m": 0.14858006054692324
+    },
+    "sequence": {
+      "ground_travel_m": 1.974768550665488,
+      "landing_count": 1,
+      "states": [
+        "PREFLIGHT",
+        "ARMING",
+        "COMMAND_CONTROL",
+        "TAKEOFF",
+        "AIR_VIEW",
+        "AIR_OBSERVE",
+        "AIR_HANDOFF",
+        "LANDING",
+        "GROUND_APPROACH",
+        "GROUND_STOPPED",
+        "GROUND_OBSERVE",
+        "GROUND_REFINED",
+        "PREGRASP",
+        "GRASP",
+        "LIFTING",
+        "LIFT"
+      ],
+      "takeoff_count": 1,
+      "tcp_lift_m": 0.14975677945473234
+    },
+    "status": "PASS"
+  },
+  "events": [
+    {
+      "ros_time": 116.543,
+      "state": "PREFLIGHT"
+    },
+    {
+      "ros_time": 116.545,
+      "state": "ARMING"
+    },
+    {
+      "ros_time": 116.547,
+      "state": "COMMAND_CONTROL"
+    },
+    {
+      "ros_time": 116.549,
+      "state": "TAKEOFF"
+    },
+    {
+      "ros_time": 127.352,
+      "state": "AIR_VIEW"
+    },
+    {
+      "ros_time": 127.354,
+      "state": "A5_VIEWPOINT",
+      "goal_map": [
+        -0.5,
+        0,
+        1.5,
+        0
+      ],
+      "rescan": false
+    },
+    {
+      "ros_time": 135.479,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -0.5330995542954856,
+        -0.008085739441850698,
+        1.5146131763847404,
+        -0.00003518374681564592
+      ]
+    },
+    {
+      "ros_time": 135.482,
+      "state": "AIR_OBSERVE"
+    },
+    {
+      "ros_time": 135.682,
+      "state": "AIR_HANDOFF",
+      "observation_stamp": 135.093,
+      "target_map": [
+        1.997621775348814,
+        0.006518819326212584,
+        0.060640599370727216,
+        0.003751681801133833
+      ]
+    },
+    {
+      "ros_time": 135.687,
+      "state": "TARGET_REFERENCE",
+      "frame_id": "map",
+      "mask_pixels": 373,
+      "perceived_target": {
+        "center_xyz": [
+          1.997621775348814,
+          0.006518819326212584,
+          0.060640599370727216
+        ],
+        "size_xyz": [
+          0.24,
+          0.053,
+          0.115
+        ],
+        "yaw_rad": 0.003751681801133833
+      },
+      "points": 189,
+      "reason": null,
+      "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/operational-v11/natural-a5-attempt-01/target_reference.npz",
+      "stamp_s": 135.093,
+      "status": "AVAILABLE"
+    },
+    {
+      "ros_time": 135.688,
+      "state": "A5_CORE",
+      "label": "init",
+      "operation": "init"
+    },
+    {
+      "ros_time": 152.066,
+      "state": "A5_CAPTURE_ANCHOR",
+      "capture_anchor_map": [
+        -0.5920383998842137,
+        -0.10251133741582465,
+        1.655741399862934,
+        -0.005290198309141338
+      ],
+      "position_discrepancy_m": 0.20793033685177778,
+      "requested_viewpoint": [
+        -0.5,
+        0,
+        1.5,
+        0
+      ],
+      "yaw_discrepancy_rad": -0.005290198309141338
+    },
+    {
+      "ros_time": 152.544,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -0.5988674471566395,
+        -0.1012385650133927,
+        1.6459756898017894,
+        -0.005331304590833946
+      ]
+    },
+    {
+      "ros_time": 157.733,
+      "state": "A5_OBSERVATION",
+      "capture_anchor_map": [
+        -0.5920383998842137,
+        -0.10251133741582465,
+        1.655741399862934,
+        -0.005290198309141338
+      ],
+      "chunk_count": 50,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/operational-v11/natural-a5-attempt-01/observation_01.npz",
+      "point_count": 83425,
+      "requested_viewpoint": [
+        -0.5,
+        0,
+        1.5,
+        0
+      ],
+      "round": 1,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 157.627,
+      "uav_pose_map": [
+        -0.6186585762275842,
+        -0.09666036359963298,
+        1.4615811629722995,
+        -0.007805905685215437
+      ],
+      "window_duration_s": 5.022999999999996
+    },
+    {
+      "ros_time": 157.736,
+      "state": "A5_CORE",
+      "label": "round-01",
+      "operation": "observe"
+    },
+    {
+      "ros_time": 160.272,
+      "state": "A5_DECISION",
+      "next_viewpoint": [
+        -2.6186585762275842,
+        -0.09666036359963298,
+        1.4615811629722995,
+        -0.007805905685215553
+      ],
+      "round": 1,
+      "selected_candidate": null,
+      "stop_reason": null
+    },
+    {
+      "ros_time": 160.277,
+      "state": "A5_VIEWPOINT",
+      "goal_map": [
+        -2.6186585762275842,
+        -0.09666036359963298,
+        1.4615811629722995,
+        -0.007805905685215553
+      ],
+      "rescan": false
+    },
+    {
+      "ros_time": 175.782,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -2.6537617590261555,
+        -0.07801577158432321,
+        1.4615087795085975,
+        -0.007922228363941412
+      ]
+    },
+    {
+      "ros_time": 175.783,
+      "state": "A5_CAPTURE_ANCHOR",
+      "capture_anchor_map": [
+        -2.6537617590261555,
+        -0.07801577158432321,
+        1.4615087795085975,
+        -0.007922228363941412
+      ],
+      "position_discrepancy_m": 0.039747446375497895,
+      "requested_viewpoint": [
+        -2.6186585762275842,
+        -0.09666036359963298,
+        1.4615811629722995,
+        -0.007805905685215553
+      ],
+      "yaw_discrepancy_rad": -0.0001163226787258588
+    },
+    {
+      "ros_time": 176.262,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -2.651021333452579,
+        -0.083325032864701,
+        1.4732985537781522,
+        -0.008220605573506814
+      ]
+    },
+    {
+      "ros_time": 181.567,
+      "state": "A5_OBSERVATION",
+      "capture_anchor_map": [
+        -2.6537617590261555,
+        -0.07801577158432321,
+        1.4615087795085975,
+        -0.007922228363941412
+      ],
+      "chunk_count": 52,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/operational-v11/natural-a5-attempt-01/observation_02.npz",
+      "point_count": 87480,
+      "requested_viewpoint": [
+        -2.6186585762275842,
+        -0.09666036359963298,
+        1.4615811629722995,
+        -0.007805905685215553
+      ],
+      "round": 2,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 181.412,
+      "uav_pose_map": [
+        -2.607382720640024,
+        -0.09093094526087703,
+        1.5980434389869442,
+        -0.010899122923885202
+      ],
+      "window_duration_s": 5.093999999999994
+    },
+    {
+      "ros_time": 181.569,
+      "state": "A5_CORE",
+      "label": "round-02",
+      "operation": "observe"
+    },
+    {
+      "ros_time": 184.094,
+      "state": "A5_DECISION",
+      "next_viewpoint": [
+        -2.607382720640024,
+        -2.090930945260877,
+        1.5980434389869442,
+        -0.010899122923885063
+      ],
+      "round": 2,
+      "selected_candidate": null,
+      "stop_reason": null
+    },
+    {
+      "ros_time": 184.098,
+      "state": "A5_VIEWPOINT",
+      "goal_map": [
+        -2.607382720640024,
+        -2.090930945260877,
+        1.5980434389869442,
+        -0.010899122923885063
+      ],
+      "rescan": false
+    },
+    {
+      "ros_time": 197.22,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -2.5764721304048934,
+        -2.11495095311593,
+        1.5728387434861513,
+        -0.010345843355471718
+      ]
+    },
+    {
+      "ros_time": 197.223,
+      "state": "A5_CAPTURE_ANCHOR",
+      "capture_anchor_map": [
+        -2.5764721304048934,
+        -2.11495095311593,
+        1.5728387434861513,
+        -0.010345843355471718
+      ],
+      "position_discrepancy_m": 0.046558587192145964,
+      "requested_viewpoint": [
+        -2.607382720640024,
+        -2.090930945260877,
+        1.5980434389869442,
+        -0.010899122923885063
+      ],
+      "yaw_discrepancy_rad": 0.0005532795684133444
+    },
+    {
+      "ros_time": 197.693,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -2.580852323902484,
+        -2.1114165344510445,
+        1.5575339828567367,
+        -0.01031283258922636
+      ]
+    },
+    {
+      "ros_time": 203.055,
+      "state": "A5_OBSERVATION",
+      "capture_anchor_map": [
+        -2.5764721304048934,
+        -2.11495095311593,
+        1.5728387434861513,
+        -0.010345843355471718
+      ],
+      "chunk_count": 52,
+      "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/operational-v11/natural-a5-attempt-01/observation_03.npz",
+      "point_count": 87406,
+      "requested_viewpoint": [
+        -2.607382720640024,
+        -2.090930945260877,
+        1.5980434389869442,
+        -0.010899122923885063
+      ],
+      "round": 3,
+      "sensor_frame": "uav1/lidar_link",
+      "stamp_s": 202.919,
+      "uav_pose_map": [
+        -2.579191183529959,
+        -2.0948250424065153,
+        1.4785365594328994,
+        -0.008082406026834344
+      ],
+      "window_duration_s": 5.093000000000018
+    },
+    {
+      "ros_time": 203.056,
+      "state": "A5_CORE",
+      "label": "round-03",
+      "operation": "observe"
+    },
+    {
+      "ros_time": 205.513,
+      "state": "A5_DECISION",
+      "next_viewpoint": null,
+      "round": 3,
+      "selected_candidate": {
+        "candidate_id": "candidate-000008",
+        "confirmed": true,
+        "evaluation_index": 8,
+        "footprint_clipped": false,
+        "free_cells": 107,
+        "mean_unknown_score": 0.3678794411714423,
+        "occupied_cells": 0,
+        "operational": {
+          "ambiguous_cells": 0,
+          "blocked": false,
+          "covered_cells": [
+            302,
+            303,
+            304,
+            342,
+            343,
+            344,
+            345,
+            381,
+            382,
+            383,
+            384,
+            385,
+            386,
+            387,
+            421,
+            422,
+            423,
+            424,
+            425,
+            426,
+            427,
+            428,
+            429,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            698,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            782,
+            783,
+            784,
+            785,
+            824,
+            825
+          ],
+          "environment_cells": 0,
+          "footprint_clipped": false,
+          "ground_missing_cells": 0,
+          "ground_supported": true,
+          "ground_supported_cells": 107,
+          "target_cells": 0,
+          "target_collision": false
+        },
+        "relevance": 1,
+        "representative_blocked": false,
+        "source_id": 544,
+        "unknown_cells": 0,
+        "x": 2.3994017328187116,
+        "y": -0.5971623539298901,
+        "yaw": 2.094395102393195
+      },
+      "stop_reason": "VIEW_BUDGET_REACHED"
+    },
+    {
+      "ros_time": 205.517,
+      "state": "A5_SELECTED",
+      "candidate_id": "candidate-000008",
+      "confirmed": true,
+      "evaluation_index": 8,
+      "footprint_clipped": false,
+      "free_cells": 107,
+      "mean_unknown_score": 0.3678794411714423,
+      "occupied_cells": 0,
+      "operational": {
+        "ambiguous_cells": 0,
+        "blocked": false,
+        "covered_cells": [
+          302,
+          303,
+          304,
+          342,
+          343,
+          344,
+          345,
+          381,
+          382,
+          383,
+          384,
+          385,
+          386,
+          387,
+          421,
+          422,
+          423,
+          424,
+          425,
+          426,
+          427,
+          428,
+          429,
+          460,
+          461,
+          462,
+          463,
+          464,
+          465,
+          466,
+          467,
+          468,
+          469,
+          500,
+          501,
+          502,
+          503,
+          504,
+          505,
+          506,
+          507,
+          508,
+          509,
+          539,
+          540,
+          541,
+          542,
+          543,
+          544,
+          545,
+          546,
+          547,
+          548,
+          549,
+          578,
+          579,
+          580,
+          581,
+          582,
+          583,
+          584,
+          585,
+          586,
+          587,
+          588,
+          618,
+          619,
+          620,
+          621,
+          622,
+          623,
+          624,
+          625,
+          626,
+          627,
+          658,
+          659,
+          660,
+          661,
+          662,
+          663,
+          664,
+          665,
+          666,
+          667,
+          698,
+          699,
+          700,
+          701,
+          702,
+          703,
+          704,
+          705,
+          706,
+          740,
+          741,
+          742,
+          743,
+          744,
+          745,
+          746,
+          782,
+          783,
+          784,
+          785,
+          824,
+          825
+        ],
+        "environment_cells": 0,
+        "footprint_clipped": false,
+        "ground_missing_cells": 0,
+        "ground_supported": true,
+        "ground_supported_cells": 107,
+        "target_cells": 0,
+        "target_collision": false
+      },
+      "relevance": 1,
+      "representative_blocked": false,
+      "source_id": 544,
+      "unknown_cells": 0,
+      "x": 2.3994017328187116,
+      "y": -0.5971623539298901,
+      "yaw": 2.094395102393195
+    },
+    {
+      "ros_time": 205.518,
+      "state": "A5_VIEWPOINT",
+      "goal_map": [
+        -0.5,
+        0,
+        1.5,
+        0
+      ],
+      "rescan": false
+    },
+    {
+      "ros_time": 226.512,
+      "state": "A5_SETTLED",
+      "uav_pose_map": [
+        -0.47943144296393864,
+        0.017164060029146784,
+        1.5398032435177482,
+        -0.00025260237460677414
+      ]
+    },
+    {
+      "ros_time": 226.515,
+      "state": "LANDING"
+    },
+    {
+      "ros_time": 236.618,
+      "state": "RM4D_CANDIDATES",
+      "candidate_count": 37,
+      "top_candidate_id": "candidate-000008",
+      "top_candidate_pose_map": [
+        2.3994017328187116,
+        -0.5971623539298901,
+        2.094395102393195
+      ],
+      "top_candidate_score": 1
+    },
+    {
+      "ros_time": 236.62,
+      "state": "GROUND_APPROACH",
+      "navigation_goal_map": [
+        2.3994017328187116,
+        -0.5971623539298901,
+        2.094395102393195
+      ],
+      "start_map": [
+        2.999839982571521,
+        -2.499775115467691,
+        -3.1414463411979785
+      ],
+      "target_map": [
+        1.997621775348814,
+        0.006518819326212584,
+        0.060640599370727216,
+        0.003751681801133833
+      ],
+      "top_candidate_id": "candidate-000008",
+      "top_candidate_score": 1
+    },
+    {
+      "ros_time": 256.825,
+      "state": "GROUND_STOPPED",
+      "ground_travel": 1.974768550665488,
+      "navigation_goal_map": [
+        2.3994017328187116,
+        -0.5971623539298901,
+        2.094395102393195
+      ],
+      "target_distance": 0.7467810260530862,
+      "top_candidate_id": "candidate-000008",
+      "top_candidate_score": 1
+    },
+    {
+      "ros_time": 256.827,
+      "state": "GROUND_OBSERVE"
+    },
+    {
+      "ros_time": 267.788,
+      "state": "GROUND_REFINED",
+      "measured_gripper_opening": 0.09519866335184536,
+      "observation_stamp": 267.343,
+      "target_map": [
+        2.045413010918466,
+        0.0014678799199252213,
+        0.05987023668553147,
+        0.00021957165596742104
+      ]
+    },
+    {
+      "ros_time": 267.79,
+      "state": "PREGRASP"
+    },
+    {
+      "ros_time": 278.437,
+      "state": "GRASP"
+    },
+    {
+      "ros_time": 284.484,
+      "state": "LIFTING"
+    },
+    {
+      "ros_time": 289.851,
+      "state": "LIFT",
+      "grasp_confirmed": true,
+      "target_map": [
+        2.045413010918466,
+        0.0014678799199252213,
+        0.05987023668553147,
+        0.00021957165596742104
+      ],
+      "tcp_lift": 0.14975677945473234
+    }
+  ],
+  "selected_candidate": {
+    "candidate_id": "candidate-000008",
+    "x": 2.3994017328187116,
+    "y": -0.5971623539298901,
+    "yaw": 2.094395102393195,
+    "relevance": 1,
+    "source_id": 544,
+    "evaluation_index": 8,
+    "footprint_clipped": false,
+    "free_cells": 107,
+    "occupied_cells": 0,
+    "unknown_cells": 0,
+    "representative_blocked": false,
+    "confirmed": true,
+    "mean_unknown_score": 0.3678794411714423,
+    "operational": {
+      "covered_cells": [
+        302,
+        303,
+        304,
+        342,
+        343,
+        344,
+        345,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        618,
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        627,
+        658,
+        659,
+        660,
+        661,
+        662,
+        663,
+        664,
+        665,
+        666,
+        667,
+        698,
+        699,
+        700,
+        701,
+        702,
+        703,
+        704,
+        705,
+        706,
+        740,
+        741,
+        742,
+        743,
+        744,
+        745,
+        746,
+        782,
+        783,
+        784,
+        785,
+        824,
+        825
+      ],
+      "footprint_clipped": false,
+      "environment_cells": 0,
+      "ambiguous_cells": 0,
+      "target_cells": 0,
+      "ground_supported_cells": 107,
+      "ground_missing_cells": 0,
+      "target_collision": false,
+      "blocked": false,
+      "ground_supported": true
+    }
+  },
+  "clean_runtime_shutdown": true,
+  "pilot1_modified": false,
+  "execution_parameters_modified": false,
+  "pilot2_started": false,
+  "limitation": "No target-associated candidate was newly unlocked in this natural run; alias-exemption correctness is synthetic, historical Hard target identity remains unavailable."
+}

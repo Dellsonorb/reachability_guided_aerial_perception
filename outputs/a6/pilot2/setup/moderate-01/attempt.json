@@ -1,0 +1,100 @@
+{
+  "scene": "moderate",
+  "method": "SETUP_CHECK",
+  "slot": null,
+  "seed": 1240085801,
+  "scene_spec": {
+    "id": "moderate",
+    "seed": 1240085801,
+    "target_xy": [
+      1.933988322860763,
+      -0.08159815961340365
+    ],
+    "target_z": 0.0575,
+    "target_yaw": 0.4880321202150636,
+    "bunker_xy": [
+      3.0654797771975053,
+      -2.4803016061958854
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.090466777405675,
+    "boxes": [
+      {
+        "name": "a6_wall_m",
+        "center_xy": [
+          0.4,
+          0.65
+        ],
+        "size_xyz": [
+          0.15,
+          1.0,
+          1.0
+        ],
+        "yaw": 0.0
+      }
+    ]
+  },
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "config_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/configs/a6_pilot2.json",
+  "protocol": "docs/A6_PILOT2_PROTOCOL.md",
+  "operational_gating": "v1.1",
+  "kind": "METHOD_INDEPENDENT_SETUP",
+  "status": "VALID_TRIAL",
+  "task_started": true,
+  "activation_wall": 1788869757.2810998,
+  "ready_sim": 10.355,
+  "diagnostic_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/pilot2/setup/moderate-01/diagnostics.bag",
+    "/clock",
+    "/tf",
+    "/tf_static",
+    "/rosout_agg",
+    "/ground/move_base/goal",
+    "/ground/move_base/status",
+    "/ground/move_base/result",
+    "/ground/move_base/cancel",
+    "/ground/nav_cmd_vel",
+    "/ground/cmd_vel",
+    "/ground/odom",
+    "/ground/scan",
+    "/ground/move_base/global_costmap/costmap",
+    "/ground/move_base/local_costmap/costmap",
+    "/ground/move_base/NavfnROS/plan",
+    "/ground/move_base/DWAPlannerROS/local_plan",
+    "/ground/d435/color/image_raw",
+    "/ground/d435/depth/image_raw",
+    "/ground/d435/color/camera_info",
+    "/ground/d435/depth/camera_info",
+    "/ground_observer/status",
+    "/ground_observer/target_pose",
+    "/ground/joint_states",
+    "/ground/arm_controller/state",
+    "/ground/arm_controller/follow_joint_trajectory/goal",
+    "/ground/arm_controller/follow_joint_trajectory/status",
+    "/ground/arm_controller/follow_joint_trajectory/result",
+    "/ground/arm_controller/follow_joint_trajectory/cancel"
+  ],
+  "adapter_exit": 0,
+  "runtime_exit_during_task": null,
+  "runtime_exit": 0,
+  "diagnostic_exit": 0,
+  "diagnostic_bag_finalized": true,
+  "finish_wall": 1788869833.834245
+}

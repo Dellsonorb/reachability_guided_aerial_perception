@@ -25,6 +25,10 @@ def build_parser():
     parser.add_argument("--rm4d-map", type=Path, required=True)
     parser.add_argument("--rm4d-task-asset", type=Path,
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
+    parser.add_argument("--operational-gating", choices=("v1", "v1.1"), default="v1",
+                        help="explicit v1.1 object-aware gate; default preserves frozen v1 behavior")
+    parser.add_argument("--support-anchor", choices=("cell_center", "exact_winner"), default="cell_center",
+                        help="explicit v1.2 original-winner support; default preserves legacy cell centers")
     parser.add_argument("--max-viewpoints", type=int, default=3,
                         help="observation budget, including the initial capture and rescans")
     parser.add_argument("--flight-bounds", type=float, nargs=6,
@@ -39,7 +43,7 @@ def build_parser():
     parser.add_argument("--navigation-timeout", type=float, default=None,
                         help="override the inherited SIM navigation runtime guard in seconds")
     parser.add_argument("--wait-for-status-subscriber", action="store_true",
-                        help="wait up to two seconds for a status transport subscriber before starting")
+                        help="wait up to ten seconds for a status transport subscriber before starting")
     parser.add_argument("--settle-position-tolerance", type=float, default=.10)
     parser.add_argument("--settle-yaw-tolerance", type=float, default=.10)
     parser.add_argument("--settle-speed", type=float, default=.10)
@@ -114,14 +118,37 @@ def load_demo_module(sim_root):
     return module
 
 
-def wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=2.):
+def wait_for_status_subscriber(publisher, rospy, error_type, timeout_s=10.):
     """Bound startup until the optional diagnostic status consumer connects."""
+    # Match A6's existing allowance for rospy's registration-race reconnect.
+    # This happens before task timing, observation windows or physical actions.
     deadline = time.monotonic() + timeout_s
     while not rospy.is_shutdown() and time.monotonic() < deadline:
         if publisher.get_num_connections() > 0:
             return
         time.sleep(.01)
     raise error_type("A5 status subscriber did not connect before startup")
+
+
+def lookup_transform_wall(buffer, target_frame, source_frame, stamp, rospy, transient_errors):
+    """Wait at most 0.5 wall seconds for this unchanged TF request to be ready."""
+    # MoveIt initialization can hold Python callbacks behind the GIL. A queued
+    # /clock jump must not expire the wait before queued TF callbacks can run.
+    deadline = time.monotonic() + .5
+    last_error = None
+    while not rospy.is_shutdown():
+        if last_error is not None and time.monotonic() >= deadline:
+            raise last_error
+        try:
+            return buffer.lookup_transform(
+                target_frame, source_frame, stamp, rospy.Duration(0))
+        except transient_errors as error:
+            last_error = error
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise
+            time.sleep(min(.01, remaining))
+    raise rospy.ROSInterruptException("A5 pose transform interrupted by shutdown")
 
 
 def build_adapter_class(demo_module, options):
@@ -151,9 +178,13 @@ def build_adapter_class(demo_module, options):
     class A5AirGroundPickDemo(demo_module.AirGroundPickDemo):
         def __init__(self):
             super().__init__()
-            self._status_pub.unregister()
+            inherited_status_pub = self._status_pub
+            # Acquire the replacement before releasing the inherited handle:
+            # rospy shares one topic implementation, so no unregister/register
+            # gap can strand a checker already connecting to this same URI.
             self._status_pub = rospy.Publisher(
                 self._status_topic, String, queue_size=10, latch=True)
+            inherited_status_pub.unregister()
             self._a5_refined_grasp = None
             self._a5_cloud = None
             self._a5_previous_stamp = 0.
@@ -165,6 +196,18 @@ def build_adapter_class(demo_module, options):
             self._a5_cloud_subscriber = rospy.Subscriber(
                 options.cloud_topic, PointCloud2, self._a5_cloud_callback,
                 queue_size=1, buff_size=16 * 1024 * 1024)
+
+        def _transform_pose(self, pose, target_frame, use_latest=False):
+            if pose.header.frame_id == target_frame:
+                return super()._transform_pose(pose, target_frame, use_latest=use_latest)
+            transform = lookup_transform_wall(
+                self._tf_buffer, target_frame, pose.header.frame_id,
+                rospy.Time(0) if use_latest else pose.header.stamp, rospy,
+                (tf2_ros.LookupException, tf2_ros.ConnectivityException,
+                 tf2_ros.ExtrapolationException))
+            result = demo_module.do_transform_pose(pose, transform)
+            result.header.frame_id = target_frame
+            return result
 
         def _a5_cloud_callback(self, message):
             with self._lock:
@@ -422,9 +465,11 @@ def build_adapter_class(demo_module, options):
                     "current_bunker_pose": list(self._ground_pose()),
                     "frame_calibration": self._a5_frame_calibration(),
                     "config": {"max_viewpoints": options.max_viewpoints,
+                               "support_anchor": getattr(options, 'support_anchor', 'cell_center'),
                                "flight_bounds": options.flight_bounds,
                                "facade_position_tolerance": options.facade_position_tolerance,
                                "xy_offsets_m": options.xy_offsets_m},
+                    **getattr(self, '_operational_init', {}),
                 }, "init")
                 self._a5_candidate_count = initial.get("candidate_count", 0)
                 goal = initial_view
@@ -484,6 +529,9 @@ def build_adapter_class(demo_module, options):
             return execute_refined_pregrasp(
                 self, target, grasp, DemoError)
 
+    if getattr(options, 'operational_gating', 'v1') == 'v1.1':
+        from a5_target_support import build_object_aware_adapter
+        return build_object_aware_adapter(A5AirGroundPickDemo, options)
     return A5AirGroundPickDemo
 
 
@@ -513,6 +561,7 @@ def main(argv=None):
             rospy.set_param("~" + key, value)
         adapter = adapter_class()
         if options.wait_for_status_subscriber:
+            rospy.loginfo("A5 adapter ready; waiting for status subscriber")
             wait_for_status_subscriber(
                 adapter._status_pub, rospy, demo_module.DemoError)
         return 0 if adapter.run() else 1

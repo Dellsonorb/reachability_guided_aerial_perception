@@ -687,14 +687,27 @@ class AdapterImportTests(unittest.TestCase):
                              side_effect=lambda seconds: setattr(clock, "now", clock.now + seconds)), \
                 self.assertRaisesRegex(RuntimeError, "status subscriber"):
             adapter.wait_for_status_subscriber(never, ros, RuntimeError)
-        self.assertLessEqual(clock.now, 2.01)
+        self.assertGreaterEqual(clock.now, 10.)
+        self.assertLessEqual(clock.now, 10.01)
         with self.assertRaisesRegex(RuntimeError, "status subscriber"):
             adapter.wait_for_status_subscriber(
                 never, SimpleNamespace(is_shutdown=lambda: True), RuntimeError)
 
+    def test_status_subscriber_can_reconnect_after_registration_race_before_task(self):
+        adapter = self.load_adapter()
+        clock = SimpleNamespace(now=0.)
+        ready = SimpleNamespace(get_num_connections=lambda: int(clock.now >= 3.))
+        with patch.object(adapter.time, "monotonic", side_effect=lambda: clock.now), \
+                patch.object(adapter.time, "sleep",
+                             side_effect=lambda seconds: setattr(clock, "now", clock.now + seconds)):
+            adapter.wait_for_status_subscriber(ready, SimpleNamespace(is_shutdown=lambda: False), RuntimeError)
+        self.assertGreaterEqual(clock.now, 3.)
+        self.assertLessEqual(clock.now, 3.01)
+
     def test_a5_replaces_inherited_status_publisher_before_events(self):
         adapter = self.load_adapter()
         publishers = []
+        transport_events = []
 
         class Publisher:
             def __init__(self, topic, message_type, queue_size, latch):
@@ -704,9 +717,11 @@ class AdapterImportTests(unittest.TestCase):
                 self.latch = latch
                 self.unregistered = False
                 publishers.append(self)
+                transport_events.append("acquire")
 
             def unregister(self):
                 self.unregistered = True
+                transport_events.append("release")
 
         ros = SimpleNamespace(
             Publisher=Publisher,
@@ -736,6 +751,7 @@ class AdapterImportTests(unittest.TestCase):
                     options)
                 node = cls()
         self.assertEqual(2, len(publishers))
+        self.assertEqual(["acquire", "acquire", "release"], transport_events)
         self.assertTrue(publishers[0].unregistered)
         self.assertIs(node._status_pub, publishers[1])
         self.assertEqual(10, publishers[1].queue_size)

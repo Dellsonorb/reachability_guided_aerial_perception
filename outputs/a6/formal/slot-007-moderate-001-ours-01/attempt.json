@@ -1,0 +1,127 @@
+{
+  "slot": 7,
+  "scene": "moderate-001",
+  "method": "ours",
+  "seed": 1863681335,
+  "scene_spec": {
+    "id": "moderate-001",
+    "seed": 1863681335,
+    "target_xy": [
+      1.9782709068391129,
+      -0.03371716202151161
+    ],
+    "target_z": 0.0575,
+    "target_yaw": -0.11300690102981564,
+    "bunker_xy": [
+      3.015000794532078,
+      -2.4830404203314975
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.2044624852579933,
+    "boxes": [
+      {
+        "name": "a6_wall_m",
+        "center_xy": [
+          0.4,
+          0.65
+        ],
+        "size_xyz": [
+          0.15,
+          1.0,
+          1.0
+        ],
+        "yaw": 0.0
+      }
+    ],
+    "tier": "moderate",
+    "replicate": 1
+  },
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0.0,
+    0.15,
+    0.0
+  ],
+  "config_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/configs/a6_formal.json",
+  "protocol": "docs/A6_FORMAL_PROTOCOL.md",
+  "operational_gating": "v1.1",
+  "kind": "FORMAL_ATTEMPT",
+  "status": "VALID_TRIAL",
+  "task_started": true,
+  "activation_wall": 1788879801.3273633,
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "diagnostic_image_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-007-moderate-001-ours-01/diagnostics-images.bag",
+    "/ground/d435/color/image_raw",
+    "/ground/d435/depth/image_raw"
+  ],
+  "diagnostic_image_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-007-moderate-001-ours-01/diagnostics-images.bag",
+  "diagnostic_image_start_trigger": {
+    "state": "A5_SELECTED",
+    "ros_time": 104.791,
+    "wall_monotonic": 108467.435187007
+  },
+  "ready_sim": 10.352,
+  "diagnostic_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-007-moderate-001-ours-01/diagnostics.bag",
+    "/clock",
+    "/tf",
+    "/tf_static",
+    "/rosout_agg",
+    "/ground/move_base/goal",
+    "/ground/move_base/status",
+    "/ground/move_base/result",
+    "/ground/move_base/cancel",
+    "/ground/nav_cmd_vel",
+    "/ground/cmd_vel",
+    "/ground/odom",
+    "/ground/scan",
+    "/ground/move_base/global_costmap/costmap",
+    "/ground/move_base/local_costmap/costmap",
+    "/ground/move_base/NavfnROS/plan",
+    "/ground/move_base/DWAPlannerROS/local_plan",
+    "/ground/d435/color/camera_info",
+    "/ground/d435/depth/camera_info",
+    "/ground_observer/status",
+    "/ground_observer/target_pose",
+    "/ground/gripper/grasp_confirmed",
+    "/pick_target/contacts",
+    "/ground/joint_states",
+    "/ground/arm_controller/state",
+    "/ground/arm_controller/follow_joint_trajectory/goal",
+    "/ground/arm_controller/follow_joint_trajectory/status",
+    "/ground/arm_controller/follow_joint_trajectory/result",
+    "/ground/arm_controller/follow_joint_trajectory/cancel"
+  ],
+  "adapter_exit": 1,
+  "checker_exit": 1,
+  "runtime_exit_during_task": null,
+  "runtime_exit": 0,
+  "diagnostic_exit": 0,
+  "diagnostic_bag_finalized": true,
+  "diagnostic_image_exit": 0,
+  "diagnostic_image_bag_finalized": true,
+  "physical_status": "FAIL",
+  "retrieval_success": false,
+  "classification_reason": "MoveIt refined pregrasp planning failed",
+  "reason": "MoveIt refined pregrasp planning failed",
+  "finish_wall": 1788880052.4530423
+}

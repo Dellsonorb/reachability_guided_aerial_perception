@@ -22,7 +22,8 @@ def field_summary(field):
     coverage = {f.name: getattr(field.a1_coverage, f.name) for f in fields(field.a1_coverage)}
     coverage['rejected_by_reason'] = dict(coverage['rejected_by_reason'])
     values = field.task_relevant_uncertainty[np.isfinite(field.task_relevant_uncertainty)]
-    return {
+    object_aware = field.operational_semantics == 'object-aware-v1.1'
+    summary = {
         'schema_version': 1, 'field_type': 'task_relevant_observation_deficit',
         'frame_id': field.frame_id, 'grasp_id': field.grasp_id,
         'grid': {'origin_xy': list(field.grid.origin_xy), 'frame_id': field.frame_id,
@@ -33,7 +34,7 @@ def field_summary(field):
         'contact_tolerance_m': CONTACT_TOLERANCE_M,
         'cells': {s.name.lower(): int(np.count_nonzero(field.support_state == s)) for s in SupportState},
         'pose_states': {s.name.lower(): int(np.count_nonzero(field.pose_environment_state == s))
-                        for s in PoseEnvironmentState},
+                        for s in PoseEnvironmentState if object_aware or s != PoseEnvironmentState.OPERATIONAL_BLOCKED},
         'projected_poses': len(field.poses), 'clipped_poses': sum(p.footprint_clipped for p in field.poses),
         'uncertainty_max': float(values.max()) if len(values) else None,
         'uncertainty_mean_over_nominal_support': float(values.mean()) if len(values) else None,
@@ -49,6 +50,21 @@ def field_summary(field):
         'observed_ground_support_semantics': 'A2_ground_support_not_full_clearance',
         'smoothing': False,
     }
+    if object_aware:
+        summary.update(
+            operational_semantics=field.operational_semantics,
+            operational_formula='max R(q) over object-aware-unblocked supporting footprints containing x',
+            blocked_semantics='environment_or_ambiguous_or_target_geometry_not_navigation_infeasible',
+            observed_ground_support_semantics='derived_actual_ground_votes_not_raw_A2_FREE_not_full_clearance')
+    if field.anchor_semantics == 'exact-validated-winner-v1.2':
+        summary.update(
+            anchor_semantics=field.anchor_semantics,
+            winner_anchors=[asdict(anchor) for anchor in field.winner_anchors],
+            anchor_tie_rule='first_original_evaluation_index_among_equal_candidate_relevance',
+            representative_pose='original_frozen_evaluated_candidate_per_A1_HIGH_LOW_cell',
+            representative_pose_ik_validated=True,
+            representative_pose_validation='original_A1_IK_validity_gates_not_new_IK_or_navigation_clearance')
+    return summary
 
 
 def save_task_field(field, output_dir):
@@ -86,6 +102,7 @@ def render_task_field(field, output_path, title='A3 footprint-aware task uncerta
     axes = figure.subplots(2, 4).ravel()
     raster = dict(origin='lower', interpolation='none', aspect='equal', extent=field.grid.extent)
     cmap = colormaps['viridis'].with_extremes(bad='#dedede')
+    gate = 'object-aware' if field.operational_semantics == 'object-aware-v1.1' else 'A2-occupied'
 
     def score(axis, values, label):
         im = axis.imshow(values, cmap=cmap, vmin=0, vmax=1, **raster)
@@ -113,7 +130,7 @@ def render_task_field(field, output_path, title='A3 footprint-aware task uncerta
                  ['#bdbdbd', '#35a872', '#d34b3f'], 'A2 endpoint state')
         score(axes[2], field.unknown_score, 'A2 unknown_score (heuristic)')
         score(axes[3], field.nominal_task_relevance, 'M_nominal: pure manipulation support')
-        score(axes[4], field.task_relevance_at_environment_cell, 'M_operational: A2-occupied gate')
+        score(axes[4], field.task_relevance_at_environment_cell, f'M_operational: {gate} gate')
         score(axes[5], field.task_relevant_uncertainty, 'U_task = unknown_score * M_operational')
         category(axes[6], field.support_state, ['NO VALIDATED\nSUPPORT', 'BLOCKED ONLY', 'SUPPORTED'],
                  ['#dedede', '#d34b3f', '#35a872'], 'Environment-cell support state')
@@ -137,7 +154,7 @@ def render_task_field(field, output_path, title='A3 footprint-aware task uncerta
             axis.set_ylabel('map y (m)')
             axis.set_xlim(field.grid.extent[:2])
             axis.set_ylim(field.grid.extent[2:])
-        figure.suptitle(title + '\nDashed red = A2-occupied-blocked only; not navigation infeasible', fontsize=13)
+        figure.suptitle(title + f'\nDashed red = {gate}-blocked only; not navigation infeasible', fontsize=13)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, dpi=140)
     finally:

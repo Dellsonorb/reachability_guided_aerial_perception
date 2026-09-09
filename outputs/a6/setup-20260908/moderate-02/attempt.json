@@ -1,0 +1,50 @@
+{
+  "scene": "moderate",
+  "method": "SETUP_CHECK",
+  "slot": null,
+  "seed": 2026090802,
+  "scene_spec": {
+    "id": "moderate",
+    "seed": 2026090802,
+    "target_xy": [
+      1.9975102394861792,
+      0.1133846138433863
+    ],
+    "target_z": 0.0575,
+    "target_yaw": -0.38783899145946865,
+    "bunker_xy": [
+      3.003194295635048,
+      -2.431707064110996
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.1272580632549847,
+    "boxes": [
+      {
+        "name": "a6_wall_m",
+        "center_xy": [
+          0.4,
+          0.65
+        ],
+        "size_xyz": [
+          0.15,
+          1.0,
+          1.0
+        ],
+        "yaw": 0.0
+      }
+    ]
+  },
+  "initial_view": [
+    -1.4,
+    0.0,
+    1.2,
+    0.0
+  ],
+  "kind": "METHOD_INDEPENDENT_SETUP",
+  "status": "INVALID_TRIAL",
+  "task_started": false,
+  "activation_wall": 1788802537.4024608,
+  "reason": "RuntimeError: common platform/TF/action readiness timeout: {\"connected\": true, \"odom_valid\": true, \"tf_ages\": [1788802561.3247313, 1788802561.2827313], \"now\": 1788802720.2697313}",
+  "runtime_exit": 0,
+  "finish_wall": 1788802722.4892354
+}

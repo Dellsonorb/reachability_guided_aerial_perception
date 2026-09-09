@@ -1,0 +1,13 @@
+{"state": "PREFLIGHT", "ros_time": 11.188}
+{"state": "ARMING", "ros_time": 11.221}
+{"state": "COMMAND_CONTROL", "ros_time": 11.223}
+{"state": "TAKEOFF", "ros_time": 11.225}
+{"state": "AIR_VIEW", "ros_time": 24.228}
+{"state": "A5_VIEWPOINT", "ros_time": 24.228, "goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false}
+{"state": "A5_SETTLED", "ros_time": 33.822, "uav_pose_map": [-1.4380032794267512, -0.0057056827984767935, 1.2181296692298587, 0.0004614685792378794]}
+{"state": "AIR_OBSERVE", "ros_time": 33.825}
+{"state": "AIR_HANDOFF", "ros_time": 33.875, "target_map": [2.1215104564255447, 0.07072689336919637, 0.060079294238722554, 0.2498864739193303], "observation_stamp": 33.471}
+{"state": "A5_CAPTURE_ANCHOR", "ros_time": 33.877, "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.437189591860601, -0.0067160508260066965, 1.2184490310013907, 0.0004721153293409547], "position_discrepancy_m": 0.04205398704458199, "yaw_discrepancy_rad": 0.0004721153293409547}
+{"state": "A5_SETTLED", "ros_time": 34.352, "uav_pose_map": [-1.4320612321115993, -0.017604675439770515, 1.2249881361280999, -0.0010114403964753807]}
+{"state": "A5_OBSERVATION", "ros_time": 39.624, "round": 1, "stamp_s": 39.438, "sensor_frame": "uav1/lidar_link", "point_count": 88059, "chunk_count": 51, "window_duration_s": 5.025000000000006, "uav_pose_map": [-1.3884634677478347, -0.10979772097430354, 1.2342389539704002, -0.00669828975309988], "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/setup-20260908/hard-03/data/observation_01.npz", "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.437189591860601, -0.0067160508260066965, 1.2184490310013907, 0.0004721153293409547]}
+{"state": "LANDING", "ros_time": 39.626}

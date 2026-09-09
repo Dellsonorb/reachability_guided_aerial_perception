@@ -1,14 +1,14 @@
 """Compose frozen A1-A4 and recover exact, observed-ground-supported candidates."""
 
-from dataclasses import dataclass
+from collections.abc import Mapping
+from dataclasses import asdict, dataclass
 from numbers import Integral
 
 import numpy as np
 
 from environment_belief import BeliefConfig, EnvironmentBeliefMapper, EnvironmentState
-from reachability_guided_aerial_perception import candidate_relevance
 from reachability_guided_nbv import NBVConfig, generate_candidates, rank_viewpoints
-from task_relevant_uncertainty import build_task_uncertainty
+from task_relevant_uncertainty import build_task_uncertainty, reconstruct_winner_anchors
 from task_relevant_uncertainty.geometry import footprint_cells
 
 
@@ -22,8 +22,11 @@ class A5Config:
     flight_weight: float = .25
     flight_bounds: tuple[float, ...] = (-4, 4, -3, 3, .5, 3)
     facade_position_tolerance: float = .15
+    support_anchor: str = 'cell_center'
 
     def __post_init__(self):
+        if self.support_anchor not in ('cell_center', 'exact_winner'):
+            raise ValueError('support_anchor must be cell_center or exact_winner')
         if isinstance(self.max_viewpoints, bool) or not isinstance(self.max_viewpoints, Integral) or self.max_viewpoints < 1:
             raise ValueError('max_viewpoints must be a positive integer')
         values = (self.grid_width_m, self.grid_height_m, self.ground_z_m,
@@ -41,24 +44,62 @@ class A5Config:
 
 def candidate_catalog(field, raw):
     """Recover the exact A1 per-cell winner, preserving original first-tie order."""
-    winners = {}
-    for index, candidate in enumerate(raw['evaluated_candidates']):
-        relevance = candidate_relevance(candidate, field.config)
-        cell = field.grid.cell_index(candidate['bunker_x'], candidate['bunker_y'])
-        if cell is None or relevance <= 0:
-            continue
-        if cell in winners and relevance <= winners[cell]['relevance']:
-            continue
-        winners[cell] = dict(candidate_id=candidate['candidate_id'], x=float(candidate['bunker_x']),
-                             y=float(candidate['bunker_y']), yaw=float(candidate['bunker_yaw']),
-                             relevance=float(relevance), source_id=cell[0] * field.grid.width_cells + cell[1],
-                             evaluation_index=index)
-    return sorted(winners.values(), key=lambda c: c['evaluation_index'])
+    if not isinstance(raw, Mapping):
+        raise ValueError('raw must contain original evaluated_candidates')
+    return [dict(candidate_id=anchor.candidate_id, x=anchor.x, y=anchor.y, yaw=anchor.yaw,
+                 relevance=anchor.relevance, source_id=anchor.source_id, evaluation_index=anchor.evaluation_index)
+            for anchor in reconstruct_winner_anchors(field, raw.get('evaluated_candidates'))]
 
 
-def assess_candidates(field, belief, catalog, *, task=None):
-    """FREE here is A2 ground support, never a navigation/clearance proof."""
-    task = build_task_uncertainty(field, belief) if task is None else task
+def build_support_task(field, raw, belief, config, operational=None):
+    """Build the same A3 input for decisions and saved/rendered worker products."""
+    if config.support_anchor == 'exact_winner':
+        if not isinstance(raw, Mapping) or raw.get('evaluated_candidates') is None:
+            raise ValueError('exact support requires original evaluated_candidates')
+        return build_task_uncertainty(field, belief, operational=operational,
+                                      evaluated_candidates=raw['evaluated_candidates'])
+    return build_task_uncertainty(field, belief, operational=operational)
+
+
+def _check_exact_catalog(task, catalog):
+    """Reject mixed pose identities instead of restoring a cell-center veto."""
+    anchors = task.winner_anchors
+    if len(catalog) != len(anchors) or len(task.poses) != len(anchors):
+        raise ValueError('exact task and catalog must contain the same winner anchors')
+    poses = {pose.source_id: pose for pose in task.poses}
+    if len(poses) != len(anchors):
+        raise ValueError('exact task must have one support pose per winner anchor')
+    for anchor, candidate in zip(anchors, catalog):
+        if any(candidate.get(name) != value for name, value in asdict(anchor).items()):
+            raise ValueError('exact task and catalog winner identity/pose mismatch')
+        pose = poses.get(anchor.source_id)
+        if (pose is None or pose.xy != (anchor.x, anchor.y) or pose.yaw != anchor.yaw
+                or not np.isclose(pose.relevance, anchor.relevance, rtol=0, atol=1e-12)):
+            raise ValueError('exact task support pose disagrees with its winner anchor')
+
+
+def assess_candidates(field, belief, catalog, *, task=None, operational=None, evaluated_candidates=None):
+    """Confirm measured ground support, never full navigation/clearance.
+
+    v1 uses raw A2 FREE; v1.1 uses shared blocking plus real ground votes.
+    With no cached task, supplying original evaluations selects exact anchors.
+    """
+    if task is None:
+        task = build_task_uncertainty(field, belief, operational=operational,
+                                      evaluated_candidates=evaluated_candidates)
+    elif evaluated_candidates is not None:
+        if (task.anchor_semantics != 'exact-validated-winner-v1.2'
+                or task.winner_anchors != reconstruct_winner_anchors(field, evaluated_candidates)):
+            raise ValueError('provided task must match the requested exact winner anchors')
+    if task.anchor_semantics == 'exact-validated-winner-v1.2':
+        _check_exact_catalog(task, catalog)
+    expected = 'v1' if operational is None else 'object-aware-v1.1'
+    if task.operational_semantics != expected:
+        raise ValueError('task and exact candidates must use the same operational semantics')
+    if operational is not None:
+        from operational_gating import assess_footprint
+        if operational.grid != belief.grid or operational.config != belief.config:
+            raise ValueError('operational evidence must be aligned with the A2 grid/config')
     representative = {p.source_id: p for p in task.poses}
     assessments = []
     for candidate in catalog:
@@ -69,11 +110,20 @@ def assess_candidates(field, belief, catalog, *, task=None):
         unknown = int(np.count_nonzero(states == EnvironmentState.UNKNOWN))
         source = representative.get(candidate['source_id'])
         source_blocked = source is None or source.blocked
-        assessments.append(dict(candidate, footprint_clipped=bool(clipped), free_cells=free,
+        if operational is not None and source is not None:
+            source_blocked = assess_footprint(operational, source.xy, source.yaw, task.footprint).blocked
+        exact = None if operational is None else assess_footprint(
+            operational, (candidate['x'], candidate['y']), candidate['yaw'], task.footprint)
+        confirmed = (bool(len(cells) and not clipped and not source_blocked and free == len(cells))
+                     if exact is None else bool(not source_blocked and not exact.blocked and exact.ground_supported))
+        record = dict(candidate, footprint_clipped=bool(clipped), free_cells=free,
                                 occupied_cells=occupied, unknown_cells=unknown,
                                 representative_blocked=source_blocked,
-                                confirmed=bool(len(cells) and not clipped and not source_blocked and free == len(cells)),
-                                mean_unknown_score=float(np.mean(belief.unknown_score.ravel()[cells])) if len(cells) else None))
+                                confirmed=confirmed,
+                                mean_unknown_score=float(np.mean(belief.unknown_score.ravel()[cells])) if len(cells) else None)
+        if exact is not None:
+            record['operational'] = asdict(exact)
+        assessments.append(record)
     return assessments
 
 
@@ -91,7 +141,7 @@ def replay_observations(grid, observations, config=BeliefConfig()):
     return mapper.snapshot()
 
 
-def decide(field, raw, belief, current, *, round_count, config=A5Config()):
+def decide(field, raw, belief, current, *, round_count, config=A5Config(), operational=None):
     """A bounded one-step decision; no simulated belief updates or forced flight."""
     if not isinstance(round_count, Integral) or round_count < 1:
         raise ValueError('round_count must count at least the initial observation')
@@ -107,9 +157,9 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config()):
         candidates.append(v)
     if not candidates:
         raise ValueError('no viewpoint within the configured operating area')
-    task = build_task_uncertainty(field, belief)
+    task = build_support_task(field, raw, belief, config, operational=operational)
     ranking = rank_viewpoints(task, belief, current, candidates=candidates, config=nbv_config)
-    assessments = assess_candidates(field, belief, candidate_catalog(field, raw), task=task)
+    assessments = assess_candidates(field, belief, candidate_catalog(field, raw), task=task, operational=operational)
     confirmed = [c for c in assessments if c['confirmed']]
     selected = max(confirmed, key=lambda c: c['relevance']) if confirmed else None
     best = ranking.best_task
@@ -117,11 +167,16 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config()):
             'NONPOSITIVE_SCORE' if best.task_score <= 0 else
             'VIEW_BUDGET_REACHED' if round_count >= config.max_viewpoints else None)
     next_pose = None if stop or best is None else [*best.viewpoint.position_xyz, best.viewpoint.yaw_rad]
-    return dict(ok=True, round=int(round_count), stop_reason=stop, next_viewpoint=next_pose,
+    choice = dict(ok=True, round=int(round_count), stop_reason=stop, next_viewpoint=next_pose,
                 selected_candidate=selected, candidate_count=len(assessments), confirmed_candidate_count=len(confirmed),
                 best_task_score=None if best is None else best.task_score,
                 best_task_gain=None if best is None else best.task_gain,
                 assessments=assessments, environment_cells={s.name: int(np.count_nonzero(belief.state == s))
                                                            for s in EnvironmentState},
                 total_observation_votes=int(belief.observation_count.sum()),
-                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty))), ranking
+                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty)))
+    if operational is not None:
+        choice['operational_semantics'] = task.operational_semantics
+    if task.anchor_semantics == 'exact-validated-winner-v1.2':
+        choice['anchor_semantics'] = task.anchor_semantics
+    return choice, ranking

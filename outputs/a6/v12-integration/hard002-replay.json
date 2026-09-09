@@ -1,0 +1,819 @@
+{
+  "diagnostic_only": true,
+  "attempts": [
+    {
+      "kind": "EXACT_ANCHOR_V12_RECORDED_REGRESSION",
+      "diagnostic_only": true,
+      "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-015-hard-002-generic-01",
+      "original_outcome_unchanged": true,
+      "note": "Same recorded states, not a v1.2 closed-loop trial or final statistical sample.",
+      "rounds": [
+        {
+          "round": 1,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 0,
+          "v12_operational_cells": 88,
+          "v11_uncertainty_mass": 0.0,
+          "v12_uncertainty_mass": 88.0,
+          "v11_support_blocked": 34,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "NO_PREDICTED_TASK_GAIN",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": null,
+          "v12_best_task_id": 25,
+          "v12_best_task_gain": 34.62530194528826,
+          "target": {
+            "center_xyz": [
+              1.9190650995409595,
+              -0.05728275955601129,
+              0.06050640132608612
+            ],
+            "yaw_rad": -0.04966957374874914,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04645728611061248,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 3,
+            "unblocked_nonwinner_count": 7,
+            "cells": [
+              {
+                "source_id": 543,
+                "winner": "candidate-000007",
+                "unblocked_nonwinners": [
+                  "candidate-000008",
+                  "candidate-000010",
+                  "candidate-000012",
+                  "candidate-000013"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              },
+              {
+                "source_id": 621,
+                "winner": "candidate-000080",
+                "unblocked_nonwinners": [
+                  "candidate-000083"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 88,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": false,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 88,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        },
+        {
+          "round": 2,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 0,
+          "v12_operational_cells": 88,
+          "v11_uncertainty_mass": 0.0,
+          "v12_uncertainty_mass": 53.76816739499911,
+          "v11_support_blocked": 34,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "NO_PREDICTED_TASK_GAIN",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": null,
+          "v12_best_task_id": 9,
+          "v12_best_task_gain": 21.15612535337099,
+          "target": {
+            "center_xyz": [
+              1.9190650995409595,
+              -0.05728275955601129,
+              0.06050640132608612
+            ],
+            "yaw_rad": -0.04966957374874914,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04645728611061248,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 3,
+            "unblocked_nonwinner_count": 7,
+            "cells": [
+              {
+                "source_id": 543,
+                "winner": "candidate-000007",
+                "unblocked_nonwinners": [
+                  "candidate-000008",
+                  "candidate-000010",
+                  "candidate-000012",
+                  "candidate-000013"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              },
+              {
+                "source_id": 621,
+                "winner": "candidate-000080",
+                "unblocked_nonwinners": [
+                  "candidate-000083"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 88,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": false,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 88,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        },
+        {
+          "round": 3,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 0,
+          "v12_operational_cells": 88,
+          "v11_uncertainty_mass": 0.0,
+          "v12_uncertainty_mass": 33.00551138191548,
+          "v11_support_blocked": 34,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "NO_PREDICTED_TASK_GAIN",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": null,
+          "v12_best_task_id": 9,
+          "v12_best_task_gain": 12.986656789289452,
+          "target": {
+            "center_xyz": [
+              1.9190650995409595,
+              -0.05728275955601129,
+              0.06050640132608612
+            ],
+            "yaw_rad": -0.04966957374874914,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04645728611061248,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 3,
+            "unblocked_nonwinner_count": 7,
+            "cells": [
+              {
+                "source_id": 543,
+                "winner": "candidate-000007",
+                "unblocked_nonwinners": [
+                  "candidate-000008",
+                  "candidate-000010",
+                  "candidate-000012",
+                  "candidate-000013"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              },
+              {
+                "source_id": 621,
+                "winner": "candidate-000080",
+                "unblocked_nonwinners": [
+                  "candidate-000083"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 87,
+                "ground_missing_cells": 1,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": false,
+              "confirmed": false,
+              "operational": {
+                "blocked": false,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 0,
+                "ground_supported_cells": 87,
+                "ground_missing_cells": 1,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "kind": "EXACT_ANCHOR_V12_RECORDED_REGRESSION",
+      "diagnostic_only": true,
+      "source_attempt": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/formal/slot-016-hard-002-fixed-01",
+      "original_outcome_unchanged": true,
+      "note": "Same recorded states, not a v1.2 closed-loop trial or final statistical sample.",
+      "rounds": [
+        {
+          "round": 1,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 119,
+          "v12_operational_cells": 107,
+          "v11_uncertainty_mass": 116.6391839582758,
+          "v12_uncertainty_mass": 104.24571461798843,
+          "v11_support_blocked": 32,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "RANKED",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": 25,
+          "v12_best_task_id": 25,
+          "v12_best_task_gain": 40.54019012144262,
+          "target": {
+            "center_xyz": [
+              1.909305819301072,
+              -0.05398438670605891,
+              0.06231105411767294
+            ],
+            "yaw_rad": -0.03329346507508824,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04641374406086891,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 2,
+            "unblocked_nonwinner_count": 4,
+            "cells": [
+              {
+                "source_id": 624,
+                "winner": "candidate-000000",
+                "unblocked_nonwinners": [
+                  "candidate-000002",
+                  "candidate-000006"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 99,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 0,
+                "ground_missing_cells": 99,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        },
+        {
+          "round": 2,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 119,
+          "v12_operational_cells": 107,
+          "v11_uncertainty_mass": 111.59506755949118,
+          "v12_uncertainty_mass": 98.72429578212144,
+          "v11_support_blocked": 32,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "RANKED",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": 25,
+          "v12_best_task_id": 25,
+          "v12_best_task_gain": 38.55548496968015,
+          "target": {
+            "center_xyz": [
+              1.909305819301072,
+              -0.05398438670605891,
+              0.06231105411767294
+            ],
+            "yaw_rad": -0.03329346507508824,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04641374406086891,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 2,
+            "unblocked_nonwinner_count": 4,
+            "cells": [
+              {
+                "source_id": 624,
+                "winner": "candidate-000000",
+                "unblocked_nonwinners": [
+                  "candidate-000002",
+                  "candidate-000006"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 8,
+                "ground_missing_cells": 91,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 8,
+                "ground_missing_cells": 91,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        },
+        {
+          "round": 3,
+          "legacy_replay_checks": {
+            "raw_a2_state": true,
+            "raw_a2_occupied_evidence": true,
+            "raw_a2_free_evidence": true,
+            "raw_a2_observation_count": true,
+            "raw_a2_unknown_score": true,
+            "operational_environment_occupied_votes": true,
+            "operational_ambiguous_occupied_votes": true,
+            "operational_target_occupied_votes": true,
+            "operational_ground_votes": true,
+            "assessments": true,
+            "a3_poses": true,
+            "a3_nominal_task_relevance": true,
+            "a3_task_relevance_at_environment_cell": true,
+            "a3_task_relevant_uncertainty": true,
+            "a3_support_state": true,
+            "a3_nominal_support_count": true,
+            "a3_operational_support_count": true,
+            "a3_best_nominal_source": true,
+            "a3_best_operational_source": true,
+            "a3_a1_cell_state": true,
+            "a3_environment_state": true,
+            "a3_unknown_score": true,
+            "a3_pose_environment_state": true,
+            "a4_visibility": true,
+            "a4_delta": true,
+            "a4_candidates": true
+          },
+          "a4_input_checks": {
+            "viewpoints_unchanged": true,
+            "visibility_unchanged": true,
+            "delta_unknown_unchanged": true,
+            "flight_cost_unchanged": true,
+            "generic_gains_unchanged": true,
+            "generic_order_unchanged": true,
+            "task_marginal_formula": true,
+            "task_gain_formula": true,
+            "exact_operational_gates_unchanged": true,
+            "original_relevance_unchanged": true
+          },
+          "v11_operational_cells": 119,
+          "v12_operational_cells": 107,
+          "v11_uncertainty_mass": 108.77430753101024,
+          "v12_uncertainty_mass": 95.61403719159446,
+          "v11_support_blocked": 32,
+          "v12_support_blocked": 33,
+          "v11_confirmed": 0,
+          "v12_confirmed": 0,
+          "v11_a4_status": "RANKED",
+          "v12_a4_status": "RANKED",
+          "v11_best_task_id": 25,
+          "v12_best_task_id": 25,
+          "v12_best_task_gain": 37.44560238216478,
+          "target": {
+            "center_xyz": [
+              1.909305819301072,
+              -0.05398438670605891,
+              0.06231105411767294
+            ],
+            "yaw_rad": -0.03329346507508824,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04641374406086891,
+            "frame_id": "map"
+          },
+          "nonwinner_diagnostics": {
+            "diagnostic_only": true,
+            "selection_changed": false,
+            "winner_blocked_nonwinner_unblocked_cells": 2,
+            "unblocked_nonwinner_count": 4,
+            "cells": [
+              {
+                "source_id": 624,
+                "winner": "candidate-000000",
+                "unblocked_nonwinners": [
+                  "candidate-000002",
+                  "candidate-000006"
+                ]
+              },
+              {
+                "source_id": 581,
+                "winner": "candidate-000044",
+                "unblocked_nonwinners": [
+                  "candidate-000065",
+                  "candidate-000078"
+                ]
+              }
+            ],
+            "interpretation": "geometric_gate_only_not_confirmed_or_executable"
+          },
+          "source624": {
+            "v11": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 25,
+                "ground_missing_cells": 74,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            },
+            "v12": {
+              "candidate_id": "candidate-000000",
+              "representative_blocked": true,
+              "confirmed": false,
+              "operational": {
+                "blocked": true,
+                "target_collision": false,
+                "environment_cells": 0,
+                "ambiguous_cells": 3,
+                "ground_supported_cells": 25,
+                "ground_missing_cells": 74,
+                "ground_supported": false,
+                "footprint_clipped": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "full_original_diagnostic": "outputs/a6/exact-anchor-v12/recorded-replay/replay.json"
+}

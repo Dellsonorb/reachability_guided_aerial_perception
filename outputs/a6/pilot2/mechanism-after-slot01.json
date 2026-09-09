@@ -1,0 +1,78 @@
+{
+  "kind": "saved_objectaware_v11_mechanism_diagnostics",
+  "schema_version": 1,
+  "descriptive_only": true,
+  "attempt_count": 2,
+  "attempts": [
+    {
+      "attempt": "outputs/a6/pilot2/slot-01-easy-rm4d-only-01",
+      "method": "rm4d_only",
+      "slot": 1,
+      "seed": 1015873452,
+      "attempt_status": "VALID_TRIAL",
+      "classification_reason": "AG95 lost grasp confirmation during lift",
+      "mechanism_status": "NOT_APPLICABLE",
+      "rounds": [],
+      "confirmed_final": {
+        "ids": null,
+        "count": null,
+        "unavailable_ids": null
+      },
+      "first_confirmed_window": null,
+      "first_confirmed_window_source": null,
+      "outcomes": {
+        "D_env": null,
+        "D_exec": true,
+        "C_env_count_final": null,
+        "C_env_count_max": null,
+        "first_env_sim": null,
+        "exec_ready_sim": 150.185,
+        "T_first_env_sim": null,
+        "T_exec_ready_sim": 138.293,
+        "physical_success": null,
+        "terminal_status": "FAILED",
+        "terminal_failure_stage": "retention",
+        "terminal_failure_reason": "AG95 lost grasp confirmation during lift",
+        "retrieval_success": false
+      },
+      "unavailable": []
+    },
+    {
+      "attempt": "outputs/a6/pilot2/slot-02-easy-fixed-01",
+      "method": "fixed",
+      "slot": 2,
+      "seed": 1015873452,
+      "attempt_status": "VALID_TRIAL",
+      "classification_reason": null,
+      "mechanism_status": "UNAVAILABLE",
+      "rounds": [],
+      "confirmed_final": {
+        "ids": null,
+        "count": null,
+        "unavailable_ids": null
+      },
+      "first_confirmed_window": null,
+      "first_confirmed_window_source": null,
+      "outcomes": {
+        "D_env": null,
+        "D_exec": null,
+        "C_env_count_final": null,
+        "C_env_count_max": null,
+        "first_env_sim": null,
+        "exec_ready_sim": null,
+        "T_first_env_sim": null,
+        "T_exec_ready_sim": null,
+        "physical_success": null,
+        "terminal_status": null,
+        "terminal_failure_stage": null,
+        "terminal_failure_reason": null,
+        "retrieval_success": null
+      },
+      "unavailable": [
+        "metrics.json",
+        "data/rounds/round-*"
+      ]
+    }
+  ],
+  "note": "Exact TARGET alias retention does not imply confirmation, D_exec or retrieval. Class cell counts and blocker causes can overlap. Outcomes are recorded projections; no gate replay, label inference, ground vote inference or outcome reclassification."
+}

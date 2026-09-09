@@ -10,13 +10,13 @@ import numpy as np
 
 from environment_belief import BeliefConfig, EnvironmentGridSpec, PointCloudObservation
 from environment_belief.outputs import save_belief
+from operational_gating.io import build_operational_context, record_initial_context, save_operational
 from reachability_guided_aerial_perception import GraspTCP, GridSpec, build_field_from_result
 from reachability_guided_aerial_perception.cli import open_frozen_rm4d_api
 from reachability_guided_aerial_perception.outputs import save_field_bundle
 from reachability_guided_nbv import Viewpoint
 from reachability_guided_nbv.outputs import render_result, save_result
-from task_relevant_uncertainty import build_task_uncertainty
-from .core import A5Config, candidate_catalog, decide, replay_observations
+from .core import A5Config, build_support_task, candidate_catalog, decide, replay_observations
 from .frame_bridge import FrameBridge
 from .task_map import open_task_rm4d_api
 
@@ -72,10 +72,12 @@ def initialize(request):
     with context as api:
         planned = api.plan(query, top_k=1)
     raw = bridge.result_to_map(planned)
-    return save_initial(grasp, raw, config, request['output_dir'], query,
+    response = save_initial(grasp, raw, config, request['output_dir'], query,
                         baseline_result=None if asset else planned,
                         task_domain_result=planned if asset else None,
                         rm4d_task_asset=asset, frame_calibration=bridge.as_dict())
+    record_initial_context(response['initial_file'], request)
+    return response
 
 
 def observe(request):
@@ -93,14 +95,16 @@ def observe(request):
             observations.append(PointCloudObservation(data['points_xyz'], str(data['frame_id'].item()),
                                                        float(data['stamp_s'].item()), data['T_map_sensor']))
     belief = replay_observations(grid, observations, BeliefConfig(ground_z_m=config.ground_z_m))
+    operational, operational_metadata = build_operational_context(initial, grid, observations, belief.config)
     pose = request['uav_pose']
     if len(pose) != 4:
         raise ValueError('uav_pose must be [x,y,z,yaw]')
     choice, ranking = decide(field, raw, belief, Viewpoint(tuple(pose[:3]), pose[3]),
-                              round_count=len(paths), config=config)
-    task = build_task_uncertainty(field, belief)
+                              round_count=len(paths), config=config, operational=operational)
+    task = build_support_task(field, raw, belief, config, operational=operational)
     directory = Path(request['output_dir'])
     save_belief(belief, directory / 'a2')
+    save_operational(directory, operational, operational_metadata)
     save_result(ranking, task, belief, directory)
     render_result(ranking, task, belief, directory / 'nbv.png', title=f'A5 SIM observation {len(paths)}')
     write_json(directory / 'decision.json', choice)
