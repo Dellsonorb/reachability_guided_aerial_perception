@@ -193,4 +193,15 @@ geometry/controller interpolation, runtime-code and final-results review.
 clear, unrelated prior Gazebo and four old A5 output directories preserved.
 Large bags/native CSV remain local and ignored. Compact observations/results,
 diagnostic scripts and reports are versioned. Stop at the development checkpoint;
-Git branch/PR delivery is recorded below once pushed, without a main merge.
+Git delivery is recorded below; no main merge.
+
+## Git delivery
+
+- AGENT results checkpoint `cf35d19`, integration code `7da6fde`, branch
+  `feature/dev-ground-clearance`: [Draft PR9](https://github.com/Dellsonorb/reachability_guided_aerial_perception/pull/9),
+  stacked on preserved `feature/dev-operational-consistency` / PR8.
+- SIM checkpoint `e4e4f69`, runtime code `fbb191b` / `1f47fe4`, branch
+  `feature/fix-ground-execution-clearance`: [Draft PR5](https://github.com/Dellsonorb/Simulation-Platform/pull/5),
+  stacked on preserved `feature/fix-ground-manipulation-completion` / PR4.
+- Both branches pushed; Draft status, historical branches/results and current
+  workspaces retained. This small follow-up only records delivery links.
