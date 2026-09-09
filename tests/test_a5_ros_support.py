@@ -643,6 +643,76 @@ class CaptureWindowTests(unittest.TestCase):
         self.assertEqual(self.node._a5_observations, [])
         self.assertFalse(any(status == "A5_CAPTURE_ANCHOR" for status, _ in self.statuses))
 
+    def current_pose_readiness(self, stamp_seconds, *, advance_clock=True, timeout_s=None):
+        self.clock.sim = 53.851
+        old_lookup = self.node._tf_buffer.lookup_transform
+        def lookup(*args):
+            result = old_lookup(*args)
+            result.header = SimpleNamespace(stamp=self.Stamp(stamp_seconds))
+            return result
+        def yield_callbacks():
+            self.clock.wall += .05
+            if advance_clock:
+                self.clock.sim += .05
+        self.node._tf_buffer.lookup_transform = lookup
+        self.node._wait_step = yield_callbacks
+        measured = type(self.node)._a5_measured_pose.__get__(self.node)
+        with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
+            return measured(timeout_s=timeout_s)
+
+    def test_current_pose_waits_for_clock_to_reach_one_ms_ahead_tf(self):
+        result = self.current_pose_readiness(53.852)
+        self.assertEqual(result[2], 1.5)
+        self.assertGreater(self.clock.wall, 0.)
+        self.assertLessEqual(self.clock.wall, self.options.tf_timeout)
+        self.assertTrue(all(value == 0. for value in self.lookup_timeouts))
+
+    def test_future_current_pose_with_paused_clock_expires_without_accepting(self):
+        with self.assertRaisesRegex(RuntimeError, 'TF is stale'):
+            self.current_pose_readiness(53.852, advance_clock=False)
+        self.assertGreaterEqual(self.clock.wall, self.options.tf_timeout)
+        self.assertLessEqual(self.clock.wall, self.options.tf_timeout + .05)
+
+    def test_current_pose_with_zero_timeout_never_waits_or_accepts_future_tf(self):
+        with self.assertRaisesRegex(RuntimeError, 'TF is stale'):
+            self.current_pose_readiness(53.852, timeout_s=0.)
+        self.assertEqual(self.clock.wall, 0.)
+        self.assertEqual(len(self.lookup_stamps), 1)
+
+    def test_persistently_stale_current_pose_is_not_made_fresh_by_waiting(self):
+        with self.assertRaisesRegex(RuntimeError, 'TF is stale'):
+            self.current_pose_readiness(52.9)
+        self.assertGreaterEqual(self.clock.wall, self.options.tf_timeout)
+        self.assertLessEqual(self.clock.wall, self.options.tf_timeout + .05)
+
+    def test_current_pose_retries_missing_or_stale_tf_and_returns_updated_geometry(self):
+        for first in ('missing', 'stale'):
+            with self.subTest(first=first):
+                calls = []
+                self.clock.wall = 0.
+                def lookup(*args):
+                    calls.append(args)
+                    if len(calls) == 1 and first == 'missing':
+                        raise LookupError('not connected yet')
+                    stamp = self.clock.sim - 2. if len(calls) == 1 else self.clock.sim
+                    return SimpleNamespace(header=SimpleNamespace(stamp=self.Stamp(stamp)),
+                        transform=SimpleNamespace(translation=SimpleNamespace(x=len(calls), y=0., z=1.5),
+                            rotation=SimpleNamespace(x=0., y=0., z=0., w=1.)))
+                self.node._tf_buffer.lookup_transform = lookup
+                self.node._wait_step = lambda: setattr(self.clock, 'wall', self.clock.wall + .05)
+                with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
+                    result = type(self.node)._a5_measured_pose(self.node)
+                self.assertEqual(result, [2., 0., 1.5, 0.])
+                self.assertEqual(len(calls), 2)
+                self.assertTrue(all(c[-1] == 0. for c in calls))
+
+    def test_explicit_pose_stamp_and_timeout_are_unchanged(self):
+        stamp = self.Stamp(23.5)
+        self.node._wait_step = lambda: self.fail('explicit stamped query must not enter latest-pose retry')
+        type(self.node)._a5_measured_pose(self.node, stamp, timeout_s=.123)
+        self.assertEqual(self.lookup_stamps, [23.5])
+        self.assertEqual(self.lookup_timeouts, [.123])
+
     def wait_from_samples(self, samples, *, reacquire_anchor):
         self.options.settle_timeout = 2.
         self.node._flight_health_max_age = .5

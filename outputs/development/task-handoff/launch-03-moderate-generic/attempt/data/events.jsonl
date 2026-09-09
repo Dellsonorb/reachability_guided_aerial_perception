@@ -1,0 +1,20 @@
+{"method": "generic", "ros_time": 11.919, "state": "A6_TASK_START", "wall_monotonic": 206683.767987512}
+{"ros_time": 11.92, "state": "PREFLIGHT", "wall_monotonic": 206683.76896864}
+{"ros_time": 11.921, "state": "A5_PREFLIGHT_TF_WAIT", "wall_monotonic": 206683.770492573}
+{"ros_time": 11.922, "state": "A5_PREFLIGHT_TF_READY", "waited_wall_s": 0.0017827639821916819, "wall_monotonic": 206683.772271984}
+{"ros_time": 11.925, "state": "ARMING", "wall_monotonic": 206683.773936647}
+{"ros_time": 11.926, "state": "COMMAND_CONTROL", "wall_monotonic": 206683.77549145}
+{"ros_time": 11.928, "state": "TAKEOFF", "wall_monotonic": 206683.777601978}
+{"ros_time": 24.633, "state": "AIR_VIEW", "wall_monotonic": 206697.868586388}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 24.634, "state": "A5_VIEWPOINT", "view_role": "initial", "wall_monotonic": 206697.870499824}
+{"ros_time": 35.029, "state": "A5_SETTLED", "uav_pose_map": [-1.4239000221187714, -0.03947531480987124, 1.2178711026227078, -0.00039441470744966883], "wall_monotonic": 206709.203236009}
+{"ros_time": 35.034, "state": "AIR_OBSERVE", "wall_monotonic": 206709.209041899}
+{"observation_stamp": 34.655, "ros_time": 35.082, "state": "AIR_HANDOFF", "target_map": [2.1203483322030454, -0.03430370772885442, 0.06012290674200533, -0.36168459128123276], "wall_monotonic": 206709.263295441}
+{"frame_id": "map", "mask_pixels": 313, "perceived_target": {"center_xyz": [2.1203483322030454, -0.03430370772885442, 0.06012290674200533], "size_xyz": [0.24, 0.053, 0.115], "yaw_rad": -0.36168459128123276}, "points": 141, "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/task-handoff/launch-03-moderate-generic/attempt/data/target_reference.npz", "ros_time": 35.239, "stamp_s": 34.655, "state": "TARGET_REFERENCE", "status": "AVAILABLE", "wall_monotonic": 206709.441757602}
+{"label": "init", "operation": "init", "ros_time": 35.24, "state": "A5_CORE", "wall_monotonic": 206709.443306398}
+{"requested_goal": [-1.4, 0.0, 1.2, 0.0], "ros_time": 53.851, "round": 1, "state": "A6_CAPTURE_START", "wall_monotonic": 206731.061476339}
+{"reason": "A5 UAV map TF is stale", "ros_time": 53.865, "state": "FAILED", "wall_monotonic": 206731.064735404}
+{"ros_time": 53.875, "stage": "landing", "state": "A6_STAGE_START", "wall_monotonic": 206731.074809492}
+{"ros_time": 63.376, "stage": "landing", "state": "A6_STAGE_END", "wall_monotonic": 206741.615764352}
+{"ros_time": 63.376, "state": "A6_LANDED", "wall_monotonic": 206741.615845717}
+{"adapter_run_result": false, "ros_time": 63.377, "state": "A6_TASK_END", "wall_monotonic": 206741.616470655}

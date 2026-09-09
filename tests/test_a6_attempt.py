@@ -62,6 +62,39 @@ class AttemptTests(unittest.TestCase):
         self.assertEqual(args[args.index('--facade-position-tolerance')+1], '0.05')
         self.assertNotIn('--flight-weight', args)
 
+    def test_new_task_stop_is_explicit_and_checker_inputs_are_recorded(self):
+        config = dict(self.config, handoff_stop='screened_candidate', record_diagnostics=True)
+        args = attempt.adapter_args(config, Path('/out'), Path('/sim'), Path('/rm'))
+        self.assertIn('--handoff-stop', args)
+        self.assertEqual(args[args.index('--handoff-stop')+1], 'screened_candidate')
+        command = attempt.diagnostic_command(config, Path('/out'))
+        self.assertIn('/air_observer/target_pose', command)
+        self.assertIn('/uav1/prometheus/state', command)
+        self.assertNotIn('/gazebo/model_states', command)
+
+    def test_platform_environment_preserves_explicit_px4_and_clears_feedback_optins(self):
+        from unittest.mock import patch
+        self.assertTrue(hasattr(attempt, 'runtime_environment'))
+        with patch.dict(attempt.os.environ, {'P450_PX4_ROOT': '/explicit/px4',
+                                            'P450_GROUND_INTEGRATED_VELOCITY': '1'}):
+            environment = attempt.runtime_environment(Path('/sim'), Path('/out'))
+        self.assertEqual(environment['P450_PX4_ROOT'], '/explicit/px4')
+        self.assertNotIn('P450_GROUND_INTEGRATED_VELOCITY', environment)
+
+    def test_single_host_runtime_binds_ros_to_loopback(self):
+        from unittest.mock import patch
+        with patch.dict(attempt.os.environ, {'ROS_IP': '192.0.2.20',
+                                            'ROS_HOSTNAME': 'old-robot-host', 'ROS_IPV6': 'on'}):
+            environment = attempt.runtime_environment(Path('/sim'), Path('/out'))
+        self.assertEqual(environment['ROS_IP'], '127.0.0.1')
+        self.assertEqual(environment['ROS_HOSTNAME'], '127.0.0.1')
+        # main uses os.environ.update: an explicit value must override the
+        # inherited hostname in the setup parent as well as every child.
+        parent = {'ROS_HOSTNAME': 'old-robot-host'}
+        parent.update(environment)
+        self.assertEqual(parent['ROS_HOSTNAME'], '127.0.0.1')
+        self.assertEqual(environment['ROS_IPV6'], 'off')
+
     def test_lost_checker_outcome_is_invalid_but_cannot_erase_established_failure(self):
         status, success, reason = attempt.classify_outcome(None, [], 0, 2)
         self.assertEqual(status, 'INVALID_TRIAL')

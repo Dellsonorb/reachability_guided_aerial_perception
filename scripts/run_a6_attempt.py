@@ -109,6 +109,8 @@ def adapter_args(config, output, sim, rm):
         args += ['--operational-gating', config['operational_gating']]
     if 'support_anchor' in config:
         args += ['--support-anchor', config['support_anchor']]
+    if 'handoff_stop' in config:
+        args += ['--handoff-stop', config['handoff_stop']]
     return args
 
 
@@ -137,6 +139,7 @@ def diagnostic_command(config, output):
         return None
     topics = [
         '/clock', '/tf', '/tf_static', '/rosout_agg',
+        '/air_observer/target_pose', '/uav1/prometheus/state',
         '/ground/move_base/goal', '/ground/move_base/status',
         '/ground/move_base/result', '/ground/move_base/cancel',
         '/ground/nav_cmd_vel', '/ground/cmd_vel', '/ground/odom', '/ground/scan',
@@ -281,6 +284,21 @@ def integrated_feedback_environment(status):
     if status != 'DEVELOPMENT_BATCH':
         raise ValueError('integrated-pose velocity validation is development only')
     return {'P450_GROUND_INTEGRATED_VELOCITY': '1'}
+
+
+def runtime_environment(sim_root, output):
+    environment = os.environ.copy()
+    environment.pop('P450_GROUND_DYNAMICS_CSV', None)
+    environment.pop('P450_GROUND_INTEGRATED_VELOCITY', None)
+    environment.setdefault('P450_PX4_ROOT', PX4)
+    environment.update(SIM_ROOT=str(sim_root),
+                       # This runner is single-host. Bind TCPROS locally so an
+                       # unrelated old Gazebo cannot reconnect to a recycled
+                       # ROS port via the host's LAN address (observed 33701).
+                       ROS_IP='127.0.0.1', ROS_HOSTNAME='127.0.0.1', ROS_IPV6='off',
+                       ROS_MASTER_URI='http://127.0.0.1:11951', GAZEBO_MASTER_URI='http://127.0.0.1:11952',
+                       ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
+    return environment
 
 
 def navigation_outcome(events, adapter_exit):
@@ -467,14 +485,9 @@ def main(argv=None):
             launch_scene = ground_candidate_setup(scene, selected)
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=False)
-    environment = os.environ.copy()
-    environment.pop('P450_GROUND_DYNAMICS_CSV', None)
-    environment.pop('P450_GROUND_INTEGRATED_VELOCITY', None)
+    environment = runtime_environment(args.sim_root, output)
     if args.integrated_joint_velocity:
         environment.update(integrated_feedback_environment(config['status']))
-    environment.update(P450_PX4_ROOT=PX4, SIM_ROOT=str(args.sim_root),
-                       ROS_MASTER_URI='http://127.0.0.1:11951', GAZEBO_MASTER_URI='http://127.0.0.1:11952',
-                       ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
     if args.ground_dynamics:
         environment.update(ground_dynamics_environment(config['status'], output, args.ground_replay_from))
     os.environ.update(environment)
@@ -485,6 +498,7 @@ def main(argv=None):
                   uav_launch_pose=config['uav_launch_pose'],
                   config_path=str(args.config.resolve()), protocol=config['protocol'],
                   operational_gating=config.get('operational_gating', 'v1'),
+                  handoff_stop=config.get('handoff_stop', 'legacy'),
                   kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else expected_kind,
                   status='INVALID_TRIAL', task_started=False, activation_wall=time.time())
     if args.ground_dynamics:

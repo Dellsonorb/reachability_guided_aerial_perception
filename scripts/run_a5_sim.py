@@ -63,10 +63,14 @@ def build_parser():
                         help="Use shared perceived-target/payload planning and target-sized gripper preshape")
     parser.add_argument("--execution-clearance", action="store_true",
                         help="Shared development chassis-clearance and whole-manipulation screening")
+    parser.add_argument('--handoff-stop', choices=('legacy', 'screened_candidate'), default='legacy',
+                        help='Stop sensing after real confirmation AND shared execution preview; legacy preserves historical runs')
     return parser
 
 
 def validate_options(parser, options):
+    if options.handoff_stop == 'screened_candidate' and not options.execution_clearance:
+        parser.error('--handoff-stop screened_candidate requires --execution-clearance')
     if options.execution_clearance and not options.full_robot_manipulation:
         parser.error('--execution-clearance requires --full-robot-manipulation')
     if options.max_viewpoints < 1:
@@ -228,34 +232,53 @@ def build_adapter_class(demo_module, options):
             t, q = transform.transform.translation, transform.transform.rotation
             return rigid_transform([t.x, t.y, t.z], [q.x, q.y, q.z, q.w])
 
-        def _a5_frame_calibration(self):
+        def _a5_frame_calibration(self, timeout_s=None):
             """Read the public nominal Ground plane, not a LiDAR-fitted offset."""
+            timeout = rospy.Duration(options.tf_timeout if timeout_s is None else timeout_s)
             odom_bunker = self._tf_buffer.lookup_transform(
                 'ground/odom', self._ground_base_frame, rospy.Time(0),
-                rospy.Duration(options.tf_timeout))
+                timeout)
             stamp = odom_bunker.header.stamp
             age = rospy.Time.now().to_sec() - stamp.to_sec()
             if not 0 <= age <= options.tf_max_age:
                 raise DemoError('A5 Ground map TF is stale')
             map_odom = self._tf_buffer.lookup_transform(
-                self._map_frame, 'ground/odom', stamp, rospy.Duration(options.tf_timeout))
+                self._map_frame, 'ground/odom', stamp, timeout)
             bunker_aubo = self._tf_buffer.lookup_transform(
                 self._ground_base_frame, 'ground/aubo_i5_base_link', stamp,
-                rospy.Duration(options.tf_timeout))
+                timeout)
             return {'T_map_ground_odom': self._a5_matrix(map_odom).tolist(),
                     'T_ground_odom_bunker': self._a5_matrix(odom_bunker).tolist(),
                     'T_bunker_aubo': self._a5_matrix(bunker_aubo).tolist()}
 
         def _a5_measured_pose(self, stamp=None, timeout_s=None):
-            transform = self._tf_buffer.lookup_transform(
-                self._map_frame, normalized_frame(options.uav_base_frame),
-                rospy.Time(0) if stamp is None else stamp,
-                rospy.Duration(options.tf_timeout if timeout_s is None else timeout_s))
-            if stamp is None:
-                age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
-                if not 0 <= age <= options.tf_max_age:
-                    raise DemoError("A5 UAV map TF is stale")
-            return pose_xyzyaw(self._a5_matrix(transform))
+            timeout = options.tf_timeout if timeout_s is None else timeout_s
+            frame = normalized_frame(options.uav_base_frame)
+            if stamp is not None:
+                transform = self._tf_buffer.lookup_transform(
+                    self._map_frame, frame, stamp, rospy.Duration(timeout))
+                return pose_xyzyaw(self._a5_matrix(transform))
+            # /clock and /tf arrive on different callbacks. A current transform
+            # can briefly lead this node's clock; wait for an actually fresh
+            # sample, never accept negative age or relax the existing age gate.
+            deadline, last_error = time.monotonic() + timeout, None
+            while not rospy.is_shutdown():
+                if last_error is not None and time.monotonic() >= deadline:
+                    raise last_error
+                try:
+                    transform = self._tf_buffer.lookup_transform(
+                        self._map_frame, frame, rospy.Time(0), rospy.Duration(0.))
+                    age = rospy.Time.now().to_sec() - transform.header.stamp.to_sec()
+                    if not 0 <= age <= options.tf_max_age:
+                        raise DemoError('A5 UAV map TF is stale: age_s=%.9f' % age)
+                except (DemoError, tf2_ros.TransformException) as error:
+                    last_error = error
+                    if time.monotonic() >= deadline:
+                        raise
+                    self._wait_step()
+                    continue
+                return pose_xyzyaw(self._a5_matrix(transform))
+            raise DemoError('A5 current-pose TF wait interrupted by shutdown')
 
         def _a5_settled_now(self, goal, timeout_s=None, acquisition=False):
             pose = self._a5_measured_pose(timeout_s=timeout_s)
@@ -467,6 +490,35 @@ def build_adapter_class(demo_module, options):
                                       ROOT / "src", request, self._a5_output, label,
                                       options.core_timeout)
 
+        def _wait_preflight(self):
+            super()._wait_preflight()
+            # Readiness in the setup node or flight facade does not imply that
+            # this newly created subscriber has received the public TF chain.
+            start = time.monotonic()
+            deadline = start + self._preflight_timeout
+            last_error = 'no public localization received'
+            self._publish_status('A5_PREFLIGHT_TF_WAIT')
+            while not rospy.is_shutdown() and time.monotonic() < deadline:
+                try:
+                    self._a5_measured_pose(timeout_s=0.)
+                    self._a5_frame_calibration(timeout_s=0.)
+                except (DemoError, tf2_ros.TransformException) as error:
+                    last_error = str(error)
+                    self._wait_step()
+                    continue
+                # Check health and TF together; a second blocking parent wait
+                # could make the TF above stale while health is recovering.
+                state, _pose, received, _pose_received = self._air_snapshot()
+                if (state is None or received is None or not demo_module.native_state_ready(
+                        state.connected, state.odom_valid, time.monotonic() - received,
+                        self._flight_health_max_age)):
+                    last_error = 'native Prometheus state ceased to be ready'
+                    self._wait_step()
+                    continue
+                self._publish_status('A5_PREFLIGHT_TF_READY', waited_wall_s=time.monotonic() - start)
+                return
+            raise DemoError('A5 preflight public TF not ready: ' + last_error)
+
         def _run_air_phase(self):
             try:
                 self._wait_preflight()
@@ -513,6 +565,7 @@ def build_adapter_class(demo_module, options):
                         "observations": list(self._a5_observations), "uav_pose": pose,
                         "output_dir": str(self._a5_output),
                     }, "round-%02d" % round_number)
+                    response = self._a5_prepare_handoff(response, target_map)
                     self._publish_status("A5_DECISION", **{key: response[key] for key in (
                         "round", "stop_reason", "next_viewpoint", "selected_candidate")})
                     if response["stop_reason"] is not None:
@@ -520,7 +573,12 @@ def build_adapter_class(demo_module, options):
                         if self._a5_selected is None:
                             raise DemoError("A5 stopped (%s) without a confirmed exact candidate" % response["stop_reason"])
                         if getattr(self, '_execution_clearance', False):
-                            self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
+                            if response.get('execution_screen_attempted'):
+                                self._a5_selected = response.get('screened_candidate')
+                                if self._a5_selected is None:
+                                    raise DemoError('no confirmed exact candidate passing bounded execution screen')
+                            else:
+                                self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
                             self._execution_rm_seed = self._a5_execution_seeds.get(self._a5_selected['candidate_id'])
                         self._a5_candidate_count = response.get("candidate_count", self._a5_candidate_count)
                         self._publish_status("A5_SELECTED", **self._a5_selected)
@@ -536,13 +594,26 @@ def build_adapter_class(demo_module, options):
             except (WorkerError, OSError, ValueError) as error:
                 raise DemoError("A5 adapter failed: %s" % error) from error
 
-        def _screen_ground_candidates(self, assessments, target_map):
+        def _a5_prepare_handoff(self, response, target_map):
+            # A task stop, not a new NBV gain or an assertion of D_exec. Actual
+            # arrival and near-field refinement still replan the real robot.
+            if (getattr(options, 'handoff_stop', 'legacy') != 'screened_candidate'
+                    or response['confirmed_candidate_count'] == 0):
+                return response
+            selected = self._screen_ground_candidates(response['assessments'], target_map, False)
+            response = dict(response, execution_screen_attempted=True, screened_candidate=selected)
+            if selected is not None:
+                response.update(stop_reason='SCREENED_CANDIDATE_READY', next_viewpoint=None,
+                                selected_candidate=selected)
+            return response
+
+        def _screen_ground_candidates(self, assessments, target_map, required=True):
             from a5_execution_selection import select_execution_candidate
             selected = select_execution_candidate(
                 assessments, lambda candidate: self._preview_ground_candidate(
                     target_map, candidate, self._a5_execution_seeds.get(candidate['candidate_id'])),
                 self._publish_status)
-            if selected is None:
+            if selected is None and required:
                 raise DemoError('no confirmed exact candidate passing bounded execution screen')
             return selected
 

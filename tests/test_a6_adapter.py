@@ -108,6 +108,7 @@ class AdapterTests(unittest.TestCase):
                 self._flight_started, self._landed = False, False
                 self._placement_mode = 'rm4d'
                 self._flight_health_max_age = .5
+                self._preflight_timeout = 30.
                 self._rm4d_grasp_id = 'grasp-live'
                 for key in ('target_size', 'pregrasp_height', 'lift_height',
                             'finger_pad_lower_edge_offset', 'contact_overlap', 'surface_clearance'):
@@ -142,7 +143,8 @@ class AdapterTests(unittest.TestCase):
                         timer.callback(None)
 
             def _air_snapshot(self):
-                return SimpleNamespace(velocity=[0., 0., 0.]), None, owner.clock.wall, None
+                return SimpleNamespace(velocity=[0., 0., 0.], connected=True,
+                                       odom_valid=True), None, owner.clock.wall, None
 
             def _observe_from_air(self):
                 return [2., 0., .1]
@@ -179,7 +181,7 @@ class AdapterTests(unittest.TestCase):
                     self.handoff = self._select_rm4d_candidate(target)
                     self._publish_status('LIFT', grasp_confirmed=True)
                     return True
-                except RuntimeError as error:
+                except (RuntimeError, LookupError) as error:
                     self._publish_status('FAILED', reason=str(error))
                     return False
                 finally:
@@ -188,6 +190,8 @@ class AdapterTests(unittest.TestCase):
 
         self.base = DemoBase
         self.demo = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=DemoBase,
+                                    native_state_ready=lambda connected, valid, age, maximum:
+                                        connected and valid and 0 <= age <= maximum,
                                     generate_top_down_grasp=lambda *args: SimpleNamespace(
                                         grasp=SimpleNamespace(position=(2., 0., .1), orientation=(0., 0., 0., 1.))))
 
@@ -216,8 +220,11 @@ class AdapterTests(unittest.TestCase):
             '--rm4d-root', str(self.output), '--rm4d-config', str(self.output / 'config.yaml'),
             '--rm4d-map', str(self.output / 'map.npz')])
 
-    def node(self, method='ours'):
-        cls = self.adapter.build_adapter_class(self.demo, self.options(method))
+    def node(self, method='ours', handoff_stop=None):
+        options = self.options(method)
+        if handoff_stop is not None:
+            options.handoff_stop = handoff_stop
+        cls = self.adapter.build_adapter_class(self.demo, options)
         self.assertEqual(cls.__mro__[1].__name__, 'A5AirGroundPickDemo')
         node = cls()
         self.addCleanup(node._a6_close_evidence)
@@ -285,6 +292,83 @@ class AdapterTests(unittest.TestCase):
             decision = next(row for row in events if row['state'] == 'A5_DECISION' and row['round'] == result['round'])
             self.assertLess(events.index(result), events.index(decision))
 
+    def test_own_tf_must_arrive_before_any_takeoff_command(self):
+        node = self.node()
+        ready_wall = self.clock.wall + .3
+        original_lookup = self.lookup
+        def delayed(*args):
+            if self.clock.wall < ready_wall:
+                raise LookupError('map tree not connected yet')
+            return original_lookup(*args)
+        node._tf_buffer.lookup_transform = delayed
+        execute = node._execute_flight
+        def command(*args, **kwargs):
+            self.assertGreaterEqual(self.clock.wall, ready_wall)
+            return execute(*args, **kwargs)
+        node._execute_flight = command
+        with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):
+            self.assertTrue(node.run())
+        self.assertTrue(any(row['state'] == 'A5_PREFLIGHT_TF_READY' for row in self.events()))
+
+    def test_missing_own_tf_times_out_without_arming_even_if_clock_pauses(self):
+        node = self.node()
+        node._preflight_timeout = .2
+        start = self.clock.wall
+        node._tf_buffer.lookup_transform = lambda *args: (_ for _ in ()).throw(
+            LookupError('map tree not connected'))
+        node._wait_step = lambda: setattr(self.clock, 'wall', self.clock.wall + .05)
+        with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):
+            self.assertFalse(node.run())
+        self.assertEqual(self.actions, [])
+        self.assertEqual(self.worker_calls, [])
+        self.assertLessEqual(self.clock.wall - start, .251)
+        self.assertIn('preflight public TF not ready', next(
+            row['reason'] for row in self.events() if row['state'] == 'FAILED'))
+
+    def test_preflight_waits_for_fresh_not_merely_connected_tf(self):
+        node = self.node()
+        start = self.clock.wall
+        original_lookup = self.lookup
+        def stale(*args):
+            result = original_lookup(*args)
+            if self.clock.wall < start + .2:
+                result.header.stamp = self.Stamp(self.clock.sim - 2.)
+            return result
+        node._tf_buffer.lookup_transform = stale
+        node._wait_preflight()
+        self.assertGreaterEqual(self.clock.wall, start + .2)
+        self.assertEqual(self.actions, [])
+
+    def test_health_recovery_cannot_authorize_tf_that_has_since_gone_stale(self):
+        node = self.node()
+        node._preflight_timeout = .3
+        start = self.clock.wall
+        stamp = self.Stamp(self.clock.sim)
+        original_lookup = self.lookup
+        calls = []
+        def parent_wait(_node):
+            calls.append(self.clock.wall)
+            if len(calls) > 1:
+                self.clock.wall += .3
+                self.clock.sim += 2.
+        def aging_tf(*args):
+            result = original_lookup(*args)
+            result.header.stamp = stamp
+            return result
+        def yield_time():
+            self.clock.wall += .05
+            self.clock.sim += .5
+        node._tf_buffer.lookup_transform = aging_tf
+        node._wait_step = yield_time
+        node._air_snapshot = lambda: (SimpleNamespace(connected=True, odom_valid=True),
+            None, self.clock.wall if self.clock.wall >= start + .2 else start - 2., None)
+        with patch.object(self.base, '_wait_preflight', parent_wait):
+            with self.assertRaisesRegex(RuntimeError, 'preflight public TF not ready'):
+                node._wait_preflight()
+        self.assertEqual(len(calls), 1)
+        self.assertLessEqual(self.clock.wall - start, .351)
+        self.assertEqual(self.actions, [])
+
     def test_fixed_nbvs_only_hover_at_current_pose_despite_stale_requested_pose(self):
         node = self.node('fixed')
         self.next_goals = [[2., 2., 1.5, 1.7], [3., 1., 1.5, -2.]]
@@ -347,6 +431,80 @@ class AdapterTests(unittest.TestCase):
     def test_ours_uses_shared_bounded_exact_execution_screen(self):
         self.assert_shared_execution_screen('ours')
 
+    def assert_screened_handoff(self, method, reject_first=False, interface_failure=False):
+        node = self.node(method, handoff_stop='screened_candidate')
+        node._execution_clearance = True
+        original = self.worker
+        previews = []
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                Path(result['initial_file']).write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result['assessments'] = [dict(self.selected, confirmed=True)]
+            return result
+        def preview(*args):
+            previews.append(len(self.worker_calls) - 1)
+            self.clock.sim += 7.
+            if interface_failure:
+                raise RuntimeError('MoveIt interface unavailable')
+            return dict(feasible=not reject_first or len(previews) > 1)
+        node._preview_ground_candidate = preview
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            result = node.run()
+        expected = 2 if reject_first else 1
+        self.assertEqual(len([r for r in self.worker_calls if r['request']['op'] == 'observe']), expected)
+        self.assertEqual(len(previews), expected, 'no repeated successful screen at handoff')
+        self.assertEqual(result, not interface_failure)
+        if interface_failure:
+            failed = next(e for e in self.events() if e['state'] == 'FAILED')
+            self.assertIn('MoveIt interface unavailable', failed['reason'])
+            metrics = json.loads((self.output/'metrics.json').read_text())
+            self.assertEqual(metrics['stages']['active']['status'], 'FAILED')
+            self.assertAlmostEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
+        else:
+            stop = next(e for e in self.events() if e['state'] == 'A6_ACTIVE_STOP')
+            self.assertEqual(stop['stop_reason'], 'SCREENED_CANDIDATE_READY')
+            self.assertEqual(stop['round'], expected)
+            self.assertEqual(node.handoff[1], self.selected['candidate_id'])
+            metrics = json.loads((self.output/'metrics.json').read_text())
+            self.assertEqual(metrics['counts']['voted_windows'], expected)
+            self.assertAlmostEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
+            self.assertAlmostEqual(metrics['stages']['execution_screen']['duration_sim_s'], 7. * expected)
+
+    def test_generic_shared_screened_stop_before_next_observation(self):
+        self.assert_screened_handoff('generic')
+
+    def test_ours_shared_screened_stop_before_next_observation(self):
+        self.assert_screened_handoff('ours')
+
+    def test_screening_rejection_can_continue_real_sensing(self):
+        self.assert_screened_handoff('ours', reject_first=True)
+
+    def test_screening_interface_error_is_not_a_sensing_retry(self):
+        self.assert_screened_handoff('generic', interface_failure=True)
+
+    def test_new_stop_keeps_terminal_rejection_as_execution_failure(self):
+        node = self.node('ours', handoff_stop='screened_candidate')
+        node._execution_clearance = True
+        original = self.worker
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                Path(result['initial_file']).write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result['assessments'] = [dict(self.selected, confirmed=True)]
+            return result
+        count = []
+        node._preview_ground_candidate = lambda *args: (count.append(1) or dict(feasible=False))
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            self.assertFalse(node.run())
+        self.assertEqual(len(count), 3)
+        metrics = json.loads((self.output/'metrics.json').read_text())
+        self.assertEqual(metrics['terminal_failure_stage'], 'execution_screen')
+        self.assertEqual(metrics['stages']['execution_screen']['status'], 'FAILED')
+        self.assertFalse(metrics['D_exec'])
+
     def test_execution_rejection_preserves_successful_active_stage_and_original_confirmation(self):
         node = self.node('ours')
         node._execution_clearance = True
@@ -375,7 +533,7 @@ class AdapterTests(unittest.TestCase):
         self.assertGreaterEqual(metrics['stages']['execution_screen']['duration_sim_s'], 40.)
 
     def test_no_confirmed_candidate_remains_perception_handoff_failure_not_execution_screen(self):
-        node = self.node('ours'); node._execution_clearance = True
+        node = self.node('ours', handoff_stop='screened_candidate'); node._execution_clearance = True
         original = self.worker
         def worker(*args):
             result = original(*args)

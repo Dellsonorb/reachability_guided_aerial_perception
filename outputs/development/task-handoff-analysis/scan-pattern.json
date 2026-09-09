@@ -1,0 +1,5164 @@
+{
+  "kind": "recorded_hard_first_two_windows_scan_pattern_diagnostic",
+  "existing_implementation": "scripts/diagnose_hard_nbv_ground.py",
+  "scan_pattern": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/scan_mode/mid360.csv",
+  "existing_reader_hash_check_passed": true,
+  "no_new_observations": true,
+  "no_mapper_updates": true,
+  "no_gt_geometry": true,
+  "limitations": [
+    "Phase is inferred from observed directions and verified against every retained return; it is not directly logged.",
+    "Scheduled rays use saved per-packet public TF and no within-packet deskew. Ground-band counts use conservative XY segment bounding boxes.",
+    "Zero band opportunity excludes a ray reaching this cell in the accepted height band under this recorded geometry model; it is not geometric truth.",
+    "Positive band counts do not establish intersection, an unobstructed path, a ground return or support.",
+    "Foreground witnesses are actual endpoints projected along their measured rays, not ground observations or full-cell occlusion proofs.",
+    "Recorded finite packets do not establish coverage for longer unseen windows or hypothetical poses. No density threshold or score is tuned.",
+    "Per-group foreground, FOV and band counts can overlap. No-foreground-witness does not prove no occlusion."
+  ],
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "windows": [
+        {
+          "point_count": 87738,
+          "accepted_ground_point_count": 70927,
+          "grid_ground_point_count": 5245,
+          "grid_ground_cells": 383,
+          "rejected_range_points": 4,
+          "chunk_count": 51,
+          "window_duration_s": 5.024999999999999,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.00036678633191522536,
+            -0.00025268414391778295,
+            6.002182132447409e-05,
+            0.0004240808865840598,
+            0.018662350689298224
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 28,
+          "chunk_roundtrip_max_abs_error_m": 1.4210854715202004e-14,
+          "observed_base_rpy_min_deg": [
+            -0.43330875618721115,
+            -0.29598643717889683,
+            -0.7731214645219809
+          ],
+          "observed_base_rpy_max_deg": [
+            0.1272726973237119,
+            0.24607102609593634,
+            -0.6291912220414222
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.040240542873107e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            250000,
+            260000,
+            270000,
+            280000,
+            290000,
+            300000,
+            310000,
+            320000,
+            330000,
+            340000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 1,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 168,
+            "actual_ground_cells": 37,
+            "missing_ground_cells": 131,
+            "missing_no_scheduled_band_opportunity": 18,
+            "missing_with_scheduled_band_opportunity": 113,
+            "missing_with_foreground_witness": 108,
+            "missing_with_band_and_foreground": 108,
+            "missing_with_band_without_foreground": 5,
+            "missing_no_realized_center_fov": 5
+          },
+          "union_zero_presence_after_two": {
+            "cells": 5,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 5,
+            "missing_no_scheduled_band_opportunity": 3,
+            "missing_with_scheduled_band_opportunity": 2,
+            "missing_with_foreground_witness": 0,
+            "missing_with_band_and_foreground": 0,
+            "missing_with_band_without_foreground": 2,
+            "missing_no_realized_center_fov": 0
+          }
+        },
+        {
+          "point_count": 87174,
+          "accepted_ground_point_count": 79115,
+          "grid_ground_point_count": 11228,
+          "grid_ground_cells": 1061,
+          "rejected_range_points": 3,
+          "chunk_count": 51,
+          "window_duration_s": 5.029000000000011,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0006853815447274147,
+            -0.00047673835908890183,
+            -1.937160517728742e-05,
+            0.009055927020708437,
+            0.01971390140884899
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 127,
+          "chunk_roundtrip_max_abs_error_m": 1.4210854715202004e-14,
+          "observed_base_rpy_min_deg": [
+            -0.1812783457334713,
+            -0.21359963201337945,
+            -0.73562505532175
+          ],
+          "observed_base_rpy_max_deg": [
+            0.19124557096498085,
+            0.13074667192891676,
+            -0.6521363751644292
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.0750157407055667e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            250000,
+            260000,
+            270000,
+            280000,
+            290000,
+            300000,
+            310000,
+            320000,
+            330000,
+            340000,
+            350000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 2,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 168,
+            "actual_ground_cells": 141,
+            "missing_ground_cells": 27,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 27,
+            "missing_with_foreground_witness": 27,
+            "missing_with_band_and_foreground": 27,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 114,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          },
+          "union_zero_presence_after_two": {
+            "cells": 5,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 5,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 5,
+            "missing_with_foreground_witness": 5,
+            "missing_with_band_and_foreground": 5,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 0,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          }
+        }
+      ],
+      "exact_winners": [
+        {
+          "source_id": 584,
+          "candidate_id": "candidate-000000",
+          "cells": 108,
+          "presence_histograms": [
+            [
+              86,
+              22,
+              0
+            ],
+            [
+              3,
+              92,
+              13
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            658,
+            698,
+            738
+          ],
+          "windows": [
+            {
+              "cells": 108,
+              "actual_ground_cells": 22,
+              "missing_ground_cells": 86,
+              "missing_no_scheduled_band_opportunity": 1,
+              "missing_with_scheduled_band_opportunity": 85,
+              "missing_with_foreground_witness": 82,
+              "missing_with_band_and_foreground": 82,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 108,
+              "actual_ground_cells": 96,
+              "missing_ground_cells": 12,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 12,
+              "missing_with_foreground_witness": 12,
+              "missing_with_band_and_foreground": 12,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 78,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 624,
+          "candidate_id": "candidate-000004",
+          "cells": 102,
+          "presence_histograms": [
+            [
+              75,
+              27,
+              0
+            ],
+            [
+              3,
+              85,
+              14
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            658,
+            698,
+            738
+          ],
+          "windows": [
+            {
+              "cells": 102,
+              "actual_ground_cells": 27,
+              "missing_ground_cells": 75,
+              "missing_no_scheduled_band_opportunity": 1,
+              "missing_with_scheduled_band_opportunity": 74,
+              "missing_with_foreground_witness": 71,
+              "missing_with_band_and_foreground": 71,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 102,
+              "actual_ground_cells": 86,
+              "missing_ground_cells": 16,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 16,
+              "missing_with_foreground_witness": 16,
+              "missing_with_band_and_foreground": 16,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 67,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 623,
+          "candidate_id": "candidate-000010",
+          "cells": 107,
+          "presence_histograms": [
+            [
+              72,
+              35,
+              0
+            ],
+            [
+              3,
+              90,
+              14
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            657,
+            658,
+            698
+          ],
+          "windows": [
+            {
+              "cells": 107,
+              "actual_ground_cells": 35,
+              "missing_ground_cells": 72,
+              "missing_no_scheduled_band_opportunity": 2,
+              "missing_with_scheduled_band_opportunity": 70,
+              "missing_with_foreground_witness": 67,
+              "missing_with_band_and_foreground": 67,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 107,
+              "actual_ground_cells": 83,
+              "missing_ground_cells": 24,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 24,
+              "missing_with_foreground_witness": 24,
+              "missing_with_band_and_foreground": 24,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 63,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 542,
+          "candidate_id": "candidate-000011",
+          "cells": 105,
+          "presence_histograms": [
+            [
+              87,
+              18,
+              0
+            ],
+            [
+              3,
+              95,
+              7
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            658,
+            698,
+            738
+          ],
+          "windows": [
+            {
+              "cells": 105,
+              "actual_ground_cells": 18,
+              "missing_ground_cells": 87,
+              "missing_no_scheduled_band_opportunity": 1,
+              "missing_with_scheduled_band_opportunity": 86,
+              "missing_with_foreground_witness": 83,
+              "missing_with_band_and_foreground": 83,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 105,
+              "actual_ground_cells": 91,
+              "missing_ground_cells": 14,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 14,
+              "missing_with_foreground_witness": 14,
+              "missing_with_band_and_foreground": 14,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 76,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 581,
+          "candidate_id": "candidate-000049",
+          "cells": 107,
+          "presence_histograms": [
+            [
+              89,
+              18,
+              0
+            ],
+            [
+              4,
+              98,
+              5
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            656,
+            657,
+            658,
+            698
+          ],
+          "windows": [
+            {
+              "cells": 107,
+              "actual_ground_cells": 18,
+              "missing_ground_cells": 89,
+              "missing_no_scheduled_band_opportunity": 17,
+              "missing_with_scheduled_band_opportunity": 72,
+              "missing_with_foreground_witness": 67,
+              "missing_with_band_and_foreground": 67,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 5
+            },
+            {
+              "cells": 107,
+              "actual_ground_cells": 90,
+              "missing_ground_cells": 17,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 17,
+              "missing_with_foreground_witness": 17,
+              "missing_with_band_and_foreground": 17,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 70,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        }
+      ],
+      "union_zero_presence_after_two_cells": [
+        {
+          "cell_id": 656,
+          "ground_center_map": [
+            1.6062608058485757,
+            -0.23964875194509982,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 13,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.587321514891965,
+              "center_elevation_max_deg": -6.446386320285857,
+              "center_azimuth_min_deg": -2.5630922659661093,
+              "center_azimuth_max_deg": -2.1037377718187105,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 7,
+              "scheduled_ground_band_bbox_rays": 26,
+              "foreground_ray_points": 7,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.6061414940229308,
+              "center_elevation_max_deg": 2.733972920342658,
+              "center_azimuth_min_deg": 19.455421085123017,
+              "center_azimuth_max_deg": 19.681118422401177,
+              "foreground_example": {
+                "observation_row": 11202,
+                "chunk_index": 6,
+                "sensor_origin_map": [
+                  -3.27004430327821,
+                  -2.0015196603752012,
+                  1.6044610226523814
+                ],
+                "measured_endpoint_map": [
+                  0.42504015371475745,
+                  -0.6673429102958672,
+                  0.3847103936055558
+                ],
+                "projected_ground_map": [
+                  1.590472957767826,
+                  -0.2465424200649271,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3847103936055558
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.1043684592116,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 657,
+          "ground_center_map": [
+            1.7062608058485755,
+            -0.23964875194509982,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 23,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.780908675403141,
+              "center_elevation_max_deg": -5.6781398289530705,
+              "center_azimuth_min_deg": -2.4691437117523196,
+              "center_azimuth_max_deg": -2.0226271847521677,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 3,
+              "scheduled_ground_band_bbox_rays": 17,
+              "foreground_ray_points": 3,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.9354039600990343,
+              "center_elevation_max_deg": 3.04485525812367,
+              "center_azimuth_min_deg": 19.140419669676582,
+              "center_azimuth_max_deg": 19.36456039030206,
+              "foreground_example": {
+                "observation_row": 33072,
+                "chunk_index": 19,
+                "sensor_origin_map": [
+                  -3.2614241282877794,
+                  -1.9871460009021247,
+                  1.5861087158855864
+                ],
+                "measured_endpoint_map": [
+                  0.47519550390588705,
+                  -0.7000053626706113,
+                  0.3981485278725434
+                ],
+                "projected_ground_map": [
+                  1.7275351199883904,
+                  -0.2686162004344974,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3981485278725434
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.425542459158677,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 658,
+          "ground_center_map": [
+            1.8062608058485756,
+            -0.23964875194509982,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 2,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.0156143835322045,
+              "center_elevation_max_deg": -4.949980618521445,
+              "center_azimuth_min_deg": -2.380321945841522,
+              "center_azimuth_max_deg": -1.945988945920495,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 9,
+              "scheduled_ground_band_bbox_rays": 21,
+              "foreground_ray_points": 9,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.2540121002858657,
+              "center_elevation_max_deg": 3.3455472260748174,
+              "center_azimuth_min_deg": 18.835506740209194,
+              "center_azimuth_max_deg": 19.05805948429587,
+              "foreground_example": {
+                "observation_row": 4176,
+                "chunk_index": 2,
+                "sensor_origin_map": [
+                  -3.2748542952139577,
+                  -2.0055215381225797,
+                  1.6005303984015566
+                ],
+                "measured_endpoint_map": [
+                  0.48496145835339766,
+                  -0.6999697498419681,
+                  0.4225634456793148
+                ],
+                "projected_ground_map": [
+                  1.8336925889468478,
+                  -0.23163873181660155,
+                  0.0
+                ],
+                "endpoint_height_m": 0.4225634456793148
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.7363386527580547,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 698,
+          "ground_center_map": [
+            1.8062608058485756,
+            -0.13964875194509996,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 1,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.0195186557037275,
+              "center_elevation_max_deg": -4.960360873784529,
+              "center_azimuth_min_deg": -0.7161914763470346,
+              "center_azimuth_max_deg": -0.2638678321465781,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 6,
+              "scheduled_ground_band_bbox_rays": 22,
+              "foreground_ray_points": 6,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.2372435772815007,
+              "center_elevation_max_deg": 3.319995523211106,
+              "center_azimuth_min_deg": 19.80651671400943,
+              "center_azimuth_max_deg": 20.023268679139214,
+              "foreground_example": {
+                "observation_row": 33068,
+                "chunk_index": 19,
+                "sensor_origin_map": [
+                  -3.2614241282877794,
+                  -1.9871460009021247,
+                  1.5861087158855864
+                ],
+                "measured_endpoint_map": [
+                  0.42500755925947864,
+                  -0.6181595441933063,
+                  0.42195164190520407
+                ],
+                "projected_ground_map": [
+                  1.7611639406432422,
+                  -0.12196698043622045,
+                  0.0
+                ],
+                "endpoint_height_m": 0.42195164190520407
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.7159236421862807,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 738,
+          "ground_center_map": [
+            1.8062608058485756,
+            -0.03964875194509987,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.017553075913868,
+              "center_elevation_max_deg": -4.966546671142875,
+              "center_azimuth_min_deg": 0.9505677242627942,
+              "center_azimuth_max_deg": 1.4199702064606639,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 7,
+              "scheduled_ground_band_bbox_rays": 21,
+              "foreground_ray_points": 7,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.2200460783804945,
+              "center_elevation_max_deg": 3.29381125556555,
+              "center_azimuth_min_deg": 20.76621294232666,
+              "center_azimuth_max_deg": 20.97722552285446,
+              "foreground_example": {
+                "observation_row": 4172,
+                "chunk_index": 2,
+                "sensor_origin_map": [
+                  -3.2748542952139577,
+                  -2.0055215381225797,
+                  1.6005303984015566
+                ],
+                "measured_endpoint_map": [
+                  0.42502192185035614,
+                  -0.6216536135426922,
+                  0.44512072270461234
+                ],
+                "projected_ground_map": [
+                  1.8503964970319835,
+                  -0.0885195194862558,
+                  2.220446049250313e-16
+                ],
+                "endpoint_height_m": 0.44512072270461234
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.6950023612379868,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "windows": [
+        {
+          "point_count": 87772,
+          "accepted_ground_point_count": 70941,
+          "grid_ground_point_count": 5356,
+          "grid_ground_cells": 403,
+          "rejected_range_points": 0,
+          "chunk_count": 51,
+          "window_duration_s": 5.027999999999999,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.00033657556971555813,
+            -0.00026389509375857045,
+            2.4452297236576825e-05,
+            0.0005711566213768448,
+            0.019395106283570662
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 38,
+          "chunk_roundtrip_max_abs_error_m": 1.4210854715202004e-14,
+          "observed_base_rpy_min_deg": [
+            -0.21343064656292204,
+            -0.10927965940763272,
+            -0.6402678062872542
+          ],
+          "observed_base_rpy_max_deg": [
+            0.22155174886168524,
+            0.1664139081405891,
+            -0.4623791559586388
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.1652553644789805e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            510000,
+            520000,
+            530000,
+            540000,
+            550000,
+            560000,
+            570000,
+            580000,
+            590000,
+            600000,
+            610000,
+            620000,
+            630000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 1,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 174,
+            "actual_ground_cells": 32,
+            "missing_ground_cells": 142,
+            "missing_no_scheduled_band_opportunity": 35,
+            "missing_with_scheduled_band_opportunity": 107,
+            "missing_with_foreground_witness": 104,
+            "missing_with_band_and_foreground": 104,
+            "missing_with_band_without_foreground": 3,
+            "missing_no_realized_center_fov": 8
+          },
+          "union_zero_presence_after_two": {
+            "cells": 32,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 32,
+            "missing_no_scheduled_band_opportunity": 20,
+            "missing_with_scheduled_band_opportunity": 12,
+            "missing_with_foreground_witness": 11,
+            "missing_with_band_and_foreground": 11,
+            "missing_with_band_without_foreground": 1,
+            "missing_no_realized_center_fov": 7
+          }
+        },
+        {
+          "point_count": 86974,
+          "accepted_ground_point_count": 74081,
+          "grid_ground_point_count": 11332,
+          "grid_ground_cells": 746,
+          "rejected_range_points": 2,
+          "chunk_count": 51,
+          "window_duration_s": 5.027999999999992,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0005787286191349938,
+            -0.00042626055165913447,
+            -1.883050531248376e-05,
+            0.0005392589821319858,
+            0.019858361920442658
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 82,
+          "chunk_roundtrip_max_abs_error_m": 2.1316282072803006e-14,
+          "observed_base_rpy_min_deg": [
+            -0.3570819719115677,
+            -0.1798689540184338,
+            44.365419550668605
+          ],
+          "observed_base_rpy_max_deg": [
+            0.14952004801786176,
+            0.1133611986414446,
+            44.449525331861715
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.0544116498276708e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            250000,
+            260000,
+            270000,
+            280000,
+            290000,
+            590000,
+            600000,
+            610000,
+            620000,
+            630000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 2,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 174,
+            "actual_ground_cells": 142,
+            "missing_ground_cells": 32,
+            "missing_no_scheduled_band_opportunity": 24,
+            "missing_with_scheduled_band_opportunity": 8,
+            "missing_with_foreground_witness": 1,
+            "missing_with_band_and_foreground": 1,
+            "missing_with_band_without_foreground": 7,
+            "missing_no_realized_center_fov": 6,
+            "predicted_cells": 150,
+            "predicted_missing": 18,
+            "predicted_missing_no_scheduled_band": 11,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          },
+          "union_zero_presence_after_two": {
+            "cells": 32,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 32,
+            "missing_no_scheduled_band_opportunity": 24,
+            "missing_with_scheduled_band_opportunity": 8,
+            "missing_with_foreground_witness": 1,
+            "missing_with_band_and_foreground": 1,
+            "missing_with_band_without_foreground": 7,
+            "missing_no_realized_center_fov": 6,
+            "predicted_cells": 18,
+            "predicted_missing": 18,
+            "predicted_missing_no_scheduled_band": 11,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          }
+        }
+      ],
+      "exact_winners": [
+        {
+          "source_id": 583,
+          "candidate_id": "candidate-000000",
+          "cells": 108,
+          "presence_histograms": [
+            [
+              87,
+              21,
+              0
+            ],
+            [
+              4,
+              83,
+              21
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            418,
+            419,
+            458,
+            498
+          ],
+          "windows": [
+            {
+              "cells": 108,
+              "actual_ground_cells": 21,
+              "missing_ground_cells": 87,
+              "missing_no_scheduled_band_opportunity": 4,
+              "missing_with_scheduled_band_opportunity": 83,
+              "missing_with_foreground_witness": 80,
+              "missing_with_band_and_foreground": 80,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 108,
+              "actual_ground_cells": 104,
+              "missing_ground_cells": 4,
+              "missing_no_scheduled_band_opportunity": 2,
+              "missing_with_scheduled_band_opportunity": 2,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 2,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 108,
+              "predicted_missing": 4,
+              "predicted_missing_no_scheduled_band": 2,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 623,
+          "candidate_id": "candidate-000004",
+          "cells": 103,
+          "presence_histograms": [
+            [
+              78,
+              25,
+              0
+            ],
+            [
+              1,
+              77,
+              25
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            419
+          ],
+          "windows": [
+            {
+              "cells": 103,
+              "actual_ground_cells": 25,
+              "missing_ground_cells": 78,
+              "missing_no_scheduled_band_opportunity": 4,
+              "missing_with_scheduled_band_opportunity": 74,
+              "missing_with_foreground_witness": 72,
+              "missing_with_band_and_foreground": 72,
+              "missing_with_band_without_foreground": 2,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 103,
+              "actual_ground_cells": 102,
+              "missing_ground_cells": 1,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 1,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 1,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 103,
+              "predicted_missing": 1,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 542,
+          "candidate_id": "candidate-000009",
+          "cells": 106,
+          "presence_histograms": [
+            [
+              91,
+              15,
+              0
+            ],
+            [
+              6,
+              85,
+              15
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            300,
+            301,
+            340,
+            380,
+            419,
+            498
+          ],
+          "windows": [
+            {
+              "cells": 106,
+              "actual_ground_cells": 15,
+              "missing_ground_cells": 91,
+              "missing_no_scheduled_band_opportunity": 6,
+              "missing_with_scheduled_band_opportunity": 85,
+              "missing_with_foreground_witness": 82,
+              "missing_with_band_and_foreground": 82,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 106,
+              "actual_ground_cells": 100,
+              "missing_ground_cells": 6,
+              "missing_no_scheduled_band_opportunity": 2,
+              "missing_with_scheduled_band_opportunity": 4,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 4,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 106,
+              "predicted_missing": 6,
+              "predicted_missing_no_scheduled_band": 2,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 581,
+          "candidate_id": "candidate-000047",
+          "cells": 107,
+          "presence_histograms": [
+            [
+              91,
+              16,
+              0
+            ],
+            [
+              26,
+              65,
+              16
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            338,
+            339,
+            340,
+            377,
+            378,
+            379,
+            380,
+            416,
+            417,
+            418,
+            419,
+            456,
+            457,
+            458,
+            495,
+            496,
+            497,
+            498,
+            535,
+            536,
+            537,
+            574,
+            575,
+            576,
+            615,
+            616
+          ],
+          "windows": [
+            {
+              "cells": 107,
+              "actual_ground_cells": 16,
+              "missing_ground_cells": 91,
+              "missing_no_scheduled_band_opportunity": 23,
+              "missing_with_scheduled_band_opportunity": 68,
+              "missing_with_foreground_witness": 65,
+              "missing_with_band_and_foreground": 65,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 5
+            },
+            {
+              "cells": 107,
+              "actual_ground_cells": 81,
+              "missing_ground_cells": 26,
+              "missing_no_scheduled_band_opportunity": 21,
+              "missing_with_scheduled_band_opportunity": 5,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 4,
+              "predicted_cells": 93,
+              "predicted_missing": 15,
+              "predicted_missing_no_scheduled_band": 10,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 580,
+          "candidate_id": "candidate-000070",
+          "cells": 102,
+          "presence_histograms": [
+            [
+              86,
+              16,
+              0
+            ],
+            [
+              21,
+              65,
+              16
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            376,
+            377,
+            416,
+            417,
+            418,
+            419,
+            456,
+            457,
+            458,
+            495,
+            496,
+            497,
+            498,
+            535,
+            536,
+            537,
+            575,
+            576,
+            615,
+            616,
+            655
+          ],
+          "windows": [
+            {
+              "cells": 102,
+              "actual_ground_cells": 16,
+              "missing_ground_cells": 86,
+              "missing_no_scheduled_band_opportunity": 28,
+              "missing_with_scheduled_band_opportunity": 58,
+              "missing_with_foreground_witness": 55,
+              "missing_with_band_and_foreground": 55,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 6
+            },
+            {
+              "cells": 102,
+              "actual_ground_cells": 81,
+              "missing_ground_cells": 21,
+              "missing_no_scheduled_band_opportunity": 16,
+              "missing_with_scheduled_band_opportunity": 5,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 4,
+              "predicted_cells": 93,
+              "predicted_missing": 13,
+              "predicted_missing_no_scheduled_band": 8,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 620,
+          "candidate_id": "candidate-000080",
+          "cells": 103,
+          "presence_histograms": [
+            [
+              85,
+              18,
+              0
+            ],
+            [
+              17,
+              68,
+              18
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            455,
+            456,
+            457,
+            458,
+            495,
+            496,
+            497,
+            498,
+            535,
+            536,
+            537,
+            575,
+            576,
+            615,
+            616,
+            655,
+            776
+          ],
+          "windows": [
+            {
+              "cells": 103,
+              "actual_ground_cells": 18,
+              "missing_ground_cells": 85,
+              "missing_no_scheduled_band_opportunity": 29,
+              "missing_with_scheduled_band_opportunity": 56,
+              "missing_with_foreground_witness": 53,
+              "missing_with_band_and_foreground": 53,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 6
+            },
+            {
+              "cells": 103,
+              "actual_ground_cells": 86,
+              "missing_ground_cells": 17,
+              "missing_no_scheduled_band_opportunity": 12,
+              "missing_with_scheduled_band_opportunity": 5,
+              "missing_with_foreground_witness": 1,
+              "missing_with_band_and_foreground": 1,
+              "missing_with_band_without_foreground": 4,
+              "missing_no_realized_center_fov": 2,
+              "predicted_cells": 90,
+              "predicted_missing": 11,
+              "predicted_missing_no_scheduled_band": 7,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        }
+      ],
+      "union_zero_presence_after_two_cells": [
+        {
+          "cell_id": 300,
+          "ground_center_map": [
+            2.0081755636992593,
+            -1.1394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 42,
+              "scheduled_ground_band_bbox_rays": 95,
+              "foreground_ray_points": 42,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -5.366795055389064,
+              "center_elevation_max_deg": -3.6947927268655354,
+              "center_azimuth_min_deg": -16.07197226596928,
+              "center_azimuth_max_deg": -15.4336191215142,
+              "foreground_example": {
+                "observation_row": 329,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -1.2976930978894998,
+                  -0.11003241772704579,
+                  1.4684809044564062
+                ],
+                "measured_endpoint_map": [
+                  0.42506420488141594,
+                  -0.6393778537747636,
+                  0.7132359578636835
+                ],
+                "projected_ground_map": [
+                  2.0519965803337508,
+                  -1.1392795092887356,
+                  0.0
+                ],
+                "endpoint_height_m": 0.7132359578636835
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 12,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.688273235681252,
+              "center_elevation_max_deg": -6.496772440028659,
+              "center_azimuth_min_deg": -28.343766742922288,
+              "center_azimuth_max_deg": -27.549253128770186,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.992779465953827,
+              "prior_model_visible_chunk_count": 12
+            }
+          ]
+        },
+        {
+          "cell_id": 301,
+          "ground_center_map": [
+            2.108175563699259,
+            -1.1394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 49,
+              "scheduled_ground_band_bbox_rays": 118,
+              "foreground_ray_points": 49,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -4.738414636008925,
+              "center_elevation_max_deg": -3.0977020172779164,
+              "center_azimuth_min_deg": -15.66889302536713,
+              "center_azimuth_max_deg": -15.049145415108278,
+              "foreground_example": {
+                "observation_row": 319,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -1.2976930978894998,
+                  -0.11003241772704579,
+                  1.4684809044564062
+                ],
+                "measured_endpoint_map": [
+                  0.42506368996257193,
+                  -0.6446730895050843,
+                  0.7206727130096449
+                ],
+                "projected_ground_map": [
+                  2.085307349175715,
+                  -1.1599134249581478,
+                  0.0
+                ],
+                "endpoint_height_m": 0.7206727130096449
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 2,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 36,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.15054758103071,
+              "center_elevation_max_deg": -5.983742444149381,
+              "center_azimuth_min_deg": -28.784334460740073,
+              "center_azimuth_max_deg": -28.007827988185195,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.4658316388204256,
+              "prior_model_visible_chunk_count": 36
+            }
+          ]
+        },
+        {
+          "cell_id": 338,
+          "ground_center_map": [
+            1.8081755636992594,
+            -1.0394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 8,
+              "scheduled_ground_band_bbox_rays": 15,
+              "foreground_ray_points": 8,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.769277373845121,
+              "center_elevation_max_deg": -5.015741345001913,
+              "center_azimuth_min_deg": -15.395537119527264,
+              "center_azimuth_max_deg": -14.71315193337353,
+              "foreground_example": {
+                "observation_row": 6965,
+                "chunk_index": 4,
+                "sensor_origin_map": [
+                  -1.2943369839117755,
+                  -0.10242539449936067,
+                  1.4730268609212587
+                ],
+                "measured_endpoint_map": [
+                  0.42500429459546774,
+                  -0.6265951200977661,
+                  0.6642597934845511
+                ],
+                "projected_ground_map": [
+                  1.8371405308178494,
+                  -1.0571082897058979,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6642597934845511
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.404106195381512,
+              "center_elevation_max_deg": -7.169839957175952,
+              "center_azimuth_min_deg": -25.90590933472976,
+              "center_azimuth_max_deg": -25.087040186512244,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.683017403711508,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 339,
+          "ground_center_map": [
+            1.9081755636992594,
+            -1.0394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 22,
+              "scheduled_ground_band_bbox_rays": 46,
+              "foreground_ray_points": 22,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.073032222502738,
+              "center_elevation_max_deg": -4.3533499969756955,
+              "center_azimuth_min_deg": -14.986172040250038,
+              "center_azimuth_max_deg": -14.324668017400011,
+              "foreground_example": {
+                "observation_row": 3100,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -1.2971743621518457,
+                  -0.10883749468015655,
+                  1.469146098161403
+                ],
+                "measured_endpoint_map": [
+                  0.42502738341667334,
+                  -0.6282432972510074,
+                  0.6681709727887586
+                ],
+                "projected_ground_map": [
+                  1.8616827541307812,
+                  -1.0615300116348396,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6681709727887586
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 10,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.830555164558881,
+              "center_elevation_max_deg": -6.6219823088291,
+              "center_azimuth_min_deg": -26.425797910830376,
+              "center_azimuth_max_deg": -25.625533983501608,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.121082632140418,
+              "prior_model_visible_chunk_count": 10
+            }
+          ]
+        },
+        {
+          "cell_id": 340,
+          "ground_center_map": [
+            2.0081755636992593,
+            -1.0394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 39,
+              "scheduled_ground_band_bbox_rays": 93,
+              "foreground_ray_points": 39,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -5.408643709643486,
+              "center_elevation_max_deg": -3.7219556845345676,
+              "center_azimuth_min_deg": -14.596701831263497,
+              "center_azimuth_max_deg": -13.955109703335518,
+              "foreground_example": {
+                "observation_row": 325,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -1.2976930978894998,
+                  -0.11003241772704579,
+                  1.4684809044564062
+                ],
+                "measured_endpoint_map": [
+                  0.425064419987907,
+                  -0.5918178803106133,
+                  0.7145394088887705
+                ],
+                "projected_ground_map": [
+                  2.057788107063939,
+                  -1.048424529061892,
+                  0.0
+                ],
+                "endpoint_height_m": 0.7145394088887705
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 26,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.282398774138086,
+              "center_elevation_max_deg": -6.098841654455346,
+              "center_azimuth_min_deg": -26.9206462330713,
+              "center_azimuth_max_deg": -26.138294368522256,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.584248100380151,
+              "prior_model_visible_chunk_count": 26
+            }
+          ]
+        },
+        {
+          "cell_id": 376,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.9394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.334739631106247,
+              "center_elevation_max_deg": -6.4934964235838,
+              "center_azimuth_min_deg": -14.634732787476496,
+              "center_azimuth_max_deg": -13.903139485589437,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.16298215779943,
+              "center_elevation_max_deg": -7.885782408867082,
+              "center_azimuth_min_deg": -23.25096269026843,
+              "center_azimuth_max_deg": -22.40939310351468,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -8.41475683299307,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 377,
+          "ground_center_map": [
+            1.7081755636992593,
+            -0.9394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 36,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.559560197604258,
+              "center_elevation_max_deg": -5.754830678458774,
+              "center_azimuth_min_deg": -14.220681324872407,
+              "center_azimuth_max_deg": -13.512674545074967,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.552165276857991,
+              "center_elevation_max_deg": -7.3014729204814435,
+              "center_azimuth_min_deg": -23.86060926805002,
+              "center_azimuth_max_deg": -23.037974197733913,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.8165053939746665,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 378,
+          "ground_center_map": [
+            1.8081755636992594,
+            -0.9394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 5,
+              "scheduled_ground_band_bbox_rays": 16,
+              "foreground_ray_points": 5,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.821443354207361,
+              "center_elevation_max_deg": -5.052372025049678,
+              "center_azimuth_min_deg": -13.828014876340351,
+              "center_azimuth_max_deg": -13.142420822859977,
+              "foreground_example": {
+                "observation_row": 6961,
+                "chunk_index": 4,
+                "sensor_origin_map": [
+                  -1.2943369839117755,
+                  -0.10242539449936067,
+                  1.4730268609212587
+                ],
+                "measured_endpoint_map": [
+                  0.42500453464355337,
+                  -0.5778728545129383,
+                  0.6678041578386218
+                ],
+                "projected_ground_map": [
+                  1.8509248551216322,
+                  -0.9721809004924797,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6678041578386218
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 5,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.968571517707753,
+              "center_elevation_max_deg": -6.743766631574545,
+              "center_azimuth_min_deg": -24.440175972689012,
+              "center_azimuth_max_deg": -23.635831943103046,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.245125613999977,
+              "prior_model_visible_chunk_count": 5
+            }
+          ]
+        },
+        {
+          "cell_id": 379,
+          "ground_center_map": [
+            1.9081755636992594,
+            -0.9394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 21,
+              "scheduled_ground_band_bbox_rays": 50,
+              "foreground_ray_points": 21,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.118110427608429,
+              "center_elevation_max_deg": -4.383800407196296,
+              "center_azimuth_min_deg": -13.455152592873736,
+              "center_azimuth_max_deg": -12.79087730999591,
+              "foreground_example": {
+                "observation_row": 3092,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -1.2971743621518457,
+                  -0.10883749468015655,
+                  1.469146098161403
+                ],
+                "measured_endpoint_map": [
+                  0.4250271223128941,
+                  -0.5318890693819873,
+                  0.6756202059627924
+                ],
+                "projected_ground_map": [
+                  1.8913360771721381,
+                  -0.8920817169602675,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6756202059627924
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.410707130283784,
+              "center_elevation_max_deg": -6.2111489031533305,
+              "center_azimuth_min_deg": -24.99172512091059,
+              "center_azimuth_max_deg": -24.205043971864967,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.699137700272426,
+              "prior_model_visible_chunk_count": 20
+            }
+          ]
+        },
+        {
+          "cell_id": 380,
+          "ground_center_map": [
+            2.0081755636992593,
+            -0.9394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 39,
+              "scheduled_ground_band_bbox_rays": 96,
+              "foreground_ray_points": 39,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -5.4474334722096485,
+              "center_elevation_max_deg": -3.746961414247444,
+              "center_azimuth_min_deg": -13.100662414906337,
+              "center_azimuth_max_deg": -12.45668529341868,
+              "foreground_example": {
+                "observation_row": 326,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -1.2976930978894998,
+                  -0.11003241772704579,
+                  1.4684809044564062
+                ],
+                "measured_endpoint_map": [
+                  0.4250649360160763,
+                  -0.5429230165063325,
+                  0.7096325762816331
+                ],
+                "projected_ground_map": [
+                  2.0360920365840975,
+                  -0.9477381283729203,
+                  0.0
+                ],
+                "endpoint_height_m": 0.7096325762816331
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 4,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.877156266657427,
+              "center_elevation_max_deg": -5.702191084320894,
+              "center_azimuth_min_deg": -25.517145217894306,
+              "center_azimuth_max_deg": -24.74751621019326,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.177138393301389,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 416,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.8394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.398049432873709,
+              "center_elevation_max_deg": -6.540431636254008,
+              "center_azimuth_min_deg": -12.963336629444928,
+              "center_azimuth_max_deg": -12.228683613658712,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.693737700360405,
+              "center_elevation_max_deg": -7.4277323123473975,
+              "center_azimuth_min_deg": -21.746832286069207,
+              "center_azimuth_max_deg": -20.922504960176767,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.943586434170634,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 417,
+          "ground_center_map": [
+            1.7081755636992593,
+            -0.8394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 36,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.614601595031832,
+              "center_elevation_max_deg": -5.794488575809965,
+              "center_azimuth_min_deg": -12.591066633058416,
+              "center_azimuth_max_deg": -11.880476064283096,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 4,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.101130238624101,
+              "center_elevation_max_deg": -6.861094769397429,
+              "center_azimuth_min_deg": -22.388277203594857,
+              "center_azimuth_max_deg": -21.581736436500222,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.3637965912927195,
+              "prior_model_visible_chunk_count": 4
+            }
+          ]
+        },
+        {
+          "cell_id": 418,
+          "ground_center_map": [
+            1.8081755636992594,
+            -0.8394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 3,
+              "scheduled_ground_band_bbox_rays": 10,
+              "foreground_ray_points": 3,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.869172448910495,
+              "center_elevation_max_deg": -5.085638379942817,
+              "center_azimuth_min_deg": -12.23829077460544,
+              "center_azimuth_max_deg": -11.55052854522909,
+              "foreground_example": {
+                "observation_row": 10329,
+                "chunk_index": 5,
+                "sensor_origin_map": [
+                  -1.2937443647829063,
+                  -0.10121464092215031,
+                  1.4735835156572659
+                ],
+                "measured_endpoint_map": [
+                  0.4249887784575308,
+                  -0.49818288640703323,
+                  0.6646314692713591
+                ],
+                "projected_ground_map": [
+                  1.8370924246263578,
+                  -0.824330263658155,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6646314692713591
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 16,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.534437336395654,
+              "center_elevation_max_deg": -6.319778615515197,
+              "center_azimuth_min_deg": -22.99868608217385,
+              "center_azimuth_max_deg": -22.209388297761162,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.809539064871026,
+              "prior_model_visible_chunk_count": 16
+            }
+          ]
+        },
+        {
+          "cell_id": 419,
+          "ground_center_map": [
+            1.9081755636992594,
+            -0.8394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 18,
+              "scheduled_ground_band_bbox_rays": 43,
+              "foreground_ray_points": 18,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.159366749670428,
+              "center_elevation_max_deg": -4.411448682866671,
+              "center_azimuth_min_deg": -11.903541658005018,
+              "center_azimuth_max_deg": -11.237461681129266,
+              "foreground_example": {
+                "observation_row": 3088,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -1.2971743621518457,
+                  -0.10883749468015655,
+                  1.469146098161403
+                ],
+                "measured_endpoint_map": [
+                  0.4250270638818434,
+                  -0.48478042447317027,
+                  0.6791654868654253
+                ],
+                "projected_ground_map": [
+                  1.9056453895311931,
+                  -0.807987677025378,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6791654868654253
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 1,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.992285733568959,
+              "center_elevation_max_deg": -5.802389638194253,
+              "center_azimuth_min_deg": -23.580129188601646,
+              "center_azimuth_max_deg": -22.807536267353235,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.279458135979934,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 455,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.7394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.287514429819225,
+              "center_elevation_max_deg": -7.375430558431371,
+              "center_azimuth_min_deg": -11.615847609761424,
+              "center_azimuth_max_deg": -10.853584647208573,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.827388422588518,
+              "center_elevation_max_deg": -7.547359669169374,
+              "center_azimuth_min_deg": -19.56711837771622,
+              "center_azimuth_max_deg": -18.743393418129866,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -8.06292742895496,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 456,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.7394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.455048690117458,
+              "center_elevation_max_deg": -6.5823371375811375,
+              "center_azimuth_min_deg": -11.268283055595042,
+              "center_azimuth_max_deg": -10.531850813210898,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 2,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.226976120460778,
+              "center_elevation_max_deg": -6.972876913222832,
+              "center_azimuth_min_deg": -20.27224960683158,
+              "center_azimuth_max_deg": -19.46560178883053,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.475933151331381,
+              "prior_model_visible_chunk_count": 2
+            }
+          ]
+        },
+        {
+          "cell_id": 457,
+          "ground_center_map": [
+            1.7081755636992593,
+            -0.7394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 36,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.664165543169053,
+              "center_elevation_max_deg": -5.829883934496511,
+              "center_azimuth_min_deg": -10.939623175981167,
+              "center_azimuth_max_deg": -10.227630982577647,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 12,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.652494222054167,
+              "center_elevation_max_deg": -6.423790083071881,
+              "center_azimuth_min_deg": -20.94333870337212,
+              "center_azimuth_max_deg": -20.15332910908267,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.914441903048826,
+              "prior_model_visible_chunk_count": 12
+            }
+          ]
+        },
+        {
+          "cell_id": 458,
+          "ground_center_map": [
+            1.8081755636992594,
+            -0.7394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 2,
+              "scheduled_ground_band_bbox_rays": 7,
+              "foreground_ray_points": 2,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.912170262412707,
+              "center_elevation_max_deg": -5.115324940395611,
+              "center_azimuth_min_deg": -10.628386387062047,
+              "center_azimuth_max_deg": -9.939548789009319,
+              "foreground_example": {
+                "observation_row": 10325,
+                "chunk_index": 5,
+                "sensor_origin_map": [
+                  -1.2937443647829063,
+                  -0.10121464092215031,
+                  1.4735835156572659
+                ],
+                "measured_endpoint_map": [
+                  0.4249893116252894,
+                  -0.45095698520443755,
+                  0.6680156379402107
+                ],
+                "projected_ground_map": [
+                  1.850245959828451,
+                  -0.7409801622612782,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6680156379402107
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 40,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.102635005783242,
+              "center_elevation_max_deg": -5.898761597224785,
+              "center_azimuth_min_deg": -21.58262130253103,
+              "center_azimuth_max_deg": -20.808802507008924,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.377168445353893,
+              "prior_model_visible_chunk_count": 40
+            }
+          ]
+        },
+        {
+          "cell_id": 495,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.6394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.345213686746026,
+              "center_elevation_max_deg": -7.41849060793575,
+              "center_azimuth_min_deg": -9.851976128414314,
+              "center_azimuth_max_deg": -9.088955984161776,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.344813654740372,
+              "center_elevation_max_deg": -7.0779834542425375,
+              "center_azimuth_min_deg": -18.095075124146348,
+              "center_azimuth_max_deg": -17.29060150246377,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.580345275064383,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 496,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.6394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 19,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.5053347449237,
+              "center_elevation_max_deg": -6.618902550387429,
+              "center_azimuth_min_deg": -9.552092002056186,
+              "center_azimuth_max_deg": -8.815221198573823,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 11,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.763740703213709,
+              "center_elevation_max_deg": -6.5222024478535605,
+              "center_azimuth_min_deg": -18.828247133057467,
+              "center_azimuth_max_deg": -18.03961161564677,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.012805049968514,
+              "prior_model_visible_chunk_count": 11
+            }
+          ]
+        },
+        {
+          "cell_id": 497,
+          "ground_center_map": [
+            1.7081755636992593,
+            -0.6394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 33,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.707920638486225,
+              "center_elevation_max_deg": -5.860768047961889,
+              "center_azimuth_min_deg": -9.26870464601492,
+              "center_azimuth_max_deg": -8.5565442493643,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 32,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.2072091921582215,
+              "center_elevation_max_deg": -5.9904586896934715,
+              "center_azimuth_min_deg": -19.526821825535535,
+              "center_azimuth_max_deg": -18.75368565670139,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.469362057974637,
+              "prior_model_visible_chunk_count": 32
+            }
+          ]
+        },
+        {
+          "cell_id": 498,
+          "ground_center_map": [
+            1.8081755636992594,
+            -0.6394778196823856,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 5,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.950164768443303,
+              "center_elevation_max_deg": -5.141233817877273,
+              "center_azimuth_min_deg": -9.00050204732129,
+              "center_azimuth_max_deg": -8.311725652104512,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 3,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.674034629059615,
+              "center_elevation_max_deg": -5.481538036568264,
+              "center_azimuth_min_deg": -20.192997930712863,
+              "center_azimuth_max_deg": -19.43500514435708,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -5.948856029785974,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 535,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.5394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.394742223410274,
+              "center_elevation_max_deg": -7.454927520061511,
+              "center_azimuth_min_deg": -8.068059511429173,
+              "center_azimuth_max_deg": -7.305798833268454,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 9,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.867020546548596,
+              "center_elevation_max_deg": -6.614013968417543,
+              "center_azimuth_min_deg": -16.65677587260906,
+              "center_azimuth_max_deg": -15.871762718482758,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.103578845795338,
+              "prior_model_visible_chunk_count": 9
+            }
+          ]
+        },
+        {
+          "cell_id": 536,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.5394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 18,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.548543795387156,
+              "center_elevation_max_deg": -6.649849470843625,
+              "center_azimuth_min_deg": -7.817497878208137,
+              "center_azimuth_max_deg": -7.081577146257212,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 26,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.304989737375729,
+              "center_elevation_max_deg": -6.076608681411192,
+              "center_azimuth_min_deg": -17.415659821727772,
+              "center_azimuth_max_deg": -16.64527054157121,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.555117364630292,
+              "prior_model_visible_chunk_count": 26
+            }
+          ]
+        },
+        {
+          "cell_id": 537,
+          "ground_center_map": [
+            1.7081755636992593,
+            -0.5394778196823855,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 31,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.7455680252713375,
+              "center_elevation_max_deg": -5.88691831998868,
+              "center_azimuth_min_deg": -7.580852680021876,
+              "center_azimuth_max_deg": -6.869797948638163,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 1,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.766152391167594,
+              "center_elevation_max_deg": -5.561924279238693,
+              "center_azimuth_min_deg": -18.139575826958122,
+              "center_azimuth_max_deg": -17.383565190870637,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.02939609554603,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 574,
+          "ground_center_map": [
+            1.4081755636992594,
+            -0.4394778196823854,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -10.334146877683208,
+              "center_elevation_max_deg": -8.339949051433976,
+              "center_azimuth_min_deg": -6.479309233368756,
+              "center_azimuth_max_deg": -5.691339176489164,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 6,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.961185621038819,
+              "center_elevation_max_deg": -6.698225327365495,
+              "center_azimuth_min_deg": -14.433116458005557,
+              "center_azimuth_max_deg": -13.654109689737636,
+              "foreground_example": null,
+              "planned_visible": false,
+              "planned_center_elevation_deg": -7.1857313951039545,
+              "prior_model_visible_chunk_count": 6
+            }
+          ]
+        },
+        {
+          "cell_id": 575,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.4394778196823854,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.435713418142537,
+              "center_elevation_max_deg": -7.48444120163254,
+              "center_azimuth_min_deg": -6.2672656350710545,
+              "center_azimuth_max_deg": -5.507322302898646,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 23,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.394956385858106,
+              "center_elevation_max_deg": -6.156333887220004,
+              "center_azimuth_min_deg": -15.25282336744406,
+              "center_azimuth_max_deg": -14.48737929668719,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.633519546559431,
+              "prior_model_visible_chunk_count": 23
+            }
+          ]
+        },
+        {
+          "cell_id": 576,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.4394778196823854,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 16,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.584358193960943,
+              "center_elevation_max_deg": -6.67493719668303,
+              "center_azimuth_min_deg": -6.06742853614713,
+              "center_azimuth_max_deg": -5.333880657772135,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.8515928754154665,
+              "center_elevation_max_deg": -5.636906035267769,
+              "center_azimuth_min_deg": -16.03513414277475,
+              "center_azimuth_max_deg": -15.283132596013514,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.1036902630830046,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 615,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.33947781968238555,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.467804617700132,
+              "center_elevation_max_deg": -7.506784655076022,
+              "center_azimuth_min_deg": -4.452955482929593,
+              "center_azimuth_max_deg": -3.6969111810135233,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.929466028131718,
+              "center_elevation_max_deg": -5.705723595319056,
+              "center_azimuth_min_deg": -13.883627113785208,
+              "center_azimuth_max_deg": -13.13776861316684,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -6.17095084502591,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 616,
+          "ground_center_map": [
+            1.6081755636992594,
+            -0.33947781968238555,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 16,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.612513078123042,
+              "center_elevation_max_deg": -6.693967881850465,
+              "center_azimuth_min_deg": -4.304979401031299,
+              "center_azimuth_max_deg": -3.575246177879782,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 3,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.404329401045298,
+              "center_elevation_max_deg": -5.203814571875634,
+              "center_azimuth_min_deg": -14.687138818748222,
+              "center_azimuth_max_deg": -13.953581060011787,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -5.659248513634471,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 655,
+          "ground_center_map": [
+            1.5081755636992593,
+            -0.23947781968238546,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.490764467390326,
+              "center_elevation_max_deg": -7.5217697401708365,
+              "center_azimuth_min_deg": -2.628648689202092,
+              "center_azimuth_max_deg": -1.8780902850795973,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 1,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.471292304547077,
+              "center_elevation_max_deg": -5.262862327773701,
+              "center_azimuth_min_deg": -12.549417952650984,
+              "center_azimuth_max_deg": -11.823078077804935,
+              "foreground_example": null,
+              "planned_visible": true,
+              "planned_center_elevation_deg": -5.716550257319766,
+              "prior_model_visible_chunk_count": 51
+            }
+          ]
+        },
+        {
+          "cell_id": 776,
+          "ground_center_map": [
+            1.6081755636992594,
+            0.06052218031761458,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 15,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.645372707555575,
+              "center_elevation_max_deg": -6.707279833695923,
+              "center_azimuth_min_deg": 2.8026330521433174,
+              "center_azimuth_max_deg": 3.502879524701726,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 40,
+              "scheduled_ground_band_bbox_rays": 123,
+              "foreground_ray_points": 40,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -4.689070687995697,
+              "center_elevation_max_deg": -3.548872301438359,
+              "center_azimuth_min_deg": -9.624308148692979,
+              "center_azimuth_max_deg": -8.963637595007949,
+              "foreground_example": {
+                "observation_row": 3047,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -1.346236535877056,
+                  -1.9654094973322944,
+                  1.6044822795475424
+                ],
+                "measured_endpoint_map": [
+                  0.5386441449851553,
+                  -0.7000476464283529,
+                  0.5799845150688957
+                ],
+                "projected_ground_map": [
+                  1.6057051436091154,
+                  0.01629386736369498,
+                  0.0
+                ],
+                "endpoint_height_m": 0.5799845150688957
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": -3.9626030316503096,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "windows": [
+        {
+          "point_count": 85999,
+          "accepted_ground_point_count": 69266,
+          "grid_ground_point_count": 5325,
+          "grid_ground_cells": 367,
+          "rejected_range_points": 4,
+          "chunk_count": 50,
+          "window_duration_s": 5.027000000000001,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0005847794987372534,
+            -0.00036582876845714374,
+            2.6112827280933004e-05,
+            0.0005795872687139438,
+            0.008211257717210207
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 18,
+          "chunk_roundtrip_max_abs_error_m": 1.4210854715202004e-14,
+          "observed_base_rpy_min_deg": [
+            -0.16748948370976383,
+            -0.15063131098812227,
+            -0.6592708958738249
+          ],
+          "observed_base_rpy_max_deg": [
+            0.07214799509061867,
+            0.13871042638290393,
+            -0.49513230540908065
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.0321619988171733e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 50,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            490000,
+            500000,
+            510000,
+            520000,
+            530000,
+            540000,
+            550000,
+            560000,
+            580000,
+            590000,
+            600000,
+            610000,
+            620000,
+            630000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 1,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 172,
+            "actual_ground_cells": 19,
+            "missing_ground_cells": 153,
+            "missing_no_scheduled_band_opportunity": 44,
+            "missing_with_scheduled_band_opportunity": 109,
+            "missing_with_foreground_witness": 103,
+            "missing_with_band_and_foreground": 103,
+            "missing_with_band_without_foreground": 6,
+            "missing_no_realized_center_fov": 23
+          },
+          "union_zero_presence_after_two": {
+            "cells": 10,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 10,
+            "missing_no_scheduled_band_opportunity": 9,
+            "missing_with_scheduled_band_opportunity": 1,
+            "missing_with_foreground_witness": 1,
+            "missing_with_band_and_foreground": 1,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 4
+          }
+        },
+        {
+          "point_count": 87165,
+          "accepted_ground_point_count": 79054,
+          "grid_ground_point_count": 11869,
+          "grid_ground_cells": 1096,
+          "rejected_range_points": 3,
+          "chunk_count": 51,
+          "window_duration_s": 5.020999999999987,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0007953616495217641,
+            -0.0005631129237907917,
+            -2.546004264147861e-05,
+            0.006403732529083669,
+            0.019881733468476437
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 115,
+          "chunk_roundtrip_max_abs_error_m": 1.7763568394002505e-14,
+          "observed_base_rpy_min_deg": [
+            -0.17031709076294155,
+            -0.22008387354419723,
+            -0.6690856035978692
+          ],
+          "observed_base_rpy_max_deg": [
+            0.2403152177146285,
+            0.13703005006365515,
+            -0.589275341917729
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.2007528716349043e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            250000,
+            260000,
+            270000,
+            280000,
+            290000,
+            300000,
+            310000,
+            320000,
+            330000,
+            340000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 2,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 172,
+            "actual_ground_cells": 157,
+            "missing_ground_cells": 15,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 15,
+            "missing_with_foreground_witness": 15,
+            "missing_with_band_and_foreground": 15,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 144,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          },
+          "union_zero_presence_after_two": {
+            "cells": 10,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 10,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 10,
+            "missing_with_foreground_witness": 10,
+            "missing_with_band_and_foreground": 10,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 0,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          }
+        }
+      ],
+      "exact_winners": [
+        {
+          "source_id": 583,
+          "candidate_id": "candidate-000000",
+          "cells": 108,
+          "presence_histograms": [
+            [
+              108,
+              0,
+              0
+            ],
+            [
+              5,
+              103,
+              0
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            697,
+            737,
+            738,
+            739,
+            740
+          ],
+          "windows": [
+            {
+              "cells": 108,
+              "actual_ground_cells": 0,
+              "missing_ground_cells": 108,
+              "missing_no_scheduled_band_opportunity": 18,
+              "missing_with_scheduled_band_opportunity": 90,
+              "missing_with_foreground_witness": 85,
+              "missing_with_band_and_foreground": 85,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 108,
+              "actual_ground_cells": 103,
+              "missing_ground_cells": 5,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 5,
+              "missing_with_foreground_witness": 5,
+              "missing_with_band_and_foreground": 5,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 96,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 542,
+          "candidate_id": "candidate-000002",
+          "cells": 107,
+          "presence_histograms": [
+            [
+              106,
+              1,
+              0
+            ],
+            [
+              4,
+              103,
+              0
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            738,
+            739,
+            740,
+            779
+          ],
+          "windows": [
+            {
+              "cells": 107,
+              "actual_ground_cells": 1,
+              "missing_ground_cells": 106,
+              "missing_no_scheduled_band_opportunity": 17,
+              "missing_with_scheduled_band_opportunity": 89,
+              "missing_with_foreground_witness": 85,
+              "missing_with_band_and_foreground": 85,
+              "missing_with_band_without_foreground": 4,
+              "missing_no_realized_center_fov": 2
+            },
+            {
+              "cells": 107,
+              "actual_ground_cells": 102,
+              "missing_ground_cells": 5,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 5,
+              "missing_with_foreground_witness": 5,
+              "missing_with_band_and_foreground": 5,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 96,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 582,
+          "candidate_id": "candidate-000007",
+          "cells": 106,
+          "presence_histograms": [
+            [
+              98,
+              8,
+              0
+            ],
+            [
+              3,
+              99,
+              4
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            697,
+            739,
+            740
+          ],
+          "windows": [
+            {
+              "cells": 106,
+              "actual_ground_cells": 8,
+              "missing_ground_cells": 98,
+              "missing_no_scheduled_band_opportunity": 14,
+              "missing_with_scheduled_band_opportunity": 84,
+              "missing_with_foreground_witness": 79,
+              "missing_with_band_and_foreground": 79,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 1
+            },
+            {
+              "cells": 106,
+              "actual_ground_cells": 99,
+              "missing_ground_cells": 7,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 7,
+              "missing_with_foreground_witness": 7,
+              "missing_with_band_and_foreground": 7,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 88,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 501,
+          "candidate_id": "candidate-000011",
+          "cells": 101,
+          "presence_histograms": [
+            [
+              93,
+              8,
+              0
+            ],
+            [
+              2,
+              91,
+              8
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            697,
+            740
+          ],
+          "windows": [
+            {
+              "cells": 101,
+              "actual_ground_cells": 8,
+              "missing_ground_cells": 93,
+              "missing_no_scheduled_band_opportunity": 13,
+              "missing_with_scheduled_band_opportunity": 80,
+              "missing_with_foreground_witness": 74,
+              "missing_with_band_and_foreground": 74,
+              "missing_with_band_without_foreground": 6,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 101,
+              "actual_ground_cells": 99,
+              "missing_ground_cells": 2,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 2,
+              "missing_with_foreground_witness": 2,
+              "missing_with_band_and_foreground": 2,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 92,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 541,
+          "candidate_id": "candidate-000021",
+          "cells": 106,
+          "presence_histograms": [
+            [
+              97,
+              9,
+              0
+            ],
+            [
+              4,
+              93,
+              9
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            738,
+            739,
+            740,
+            779
+          ],
+          "windows": [
+            {
+              "cells": 106,
+              "actual_ground_cells": 9,
+              "missing_ground_cells": 97,
+              "missing_no_scheduled_band_opportunity": 26,
+              "missing_with_scheduled_band_opportunity": 71,
+              "missing_with_foreground_witness": 65,
+              "missing_with_band_and_foreground": 65,
+              "missing_with_band_without_foreground": 6,
+              "missing_no_realized_center_fov": 7
+            },
+            {
+              "cells": 106,
+              "actual_ground_cells": 102,
+              "missing_ground_cells": 4,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 4,
+              "missing_with_foreground_witness": 4,
+              "missing_with_band_and_foreground": 4,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 96,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 580,
+          "candidate_id": "candidate-000076",
+          "cells": 101,
+          "presence_histograms": [
+            [
+              101,
+              0,
+              0
+            ],
+            [
+              7,
+              94,
+              0
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            654,
+            694,
+            695,
+            696,
+            697,
+            739,
+            740
+          ],
+          "windows": [
+            {
+              "cells": 101,
+              "actual_ground_cells": 0,
+              "missing_ground_cells": 101,
+              "missing_no_scheduled_band_opportunity": 40,
+              "missing_with_scheduled_band_opportunity": 61,
+              "missing_with_foreground_witness": 55,
+              "missing_with_band_and_foreground": 55,
+              "missing_with_band_without_foreground": 6,
+              "missing_no_realized_center_fov": 23
+            },
+            {
+              "cells": 101,
+              "actual_ground_cells": 94,
+              "missing_ground_cells": 7,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 7,
+              "missing_with_foreground_witness": 7,
+              "missing_with_band_and_foreground": 7,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 84,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        }
+      ],
+      "union_zero_presence_after_two_cells": [
+        {
+          "cell_id": 654,
+          "ground_center_map": [
+            1.313602249833565,
+            -0.3926821201660873,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -10.985569315582884,
+              "center_elevation_max_deg": -9.114344733617628,
+              "center_azimuth_min_deg": -5.711205664320002,
+              "center_azimuth_max_deg": -5.169255087113602,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 4,
+              "scheduled_ground_band_bbox_rays": 21,
+              "foreground_ray_points": 4,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 0.5652211728219073,
+              "center_elevation_max_deg": 1.6349805476167647,
+              "center_azimuth_min_deg": 19.012085331577346,
+              "center_azimuth_max_deg": 19.225674005208166,
+              "foreground_example": {
+                "observation_row": 21305,
+                "chunk_index": 12,
+                "sensor_origin_map": [
+                  -3.2637120143115665,
+                  -2.0153801539034104,
+                  1.6077404200849479
+                ],
+                "measured_endpoint_map": [
+                  0.4249158857091673,
+                  -0.6764644980247319,
+                  0.3171248711617478
+                ],
+                "projected_ground_map": [
+                  1.331270724323708,
+                  -0.34747151849551994,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3171248711617478
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.1371357831371445,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 694,
+          "ground_center_map": [
+            1.313602249833565,
+            -0.2926821201660874,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -11.0228255201784,
+              "center_elevation_max_deg": -9.143745300110364,
+              "center_azimuth_min_deg": -3.79353103330085,
+              "center_azimuth_max_deg": -3.242042786349515,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 2,
+              "scheduled_ground_band_bbox_rays": 20,
+              "foreground_ray_points": 2,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 0.5577095699654551,
+              "center_elevation_max_deg": 1.6168384878464142,
+              "center_azimuth_min_deg": 20.071628468755307,
+              "center_azimuth_max_deg": 20.282376126369556,
+              "foreground_example": {
+                "observation_row": 7620,
+                "chunk_index": 4,
+                "sensor_origin_map": [
+                  -3.2721402475674077,
+                  -2.0230770755409666,
+                  1.6055150700585363
+                ],
+                "measured_endpoint_map": [
+                  0.4250240845615143,
+                  -0.6731188128561543,
+                  0.3186596761259053
+                ],
+                "projected_ground_map": [
+                  1.3405404620933075,
+                  -0.33883318542756635,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3186596761259053
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.1254010020616612,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 695,
+          "ground_center_map": [
+            1.413602249833565,
+            -0.2926821201660874,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -10.079604748554353,
+              "center_elevation_max_deg": -8.238715843450676,
+              "center_azimuth_min_deg": -3.6580849974354193,
+              "center_azimuth_max_deg": -3.125437144745931,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 11,
+              "scheduled_ground_band_bbox_rays": 35,
+              "foreground_ray_points": 11,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 0.9227325148747215,
+              "center_elevation_max_deg": 1.9622098447084997,
+              "center_azimuth_min_deg": 19.728649160969574,
+              "center_azimuth_max_deg": 19.93646888382723,
+              "foreground_example": {
+                "observation_row": 29818,
+                "chunk_index": 17,
+                "sensor_origin_map": [
+                  -3.260087617294561,
+                  -2.0107393386513723,
+                  1.601303869295431
+                ],
+                "measured_endpoint_map": [
+                  0.42506954539266184,
+                  -0.699426637832439,
+                  0.3443329188971782
+                ],
+                "projected_ground_map": [
+                  1.434576504977445,
+                  -0.3402074134606541,
+                  -2.220446049250313e-16
+                ],
+                "endpoint_height_m": 0.3443329188971782
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.4800850066930769,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 696,
+          "ground_center_map": [
+            1.513602249833565,
+            -0.2926821201660874,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -9.187019444254078,
+              "center_elevation_max_deg": -7.3837872314509285,
+              "center_azimuth_min_deg": -3.5306788280691306,
+              "center_azimuth_max_deg": -3.0157804110233695,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 11,
+              "scheduled_ground_band_bbox_rays": 44,
+              "foreground_ray_points": 11,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.2754898931985343,
+              "center_elevation_max_deg": 2.2958392644208576,
+              "center_azimuth_min_deg": 19.39715040112764,
+              "center_azimuth_max_deg": 19.602118465011547,
+              "foreground_example": {
+                "observation_row": 2616,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -3.276235891676677,
+                  -2.025894950626043,
+                  1.6004962333262216
+                ],
+                "measured_endpoint_map": [
+                  0.42509028888642497,
+                  -0.6614074025417402,
+                  0.3612275203940898
+                ],
+                "projected_ground_map": [
+                  1.5039691990229693,
+                  -0.26368054277384,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3612275203940898
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.8228655438041206,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 697,
+          "ground_center_map": [
+            1.613602249833565,
+            -0.2926821201660874,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -8.34151127222977,
+              "center_elevation_max_deg": -6.575270821209584,
+              "center_azimuth_min_deg": -3.4106184629072662,
+              "center_azimuth_max_deg": -2.912470132558927,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 6,
+              "scheduled_ground_band_bbox_rays": 28,
+              "foreground_ray_points": 6,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.6165305814354491,
+              "center_elevation_max_deg": 2.6189718750848177,
+              "center_azimuth_min_deg": 19.07658636567607,
+              "center_azimuth_max_deg": 19.278776884886668,
+              "foreground_example": {
+                "observation_row": 12960,
+                "chunk_index": 7,
+                "sensor_origin_map": [
+                  -3.268678247043088,
+                  -2.0204523892222395,
+                  1.608525847572249
+                ],
+                "measured_endpoint_map": [
+                  0.4249913035969506,
+                  -0.6796019744373476,
+                  0.3901939416166589
+                ],
+                "projected_ground_map": [
+                  1.6079591582089807,
+                  -0.25016915247337934,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3901939416166589
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.154274450068963,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 737,
+          "ground_center_map": [
+            1.613602249833565,
+            -0.19268212016608732,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 20,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -8.358802223201147,
+              "center_elevation_max_deg": -6.588374841663405,
+              "center_azimuth_min_deg": -1.64961123032087,
+              "center_azimuth_max_deg": -1.144687953913246,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 6,
+              "scheduled_ground_band_bbox_rays": 24,
+              "foreground_ray_points": 6,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.6031310218691464,
+              "center_elevation_max_deg": 2.596225527350345,
+              "center_azimuth_min_deg": 20.07733295326564,
+              "center_azimuth_max_deg": 20.277000329630933,
+              "foreground_example": {
+                "observation_row": 16303,
+                "chunk_index": 9,
+                "sensor_origin_map": [
+                  -3.266402712279526,
+                  -2.0185381037638592,
+                  1.6090822634108906
+                ],
+                "measured_endpoint_map": [
+                  0.4250323072530864,
+                  -0.6666890796945248,
+                  0.3877442699223186
+                ],
+                "projected_ground_map": [
+                  1.5969706111831568,
+                  -0.23751082136020107,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3877442699223186
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.1369682543919613,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 738,
+          "ground_center_map": [
+            1.713602249833565,
+            -0.19268212016608732,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 36,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -7.555018705708405,
+              "center_elevation_max_deg": -5.821328074663478,
+              "center_azimuth_min_deg": -1.5855774229000918,
+              "center_azimuth_max_deg": -1.0968887990545322,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 5,
+              "scheduled_ground_band_bbox_rays": 16,
+              "foreground_ray_points": 5,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.9314335654215193,
+              "center_elevation_max_deg": 2.907585252026908,
+              "center_azimuth_min_deg": 19.752866507216392,
+              "center_azimuth_max_deg": 19.950171654846507,
+              "foreground_example": {
+                "observation_row": 10927,
+                "chunk_index": 6,
+                "sensor_origin_map": [
+                  -3.269442888360913,
+                  -2.0210830971494174,
+                  1.6080780324959667
+                ],
+                "measured_endpoint_map": [
+                  0.42499716560503886,
+                  -0.6736778930143088,
+                  0.4239275946698018
+                ],
+                "projected_ground_map": [
+                  1.747612127099886,
+                  -0.19130485240371753,
+                  0.0
+                ],
+                "endpoint_height_m": 0.4239275946698018
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.4560996663671273,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 739,
+          "ground_center_map": [
+            1.813602249833565,
+            -0.19268212016608732,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -6.792264390649933,
+              "center_elevation_max_deg": -5.094422494260191,
+              "center_azimuth_min_deg": -1.5250460430398864,
+              "center_azimuth_max_deg": -1.051711849630963,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 5,
+              "scheduled_ground_band_bbox_rays": 21,
+              "foreground_ray_points": 5,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.249199788806483,
+              "center_elevation_max_deg": 3.2088423492435743,
+              "center_azimuth_min_deg": 19.4386796781293,
+              "center_azimuth_max_deg": 19.633681546186473,
+              "foreground_example": {
+                "observation_row": 24607,
+                "chunk_index": 14,
+                "sensor_origin_map": [
+                  -3.2621336569099544,
+                  -2.013249400122929,
+                  1.6055304592236979
+                ],
+                "measured_endpoint_map": [
+                  0.4523979707547605,
+                  -0.6999821516968978,
+                  0.4252875938767906
+                ],
+                "projected_ground_map": [
+                  1.7908887718361406,
+                  -0.2267606778808826,
+                  0.0
+                ],
+                "endpoint_height_m": 0.4252875938767906
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.765001484086807,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 740,
+          "ground_center_map": [
+            1.9136022498335652,
+            -0.19268212016608732,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 12,
+              "scheduled_ground_band_bbox_rays": 33,
+              "foreground_ray_points": 12,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -6.067729117384736,
+              "center_elevation_max_deg": -4.404805336358384,
+              "center_azimuth_min_deg": -1.4677375089515272,
+              "center_azimuth_max_deg": -1.008947141433705,
+              "foreground_example": {
+                "observation_row": 3134,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -1.2958579020443577,
+                  -0.09995749429435023,
+                  1.4602989692415176
+                ],
+                "measured_endpoint_map": [
+                  0.42499347008662336,
+                  -0.14048410148468035,
+                  0.6816235332510755
+                ],
+                "projected_ground_map": [
+                  1.9313627970962894,
+                  -0.17595958704255577,
+                  0.0
+                ],
+                "endpoint_height_m": 0.6816235332510755
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 10,
+              "scheduled_ground_band_bbox_rays": 31,
+              "foreground_ray_points": 10,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.5568829240830797,
+              "center_elevation_max_deg": 3.50043847174172,
+              "center_azimuth_min_deg": 19.134309600120744,
+              "center_azimuth_max_deg": 19.32706551140773,
+              "foreground_example": {
+                "observation_row": 10917,
+                "chunk_index": 6,
+                "sensor_origin_map": [
+                  -3.269442888360913,
+                  -2.0210830971494174,
+                  1.6080780324959667
+                ],
+                "measured_endpoint_map": [
+                  0.5556117375152301,
+                  -0.6999592509998949,
+                  0.4316272330136042
+                ],
+                "projected_ground_map": [
+                  1.9589834254933796,
+                  -0.2152530223733251,
+                  0.0
+                ],
+                "endpoint_height_m": 0.4316272330136042
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 3.0641130094577647,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 779,
+          "ground_center_map": [
+            1.813602249833565,
+            -0.09268212016608723,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 29,
+              "ground_height_band_points": 1,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 50,
+              "center_range_chunk_count": 50,
+              "center_elevation_min_deg": -6.800022818875723,
+              "center_elevation_max_deg": -5.100278907998593,
+              "center_azimuth_min_deg": 0.14356158270981242,
+              "center_azimuth_max_deg": 0.6220269755182946,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 9,
+              "scheduled_ground_band_bbox_rays": 21,
+              "foreground_ray_points": 9,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.2324368393861116,
+              "center_elevation_max_deg": 3.183217836256626,
+              "center_azimuth_min_deg": 20.399967255768892,
+              "center_azimuth_max_deg": 20.59303839325968,
+              "foreground_example": {
+                "observation_row": 5931,
+                "chunk_index": 3,
+                "sensor_origin_map": [
+                  -3.27397940639622,
+                  -2.0245896688444325,
+                  1.603075394783425
+                ],
+                "measured_endpoint_map": [
+                  0.4251168768376674,
+                  -0.6355042418999672,
+                  0.4453463737373622
+                ],
+                "projected_ground_map": [
+                  1.8480570345915788,
+                  -0.10116144971343544,
+                  0.0
+                ],
+                "endpoint_height_m": 0.4453463737373622
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.744499362529386,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "windows": [
+        {
+          "point_count": 87913,
+          "accepted_ground_point_count": 71182,
+          "grid_ground_point_count": 5506,
+          "grid_ground_cells": 367,
+          "rejected_range_points": 0,
+          "chunk_count": 51,
+          "window_duration_s": 5.025999999999996,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0005186299627806257,
+            -0.00038748984807707165,
+            2.7852856737897724e-05,
+            0.0005772330569888788,
+            0.0007995189734242292
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 37,
+          "chunk_roundtrip_max_abs_error_m": 1.4210854715202004e-14,
+          "observed_base_rpy_min_deg": [
+            -0.29988391630322064,
+            -0.08077243551634321,
+            -0.6003476133159922
+          ],
+          "observed_base_rpy_max_deg": [
+            0.1639496398586514,
+            0.15252380549302383,
+            -0.41823721079561454
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.090483438938918e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            540000,
+            550000,
+            560000,
+            570000,
+            580000,
+            590000,
+            600000,
+            610000,
+            620000,
+            630000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 1,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 170,
+            "actual_ground_cells": 15,
+            "missing_ground_cells": 155,
+            "missing_no_scheduled_band_opportunity": 47,
+            "missing_with_scheduled_band_opportunity": 108,
+            "missing_with_foreground_witness": 103,
+            "missing_with_band_and_foreground": 103,
+            "missing_with_band_without_foreground": 5,
+            "missing_no_realized_center_fov": 23
+          },
+          "union_zero_presence_after_two": {
+            "cells": 7,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 7,
+            "missing_no_scheduled_band_opportunity": 6,
+            "missing_with_scheduled_band_opportunity": 1,
+            "missing_with_foreground_witness": 1,
+            "missing_with_band_and_foreground": 1,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 3
+          }
+        },
+        {
+          "point_count": 87301,
+          "accepted_ground_point_count": 79208,
+          "grid_ground_point_count": 11799,
+          "grid_ground_cells": 1088,
+          "rejected_range_points": 3,
+          "chunk_count": 51,
+          "window_duration_s": 5.022000000000006,
+          "accepted_grid_ground_height_quantiles_m": [
+            -0.0007619430330219057,
+            -0.0005728522853104145,
+            -2.2641931948452765e-05,
+            0.008304559877455361,
+            0.019947768578734593
+          ],
+          "ground_endpoint_vs_plane_projection_different_cell_points": 126,
+          "chunk_roundtrip_max_abs_error_m": 1.7763568394002505e-14,
+          "observed_base_rpy_min_deg": [
+            -0.3438873865138846,
+            -0.21760215155703802,
+            -0.6144594510634058
+          ],
+          "observed_base_rpy_max_deg": [
+            0.18594686002876307,
+            0.18918628491378137,
+            -0.5308044906496021
+          ],
+          "all_retained_rays_match_inferred_pattern_packet": true,
+          "actual_ground_cells_without_scheduled_band_opportunity": 0,
+          "packet_pattern_max_angular_error_deg": 3.1268684779206524e-06,
+          "pattern_phase_inferred_from_returns_not_recorded_directly": true,
+          "unique_packet_phase_count": 51,
+          "unique_packet_phase_start_rows": [
+            0,
+            10000,
+            20000,
+            30000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000,
+            90000,
+            100000,
+            110000,
+            120000,
+            130000,
+            140000,
+            150000,
+            160000,
+            170000,
+            180000,
+            190000,
+            200000,
+            210000,
+            220000,
+            230000,
+            240000,
+            250000,
+            260000,
+            270000,
+            280000,
+            290000,
+            300000,
+            310000,
+            320000,
+            620000,
+            630000,
+            640000,
+            650000,
+            660000,
+            670000,
+            680000,
+            690000,
+            700000,
+            710000,
+            720000,
+            730000,
+            740000,
+            750000,
+            760000,
+            770000,
+            780000,
+            790000
+          ],
+          "round": 2,
+          "presence_reproduced_exactly": true,
+          "viable_union": {
+            "cells": 170,
+            "actual_ground_cells": 162,
+            "missing_ground_cells": 8,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 8,
+            "missing_with_foreground_witness": 8,
+            "missing_with_band_and_foreground": 8,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 144,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          },
+          "union_zero_presence_after_two": {
+            "cells": 7,
+            "actual_ground_cells": 0,
+            "missing_ground_cells": 7,
+            "missing_no_scheduled_band_opportunity": 0,
+            "missing_with_scheduled_band_opportunity": 7,
+            "missing_with_foreground_witness": 7,
+            "missing_with_band_and_foreground": 7,
+            "missing_with_band_without_foreground": 0,
+            "missing_no_realized_center_fov": 0,
+            "predicted_cells": 0,
+            "predicted_missing": 0,
+            "predicted_missing_no_scheduled_band": 0,
+            "predicted_missing_with_foreground": 0,
+            "predicted_missing_no_realized_center_fov": 0
+          }
+        }
+      ],
+      "exact_winners": [
+        {
+          "source_id": 583,
+          "candidate_id": "candidate-000000",
+          "cells": 108,
+          "presence_histograms": [
+            [
+              108,
+              0,
+              0
+            ],
+            [
+              3,
+              105,
+              0
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            737,
+            738,
+            739
+          ],
+          "windows": [
+            {
+              "cells": 108,
+              "actual_ground_cells": 0,
+              "missing_ground_cells": 108,
+              "missing_no_scheduled_band_opportunity": 21,
+              "missing_with_scheduled_band_opportunity": 87,
+              "missing_with_foreground_witness": 84,
+              "missing_with_band_and_foreground": 84,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 108,
+              "actual_ground_cells": 105,
+              "missing_ground_cells": 3,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 3,
+              "missing_with_foreground_witness": 3,
+              "missing_with_band_and_foreground": 3,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 96,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 623,
+          "candidate_id": "candidate-000007",
+          "cells": 106,
+          "presence_histograms": [
+            [
+              99,
+              7,
+              0
+            ],
+            [
+              2,
+              98,
+              6
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            739,
+            782
+          ],
+          "windows": [
+            {
+              "cells": 106,
+              "actual_ground_cells": 7,
+              "missing_ground_cells": 99,
+              "missing_no_scheduled_band_opportunity": 16,
+              "missing_with_scheduled_band_opportunity": 83,
+              "missing_with_foreground_witness": 80,
+              "missing_with_band_and_foreground": 80,
+              "missing_with_band_without_foreground": 3,
+              "missing_no_realized_center_fov": 1
+            },
+            {
+              "cells": 106,
+              "actual_ground_cells": 103,
+              "missing_ground_cells": 3,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 3,
+              "missing_with_foreground_witness": 3,
+              "missing_with_band_and_foreground": 3,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 88,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 541,
+          "candidate_id": "candidate-000011",
+          "cells": 103,
+          "presence_histograms": [
+            [
+              95,
+              8,
+              0
+            ],
+            [
+              0,
+              95,
+              8
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [],
+          "windows": [
+            {
+              "cells": 103,
+              "actual_ground_cells": 8,
+              "missing_ground_cells": 95,
+              "missing_no_scheduled_band_opportunity": 16,
+              "missing_with_scheduled_band_opportunity": 79,
+              "missing_with_foreground_witness": 74,
+              "missing_with_band_and_foreground": 74,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 103,
+              "actual_ground_cells": 103,
+              "missing_ground_cells": 0,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 0,
+              "missing_with_foreground_witness": 0,
+              "missing_with_band_and_foreground": 0,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 94,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 501,
+          "candidate_id": "candidate-000013",
+          "cells": 108,
+          "presence_histograms": [
+            [
+              100,
+              8,
+              0
+            ],
+            [
+              3,
+              97,
+              8
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            737,
+            738,
+            739
+          ],
+          "windows": [
+            {
+              "cells": 108,
+              "actual_ground_cells": 8,
+              "missing_ground_cells": 100,
+              "missing_no_scheduled_band_opportunity": 24,
+              "missing_with_scheduled_band_opportunity": 76,
+              "missing_with_foreground_witness": 71,
+              "missing_with_band_and_foreground": 71,
+              "missing_with_band_without_foreground": 5,
+              "missing_no_realized_center_fov": 0
+            },
+            {
+              "cells": 108,
+              "actual_ground_cells": 105,
+              "missing_ground_cells": 3,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 3,
+              "missing_with_foreground_witness": 3,
+              "missing_with_band_and_foreground": 3,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 96,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        },
+        {
+          "source_id": 580,
+          "candidate_id": "candidate-000076",
+          "cells": 103,
+          "presence_histograms": [
+            [
+              103,
+              0,
+              0
+            ],
+            [
+              4,
+              99,
+              0
+            ]
+          ],
+          "zero_presence_after_two_cell_ids": [
+            694,
+            695,
+            696,
+            739
+          ],
+          "windows": [
+            {
+              "cells": 103,
+              "actual_ground_cells": 0,
+              "missing_ground_cells": 103,
+              "missing_no_scheduled_band_opportunity": 43,
+              "missing_with_scheduled_band_opportunity": 60,
+              "missing_with_foreground_witness": 56,
+              "missing_with_band_and_foreground": 56,
+              "missing_with_band_without_foreground": 4,
+              "missing_no_realized_center_fov": 23
+            },
+            {
+              "cells": 103,
+              "actual_ground_cells": 99,
+              "missing_ground_cells": 4,
+              "missing_no_scheduled_band_opportunity": 0,
+              "missing_with_scheduled_band_opportunity": 4,
+              "missing_with_foreground_witness": 4,
+              "missing_with_band_and_foreground": 4,
+              "missing_with_band_without_foreground": 0,
+              "missing_no_realized_center_fov": 0,
+              "predicted_cells": 86,
+              "predicted_missing": 0,
+              "predicted_missing_no_scheduled_band": 0,
+              "predicted_missing_with_foreground": 0,
+              "predicted_missing_no_realized_center_fov": 0
+            }
+          ]
+        }
+      ],
+      "union_zero_presence_after_two_cells": [
+        {
+          "cell_id": 694,
+          "ground_center_map": [
+            1.3152327621868294,
+            -0.2925529743488604,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -11.055782508930536,
+              "center_elevation_max_deg": -9.318950875018878,
+              "center_azimuth_min_deg": -3.567947181872523,
+              "center_azimuth_max_deg": -3.110523690657511,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 1,
+              "scheduled_ground_band_bbox_rays": 19,
+              "foreground_ray_points": 1,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 0.5495758639081939,
+              "center_elevation_max_deg": 1.456654623428385,
+              "center_azimuth_min_deg": 20.27635603570759,
+              "center_azimuth_max_deg": 20.536980862173912,
+              "foreground_example": {
+                "observation_row": 34964,
+                "chunk_index": 20,
+                "sensor_origin_map": [
+                  -3.2583308116376317,
+                  -2.034342515776199,
+                  1.5950914240131577
+                ],
+                "measured_endpoint_map": [
+                  0.42506491354485076,
+                  -0.6529033894851777,
+                  0.32010915116035665
+                ],
+                "projected_ground_map": [
+                  1.3498532059637043,
+                  -0.3060661702450498,
+                  0.0
+                ],
+                "endpoint_height_m": 0.32010915116035665
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.0756440275911154,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 695,
+          "ground_center_map": [
+            1.4152327621868293,
+            -0.2925529743488604,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -10.106754094777214,
+              "center_elevation_max_deg": -8.405498254788473,
+              "center_azimuth_min_deg": -3.4401099328960094,
+              "center_azimuth_max_deg": -3.001269478799869,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 7,
+              "scheduled_ground_band_bbox_rays": 38,
+              "foreground_ray_points": 7,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 0.9135304432455186,
+              "center_elevation_max_deg": 1.8053789372721583,
+              "center_azimuth_min_deg": 19.929729207666632,
+              "center_azimuth_max_deg": 20.187784260721596,
+              "foreground_example": {
+                "observation_row": 34959,
+                "chunk_index": 20,
+                "sensor_origin_map": [
+                  -3.2583308116376317,
+                  -2.034342515776199,
+                  1.5950914240131577
+                ],
+                "measured_endpoint_map": [
+                  0.4250637349329107,
+                  -0.685265226093867,
+                  0.3436693461993183
+                ],
+                "projected_ground_map": [
+                  1.4366087748170022,
+                  -0.31477750789137104,
+                  -2.220446049250313e-16
+                ],
+                "endpoint_height_m": 0.3436693461993183
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.4309455960835378,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 696,
+          "ground_center_map": [
+            1.5152327621868293,
+            -0.2925529743488604,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 0,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -9.208760286837673,
+              "center_elevation_max_deg": -7.542391234565213,
+              "center_azimuth_min_deg": -3.3198887206729615,
+              "center_azimuth_max_deg": -2.8985218399367136,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 13,
+              "scheduled_ground_band_bbox_rays": 41,
+              "foreground_ray_points": 13,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.265285855491932,
+              "center_elevation_max_deg": 2.14227451394608,
+              "center_azimuth_min_deg": 19.594646261442943,
+              "center_azimuth_max_deg": 19.850149291660756,
+              "foreground_example": {
+                "observation_row": 2730,
+                "chunk_index": 1,
+                "sensor_origin_map": [
+                  -3.276488330911307,
+                  -2.051519640336907,
+                  1.5932352440508055
+                ],
+                "measured_endpoint_map": [
+                  0.4316603473097631,
+                  -0.6998250767742709,
+                  0.3550946984884964
+                ],
+                "projected_ground_map": [
+                  1.4951453786035405,
+                  -0.31216345369187004,
+                  0.0
+                ],
+                "endpoint_height_m": 0.3550946984884964
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 1.774356904202866,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 737,
+          "ground_center_map": [
+            1.6152327621868292,
+            -0.19255297434886032,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 11,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -8.37260557621775,
+              "center_elevation_max_deg": -6.736198134425467,
+              "center_azimuth_min_deg": -1.4385218872176524,
+              "center_azimuth_max_deg": -1.035470467691615,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 3,
+              "scheduled_ground_band_bbox_rays": 27,
+              "foreground_ray_points": 3,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.5919467378392351,
+              "center_elevation_max_deg": 2.4465068591065755,
+              "center_azimuth_min_deg": 20.267164278933794,
+              "center_azimuth_max_deg": 20.51509980257493,
+              "foreground_example": {
+                "observation_row": 23056,
+                "chunk_index": 13,
+                "sensor_origin_map": [
+                  -3.2625814352323923,
+                  -2.04085243562569,
+                  1.6052976579197162
+                ],
+                "measured_endpoint_map": [
+                  0.42505279046762645,
+                  -0.6643109520721246,
+                  0.3873931729091855
+                ],
+                "projected_ground_map": [
+                  1.5980218868168246,
+                  -0.22645824726800212,
+                  2.220446049250313e-16
+                ],
+                "endpoint_height_m": 0.3873931729091855
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.089635715658415,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 738,
+          "ground_center_map": [
+            1.7152327621868293,
+            -0.19255297434886032,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 31,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -7.565342612426843,
+              "center_elevation_max_deg": -5.961605751013812,
+              "center_azimuth_min_deg": -1.3813087846123637,
+              "center_azimuth_max_deg": -0.993350311102112,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 6,
+              "scheduled_ground_band_bbox_rays": 17,
+              "foreground_ray_points": 6,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 1.9193487132061589,
+              "center_elevation_max_deg": 2.7600553118453792,
+              "center_azimuth_min_deg": 19.93942682146981,
+              "center_azimuth_max_deg": 20.185039836993756,
+              "foreground_example": {
+                "observation_row": 691,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -3.2777351253489293,
+                  -2.051621420530031,
+                  1.5915099010153713
+                ],
+                "measured_endpoint_map": [
+                  0.42501490666724084,
+                  -0.6986926500852624,
+                  0.41644932123037903
+                ],
+                "projected_ground_map": [
+                  1.7372942597888041,
+                  -0.21920565356984123,
+                  0.0
+                ],
+                "endpoint_height_m": 0.41644932123037903
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.4093743048804885,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 739,
+          "ground_center_map": [
+            1.8152327621868294,
+            -0.19255297434886032,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 0,
+              "scheduled_ground_band_bbox_rays": 0,
+              "foreground_ray_points": 0,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -6.799393910867117,
+              "center_elevation_max_deg": -5.2273979609350105,
+              "center_azimuth_min_deg": -1.3272346228286551,
+              "center_azimuth_max_deg": -0.9535374246411517,
+              "foreground_example": null
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 5,
+              "scheduled_ground_band_bbox_rays": 25,
+              "foreground_ray_points": 5,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 2.2362674982660984,
+              "center_elevation_max_deg": 3.063453602477211,
+              "center_azimuth_min_deg": 19.62202272157704,
+              "center_azimuth_max_deg": 19.865329335790264,
+              "foreground_example": {
+                "observation_row": 686,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -3.2777351253489293,
+                  -2.051621420530031,
+                  1.5915099010153713
+                ],
+                "measured_endpoint_map": [
+                  0.5315592453271845,
+                  -0.699980747204249,
+                  0.41203818264796377
+                ],
+                "projected_ground_map": [
+                  1.8623030904081563,
+                  -0.22779683812238538,
+                  0.0
+                ],
+                "endpoint_height_m": 0.41203818264796377
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 2.718890216525198,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        },
+        {
+          "cell_id": 782,
+          "ground_center_map": [
+            2.115232762186829,
+            -0.09255297434886023,
+            0.0
+          ],
+          "windows": [
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 49,
+              "scheduled_ground_band_bbox_rays": 107,
+              "foreground_ray_points": 49,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": -4.726106361824777,
+              "center_elevation_max_deg": -3.2420024733974735,
+              "center_azimuth_min_deg": 0.36568685433013703,
+              "center_azimuth_max_deg": 0.6986294700362163,
+              "foreground_example": {
+                "observation_row": 1237,
+                "chunk_index": 0,
+                "sensor_origin_map": [
+                  -1.2942834200630888,
+                  -0.11148770501574615,
+                  1.4763967756021676
+                ],
+                "measured_endpoint_map": [
+                  1.8970606780214454,
+                  -0.08420872054829631,
+                  0.10738509672954222
+                ],
+                "projected_ground_map": [
+                  2.147389290960873,
+                  -0.0820689605806289,
+                  -2.220446049250313e-16
+                ],
+                "endpoint_height_m": 0.10738509672954222
+              }
+            },
+            {
+              "ground_points": 0,
+              "all_endpoint_points": 0,
+              "ground_height_band_points": 0,
+              "scheduled_ground_plane_rays": 4,
+              "scheduled_ground_band_bbox_rays": 23,
+              "foreground_ray_points": 4,
+              "center_fov_chunk_count": 51,
+              "center_range_chunk_count": 51,
+              "center_elevation_min_deg": 3.108201045633083,
+              "center_elevation_max_deg": 3.889981341567237,
+              "center_azimuth_min_deg": 19.64663270138092,
+              "center_azimuth_max_deg": 19.87898237054151,
+              "foreground_example": {
+                "observation_row": 13089,
+                "chunk_index": 7,
+                "sensor_origin_map": [
+                  -3.2675299361989243,
+                  -2.0463996017231345,
+                  1.604863430405202
+                ],
+                "measured_endpoint_map": [
+                  0.4250260863847135,
+                  -0.694777346262083,
+                  0.5024504538785359
+                ],
+                "projected_ground_map": [
+                  2.1079947097808045,
+                  -0.0787439448153533,
+                  0.0
+                ],
+                "endpoint_height_m": 0.5024504538785359
+              },
+              "planned_visible": false,
+              "planned_center_elevation_deg": 3.5671407937841892,
+              "prior_model_visible_chunk_count": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

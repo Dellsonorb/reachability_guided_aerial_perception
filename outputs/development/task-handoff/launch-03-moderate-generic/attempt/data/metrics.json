@@ -1,0 +1,191 @@
+{
+  "C_env_count_final": null,
+  "C_env_count_max": null,
+  "D_env": false,
+  "D_exec": false,
+  "T_active_sim": 0.014000000000002899,
+  "T_exec_ready_sim": null,
+  "T_first_env_sim": null,
+  "T_task_sim": 41.946,
+  "active_end_sim": 53.865,
+  "active_start_sim": 53.851,
+  "adapter_run_result": false,
+  "cleanup_clock_reset_detected": false,
+  "clock_reset_detected": false,
+  "counts": {
+    "capture_calls": 1,
+    "completed_windows": 0,
+    "discarded_windows": 0,
+    "initial_outbound": 1,
+    "nbv_moves": 0,
+    "return_actions": 0,
+    "sensing_rescans": 0,
+    "sensing_visits": 1,
+    "voted_windows": 0
+  },
+  "efficiency_clock": "simulation",
+  "environment_decisions": [],
+  "exec_ready_sim": null,
+  "first_env_sim": null,
+  "landed_sim": 63.376,
+  "method": "generic",
+  "paths": {
+    "ground_total": {
+      "clock_reset": false,
+      "complete": false,
+      "distance_m": null,
+      "end_sim": 53.865,
+      "gap_count": 0,
+      "missing_samples": 2,
+      "observed_distance_lower_bound_m": 5.138892293979637e-05,
+      "observed_yaw_lower_bound_rad": 0.00015957181039061297,
+      "sample_count": 422,
+      "start_sim": 11.919,
+      "yaw_travel_rad": null
+    },
+    "uav_active": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 0.0010496630649068977,
+      "end_sim": 53.865,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 0.0010496630649068977,
+      "observed_yaw_lower_bound_rad": 9.332480513997779e-05,
+      "sample_count": 2,
+      "start_sim": 53.851,
+      "yaw_travel_rad": 9.332480513997779e-05
+    },
+    "uav_cleanup": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 1.173453948467525,
+      "end_sim": 63.377,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 1.173453948467525,
+      "observed_yaw_lower_bound_rad": 0.018868249942025482,
+      "sample_count": 98,
+      "start_sim": 53.865,
+      "yaw_travel_rad": 0.018868249942025482
+    },
+    "uav_total": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 3.9442040789190465,
+      "end_sim": 53.865,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 3.9442040789190465,
+      "observed_yaw_lower_bound_rad": 0.1067729299497967,
+      "sample_count": 422,
+      "start_sim": 11.919,
+      "yaw_travel_rad": 0.1067729299497967
+    }
+  },
+  "physical_success": null,
+  "schema_version": 1,
+  "stages": {
+    "active": {
+      "duration_sim_s": 0.014000000000002899,
+      "end_sim": 53.865,
+      "start_sim": 53.851,
+      "status": "FAILED"
+    },
+    "aerial_observe": {
+      "duration_sim_s": 0.20600000000000307,
+      "end_sim": 35.24,
+      "start_sim": 35.034,
+      "status": "SUCCEEDED"
+    },
+    "close": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "descend": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "execution_screen": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "ground_navigation": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "ground_refine": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "initial_query": {
+      "duration_sim_s": 18.610999999999997,
+      "end_sim": 53.851,
+      "start_sim": 35.24,
+      "status": "SUCCEEDED"
+    },
+    "initial_view": {
+      "duration_sim_s": 10.401,
+      "end_sim": 35.034,
+      "start_sim": 24.633,
+      "status": "SUCCEEDED"
+    },
+    "landing": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "lift": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "preflight": {
+      "duration_sim_s": 0.008000000000000895,
+      "end_sim": 11.928,
+      "start_sim": 11.92,
+      "status": "SUCCEEDED"
+    },
+    "refined_pregrasp": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "retention": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "return": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "takeoff": {
+      "duration_sim_s": 12.704999999999998,
+      "end_sim": 24.633,
+      "start_sim": 11.928,
+      "status": "SUCCEEDED"
+    }
+  },
+  "task_end_sim": 53.865,
+  "task_start_sim": 11.919,
+  "terminal_failure_reason": "A5 UAV map TF is stale",
+  "terminal_failure_stage": "active",
+  "terminal_status": "FAILED"
+}
