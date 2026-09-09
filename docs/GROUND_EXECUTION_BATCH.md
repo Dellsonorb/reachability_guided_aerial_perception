@@ -61,29 +61,100 @@ No added observation votes/windows, no UNKNOWN→FREE or gate edits.
 Use test-first development and focused independent review. Ordinary design and
 runtime decisions are autonomous under the user's authorization.
 
-- [ ] `scripts/run_ground_sim.py`: thin subclass of existing A6/A5 adapter;
+- [x] `scripts/run_ground_sim.py`: thin reuse of existing A6/A5 adapter;
   recover one confirmed `A5_SELECTED` and finite original `AIR_HANDOFF.target_map`
   from a saved run, set the same cached exact candidate, call only the real
   Ground stages. Tests in `tests/test_ground_segment.py` cover missing/duplicate/
   nonfinite/unconfirmed inputs, no UAV calls, and proper terminal reporting.
-- [ ] `scripts/run_a6_attempt.py`: opt-in Ground replay dispatch and independent
+- [x] `scripts/run_a6_attempt.py`: opt-in Ground replay dispatch and independent
   diagnostic kind; assert recorded scene equals configured scene. Reuse startup,
   process cleanup and existing native-rate logs. Default method runs unchanged.
   Navigation-only is not labeled retrieval success or failure.
-- [ ] SIM `scripts/check_air_ground_pick_demo.py`: opt-in Ground-only expected
+- [x] SIM `scripts/check_air_ground_pick_demo.py`: opt-in Ground-only expected
   status sequence; reuse all applicable existing physical checks. Add tests
   demonstrating no invented flight events and unchanged physical failure gates.
-- [ ] Install bunker_navigation from SIM's source-only fix using the existing
+- [x] Install bunker_navigation from SIM's source-only fix using the existing
   catkin p450-clean profile; confirm installed YAML and run focused tests. Run
   launch01 once and diagnose the resulting navigation trajectory.
-- [ ] For each diagnosed execution correction: capture a failing offline/unit
+- [x] For each diagnosed execution correction: capture a failing offline/unit
   case, make the smallest coherent change, test and perform a bounded Ground
   segment check. Record MoveIt error codes at existing service calls and camera
   projection/observation reasons, not a new logging framework.
 - [ ] After local checks pass, run at most two original full E2E regressions
-  within the same eight-start cap. Use existing v1.4 method/configuration.
-- [ ] Review results, run focused/full regressions, report conditioned
+  within the same eight-start cap. **Not activated:** local lift still fails;
+  the remaining starts were spent on cause-discriminating Ground diagnostics.
+- [x] Review results, run focused/full regressions, report conditioned
   `confirmed → D_exec → retrieval` separately from E2E, commit/push checkpoints
   and keep PRs Draft unless independently ready. Stop; no formal runs.
 
 Launches used at this plan commit: **0/8**.
+
+## In-batch diagnostic decisions (not a new trial protocol)
+
+- Launch01: namespace fix installed; still the original 120 simulation-second
+  navigation timeout. Public odometry was sampled after imposing commanded
+  velocity and therefore echoed an unachieved request.
+- Launch02: sample completed-physics velocity before the next request; feedback
+  agrees with pose changes, but physical low-speed response remains poor.
+- Launch03/04: isolate Easy/Moderate camera/refine by spawning BUNKER at the
+  archived exact candidate. Target/obstacles unchanged. These are explicitly
+  **conditioned on arrival**, not navigation successes or full E2E trials.
+  A6 methods are not run or compared in these Ground-only diagnostics.
+- Camera-centered observation v1: current accepted view first, otherwise six
+  views at measured-target-top depths .45/.55/.35 m × two optical rolls. Use
+  full measured TCP↔camera extrinsic, check calibrated full-cuboid FOV, plan
+  collision-aware observation without a grasp-IK prerequisite. Fresh measured
+  surface cue can aim XY; only a fresh accepted top estimate refines the grasp.
+  Ground-only top validity requires normal within15°, 90–110%known top spans,
+  no image-border clipping. Old aerial defaults, .03 m center-height acceptance,
+  real collision, controller stop and physical lift conditions remain unchanged.
+- Launch03 reached D_exec and gripper confirmation, then failed lift controller
+  goal settling. Launch04 refined successfully, then grasp IK returned -31 six
+  times. Preserve both failures; no extra retry in either invocation.
+- Offline real SDFormat9 conversion isolated a renderer bug: unprefixed
+  `base_link_collision` on `ground/base_link` loses its declared zero-friction
+  surface. Naming it `ground/base_link_collision` preserves that surface;
+  geometry, masses, inertia, all17joints and other surfaces remain identical.
+  Launch05 tests this correction with original Easy navigation plus Ground.
+
+Invocations activated so far: **5/8**. No controller gains, DWA parameters,
+navigation timeout, observation budget, operational gate or success criteria
+have been adjusted.
+
+Launch05 still timed out. After the surface correction, measured velocity now
+tracks commands (e.g. 15–20 s mean commanded/measured yaw rates
+−.1530/−.1541 rad/s), but the base alternates XY control and final rotation.
+It enters the .06 m XY tolerance at27.311s; none of its in-tolerance samples
+meet yaw acceptance. No target↔robot contacts were recorded in this attempt.
+Upstream DWA1.17.3 unconditionally resets its XY latch on every `setPlan`;
+the configured2Hz periodic global planner repeats this for the same goal.
+For launch06, common SIM point-goal navigation uses planner_frequency=0
+(new-goal/control-failure replanning). Live local costmaps and collision
+checking,15Hz control,.06m/.08rad tolerances and120s timeout remain unchanged.
+This is a documented navigation configuration revision, shared by both methods.
+Activated **6/8**; launch05 remains a failure.
+
+Launch06 returned MoveBase success, refined, reached D_exec, descended and
+closed, but again failed lift stop-velocity acceptance. Its measured arrival
+XY error was98.66mm despite entering the60mm latch earlier. This is NOT yet
+an accurate-candidate-arrival pass. The base stayed stable during manipulation;
+the displacement occurred in final rotation. Another frame bug is explicit in
+the Gazebo API: SetLinearVel commands the ODE center of mass, while ROS Twist
+commands base_link origin. Converted base CoG is(.024387,.003131,-.102779)m.
+Apply v_CoG=v_base+omega×r_CoG (no dynamics/tuning change), and require the
+fresh actual final pose to meet the original60mm/0.08rad limits before handoff.
+Unit tests cover numeric twist transport and rejection of historical98.66mm
+latch overshoot. Launch07 will verify the combined correction on the same Easy
+Ground segment. No success criterion is loosened; no historical result edited.
+
+Final online status: **8/8 activated, all eight completed, zero startup-invalid
+runs, no retries beyond the cap.** Launch07 passed actual arrival at59.414mm /
+0.068291rad, fresh refinement and D_exec, then failed the same wrist lift check.
+Launch08 used the final startup for Moderate at-candidate observation and a
+single post-failure non-executing IK/collision probe. Its third camera view
+refined successfully; all six collision-aware grasp IK calls failed. The
+diagnostic kinematic solution collides with BUNKER's base at forearm, wrist1,
+left finger and left outer knuckle. The diagnostic solution was not executed.
+
+The bounded online batch is stopped. Final results, review and regression
+disposition are in [GROUND_EXECUTION_BATCH_RESULTS.md](GROUND_EXECUTION_BATCH_RESULTS.md).

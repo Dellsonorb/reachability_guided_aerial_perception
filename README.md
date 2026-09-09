@@ -1,11 +1,20 @@
 # A1 — Validated Manipulation Interest Field
 
 当前开发分支为 `feature/dev-operational-consistency`，已完成
+[Ground 执行可靠性开发批次](docs/GROUND_EXECUTION_BATCH_RESULTS.md)：8/8 次启动，
+全部为针对性 Ground 诊断，未重跑无人机全链路或 formal matrix。
+XY latch 安装后仍失败；进一步修复实际速度反馈、SDFormat surface 保留、
+重复重规划清除 latch、CoG/base 原点速度变换。最终 Easy 实际到位、D435 精定位、
+D_exec、下降和夹持通过，但 lift 腕关节停止检查仍失败；Moderate 精定位通过后，
+grasp IK/collision 仍阻断。operational gate 未修改，整体仍未达到 formal readiness。
+当前八次在线预算已用完；SIM 修复保留独立开发分支，不宣称 retrieval 已解决。
+
+此前完成
 [有界开发批次](docs/DEV_OPERATIONAL_BATCH_RESULTS.md)：12 次启动（2 次启动无效），
 三组新 Generic/Ours 配对全部完成。v1.4 将真实 ground presence 与碰撞阻断独立累计，
 修复 v1.3 的 coarse-cell ground-vote suppression；A2 raw evidence 不变。
 已知 Moderate 回归完成真实 grasp/lift；新配对均未 retrieval 成功，整体尚不适合结束开发。
-无剩余在线运行预算，不启动 formal matrix；SIM namespace 修正仅离线测试，未部署。
+该历史批次停止时，SIM namespace 修正仅离线测试、尚未部署；当前状态见上文。
 
 历史开发分支 `feature/v13-operational-geometry`：按新的自主研发授权，
 使用 endpoint-local AMBIGUOUS geometry 解决 coarse-cell aliasing；

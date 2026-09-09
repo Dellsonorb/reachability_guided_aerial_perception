@@ -30,6 +30,7 @@ def _complete_cartesian(response, minimum_fraction):
 
 def execute_refined_pregrasp(owner, target, grasp, demo_error):
     """Validate a grasp-seeded reverse branch for initial or refined pregrasp."""
+    owner._ground_last_grasp = grasp  # exact runtime input, for optional post-failure read-only diagnosis
     rospy, services = _ros_interfaces()
     exception_types = (rospy.ServiceException, rospy.ROSException)
     try:
@@ -43,6 +44,11 @@ def execute_refined_pregrasp(owner, target, grasp, demo_error):
         raise demo_error("MoveIt service unavailable: %s" % error)
 
     group = owner._move_group
+    def diagnostic(stage, attempt, response=None, **values):
+        publish = getattr(owner, '_publish_status', None)
+        if publish is not None:
+            publish('GROUND_MANIPULATION_PLAN', stage=stage, attempt=attempt + 1,
+                    error_code=getattr(getattr(response, 'error_code', None), 'val', None), **values)
     selected = None
     for _attempt in range(owner._rm4d_pregrasp_plan_attempts):
         ik_request = services.GetPositionIKRequest()
@@ -60,6 +66,7 @@ def execute_refined_pregrasp(owner, target, grasp, demo_error):
             ik_response = compute_ik(ik_request)
         except exception_types as error:
             raise demo_error("MoveIt service failed: %s" % error)
+        diagnostic('grasp_ik', _attempt, ik_response)
         if getattr(getattr(ik_response, "error_code", None), "val", None) != 1:
             continue
 
@@ -76,6 +83,8 @@ def execute_refined_pregrasp(owner, target, grasp, demo_error):
             reverse = cartesian_path(reverse_request)
         except exception_types as error:
             raise demo_error("MoveIt service failed: %s" % error)
+        diagnostic('reverse_approach', _attempt, reverse,
+                   fraction=getattr(reverse, 'fraction', None))
         if not _complete_cartesian(reverse, owner._cartesian_min_fraction):
             continue
 
@@ -92,6 +101,7 @@ def execute_refined_pregrasp(owner, target, grasp, demo_error):
         planned = group.plan()
         success = bool(planned[0]) if isinstance(planned, tuple) else True
         candidate = planned[1] if isinstance(planned, tuple) else planned
+        diagnostic('pregrasp_trajectory', _attempt, success=success)
         if (not success or not candidate.joint_trajectory.joint_names or
                 not candidate.joint_trajectory.points):
             continue
@@ -99,6 +109,8 @@ def execute_refined_pregrasp(owner, target, grasp, demo_error):
             forward = owner._continuation_from_plan(candidate, grasp)
         except exception_types as error:
             raise demo_error("MoveIt service failed: %s" % error)
+        diagnostic('forward_approach', _attempt, forward,
+                   fraction=getattr(forward, 'fraction', None))
         if not _complete_cartesian(forward, owner._cartesian_min_fraction):
             continue
         selected = candidate

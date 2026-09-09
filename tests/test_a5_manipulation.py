@@ -136,6 +136,7 @@ class RefinedPregraspTests(unittest.TestCase):
         self.assertEqual(reverse.jump_threshold, 0.)
         self.assertTrue(reverse.avoid_collisions)
         self.assertEqual((self.pregrasp, self.grasp), before)
+        self.assertIs(self.node._ground_last_grasp, self.grasp)
         self.assertIn(("joint_target", {"j1": .7, "j2": .8}), self.group.calls)
 
     def test_all_validation_precedes_execution(self):
@@ -150,6 +151,13 @@ class RefinedPregraspTests(unittest.TestCase):
 
     def test_failed_ik_never_executes(self):
         self.ik_response.error_code.val = -31
+        logged = []
+        self.node._publish_status = lambda state, **values: logged.append(dict(state=state, **values))
+        self.assert_no_execution()
+        self.assertEqual([row['error_code'] for row in logged if row['stage'] == 'grasp_ik'], [-31, -31])
+
+    def test_missing_reverse_response_remains_a_rejected_plan(self):
+        self.reverse_response = None
         self.assert_no_execution()
 
     def test_each_retry_uses_fresh_joint_feedback(self):
