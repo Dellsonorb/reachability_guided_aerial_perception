@@ -6,7 +6,7 @@ import math
 MAX_SAMPLE_GAP_S = .3
 TF_MAX_AGE_S = .5
 STAGES = ('preflight', 'takeoff', 'initial_view', 'aerial_observe', 'initial_query',
-          'active', 'return', 'landing', 'ground_navigation', 'ground_refine',
+          'active', 'execution_screen', 'return', 'landing', 'ground_navigation', 'ground_refine',
           'refined_pregrasp', 'descend', 'close', 'lift', 'retention')
 STATUS_STAGE = {'PREFLIGHT': 'preflight', 'TAKEOFF': 'takeoff',
                 'AIR_VIEW': 'initial_view', 'AIR_OBSERVE': 'aerial_observe',

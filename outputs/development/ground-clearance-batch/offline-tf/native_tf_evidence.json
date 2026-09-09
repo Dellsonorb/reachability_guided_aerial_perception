@@ -1,0 +1,102 @@
+{
+  "bag_time_range": [
+    11.406,
+    157.537
+  ],
+  "diagnostic_only": true,
+  "ground_dynamic_tf_154_to_157": {
+    "count": 150,
+    "first_recorded_and_stamp": [
+      154.001,
+      154.001
+    ],
+    "last_five_received_before_failure": [
+      [
+        155.881,
+        155.881
+      ],
+      [
+        155.901,
+        155.901
+      ],
+      [
+        155.921,
+        155.921
+      ],
+      [
+        155.941,
+        155.941
+      ],
+      [
+        155.961,
+        155.961
+      ]
+    ],
+    "last_recorded_and_stamp": [
+      156.981,
+      156.981
+    ],
+    "maximum_stamp_gap_seconds": 0.021
+  },
+  "input_bag": "outputs/development/ground-clearance-batch/launch-01-natural-latest/diagnostics.bag",
+  "limitation": "The failed process did not record its internal TF-buffer stamp. The frozen buffer is an offline model of delayed callbacks, not an observed internal stamp.",
+  "live_native_buffer_snapshots": [
+    {
+      "age_seconds": 0.008,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 154.669,
+      "stamp": 154.661
+    },
+    {
+      "age_seconds": 0.017,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 154.678,
+      "stamp": 154.661
+    },
+    {
+      "age_seconds": 0.011,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 155.952,
+      "stamp": 155.941
+    },
+    {
+      "age_seconds": 0.017,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 155.978,
+      "stamp": 155.961
+    },
+    {
+      "age_seconds": 0.003,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 155.984,
+      "stamp": 155.981
+    },
+    {
+      "age_seconds": 0.019,
+      "fresh_at_existing_0_5_second_limit": true,
+      "lookup_sim_time": 156.1,
+      "stamp": 156.081
+    }
+  ],
+  "modeled_buffer_frozen_at_moveit_start": {
+    "age_seconds": 1.317,
+    "fresh_at_existing_0_5_second_limit": false,
+    "lookup_sim_time": 155.978,
+    "stamp": 154.661
+  },
+  "original_trial": {
+    "reason": "target planning-frame transform is stale",
+    "status": "VALID_TRIAL",
+    "unchanged": true
+  },
+  "source_frame": "map",
+  "static_chain": [
+    {
+      "child": "ground/odom",
+      "parent": "map",
+      "recorded_sim_time": 11.414,
+      "stamp": 0.0
+    }
+  ],
+  "target_frame": "ground/base_link"
+}

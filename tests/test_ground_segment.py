@@ -282,6 +282,15 @@ class GroundReportingTests(unittest.TestCase):
 
 
 class GroundDynamicsDiagnosticTests(unittest.TestCase):
+    def test_chassis_clearance_is_explicit_shared_full_robot_mode(self):
+        import run_a5_sim as adapter
+        from types import SimpleNamespace as N
+        options = N(view_position=None, view_yaw=None, max_ground_travel=None,
+                    navigation_timeout=None, full_robot_manipulation=True, execution_clearance=True)
+        self.assertTrue(adapter.build_demo_parameters({}, options)['execution_clearance'])
+        options.execution_clearance = False
+        self.assertNotIn('execution_clearance', adapter.build_demo_parameters({}, options))
+
     def test_full_robot_planning_opt_in_preserves_other_parameters(self):
         import run_a5_sim as adapter
         from types import SimpleNamespace as N
@@ -312,14 +321,23 @@ class GroundDynamicsDiagnosticTests(unittest.TestCase):
         self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='lift')]))
         self.assertTrue(ground.lift_started([dict(state='A6_STAGE_START', stage='retention')]))
 
-    def test_physics_trace_is_explicit_ground_development_only(self):
+    def test_physics_trace_is_explicit_development_only(self):
         import run_a6_attempt as attempt
         self.assertTrue(callable(getattr(attempt, 'ground_dynamics_environment', None)))
         result = attempt.ground_dynamics_environment('DEVELOPMENT_BATCH', Path('/tmp/run'), Path('/tmp/old'))
         self.assertEqual(result, {'P450_GROUND_DYNAMICS_CSV': '/tmp/run/ground-dynamics.csv'})
-        for status, source in [('FROZEN_FOR_FORMAL', Path('/tmp/old')), ('DEVELOPMENT_BATCH', None)]:
+        self.assertEqual(attempt.ground_dynamics_environment(
+            'DEVELOPMENT_BATCH', Path('/tmp/run'), None), result)
+        for status, source in [('FROZEN_FOR_FORMAL', Path('/tmp/old')), ('FROZEN_FOR_FORMAL', None)]:
             with self.assertRaises(ValueError):
                 attempt.ground_dynamics_environment(status, Path('/tmp/run'), source)
+
+    def test_full_development_trace_does_not_enable_post_failure_replay_motion(self):
+        import run_a6_attempt as attempt
+        with self.assertRaisesRegex(ValueError, 'traced Ground manipulation replay'):
+            attempt.main(['--config', str(ROOT / 'configs/dev_operational_batch_v14.json'),
+                          '--slot', '4', '--output-dir', '/tmp/not-created-full-contrast',
+                          '--ground-dynamics', '--post-failure-load-contrast'])
 
     def test_post_failure_contrast_is_two_bounded_holds_and_real_open(self):
         import run_ground_sim as ground

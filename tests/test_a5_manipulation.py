@@ -364,6 +364,24 @@ class AdapterOverrideTests(unittest.TestCase):
         self.assertEqual(node._execute_pregrasp("target"), "base")
         self.assertEqual(calls, [("target", None)])
 
+    def test_clearance_mode_does_not_bypass_shared_whole_chain_sim_pregrasp(self):
+        adapter = load_script('run_a5_sim')
+        calls = []
+        class Base:
+            def _execute_pregrasp(self, target, continuation=None):
+                calls.append((target, continuation))
+                return 'whole-chain'
+        fake = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=Base)
+        def legacy(*args):
+            raise AssertionError('legacy approach-only planner bypassed whole-chain screen')
+        with patch.dict(sys.modules, self.adapter_modules(SimpleNamespace(execute_refined_pregrasp=legacy))):
+            cls = adapter.build_adapter_class(fake, SimpleNamespace())
+        node = object.__new__(cls)
+        node._execution_clearance = True
+        node._a5_refined_grasp = 'old-cached-grasp'
+        self.assertEqual(node._execute_pregrasp('target'), 'whole-chain')
+        self.assertEqual(calls, [('target', None)])
+
 
 if __name__ == "__main__":
     unittest.main()

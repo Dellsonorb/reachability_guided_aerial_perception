@@ -272,8 +272,8 @@ def validate_replay_scene(recorded, scene):
 
 def ground_dynamics_environment(status, output, replay_from):
     """Physical state is a diagnostic output, never an algorithm observation."""
-    if status != 'DEVELOPMENT_BATCH' or replay_from is None:
-        raise ValueError('physics tracing is confined to Ground development replay')
+    if status != 'DEVELOPMENT_BATCH':
+        raise ValueError('physics tracing is confined to development runs')
     return {'P450_GROUND_DYNAMICS_CSV': str(output / 'ground-dynamics.csv')}
 
 
@@ -424,6 +424,7 @@ def main(argv=None):
     parser.add_argument('--ode-solver', choices=('quick', 'world'))
     parser.add_argument('--integrated-joint-velocity', action='store_true')
     parser.add_argument('--full-robot-manipulation', action='store_true')
+    parser.add_argument('--execution-clearance', action='store_true')
     args = parser.parse_args(argv)
     config = json.loads(args.config.read_text())
     if args.ode_solver is not None and config['status'] != 'DEVELOPMENT_BATCH':
@@ -432,6 +433,9 @@ def main(argv=None):
         integrated_feedback_environment(config['status'])
     if args.full_robot_manipulation and config['status'] != 'DEVELOPMENT_BATCH':
         raise ValueError('full-robot manipulation validation is development only')
+    if args.execution_clearance and (config['status'] != 'DEVELOPMENT_BATCH' or
+                                     not args.full_robot_manipulation):
+        raise ValueError('execution clearance requires full-robot development mode')
     if args.setup_scene:
         scene = next(s for s in config['scenes'] if s['id'] == args.setup_scene)
         slot = dict(scene=scene['id'], method='SETUP_CHECK', slot=None)
@@ -446,7 +450,8 @@ def main(argv=None):
         raise ValueError('camera-only candidate setup requires a Ground replay, not a navigation test')
     if args.diagnose_grasp_failure and args.ground_replay_from is None:
         raise ValueError('post-failure IK probe is confined to Ground development diagnostics')
-    if args.post_failure_load_contrast and (not args.ground_dynamics or args.ground_navigation_only):
+    if args.post_failure_load_contrast and (not args.ground_dynamics or args.ground_navigation_only
+                                            or args.ground_replay_from is None):
         raise ValueError('load contrast requires a traced Ground manipulation replay')
     if args.ground_dynamics:
         ground_dynamics_environment(config['status'], args.output_dir, args.ground_replay_from)
@@ -489,6 +494,7 @@ def main(argv=None):
     record['joint_velocity_feedback'] = ('integrated_pose_interval_velocity' if args.integrated_joint_velocity
                                          else 'native_ode_rate')
     record['full_robot_manipulation'] = args.full_robot_manipulation
+    record['execution_clearance'] = 'chassis-clearance-v1' if args.execution_clearance else None
     if args.ground_replay_from is not None:
         record.update(kind='GROUND_NAVIGATION_DIAGNOSTIC' if args.ground_navigation_only else
                       'GROUND_SEGMENT_DIAGNOSTIC', ground_replay_from=str(args.ground_replay_from.resolve()),
@@ -549,6 +555,8 @@ def main(argv=None):
         common = adapter_args(config, output/'data', args.sim_root, args.rm4d_root)
         if args.full_robot_manipulation:
             common += ['--full-robot-manipulation']
+        if args.execution_clearance:
+            common += ['--execution-clearance']
         if args.setup_scene:
             command = ['/usr/bin/python3', str(ROOT/'scripts/a6_setup_check.py'), *common,
                        '--scene-file', str(args.config.resolve()), '--scene-id', scene['id']]

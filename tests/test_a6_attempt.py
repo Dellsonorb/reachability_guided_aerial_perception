@@ -22,6 +22,15 @@ class AttemptTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             attempt.attempt_kind('UNSPECIFIED')
 
+    def test_clearance_never_implicitly_activates_outside_full_robot_development(self):
+        with self.assertRaisesRegex(ValueError, 'full-robot development'):
+            attempt.main(['--config', str(ROOT/'configs/dev_operational_batch_v14.json'),
+                          '--slot', '4', '--output-dir', '/tmp/unused-clearance', '--execution-clearance'])
+        with self.assertRaisesRegex(ValueError, 'full-robot manipulation validation'):
+            attempt.main(['--config', str(ROOT/'configs/a6_pilot.json'), '--slot', '1',
+                          '--output-dir', '/tmp/unused-clearance', '--execution-clearance',
+                          '--full-robot-manipulation'])
+
     def test_spawn_args_preserve_serialized_seed_geometry(self):
         scene = self.config['scenes'][2]
         args = attempt.scene_launch_args(scene)
