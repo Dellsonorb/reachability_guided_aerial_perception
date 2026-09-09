@@ -1,0 +1,60 @@
+{
+  "arm_controller": {
+    "goal_ids": [
+      "/a6_sim_pilot-15-200.825",
+      "/a6_sim_pilot-16-205.027",
+      "/a6_sim_pilot-18-221.569"
+    ],
+    "success_count": 3
+  },
+  "flight": {
+    "armed_seen": true,
+    "landed_after_arm": true
+  },
+  "grasp": {
+    "grasp_confirmed": true
+  },
+  "kind": "AIR_GROUND_E2E_CHECK",
+  "observations": {
+    "aerial": {
+      "age_s": 0.5420000000000016,
+      "frame": "map",
+      "stamp": 34.077
+    },
+    "ground": {
+      "age_s": 0.29299999999997794,
+      "frame": "map",
+      "stamp": 183.866
+    }
+  },
+  "physical_target": {
+    "baseline_z_m": 0.05649950045125244,
+    "final_z_m": 0.20517351495090652,
+    "target_lift_m": 0.1486740144996541
+  },
+  "sequence": {
+    "ground_travel_m": 1.9007897749776026,
+    "landing_count": 1,
+    "states": [
+      "PREFLIGHT",
+      "ARMING",
+      "COMMAND_CONTROL",
+      "TAKEOFF",
+      "AIR_VIEW",
+      "AIR_OBSERVE",
+      "AIR_HANDOFF",
+      "LANDING",
+      "GROUND_APPROACH",
+      "GROUND_STOPPED",
+      "GROUND_OBSERVE",
+      "GROUND_REFINED",
+      "PREGRASP",
+      "GRASP",
+      "LIFTING",
+      "LIFT"
+    ],
+    "takeoff_count": 1,
+    "tcp_lift_m": 0.14946222834266018
+  },
+  "status": "CHECKS_PASS"
+}

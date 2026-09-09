@@ -1,0 +1,203 @@
+{
+  "run": "launch-06-hard01-ours",
+  "window": 2,
+  "diagnostic_only": true,
+  "no_new_observations": true,
+  "note": "Closed ray/cell accepted-height-prism intersection using existing slab helper; matched endpoints are existing retained rows, not generated returns.",
+  "traces": {
+    "301": [
+      {
+        "chunk": 45,
+        "pattern_row": 249803,
+        "matched_retained_row": 78367,
+        "measured_endpoint_map": [
+          2.1733605620105227,
+          -1.0974771285924005,
+          2.0469295130221e-05
+        ],
+        "measured_cell": 302,
+        "measured_ground": true
+      },
+      {
+        "chunk": 47,
+        "pattern_row": 269547,
+        "matched_retained_row": 81631,
+        "measured_endpoint_map": [
+          2.1915206456874587,
+          -1.1277587067892076,
+          0.00013792810350787832
+        ],
+        "measured_cell": 302,
+        "measured_ground": true
+      }
+    ],
+    "380": [
+      {
+        "chunk": 44,
+        "pattern_row": 230051,
+        "matched_retained_row": 75065,
+        "measured_endpoint_map": [
+          2.072645319752238,
+          -0.897718970963514,
+          5.545490631764238e-05
+        ],
+        "measured_cell": 381,
+        "measured_ground": true
+      },
+      {
+        "chunk": 45,
+        "pattern_row": 249795,
+        "matched_retained_row": 78359,
+        "measured_endpoint_map": [
+          2.069475739151671,
+          -0.9325160504634504,
+          2.180875723456488e-05
+        ],
+        "measured_cell": 381,
+        "measured_ground": true
+      },
+      {
+        "chunk": 47,
+        "pattern_row": 269535,
+        "matched_retained_row": 81619,
+        "measured_endpoint_map": [
+          2.035602891181049,
+          -0.8805654518112964,
+          0.00013419582820284326
+        ],
+        "measured_cell": 420,
+        "measured_ground": true
+      },
+      {
+        "chunk": 47,
+        "pattern_row": 269539,
+        "matched_retained_row": 81623,
+        "measured_endpoint_map": [
+          2.0874184343596354,
+          -0.9619505061974365,
+          0.00013547150105308603
+        ],
+        "measured_cell": 381,
+        "measured_ground": true
+      }
+    ],
+    "419": [
+      {
+        "chunk": 47,
+        "pattern_row": 269531,
+        "matched_retained_row": 81615,
+        "measured_endpoint_map": [
+          1.9845015714235,
+          -0.8008033921002284,
+          0.0001329718081339859
+        ],
+        "measured_cell": 420,
+        "measured_ground": true
+      }
+    ],
+    "498": [
+      {
+        "chunk": 44,
+        "pattern_row": 230035,
+        "matched_retained_row": 75049,
+        "measured_endpoint_map": [
+          1.8649663385060924,
+          -0.5819476894836626,
+          6.377143596325574e-05
+        ],
+        "measured_cell": 539,
+        "measured_ground": true
+      },
+      {
+        "chunk": 45,
+        "pattern_row": 249779,
+        "matched_retained_row": 78343,
+        "measured_endpoint_map": [
+          1.8648111411707955,
+          -0.6161595044684918,
+          2.4399217638970683e-05
+        ],
+        "measured_cell": 499,
+        "measured_ground": true
+      },
+      {
+        "chunk": 47,
+        "pattern_row": 269523,
+        "matched_retained_row": 81607,
+        "measured_endpoint_map": [
+          1.882403566586878,
+          -0.6435901195439673,
+          0.0001304351676738591
+        ],
+        "measured_cell": 499,
+        "measured_ground": true
+      }
+    ],
+    "537": [
+      {
+        "chunk": 47,
+        "pattern_row": 269515,
+        "matched_retained_row": 81599,
+        "measured_endpoint_map": [
+          1.781185402648262,
+          -0.4901695784835891,
+          0.00012794848424269034
+        ],
+        "measured_cell": 538,
+        "measured_ground": true
+      }
+    ],
+    "616": [
+      {
+        "chunk": 44,
+        "pattern_row": 230019,
+        "matched_retained_row": 75033,
+        "measured_endpoint_map": [
+          1.65884813257024,
+          -0.27968189775055774,
+          7.150715164838672e-05
+        ],
+        "measured_cell": 657,
+        "measured_ground": true
+      },
+      {
+        "chunk": 45,
+        "pattern_row": 249763,
+        "matched_retained_row": 78327,
+        "measured_endpoint_map": [
+          1.6617321494395618,
+          -0.31325783830385023,
+          2.6728667374742443e-05
+        ],
+        "measured_cell": 617,
+        "measured_ground": true
+      },
+      {
+        "chunk": 47,
+        "pattern_row": 269507,
+        "matched_retained_row": 81591,
+        "measured_endpoint_map": [
+          1.680479859446347,
+          -0.3398917270458024,
+          0.00012540867896793095
+        ],
+        "measured_cell": 617,
+        "measured_ground": true
+      }
+    ],
+    "655": [
+      {
+        "chunk": 47,
+        "pattern_row": 269499,
+        "matched_retained_row": 81583,
+        "measured_endpoint_map": [
+          1.5795089408997427,
+          -0.19165001426315653,
+          0.00012276160838942118
+        ],
+        "measured_cell": 656,
+        "measured_ground": true
+      }
+    ]
+  }
+}

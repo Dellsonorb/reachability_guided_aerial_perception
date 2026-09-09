@@ -1,0 +1,16 @@
+{
+  "diagnostic_only": true,
+  "original_results_unchanged": true,
+  "input": "launch-01-moderate-generic/attempt/diagnostics.bag:/air_observer/target_pose",
+  "status_time_source": "accepted physical_summary observation stamp plus recorded age",
+  "received": 6976,
+  "later_than_handoff_tolerance": 6439,
+  "old_retained": 5000,
+  "old_error": "no map observation matched status stamp 33.844000",
+  "current_retained": 6976,
+  "current_match": {
+    "frame": "map",
+    "stamp": 33.844,
+    "age_s": 0.5679999999999978
+  }
+}

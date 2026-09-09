@@ -30,10 +30,14 @@ retrieval 检查通过；4 次 Hard 缺真实地面支持，1 次检查器缺早
 当前开发在此基础上修复检查器观测保留，提供统一任务入口，并增加共用
 `screened_candidate` 停止规则：真实观测确认 + 完整机器人操作预检通过后交接，
 无需仅因尚有未知区域就耗完三窗。到位后仍用实际姿态和新近场感知重新规划；
-预检不等于实际 `D_exec`。在线修订结果见后续开发报告，不与历史数据混合。
+预检不等于实际 `D_exec`。[本轮四次启动与最新修订](docs/TASK_HANDOFF_DEVELOPMENT_RESULTS.md)：
+两次真实 retrieval 成功（分别2/3窗），两次运行时失败保留；最新 TF 等待补丁
+仅做了离线回归，不能与此前在线版本混为一谈。
 
 [当前设计](docs/superpowers/specs/2026-09-10-task-handoff-design.md)；
 [Hard 理想观测机会与真实支持诊断](outputs/development/task-handoff-analysis/REPORT.md)。
+[进一步扫描/回波诊断](outputs/development/task-handoff-analysis/SCAN-PATTERN-REPORT.md)
+确认 nominal FOV 内的 cell 不一定在有限扫描窗口中获得真实 ground endpoint。
 尚未证明 Ours 的统计优势，未启动新的正式矩阵。
 
 ## 代码边界
