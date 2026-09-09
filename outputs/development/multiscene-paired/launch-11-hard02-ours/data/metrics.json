@@ -1,0 +1,219 @@
+{
+  "C_env_count_final": 0,
+  "C_env_count_max": 0,
+  "D_env": false,
+  "D_exec": false,
+  "T_active_sim": 71.053,
+  "T_exec_ready_sim": null,
+  "T_first_env_sim": null,
+  "T_task_sim": 111.901,
+  "active_end_sim": 123.77,
+  "active_start_sim": 52.717,
+  "adapter_run_result": false,
+  "cleanup_clock_reset_detected": false,
+  "clock_reset_detected": false,
+  "counts": {
+    "capture_calls": 3,
+    "completed_windows": 3,
+    "discarded_windows": 0,
+    "initial_outbound": 1,
+    "nbv_moves": 2,
+    "return_actions": 0,
+    "sensing_rescans": 0,
+    "sensing_visits": 3,
+    "voted_windows": 3
+  },
+  "efficiency_clock": "simulation",
+  "environment_decisions": [
+    {
+      "candidate_count": 34,
+      "confirmed_candidate_count": 0,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/multiscene-paired/launch-11-hard02-ours/data/rounds/round-01",
+      "ros_time": 61.292,
+      "round": 1,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 199702.076794367
+    },
+    {
+      "candidate_count": 34,
+      "confirmed_candidate_count": 0,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/multiscene-paired/launch-11-hard02-ours/data/rounds/round-02",
+      "ros_time": 94.572,
+      "round": 2,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 199744.920603752
+    },
+    {
+      "candidate_count": 34,
+      "confirmed_candidate_count": 0,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/multiscene-paired/launch-11-hard02-ours/data/rounds/round-03",
+      "ros_time": 123.77,
+      "round": 3,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 199787.373970549
+    }
+  ],
+  "exec_ready_sim": null,
+  "first_env_sim": null,
+  "landed_sim": 132.496,
+  "method": "ours",
+  "paths": {
+    "ground_total": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 0.00015053999962715798,
+      "end_sim": 123.78,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 0.00015053999962715798,
+      "observed_yaw_lower_bound_rad": 0.0005216039756996693,
+      "sample_count": 1125,
+      "start_sim": 11.879,
+      "yaw_travel_rad": 0.0005216039756996693
+    },
+    "uav_active": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 7.026543290577509,
+      "end_sim": 123.77,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 7.026543290577509,
+      "observed_yaw_lower_bound_rad": 0.9244155057568402,
+      "sample_count": 714,
+      "start_sim": 52.717,
+      "yaw_travel_rad": 0.9244155057568402
+    },
+    "uav_cleanup": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 1.2527227672918808,
+      "end_sim": 132.497,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 1.2527227672918808,
+      "observed_yaw_lower_bound_rad": 0.0429510837167949,
+      "sample_count": 90,
+      "start_sim": 123.78,
+      "yaw_travel_rad": 0.0429510837167949
+    },
+    "uav_total": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 10.9382381412429,
+      "end_sim": 123.78,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 10.9382381412429,
+      "observed_yaw_lower_bound_rad": 1.0315291706188021,
+      "sample_count": 1125,
+      "start_sim": 11.879,
+      "yaw_travel_rad": 1.0315291706188021
+    }
+  },
+  "physical_success": null,
+  "schema_version": 1,
+  "stages": {
+    "active": {
+      "duration_sim_s": 71.063,
+      "end_sim": 123.78,
+      "start_sim": 52.717,
+      "status": "FAILED"
+    },
+    "aerial_observe": {
+      "duration_sim_s": 0.2049999999999983,
+      "end_sim": 34.548,
+      "start_sim": 34.343,
+      "status": "SUCCEEDED"
+    },
+    "close": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "descend": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "execution_screen": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "ground_navigation": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "ground_refine": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "initial_query": {
+      "duration_sim_s": 18.168999999999997,
+      "end_sim": 52.717,
+      "start_sim": 34.548,
+      "status": "SUCCEEDED"
+    },
+    "initial_view": {
+      "duration_sim_s": 9.851000000000003,
+      "end_sim": 34.343,
+      "start_sim": 24.492,
+      "status": "SUCCEEDED"
+    },
+    "landing": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "lift": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "preflight": {
+      "duration_sim_s": 0.004999999999999005,
+      "end_sim": 11.885,
+      "start_sim": 11.88,
+      "status": "SUCCEEDED"
+    },
+    "refined_pregrasp": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "retention": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "return": {
+      "duration_sim_s": null,
+      "end_sim": null,
+      "start_sim": null,
+      "status": "NOT_REACHED"
+    },
+    "takeoff": {
+      "duration_sim_s": 12.607000000000001,
+      "end_sim": 24.492,
+      "start_sim": 11.885,
+      "status": "SUCCEEDED"
+    }
+  },
+  "task_end_sim": 123.78,
+  "task_start_sim": 11.879,
+  "terminal_failure_reason": "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate",
+  "terminal_failure_stage": "active",
+  "terminal_status": "FAILED"
+}

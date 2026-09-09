@@ -1,0 +1,35 @@
+{
+  "diagnostic_only": true,
+  "installed_code_changed": false,
+  "original_outcomes_changed": false,
+  "original": {
+    "initial": {
+      "frame": "map",
+      "stamp": 33.811,
+      "age_s": 0.4059999999999988
+    },
+    "final": null,
+    "error": "no map observation matched status stamp 33.811000",
+    "retained_samples": 5000
+  },
+  "in_memory_lossless_counterfactual": {
+    "initial": {
+      "frame": "map",
+      "stamp": 33.811,
+      "age_s": 0.4059999999999988
+    },
+    "final": {
+      "frame": "map",
+      "stamp": 33.811,
+      "age_s": 0.4059999999999988
+    },
+    "error": null,
+    "retained_samples": 6001
+  },
+  "unchanged_negative_checks": {
+    "wrong_frame": "no map observation matched status stamp 33.811000",
+    "wrong_stamp": "no map observation matched status stamp 33.811000",
+    "stale_age": "observation age 2.189 s is outside [-0.1, 1.000]"
+  },
+  "limitation": "Synthetic callback count/rate, not a reconstruction of slot3. Its checker buffer and aerial topic were not saved; eviction versus original subscription miss cannot be distinguished."
+}

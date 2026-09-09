@@ -47,8 +47,8 @@ scan or OMPL timing; these are six development pairs, not inferential evidence.
 Keep baseline initial map view(-1.4,0,1.2,0), launch(-.5,0,.15,0), 4m RGB-D
 gate, three5s windows, original stop rule,20s capture/1200s task wall guards,
 flight weight.25 and all shared config values. Both methods share v1.4 real
-ground-presence confirmation, exact-winner support, v1.1 target allowance
-.04395m, endpoint-local AMBIGUOUS blockers, A2 raw counters/thresholds, visibility,
+ground-presence confirmation, exact-winner support, the unchanged v1.1
+sensor/pixel-derived target allowance rule, endpoint-local AMBIGUOUS blockers, A2 raw counters/thresholds, visibility,
 cost, candidate ordering and selection. Only NBV gain weighting differs.
 
 Run all tasks with `--integrated-joint-velocity --full-robot-manipulation
@@ -97,5 +97,13 @@ benchmark, audit, evidence, approval or mission framework.
 
 ## Launch ledger
 
-At prospective freeze:0/12 tasks,0/4 reserve starts. All future invocations and
-their original outcomes will be listed in `DEV_MULTISCENE_PAIRED_RESULTS.md`.
+At prospective freeze:0/12 tasks,0/4 reserve starts. Completed:12/12 tasks,
+0/4 reserve starts; all original outcomes are retained in
+`DEV_MULTISCENE_PAIRED_RESULTS.md`. No runtime code or configuration changed.
+
+Offline-review erratum: the original prose at `c8b5b1b` shortened the target
+allowance to the historical example `.04395m`. The actual baseline has always
+derived it from sensor/pixel geometry, as already specified in
+`A6_PILOT2_PROTOCOL.md` and `A6_FORMAL_PROTOCOL.md`. This batch recorded
+0.0462497737–0.0472089237m under that unchanged rule. This corrects reporting,
+not the prospective seeds, parameters, algorithm or original outcomes.

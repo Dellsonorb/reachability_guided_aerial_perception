@@ -1,0 +1,43 @@
+{
+  "operational_semantics": "object-aware-v1.4",
+  "association_status": "AVAILABLE",
+  "association_rule": "interior_red_mask_AND_registered_depth_AND_expanded_known_object_geometry",
+  "reference_scope": "static_initial_air_phase_only",
+  "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/multiscene-paired/launch-03-moderate01-ours/data/target_reference.npz",
+  "target": {
+    "center_xyz": [
+      2.129983607889583,
+      -0.038728584662801484,
+      0.0596753968078358
+    ],
+    "yaw_rad": -0.38413782756480264,
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "geometry_allowance_m": 0.04720892372986166,
+    "frame_id": "map"
+  },
+  "geometry_allowance_semantics": "declared_sensor_budget_not_calibrated_accuracy",
+  "raw_a2_unchanged": true,
+  "ground_semantics": "actual_ground_presence_before_occupied_suppression_with_independent_blocking",
+  "observation_windows": 2,
+  "ambiguous_endpoint_profile": {
+    "name": "public-map-tf-conditional-disk33mm-v1",
+    "radius_m": 0.033,
+    "available": true,
+    "scope": "declared_engineering_disk_conditional_on_public_map_TF_not_calibrated_accuracy",
+    "point_count": 75,
+    "complete_window_votes": 9,
+    "source_identity": "observation_index_and_original_retained_observation_row",
+    "history_missing_policy": "legacy_cell_blocking_no_endpoint_imputation"
+  },
+  "votes": {
+    "environment_occupied_votes": 59,
+    "ambiguous_occupied_votes": 9,
+    "target_occupied_votes": 9,
+    "ground_votes": 1911,
+    "ground_presence_votes": 1933
+  }
+}
