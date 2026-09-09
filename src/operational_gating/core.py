@@ -10,6 +10,10 @@ from environment_belief import BeliefConfig, EnvironmentGridSpec, PointCloudObse
 from task_relevant_uncertainty.geometry import (
     CONTACT_TOLERANCE_M, FootprintSpec, footprint_cells, footprint_vertices,
 )
+from .subcell import (
+    AmbiguousEndpointEvidence, AmbiguousFootprintDiagnostics,
+    disk_footprint_intersections,
+)
 
 
 def _finite(value, name):
@@ -106,6 +110,7 @@ class OperationalEvidenceView:
     ambiguous_occupied_votes: np.ndarray
     target_occupied_votes: np.ndarray
     ground_votes: np.ndarray
+    ambiguous_endpoints: AmbiguousEndpointEvidence | None = None
 
     def __post_init__(self):
         _validate_context(self.grid, self.config, self.target)
@@ -116,9 +121,35 @@ class OperationalEvidenceView:
                     or np.any(values < 0) or np.any(values > np.iinfo(np.int64).max)):
                 raise ValueError(f'{name} must contain nonnegative integer grid counts')
             object.__setattr__(self, name, _readonly(values.astype(np.int64)))
+        endpoints = self.ambiguous_endpoints
+        if endpoints is not None:
+            if not isinstance(endpoints, AmbiguousEndpointEvidence):
+                raise ValueError('ambiguous_endpoints must be AmbiguousEndpointEvidence or None')
+            if (endpoints.complete_vote_counts.shape != self.grid.shape
+                    or np.any(endpoints.complete_vote_counts > self.ambiguous_occupied_votes)):
+                raise ValueError('complete endpoint votes must fit the original ambiguous grid counts')
+            x0, x1, y0, y1 = self.grid.extent
+            points = endpoints.points_xy
+            if np.any((points < [x0, y0]) | (points >= [x1, y1])):
+                raise ValueError('ambiguous endpoints must be inside the original grid')
+            x_edges = x0 + np.arange(self.grid.width_cells + 1) * self.grid.resolution_m
+            y_edges = y0 + np.arange(self.grid.height_cells + 1) * self.grid.resolution_m
+            cols = np.searchsorted(x_edges, points[:, 0], side='right') - 1
+            rows = np.searchsorted(y_edges, points[:, 1], side='right') - 1
+            if not np.array_equal(endpoints.cell_ids, rows * self.grid.width_cells + cols):
+                raise ValueError('ambiguous endpoint cell_ids must match the original map coordinates')
+            groups = np.unique(np.column_stack((endpoints.observation_indices, endpoints.cell_ids)), axis=0)
+            represented = np.bincount(groups[:, 1], minlength=self.ambiguous_occupied_votes.size)
+            if np.any(represented > self.ambiguous_occupied_votes.ravel()):
+                raise ValueError('represented endpoint groups exceed original ambiguous votes')
+
+    @property
+    def operational_semantics(self):
+        return 'object-aware-v1.3' if self.ambiguous_endpoints is not None else 'object-aware-v1.1'
 
 
-def derive_operational_evidence(grid, observations, target, *, labels=None, config=BeliefConfig()):
+def derive_operational_evidence(grid, observations, target, *, labels=None, config=BeliefConfig(),
+                                retain_ambiguous_endpoints=False):
     """Replay endpoints with A2's filtering, retaining each occupied class.
 
     Labels are aligned to original rows, before valid-return/range/grid filters.
@@ -126,6 +157,8 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
     geometry are downgraded to AMBIGUOUS. A real ground endpoint contributes
     one vote per window unless ENVIRONMENT or AMBIGUOUS occupies that cell in
     that window; TARGET neither supplies nor suppresses ground evidence.
+    Optional endpoint retention changes no votes or labels. Completeness comes
+    from replaying every accepted endpoint in each supplied observation.
     """
     _validate_context(grid, config, target)
     observations = tuple(observations)
@@ -137,6 +170,7 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
             raise ValueError('labels must have one array per observation')
     occupied = np.zeros((3,) + grid.shape, dtype=np.int64)
     ground_counts = np.zeros(grid.shape, dtype=np.int64)
+    endpoint_points, endpoint_observations, endpoint_rows, endpoint_cells = [], [], [], []
     x_edges = grid.origin_xy[0] + np.arange(grid.width_cells + 1) * grid.resolution_m
     y_edges = grid.origin_xy[1] + np.arange(grid.height_cells + 1) * grid.resolution_m
     x0, x1, y0, y1 = grid.extent
@@ -163,18 +197,25 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
             point_labels = np.array(point_labels, dtype=np.int8, copy=True)
         points = observation.points_xyz[observation.valid_return]
         point_labels = point_labels[observation.valid_return]
+        row_indices = np.flatnonzero(observation.valid_return) if retain_ambiguous_endpoints else None
         finite = np.all(np.isfinite(points), axis=1)
         points, point_labels = points[finite], point_labels[finite]
+        if retain_ambiguous_endpoints:
+            row_indices = row_indices[finite]
         ranges = np.hypot.reduce(points, axis=1)
         usable = (ranges > config.min_range_m) & (ranges < config.max_range_m)
         transform = observation.T_map_sensor
         points = points[usable] @ transform[:3, :3].T + transform[:3, 3]
         point_labels = point_labels[usable]
+        if retain_ambiguous_endpoints:
+            row_indices = row_indices[usable]
         if not np.all(np.isfinite(points)):
             raise ValueError('transformed points must be finite')
         inside = ((points[:, 0] >= x0) & (points[:, 0] < x1)
                   & (points[:, 1] >= y0) & (points[:, 1] < y1))
         points, point_labels = points[inside], point_labels[inside]
+        if retain_ambiguous_endpoints:
+            row_indices = row_indices[inside]
         xy = np.column_stack((np.searchsorted(x_edges, points[:, 0], side='right') - 1,
                               np.searchsorted(y_edges, points[:, 1], side='right') - 1))
         heights = points[:, 2] - config.ground_z_m
@@ -182,6 +223,12 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
         obstacle = heights >= config.obstacle_min_height_m
         invalid_target = ((point_labels == OccupiedClass.TARGET) & ~target.contains(points))
         point_labels[invalid_target] = OccupiedClass.AMBIGUOUS
+        if retain_ambiguous_endpoints:
+            selected = obstacle & (point_labels == OccupiedClass.AMBIGUOUS)
+            endpoint_points.append(points[selected, :2])
+            endpoint_observations.append(np.full(np.count_nonzero(selected), index, dtype=np.int64))
+            endpoint_rows.append(row_indices[selected])
+            endpoint_cells.append(xy[selected, 1] * grid.width_cells + xy[selected, 0])
         window_occupied = np.zeros_like(occupied, dtype=bool)
         for occupied_class in OccupiedClass:
             selected = obstacle & (point_labels == occupied_class)
@@ -192,7 +239,16 @@ def derive_operational_evidence(grid, observations, target, *, labels=None, conf
                            | window_occupied[OccupiedClass.AMBIGUOUS])
         occupied += window_occupied
         ground_counts += window_ground
-    return OperationalEvidenceView(grid, config, target, *occupied, ground_counts)
+    endpoints = None
+    if retain_ambiguous_endpoints:
+        endpoints = AmbiguousEndpointEvidence(
+            np.concatenate(endpoint_points) if endpoint_points else np.empty((0, 2)),
+            np.concatenate(endpoint_observations) if endpoint_observations else np.empty(0, dtype=np.int64),
+            np.concatenate(endpoint_rows) if endpoint_rows else np.empty(0, dtype=np.int64),
+            np.concatenate(endpoint_cells) if endpoint_cells else np.empty(0, dtype=np.int64),
+            occupied[OccupiedClass.AMBIGUOUS],
+        )
+    return OperationalEvidenceView(grid, config, target, *occupied, ground_counts, endpoints)
 
 
 @dataclass(frozen=True)
@@ -222,6 +278,34 @@ def _rectangles_overlap(first, second):
     return True
 
 
+def _ambiguous_diagnostics_for_cells(view, xy, yaw, footprint, cells):
+    coarse = cells[view.ambiguous_occupied_votes.ravel()[cells] > 0]
+    endpoints = view.ambiguous_endpoints
+    if endpoints is None or not endpoints.profile_available:
+        fallback, intersecting, aliased_clear = coarse, (), ()
+    else:
+        fallback = coarse[view.ambiguous_occupied_votes.ravel()[coarse]
+                          > endpoints.complete_vote_counts.ravel()[coarse]]
+        # Scan every retained endpoint: a disk can reach from a neighboring cell.
+        intersecting = np.flatnonzero(disk_footprint_intersections(
+            endpoints.points_xy, xy, yaw, footprint, radius_m=endpoints.radius_m))
+        aliased_clear = np.setdiff1d(coarse, np.union1d(fallback, endpoints.cell_ids[intersecting]))
+    return AmbiguousFootprintDiagnostics(
+        tuple(int(index) for index in intersecting),
+        tuple(int(cell) for cell in fallback),
+        tuple(int(cell) for cell in coarse),
+        tuple(int(cell) for cell in aliased_clear),
+    )
+
+
+def ambiguous_footprint_diagnostics(view, xy, yaw, footprint=FootprintSpec()):
+    """Report endpoint hits, incomplete-history fallback and coarse aliases."""
+    if not isinstance(view, OperationalEvidenceView):
+        raise ValueError('view must be OperationalEvidenceView')
+    cells, _ = footprint_cells(view.grid, xy, yaw, footprint)
+    return _ambiguous_diagnostics_for_cells(view, xy, yaw, footprint, cells)
+
+
 def assess_footprint(view, xy, yaw, footprint=FootprintSpec()):
     """Assess separate blocking and measured-ground support for a base pose."""
     if not isinstance(view, OperationalEvidenceView):
@@ -232,9 +316,13 @@ def assess_footprint(view, xy, yaw, footprint=FootprintSpec()):
     target = int(np.count_nonzero(view.target_occupied_votes.ravel()[cells]))
     supported = int(np.count_nonzero(view.ground_votes.ravel()[cells] >= view.config.free_observations))
     collision = _rectangles_overlap(footprint_vertices(xy, yaw, footprint), view.target.xy_vertices)
+    ambiguous_blocked = bool(ambiguous)
+    if view.ambiguous_endpoints is not None:
+        diagnostics = _ambiguous_diagnostics_for_cells(view, xy, yaw, footprint, cells)
+        ambiguous_blocked = bool(diagnostics.intersecting_endpoint_count or diagnostics.legacy_fallback_cells)
     return FootprintAssessment(
         tuple(int(cell) for cell in cells), bool(clipped), environment, ambiguous,
         target, supported, len(cells) - supported, collision,
-        bool(environment or ambiguous or collision),
+        bool(environment or ambiguous_blocked or collision),
         bool(len(cells) and not clipped and supported == len(cells)),
     )

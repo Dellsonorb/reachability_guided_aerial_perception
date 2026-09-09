@@ -1,6 +1,13 @@
 # A1 — Validated Manipulation Interest Field
 
-A6 当前停在 [fresh-seed validation 科研审查 checkpoint](docs/V12_FRESH_VALIDATION_RESULTS.md)：
+当前开发分支为 `feature/v13-operational-geometry`：按新的自主研发授权，
+使用 endpoint-local AMBIGUOUS geometry 解决 coarse-cell aliasing；
+见 [v1.3 设计与来源诊断](docs/superpowers/specs/2026-09-09-v13-ambiguous-subcell-design.md)
+及 [开发回放、自然回归与交付记录](docs/V13_OPERATIONAL_GEOMETRY_CHECKPOINT.md)。
+历史冻结用于保留版本，不再作为必要局部迭代的审批障碍。
+新开发结果与历史验证、最终测试分开；不恢复剩余验证或 formal matrix。
+
+A6 历史 [fresh-seed validation 科研审查 checkpoint](docs/V12_FRESH_VALIDATION_RESULTS.md)：
 已冻结六次配对验证；完成3/6，Easy Generic/Ours 均 E2E 成功，Moderate Ours
 出现 AMBIGUOUS cell 永久阻断的结构性死锁，按批准条件停止，未启动 slots4–6。
 未修改冻结算法或参数，尚未达到 formal readiness，PR#6 保持 Draft。
@@ -17,7 +24,7 @@ exact-winner support 已通过原 natural A5 Gazebo E2E，真实砖块 lift 为0
 项目进度：本页保留冻结 A1 的阶段说明。A5 已完成一次自然 Gazebo 闭环，
 详见 [A5 实现、运行说明与实际 grasp/lift 结果](docs/A5_SIM_ACTIVE_PERCEPTION.md)
 及 [独立 task-domain RM4D asset](docs/A5_TASK_DOMAIN_ASSET.md)。A1/A2/A4 与 RM4D 保持不变；
-A3/A5 仅包含上述已批准的 v1.1/v1.2 修订。
+A3/A5 在该历史版本包含 v1.1/v1.2 修订；当前分支额外以显式 opt-in 接入 v1.3。
 
 本仓库实现 Paper 1 的最小 A1 原型：把 `map` 下的 Brick grasp TCP 交给冻结的 AUBO RM4D planner，并将 planner **实际验证过的候选**投影成 0.10 m 二维地面场。这里的
 

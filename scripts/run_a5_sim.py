@@ -25,8 +25,8 @@ def build_parser():
     parser.add_argument("--rm4d-map", type=Path, required=True)
     parser.add_argument("--rm4d-task-asset", type=Path,
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
-    parser.add_argument("--operational-gating", choices=("v1", "v1.1"), default="v1",
-                        help="explicit v1.1 object-aware gate; default preserves frozen v1 behavior")
+    parser.add_argument("--operational-gating", choices=("v1", "v1.1", "v1.3"), default="v1",
+                        help="explicit object-aware gate; v1.3 adds sub-cell ambiguity; default preserves v1")
     parser.add_argument("--support-anchor", choices=("cell_center", "exact_winner"), default="cell_center",
                         help="explicit v1.2 original-winner support; default preserves legacy cell centers")
     parser.add_argument("--max-viewpoints", type=int, default=3,
@@ -262,11 +262,22 @@ def build_adapter_class(demo_module, options):
                                         options.settle_yaw_tolerance, options.settle_speed))
             return settled, pose
 
-        def _a5_wait_settled(self, goal):
+        def _a5_wait_settled(self, goal, reacquire_anchor=False):
+            # Flight arrival is relative to its commanded goal. A post-core
+            # capture anchor was never commanded: establish it during the
+            # stable dwell, rather than requiring return to a transient sample.
+            anchor = list(goal)
             deadline, stable_since = time.monotonic() + options.settle_timeout, None
             while not rospy.is_shutdown() and time.monotonic() < deadline:
+                pose = None
                 try:
-                    settled, pose = self._a5_settled_now(goal)
+                    if reacquire_anchor:
+                        settled, pose = self._a5_settled_now(anchor, acquisition=True)
+                        settled = settled and pose_settled(
+                            pose, anchor, [0., 0., 0.], options.settle_position_tolerance,
+                            options.settle_yaw_tolerance, options.settle_speed)
+                    else:
+                        settled, pose = self._a5_settled_now(goal)
                 except (DemoError, tf2_ros.TransformException):
                     settled = False
                 now = time.monotonic()
@@ -277,6 +288,10 @@ def build_adapter_class(demo_module, options):
                         return pose
                 else:
                     stable_since = None
+                    if reacquire_anchor and pose is not None:
+                        # Preserve yaw, speed, bounds, freshness and dwell gates.
+                        # No flight, goal retry or observation is produced here.
+                        anchor = list(pose[:3]) + [goal[3]]
                 self._wait_step()
             raise DemoError("A5 UAV position/yaw/speed did not settle")
 
@@ -304,12 +319,16 @@ def build_adapter_class(demo_module, options):
             self._execute_flight(self._hover_command, "A5 hover")
 
         def _a5_capture(self, requested_goal):
-            # Freeze one measured anchor after flight completion and any core delay.
+            # Freeze one measured anchor only after a stable post-core dwell.
             goal = list(self._a5_measured_pose())
             bounds = options.flight_bounds
             if any(not bounds[2 * axis] <= goal[axis] <= bounds[2 * axis + 1]
                    for axis in range(3)):
                 raise DemoError("A5 measured capture anchor is outside configured flight bounds")
+            settled_pose = self._a5_wait_settled(goal, reacquire_anchor=True)
+            # Reacquire only XYZ; otherwise yaw tolerance could compound
+            # between the stable dwell and the subsequent capture window.
+            goal = list(settled_pose[:3]) + [goal[3]]
             capture_metadata = dict(requested_viewpoint=list(requested_goal),
                                     capture_anchor_map=list(goal))
             yaw_delta = goal[3] - requested_goal[3]
@@ -319,7 +338,6 @@ def build_adapter_class(demo_module, options):
                     np.asarray(goal[:3]) - np.asarray(requested_goal[:3]))),
                 yaw_discrepancy_rad=math.atan2(math.sin(yaw_delta), math.cos(yaw_delta)))
             # One stable dwell window is one observation, regardless of packet count.
-            self._a5_wait_settled(goal)
             capture_start = rospy.Time.now().to_sec()
             deadline = time.monotonic() + options.cloud_timeout
             chunks, pending_cloud = [], None
@@ -529,7 +547,7 @@ def build_adapter_class(demo_module, options):
             return execute_refined_pregrasp(
                 self, target, grasp, DemoError)
 
-    if getattr(options, 'operational_gating', 'v1') == 'v1.1':
+    if getattr(options, 'operational_gating', 'v1') in ('v1.1', 'v1.3'):
         from a5_target_support import build_object_aware_adapter
         return build_object_aware_adapter(A5AirGroundPickDemo, options)
     return A5AirGroundPickDemo

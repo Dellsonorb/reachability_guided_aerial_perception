@@ -1,0 +1,4430 @@
+{
+  "diagnostic_only": true,
+  "selection_changed": false,
+  "frozen_vote_replay_equal": true,
+  "source_data": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/v12-fresh-validation/slot-003-moderate-ours-01/data",
+  "frame_id": "map",
+  "grid": {
+    "origin_xy": [
+      0.05184718394774501,
+      -2.0079343777314276
+    ],
+    "frame_id": "map",
+    "resolution_m": 0.1,
+    "width_cells": 40,
+    "height_cells": 40
+  },
+  "padded_half_dimensions_m": [
+    0.52,
+    0.39
+  ],
+  "target": {
+    "center_xyz": [
+      2.051847183947745,
+      -0.00793437773142742,
+      0.05989467870872644
+    ],
+    "yaw_rad": 0.27056738804629155,
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "recorded_geometry_allowance_m": 0.04692094110278105,
+    "expanded_vertices_xy": [
+      [
+        1.9106227455412135,
+        -0.12329855400732302
+      ],
+      [
+        2.232319260104947,
+        -0.03406988802997032
+      ],
+      [
+        2.1930716223542768,
+        0.10742979854446817
+      ],
+      [
+        1.8713751077905432,
+        0.01820113256711548
+      ]
+    ]
+  },
+  "occupied_endpoint_counts": {
+    "ENVIRONMENT": 8127,
+    "AMBIGUOUS": 109,
+    "TARGET": 62
+  },
+  "ambiguous_endpoints": [
+    {
+      "observation_row": 268,
+      "chunk_index": 0,
+      "retained_row_in_chunk": 268,
+      "chunk_stamp_s": 56.531,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9461971150457607,
+        -0.059002203874615966,
+        0.06836141456274092
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11545577407981848,
+          -0.02097198506615165,
+          0.00846673585401448
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          249
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.4852092036547777,
+        "registered_depth_m": 3.4900591373443604,
+        "depth_residual_m": 0.004849933689582642,
+        "association_allowance_m": 0.04603402360062954,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 273,
+      "chunk_index": 0,
+      "retained_row_in_chunk": 273,
+      "chunk_stamp_s": 56.531,
+      "cell_id": 778,
+      "map_xyz": [
+        1.944224674500279,
+        -0.05144949420541585,
+        0.10338479849784488
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.1153377812163375,
+          -0.013166857089183125,
+          0.04349011978911844
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          244
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.471273691195205,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04598190741830841,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 283,
+      "chunk_index": 0,
+      "retained_row_in_chunk": 283,
+      "chunk_stamp_s": 56.531,
+      "cell_id": 779,
+      "map_xyz": [
+        2.02906319367865,
+        -0.036659075275187,
+        0.11405663058846915
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.02963258125223248,
+          -0.021590011345354383,
+          0.054161951879742716
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5472255500120875,
+        "registered_depth_m": 3.5410587787628174,
+        "depth_residual_m": 0.00616677124927012,
+        "association_allowance_m": 0.0462659530128434,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 3009,
+      "chunk_index": 1,
+      "retained_row_in_chunk": 1346,
+      "chunk_stamp_s": 56.601,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0344681866387706,
+        -0.03748644642312239,
+        0.11399410027030799
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.024645363466032858,
+          -0.02383191916424548,
+          0.05409942156158155
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.552318992014553,
+        "registered_depth_m": 3.5410587787628174,
+        "depth_residual_m": 0.01126021325173543,
+        "association_allowance_m": 0.046285001523101825,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 3014,
+      "chunk_index": 1,
+      "retained_row_in_chunk": 1351,
+      "chunk_stamp_s": 56.601,
+      "cell_id": 779,
+      "map_xyz": [
+        1.996836435478658,
+        -0.030529634674587483,
+        0.11399445656472795
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.059048644676532924,
+          -0.007070052709926113,
+          0.054099777856001514
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.51700772208126,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04615294404856167,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 3563,
+      "chunk_index": 2,
+      "retained_row_in_chunk": 262,
+      "chunk_stamp_s": 56.733,
+      "cell_id": 820,
+      "map_xyz": [
+        2.053407705916337,
+        0.014252167508146351,
+        0.058648532444904866
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0074337296931528,
+          0.020962291891185227,
+          -0.0012461462638215723
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5892516352616908,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046423122627342,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 6336,
+      "chunk_index": 3,
+      "retained_row_in_chunk": 1249,
+      "chunk_stamp_s": 56.798,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1219941244471157,
+        0.016818557545526372,
+        0.11427381972591055
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.07421087341128917,
+          0.005103658862122703,
+          0.054379141017184114
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.634418964640126,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046592039901082294,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 6868,
+      "chunk_index": 4,
+      "retained_row_in_chunk": 144,
+      "chunk_stamp_s": 56.933,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9385561580228243,
+        -0.029193192179228694,
+        0.052409538041659376
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11485144875029442,
+          0.009794818365114826,
+          -0.0074851406670670625
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          251
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4835741278322567,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046027908726137295,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 6878,
+      "chunk_index": 4,
+      "retained_row_in_chunk": 154,
+      "chunk_stamp_s": 56.933,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9363944981658112,
+        -0.020928346668546233,
+        0.07699098005787142
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11472545288220332,
+          0.018336748456967252,
+          0.017096301349144978
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.473066743014489,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.045988613093165806,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 6883,
+      "chunk_index": 4,
+      "retained_row_in_chunk": 159,
+      "chunk_stamp_s": 56.933,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9355372489909044,
+        -0.016750186489030726,
+        0.07866685568383858
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11443478357870966,
+          0.02259202870503247,
+          0.01877217697511214
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.471687647331292,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04598345553600583,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 7412,
+      "chunk_index": 4,
+      "retained_row_in_chunk": 688,
+      "chunk_stamp_s": 56.933,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0622290829803607,
+        0.016350076038038883,
+        0.11335880341867188
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.016494905045474493,
+          0.020626115241255495,
+          0.053464124709945444
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5786441966695617,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04638345281216791,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 9693,
+      "chunk_index": 5,
+      "retained_row_in_chunk": 1123,
+      "chunk_stamp_s": 56.999,
+      "cell_id": 820,
+      "map_xyz": [
+        2.110628687783763,
+        -0.00323151363815255,
+        0.11411503409301127
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.05789997068814568,
+          -0.011179244975197684,
+          0.05422035538428483
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6237878428427184,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04655228151519737,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 10226,
+      "chunk_index": 5,
+      "retained_row_in_chunk": 1656,
+      "chunk_stamp_s": 56.999,
+      "cell_id": 778,
+      "map_xyz": [
+        1.94603667964649,
+        -0.05837197440074987,
+        0.07255487971895569
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11544192612753595,
+          -0.02032180282917018,
+          0.012660201010229251
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4836114692963114,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046028048376154075,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 10231,
+      "chunk_index": 5,
+      "retained_row_in_chunk": 1661,
+      "chunk_stamp_s": 56.999,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9449765609692027,
+        -0.054313688996239104,
+        0.0769400665563027
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11537878572959269,
+          -0.016127813639324046,
+          0.01704538784757626
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.481106487080654,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04601868021619289,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 10236,
+      "chunk_index": 5,
+      "retained_row_in_chunk": 1666,
+      "chunk_stamp_s": 56.999,
+      "cell_id": 778,
+      "map_xyz": [
+        1.943839315318996,
+        -0.049960091353068364,
+        0.07437017589349737
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11531103584788654,
+          -0.011628641486464714,
+          0.014475497184770932
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          324,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4809306089211196,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046018022465123085,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 10761,
+      "chunk_index": 6,
+      "retained_row_in_chunk": 423,
+      "chunk_stamp_s": 57.132,
+      "cell_id": 779,
+      "map_xyz": [
+        1.979885472564935,
+        -0.030904863812278603,
+        0.11389252212774448
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.07548321198423066,
+          -0.002901007493460145,
+          0.05399784341901804
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5011338669392997,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04609357883101998,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 13516,
+      "chunk_index": 7,
+      "retained_row_in_chunk": 1491,
+      "chunk_stamp_s": 57.2,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9881780087536023,
+        -0.0028963687327401913,
+        0.0908545103704319
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.060006302356735625,
+          0.021872107398358247,
+          0.03095983166170547
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          244
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5168972828738285,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046152531026802585,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 13521,
+      "chunk_index": 7,
+      "retained_row_in_chunk": 1496,
+      "chunk_stamp_s": 57.2,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0114773834999697,
+        0.0031909686988776456,
+        0.06915905701600544
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.03592756007104401,
+          0.021510568303255553,
+          0.009264378307279005
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.546260143082515,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046262342573420975,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 14051,
+      "chunk_index": 8,
+      "retained_row_in_chunk": 268,
+      "chunk_stamp_s": 57.337,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9475355415350508,
+        -0.06419369822984096,
+        0.09293932891852452
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.1155536137484828,
+          -0.026332342004528254,
+          0.033044650209798083
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.477974930215718,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046006968785486956,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 14056,
+      "chunk_index": 8,
+      "retained_row_in_chunk": 273,
+      "chunk_stamp_s": 57.337,
+      "cell_id": 779,
+      "map_xyz": [
+        1.979515758002922,
+        -0.056086106832123644,
+        0.11409405800814576
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.08256987406708653,
+          -0.027067325156796277,
+          0.05419937929941932
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5006930157567395,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04609193013093281,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 16785,
+      "chunk_index": 9,
+      "retained_row_in_chunk": 1360,
+      "chunk_stamp_s": 57.401,
+      "cell_id": 779,
+      "map_xyz": [
+        2.030079624571275,
+        -0.03533766162075079,
+        0.11405151715309514
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.028299943627190446,
+          -0.02058834135681758,
+          0.0541568384443687
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5481825228563144,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046269531910380954,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 16795,
+      "chunk_index": 9,
+      "retained_row_in_chunk": 1370,
+      "chunk_stamp_s": 57.401,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9362315577169045,
+        -0.02057336452783908,
+        0.10352405967616218
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11478758646321667,
+          0.018722366568862198,
+          0.043629380967435745
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4637537581462565,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04595378429022406,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 17320,
+      "chunk_index": 10,
+      "retained_row_in_chunk": 248,
+      "chunk_stamp_s": 57.534,
+      "cell_id": 779,
+      "map_xyz": [
+        1.959221436989531,
+        -0.010471034799846388,
+        0.06827886218290091
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.08993396000292675,
+          0.02231247334657915,
+          0.008384183474174474
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          319,
+          248
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4975080036686954,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04608001878779728,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 17325,
+      "chunk_index": 10,
+      "retained_row_in_chunk": 253,
+      "chunk_stamp_s": 57.534,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9816796706786617,
+        -0.004604772937425838,
+        0.0859870299632266
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.0667248462448818,
+          0.02196272023334329,
+          0.026092351254500164
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5124773372604294,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04613600126572594,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 17330,
+      "chunk_index": 10,
+      "retained_row_in_chunk": 258,
+      "chunk_stamp_s": 57.534,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0042309287387683,
+        0.001286047011173387,
+        0.09666405559583224
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.04341952855649423,
+          0.021611768379569265,
+          0.036769376887105805
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.529961463763506,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04620138859376309,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 20084,
+      "chunk_index": 11,
+      "retained_row_in_chunk": 1256,
+      "chunk_stamp_s": 57.605,
+      "cell_id": 820,
+      "map_xyz": [
+        2.104651348502403,
+        0.02083908478117665,
+        0.11394099815638548
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.058573637429925045,
+          0.013613263293836398,
+          0.05404631944765904
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          236
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6182613409908715,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046531613442965046,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 20093,
+      "chunk_index": 11,
+      "retained_row_in_chunk": 1265,
+      "chunk_stamp_s": 57.605,
+      "cell_id": 779,
+      "map_xyz": [
+        2.004315000557994,
+        -0.0535816835088741,
+        0.1139450208016366
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.058003464988091565,
+          -0.03128231180574511,
+          0.05405034209291016
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          240
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.524021277600209,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0461791734204061,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 20614,
+      "chunk_index": 12,
+      "retained_row_in_chunk": 185,
+      "chunk_stamp_s": 57.744,
+      "cell_id": 778,
+      "map_xyz": [
+        1.940081889893977,
+        -0.03634846216674287,
+        0.09690564373994914
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11529367178597148,
+          0.0024920664780801655,
+          0.037010965031222705
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.469637098050747,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.045975786869318955,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 20619,
+      "chunk_index": 12,
+      "retained_row_in_chunk": 190,
+      "chunk_stamp_s": 57.744,
+      "cell_id": 778,
+      "map_xyz": [
+        1.938954203706182,
+        -0.03202821284321381,
+        0.10670257859154231
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11522562350052963,
+          0.006956548506988455,
+          0.04680789988281587
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          244
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4652005781601893,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04595919512357882,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 23405,
+      "chunk_index": 13,
+      "retained_row_in_chunk": 1135,
+      "chunk_stamp_s": 57.807,
+      "cell_id": 780,
+      "map_xyz": [
+        2.1426642201383808,
+        -0.011534689080253971,
+        0.11427757200731947
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.08655077318604829,
+          -0.027742746171872727,
+          0.054382893298593034
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          319,
+          234
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.65378945605071,
+        "registered_depth_m": 3.635059356689453,
+        "depth_residual_m": 0.01873009936125669,
+        "association_allowance_m": 0.0466644818772875,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 23943,
+      "chunk_index": 13,
+      "retained_row_in_chunk": 1673,
+      "chunk_stamp_s": 57.807,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9478885287853922,
+        -0.06534261309058643,
+        0.09638107626855286
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11552054831133196,
+          -0.027533804460459107,
+          0.03648639755982642
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.4771168596830933,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04600375976389895,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 23948,
+      "chunk_index": 13,
+      "retained_row_in_chunk": 1678,
+      "chunk_stamp_s": 57.807,
+      "cell_id": 778,
+      "map_xyz": [
+        1.946768419099667,
+        -0.06105320717423196,
+        0.094847365151006
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11545344293265149,
+          -0.023101068771128615,
+          0.034952686442279564
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.4765992663957443,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0460018240628467,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 23953,
+      "chunk_index": 13,
+      "retained_row_in_chunk": 1683,
+      "chunk_stamp_s": 57.807,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9456403217666023,
+        -0.056732056534368885,
+        0.08630208898134484
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11538554993253762,
+          -0.018635608326136144,
+          0.0264074102726184
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          246
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4784949130515495,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04600891342299883,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 24474,
+      "chunk_index": 14,
+      "retained_row_in_chunk": 460,
+      "chunk_stamp_s": 57.939,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0309375299117276,
+        -0.040058102772696294,
+        0.11409007442866193
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.02873492053303604,
+          -0.025366349449479086,
+          0.05419539571993549
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5489698123530733,
+        "registered_depth_m": 3.5410587787628174,
+        "depth_residual_m": 0.007911033590255911,
+        "association_allowance_m": 0.0462724762242748,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 27232,
+      "chunk_index": 15,
+      "retained_row_in_chunk": 1506,
+      "chunk_stamp_s": 58.009,
+      "cell_id": 779,
+      "map_xyz": [
+        1.970156087927943,
+        -0.020111886716236232,
+        0.11395881969697697
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.0819739080108966,
+          0.010099767294976763,
+          0.05406414098825053
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4919902429952794,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04605938340591991,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 27237,
+      "chunk_index": 15,
+      "retained_row_in_chunk": 1511,
+      "chunk_stamp_s": 58.009,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9626154265453555,
+        -0.015432134639047898,
+        0.11395926233859632
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.08798943978319504,
+          0.016624721784263448,
+          0.054064583629869885
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.484917601651116,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04603293306425837,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 27247,
+      "chunk_index": 15,
+      "retained_row_in_chunk": 1521,
+      "chunk_stamp_s": 58.009,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9835235080253915,
+        -0.00406454554691784,
+        0.07680183186339495
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.06480369778679243,
+          0.021990476253076787,
+          0.016907153154668515
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          246
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5173794633847475,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04615433429076518,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 27777,
+      "chunk_index": 16,
+      "retained_row_in_chunk": 274,
+      "chunk_stamp_s": 58.146,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1051790121267397,
+        0.025457648266383096,
+        0.11422873406481471
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.06031654578966646,
+          0.017922767675650382,
+          0.05433405535608827
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          236
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6186616756001073,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04653311061872697,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 27782,
+      "chunk_index": 16,
+      "retained_row_in_chunk": 279,
+      "chunk_stamp_s": 58.146,
+      "cell_id": 821,
+      "map_xyz": [
+        2.166375402975341,
+        0.034820589775888186,
+        0.11422903866965717
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.12178908567834254,
+          0.01058861699269367,
+          0.05433435996093073
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          313,
+          233
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.6761041615998202,
+        "registered_depth_m": 3.667059898376465,
+        "depth_residual_m": 0.009044263223355387,
+        "association_allowance_m": 0.04674793465781591,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 30509,
+      "chunk_index": 17,
+      "retained_row_in_chunk": 1383,
+      "chunk_stamp_s": 58.203,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9414291935247587,
+        -0.03494578089154496,
+        0.11386167138244829
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11362047770568244,
+          0.0034836124442332327,
+          0.053966992673721854
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          243
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.465048932955835,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04595862799918055,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 31042,
+      "chunk_index": 18,
+      "retained_row_in_chunk": 257,
+      "chunk_stamp_s": 58.336,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9607139850197277,
+        -0.021233199425139127,
+        0.11397065928112404
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09137220403102225,
+          0.011542917127310237,
+          0.054075980572397604
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4831235450164337,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046026223631581334,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 31052,
+      "chunk_index": 18,
+      "retained_row_in_chunk": 267,
+      "chunk_stamp_s": 58.336,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0435440594298044,
+        -0.008632891365930838,
+        0.11396891342931137
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.008187749359443176,
+          0.0015461430997650062,
+          0.05407423472058493
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          319,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5608733377337973,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04631699315903451,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 33785,
+      "chunk_index": 19,
+      "retained_row_in_chunk": 1271,
+      "chunk_stamp_s": 58.407,
+      "cell_id": 820,
+      "map_xyz": [
+        2.113509215520192,
+        0.006924330761079307,
+        0.11409403460380396
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.06339013917276327,
+          -0.0021627786212285414,
+          0.054199355895077524
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.626508299772628,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046562455509857936,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 34311,
+      "chunk_index": 20,
+      "retained_row_in_chunk": 214,
+      "chunk_stamp_s": 58.544,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9452346957608122,
+        -0.05576230743073873,
+        0.08640368514858165
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11551722620137185,
+          -0.017592724276593436,
+          0.026509006439855216
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          246
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.478080087995914,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046007362055706554,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 34316,
+      "chunk_index": 20,
+      "retained_row_in_chunk": 219,
+      "chunk_stamp_s": 58.544,
+      "cell_id": 778,
+      "map_xyz": [
+        1.944080710047149,
+        -0.0513431576961063,
+        0.1044155030488354
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11544808672288231,
+          -0.013025910602164114,
+          0.04452082434010896
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          244
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4707828360678583,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.045980071712920165,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 37638,
+      "chunk_index": 21,
+      "retained_row_in_chunk": 1694,
+      "chunk_stamp_s": 58.608,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9939511407941395,
+        -0.001370382390943621,
+        0.07346331535673456
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.054035337395821,
+          0.021799544953824967,
+          0.013568636648008121
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          246
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5283211280155493,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04619525404814402,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 37643,
+      "chunk_index": 21,
+      "retained_row_in_chunk": 1699,
+      "chunk_stamp_s": 58.608,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0103021610325205,
+        0.0029014597632149655,
+        0.07530700273620572
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.037137406675864036,
+          0.021545703252117805,
+          0.01541232402747928
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.543034357381442,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04625027874468029,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 37648,
+      "chunk_index": 21,
+      "retained_row_in_chunk": 1704,
+      "chunk_stamp_s": 58.608,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0282806906434585,
+        0.007598535383903152,
+        0.06930908022546811
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.018557520702692235,
+          0.021266626951130223,
+          0.009414401516741673
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5619827087652176,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04632114199698381,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 37653,
+      "chunk_index": 21,
+      "retained_row_in_chunk": 1709,
+      "chunk_stamp_s": 58.608,
+      "cell_id": 819,
+      "map_xyz": [
+        2.046960489377277,
+        0.012478705764750235,
+        0.05577360228961137
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0007470590452684417,
+          0.020976550346275873,
+          -0.00412107641911507
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5841916876201285,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0464041993796618,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 38176,
+      "chunk_index": 22,
+      "retained_row_in_chunk": 494,
+      "chunk_stamp_s": 58.745,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1291340749140866,
+        0.034019682391473204,
+        0.08430983794357627
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0856885543343095,
+          0.019770643189719942,
+          0.024415159234849833
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          314,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.651481394390302,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04665585016297838,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 40939,
+      "chunk_index": 23,
+      "retained_row_in_chunk": 1524,
+      "chunk_stamp_s": 58.81,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9847878473777798,
+        -0.032450888987743745,
+        0.11392838833922059
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.07117240736949725,
+          -0.005701085389230095,
+          0.05403370963049415
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5057209315667857,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04611073358561823,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 40949,
+      "chunk_index": 23,
+      "retained_row_in_chunk": 1534,
+      "chunk_stamp_s": 58.81,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9583863143716513,
+        -0.023007716518215968,
+        0.11392900374963855
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09408948240698457,
+          0.010455093710084,
+          0.05403432504091211
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4809516673290446,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04601810121958798,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 44196,
+      "chunk_index": 25,
+      "retained_row_in_chunk": 1381,
+      "chunk_stamp_s": 59.015,
+      "cell_id": 820,
+      "map_xyz": [
+        2.099801528470531,
+        0.019246361149052663,
+        0.11415402356978865
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0534745564091938,
+          0.013374735195092998,
+          0.054259344861062216
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          236
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.613634643443691,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046514310468739085,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 44201,
+      "chunk_index": 25,
+      "retained_row_in_chunk": 1386,
+      "chunk_stamp_s": 59.015,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0973980873099918,
+        0.02570838342670769,
+        0.1045750273684134
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.052885711727230285,
+          0.02024405272084532,
+          0.04468034865968696
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          237
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6146923158714284,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04651826596368338,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 44215,
+      "chunk_index": 25,
+      "retained_row_in_chunk": 1400,
+      "chunk_stamp_s": 59.015,
+      "cell_id": 779,
+      "map_xyz": [
+        1.96658066329725,
+        -0.04656982278119774,
+        0.11414780505266187
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09249088676195683,
+          -0.014439980056149422,
+          0.05425312634393543
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          324,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.488543895277647,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04604649471693088,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 44754,
+      "chunk_index": 26,
+      "retained_row_in_chunk": 266,
+      "chunk_stamp_s": 59.148,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0107986420761157,
+        -0.029743832976645554,
+        0.11440117640964309
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.045384363834615915,
+          -0.010044632756217886,
+          0.05450649770091665
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          240
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5299717634479264,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046201427112635834,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 44759,
+      "chunk_index": 26,
+      "retained_row_in_chunk": 271,
+      "chunk_stamp_s": 59.148,
+      "cell_id": 780,
+      "map_xyz": [
+        2.063273408579007,
+        -0.022975857555713117,
+        0.11440333073684705
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.006990271693999485,
+          -0.017548242825779627,
+          0.054508652028120615
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5792257568203465,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04638562773719753,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 47485,
+      "chunk_index": 27,
+      "retained_row_in_chunk": 1282,
+      "chunk_stamp_s": 59.217,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1493352614532975,
+        -0.0010724140618697219,
+        0.1139736405441123
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.09577545632691833,
+          -0.01944411907239535,
+          0.05407896183538586
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          234
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.660165332582422,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046688326450262316,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 47490,
+      "chunk_index": 27,
+      "retained_row_in_chunk": 1287,
+      "chunk_stamp_s": 59.217,
+      "cell_id": 820,
+      "map_xyz": [
+        2.064884842113704,
+        0.008246072242460708,
+        0.11397472011302656
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.01688802231433065,
+          0.012107113368617594,
+          0.05408004140430012
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.580916199739114,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046391949674163505,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 48012,
+      "chunk_index": 28,
+      "retained_row_in_chunk": 239,
+      "chunk_stamp_s": 59.344,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9476305972059555,
+        -0.06473081088231071,
+        0.11161627649972772
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11560557477663559,
+          -0.026875320488049973,
+          0.05172159779100128
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          243
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.4716155054401776,
+        "registered_depth_m": 3.4730584621429443,
+        "depth_residual_m": 0.001442956702766729,
+        "association_allowance_m": 0.04598318573897029,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 48013,
+      "chunk_index": 28,
+      "retained_row_in_chunk": 240,
+      "chunk_stamp_s": 59.344,
+      "cell_id": 820,
+      "map_xyz": [
+        2.102395296669981,
+        0.02697388217628167,
+        0.05939552983867524
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.05803935987798841,
+          0.02012786661614685,
+          -0.0004991488700511956
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          314,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6349814616108502,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04659414353342207,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 51313,
+      "chunk_index": 29,
+      "retained_row_in_chunk": 1701,
+      "chunk_stamp_s": 59.414,
+      "cell_id": 779,
+      "map_xyz": [
+        1.966337791719659,
+        -0.00869822198418816,
+        0.10969983333667632
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.08260266825642573,
+          0.022118743503599363,
+          0.049805154627949884
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          319,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4898881278386247,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04605152189260405,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 51318,
+      "chunk_index": 29,
+      "retained_row_in_chunk": 1706,
+      "chunk_stamp_s": 59.414,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9824242720640193,
+        -0.0044961956067109815,
+        0.11269954813707073
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.06597831354761383,
+          0.021868331718515363,
+          0.05280486942834429
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5039539035751783,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04610412523495697,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 51328,
+      "chunk_index": 30,
+      "retained_row_in_chunk": 7,
+      "chunk_stamp_s": 59.548,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0291717147361945,
+        0.007964610633154796,
+        0.09170991624169411
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.017601068657029113,
+          0.021381232824878055,
+          0.03181523753296767
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5550855284723863,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04629534784648626,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 51860,
+      "chunk_index": 30,
+      "retained_row_in_chunk": 539,
+      "chunk_stamp_s": 59.548,
+      "cell_id": 820,
+      "map_xyz": [
+        2.131866198629528,
+        0.032797036526411485,
+        0.11410962518644263
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.08799449513486554,
+          0.017862240734219333,
+          0.05421494647771619
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          314,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6437561271849095,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046626959123963946,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 54612,
+      "chunk_index": 31,
+      "retained_row_in_chunk": 1537,
+      "chunk_stamp_s": 59.616,
+      "cell_id": 779,
+      "map_xyz": [
+        2.022529141432738,
+        -0.03324971496075302,
+        0.11400192765254258
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.03501767298762815,
+          -0.016558275709679913,
+          0.05410724894381614
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.541115436897388,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04624310234481004,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 54617,
+      "chunk_index": 31,
+      "retained_row_in_chunk": 1542,
+      "chunk_stamp_s": 59.616,
+      "cell_id": 779,
+      "map_xyz": [
+        2.019536567717186,
+        -0.028675106066019425,
+        0.1140018714224873
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.03667868172972905,
+          -0.011350244033369579,
+          0.05410719271376086
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          240
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5383113021297556,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0462326154108543,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 54627,
+      "chunk_index": 31,
+      "retained_row_in_chunk": 1552,
+      "chunk_stamp_s": 59.616,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9654977141050658,
+        -0.019036531108401658,
+        0.11400160068199838
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.08617538826481065,
+          0.012381082712217144,
+          0.054106921973271944
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.487604569726717,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046042981816934336,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 55146,
+      "chunk_index": 32,
+      "retained_row_in_chunk": 279,
+      "chunk_stamp_s": 59.681,
+      "cell_id": 819,
+      "map_xyz": [
+        2.035371830819423,
+        -0.0043757480481241146,
+        0.11411439075901386
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.014924825684907108,
+          0.007832667757599053,
+          0.05421971205028742
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.55315748272272,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0462881373198476,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 55151,
+      "chunk_index": 32,
+      "retained_row_in_chunk": 284,
+      "chunk_stamp_s": 59.681,
+      "cell_id": 820,
+      "map_xyz": [
+        2.133050691960092,
+        0.0066682613358298205,
+        0.1141155814814756
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.08215224321300979,
+          -0.007632543239991528,
+          0.054220902772749165
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6448405278826312,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04663101457758545,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 57861,
+      "chunk_index": 33,
+      "retained_row_in_chunk": 1393,
+      "chunk_stamp_s": 59.819,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1321112171171706,
+        0.025440183028845056,
+        0.11366309584730194
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0862642729527826,
+          0.010707545866891289,
+          0.053768417138575504
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.644133145347034,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04662836910062126,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 57871,
+      "chunk_index": 33,
+      "retained_row_in_chunk": 1403,
+      "chunk_stamp_s": 59.819,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1481264281587222,
+        0.03914827941627545,
+        0.07969453327891451
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.10536071670540821,
+          0.01963641630358863,
+          0.019799854570188076
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          313,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6709043063649847,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046728488182184086,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 58424,
+      "chunk_index": 34,
+      "retained_row_in_chunk": 272,
+      "chunk_stamp_s": 59.88,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9868415992218016,
+        -0.0314501384289524,
+        0.11409874924795882
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.06892589341389986,
+          -0.005285665884331367,
+          0.05420407053923238
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.50759055187084,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04611772561213466,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 58429,
+      "chunk_index": 34,
+      "retained_row_in_chunk": 277,
+      "chunk_stamp_s": 59.88,
+      "cell_id": 780,
+      "map_xyz": [
+        2.0576339842956464,
+        -0.0242830476558984,
+        0.11409953704226883
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0012066295932378437,
+          -0.017300581250076424,
+          0.05420485833354239
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5740367105499464,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04636622168504943,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 58434,
+      "chunk_index": 34,
+      "retained_row_in_chunk": 282,
+      "chunk_stamp_s": 59.88,
+      "cell_id": 780,
+      "map_xyz": [
+        2.113505639896625,
+        -0.01721948889403281,
+        0.11410013806214514
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.056933576350801,
+          -0.025427275969112866,
+          0.0542054593534187
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.626479547183657,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04656234798061039,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 58439,
+      "chunk_index": 34,
+      "retained_row_in_chunk": 287,
+      "chunk_stamp_s": 59.88,
+      "cell_id": 781,
+      "map_xyz": [
+        2.153377439257136,
+        -0.01053885251230817,
+        0.11410059833230446
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.0971404044072547,
+          -0.02964654893354948,
+          0.05420591962357802
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          319,
+          234
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.6639060027384662,
+        "registered_depth_m": 3.635059356689453,
+        "depth_residual_m": 0.028846646049013103,
+        "association_allowance_m": 0.04670231584953422,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 61160,
+      "chunk_index": 35,
+      "retained_row_in_chunk": 1301,
+      "chunk_stamp_s": 60.017,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0849518889261263,
+        0.018992777341808577,
+        0.11387887422226961
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.03909737821607158,
+          0.017099362230013456,
+          0.05398419551354317
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          237
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.599792824797473,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04646254468356864,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 61680,
+      "chunk_index": 36,
+      "retained_row_in_chunk": 249,
+      "chunk_stamp_s": 60.081,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9706271854407853,
+        -0.05329171165894697,
+        0.11406226688722243
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09038819405116486,
+          -0.02199886984942678,
+          0.05416758817849599
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.492364653206102,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046060783629332344,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 61685,
+      "chunk_index": 36,
+      "retained_row_in_chunk": 254,
+      "chunk_stamp_s": 60.081,
+      "cell_id": 779,
+      "map_xyz": [
+        2.015220923834049,
+        -0.0484882574190906,
+        0.1140626784332881
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.04613294384475626,
+          -0.02928910343206397,
+          0.05416799972456166
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          324,
+          240
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5342209122082435,
+        "registered_depth_m": 3.5110585689544678,
+        "depth_residual_m": 0.023162343253775752,
+        "association_allowance_m": 0.04621731812576827,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 61695,
+      "chunk_index": 36,
+      "retained_row_in_chunk": 264,
+      "chunk_stamp_s": 60.081,
+      "cell_id": 780,
+      "map_xyz": [
+        2.056937234848134,
+        -0.038851111464053956,
+        0.11406310729630698
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.0033584979401770363,
+          -0.031152424214633816,
+          0.05416842858758054
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5733813272093644,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04636377067524502,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 64973,
+      "chunk_index": 38,
+      "retained_row_in_chunk": 28,
+      "chunk_stamp_s": 60.283,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0345219079087173,
+        0.009395751057472451,
+        0.08467294807388548
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.01206300604332449,
+          0.02133031736442473,
+          0.02477826936515904
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5625376066686267,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04632321721024831,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 64983,
+      "chunk_index": 38,
+      "retained_row_in_chunk": 38,
+      "chunk_stamp_s": 60.283,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0686699083753917,
+        0.018317170033430863,
+        0.0852467632442997
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.023227170747751,
+          0.020800152794486763,
+          0.025352084535573256
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5943964208780432,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0464423631530107,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 64988,
+      "chunk_index": 38,
+      "retained_row_in_chunk": 43,
+      "chunk_stamp_s": 60.283,
+      "cell_id": 820,
+      "map_xyz": [
+        2.086514674062489,
+        0.022979318373947268,
+        0.07423988900772804
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.04166882390727778,
+          0.020523172072942703,
+          0.014345210299001605
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6149485136408903,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04651922409491122,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 68290,
+      "chunk_index": 39,
+      "retained_row_in_chunk": 1576,
+      "chunk_stamp_s": 60.419,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9845263014193661,
+        -0.0038383280550631435,
+        0.10723450909082821
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.06377692360728111,
+          0.021940438977879624,
+          0.04733983038210177
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.507814094250354,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04611856161837706,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 68809,
+      "chunk_index": 40,
+      "retained_row_in_chunk": 306,
+      "chunk_stamp_s": 60.486,
+      "cell_id": 819,
+      "map_xyz": [
+        2.0517050154752465,
+        0.011391109286553742,
+        0.11412433549430534
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.005028285584790316,
+          0.018660412761633136,
+          0.0542296567855789
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5684981514790906,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046345508521097235,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 68814,
+      "chunk_index": 40,
+      "retained_row_in_chunk": 311,
+      "chunk_stamp_s": 60.486,
+      "cell_id": 821,
+      "map_xyz": [
+        2.1525290946073743,
+        0.0227741498900162,
+        0.11412816028773443
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.10522676322253484,
+          0.0026812505401633806,
+          0.05423348157900799
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          234
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6631324397365477,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046699422870136315,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 71548,
+      "chunk_index": 41,
+      "retained_row_in_chunk": 1429,
+      "chunk_stamp_s": 60.62,
+      "cell_id": 780,
+      "map_xyz": [
+        2.0529812469024056,
+        -0.031263774083920254,
+        0.11391961367267012
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.005142634601258838,
+          -0.02278376927364686,
+          0.05402493496394368
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5697254435762886,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046350098361541525,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 72092,
+      "chunk_index": 42,
+      "retained_row_in_chunk": 277,
+      "chunk_stamp_s": 60.686,
+      "cell_id": 820,
+      "map_xyz": [
+        2.068220224401515,
+        -0.004786135263987738,
+        0.11415980890678168
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.016618836095931976,
+          -0.0013424496829019293,
+          0.05426513019805524
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          237
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.583970024641091,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046403370402021915,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 72097,
+      "chunk_index": 42,
+      "retained_row_in_chunk": 282,
+      "chunk_stamp_s": 60.686,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1269903213536643,
+        0.0025275050231715127,
+        0.11416353797086609
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.07520561851856816,
+          -0.010002851254289217,
+          0.05426885926213965
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          235
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6391322451401,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046609666679184626,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 74817,
+      "chunk_index": 43,
+      "retained_row_in_chunk": 1313,
+      "chunk_stamp_s": 60.819,
+      "cell_id": 821,
+      "map_xyz": [
+        2.1614577954366587,
+        0.04227568042099096,
+        0.07365014906739686
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.11904296704838832,
+          0.01908685639279428,
+          0.013755470358670426
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          313,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.68550576571473,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04678309487998823,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 75338,
+      "chunk_index": 44,
+      "retained_row_in_chunk": 252,
+      "chunk_stamp_s": 60.888,
+      "cell_id": 779,
+      "map_xyz": [
+        1.964208897952322,
+        -0.031185265162649613,
+        0.11379476368595332
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09066440859780328,
+          0.00101879937450742,
+          0.05390008497722688
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4864546904994076,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04603868148598981,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 75348,
+      "chunk_index": 44,
+      "retained_row_in_chunk": 262,
+      "chunk_stamp_s": 60.888,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0429872336975747,
+        -0.021212787369016772,
+        0.11379168296657682
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.012086649722595984,
+          -0.010427261357729006,
+          0.053897004257850385
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          321,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5603998030399717,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04631522222879349,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 75353,
+      "chunk_index": 44,
+      "retained_row_in_chunk": 267,
+      "chunk_stamp_s": 60.888,
+      "cell_id": 780,
+      "map_xyz": [
+        2.0582305504554235,
+        -0.01635191174974883,
+        0.11379096936242994
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.003901312252449095,
+          -0.00981743396360983,
+          0.0538962906537035
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5747107770728106,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04636874256642384,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 78617,
+      "chunk_index": 46,
+      "retained_row_in_chunk": 68,
+      "chunk_stamp_s": 61.088,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9439771662868086,
+        -0.05090327175301132,
+        0.11197094342793634
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.1154302915647705,
+          -0.012574352980607592,
+          0.052076264719209904
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          325,
+          243
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4680776073966717,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04596995466906857,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 78622,
+      "chunk_index": 46,
+      "retained_row_in_chunk": 73,
+      "chunk_stamp_s": 61.088,
+      "cell_id": 779,
+      "map_xyz": [
+        1.960828574147293,
+        -0.046923345683381204,
+        0.11373804904902807
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09812820043728673,
+          -0.01324323340068759,
+          0.05384337034030163
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          324,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.48328661451065,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046026833480664116,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 78627,
+      "chunk_index": 46,
+      "retained_row_in_chunk": 78,
+      "chunk_stamp_s": 61.088,
+      "cell_id": 779,
+      "map_xyz": [
+        1.965754533361273,
+        -0.04265486557760824,
+        0.11373803086747403
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09224057878051944,
+          -0.010446644797060398,
+          0.05384335215874759
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.487913811077639,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04604413832112983,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 78632,
+      "chunk_index": 46,
+      "retained_row_in_chunk": 83,
+      "chunk_stamp_s": 61.088,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9546923997229024,
+        -0.03835255818086121,
+        0.11373858098440803
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.10175035228314706,
+          -0.0033441904678870094,
+          0.053843902275681595
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          323,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.477535823859342,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04600532661071989,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 81934,
+      "chunk_index": 47,
+      "retained_row_in_chunk": 1596,
+      "chunk_stamp_s": 61.225,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0734070876210056,
+        0.01935725046094942,
+        0.060356011402201926
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.028069999426265282,
+          0.020536249608939773,
+          0.00046133269347548717
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          244
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6074367253780117,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04649113142678714,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 81938,
+      "chunk_index": 47,
+      "retained_row_in_chunk": 1600,
+      "chunk_stamp_s": 61.225,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9495148127960822,
+        -0.06515877429427863,
+        0.11400229770326287
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11390429337976264,
+          -0.0277913241347204,
+          0.05410761899453643
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          243
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.472559690711758,
+        "registered_depth_m": 3.4730584621429443,
+        "depth_residual_m": 0.0004987714311863733,
+        "association_allowance_m": 0.045986716813403425,
+        "depth_match": true,
+        "backprojected_surface_inside_target": true
+      }
+    },
+    {
+      "observation_row": 81943,
+      "chunk_index": 47,
+      "retained_row_in_chunk": 1605,
+      "chunk_stamp_s": 61.225,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9465152993436865,
+        -0.06025121496536556,
+        0.0987916159598563
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11548299898559365,
+          -0.022260600119908047,
+          0.038896937251129866
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          326,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.4750007522616344,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04599584592215773,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 82460,
+      "chunk_index": 48,
+      "retained_row_in_chunk": 344,
+      "chunk_stamp_s": 61.288,
+      "cell_id": 779,
+      "map_xyz": [
+        2.0288417068958453,
+        -0.04528426520948192,
+        0.11391809569703315
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.03215133567613313,
+          -0.02984221310910813,
+          0.05402341698830671
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          324,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": false,
+        "optical_depth_m": 3.5470571903646286,
+        "registered_depth_m": 3.873058557510376,
+        "depth_residual_m": 0.32600136714574734,
+        "association_allowance_m": 0.046265323379587504,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85203,
+      "chunk_index": 49,
+      "retained_row_in_chunk": 1451,
+      "chunk_stamp_s": 61.422,
+      "cell_id": 819,
+      "map_xyz": [
+        1.9944494462639661,
+        -0.0012656166324487052,
+        0.10507954204628311
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.053527158971409215,
+          0.02176731306938518,
+          0.045184863337556676
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          318,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5178735594493356,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04615618211664607,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85208,
+      "chunk_index": 49,
+      "retained_row_in_chunk": 1456,
+      "chunk_stamp_s": 61.422,
+      "cell_id": 819,
+      "map_xyz": [
+        2.018508633197161,
+        0.005019653252008538,
+        0.06906359247135119
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.028663343886539676,
+          0.021393424272683544,
+          0.009168913762624749
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          317,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.5528937793298048,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04628715111900685,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85737,
+      "chunk_index": 50,
+      "retained_row_in_chunk": 271,
+      "chunk_stamp_s": 61.49,
+      "cell_id": 820,
+      "map_xyz": [
+        2.062733582623259,
+        0.01673115816159694,
+        0.05212568050823996
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.017082905643048138,
+          0.020858491599418747,
+          -0.007768998200486481
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          316,
+          245
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.6002584558256956,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04646428605559437,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85741,
+      "chunk_index": 50,
+      "retained_row_in_chunk": 275,
+      "chunk_stamp_s": 61.49,
+      "cell_id": 778,
+      "map_xyz": [
+        1.9482406257362852,
+        -0.0671296823104076,
+        0.10849519022637977
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.11565890554888969,
+          -0.029349966879978838,
+          0.04860051151765333
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          327,
+          243
+        ],
+        "raw_mask": false,
+        "interior_mask": false,
+        "optical_depth_m": 3.473263249219348,
+        "registered_depth_m": 3.7760584354400635,
+        "depth_residual_m": 0.30279518622071544,
+        "association_allowance_m": 0.045989347989225736,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85742,
+      "chunk_index": 50,
+      "retained_row_in_chunk": 276,
+      "chunk_stamp_s": 61.49,
+      "cell_id": 820,
+      "map_xyz": [
+        2.0923621091473716,
+        0.0244705736416755,
+        0.07321091056664586
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.047702105863420316,
+          0.020397282505754198,
+          0.01331623185791942
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          315,
+          241
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.620793090684842,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04654108170823518,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 85747,
+      "chunk_index": 50,
+      "retained_row_in_chunk": 281,
+      "chunk_stamp_s": 61.49,
+      "cell_id": 820,
+      "map_xyz": [
+        2.1210608546223604,
+        0.031967172458459314,
+        0.08739945510178049
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          0.07736045141920048,
+          0.019950600793652393,
+          0.02750477639305405
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          314,
+          238
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.642835924734039,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.04662351774074672,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 88490,
+      "chunk_index": 51,
+      "retained_row_in_chunk": 1342,
+      "chunk_stamp_s": 61.621,
+      "cell_id": 779,
+      "map_xyz": [
+        2.037213538733358,
+        -0.028776755518845516,
+        0.11398020192737013
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.019671978192820384,
+          -0.01617286486913232,
+          0.05408552321864369
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          322,
+          239
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.554908738331985,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.0462946866847804,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    },
+    {
+      "observation_row": 88495,
+      "chunk_index": 51,
+      "retained_row_in_chunk": 1347,
+      "chunk_stamp_s": 61.621,
+      "cell_id": 779,
+      "map_xyz": [
+        1.9551146075477108,
+        -0.01863719758685175,
+        0.11398077355869574
+      ],
+      "association": {
+        "inside_expanded_target": true,
+        "target_local_xyz": [
+          -0.09607401803110888,
+          0.015541066540114992,
+          0.0540860948499693
+        ],
+        "in_camera": true,
+        "pixel_uv": [
+          320,
+          242
+        ],
+        "raw_mask": true,
+        "interior_mask": true,
+        "optical_depth_m": 3.4778674731975427,
+        "registered_depth_m": null,
+        "depth_residual_m": null,
+        "association_allowance_m": 0.046006566916551944,
+        "depth_match": false,
+        "backprojected_surface_inside_target": false
+      }
+    }
+  ],
+  "continuous_target_clear_winners": [
+    {
+      "candidate_id": "candidate-000008",
+      "source_id": 585,
+      "xy": [
+        2.566980839261389,
+        -0.5086919269350813
+      ],
+      "yaw_rad": 2.094395102393195,
+      "footprint_vertices_xy": [
+        [
+          3.1647307467373196,
+          -0.7640251369029898
+        ],
+        [
+          2.6447307467373204,
+          0.13664128303282674
+        ],
+        [
+          1.9692309317854582,
+          -0.25335871696717277
+        ],
+        [
+          2.4892309317854573,
+          -1.1540251369029892
+        ]
+      ],
+      "legacy_ambiguous_cells": [
+        781
+      ],
+      "legacy_ambiguous_endpoint_rows": [
+        58439
+      ],
+      "minimum_legacy_blocking_endpoint_distance_m": 0.11821491742556789,
+      "minimum_all_ambiguous_endpoint_distance_m": 0.11821491742556789,
+      "nearest_ambiguous_endpoint_row": 58439,
+      "all_ambiguous_endpoint_distances_m": [
+        0.17983458609896563,
+        0.18736164481264217,
+        0.15775126374964932,
+        0.15433224283711855,
+        0.1791728941207521,
+        0.18966943721940965,
+        0.1575987869224107,
+        0.2094704260003467,
+        0.21770882209945797,
+        0.22175583954345235,
+        0.18707559076910063,
+        0.14591763426133475,
+        0.18046059853318275,
+        0.18450523612794034,
+        0.18884418510988565,
+        0.1873234176121329,
+        0.20743321777845103,
+        0.20105531926245634,
+        0.17466940685909227,
+        0.16570067873908412,
+        0.15838742609698608,
+        0.21809771587565352,
+        0.21535165042118865,
+        0.20920286537473143,
+        0.20302883606928523,
+        0.16975205361744738,
+        0.1554699516813124,
+        0.20251091448464675,
+        0.20681620324340289,
+        0.1227091072190869,
+        0.17349792377773054,
+        0.17777271311129927,
+        0.18207898800553257,
+        0.15387045147210543,
+        0.2015351022782652,
+        0.20935821715181702,
+        0.20874879734536667,
+        0.17348801511245893,
+        0.15099836488953755,
+        0.20305202028698988,
+        0.20528506844087657,
+        0.17478221811062244,
+        0.1532725896397369,
+        0.18312162836746848,
+        0.1875257171576189,
+        0.20586819469600626,
+        0.20139220840327443,
+        0.19647073040881802,
+        0.19135718256651868,
+        0.16892542277918288,
+        0.18353333312886744,
+        0.20491212688286053,
+        0.17079762450675606,
+        0.177595620539296,
+        0.1804095698296505,
+        0.17287231505477785,
+        0.15249617045004826,
+        0.12843418250892857,
+        0.17872943804309283,
+        0.174156725821907,
+        0.17619296992488986,
+        0.21332877399063932,
+        0.20892459540872677,
+        0.19634224882799856,
+        0.1665005185424867,
+        0.16397088251555947,
+        0.169428896888553,
+        0.2047955744641906,
+        0.1825551266765849,
+        0.14328008879238852,
+        0.16000678727785256,
+        0.16387074146611702,
+        0.18337313261362131,
+        0.15418382275739273,
+        0.13236521628580322,
+        0.11821491742556789,
+        0.17800283425989671,
+        0.17256498222833594,
+        0.15442802642933584,
+        0.14191588413933365,
+        0.19490655620557917,
+        0.18555873144322654,
+        0.18067388749877644,
+        0.20844331074310585,
+        0.18804303333834926,
+        0.14748899610719368,
+        0.15046470503047682,
+        0.16577552413121277,
+        0.1427242739379594,
+        0.15991346654505345,
+        0.1949188702257626,
+        0.16416612146109855,
+        0.1607541048530967,
+        0.1879584414392771,
+        0.18297945459051856,
+        0.18421308719067653,
+        0.1934700615103343,
+        0.18409087789262957,
+        0.1728439908401892,
+        0.17859381861580503,
+        0.1503923735454863,
+        0.2057097717693963,
+        0.19912338169238009,
+        0.18715336774758096,
+        0.17177422795959763,
+        0.1790416349017152,
+        0.171184507181536,
+        0.1605023803720389,
+        0.21033296071711305
+      ],
+      "minimum_environment_endpoint_distance_m": 1.547978265625347,
+      "environment_cells": 0,
+      "ground_supported_cells": 0,
+      "ground_required_cells": 107,
+      "frozen_confirmed": false
+    },
+    {
+      "candidate_id": "candidate-000009",
+      "source_id": 705,
+      "xy": [
+        2.621884649829055,
+        -0.30378811636741565
+      ],
+      "yaw_rad": -2.617993877991494,
+      "footprint_vertices_xy": [
+        [
+          2.877217859796963,
+          0.2939617911085155
+        ],
+        [
+          1.9765514398611468,
+          -0.2260382088914848
+        ],
+        [
+          2.3665514398611474,
+          -0.9015380238433468
+        ],
+        [
+          3.2672178597969634,
+          -0.3815380238433465
+        ]
+      ],
+      "legacy_ambiguous_cells": [
+        781
+      ],
+      "legacy_ambiguous_endpoint_rows": [
+        58439
+      ],
+      "minimum_legacy_blocking_endpoint_distance_m": 0.09821491742556854,
+      "minimum_all_ambiguous_endpoint_distance_m": 0.09821491742556854,
+      "nearest_ambiguous_endpoint_row": 58439,
+      "all_ambiguous_endpoint_distances_m": [
+        0.1598345860989665,
+        0.16736164481264304,
+        0.13775126374965008,
+        0.1343322428371193,
+        0.15917289412075286,
+        0.1696694372194103,
+        0.13759878692241123,
+        0.18947042600034747,
+        0.19770882209945884,
+        0.20175583954345322,
+        0.1670755907691014,
+        0.1259176342613354,
+        0.1604605985331835,
+        0.1645052361279411,
+        0.16884418510988652,
+        0.16732341761213376,
+        0.1874332177784518,
+        0.181055319262457,
+        0.15466940685909303,
+        0.14570067873908488,
+        0.13838742609698684,
+        0.1980977158756544,
+        0.1953516504211894,
+        0.1892028653747322,
+        0.183028836069286,
+        0.14975205361744803,
+        0.13546995168131315,
+        0.1825109144846475,
+        0.18681620324340364,
+        0.10270910721908755,
+        0.1534979237777313,
+        0.15777271311130014,
+        0.16207898800553333,
+        0.1338704514721063,
+        0.18153510227826608,
+        0.1893582171518179,
+        0.18874879734536743,
+        0.15348801511245957,
+        0.1309983648895382,
+        0.18305202028699075,
+        0.18528506844087744,
+        0.1547822181106232,
+        0.13327258963973754,
+        0.16312162836746924,
+        0.16752571715761977,
+        0.18586819469600713,
+        0.1813922084032752,
+        0.17647073040881867,
+        0.17135718256651944,
+        0.14892542277918341,
+        0.1635333331288682,
+        0.1849121268828613,
+        0.1507976245067567,
+        0.15759562053929665,
+        0.16040956982965138,
+        0.15287231505477872,
+        0.13249617045004902,
+        0.10843418250892928,
+        0.15872943804309358,
+        0.15415672582190787,
+        0.1561929699248905,
+        0.1933287739906402,
+        0.18892459540872752,
+        0.17634224882799931,
+        0.14650051854248736,
+        0.14397088251556023,
+        0.14942889688855376,
+        0.18479557446419148,
+        0.16255512667658567,
+        0.12328008879238916,
+        0.1400067872778531,
+        0.14387074146611767,
+        0.16337313261362207,
+        0.1341838227573935,
+        0.11236521628580398,
+        0.09821491742556854,
+        0.15800283425989747,
+        0.1525649822283368,
+        0.1344280264293367,
+        0.12191588413933441,
+        0.17490655620557993,
+        0.1655587314432272,
+        0.1606738874987771,
+        0.1884433107431066,
+        0.1680430333383499,
+        0.12748899610719433,
+        0.13046470503047758,
+        0.14577552413121342,
+        0.12272427393796004,
+        0.139913466545054,
+        0.17491887022576347,
+        0.1441661214610993,
+        0.14075410485309736,
+        0.16795844143927796,
+        0.16297945459051932,
+        0.1642130871906773,
+        0.17347006151033517,
+        0.16409087789263033,
+        0.15284399084019007,
+        0.1585938186158059,
+        0.13039237354548705,
+        0.18570977176939707,
+        0.17912338169238085,
+        0.1671533677475816,
+        0.1517742279595985,
+        0.15904163490171586,
+        0.15118450718153664,
+        0.14050238037203966,
+        0.1903329607171138
+      ],
+      "minimum_environment_endpoint_distance_m": 1.548184643301941,
+      "environment_cells": 0,
+      "ground_supported_cells": 0,
+      "ground_required_cells": 105,
+      "frozen_confirmed": false
+    },
+    {
+      "candidate_id": "candidate-000010",
+      "source_id": 584,
+      "xy": [
+        2.5432838607602397,
+        -0.519742009485302
+      ],
+      "yaw_rad": 1.919862177193762,
+      "footprint_vertices_xy": [
+        [
+          3.0876144573960915,
+          -0.8749943163969638
+        ],
+        [
+          2.7319135083373967,
+          0.102286009220381
+        ],
+        [
+          1.998953264124388,
+          -0.1644897025736402
+        ],
+        [
+          2.3546542131830828,
+          -1.141770028190985
+        ]
+      ],
+      "legacy_ambiguous_cells": [
+        781
+      ],
+      "legacy_ambiguous_endpoint_rows": [
+        58439
+      ],
+      "minimum_legacy_blocking_endpoint_distance_m": 0.09185029925450094,
+      "minimum_all_ambiguous_endpoint_distance_m": 0.09185029925450094,
+      "nearest_ambiguous_endpoint_row": 58439,
+      "all_ambiguous_endpoint_distances_m": [
+        0.11794415478260456,
+        0.12559182787974582,
+        0.10982329476111574,
+        0.10719720373185493,
+        0.12660528532152748,
+        0.14933790035492678,
+        0.12829158143901997,
+        0.1481653000886126,
+        0.15659968744403355,
+        0.16077485993875038,
+        0.1482922008717833,
+        0.11333788577804338,
+        0.11857966581746612,
+        0.12268756437109114,
+        0.12710066561296485,
+        0.13205025603499487,
+        0.15553341776477425,
+        0.15328478833934844,
+        0.11270789982785327,
+        0.10851407761451914,
+        0.11071737758161893,
+        0.1569902060995521,
+        0.15831929078156493,
+        0.15615060546008142,
+        0.15397318098226676,
+        0.13800121992830494,
+        0.10238562523764705,
+        0.14101778681001675,
+        0.1454164141789755,
+        0.09457865571856938,
+        0.11152467237433311,
+        0.11585493787821875,
+        0.12022470670693877,
+        0.10598819295678008,
+        0.1455199824964718,
+        0.1524965690773561,
+        0.15602762363889044,
+        0.14216077836556118,
+        0.13002866704184102,
+        0.1417414771445815,
+        0.1476956826082858,
+        0.13120654518974284,
+        0.12189605930858449,
+        0.12127378546739932,
+        0.125750299437748,
+        0.15499284842163807,
+        0.15341468868561114,
+        0.15167947671132742,
+        0.14987646936615218,
+        0.1420133446439218,
+        0.12892075664993574,
+        0.14682429223913307,
+        0.13816328542665113,
+        0.14505762536652012,
+        0.12188052245964187,
+        0.12256834147687945,
+        0.11098073087729021,
+        0.10212834784331859,
+        0.13976860518683298,
+        0.11218668642536309,
+        0.14453765894157677,
+        0.157551253237719,
+        0.1559979661039983,
+        0.15171872673379738,
+        0.13992999200195022,
+        0.11526182297583387,
+        0.12058406968830226,
+        0.14812374390843974,
+        0.13800201815172664,
+        0.11497185418649891,
+        0.13293300979982303,
+        0.14033688204429096,
+        0.1291587300652317,
+        0.111681170687851,
+        0.09920951307637471,
+        0.09185029925450094,
+        0.143003870439545,
+        0.1141800209999756,
+        0.10344183470676005,
+        0.09822997097408925,
+        0.1512336849941508,
+        0.14793777255890128,
+        0.1462154896335799,
+        0.1558972230063458,
+        0.14723173948515822,
+        0.12344443274688943,
+        0.1067127634858066,
+        0.12638156803234968,
+        0.1131535848584383,
+        0.13871608154353365,
+        0.13714846925105428,
+        0.1195757553621335,
+        0.1189299629298397,
+        0.12619131745099016,
+        0.12351564995267161,
+        0.12584193193365611,
+        0.1336682509792151,
+        0.1472949177371201,
+        0.11095401652297637,
+        0.11668505666623515,
+        0.10179402036818141,
+        0.15492086552359674,
+        0.15259836069047872,
+        0.1484777518910324,
+        0.10977588641381825,
+        0.1456168706185531,
+        0.14284582016705483,
+        0.1144426702870599,
+        0.15205022626478482
+      ],
+      "minimum_environment_endpoint_distance_m": 1.556328634066747,
+      "environment_cells": 0,
+      "ground_supported_cells": 0,
+      "ground_required_cells": 106,
+      "frozen_confirmed": false
+    },
+    {
+      "candidate_id": "candidate-000035",
+      "source_id": 623,
+      "xy": [
+        2.3955626978084084,
+        -0.49369478283526264
+      ],
+      "yaw_rad": 0.8726646259971647,
+      "footprint_vertices_xy": [
+        [
+          2.3600704735878093,
+          -1.1427250610348816
+        ],
+        [
+          3.0285695876618104,
+          -0.3460388401911445
+        ],
+        [
+          2.4310549220290074,
+          0.15533549536435626
+        ],
+        [
+          1.7625558079550063,
+          -0.6413507254793808
+        ]
+      ],
+      "legacy_ambiguous_cells": [
+        781
+      ],
+      "legacy_ambiguous_endpoint_rows": [
+        58439
+      ],
+      "minimum_legacy_blocking_endpoint_distance_m": 0.10609131707670333,
+      "minimum_all_ambiguous_endpoint_distance_m": 0.10609131707670333,
+      "nearest_ambiguous_endpoint_row": 58439,
+      "all_ambiguous_endpoint_distances_m": [
+        0.23364901138283878,
+        0.2400147766970092,
+        0.18453179854839963,
+        0.17985950980369703,
+        0.21315885605961737,
+        0.19860793628314743,
+        0.1477173352118628,
+        0.25866318742516614,
+        0.26563165523678456,
+        0.2689740157982685,
+        0.1931988790118655,
+        0.14353582748124283,
+        0.23417701572599003,
+        0.2375977293223639,
+        0.24126734865575672,
+        0.2259028543646895,
+        0.23755391670109172,
+        0.22361842522551523,
+        0.22928668896089865,
+        0.20999988114079782,
+        0.184602555635632,
+        0.2659846529839355,
+        0.25486703609728534,
+        0.24143379141780008,
+        0.22794507156936727,
+        0.1635870174440507,
+        0.19261237146951982,
+        0.2528950901116441,
+        0.25653595058530765,
+        0.1136580076433934,
+        0.22827777680221084,
+        0.2318930075785931,
+        0.2355347623627777,
+        0.18091112093213113,
+        0.24029358734979112,
+        0.24907815575098557,
+        0.2403685815373543,
+        0.16615155903963286,
+        0.12529078668365434,
+        0.25276462179612624,
+        0.24680589189812008,
+        0.1914536955718419,
+        0.14785726616123196,
+        0.2364688326188159,
+        0.2401934116569775,
+        0.23411232609510368,
+        0.2243326051093958,
+        0.21357947441622582,
+        0.20240683145157112,
+        0.15330448575614086,
+        0.22115365155417088,
+        0.2474483534628834,
+        0.16627841211320893,
+        0.17227326271219867,
+        0.2260256880394883,
+        0.20296828887706353,
+        0.16712065633679596,
+        0.11527271426523467,
+        0.18595529625685514,
+        0.22886862273440167,
+        0.1692586251671766,
+        0.2505551342132061,
+        0.24093318582708445,
+        0.2131322189957322,
+        0.15042565595291724,
+        0.19172866752950468,
+        0.1969616139116237,
+        0.24455333399150014,
+        0.2004504248640685,
+        0.13272302847033646,
+        0.14550906662748242,
+        0.14205209771395322,
+        0.22022365642609065,
+        0.17060046037155074,
+        0.13234065712298382,
+        0.10609131707670333,
+        0.1774908954392065,
+        0.21860512535316823,
+        0.18753194072818302,
+        0.16177003050105865,
+        0.20995365257878085,
+        0.18952934415622913,
+        0.17885623175067256,
+        0.2397458070311621,
+        0.19807322005846506,
+        0.12815437196717494,
+        0.16967753954239095,
+        0.1750233036775911,
+        0.1347039148441237,
+        0.13384993250786414,
+        0.23773156872006396,
+        0.18379404754787332,
+        0.17524150007111372,
+        0.24055548401310267,
+        0.23020480382787378,
+        0.2291750262691582,
+        0.24041458215956313,
+        0.18656900513095453,
+        0.2271501402733348,
+        0.2326024192160301,
+        0.1791573020466336,
+        0.23379794409044719,
+        0.21940763123957752,
+        0.19305736473116375,
+        0.2268593489373868,
+        0.1753353970063749,
+        0.1581696033449932,
+        0.1833549294847021,
+        0.2527639417118588
+      ],
+      "minimum_environment_endpoint_distance_m": 1.5115449761692277,
+      "environment_cells": 0,
+      "ground_supported_cells": 0,
+      "ground_required_cells": 107,
+      "frozen_confirmed": false
+    },
+    {
+      "candidate_id": "candidate-000067",
+      "source_id": 622,
+      "xy": [
+        2.3510269461435027,
+        -0.43009113786626596
+      ],
+      "yaw_rad": 0.34906585039886595,
+      "footprint_vertices_xy": [
+        [
+          1.9957746392318412,
+          -0.974421734502118
+        ],
+        [
+          2.9730549648491857,
+          -0.6187207854434225
+        ],
+        [
+          2.7062792530551643,
+          0.11423945876958608
+        ],
+        [
+          1.7289989274378197,
+          -0.24146149028910946
+        ]
+      ],
+      "legacy_ambiguous_cells": [
+        780,
+        781
+      ],
+      "legacy_ambiguous_endpoint_rows": [
+        23405,
+        44759,
+        58429,
+        58434,
+        58439,
+        61695,
+        71548,
+        75353
+      ],
+      "minimum_legacy_blocking_endpoint_distance_m": 0.07185029925450076,
+      "minimum_all_ambiguous_endpoint_distance_m": 0.07185029925450076,
+      "nearest_ambiguous_endpoint_row": 58439,
+      "all_ambiguous_endpoint_distances_m": [
+        0.09716948978181855,
+        0.10494132972297132,
+        0.08982329476111567,
+        0.08719720373185486,
+        0.10660528532152741,
+        0.12933790035492654,
+        0.10829158143901979,
+        0.12779415932102478,
+        0.13629990487346555,
+        0.14051928764828525,
+        0.12829220087178328,
+        0.0933378857780432,
+        0.09781658390606535,
+        0.10199270669567528,
+        0.10647271119511398,
+        0.11205025603499486,
+        0.13553341776477423,
+        0.13328478833934831,
+        0.09183331202566403,
+        0.08851407761451907,
+        0.0907173775816188,
+        0.13668920788728744,
+        0.13831929078156469,
+        0.1361506054600813,
+        0.13397318098226663,
+        0.1180012199283047,
+        0.08238562523764698,
+        0.12054857388077866,
+        0.12499397168163018,
+        0.07457865571856931,
+        0.09063295645915631,
+        0.09504677962156222,
+        0.09949316500268601,
+        0.08598819295678001,
+        0.12551998249647178,
+        0.13249656907735607,
+        0.13602762363889043,
+        0.12216077836556105,
+        0.11002866704184078,
+        0.12140585814349347,
+        0.1276956826082858,
+        0.11120654518974271,
+        0.10189605930858425,
+        0.10054316334401792,
+        0.10509049209898286,
+        0.13499284842163806,
+        0.13341468868561102,
+        0.1316794767113273,
+        0.12987646936615205,
+        0.12201334464392155,
+        0.10892075664993567,
+        0.12682429223913294,
+        0.118163285426651,
+        0.12505762536652,
+        0.1018805224596418,
+        0.10256834147687938,
+        0.09098073087729003,
+        0.08212834784331846,
+        0.11976860518683297,
+        0.09129608027542069,
+        0.12453765894157665,
+        0.13755125323771888,
+        0.13599796610399828,
+        0.13171872673379725,
+        0.11992999200194998,
+        0.09526182297583374,
+        0.10058406968830214,
+        0.1281237439084396,
+        0.1180020181517265,
+        0.09497185418649873,
+        0.11293300979982279,
+        0.12033688204429083,
+        0.10915873006523158,
+        0.09168117068785087,
+        0.07920951307637453,
+        0.07185029925450076,
+        0.12300387043954486,
+        0.09418002099997558,
+        0.08344183470675992,
+        0.07822997097408918,
+        0.13123368499415067,
+        0.12793777255890126,
+        0.12621548963357976,
+        0.13589722300634577,
+        0.1272317394851581,
+        0.10344443274688925,
+        0.08671276348580653,
+        0.10638156803234955,
+        0.09315358485843805,
+        0.11871608154353341,
+        0.11714846925105427,
+        0.09957575536213337,
+        0.09892996292983958,
+        0.10553926372544875,
+        0.10351564995267148,
+        0.10584193193365599,
+        0.11366825097921507,
+        0.12729491773711998,
+        0.09024948652903647,
+        0.09588697783738082,
+        0.08179402036818134,
+        0.1349208655235966,
+        0.1325983606904786,
+        0.12847775189103228,
+        0.08883323645084779,
+        0.12561687061855298,
+        0.12284582016705459,
+        0.09444267028705983,
+        0.1320502262647848
+      ],
+      "minimum_environment_endpoint_distance_m": 1.3139410334185677,
+      "environment_cells": 0,
+      "ground_supported_cells": 0,
+      "ground_required_cells": 106,
+      "frozen_confirmed": false
+    }
+  ],
+  "total_physical_uncertainty_radius_m": null,
+  "radius_status": "NOT_ESTABLISHED_FROM_RECORDED_PUBLIC_TF_SOURCE_TIMING",
+  "note": "Distances are not authorization to unblock. No proposed v1.3 state or score is produced."
+}

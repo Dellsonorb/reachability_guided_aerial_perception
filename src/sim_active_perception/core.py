@@ -93,7 +93,7 @@ def assess_candidates(field, belief, catalog, *, task=None, operational=None, ev
             raise ValueError('provided task must match the requested exact winner anchors')
     if task.anchor_semantics == 'exact-validated-winner-v1.2':
         _check_exact_catalog(task, catalog)
-    expected = 'v1' if operational is None else 'object-aware-v1.1'
+    expected = 'v1' if operational is None else operational.operational_semantics
     if task.operational_semantics != expected:
         raise ValueError('task and exact candidates must use the same operational semantics')
     if operational is not None:
@@ -123,6 +123,10 @@ def assess_candidates(field, belief, catalog, *, task=None, operational=None, ev
                                 mean_unknown_score=float(np.mean(belief.unknown_score.ravel()[cells])) if len(cells) else None)
         if exact is not None:
             record['operational'] = asdict(exact)
+        if operational is not None and operational.ambiguous_endpoints is not None:
+            from operational_gating import ambiguous_footprint_diagnostics
+            record['ambiguous_subcell'] = asdict(ambiguous_footprint_diagnostics(
+                operational, (candidate['x'], candidate['y']), candidate['yaw'], task.footprint))
         assessments.append(record)
     return assessments
 

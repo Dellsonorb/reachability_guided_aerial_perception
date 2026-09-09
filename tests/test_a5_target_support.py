@@ -151,7 +151,7 @@ class TargetSupportTests(unittest.TestCase):
         np.testing.assert_array_equal(reference['depth_raw'], original)
         np.testing.assert_array_equal(values['depth_raw'], original)
 
-    def make_adapter(self, directory):
+    def make_adapter(self, directory, revision='v1.1'):
         statuses = []
         config = self.config
 
@@ -192,8 +192,17 @@ class TargetSupportTests(unittest.TestCase):
             CvBridge=lambda: SimpleNamespace(imgmsg_to_cv2=lambda message, desired_encoding: message.data))
         with patch.object(self.module, '_runtime_interfaces', return_value=interfaces), \
                 patch.object(self.module, '_load_config', return_value=config):
-            adapter = self.module.build_object_aware_adapter(Parent, SimpleNamespace(sim_root=SIM))()
+            adapter = self.module.build_object_aware_adapter(
+                Parent, SimpleNamespace(sim_root=SIM, operational_gating=revision))()
         return adapter, statuses
+
+    def test_v13_revision_reaches_initial_payload_even_without_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            adapter, _ = self.make_adapter(directory, revision='v1.3')
+            self.assertEqual(adapter._operational_init['operational_gating'], 'v1.3')
+            adapter._publish_status('AIR_HANDOFF', target_map=self.target, observation_stamp=10.)
+            self.assertEqual(adapter._operational_init['operational_gating'], 'v1.3')
+            self.assertEqual(adapter._operational_init['target_reference_status'], 'UNAVAILABLE')
 
     def test_missing_reference_preserves_handoff_and_blocks_without_waiting(self):
         with tempfile.TemporaryDirectory() as directory:
