@@ -52,7 +52,7 @@ starts solely to obtain a successful E2E. Record each purpose before launch.
 
 ## Run ledger
 
-**1/6 used.** Start 1: `launch-01-natural-latest`, development slot 4
+**5/6 completed; batch stopped, no sixth start.** Start 1: `launch-01-natural-latest`, development slot 4
 (Easy/Ours), complete normal aerial pipeline, latest production implementation
 before clearance changes; native physics trace enabled, no diagnostic motions.
 AGENT `7320b9e`, SIM `625b84c`: three observation windows, program-selected
@@ -99,3 +99,73 @@ the actual attachment still requires fresh real grasp confirmation/measured TCP.
 Check each actual retimed arm command using the controller's cubic/quintic
 curve sampled at the explicit SIM1ms step, with bounded wall time and no PASS
 for incomplete traversal. Preserve MoveIt's collision-aware path generation.
+
+### Start 2, declared before invocation
+
+`launch-02-source624-clearance`: development slot6, archived Moderate/Generic
+handoff from `operational-batch/launch-09-moderate-generic`, explicitly
+conditioned on arrival at source624. AGENT `7da6fde`, installed SIM `1f47fe4`.
+Enable full robot, integrated SIM velocity, chassis-clearance-v1 and native
+diagnostic trace. Use fresh D435, bounded whole-chain search and actual physical
+gates. Purpose: determine whether insufficient-clearance branches are rejected
+before dangerous approach, or a genuinely feasible alternative exists. This
+is not a natural aerial result or a new Generic/Ours effectiveness comparison.
+This invocation consumes start2 of6 even if startup fails.
+
+Start2 result: fresh D435 refinement and checked camera motion succeed. All
+six bounded grasp IK branches reject (`NO_IK_SOLUTION`, -31). No pregrasp,
+descent or physical closure is sent; the local task remains a failure. This
+does not prove that every possible grasp at this station is impossible.
+
+### Start 3, declared before invocation
+
+`launch-03-source664-clearance`: development slot5, archived Moderate/Ours
+handoff from `operational-batch/launch-08-moderate-ours`, explicitly conditioned
+on arrival at source664. Same AGENT `7da6fde` and SIM `1f47fe4`, flags and
+physical gates as start2. Purpose: test whether another recorded station can
+complete actual manipulation under the new shared full-chain clearance checks;
+not a retry of source624, nor evidence of policy superiority. This invocation
+consumes start3 of6 even if startup fails.
+
+Start3 remains a valid failure: actual camera, refined pregrasp/D_exec, descent
+and contact-confirmed grip pass; loaded lift checking times out after60s before
+any lift command. Native transport-only diagnosis confirms per-sample TCP
+reconnection overhead. No timeout or sampling rule is relaxed.
+
+### Start 4, declared before invocation
+
+`launch-04-source664-transport`: same slot5/archived source664/arrival condition
+as start3, AGENT `7da6fde`, installed SIM `fbb191b`. This single engineering
+contrast changes only the serial read-only validity proxy to persistent
+transport. It retains the exact same geometry, branch set, curve sampling,
+60s check timeout and all physical criteria. Purpose: test actual loaded-lift
+checking/runtime completion after a measured transport optimization. Preserve
+start3's failure, regardless of outcome. It consumes start4 of6; do not retry
+this station again just to get success. Reserve one later natural E2E, with
+no archived candidate or conditioned arrival.
+
+Start4 completes actual pregrasp, descent, real grip/attachment, loaded lift
+and retention; physical target rises149.139mm, TCP149.731mm. Loaded command
+checks18,152states before dispatch, without extending the60s guard. This is a
+single local engineering contrast, not general reliability or policy evidence.
+
+### Start 5, declared before invocation: final natural E2E
+
+`launch-05-natural-clearance`, slot4 Easy/Ours, AGENT `7da6fde`, installed SIM
+`fbb191b`. Same normal initial pose, active perception and three-window budget.
+Enable integrated SIM velocity, full robot and shared chassis-clearance-v1;
+retain native diagnostic logs. **No replay, arrival conditioning, candidate
+override or manual station.** Existing confirmed exact winners must pass the
+common bounded execution screen; record their actual selection or rejection.
+This is the sole final natural E2E after the substantive shared revision and
+local validation. Preserve its outcome; do not repeat a valid failure to win.
+It consumes start5 of6. Start6 remains unused unless a genuine pre-task startup
+invalidity requires the single remaining engineering allowance.
+
+Start5 result: natural complete aerial-to-Ground retrieval passes. Program
+chooses source585, rank1, after the common whole-chain preview; actual arrival
+and D435 trigger revalidation before execution. Target/TCP rise148.951/149.480mm
+and fresh real grasp persists through the original0.829sim-second retention
+interval. Allfive invocations are VALID_TRIAL; preserve three failures and two
+successes as development results, not a policy success-rate estimate. Stop at
+this checkpoint with one unused startup allowance and no formal matrix.

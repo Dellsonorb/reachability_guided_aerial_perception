@@ -1,0 +1,25 @@
+{
+  "scope": "transport only; not MoveIt collision timing or correctness",
+  "results": [
+    {
+      "persistent": false,
+      "calls": 300,
+      "connections": 300,
+      "mean_s": 0.0005033342297732209,
+      "median_s": 0.0004460734926396981,
+      "maximum_s": 0.0013674830261152238,
+      "response_mismatches": 0
+    },
+    {
+      "persistent": true,
+      "calls": 300,
+      "connections": 1,
+      "mean_s": 0.00011877732002176345,
+      "median_s": 0.00011450400052126497,
+      "maximum_s": 0.0004179270181339234,
+      "response_mismatches": 0
+    }
+  ],
+  "original_check_samples_wall_guard_s": 60,
+  "no_gazebo_start": true
+}
