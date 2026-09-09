@@ -56,3 +56,20 @@ No online launches at config freeze. Each attempt's unique directory under
 outcome and actual observations. The final report lists every launch, including
 invalid ones and any reserves. This ledger is a development note, not a new
 artifact/provenance system.
+
+## Development revision after the two known regressions
+
+Launch01: wrapper preflight rejected missing PX4 path before SIM start; counted
+against the cap. Launch02/03: v1.3 Moderate/Hard both valid three-window
+no-confirmation failures, preserved. Moderate actual ground points were lost
+only through coarse AMBIGUOUS suppression; see `moderate-ground-diagnosis.json`.
+
+The shared v1.4 repair separates positive measured ground presence and negative
+blocking; design is `docs/superpowers/specs/2026-09-09-v14-ground-presence.md`.
+`configs/dev_operational_batch_v14.json` keeps all seeds/order/common settings
+and the SAME total budget. Offline old/new replays keep all blockers and A4
+scores unchanged; confirmation becomes Moderate 0/3/3, Hard 0/0/1.
+
+Allocate reserve launches04/05 to one online Moderate and one Hard repair
+regression. Launches06–11 then execute original paired slots03–08 on v1.4.
+Only launch12 remains for a justified issue. No outcome will erase launches02/03.

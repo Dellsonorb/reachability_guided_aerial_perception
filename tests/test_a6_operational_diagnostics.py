@@ -80,6 +80,77 @@ class OperationalDiagnosticsTests(unittest.TestCase):
         self.assertEqual(result['ground_votes_sum'], 6)
         self.assertFalse(result['occupied_class_cell_counts_exclusive'])
 
+    def test_subcell_blockers_use_saved_intersections_and_fallback_not_coarse_cells(self):
+        for coarse, intersections, fallback, blocked in (
+                (3, [], [], False), (0, [2], [], True), (0, [], [17], True)):
+            with self.subTest(coarse=coarse, intersections=intersections, fallback=fallback):
+                decision, summary, arrays = inputs()
+                candidate = decision['assessments'][2]
+                candidate['operational']['ambiguous_cells'] = coarse
+                candidate['ambiguous_subcell'] = dict(
+                    intersecting_endpoint_indices=intersections,
+                    legacy_fallback_cell_ids=fallback)
+                report = module.describe_round(decision, summary, arrays)
+                self.assertIs(report['candidates'][2]['ambiguous_blocked'], blocked)
+                self.assertEqual(report['blocked_causes']['ambiguous']['ids'],
+                                 ['ambiguous'] if blocked else [])
+                self.assertEqual(report['candidates'][2]['ambiguous_cells'], coarse)
+
+    def test_v13_missing_sidecar_is_unknown_even_with_zero_coarse_cells(self):
+        for source in ('decision', 'summary'):
+            for coarse in (0, 1):
+                with self.subTest(source=source, coarse=coarse):
+                    decision, summary, arrays = inputs()
+                    decision.pop('operational_semantics')
+                    summary.pop('operational_semantics')
+                    (decision if source == 'decision' else summary)[
+                        'operational_semantics'] = 'object-aware-v1.3'
+                    decision['assessments'][2]['operational']['ambiguous_cells'] = coarse
+                    report = module.describe_round(decision, summary, arrays)
+                    self.assertIsNone(report['candidates'][2]['ambiguous_blocked'])
+                    self.assertIsNone(report['blocked_causes']['ambiguous']['count'])
+                    self.assertIn('ambiguous', report['blocked_causes']['ambiguous']['unavailable_ids'])
+                    self.assertIn('candidate:ambiguous:ambiguous_blocked', report['unavailable'])
+
+    def test_incomplete_subcell_evidence_cannot_establish_clearance(self):
+        for sidecar in (None, {}, dict(intersecting_endpoint_indices=[]),
+                        dict(legacy_fallback_cell_ids=[]),
+                        dict(intersecting_endpoint_indices=None, legacy_fallback_cell_ids=[])):
+            with self.subTest(sidecar=sidecar):
+                decision, summary, arrays = inputs()
+                decision['assessments'][2]['ambiguous_subcell'] = sidecar
+                report = module.describe_round(decision, summary, arrays)
+                self.assertIsNone(report['candidates'][2]['ambiguous_blocked'])
+                self.assertEqual(report['blocked_causes']['ambiguous']['unavailable_ids'], ['ambiguous'])
+
+    def test_empty_summary_semantics_defer_to_recorded_v13_decision(self):
+        for summary_semantics in (None, ''):
+            with self.subTest(summary_semantics=summary_semantics):
+                decision, summary, arrays = inputs()
+                decision['operational_semantics'] = 'object-aware-v1.3'
+                summary['operational_semantics'] = summary_semantics
+                report = module.describe_round(decision, summary, arrays)
+                self.assertIsNone(report['candidates'][0]['ambiguous_blocked'])
+                self.assertEqual(report['operational_semantics'], 'object-aware-v1.3')
+                self.assertIsNone(report['blocked_causes']['ambiguous']['count'])
+
+    def test_v14_missing_ambiguity_sidecar_remains_unknown(self):
+        decision, summary, arrays = inputs()
+        decision['operational_semantics'] = summary['operational_semantics'] = 'object-aware-v1.4'
+        report = module.describe_round(decision, summary, arrays)
+        self.assertIsNone(report['candidates'][0]['ambiguous_blocked'])
+        self.assertIsNone(report['blocked_causes']['ambiguous']['count'])
+
+    def test_recorded_subcell_hit_establishes_blocking_with_other_list_missing(self):
+        for sidecar in (dict(intersecting_endpoint_indices=[0]),
+                        dict(legacy_fallback_cell_ids=[17])):
+            with self.subTest(sidecar=sidecar):
+                decision, summary, arrays = inputs()
+                candidate = decision['assessments'][0]
+                candidate['ambiguous_subcell'] = sidecar
+                report = module.describe_round(decision, summary, arrays)
+                self.assertTrue(report['candidates'][0]['ambiguous_blocked'])
+
     def test_missing_reference_is_explicit_and_does_not_infer_target_alias(self):
         decision, summary, arrays = inputs()
         summary['association_status'] = 'UNAVAILABLE'
@@ -176,6 +247,24 @@ class OperationalDiagnosticsTests(unittest.TestCase):
         self.assertEqual(result['raw_grid_blocked_exact']['count'], 34)
         self.assertEqual(result['objectaware_blocked_exact']['count'], 34)
         self.assertEqual(result['representative_only_blocked']['count'], 1)
+
+    def test_saved_v13_natural_coarse_aliases_are_not_ambiguous_blockers(self):
+        directory = ROOT / 'outputs/a6/v13-development/natural-attempt-04'
+        if not (directory / 'decision.json').is_file():
+            self.skipTest('local natural-v1.3 regression artifacts are not present')
+        decision = json.loads((directory / 'decision.json').read_text())
+        summary = json.loads((directory / 'operational_summary.json').read_text())
+        with np.load(directory / 'operational_evidence.npz', allow_pickle=False) as arrays:
+            result = module.describe_round(decision, summary, arrays)
+        self.assertEqual(result['blocked_causes']['ambiguous']['count'], 27)
+        by_id = {row['candidate_id']: row for row in result['candidates']}
+        for candidate_id in ('candidate-000000', 'candidate-000012', 'candidate-000033',
+                             'candidate-000052', 'candidate-000085'):
+            self.assertGreater(by_id[candidate_id]['ambiguous_cells'], 0)
+            self.assertFalse(by_id[candidate_id]['ambiguous_blocked'])
+        self.assertTrue(by_id['candidate-000033']['operational_blocked'])
+        self.assertTrue(by_id['candidate-000033']['target_collision'])
+        self.assertEqual(result['confirmed']['ids'], ['candidate-000008'])
 
     def write_attempt(self, directory, method='ours', rounds=True):
         (directory / 'data').mkdir(parents=True)

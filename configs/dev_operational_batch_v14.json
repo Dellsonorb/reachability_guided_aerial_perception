@@ -1,0 +1,284 @@
+{
+  "protocol": "docs/DEV_OPERATIONAL_BATCH.md",
+  "status": "DEVELOPMENT_BATCH",
+  "attempt_limit": 12,
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5,
+  "capture_wall_guard_s": 20,
+  "task_wall_guard_s": 1200,
+  "efficiency_clock": "simulation",
+  "primary_comparison": [
+    "ours",
+    "generic"
+  ],
+  "order_rule": "Known Moderate then Hard Ours; new Easy Generic/Ours, Moderate Ours/Generic, Hard Generic/Ours. No outcome-dependent ordering.",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4,
+    "grid_height_m": 4,
+    "ground_z_m": 0,
+    "xy_offsets_m": [
+      -2,
+      0,
+      2
+    ],
+    "flight_bounds": [
+      -4,
+      4,
+      -3,
+      3,
+      0.5,
+      3
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3,
+    "navigation_timeout": 120,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45,
+    "core_timeout": 900,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1
+  },
+  "scenes": [
+    {
+      "id": "regression-moderate",
+      "seed": 405111274,
+      "target_xy": [
+        2.0579662009378263,
+        -0.012100778521353939
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2555294440125043,
+      "bunker_xy": [
+        3.0273023484322334,
+        -2.4579953386121614
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2136650203772557,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "tier": "moderate"
+    },
+    {
+      "id": "regression-hard002",
+      "tier": "hard",
+      "seed": 958985919,
+      "target_xy": [
+        1.920387025177396,
+        -0.0612404855633963
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.025251765829482742,
+      "bunker_xy": [
+        3.0310000757781945,
+        -2.4146181723888493
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.2028273274811347,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        }
+      ]
+    },
+    {
+      "id": "dev-easy",
+      "tier": "easy",
+      "seed": 1026751387,
+      "target_xy": [
+        1.910338482170428,
+        -0.12514351409217545
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.2203193139398404,
+      "bunker_xy": [
+        2.948225357745517,
+        -2.54093246485103
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1617115576658774,
+      "boxes": []
+    },
+    {
+      "id": "dev-moderate",
+      "tier": "moderate",
+      "seed": 1026806174,
+      "target_xy": [
+        2.0576518144080187,
+        0.07824714870602131
+      ],
+      "target_z": 0.0575,
+      "target_yaw": 0.05552549169191734,
+      "bunker_xy": [
+        3.0342664403624067,
+        -2.5435373395497898
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1802719115074476,
+      "boxes": [
+        {
+          "name": "a6_wall_m",
+          "center_xy": [
+            0.4,
+            0.65
+          ],
+          "size_xyz": [
+            0.15,
+            1,
+            1
+          ],
+          "yaw": 0
+        }
+      ]
+    },
+    {
+      "id": "dev-hard",
+      "tier": "hard",
+      "seed": 1448047368,
+      "target_xy": [
+        2.0118863382997163,
+        0.1325291544290921
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.29771096792902724,
+      "bunker_xy": [
+        3.0590317487041685,
+        -2.420658412418086
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.1731298861769486,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "regression-moderate",
+      "method": "ours"
+    },
+    {
+      "slot": 2,
+      "scene": "regression-hard002",
+      "method": "ours"
+    },
+    {
+      "slot": 3,
+      "scene": "dev-easy",
+      "method": "generic"
+    },
+    {
+      "slot": 4,
+      "scene": "dev-easy",
+      "method": "ours"
+    },
+    {
+      "slot": 5,
+      "scene": "dev-moderate",
+      "method": "ours"
+    },
+    {
+      "slot": 6,
+      "scene": "dev-moderate",
+      "method": "generic"
+    },
+    {
+      "slot": 7,
+      "scene": "dev-hard",
+      "method": "generic"
+    },
+    {
+      "slot": 8,
+      "scene": "dev-hard",
+      "method": "ours"
+    }
+  ],
+  "experiment": "V14_BOUNDED_DEVELOPMENT",
+  "record_diagnostics": true,
+  "operational_gating": "v1.4",
+  "seed_draw_seed": 2026090903,
+  "support_anchor": "exact_winner",
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "scheduled_slots": 8,
+  "reserve_launches": 4,
+  "seed_draw_rule": "First eligible Random(2026090903).randrange(1,2**31) draws in easy/moderate/hard order; exclude all seeds in configs/a6_pilot.json, a6_pilot2.json, a6_formal.json, a6_v12_validation.json; no outcome filtering.",
+  "revision_note": "Same scene seeds/order/settings as v1.3 batch; positive measured ground presence separated from collision blocking. Known v1.3 launches retained. Total shared batch cap 12, not a new budget."
+}

@@ -1,0 +1,145 @@
+{
+  "config": {
+    "facade_position_tolerance": 0.05,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "max_viewpoints": 3,
+    "support_anchor": "exact_winner",
+    "xy_offsets_m": [
+      -2.0,
+      0.0,
+      2.0
+    ]
+  },
+  "current_bunker_pose": [
+    3.0271283670971414,
+    -2.4578319316432555,
+    -3.0694040832507787
+  ],
+  "frame_calibration": {
+    "T_bunker_aubo": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.15
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_ground_odom_bunker": [
+      [
+        0.9999999932483673,
+        -0.00011620355129060218,
+        0.0,
+        0.00016176273032320054
+      ],
+      [
+        0.00011620355129060218,
+        0.9999999932483673,
+        0.0,
+        -0.00017551114359415365
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_map_ground_odom": [
+      [
+        -0.997403911030768,
+        0.07200998722766071,
+        0.0,
+        3.0273023484322334
+      ],
+      [
+        -0.07200998722766071,
+        -0.997403911030768,
+        0.0,
+        -2.4579953386121614
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "grasp": {
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      2.0548462488781762,
+      -0.006396872092400755,
+      0.08209661301545042
+    ],
+    "quaternion_xyzw": [
+      -0.09751567898666666,
+      0.7003504068334432,
+      0.09751567898666669,
+      0.7003504068334433
+    ]
+  },
+  "method": "ours",
+  "op": "init",
+  "operational_gating": "v1.3",
+  "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-02-moderate-regression/data",
+  "perceived_target": {
+    "center_xyz": [
+      2.0548462488781762,
+      -0.006396872092400755,
+      0.06019661301545042
+    ],
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "yaw_rad": 0.27669783274811893
+  },
+  "rm4d_config": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo/configs/mr4_offline_base_placement.json",
+  "rm4d_map": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1/rmap.npy",
+  "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+  "rm4d_task_asset": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1",
+  "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation",
+  "target_reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/operational-batch/launch-02-moderate-regression/data/target_reference.npz",
+  "target_reference_reason": null,
+  "target_reference_status": "AVAILABLE"
+}

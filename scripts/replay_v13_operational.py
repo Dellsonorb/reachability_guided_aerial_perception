@@ -23,7 +23,7 @@ from sim_active_perception.core import A5Config, build_support_task, replay_obse
 from sim_active_perception.worker import make_field
 
 
-def replay_round(data, number, output=None):
+def replay_round(data, number, output=None, *, include_v14=False):
     data = Path(data).resolve()
     if output is not None:
         output = Path(output).resolve()
@@ -57,7 +57,10 @@ def replay_round(data, number, output=None):
                   current=asdict(current), historical_outcome_unchanged=True)
     contexts, tasks = [], []
     checks = {}
-    for version, revision in (('v12', 'v1.1'), ('v13', 'v1.3')):
+    versions = [('v12', 'v1.1'), ('v13', 'v1.3')]
+    if include_v14:
+        versions.append(('v14', 'v1.4'))
+    for version, revision in versions:
         operational, metadata = build_operational_context(dict(initial, operational_gating=revision),
                                                            grid, observations, belief.config)
         task = build_support_task(field, initial['result'], belief, config, operational=operational)
@@ -94,17 +97,24 @@ def replay_round(data, number, output=None):
             assessments=rows,
             nonwinner_diagnostics=nonwinner_diagnostics(field, initial['result'], operational, task.footprint),
             association_votes=metadata)
-        if output is not None and version == 'v13':
+        if output is not None and version == versions[-1][0]:
             directory = Path(output)
             save_operational(directory, operational, metadata)
             save_result(ranking, task, belief, directory)
             render_result(ranking, task, belief, directory / 'nbv.png',
-                          title='v1.3 development replay: recorded observations, no new flight')
+                          title=revision + ' development replay: recorded observations, no new flight')
     for name in ('environment_occupied_votes', 'ambiguous_occupied_votes', 'target_occupied_votes', 'ground_votes'):
         checks['unchanged_' + name] = bool(np.array_equal(getattr(contexts[0], name), getattr(contexts[1], name)))
     checks['unchanged_nominal'] = bool(np.array_equal(tasks[0].nominal_task_relevance,
                                                      tasks[1].nominal_task_relevance, equal_nan=True))
     checks['same_exact_winners'] = tasks[0].winner_anchors == tasks[1].winner_anchors
+    if include_v14:
+        for name in ('environment_occupied_votes', 'ambiguous_occupied_votes', 'target_occupied_votes', 'ground_votes'):
+            checks['v14_unchanged_' + name] = bool(np.array_equal(
+                getattr(contexts[1], name), getattr(contexts[2], name)))
+        checks['v14_unchanged_task_uncertainty'] = bool(np.array_equal(
+            tasks[1].task_relevant_uncertainty, tasks[2].task_relevant_uncertainty, equal_nan=True))
+        checks['v14_same_exact_winners'] = tasks[1].winner_anchors == tasks[2].winner_anchors
     result.update(checks=checks, all_common_checks_pass=all(checks.values()))
     return result
 
@@ -113,6 +123,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, required=True)
     parser.add_argument('--output-dir', type=Path, required=True)
+    parser.add_argument('--include-v14', action='store_true', help='also compare measured ground-presence semantics')
     args = parser.parse_args()
     data, output = args.data_dir.resolve(), args.output_dir.resolve()
     if output == data or data in output.parents or output.exists():
@@ -124,7 +135,8 @@ def main():
     rounds = len(list(data.glob('observation_*.npz')))
     if not rounds:
         parser.error('no original observations')
-    reports = [replay_round(data, n, output / ('round-%02d' % n)) for n in range(1, rounds + 1)]
+    reports = [replay_round(data, n, output / ('round-%02d' % n), include_v14=args.include_v14)
+               for n in range(1, rounds + 1)]
     (output / 'replay.json').write_text(json.dumps(dict(development_replay_not_trial=True, rounds=reports),
                                                  indent=2, allow_nan=False) + '\n')
     return 0 if all(r['all_common_checks_pass'] for r in reports) else 1

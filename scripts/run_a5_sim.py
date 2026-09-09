@@ -25,8 +25,8 @@ def build_parser():
     parser.add_argument("--rm4d-map", type=Path, required=True)
     parser.add_argument("--rm4d-task-asset", type=Path,
                         help="independent calibrated runtime asset directory; frozen baseline remains unchanged")
-    parser.add_argument("--operational-gating", choices=("v1", "v1.1", "v1.3"), default="v1",
-                        help="explicit object-aware gate; v1.3 adds sub-cell ambiguity; default preserves v1")
+    parser.add_argument("--operational-gating", choices=("v1", "v1.1", "v1.3", "v1.4"), default="v1",
+                        help="explicit object-aware gate; v1.3 adds sub-cell ambiguity; v1.4 separates measured ground presence")
     parser.add_argument("--support-anchor", choices=("cell_center", "exact_winner"), default="cell_center",
                         help="explicit v1.2 original-winner support; default preserves legacy cell centers")
     parser.add_argument("--max-viewpoints", type=int, default=3,
@@ -547,7 +547,7 @@ def build_adapter_class(demo_module, options):
             return execute_refined_pregrasp(
                 self, target, grasp, DemoError)
 
-    if getattr(options, 'operational_gating', 'v1') in ('v1.1', 'v1.3'):
+    if getattr(options, 'operational_gating', 'v1') in ('v1.1', 'v1.3', 'v1.4'):
         from a5_target_support import build_object_aware_adapter
         return build_object_aware_adapter(A5AirGroundPickDemo, options)
     return A5AirGroundPickDemo
