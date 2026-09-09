@@ -374,6 +374,24 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(metrics['stages']['active']['duration_sim_s'], metrics['T_active_sim'])
         self.assertGreaterEqual(metrics['stages']['execution_screen']['duration_sim_s'], 40.)
 
+    def test_no_confirmed_candidate_remains_perception_handoff_failure_not_execution_screen(self):
+        node = self.node('ours'); node._execution_clearance = True
+        original = self.worker
+        def worker(*args):
+            result = original(*args)
+            if args[3]['op'] == 'init':
+                Path(result['initial_file']).write_text(json.dumps(dict(result=dict(evaluated_candidates=[]))))
+            else:
+                result.update(assessments=[], selected_candidate=None, confirmed_candidate_count=0)
+            return result
+        node._preview_ground_candidate = lambda *args: self.fail('no execution candidate exists')
+        with patch.object(self.adapter, 'run_worker_request', side_effect=worker):
+            self.assertFalse(node.run())
+        metrics = json.loads((self.output/'metrics.json').read_text())
+        self.assertFalse(metrics['D_env'])
+        self.assertEqual(metrics['terminal_failure_stage'], 'active')
+        self.assertEqual(metrics['stages']['execution_screen']['status'], 'NOT_REACHED')
+
     def test_rm4d_only_uses_initial_query_without_mid_windows_and_original_score(self):
         node = self.node('rm4d_only')
         with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):

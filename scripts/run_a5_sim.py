@@ -517,14 +517,11 @@ def build_adapter_class(demo_module, options):
                         "round", "stop_reason", "next_viewpoint", "selected_candidate")})
                     if response["stop_reason"] is not None:
                         self._a5_selected = response["selected_candidate"]
+                        if self._a5_selected is None:
+                            raise DemoError("A5 stopped (%s) without a confirmed exact candidate" % response["stop_reason"])
                         if getattr(self, '_execution_clearance', False):
                             self._a5_selected = self._screen_ground_candidates(response['assessments'], target_map)
                             self._execution_rm_seed = self._a5_execution_seeds.get(self._a5_selected['candidate_id'])
-                        if self._a5_selected is None:
-                            suffix = (' passing bounded execution screen' if
-                                      getattr(self, '_execution_clearance', False) else '')
-                            raise DemoError("A5 stopped (%s) without a confirmed exact candidate%s" %
-                                            (response["stop_reason"], suffix))
                         self._a5_candidate_count = response.get("candidate_count", self._a5_candidate_count)
                         self._publish_status("A5_SELECTED", **self._a5_selected)
                         self._a5_fly_and_hover(initial_view, "A5 return to clear landing location")
