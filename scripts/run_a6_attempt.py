@@ -24,6 +24,15 @@ PX4 = '/media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4'
 IMAGE_TOPICS = ('/ground/d435/color/image_raw', '/ground/d435/depth/image_raw')
 
 
+def attempt_kind(status):
+    kinds = {'FROZEN_FOR_PILOT': 'PILOT_ATTEMPT',
+             'FROZEN_FOR_FORMAL': 'FORMAL_ATTEMPT',
+             'DEVELOPMENT_BATCH': 'DEVELOPMENT_ATTEMPT'}
+    if status not in kinds:
+        raise ValueError('freeze setup/protocol before activating slots')
+    return kinds[status]
+
+
 def slot_spec(config, number):
     for slot in config['slots']:
         if slot['slot'] == number:
@@ -344,8 +353,7 @@ def main(argv=None):
         slot = dict(scene=scene['id'], method='SETUP_CHECK', slot=None)
         if args.setup_view: config['initial_view'] = args.setup_view
     else:
-        if config['status'] not in ('FROZEN_FOR_PILOT', 'FROZEN_FOR_FORMAL'):
-            raise ValueError('freeze setup/protocol before activating slots')
+        attempt_kind(config['status'])
         if args.setup_view: raise ValueError('method pose overrides are not allowed')
         slot, scene = slot_spec(config, args.slot)
     output = args.output_dir.resolve()
@@ -356,8 +364,8 @@ def main(argv=None):
                        ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
     os.environ.update(environment)
     children, logs = [], []
-    expected_kind = ('FORMAL_ATTEMPT' if config['status'] == 'FROZEN_FOR_FORMAL'
-                     else 'PILOT_ATTEMPT')
+    expected_kind = (attempt_kind(config['status']) if not args.setup_scene
+                     else 'METHOD_INDEPENDENT_SETUP')
     record = dict(**slot, seed=scene['seed'], scene_spec=scene, initial_view=config['initial_view'],
                   uav_launch_pose=config['uav_launch_pose'],
                   config_path=str(args.config.resolve()), protocol=config['protocol'],

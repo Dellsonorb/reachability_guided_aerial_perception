@@ -14,6 +14,14 @@ spec.loader.exec_module(attempt)
 class AttemptTests(unittest.TestCase):
     def setUp(self): self.config = json.loads((ROOT / 'configs/a6_pilot.json').read_text())
 
+    def test_development_records_cannot_be_confused_with_pilot_or_formal(self):
+        self.assertTrue(hasattr(attempt, 'attempt_kind'))
+        self.assertEqual(attempt.attempt_kind('DEVELOPMENT_BATCH'), 'DEVELOPMENT_ATTEMPT')
+        self.assertEqual(attempt.attempt_kind('FROZEN_FOR_PILOT'), 'PILOT_ATTEMPT')
+        self.assertEqual(attempt.attempt_kind('FROZEN_FOR_FORMAL'), 'FORMAL_ATTEMPT')
+        with self.assertRaises(ValueError):
+            attempt.attempt_kind('UNSPECIFIED')
+
     def test_spawn_args_preserve_serialized_seed_geometry(self):
         scene = self.config['scenes'][2]
         args = attempt.scene_launch_args(scene)
