@@ -1,0 +1,1198 @@
+{
+  "accepted_refined": {
+    "measured_gripper_opening": 0.09494688418247833,
+    "observation_stamp": 25.83,
+    "ros_time": 26.175,
+    "state": "GROUND_REFINED",
+    "target_map": [
+      2.058472706748215,
+      0.07937483959188794,
+      0.05852908753931587,
+      0.055768414454207216
+    ],
+    "wall_monotonic": 180815.325380388
+  },
+  "arm_goals": [
+    {
+      "duration": 9.680656037,
+      "endpoint": [
+        -1.6688028945956548,
+        0.4696686772778428,
+        1.5845930721728858,
+        -0.5629984884495156,
+        -1.546361624139298,
+        2.0590203583254487
+      ],
+      "names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 16.41
+    },
+    {
+      "duration": 2.357620883,
+      "endpoint": [
+        -1.8924061773943375,
+        0.8259452163442086,
+        1.4760695327175721,
+        -1.1475739985544837,
+        -1.5707100323950716,
+        1.9438355640256682
+      ],
+      "names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 28.409
+    },
+    {
+      "duration": 5.341687443,
+      "endpoint": [
+        -1.7497901992699814,
+        1.189008973607798,
+        1.4760607593978579,
+        -1.367999172859649,
+        -1.5707967047052331,
+        1.9438334297932087
+      ],
+      "names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 30.849
+    },
+    {
+      "duration": 5.460104969,
+      "endpoint": [
+        -1.8924983909852195,
+        0.825974492296249,
+        1.4760607135862107,
+        -1.1476728832161014,
+        -1.5707976227866318,
+        1.9438326758995375
+      ],
+      "names": [
+        "elbow_joint",
+        "shoulder_lift_joint",
+        "shoulder_pan_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "stamp": 37.541
+    }
+  ],
+  "arm_results": [
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 26.111,
+      "status": 3
+    },
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 30.811,
+      "status": 3
+    },
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 36.2,
+      "status": 3
+    },
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 43.043,
+      "status": 3
+    }
+  ],
+  "attachment_transform_roundtrip_max_abs": 1.1102230246251565e-16,
+  "calibration": {
+    "contact_joint": 0.45737440709566757,
+    "contact_overlap": 0.02,
+    "contact_pad_edge": 0.0023094379126535995,
+    "grasp_tcp_map_z": 0.09371964962666227,
+    "open_pad_edge": 0.0156,
+    "pad_down_shift": 0.0132905620873464,
+    "ros_time": 26.176,
+    "state": "GROUND_GRASP_CALIBRATION",
+    "wall_monotonic": 180815.330905997
+  },
+  "candidate": {
+    "candidate_id": "candidate-000009",
+    "source_id": 664,
+    "x": 2.5304007767576087,
+    "y": -0.3015636791168017,
+    "yaw": -2.617993877991494
+  },
+  "closure_geometry": {
+    "checked_states": 5,
+    "commanded_closed_joint": 0.7,
+    "contact_joint": 0.45737440709566757,
+    "continuous_clearance_proven": false,
+    "ros_time": 36.225,
+    "state": "GROUND_GRASP_GEOMETRY",
+    "wall_monotonic": 180834.765299885
+  },
+  "confirmation_intervals": {
+    "close_to_end": {
+      "count": 148,
+      "false_count": 19,
+      "first_stamp": 36.25,
+      "last_stamp": 43.599,
+      "max_sample_gap_s": 0.08399999999999608,
+      "true_count": 129
+    },
+    "lift": {
+      "count": 111,
+      "false_count": 0,
+      "first_stamp": 37.55,
+      "last_stamp": 43.05,
+      "max_sample_gap_s": 0.059000000000004604,
+      "true_count": 111
+    },
+    "payload_to_end": {
+      "count": 122,
+      "false_count": 0,
+      "first_stamp": 37.55,
+      "last_stamp": 43.599,
+      "max_sample_gap_s": 0.08399999999999608,
+      "true_count": 122
+    },
+    "retention": {
+      "count": 12,
+      "false_count": 0,
+      "first_stamp": 43.05,
+      "last_stamp": 43.599,
+      "max_sample_gap_s": 0.08399999999999608,
+      "true_count": 12
+    }
+  },
+  "confirmation_transitions": [
+    {
+      "confirmed": false,
+      "record_stamp": 11.05
+    },
+    {
+      "confirmed": true,
+      "record_stamp": 37.2
+    }
+  ],
+  "derived_expected_T_tcp_perceived_target": [
+    [
+      0.003906220822751018,
+      -0.009181898678022027,
+      -0.999950215848544,
+      0.031805486473513
+    ],
+    [
+      -0.000253222030304312,
+      0.9999578036944219,
+      -0.009182957542736158,
+      0.004786716673108649
+    ],
+    [
+      0.9999923386293956,
+      0.0002890800838283303,
+      0.0039037309356386492,
+      -0.001975419894786723
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "end": {
+    "ros_time": 43.64,
+    "state": "GROUND_REPLAY_END",
+    "success": true,
+    "wall_monotonic": 180848.517156192
+  },
+  "final_controller_samples": {
+    "/ground/arm_controller/state": {
+      "actual_position": [
+        1.4760584116139936,
+        0.8306553493977162,
+        -1.8970404865915036,
+        -1.1442088859093271,
+        -1.570836266233484,
+        1.9438240714242063
+      ],
+      "actual_velocity": [
+        -8.979451848766084e-06,
+        0.00011847124348235282,
+        -0.00034850273955636845,
+        -0.00222013485640622,
+        0.0008047590958090038,
+        0.0030615078969802607
+      ],
+      "desired_position": [
+        1.4760607135862114,
+        0.8259744922962476,
+        -1.8924983909852242,
+        -1.1476728832161043,
+        -1.5707976227866305,
+        1.9438326758995335
+      ],
+      "names": [
+        "shoulder_pan_joint",
+        "shoulder_lift_joint",
+        "elbow_joint",
+        "wrist_1_joint",
+        "wrist_2_joint",
+        "wrist_3_joint"
+      ],
+      "position_error": [
+        2.301972217733095e-06,
+        -0.004680857101468483,
+        0.004542095606279162,
+        -0.0034639973067771557,
+        3.864344685355903e-05,
+        8.604475326912109e-06
+      ],
+      "stamp": 43.64
+    },
+    "/ground/gripper_controller/state": {
+      "actual_position": [
+        0.5206899705561865
+      ],
+      "actual_velocity": [
+        -0.008815603958843295
+      ],
+      "desired_position": [
+        0.6999999999999995
+      ],
+      "names": [
+        "left_outer_knuckle_joint"
+      ],
+      "position_error": [
+        0.1793100294438128
+      ],
+      "stamp": 43.64
+    }
+  },
+  "gripper_goals": [
+    {
+      "duration": 2.0,
+      "endpoint": [
+        0.0
+      ],
+      "names": [
+        "left_outer_knuckle_joint"
+      ],
+      "stamp": 12.854
+    },
+    {
+      "duration": 2.0,
+      "endpoint": [
+        0.29271008403361354
+      ],
+      "names": [
+        "left_outer_knuckle_joint"
+      ],
+      "stamp": 26.233
+    },
+    {
+      "duration": 2.0,
+      "endpoint": [
+        0.7
+      ],
+      "names": [
+        "left_outer_knuckle_joint"
+      ],
+      "stamp": 36.228
+    }
+  ],
+  "gripper_results": [
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 14.955,
+      "status": 3
+    },
+    {
+      "error_code": 0,
+      "error_string": "",
+      "stamp": 28.335,
+      "status": 3
+    },
+    {
+      "error_code": -4,
+      "error_string": "left_outer_knuckle_joint path error 0.080008",
+      "stamp": 37.495,
+      "status": 4
+    }
+  ],
+  "joint_samples": {
+    "close_end": {
+      "positions": {
+        "elbow_joint": -1.7521849088192392,
+        "left_outer_knuckle_joint": 0.46897424464709037,
+        "shoulder_lift_joint": 1.1937333466691769,
+        "shoulder_pan_joint": 1.4759872218131802,
+        "wrist_1_joint": -1.3652080433451976,
+        "wrist_2_joint": -1.5711032163220375,
+        "wrist_3_joint": 1.9436435498239604
+      },
+      "stamp": 37.509
+    },
+    "close_start": {
+      "positions": {
+        "elbow_joint": -1.7524930970611745,
+        "left_outer_knuckle_joint": 0.29180167991759465,
+        "shoulder_lift_joint": 1.1940911554625266,
+        "shoulder_pan_joint": 1.4760574826637995,
+        "wrist_1_joint": -1.364671534304521,
+        "wrist_2_joint": -1.5707816828944319,
+        "wrist_3_joint": 1.9438275529513724
+      },
+      "stamp": 36.209
+    },
+    "descend_end": {
+      "positions": {
+        "elbow_joint": -1.7524930970611745,
+        "left_outer_knuckle_joint": 0.29180167991759465,
+        "shoulder_lift_joint": 1.1940911554625266,
+        "shoulder_pan_joint": 1.4760574826637995,
+        "wrist_1_joint": -1.364671534304521,
+        "wrist_2_joint": -1.5707816828944319,
+        "wrist_3_joint": 1.9438275529513724
+      },
+      "stamp": 36.209
+    },
+    "descend_start": {
+      "positions": {
+        "elbow_joint": -1.896759970705065,
+        "left_outer_knuckle_joint": 0.2912173946772949,
+        "shoulder_lift_joint": 0.8305411666885432,
+        "shoulder_pan_joint": 1.4760530588309315,
+        "wrist_1_joint": -1.1442765992556065,
+        "wrist_2_joint": -1.5706783552478605,
+        "wrist_3_joint": 1.943826087659609
+      },
+      "stamp": 30.819
+    },
+    "ground_navigation_end": {
+      "positions": {
+        "elbow_joint": 1.0092837305082263,
+        "left_outer_knuckle_joint": 0.003409178850414918,
+        "shoulder_lift_joint": -0.5046136959687795,
+        "shoulder_pan_joint": 7.014366852686749e-06,
+        "wrist_1_joint": -0.0034983762783538097,
+        "wrist_2_joint": 1.0027594955782355,
+        "wrist_3_joint": -0.00029124464398488925
+      },
+      "stamp": 11.769
+    },
+    "ground_navigation_start": {
+      "positions": {
+        "elbow_joint": 1.0092838094452308,
+        "left_outer_knuckle_joint": 0.0034393100699965373,
+        "shoulder_lift_joint": -0.5046137926565493,
+        "shoulder_pan_joint": 6.994346970934373e-06,
+        "wrist_1_joint": -0.003499210118273588,
+        "wrist_2_joint": 1.00275988438466,
+        "wrist_3_joint": -0.00029272916115008485
+      },
+      "stamp": 11.679
+    },
+    "ground_refine_end": {
+      "positions": {
+        "elbow_joint": -1.676596306454904,
+        "left_outer_knuckle_joint": 1.91853767868011e-05,
+        "shoulder_lift_joint": 0.4737806901851318,
+        "shoulder_pan_joint": 1.5846018974919822,
+        "wrist_1_joint": -0.5597536272305135,
+        "wrist_2_joint": -1.5464790154021522,
+        "wrist_3_joint": 2.0589972726352705
+      },
+      "stamp": 26.169
+    },
+    "ground_refine_start": {
+      "positions": {
+        "elbow_joint": 1.0092837305082263,
+        "left_outer_knuckle_joint": 0.003409178850414918,
+        "shoulder_lift_joint": -0.5046136959687795,
+        "shoulder_pan_joint": 7.014366852686749e-06,
+        "wrist_1_joint": -0.0034983762783538097,
+        "wrist_2_joint": 1.0027594955782355,
+        "wrist_3_joint": -0.00029124464398488925
+      },
+      "stamp": 11.769
+    },
+    "lift": {
+      "positions": {
+        "elbow_joint": -1.8970387961825441,
+        "left_outer_knuckle_joint": 0.5205514925143726,
+        "shoulder_lift_joint": 0.8306552922552912,
+        "shoulder_pan_joint": 1.4760584879833205,
+        "wrist_1_joint": -1.144203439343582,
+        "wrist_2_joint": -1.570839073997175,
+        "wrist_3_joint": 1.943788448934896
+      },
+      "stamp": 43.629
+    },
+    "lift_end": {
+      "positions": {
+        "elbow_joint": -1.897058575777856,
+        "left_outer_knuckle_joint": 0.5209662911976327,
+        "shoulder_lift_joint": 0.8306590108058964,
+        "shoulder_pan_joint": 1.4760592182074452,
+        "wrist_1_joint": -1.1442051636084951,
+        "wrist_2_joint": -1.5708276776733188,
+        "wrist_3_joint": 1.9438504677095025
+      },
+      "stamp": 43.049
+    },
+    "lift_start": {
+      "positions": {
+        "elbow_joint": -1.7521849088192392,
+        "left_outer_knuckle_joint": 0.46897424464709037,
+        "shoulder_lift_joint": 1.1937333466691769,
+        "shoulder_pan_joint": 1.4759872218131802,
+        "wrist_1_joint": -1.3652080433451976,
+        "wrist_2_joint": -1.5711032163220375,
+        "wrist_3_joint": 1.9436435498239604
+      },
+      "stamp": 37.509
+    },
+    "payload": {
+      "positions": {
+        "elbow_joint": -1.7521849088192392,
+        "left_outer_knuckle_joint": 0.46897424464709037,
+        "shoulder_lift_joint": 1.1937333466691769,
+        "shoulder_pan_joint": 1.4759872218131802,
+        "wrist_1_joint": -1.3652080433451976,
+        "wrist_2_joint": -1.5711032163220375,
+        "wrist_3_joint": 1.9436435498239604
+      },
+      "stamp": 37.509
+    },
+    "payload_measurement": {
+      "positions": {
+        "elbow_joint": -1.7521769277634975,
+        "left_outer_knuckle_joint": 0.4666494681893498,
+        "shoulder_lift_joint": 1.1937502160977012,
+        "shoulder_pan_joint": 1.475987421491431,
+        "wrist_1_joint": -1.3651529672370888,
+        "wrist_2_joint": -1.5710880980882544,
+        "wrist_3_joint": 1.943547430784493
+      },
+      "stamp": 37.489
+    },
+    "refined_pregrasp_end": {
+      "positions": {
+        "elbow_joint": -1.896759970705065,
+        "left_outer_knuckle_joint": 0.2912173946772949,
+        "shoulder_lift_joint": 0.8305411666885432,
+        "shoulder_pan_joint": 1.4760530588309315,
+        "wrist_1_joint": -1.1442765992556065,
+        "wrist_2_joint": -1.5706783552478605,
+        "wrist_3_joint": 1.943826087659609
+      },
+      "stamp": 30.819
+    },
+    "refined_pregrasp_start": {
+      "positions": {
+        "elbow_joint": -1.676744872224618,
+        "left_outer_knuckle_joint": 0.2909339804842954,
+        "shoulder_lift_joint": 0.4738151519602791,
+        "shoulder_pan_joint": 1.5845920703239642,
+        "wrist_1_joint": -0.559669988469226,
+        "wrist_2_joint": -1.546480082804318,
+        "wrist_3_joint": 2.059004679149968
+      },
+      "stamp": 28.339
+    },
+    "retention_end": {
+      "positions": {
+        "elbow_joint": -1.8970387961825441,
+        "left_outer_knuckle_joint": 0.5205514925143726,
+        "shoulder_lift_joint": 0.8306552922552912,
+        "shoulder_pan_joint": 1.4760584879833205,
+        "wrist_1_joint": -1.144203439343582,
+        "wrist_2_joint": -1.570839073997175,
+        "wrist_3_joint": 1.943788448934896
+      },
+      "stamp": 43.629
+    },
+    "retention_start": {
+      "positions": {
+        "elbow_joint": -1.897058575777856,
+        "left_outer_knuckle_joint": 0.5209662911976327,
+        "shoulder_lift_joint": 0.8306590108058964,
+        "shoulder_pan_joint": 1.4760592182074452,
+        "wrist_1_joint": -1.1442051636084951,
+        "wrist_2_joint": -1.5708276776733188,
+        "wrist_3_joint": 1.9438504677095025
+      },
+      "stamp": 43.049
+    }
+  },
+  "lift": {
+    "grasp_confirmed": true,
+    "ros_time": 43.631,
+    "state": "LIFT",
+    "target_map": [
+      2.058472706748215,
+      0.07937483959188794,
+      0.05852908753931587,
+      0.055768414454207216
+    ],
+    "tcp_lift": 0.1495373237916204,
+    "wall_monotonic": 180848.504935556
+  },
+  "payload": {
+    "frame": "ground/base_link",
+    "link": "ground/gripper_tcp_link",
+    "measured_tcp": [
+      0.21861162137803042,
+      -0.5610198290666959,
+      -0.2696153416725945,
+      -0.6872727628576919,
+      0.16032555618533445,
+      0.6884538232786002,
+      0.16728179423027018
+    ],
+    "measurement_stamp": 37.489,
+    "object_id": "perceived_pick_target",
+    "ros_time": 37.515,
+    "state": "GROUND_PAYLOAD_MODELED",
+    "touch_links": [
+      "ground/left_finger",
+      "ground/right_finger",
+      "ground/left_finger_pad",
+      "ground/right_finger_pad"
+    ],
+    "wall_monotonic": 180837.067833614
+  },
+  "plans": [
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "ros_time": 28.359,
+      "stage": "grasp_ik",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 180819.701903152
+    },
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "fraction": 1.0,
+      "ros_time": 28.367,
+      "stage": "reverse_approach",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 180819.720202816
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "ros_time": 28.381,
+      "stage": "pregrasp_trajectory",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "success": true,
+      "wall_monotonic": 180819.769785864
+    },
+    {
+      "attempt": 1,
+      "error_code": 1,
+      "fraction": 1.0,
+      "ros_time": 28.397,
+      "stage": "forward_approach",
+      "state": "GROUND_MANIPULATION_PLAN",
+      "wall_monotonic": 180819.792296522
+    }
+  ],
+  "preshape": {
+    "commanded_joint": 0.29271008403361354,
+    "measured_joint": 0.29093340618238894,
+    "measured_opening": 0.06541842981874901,
+    "required_opening": 0.055,
+    "ros_time": 28.342,
+    "state": "GROUND_GRIPPER_PRESHAPE",
+    "tracking_tolerance": 0.1,
+    "wall_monotonic": 180819.679901635
+  },
+  "public_tcp_snapshots": {
+    "close_end": [
+      [
+        0.0006329952944431798,
+        -0.4507923955085177,
+        -0.8926285988408921,
+        0.21860522781625116
+      ],
+      [
+        0.0098945626537238,
+        -0.8925822579387156,
+        0.45077600916965166,
+        -0.5610389478290384
+      ],
+      [
+        -0.9999508472654305,
+        -0.009117508690388649,
+        0.003895393232002362,
+        -0.26960192224234975
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "close_start": [
+      [
+        0.0010661361819354132,
+        -0.4508927191981596,
+        -0.8925775143525264,
+        0.21879047188348968
+      ],
+      [
+        0.011061238662401258,
+        -0.8925180986982405,
+        0.4508759169608997,
+        -0.5604987825848882
+      ],
+      [
+        -0.9999382542701811,
+        -0.010353708039581662,
+        0.004035886140135668,
+        -0.2699058170645766
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "descend_end": [
+      [
+        0.0010661361819354132,
+        -0.4508927191981596,
+        -0.8925775143525264,
+        0.21879047188348968
+      ],
+      [
+        0.011061238662401258,
+        -0.8925180986982405,
+        0.4508759169608997,
+        -0.5604987825848882
+      ],
+      [
+        -0.9999382542701811,
+        -0.010353708039581662,
+        0.004035886140135668,
+        -0.2699058170645766
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "descend_start": [
+      [
+        0.001275149183464129,
+        -0.4508948005361233,
+        -0.8925761888175434,
+        0.21881846210943237
+      ],
+      [
+        0.012158128821874909,
+        -0.8925039511106493,
+        0.45087567815910334,
+        -0.5605027623117311
+      ],
+      [
+        -0.9999252741570801,
+        -0.011426990039830281,
+        0.0043439613855343635,
+        -0.12023369824271213
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_navigation_end": [
+      [
+        0.044982953653673184,
+        0.028418248315018005,
+        0.9985834652362812,
+        0.8382293998980992
+      ],
+      [
+        -0.5379817467098272,
+        0.8429564521240139,
+        0.00024500926770862065,
+        -0.2796630145383786
+      ],
+      [
+        -0.8417554122710688,
+        -0.5372306981038995,
+        0.05320716988490551,
+        0.3805217667735949
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_navigation_start": [
+      [
+        0.044982663952680524,
+        0.028417366590847294,
+        0.998583503378543,
+        0.8382293541216865
+      ],
+      [
+        -0.5379806659415673,
+        0.8429571417269623,
+        0.0002455291835196558,
+        -0.2796628450414103
+      ],
+      [
+        -0.8417561184908549,
+        -0.5372296627026031,
+        0.05320645163566567,
+        0.380521485965323
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_refine_end": [
+      [
+        0.024035302846430715,
+        -0.4566604047981469,
+        -0.8893163547954541,
+        0.28688715102761436
+      ],
+      [
+        0.020144352118500457,
+        -0.8891714968305221,
+        0.4571304565459359,
+        -0.5955697856843616
+      ],
+      [
+        -0.999508133681166,
+        -0.028901970759149298,
+        -0.012172378215904759,
+        0.1052463774448267
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ground_refine_start": [
+      [
+        0.044982953653673184,
+        0.028418248315018005,
+        0.9985834652362812,
+        0.8382293998980992
+      ],
+      [
+        -0.5379817467098272,
+        0.8429564521240139,
+        0.00024500926770862065,
+        -0.2796630145383786
+      ],
+      [
+        -0.8417554122710688,
+        -0.5372306981038995,
+        0.05320716988490551,
+        0.3805217667735949
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "lift": [
+      [
+        0.00115917390139238,
+        -0.4508559200981179,
+        -0.8925959867870485,
+        0.2187973083874865
+      ],
+      [
+        0.01263732431134853,
+        -0.8925187042822003,
+        0.4508332957321056,
+        -0.5602575228801315
+      ],
+      [
+        -0.9999194739328339,
+        -0.011802619154327747,
+        0.004663028091462896,
+        -0.12037359421408048
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "lift_end": [
+      [
+        0.0011725694520835278,
+        -0.4509105961051789,
+        -0.892568349988365,
+        0.21880232958894053
+      ],
+      [
+        0.012657921592432172,
+        -0.8924907630457132,
+        0.45088802922570637,
+        -0.5602443546543541
+      ],
+      [
+        -0.9999191977864211,
+        -0.011826757719419883,
+        0.004661083565682,
+        -0.1203804182448266
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "lift_start": [
+      [
+        0.0006329952944431798,
+        -0.4507923955085177,
+        -0.8926285988408921,
+        0.21860522781625116
+      ],
+      [
+        0.0098945626537238,
+        -0.8925822579387156,
+        0.45077600916965166,
+        -0.5610389478290384
+      ],
+      [
+        -0.9999508472654305,
+        -0.009117508690388649,
+        0.003895393232002362,
+        -0.26960192224234975
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "payload": [
+      [
+        0.0006329952944431798,
+        -0.4507923955085177,
+        -0.8926285988408921,
+        0.21860522781625116
+      ],
+      [
+        0.0098945626537238,
+        -0.8925822579387156,
+        0.45077600916965166,
+        -0.5610389478290384
+      ],
+      [
+        -0.9999508472654305,
+        -0.009117508690388649,
+        0.003895393232002362,
+        -0.26960192224234975
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "payload_measurement": [
+      [
+        0.0006540984938844852,
+        -0.45070635751784865,
+        -0.8926720290499498,
+        0.2186116213780303
+      ],
+      [
+        0.009956805693084974,
+        -0.8926250347059301,
+        0.4506899260429819,
+        -0.561019829066696
+      ],
+      [
+        -0.9999502158485448,
+        -0.009182957542736443,
+        0.0039037309356392204,
+        -0.26961534167259377
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "refined_pregrasp_end": [
+      [
+        0.001275149183464129,
+        -0.4508948005361233,
+        -0.8925761888175434,
+        0.21881846210943237
+      ],
+      [
+        0.012158128821874909,
+        -0.8925039511106493,
+        0.45087567815910334,
+        -0.5605027623117311
+      ],
+      [
+        -0.9999252741570801,
+        -0.011426990039830281,
+        0.0043439613855343635,
+        -0.12023369824271213
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "refined_pregrasp_start": [
+      [
+        0.024035092778353726,
+        -0.4566832267615786,
+        -0.8893046411156142,
+        0.2868755265036158
+      ],
+      [
+        0.020416251454969375,
+        -0.8891518732588903,
+        0.4571565628499001,
+        -0.5954649936052541
+      ],
+      [
+        -0.9995026218032979,
+        -0.029144067575418767,
+        -0.012047088174992908,
+        0.10515893416690764
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "retention_end": [
+      [
+        0.00115917390139238,
+        -0.4508559200981179,
+        -0.8925959867870485,
+        0.2187973083874865
+      ],
+      [
+        0.01263732431134853,
+        -0.8925187042822003,
+        0.4508332957321056,
+        -0.5602575228801315
+      ],
+      [
+        -0.9999194739328339,
+        -0.011802619154327747,
+        0.004663028091462896,
+        -0.12037359421408048
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "retention_start": [
+      [
+        0.0011725694520835278,
+        -0.4509105961051789,
+        -0.892568349988365,
+        0.21880232958894053
+      ],
+      [
+        0.012657921592432172,
+        -0.8924907630457132,
+        0.45088802922570637,
+        -0.5602443546543541
+      ],
+      [
+        -0.9999191977864211,
+        -0.011826757719419883,
+        0.004661083565682,
+        -0.1203804182448266
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "recorded_planning_scene_topics": [],
+  "run": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/ground-manipulation-batch/launch-08-moderate-ours-contact-geometry",
+  "scene": {
+    "frame": "ground/base_link",
+    "object_id": "perceived_pick_target",
+    "ros_time": 26.188,
+    "source": "accepted_refined",
+    "state": "GROUND_MANIPULATION_SCENE",
+    "target_contacts_allowed": false,
+    "target_pose": [
+      0.21823842374832814,
+      -0.5658661930006514,
+      -0.30147091246068414,
+      0.0,
+      0.0,
+      0.97276628902492,
+      0.2317881509842253
+    ],
+    "target_size": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "wall_monotonic": 180815.359178466
+  },
+  "scope": "Public runtime confirmation/action/joint/TF and accepted perception only. Scene activation evidenced by gated status and deployed source; no serialized service-request/scene snapshots or independent physical target trajectory are claimed.",
+  "stages": [
+    {
+      "ros_time": 11.682,
+      "stage": "ground_navigation",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180791.692841665
+    },
+    {
+      "ros_time": 11.772,
+      "stage": "ground_navigation",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180791.837615737
+    },
+    {
+      "ros_time": 11.772,
+      "stage": "ground_refine",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180791.837725038
+    },
+    {
+      "ros_time": 26.176,
+      "stage": "ground_refine",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180815.329965938
+    },
+    {
+      "ros_time": 26.176,
+      "stage": "refined_pregrasp",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180815.330145359
+    },
+    {
+      "ros_time": 28.345,
+      "stage": "refined_pregrasp",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180819.684374671
+    },
+    {
+      "ros_time": 30.82,
+      "stage": "refined_pregrasp",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180824.714677158
+    },
+    {
+      "ros_time": 30.822,
+      "stage": "descend",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180824.71856779
+    },
+    {
+      "ros_time": 36.21,
+      "stage": "descend",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180834.717741457
+    },
+    {
+      "ros_time": 36.21,
+      "stage": "close",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180834.717888333
+    },
+    {
+      "ros_time": 37.517,
+      "stage": "close",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180837.070820434
+    },
+    {
+      "ros_time": 37.517,
+      "stage": "lift",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180837.074408235
+    },
+    {
+      "ros_time": 43.05,
+      "stage": "lift",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180847.499974687
+    },
+    {
+      "ros_time": 43.05,
+      "stage": "retention",
+      "state": "A6_STAGE_START",
+      "wall_monotonic": 180847.500178343
+    },
+    {
+      "ros_time": 43.631,
+      "stage": "retention",
+      "state": "A6_STAGE_END",
+      "wall_monotonic": 180848.504825138
+    }
+  ],
+  "versions": {
+    "AGENT": "6d1dba2",
+    "SIM": "c12d8ba"
+  }
+}

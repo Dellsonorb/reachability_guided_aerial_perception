@@ -63,40 +63,40 @@ is versioned and shared; original exact winners/results are not overwritten.
 
 ## Tasks
 
-- [ ] Baseline: run existing Ground adapter/manipulation tests; inspect current
+- [x] Baseline: run existing Ground adapter/manipulation tests; inspect current
   SIM controller, mimic, base-actuation and collision-scene paths. Preserve
   the four unrelated old untracked A5 directories and existing external SIM.
-- [ ] SIM diagnostic-only `ground_dynamics_trace.hh` plus integration in
+- [x] SIM diagnostic-only `ground_dynamics_trace.hh` plus integration in
   `bunker_planar_move_plugin.cpp`: enable only via
   `P450_GROUND_DYNAMICS_CSV`; default off. Emit time/phase, wrist angle/rate,
   axis, parent/child pose/angular velocity, base pose/twist, joint effort and
   target pose/twist. Use read-only physics APIs. Test default-off behavior,
   before/after/end placement and a compiled scalar angular projection case;
   build existing package before first invocation.
-- [ ] AGENT `run_a6_attempt.py`: opt-in Ground diagnostic argument sets the
+- [x] AGENT `run_a6_attempt.py`: opt-in Ground diagnostic argument sets the
   CSV destination before runtime spawn and records its meaning. Reject it
   outside Ground development replay. Include native model/link states only in
   the diagnostic bag, not in algorithm inputs. Unit-test opt-in and exclusions.
-- [ ] AGENT `run_ground_sim.py`: optional bounded post-failure load contrast;
+- [x] AGENT `run_ground_sim.py`: optional bounded post-failure load contrast;
   original FAILED occurs first, then loaded hold/open/unloaded hold with
   explicit phase events. Use original gripper actions; do not publish LIFT,
   D_exec or a replacement success. Tests prove failure preservation and order.
-- [ ] Launch01: original Easy camera/manipulation at archived exact candidate,
+- [x] Launch01: original Easy camera/manipulation at archived exact candidate,
   original control settings, physics logging and loaded/unloaded contrast.
   Compare within-step vs between-step changes to distinguish source/readout,
   actual oscillation, gripping load and base transport. No feedback substitution.
-- [ ] For the layer actually implicated: capture a failing numerical/behavior
+- [x] For the layer actually implicated: capture a failing numerical/behavior
   regression, implement the minimal correction, verify it, then use a declared
   local contrast with unchanged acceptance and independent motion/retention
   checks. Retain each earlier failure and configuration. Record decisions here.
-- [ ] Offline Moderate full-robot scene/IK diagnosis; then implement only the
+- [x] Offline Moderate full-robot scene/IK diagnosis; then implement only the
   necessary shared collision-aware branch/approach handling with tests. Check
   target as a world obstacle before grip and attached geometry after grip,
   while preserving legitimate contact only at intended finger surfaces.
-- [ ] Within remaining startup cap, test complete Ground segments at distinct
+- [x] Within remaining startup cap, test complete Ground segments at distinct
   archived stations; if local grasp/lift passes, one original full aerial E2E.
   Report trajectories/object retention and capability limits, not merely PASS.
-- [ ] Independent review, relevant regression, final report, commit/push Draft
+- Final disposition: independent review, relevant regression, final report, commit/push Draft
   checkpoints, verify owned runtime cleanup and worktree state; stop. No formal.
 
 Self-review: the eight-start bound includes all failures; finite post-failure
@@ -270,3 +270,17 @@ with normal collision-aware revalidation after actual Ground refinement.
    tracking limits, target size and real success criteria. Independent review
    passed; root109 SIM and133 native AGENT regressions passed. No ninth start
    or second full aerial E2E, irrespective of outcome.
+   Result: complete conditioned Ground chain passes. Accepted refined target,
+   derived contact-height grasp, measured65.418mm aperture, first IK and full
+   approach pass. Actual close stalls against the object and is accepted by
+   the unchanged fresh real-confirmation gate; confirmed planning payload and
+   whole-robot validity precede the collision-aware lift. TCP149.537mm and
+   physical target148.902mm rise; existing0.581s retention stays confirmed,
+   relative target-hand movement max0.0404mm. No full-E2E claim from this replay.
+
+**Final online ledger:8/8, no additional starts.** Implementation remains
+AGENT6d1dba2/SIMc12d8ba; final commits add records/review. Relevant native tests
+133, SIM109 and core645 (22 environment skips) pass; independent code,
+geometry and physical-trace review completed. Owned runtime exited and ports
+11951/11952 are clear; unrelated Gazebo and four old A5 directories preserved.
+See `GROUND_MANIPULATION_BATCH_RESULTS.md` for outcomes and remaining limits.
