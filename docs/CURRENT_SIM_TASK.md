@@ -37,6 +37,12 @@ Do not substitute the positive-z literature map for the calibrated task asset.
 
 Only one task can own local ports11951/11952. The entry rejects a busy port and an
 existing output directory; it never kills another task or replaces old results.
+This entry is explicitly single-host: it sets ROS_IP/ROS_HOSTNAME to127.0.0.1 and
+ROS_IPV6 tooff in the setup parent and all children. This prevents the observed
+old Gazebo LAN reconnect from entering a recycled TCPROS port. It is not the
+network configuration for distributed/real robots. Before arming, the task also
+waits for its own fresh public UAV/Ground TF, bounded by the existing30s preflight
+timeout; another node's ready buffer is insufficient.
 If the local Gazebo renderer needs an existing X session, set the same
 `P450_GAZEBO_DISPLAY`/`P450_GAZEBO_XAUTHORITY` pair used by SIM; these are platform
 environment inputs, not perception data. No GUI/GT clicking is needed.

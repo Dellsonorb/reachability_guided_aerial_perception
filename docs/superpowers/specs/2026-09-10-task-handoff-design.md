@@ -22,3 +22,37 @@ Maximum four online starts, including startup failures: existing Moderate01 Gene
 ## Boundaries and review
 
 No RM4D baseline changes, no gate or collision relaxation, no vote fabrication, no budget increase. No formal matrix or inferential comparison. Independent code review checks common behavior, exception handling, physical criteria and task-entry version/config consistency. Review the online behavior and remaining limits before declaring the overall goal met.
+
+## Runtime correction after start 2 (before starts 3/4)
+
+Start 1 Moderate01 Generic physically retrieved after two windows. Start 2 Ours
+failed before sensing: its own map/UAV TF subscriber could not connect, although
+the setup parent's buffer had become ready. Preserve both records unchanged.
+
+The localization TCPROS listener randomly reused port 33701. A minimal listener
+on that exact port reproduced an immediate connection from the unrelated old
+Gazebo process PID 1201814, via host address 100.65.37.138, sending
+`ff 00 00 00 00 00 00 00 01 7f`. ROS interprets the first four bytes as header
+length 255 and waits for the remainder; its serial handshake server cannot
+accept waiting TF subscribers until the sender closes, about 30 seconds later.
+Three such delays are recorded. Six ordinary ROS-only pub/sub nodes did not
+reproduce the ten-byte input. The unrelated Gazebo was not stopped.
+
+Configure this existing **single-host** runner's ROS_IP/ROS_HOSTNAME to
+127.0.0.1 and ROS_IPV6 to off, including the setup parent. This is local transport
+configuration, not a public frame change or distributed/real-robot setting.
+Binding the same port through ROS's get_bind_address then accepted a local
+connection and rejected the old Gazebo LAN route (connect_ex 111). It does not
+promise isolation from another process intentionally using loopback.
+
+Also require this task's own fresh public UAV/Ground TF before arming, using the
+existing 30 s preflight timeout, zero-timeout lookups and wall-time yielding.
+Missing/stale TF fails before takeoff; freshness and flight-health gates remain.
+Tests reproduce old takeoff-before-TF behavior and cover delayed/frozen-clock
+failure and stale-to-fresh recovery.
+
+Use the remaining two starts for Moderate01 Generic then Ours at one corrected
+version. This explicitly replaces the planned Hard02 online pair to validate
+the demonstrated runtime defect within the unchanged four-start cap, not to
+select favorable scenes. Hard analysis remains recorded-state only this stage.
+Do not pool starts 1/2 with starts 3/4 as a same-version comparison.

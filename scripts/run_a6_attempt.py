@@ -292,6 +292,10 @@ def runtime_environment(sim_root, output):
     environment.pop('P450_GROUND_INTEGRATED_VELOCITY', None)
     environment.setdefault('P450_PX4_ROOT', PX4)
     environment.update(SIM_ROOT=str(sim_root),
+                       # This runner is single-host. Bind TCPROS locally so an
+                       # unrelated old Gazebo cannot reconnect to a recycled
+                       # ROS port via the host's LAN address (observed 33701).
+                       ROS_IP='127.0.0.1', ROS_HOSTNAME='127.0.0.1', ROS_IPV6='off',
                        ROS_MASTER_URI='http://127.0.0.1:11951', GAZEBO_MASTER_URI='http://127.0.0.1:11952',
                        ROS_LOG_DIR=str(output/'ros'), MPLCONFIGDIR='/tmp/a6-mpl', XDG_CACHE_HOME='/tmp/a6-cache')
     return environment

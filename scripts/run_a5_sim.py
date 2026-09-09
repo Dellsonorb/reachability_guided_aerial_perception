@@ -232,20 +232,21 @@ def build_adapter_class(demo_module, options):
             t, q = transform.transform.translation, transform.transform.rotation
             return rigid_transform([t.x, t.y, t.z], [q.x, q.y, q.z, q.w])
 
-        def _a5_frame_calibration(self):
+        def _a5_frame_calibration(self, timeout_s=None):
             """Read the public nominal Ground plane, not a LiDAR-fitted offset."""
+            timeout = rospy.Duration(options.tf_timeout if timeout_s is None else timeout_s)
             odom_bunker = self._tf_buffer.lookup_transform(
                 'ground/odom', self._ground_base_frame, rospy.Time(0),
-                rospy.Duration(options.tf_timeout))
+                timeout)
             stamp = odom_bunker.header.stamp
             age = rospy.Time.now().to_sec() - stamp.to_sec()
             if not 0 <= age <= options.tf_max_age:
                 raise DemoError('A5 Ground map TF is stale')
             map_odom = self._tf_buffer.lookup_transform(
-                self._map_frame, 'ground/odom', stamp, rospy.Duration(options.tf_timeout))
+                self._map_frame, 'ground/odom', stamp, timeout)
             bunker_aubo = self._tf_buffer.lookup_transform(
                 self._ground_base_frame, 'ground/aubo_i5_base_link', stamp,
-                rospy.Duration(options.tf_timeout))
+                timeout)
             return {'T_map_ground_odom': self._a5_matrix(map_odom).tolist(),
                     'T_ground_odom_bunker': self._a5_matrix(odom_bunker).tolist(),
                     'T_bunker_aubo': self._a5_matrix(bunker_aubo).tolist()}
@@ -470,6 +471,35 @@ def build_adapter_class(demo_module, options):
             return run_worker_request(options.core_python, ROOT / "scripts/a5_core_worker.py",
                                       ROOT / "src", request, self._a5_output, label,
                                       options.core_timeout)
+
+        def _wait_preflight(self):
+            super()._wait_preflight()
+            # Readiness in the setup node or flight facade does not imply that
+            # this newly created subscriber has received the public TF chain.
+            start = time.monotonic()
+            deadline = start + self._preflight_timeout
+            last_error = 'no public localization received'
+            self._publish_status('A5_PREFLIGHT_TF_WAIT')
+            while not rospy.is_shutdown() and time.monotonic() < deadline:
+                try:
+                    self._a5_measured_pose(timeout_s=0.)
+                    self._a5_frame_calibration(timeout_s=0.)
+                except (DemoError, tf2_ros.TransformException) as error:
+                    last_error = str(error)
+                    self._wait_step()
+                    continue
+                # Check health and TF together; a second blocking parent wait
+                # could make the TF above stale while health is recovering.
+                state, _pose, received, _pose_received = self._air_snapshot()
+                if (state is None or received is None or not demo_module.native_state_ready(
+                        state.connected, state.odom_valid, time.monotonic() - received,
+                        self._flight_health_max_age)):
+                    last_error = 'native Prometheus state ceased to be ready'
+                    self._wait_step()
+                    continue
+                self._publish_status('A5_PREFLIGHT_TF_READY', waited_wall_s=time.monotonic() - start)
+                return
+            raise DemoError('A5 preflight public TF not ready: ' + last_error)
 
         def _run_air_phase(self):
             try:

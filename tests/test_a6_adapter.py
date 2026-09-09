@@ -108,6 +108,7 @@ class AdapterTests(unittest.TestCase):
                 self._flight_started, self._landed = False, False
                 self._placement_mode = 'rm4d'
                 self._flight_health_max_age = .5
+                self._preflight_timeout = 30.
                 self._rm4d_grasp_id = 'grasp-live'
                 for key in ('target_size', 'pregrasp_height', 'lift_height',
                             'finger_pad_lower_edge_offset', 'contact_overlap', 'surface_clearance'):
@@ -142,7 +143,8 @@ class AdapterTests(unittest.TestCase):
                         timer.callback(None)
 
             def _air_snapshot(self):
-                return SimpleNamespace(velocity=[0., 0., 0.]), None, owner.clock.wall, None
+                return SimpleNamespace(velocity=[0., 0., 0.], connected=True,
+                                       odom_valid=True), None, owner.clock.wall, None
 
             def _observe_from_air(self):
                 return [2., 0., .1]
@@ -179,7 +181,7 @@ class AdapterTests(unittest.TestCase):
                     self.handoff = self._select_rm4d_candidate(target)
                     self._publish_status('LIFT', grasp_confirmed=True)
                     return True
-                except RuntimeError as error:
+                except (RuntimeError, LookupError) as error:
                     self._publish_status('FAILED', reason=str(error))
                     return False
                 finally:
@@ -188,6 +190,8 @@ class AdapterTests(unittest.TestCase):
 
         self.base = DemoBase
         self.demo = SimpleNamespace(DemoError=RuntimeError, AirGroundPickDemo=DemoBase,
+                                    native_state_ready=lambda connected, valid, age, maximum:
+                                        connected and valid and 0 <= age <= maximum,
                                     generate_top_down_grasp=lambda *args: SimpleNamespace(
                                         grasp=SimpleNamespace(position=(2., 0., .1), orientation=(0., 0., 0., 1.))))
 
@@ -287,6 +291,83 @@ class AdapterTests(unittest.TestCase):
         for result in results:
             decision = next(row for row in events if row['state'] == 'A5_DECISION' and row['round'] == result['round'])
             self.assertLess(events.index(result), events.index(decision))
+
+    def test_own_tf_must_arrive_before_any_takeoff_command(self):
+        node = self.node()
+        ready_wall = self.clock.wall + .3
+        original_lookup = self.lookup
+        def delayed(*args):
+            if self.clock.wall < ready_wall:
+                raise LookupError('map tree not connected yet')
+            return original_lookup(*args)
+        node._tf_buffer.lookup_transform = delayed
+        execute = node._execute_flight
+        def command(*args, **kwargs):
+            self.assertGreaterEqual(self.clock.wall, ready_wall)
+            return execute(*args, **kwargs)
+        node._execute_flight = command
+        with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):
+            self.assertTrue(node.run())
+        self.assertTrue(any(row['state'] == 'A5_PREFLIGHT_TF_READY' for row in self.events()))
+
+    def test_missing_own_tf_times_out_without_arming_even_if_clock_pauses(self):
+        node = self.node()
+        node._preflight_timeout = .2
+        start = self.clock.wall
+        node._tf_buffer.lookup_transform = lambda *args: (_ for _ in ()).throw(
+            LookupError('map tree not connected'))
+        node._wait_step = lambda: setattr(self.clock, 'wall', self.clock.wall + .05)
+        with patch.object(self.adapter, 'run_worker_request', side_effect=self.worker):
+            self.assertFalse(node.run())
+        self.assertEqual(self.actions, [])
+        self.assertEqual(self.worker_calls, [])
+        self.assertLessEqual(self.clock.wall - start, .251)
+        self.assertIn('preflight public TF not ready', next(
+            row['reason'] for row in self.events() if row['state'] == 'FAILED'))
+
+    def test_preflight_waits_for_fresh_not_merely_connected_tf(self):
+        node = self.node()
+        start = self.clock.wall
+        original_lookup = self.lookup
+        def stale(*args):
+            result = original_lookup(*args)
+            if self.clock.wall < start + .2:
+                result.header.stamp = self.Stamp(self.clock.sim - 2.)
+            return result
+        node._tf_buffer.lookup_transform = stale
+        node._wait_preflight()
+        self.assertGreaterEqual(self.clock.wall, start + .2)
+        self.assertEqual(self.actions, [])
+
+    def test_health_recovery_cannot_authorize_tf_that_has_since_gone_stale(self):
+        node = self.node()
+        node._preflight_timeout = .3
+        start = self.clock.wall
+        stamp = self.Stamp(self.clock.sim)
+        original_lookup = self.lookup
+        calls = []
+        def parent_wait(_node):
+            calls.append(self.clock.wall)
+            if len(calls) > 1:
+                self.clock.wall += .3
+                self.clock.sim += 2.
+        def aging_tf(*args):
+            result = original_lookup(*args)
+            result.header.stamp = stamp
+            return result
+        def yield_time():
+            self.clock.wall += .05
+            self.clock.sim += .5
+        node._tf_buffer.lookup_transform = aging_tf
+        node._wait_step = yield_time
+        node._air_snapshot = lambda: (SimpleNamespace(connected=True, odom_valid=True),
+            None, self.clock.wall if self.clock.wall >= start + .2 else start - 2., None)
+        with patch.object(self.base, '_wait_preflight', parent_wait):
+            with self.assertRaisesRegex(RuntimeError, 'preflight public TF not ready'):
+                node._wait_preflight()
+        self.assertEqual(len(calls), 1)
+        self.assertLessEqual(self.clock.wall - start, .351)
+        self.assertEqual(self.actions, [])
 
     def test_fixed_nbvs_only_hover_at_current_pose_despite_stale_requested_pose(self):
         node = self.node('fixed')
