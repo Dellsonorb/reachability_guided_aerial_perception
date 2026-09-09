@@ -1,0 +1,14 @@
+{"state": "PREFLIGHT", "ros_time": 11.542}
+{"state": "ARMING", "ros_time": 11.555}
+{"state": "COMMAND_CONTROL", "ros_time": 11.557}
+{"state": "TAKEOFF", "ros_time": 11.562}
+{"state": "AIR_VIEW", "ros_time": 24.668}
+{"state": "A5_VIEWPOINT", "ros_time": 24.671, "goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false}
+{"state": "A5_SETTLED", "ros_time": 33.87, "uav_pose_map": [-1.433005334855716, -0.006213827802646765, 1.22121351624577, -0.000447196957841092]}
+{"state": "AIR_OBSERVE", "ros_time": 33.877}
+{"state": "AIR_HANDOFF", "ros_time": 33.923, "target_map": [1.9958634869897864, -0.11271362103854528, 0.06068577348554937, 0.12523438726057765], "observation_stamp": 33.494}
+{"state": "TARGET_REFERENCE", "ros_time": 34.093, "status": "AVAILABLE", "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/v12-fresh-validation/setup-hard-01/data/target_reference.npz", "frame_id": "map", "stamp_s": 33.494, "perceived_target": {"center_xyz": [1.9958634869897864, -0.11271362103854528, 0.06068577348554937], "yaw_rad": 0.12523438726057765, "size_xyz": [0.24, 0.053, 0.115]}, "mask_pixels": 259, "points": 122}
+{"state": "A5_CAPTURE_ANCHOR", "ros_time": 34.096, "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.4274638318616515, -0.010771930640119219, 1.2239451290423964, -0.00026079616096152133], "position_discrepancy_m": 0.037995601786228156, "yaw_discrepancy_rad": -0.00026079616096152133}
+{"state": "A5_SETTLED", "ros_time": 34.577, "uav_pose_map": [-1.4237905400718631, -0.020408455248687698, 1.2312000004210535, -0.0019859628093316876]}
+{"state": "A5_OBSERVATION", "ros_time": 39.845, "round": 1, "stamp_s": 39.647, "sensor_frame": "uav1/lidar_link", "point_count": 88003, "chunk_count": 51, "window_duration_s": 5.033000000000001, "uav_pose_map": [-1.3750890047607505, -0.096515233804212, 1.2376272847970493, -0.008445326422086693], "observation_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/a6/v12-fresh-validation/setup-hard-01/data/observation_01.npz", "requested_viewpoint": [-1.4, 0.0, 1.2, 0.0], "capture_anchor_map": [-1.4274638318616515, -0.010771930640119219, 1.2239451290423964, -0.00026079616096152133]}
+{"state": "LANDING", "ros_time": 39.845}

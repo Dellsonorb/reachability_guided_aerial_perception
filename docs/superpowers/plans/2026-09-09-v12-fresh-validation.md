@@ -39,20 +39,25 @@ frozen six-slot configuration. No research-source or dependency changes.
 
 ## 2. Prepare diagnostic reuse and execute serially
 
-- [ ] Confirm operational/scoring/metrics commands and non-winner helper reuse.
+- [x] Confirm operational/scoring/metrics commands and non-winner helper reuse.
   Exact A6 snapshots must not use the legacy-cell-center `replay_attempt` path.
   Any small reporting addition first receives a test using recorded data;
   diagnostics never participate in selection or rewrite previous results.
-- [ ] Add read-only `scripts/a6_exact_support_diagnostics.py` and focused tests:
+- [x] Add read-only `scripts/a6_exact_support_diagnostics.py` and focused tests:
   rebuild support from saved initial/A2/operational arrays, compare exact winner
   identities, poses, assessments and A3 arrays, and call the existing diagnostic
   non-winner helper. Test unchanged recorded natural data and deliberate saved
   anchor/array mismatches. No new query, observation or selection occurs.
-- [ ] For each scene run existing `scripts/run_a6_attempt.py --config
+  Six reporter tests pass; independent specification and quality reviews pass.
+  Reconstruction also verifies object-aware-v1.1 declarations; missing
+  reconstruction is not reported as zero non-winner alternatives.
+- [x] For each scene run existing `scripts/run_a6_attempt.py --config
   configs/a6_v12_validation.json --setup-scene TIER --output-dir NEW_SETUP_DIR`
   in SIM's pinned Noetic environment with dedicated11951/11952 ports. No pose override.
-- [ ] Confirm all three existing setup checks pass. Keep every activation;
+- [x] Confirm all three existing setup checks pass. Keep every activation;
   investigate genuine domain conflict instead of resampling.
+  All three first activations pass: Easy838/Moderate612/Hard405 ground cells;
+  windows5.029/5.022/5.033 simulation seconds. No redraw/override/retry.
 - [ ] Run explicit slots1–6 with the same command's `--slot N` instead of
   `--setup-scene`, fresh output directory per activation. Do not call any formal
   generator/matrix or select order from results. Inspect the terminal result
