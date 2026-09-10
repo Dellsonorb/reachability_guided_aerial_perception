@@ -1,0 +1,3959 @@
+{
+  "cohort": "paper1-eval-finite-scan-v1-final",
+  "simulation_started": false,
+  "method_calls": 0,
+  "check": "necessary nominal depth/FOV and spawn XY separation; no live admission",
+  "geometry_sources": [
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/platform/sim_platform_bringup/launch/p450_runtime.launch",
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/air_observer.yaml",
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/src/demos/air_ground_pick_demo/config/demo.yaml",
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/prometheus_gazebo/gazebo_models/sensor_models/D435i/model.sdf"
+  ],
+  "color_horizontal_fov_rad": 1.211,
+  "image_width": 640,
+  "image_height": 480,
+  "frozen_observer_depth_limits_m": [
+    0.25,
+    4.0
+  ],
+  "all_setup_checks_pass": true,
+  "scenes": [
+    {
+      "scene_id": "eval-easy-001",
+      "seed": 1210463358,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.289288685736558,
+        3.555290992665821
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.09497089741741255,
+          -0.008362161654225542,
+          3.289288685736558
+        ],
+        [
+          0.15366006026941026,
+          0.18236986293137902,
+          3.555290992665821
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-001",
+      "seed": 255254000,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2819299149497514,
+        3.542652121157347
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.021904351802009427,
+          -0.0037486134111321956,
+          3.2819299149497514
+        ],
+        [
+          0.18469934674512814,
+          0.18505602395548926,
+          3.542652121157347
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-002",
+      "seed": 203946317,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.488757797908506,
+        3.749522316541331
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.13306396915846042,
+          -0.07926212945742361,
+          3.488757797908506
+        ],
+        [
+          0.029612560565226258,
+          0.10955795315009209,
+          3.749522316541331
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-003",
+      "seed": 1259243681,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.290989349320764,
+        3.5610274096939865
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.041216376180866925,
+          -0.010456117327736436,
+          3.290989349320764
+        ],
+        [
+          0.07307243341593833,
+          0.18174907226302373,
+          3.5610274096939865
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-001",
+      "seed": 2144209384,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3240629181913732,
+        3.593117534078579
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.05908737047174297,
+          -0.022169927130765155,
+          3.3240629181913732
+        ],
+        [
+          0.02059664870042557,
+          0.1696762771995146,
+          3.593117534078579
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-004",
+      "seed": 1618578603,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3899858806381964,
+        3.6563825875209517
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.04735453892501927,
+          -0.04526347436420086,
+          3.3899858806381964
+        ],
+        [
+          0.1082110010526017,
+          0.14561251744278825,
+          3.6563825875209517
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-002",
+      "seed": 2026455799,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2320448262130634,
+        3.4922058179041247
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.1835083284724724,
+          0.014665724735150931,
+          3.2320448262130634
+        ],
+        [
+          -0.01917179469023161,
+          0.2032655028115249,
+          3.4922058179041247
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-002",
+      "seed": 572179566,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.488488800199109,
+        3.75858194734486
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.06964467068724241,
+          -0.08256915285335498,
+          3.488488800199109
+        ],
+        [
+          0.18281197686228298,
+          0.10965614497906606,
+          3.75858194734486
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-003",
+      "seed": 1313725102,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.412398438330216,
+        3.682351746518889
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.06793360429280627,
+          -0.05474295738523005,
+          3.412398438330216
+        ],
+        [
+          0.15881237714256285,
+          0.13743129524317022,
+          3.682351746518889
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-005",
+      "seed": 342348758,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4930230158621,
+        3.762621618629114
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.18634818126085562,
+          -0.0840437479818561,
+          3.4930230158621
+        ],
+        [
+          -0.10070511133501733,
+          0.10800102706036796,
+          3.762621618629114
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-006",
+      "seed": 1268197413,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3009961974664295,
+        3.568295576092846
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.0915863220610143,
+          -0.013109205168489124,
+          3.3009961974664295
+        ],
+        [
+          0.15783101496191093,
+          0.1780962875464147,
+          3.568295576092846
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-003",
+      "seed": 742306348,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.286993312123796,
+        3.557043678849855
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.07571115901116074,
+          -0.009001942053893375,
+          3.286993312123796
+        ],
+        [
+          0.16843766413949268,
+          0.1832077397063192,
+          3.557043678849855
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-004",
+      "seed": 1474139397,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.276439133692813,
+        3.544165506945192
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.1752243443212306,
+          -0.004301042347366835,
+          3.276439133692813
+        ],
+        [
+          -0.03959293643527124,
+          0.18706031557315295,
+          3.544165506945192
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-005",
+      "seed": 1040101780,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.375718247078634,
+        3.6434469624629346
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.07408570065993995,
+          -0.040541602619582395,
+          3.375718247078634
+        ],
+        [
+          0.20970317936817903,
+          0.15082061024582738,
+          3.6434469624629346
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-006",
+      "seed": 114753794,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.452744481709775,
+        3.7228386348766596
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.0808567792008094,
+          -0.06952182530283446,
+          3.452744481709775
+        ],
+        [
+          0.1745259607269385,
+          0.12270383975596699,
+          3.7228386348766596
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-007",
+      "seed": 1771585328,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.488133698185397,
+        3.758419244620431
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.036643225273017214,
+          -0.08250976172275215,
+          3.488133698185397
+        ],
+        [
+          0.06331654480099466,
+          0.10978576733264256,
+          3.758419244620431
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-007",
+      "seed": 301722068,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3460974572942304,
+        3.615337826677769
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.100073648045356,
+          -0.03028096709293915,
+          3.3460974572942304
+        ],
+        [
+          -0.018527931545403668,
+          0.1616330425565169,
+          3.615337826677769
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-008",
+      "seed": 36731972,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3310257586081766,
+        3.598063603341261
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.07763861178561729,
+          -0.02397538334904925,
+          3.3310257586081766
+        ],
+        [
+          0.06182269036500808,
+          0.16713464204242445,
+          3.598063603341261
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-009",
+      "seed": 1995439984,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2529590146914016,
+        3.5232732416663404
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.17095542402055952,
+          0.003325229800970275,
+          3.2529590146914016
+        ],
+        [
+          -0.06707627596992016,
+          0.19563122807067712,
+          3.5232732416663404
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-010",
+      "seed": 577646205,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4846402057497805,
+        3.754757356108477
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.07793929049278488,
+          -0.08117306807099656,
+          3.4846402057497805
+        ],
+        [
+          0.17214060823683325,
+          0.11106099161811711,
+          3.754757356108477
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-011",
+      "seed": 6291815,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2626008574130303,
+        3.5328270677935674
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.09124250717382784,
+          -0.00016218897012310052,
+          3.2626008574130303
+        ],
+        [
+          0.006057890973111344,
+          0.1921116807346095,
+          3.5328270677935674
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-012",
+      "seed": 1529985687,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.29690895394799,
+        3.5670567537704825
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.05170745739567793,
+          -0.01265699972079437,
+          3.29690895394799
+        ],
+        [
+          0.14666789146091114,
+          0.1795882478959563,
+          3.5670567537704825
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-013",
+      "seed": 1836638481,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.385882365267289,
+        3.655917671464335
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08341954946414755,
+          -0.045093766755831544,
+          3.385882365267289
+        ],
+        [
+          0.19776127842704694,
+          0.14711041748214404,
+          3.655917671464335
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-008",
+      "seed": 1908570494,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3377963161076325,
+        3.6071916594652254
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.03683582255650257,
+          -0.027307383936707508,
+          3.3377963161076325
+        ],
+        [
+          0.15980243645063216,
+          0.16466319562923548,
+          3.6071916594652254
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-004",
+      "seed": 1588955310,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3208465441381048,
+        3.5867184093405933
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.07825161748299278,
+          -0.019834064259426132,
+          3.3208465441381048
+        ],
+        [
+          -0.02025849377130735,
+          0.17085034537899113,
+          3.5867184093405933
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-009",
+      "seed": 2099544331,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.383627881362732,
+        3.6539172342881914
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08317174802024903,
+          -0.04436355018442106,
+          3.383627881362732
+        ],
+        [
+          0.18996003900365094,
+          0.14793336834844406,
+          3.6539172342881914
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-014",
+      "seed": 1198289218,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2774105652098484,
+        3.5458996750078855
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.0720772029308594,
+          -0.004934063105074937,
+          3.2774105652098484
+        ],
+        [
+          0.20274212495117272,
+          0.18670571538865843,
+          3.5458996750078855
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-010",
+      "seed": 252873871,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.485753410549844,
+        3.7546832402629295
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.1616637632880251,
+          -0.08114601367545338,
+          3.485753410549844
+        ],
+        [
+          -0.08315691987569562,
+          0.11065464014551218,
+          3.7546832402629295
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-005",
+      "seed": 2032977054,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.382011190567791,
+        3.64875071913539
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.06826720309697833,
+          -0.04247762493467544,
+          3.382011190567791
+        ],
+        [
+          -0.00544158554922794,
+          0.1485235065559276,
+          3.64875071913539
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-006",
+      "seed": 783331617,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4328897345639673,
+        3.701767977726807
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.0299175635492067,
+          -0.06183043503833563,
+          3.4328897345639673
+        ],
+        [
+          0.0977718194910615,
+          0.12995138822183994,
+          3.701767977726807
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-015",
+      "seed": 1054175095,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2610310872870496,
+        3.528332871165712
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.005087230288574281,
+          0.0014783208604149944,
+          3.2610310872870496
+        ],
+        [
+          0.14313828776546497,
+          0.1926846915609257,
+          3.528332871165712
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-016",
+      "seed": 1445701850,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.440673164927376,
+        3.7014302304838718
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.20951566795745802,
+          -0.061707147670613915,
+          3.440673164927376
+        ],
+        [
+          -0.04681824780720265,
+          0.12711021435166736,
+          3.7014302304838718
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-007",
+      "seed": 1075287346,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.5037468485296808,
+        3.7699294496591116
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.14115317220722592,
+          -0.08671131454321124,
+          3.5037468485296808
+        ],
+        [
+          -0.08148539935033233,
+          0.10408652256290751,
+          3.7699294496591116
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-017",
+      "seed": 1730521730,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.382081845220469,
+        3.6502164597047315
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.09436089527775514,
+          -0.04301266200851406,
+          3.382081845220469
+        ],
+        [
+          0.16632838562810276,
+          0.14849771559440783,
+          3.6502164597047315
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-008",
+      "seed": 952403840,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.346289596699359,
+        3.615841902305674
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.10717519590512792,
+          -0.030464969060673974,
+          3.346289596699359
+        ],
+        [
+          -0.02211027465909021,
+          0.1615629061986652,
+          3.615841902305674
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-011",
+      "seed": 547442462,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3556945449872595,
+        3.624378585664968
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.04457018334275342,
+          -0.03358110173816109,
+          3.3556945449872595
+        ],
+        [
+          0.17379215910685258,
+          0.15812983208117481,
+          3.624378585664968
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-018",
+      "seed": 1791742366,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2451617624178635,
+        3.5154457748391557
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08824423478068963,
+          0.006182478235232658,
+          3.2451617624178635
+        ],
+        [
+          0.19536236375339375,
+          0.19847744733189998,
+          3.5154457748391557
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-009",
+      "seed": 211928663,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.296413300373943,
+        3.5653155578343934
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.11737351819594947,
+          -0.012021413589038854,
+          3.296413300373943
+        ],
+        [
+          0.010118849866625585,
+          0.1797691755740478,
+          3.5653155578343934
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-010",
+      "seed": 1801785368,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3343998104214823,
+        3.6039811073723196
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.05486688156920046,
+          -0.026135440938659382,
+          3.3343998104214823
+        ],
+        [
+          0.0660631343290902,
+          0.16590301698753396,
+          3.6039811073723196
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-019",
+      "seed": 1227555287,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4825936167823173,
+        3.7516643954771687
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08159493401670172,
+          -0.08004404930718034,
+          3.4825936167823173
+        ],
+        [
+          0.20765159021224755,
+          0.11180805490844703,
+          3.7516643954771687
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-012",
+      "seed": 1778808044,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2754455119133103,
+        3.5446989442687507
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.05364990100150036,
+          -0.004495762170671824,
+          3.2754455119133103
+        ],
+        [
+          0.17802857414810808,
+          0.1874230158357555,
+          3.5446989442687507
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-013",
+      "seed": 2036053271,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2670689663377734,
+        3.533640611819268
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.18539453410086645,
+          -0.00045915572130272864,
+          3.2670689663377734
+        ],
+        [
+          -0.04358878722185081,
+          0.19048069365907194,
+          3.533640611819268
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-014",
+      "seed": 12453975,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.270600690129072,
+        3.540461169445387
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08709625334485946,
+          -0.0029488536054691483,
+          3.270600690129072
+        ],
+        [
+          0.1764246591224752,
+          0.18919151383937738,
+          3.540461169445387
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-011",
+      "seed": 1308936197,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3121177591469326,
+        3.579262326635176
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.10483501279890668,
+          -0.017112381612136573,
+          3.3121177591469326
+        ],
+        [
+          0.17010617828778427,
+          0.174036600626017,
+          3.579262326635176
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-020",
+      "seed": 624330444,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.287274905565007,
+        3.554205144487855
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.08594378459059772,
+          -0.007965796128208247,
+          3.287274905565007
+        ],
+        [
+          -0.02198398925512117,
+          0.18310495007631977,
+          3.554205144487855
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-015",
+      "seed": 1075436801,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2517092119212894,
+        3.5177370092728575
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.02232423738011191,
+          0.005346112378594725,
+          3.2517092119212894
+        ],
+        [
+          0.08115057123794027,
+          0.19608744169468606,
+          3.5177370092728575
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-016",
+      "seed": 896070714,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3518882354121544,
+        3.6196690514770062
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.20394942627280208,
+          -0.03186198756217684,
+          3.3518882354121544
+        ],
+        [
+          -0.06864360329312846,
+          0.15951924353623403,
+          3.6196690514770062
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-012",
+      "seed": 1705400159,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2735871004032475,
+        3.5395103071386775
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.19159434852014334,
+          -0.002601761768860067,
+          3.2735871004032475
+        ],
+        [
+          -0.046785263586611274,
+          0.1881013889920491,
+          3.5395103071386775
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-021",
+      "seed": 1921782030,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3375426173750373,
+        3.6076959418768513
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.12740433691679898,
+          -0.02749146138639258,
+          3.3375426173750373
+        ],
+        [
+          -0.032299966049682924,
+          0.16475580289573477,
+          3.6076959418768513
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-022",
+      "seed": 624476128,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.417289744967693,
+        3.6872857346442762
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.053794675972337225,
+          -0.05654400364415113,
+          3.417289744967693
+        ],
+        [
+          0.16886449398456752,
+          0.13564582894353783,
+          3.6872857346442762
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-013",
+      "seed": 1968384923,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3592252538921272,
+        3.6259764466235023
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.05575157491959412,
+          -0.03416436651880317,
+          3.3592252538921272
+        ],
+        [
+          0.08517166389833968,
+          0.1568410227239465,
+          3.6259764466235023
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-014",
+      "seed": 555805992,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.300097321368482,
+        3.5699139161920606
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.06617039086500882,
+          -0.01369994541902897,
+          3.300097321368482
+        ],
+        [
+          0.022479328232259413,
+          0.17842440293548756,
+          3.5699139161920606
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-017",
+      "seed": 1094383263,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.361240163522462,
+        3.6312220911874795
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.08227296791144391,
+          -0.036079176258407175,
+          3.361240163522462
+        ],
+        [
+          0.033045948659370356,
+          0.15610552329436622,
+          3.6312220911874795
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-015",
+      "seed": 1395226981,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3481061027746817,
+        3.616700798149212
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.0873555685287756,
+          -0.030778490517656687,
+          3.3481061027746817
+        ],
+        [
+          -0.011779469146424535,
+          0.1608998297201396,
+          3.616700798149212
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-023",
+      "seed": 840498448,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4791025948950036,
+        3.740449053105969
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.2218426496808794,
+          -0.07595012976241344,
+          3.4791025948950036
+        ],
+        [
+          -0.06082930723529043,
+          0.11308237737339288,
+          3.740449053105969
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-024",
+      "seed": 1815207737,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.342435702523759,
+        3.6097248784237665
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.07488554236349713,
+          -0.02823208104021968,
+          3.342435702523759
+        ],
+        [
+          0.06323439884326709,
+          0.16296968738881978,
+          3.6097248784237665
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-025",
+      "seed": 1586363002,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.440456746923708,
+        3.705964365079296
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.0797649814358579,
+          -0.06336223599734025,
+          3.440456746923708
+        ],
+        [
+          -0.02366609383160922,
+          0.12718921308980025,
+          3.705964365079296
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-026",
+      "seed": 2083629771,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.365088763600741,
+        3.6354016023698867
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.029683814092020464,
+          -0.03760481693444828,
+          3.365088763600741
+        ],
+        [
+          0.13233084993466507,
+          0.15470067460058767,
+          3.6354016023698867
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-016",
+      "seed": 2015921538,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.484385859838908,
+        3.745596749208239
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.15358706508008033,
+          -0.07782918552246954,
+          3.484385859838908
+        ],
+        [
+          0.007819525836438418,
+          0.11115383512312937,
+          3.745596749208239
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-018",
+      "seed": 1702771334,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.367730535356249,
+        3.6374281547741902
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.11518454693204651,
+          -0.03834456630828598,
+          3.367730535356249
+        ],
+        [
+          0.004330778862007916,
+          0.1537363526329889,
+          3.6374281547741902
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-019",
+      "seed": 1169197651,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.298749227938246,
+        3.560595552361805
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.10112673963523312,
+          -0.010298477095788572,
+          3.298749227938246
+        ],
+        [
+          0.05840438318803728,
+          0.17891649545121724,
+          3.560595552361805
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-027",
+      "seed": 1371677345,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.487956170703173,
+        3.7577214762842006
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.023509456620874683,
+          -0.08225505639723751,
+          3.487956170703173
+        ],
+        [
+          0.09511800421703002,
+          0.10985056992226983,
+          3.7577214762842006
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-020",
+      "seed": 1196848422,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4387835762070793,
+        3.708530308611393
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.15948709280134762,
+          -0.06429887850268168,
+          3.4387835762070793
+        ],
+        [
+          -0.07186033944926619,
+          0.1277999680780859,
+          3.708530308611393
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-028",
+      "seed": 276858287,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.412955206866256,
+        3.68264291172394
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.11778960029402874,
+          -0.05484924098177668,
+          3.412955206866256
+        ],
+        [
+          0.0018514447617006353,
+          0.137228058862491,
+          3.68264291172394
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-017",
+      "seed": 1104742798,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.442032691282444,
+        3.7116847384101113
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.10269515420044514,
+          -0.06545033526415578,
+          3.442032691282444
+        ],
+        [
+          0.017389699055680597,
+          0.12661394849259455,
+          3.7116847384101113
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-018",
+      "seed": 623667406,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.363669192696526,
+        3.633983048342505
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.08450059606646418,
+          -0.03708700429299738,
+          3.363669192696526
+        ],
+        [
+          0.018458405717633672,
+          0.15521885843105832,
+          3.633983048342505
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-019",
+      "seed": 1161908827,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.252664064604849,
+        3.5219077707582156
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.0014926281991694704,
+          0.0038236655912977646,
+          3.252664064604849
+        ],
+        [
+          0.12297907379736024,
+          0.1957388932568218,
+          3.5219077707582156
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-020",
+      "seed": 1670336334,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3246561392204974,
+        3.5881311157405786
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.14474093513553485,
+          -0.02034974235025011,
+          3.3246561392204974
+        ],
+        [
+          0.009557362396339123,
+          0.16945973462015185,
+          3.5881311157405786
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-029",
+      "seed": 1464281037,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.378357034993157,
+        3.6440684664642298
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.12016705275688838,
+          -0.04076846928970612,
+          3.378357034993157
+        ],
+        [
+          -0.06301693180988709,
+          0.14985737746521233,
+          3.6440684664642298
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-030",
+      "seed": 1461492554,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3496081000192115,
+        3.6094544562479074
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.17037486569958896,
+          -0.028133369240396888,
+          3.3496081000192115
+        ],
+        [
+          -0.005197221050246185,
+          0.1603515579267294,
+          3.6094544562479074
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-021",
+      "seed": 934204669,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.269329388932091,
+        3.539412601946483
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.14582211295331735,
+          -0.0025660965896161514,
+          3.269329388932091
+        ],
+        [
+          -0.032442801241130546,
+          0.18965557500178765,
+          3.539412601946483
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-031",
+      "seed": 1552255101,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.463052987962434,
+        3.731542790434412
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.08183138711199937,
+          -0.07269909010485054,
+          3.463052987962434
+        ],
+        [
+          0.04882855796324748,
+          0.11894094123460874,
+          3.731542790434412
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-021",
+      "seed": 1663037551,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3571527946180497,
+        3.6230596119889773
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.009785366456768608,
+          -0.03309963876249311,
+          3.3571527946180497
+        ],
+        [
+          0.06796403998513469,
+          0.15759752941336025,
+          3.6230596119889773
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-032",
+      "seed": 1195288372,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3167790559413657,
+        3.585301921464653
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.16658051524656248,
+          -0.019317005822126143,
+          3.3167790559413657
+        ],
+        [
+          -0.09159580223213437,
+          0.17233509447318718,
+          3.585301921464653
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-033",
+      "seed": 580383716,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2898248222643796,
+        3.558590825052387
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.04001092637647633,
+          -0.009566694503486461,
+          3.2898248222643796
+        ],
+        [
+          0.08857680874794081,
+          0.18217415782160495,
+          3.558590825052387
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-034",
+      "seed": 1116734341,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.34582862093385,
+        3.6063189382767904
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.20722238789572764,
+          -0.026988815834886326,
+          3.34582862093385
+        ],
+        [
+          -0.04378383034380643,
+          0.16173117548850224,
+          3.6063189382767904
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-022",
+      "seed": 1946101076,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4936905629494053,
+        3.7546779911095562
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.15745564794916214,
+          -0.08114409758489849,
+          3.4936905629494053
+        ],
+        [
+          0.004591374281787858,
+          0.10775735335186032,
+          3.7546779911095562
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-035",
+      "seed": 2063589663,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4473708914535015,
+        3.7168944226839913
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.10040750154655566,
+          -0.06735201847319194,
+          3.4473708914535015
+        ],
+        [
+          0.18512163853260044,
+          0.12466535331904982,
+          3.7168944226839913
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-022",
+      "seed": 208584040,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.3276816780791005,
+        3.5920713018628723
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.12279077630230775,
+          -0.021788022559822817,
+          3.3276816780791005
+        ],
+        [
+          0.028237539902747227,
+          0.168355326724545,
+          3.5920713018628723
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-036",
+      "seed": 140973717,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.459270187969512,
+        3.7294008883114675
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.06391773324658881,
+          -0.07191723479683798,
+          3.459270187969512
+        ],
+        [
+          0.15844693402266377,
+          0.12032177102226949,
+          3.7294008883114675
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-023",
+      "seed": 1636798150,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4429455222746546,
+        3.7056262531103656
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.22702933860885025,
+          -0.06323881549423738,
+          3.4429455222746546
+        ],
+        [
+          -0.0700955167765401,
+          0.12628073916947335,
+          3.7056262531103656
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-023",
+      "seed": 541862809,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.458560791429621,
+        3.7203340577476665
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.1116910362830791,
+          -0.06860758328325134,
+          3.458560791429621
+        ],
+        [
+          0.04805998695185774,
+          0.12058072097346395,
+          3.7203340577476665
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-024",
+      "seed": 2090990290,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4501605981456533,
+        3.719089597675785
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.017825906971739035,
+          -0.068153319896336,
+          3.4501605981456533
+        ],
+        [
+          0.10944495794826606,
+          0.12364703088419549,
+          3.719089597675785
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-024",
+      "seed": 1468747216,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4763984332046185,
+        3.74658785794025
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.07873831432441113,
+          -0.07819096845112883,
+          3.4763984332046185
+        ],
+        [
+          0.18952666354348033,
+          0.11406947344501228,
+          3.74658785794025
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-025",
+      "seed": 391283032,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4027745009017414,
+        3.663577462770377
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.136686602069179,
+          -0.047889808846991455,
+          3.4027745009017414
+        ],
+        [
+          0.025882013837689524,
+          0.14094430663702862,
+          3.663577462770377
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-025",
+      "seed": 1040934784,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2520070786454864,
+        3.5223079638348667
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.19467644808604076,
+          0.0036775837148863566,
+          3.2520070786454864
+        ],
+        [
+          -0.09360177556401497,
+          0.19597871185269233,
+          3.5223079638348667
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-026",
+      "seed": 851728733,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.407580319868538,
+        3.6775356143664557
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.06036764625726833,
+          -0.052984931914722866,
+          3.407580319868538
+        ],
+        [
+          0.05540864499408801,
+          0.13919004577315142,
+          3.6775356143664557
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-026",
+      "seed": 1449563762,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4744931920391604,
+        3.7419642575771097
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.11488326141528664,
+          -0.0765032225698743,
+          3.4744931920391604
+        ],
+        [
+          0.022227090850882043,
+          0.11476494075992849,
+          3.7419642575771097
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-027",
+      "seed": 527009834,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.418905659112622,
+        3.6862608539173456
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08111706105712767,
+          -0.056169892975019176,
+          3.418905659112622
+        ],
+        [
+          0.14771854195193795,
+          0.13505597423543958,
+          3.6862608539173456
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-037",
+      "seed": 236799364,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4121044095760658,
+        3.6819643726510805
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.04930353199846464,
+          -0.05460155488532714,
+          3.4121044095760658
+        ],
+        [
+          0.0679809975192564,
+          0.13753862411673468,
+          3.6819643726510805
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-027",
+      "seed": 1568986785,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.468824973559447,
+        3.7388797457067535
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.026638016264555683,
+          -0.07537728784455155,
+          3.468824973559447
+        ],
+        [
+          0.08732372860196418,
+          0.11683400201994831,
+          3.7388797457067535
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-028",
+      "seed": 1011068456,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.368042587392819,
+        3.6362323411020796
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.1507073365361122,
+          -0.03790806024345783,
+          3.368042587392819
+        ],
+        [
+          -0.07832795163236009,
+          0.15362244474777098,
+          3.6362323411020796
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-easy-038",
+      "seed": 1530090069,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.39906230010447,
+        3.6661299541365295
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.06911721721129736,
+          -0.048821540928445595,
+          3.39906230010447
+        ],
+        [
+          0.07018804098160808,
+          0.14229936570656498,
+          3.6661299541365295
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-029",
+      "seed": 446503030,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4933461997103947,
+        3.763622588998893
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.12359796177877996,
+          -0.08440913068930644,
+          3.4933461997103947
+        ],
+        [
+          -0.02416184010765851,
+          0.10788305574667123,
+          3.763622588998893
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-hard-030",
+      "seed": 1499976107,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.4448386253322196,
+        3.7150660083926725
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          -0.06048728422819219,
+          -0.0666845951565056,
+          3.4448386253322196
+        ],
+        [
+          0.04910494169766877,
+          0.12558970260981162,
+          3.7150660083926725
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    },
+    {
+      "scene_id": "eval-moderate-028",
+      "seed": 1595998203,
+      "status": "DEPTH_OPPORTUNITY_ONLY",
+      "depth_overlap": true,
+      "optical_depth_bounds_m": [
+        3.2646635637729817,
+        3.534757512959709
+      ],
+      "frozen_depth_limits_m": [
+        0.25,
+        4.0
+      ],
+      "nominal_view_map": [
+        -1.4,
+        0.0,
+        1.2,
+        0.0
+      ],
+      "optical_origin_map": [
+        -1.2638522631053457,
+        0.0,
+        1.3127247255416854
+      ],
+      "reason": null,
+      "nominal_target_inside_depth_and_fov": true,
+      "optical_corner_xyz_bounds_m": [
+        [
+          0.08129225185087288,
+          -0.0008668564634721765,
+          3.2646635637729817
+        ],
+        [
+          0.19444223134839286,
+          0.1913587341367593,
+          3.534757512959709
+        ]
+      ],
+      "spawn_xy_overlaps": [],
+      "setup_checks_pass": true
+    }
+  ],
+  "limitations": "Does not assess live occlusion/detection, stowed-link self collision, route, candidate count, support, IK or retrieval. Nominal robot models/initial joints remain the existing evaluated setup."
+}

@@ -138,8 +138,9 @@ def paired_comparison(scenes, rows, first_activation=False):
 def summarize_pilot(config, results_dir):
     """Collect matching predefined attempts, keeping the existing pilot API."""
     results_dir = Path(results_dir)
-    expected_kind = ('FORMAL_ATTEMPT' if config.get('status') == 'FROZEN_FOR_FORMAL'
-                     else 'PILOT_ATTEMPT')
+    expected_kind = {'FROZEN_FOR_FORMAL': 'FORMAL_ATTEMPT',
+                     'FROZEN_FOR_EVALUATION': 'EVALUATION_ATTEMPT'}.get(
+                         config.get('status'), 'PILOT_ATTEMPT')
     scenes = {scene['id']: scene for scene in config['scenes']}
     specs = [dict(slot, seed=scenes[slot['scene']]['seed']) for slot in config['slots']]
     by_slot = {spec['slot']: spec for spec in specs}
@@ -158,7 +159,11 @@ def summarize_pilot(config, results_dir):
         if record is None:
             reason = 'unreadable_attempt_record'
         elif record.get('kind') != expected_kind:
-            reason = 'not_a_formal_attempt' if expected_kind == 'FORMAL_ATTEMPT' else 'not_a_pilot_attempt'
+            reason = 'not_a_' + expected_kind.lower()
+        elif expected_kind == 'EVALUATION_ATTEMPT' and (
+                config.get('cohort') != 'paper1-eval-finite-scan-v1-final' or
+                record.get('cohort') != config['cohort']):
+            reason = 'evaluation_cohort_mismatch'
         elif record.get('slot') not in by_slot:
             reason = 'slot_not_scheduled'
         else:

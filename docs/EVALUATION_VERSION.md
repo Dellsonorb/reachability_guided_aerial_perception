@@ -1,5 +1,9 @@
 # Paper 1 evaluation version: finite-scan v1
 
+Preparation addendum: [the new cohort is prepared, not started](PAPER1_EVALUATION_READY.md).
+The original named runtime/tag below is preserved; only explicit launch labels
+and offline accounting are adapted on the preparation branch.
+
 2026-09-10. **Working evaluation version, not a completed formal experiment.**
 This delivery names the existing complete program; it changes no robot runtime,
 method, sensor, threshold, configuration or success predicate. The separate

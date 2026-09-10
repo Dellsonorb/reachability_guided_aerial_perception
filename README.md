@@ -8,6 +8,7 @@ D435 精定位、AUBO i5 / AG95 的碰撞感知规划与物理夹持完成提升
 
 [评估版本说明：依赖、叠加 PR、配置与能力边界](docs/EVALUATION_VERSION.md)；
 [正式实验方案（仅设计，未启动）](docs/PAPER1_FORMAL_EXPERIMENT_PLAN.md)。
+[一次性运行前准备：完整清单、单任务入口和待授权资源上限](docs/PAPER1_EVALUATION_READY.md)。
 两仓库使用同名 `paper1-eval-finite-scan-v1` tag；历史 `main` 不是最新评估栈。
 
 ```bash
