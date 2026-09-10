@@ -2,6 +2,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+import tempfile
 from types import SimpleNamespace
 import xml.etree.ElementTree as ET
 
@@ -21,6 +22,49 @@ class AttemptTests(unittest.TestCase):
         self.assertEqual(attempt.attempt_kind('FROZEN_FOR_FORMAL'), 'FORMAL_ATTEMPT')
         with self.assertRaises(ValueError):
             attempt.attempt_kind('UNSPECIFIED')
+
+    def test_named_evaluation_uses_current_feedback_without_changing_old_labels(self):
+        self.assertEqual(attempt.attempt_kind('FROZEN_FOR_EVALUATION'), 'EVALUATION_ATTEMPT')
+        self.assertEqual(attempt.integrated_feedback_environment('FROZEN_FOR_EVALUATION'),
+                         attempt.integrated_feedback_environment('DEVELOPMENT_BATCH'))
+        self.assertEqual(attempt.ground_dynamics_environment('FROZEN_FOR_EVALUATION', Path('/out'), None),
+                         attempt.ground_dynamics_environment('DEVELOPMENT_BATCH', Path('/out'), None))
+        with self.assertRaises(ValueError):
+            attempt.integrated_feedback_environment('FROZEN_FOR_FORMAL')
+
+    def test_evaluation_flags_are_accepted_before_any_launch_and_pose_override_still_rejected(self):
+        c = json.loads((ROOT/'configs/current_sim_task.json').read_text())
+        c.update(status='FROZEN_FOR_EVALUATION', cohort='paper1-eval-finite-scan-v1-final',
+                 scenes=self.config['scenes'], slots=self.config['slots'])
+        with tempfile.TemporaryDirectory() as directory:
+            p = Path(directory)/'config.json'; p.write_text(json.dumps(c))
+            output = Path(directory)/'not-created'
+            with self.assertRaisesRegex(ValueError, 'method pose overrides'):
+                attempt.main(['--config',str(p),'--slot','1','--output-dir',str(output),
+                              '--integrated-joint-velocity','--full-robot-manipulation',
+                              '--execution-clearance','--ground-dynamics',
+                              '--setup-view','0','0','1','0'])
+            self.assertFalse(output.exists())
+
+    def test_evaluation_cohort_does_not_change_adapter_arguments_or_diagnostic_topics(self):
+        d = json.loads((ROOT/'configs/current_sim_task.json').read_text())
+        e = dict(d, status='FROZEN_FOR_EVALUATION', cohort='paper1-eval-finite-scan-v1-final')
+        paths = (Path('/out'),Path('/sim'),Path('/rm'))
+        self.assertEqual(attempt.adapter_args(d,*paths), attempt.adapter_args(e,*paths))
+        self.assertEqual(attempt.diagnostic_command(d,paths[0]), attempt.diagnostic_command(e,paths[0]))
+        self.assertEqual(attempt.image_diagnostic_command(d,paths[0]), attempt.image_diagnostic_command(e,paths[0]))
+
+    def test_evaluation_cannot_silently_omit_current_execution_flags(self):
+        c = json.loads((ROOT/'configs/current_sim_task.json').read_text())
+        c.update(status='FROZEN_FOR_EVALUATION',cohort='paper1-eval-finite-scan-v1-final',
+                 scenes=self.config['scenes'],slots=self.config['slots'])
+        with tempfile.TemporaryDirectory() as directory:
+            p = Path(directory)/'c.json'; p.write_text(json.dumps(c))
+            out = Path(directory)/'not-created'
+            with self.assertRaisesRegex(ValueError,'evaluation requires the current shared execution flags'):
+                attempt.main(['--config',str(p),'--slot','1','--output-dir',str(out),
+                              '--setup-view','0','0','1','0'])
+            self.assertFalse(out.exists())
 
     def test_clearance_never_implicitly_activates_outside_full_robot_development(self):
         with self.assertRaisesRegex(ValueError, 'full-robot development'):

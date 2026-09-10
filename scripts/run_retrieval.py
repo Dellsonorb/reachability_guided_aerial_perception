@@ -15,7 +15,7 @@ import socket
 import subprocess
 import time
 
-from run_a6_attempt import ROOT, SIM, RM, PX4
+from run_a6_attempt import ROOT, SIM, RM, PX4, slot_spec
 
 
 def load_scene(path, scene_id):
@@ -38,10 +38,10 @@ def task_config(profile, scene, method):
     return config
 
 
-def task_command(sim_root, rm_root, config_path, output):
+def task_command(sim_root, rm_root, config_path, output, slot=1):
     return [str(sim_root/'scripts/with_p450_env.bash'), '/usr/bin/python3',
             str(ROOT/'scripts/run_a6_attempt.py'), '--config', str(config_path),
-            '--slot', '1', '--output-dir', str(output), '--sim-root', str(sim_root),
+            '--slot', str(slot), '--output-dir', str(output), '--sim-root', str(sim_root),
             '--rm4d-root', str(rm_root), '--integrated-joint-velocity',
             '--full-robot-manipulation', '--execution-clearance', '--ground-dynamics']
 
@@ -124,16 +124,31 @@ def main(argv=None):
     run.add_argument('--sim-root', type=Path, default=SIM)
     run.add_argument('--rm4d-root', type=Path, default=RM)
     run.add_argument('--dry-run', action='store_true', help='show common profile/command without writing or starting SIM')
+    evaluation = actions.add_parser('evaluation', help='one predeclared evaluation slot; not a matrix or authorization')
+    evaluation.add_argument('--config', type=Path, required=True)
+    evaluation.add_argument('--slot', type=int, required=True)
+    evaluation.add_argument('--output-dir', type=Path, required=True)
+    evaluation.add_argument('--sim-root', type=Path, default=SIM)
+    evaluation.add_argument('--rm4d-root', type=Path, default=RM)
+    evaluation.add_argument('--dry-run', action='store_true')
     args = parser.parse_args(argv)
     output = args.output_dir.expanduser().resolve()
     if args.action == 'status':
         print(json.dumps(task_status(output), indent=2))
         return 0
-    config = task_config(json.loads((ROOT/'configs/current_sim_task.json').read_text()),
-                         load_scene(args.scene_file, args.scene_id), args.method)
+    if args.action == 'evaluation':
+        config = json.loads(args.config.read_text())
+        if (config.get('status') != 'FROZEN_FOR_EVALUATION' or
+                config.get('cohort') != 'paper1-eval-finite-scan-v1-final'):
+            raise ValueError('requires the named evaluation cohort; old formal slots cannot be promoted')
+        slot, scene = slot_spec(config, args.slot)
+    else:
+        config = task_config(json.loads((ROOT/'configs/current_sim_task.json').read_text()),
+                             load_scene(args.scene_file, args.scene_id), args.method)
+        slot, scene = config['slots'][0], config['scenes'][0]
     sim_root, rm_root = args.sim_root.resolve(), args.rm4d_root.resolve()
-    command = task_command(sim_root, rm_root, output/'task.json', output/'attempt')
-    print('PROFILE', config['profile'], 'METHOD', args.method, 'SCENE', config['scenes'][0]['id'], flush=True)
+    command = task_command(sim_root, rm_root, output/'task.json', output/'attempt',slot=slot['slot'])
+    print('PROFILE', config['profile'], 'METHOD', slot['method'], 'SCENE', scene['id'], flush=True)
     print('COMMAND', shlex.join(command), flush=True)
     if args.dry_run:
         print(json.dumps(config, indent=2))
@@ -149,6 +164,9 @@ def main(argv=None):
     environment.setdefault('P450_PX4_ROOT', PX4)
     output.mkdir(parents=True, exist_ok=False)
     entry = dict(start_wall=time.time(), command=command, log=str(output/'launcher.log'))
+    if args.action == 'evaluation':
+        entry.update(kind='EVALUATION_ENTRY',cohort=config['cohort'],slot=slot['slot'],
+                     scene=scene['id'],seed=scene['seed'],method=slot['method'])
     (output/'entry.json').write_text(json.dumps(entry, indent=2)+'\n')
     print('STATUS: python3 scripts/run_retrieval.py status '+shlex.quote(str(output)), flush=True)
     try:

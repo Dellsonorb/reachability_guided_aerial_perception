@@ -1,5 +1,10 @@
 # Paper 1 prospective experiment proposal — evaluation finite-scan v1
 
+Preparation addendum: the user approved this design. The [complete independent
+manifest and launch/accounting preparation](PAPER1_EVALUATION_READY.md) are now
+available, with one resource/execution authorization still required. Historical
+proposal text below records the pre-generation design; no formal run has started.
+
 2026-09-10. **DESIGN ONLY. No final tasks, setup simulations or matrix launched.**
 Use [the named evaluation version](EVALUATION_VERSION.md). This replaces neither
 historical protocols nor their results. No final scene seeds have been executed;

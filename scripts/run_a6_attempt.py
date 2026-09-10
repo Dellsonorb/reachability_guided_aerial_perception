@@ -22,11 +22,13 @@ RM = Path('/tmp/rm4d-aubo-baseline-v1.14uZXq/repo')
 CORE = '/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python'
 PX4 = '/media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4'
 IMAGE_TOPICS = ('/ground/d435/color/image_raw', '/ground/d435/depth/image_raw')
+CURRENT_EXECUTION_STATUSES = ('DEVELOPMENT_BATCH', 'FROZEN_FOR_EVALUATION')
 
 
 def attempt_kind(status):
     kinds = {'FROZEN_FOR_PILOT': 'PILOT_ATTEMPT',
              'FROZEN_FOR_FORMAL': 'FORMAL_ATTEMPT',
+             'FROZEN_FOR_EVALUATION': 'EVALUATION_ATTEMPT',
              'DEVELOPMENT_BATCH': 'DEVELOPMENT_ATTEMPT'}
     if status not in kinds:
         raise ValueError('freeze setup/protocol before activating slots')
@@ -282,13 +284,13 @@ def validate_replay_scene(recorded, scene):
 
 def ground_dynamics_environment(status, output, replay_from):
     """Physical state is a diagnostic output, never an algorithm observation."""
-    if status != 'DEVELOPMENT_BATCH':
+    if status not in CURRENT_EXECUTION_STATUSES:
         raise ValueError('physics tracing is confined to development runs')
     return {'P450_GROUND_DYNAMICS_CSV': str(output / 'ground-dynamics.csv')}
 
 
 def integrated_feedback_environment(status):
-    if status != 'DEVELOPMENT_BATCH':
+    if status not in CURRENT_EXECUTION_STATUSES:
         raise ValueError('integrated-pose velocity validation is development only')
     return {'P450_GROUND_INTEGRATED_VELOCITY': '1'}
 
@@ -452,13 +454,19 @@ def main(argv=None):
     parser.add_argument('--execution-clearance', action='store_true')
     args = parser.parse_args(argv)
     config = json.loads(args.config.read_text())
+    if config.get('status') == 'FROZEN_FOR_EVALUATION':
+        if config.get('cohort') != 'paper1-eval-finite-scan-v1-final':
+            raise ValueError('requires the named evaluation cohort')
+        if not all((args.integrated_joint_velocity,args.full_robot_manipulation,
+                    args.execution_clearance,args.ground_dynamics)):
+            raise ValueError('evaluation requires the current shared execution flags')
     if args.ode_solver is not None and config['status'] != 'DEVELOPMENT_BATCH':
         raise ValueError('ODE solver contrast is development only')
     if args.integrated_joint_velocity:
         integrated_feedback_environment(config['status'])
-    if args.full_robot_manipulation and config['status'] != 'DEVELOPMENT_BATCH':
+    if args.full_robot_manipulation and config['status'] not in CURRENT_EXECUTION_STATUSES:
         raise ValueError('full-robot manipulation validation is development only')
-    if args.execution_clearance and (config['status'] != 'DEVELOPMENT_BATCH' or
+    if args.execution_clearance and (config['status'] not in CURRENT_EXECUTION_STATUSES or
                                      not args.full_robot_manipulation):
         raise ValueError('execution clearance requires full-robot development mode')
     if args.setup_scene:
@@ -508,6 +516,8 @@ def main(argv=None):
                   handoff_stop=config.get('handoff_stop', 'legacy'),
                   kind='METHOD_INDEPENDENT_SETUP' if args.setup_scene else expected_kind,
                   status='INVALID_TRIAL', task_started=False, activation_wall=time.time())
+    if config.get('status') == 'FROZEN_FOR_EVALUATION':
+        record.update(cohort=config['cohort'], evaluation_version=config.get('evaluation_version'))
     if args.ground_dynamics:
         record.update(ground_dynamics_csv=environment['P450_GROUND_DYNAMICS_CSV'],
                       physics_state_use='diagnosis_only_never_algorithm_input',
@@ -548,6 +558,11 @@ def main(argv=None):
         save()
     save()
     try:
+        if config.get('status') == 'FROZEN_FOR_EVALUATION':
+            record['runtime_versions'] = {name: subprocess.check_output(
+                ['git','-C',str(path),'rev-parse','HEAD'],text=True).strip()
+                for name,path in (('agent',ROOT),('sim',args.sim_root),('rm4d',args.rm4d_root))}
+            save()
         source = args.sim_root/'src/demos/air_ground_pick_demo/launch/air_ground_pick_demo.launch'
         launch_file = output/'runtime.launch'
         world = None

@@ -1,0 +1,4855 @@
+{
+  "profile": "sensor-retrieval-finite-scan-v1",
+  "acquisition_model": "finite_scan_v1",
+  "protocol": "docs/PAPER1_FORMAL_EXPERIMENT_PLAN.md",
+  "status": "FROZEN_FOR_EVALUATION",
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5,
+  "capture_wall_guard_s": 20,
+  "task_wall_guard_s": 1200,
+  "efficiency_clock": "simulation",
+  "operational_gating": "v1.4",
+  "support_anchor": "exact_winner",
+  "handoff_stop": "screened_candidate",
+  "record_diagnostics": true,
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4,
+    "grid_height_m": 4,
+    "ground_z_m": 0,
+    "xy_offsets_m": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "flight_bounds": [
+      -4,
+      4,
+      -3,
+      3,
+      0.5,
+      3
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3,
+    "navigation_timeout": 120,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45,
+    "core_timeout": 900,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1
+  },
+  "cohort": "paper1-eval-finite-scan-v1-final",
+  "scene_count": 96,
+  "planned_tasks": 212,
+  "attempt_limit": 224,
+  "generation": {
+    "tier_rng": 2026091021,
+    "scene_rng": 2026091022,
+    "order_rng": 2026091023,
+    "geometry": "six_original_draws_then_wall_xy_yaw_v1"
+  },
+  "limits": {
+    "primary_scenes": 96,
+    "planned_tasks": 212,
+    "reserve_starts": 12,
+    "total_starts": 224,
+    "max_replacements_per_slot": 1,
+    "expected_wall_hours": [
+      24,
+      36
+    ],
+    "wall_clock_hard_hours": 120,
+    "new_data_gib": 500,
+    "minimum_free_gib": 100
+  },
+  "execution_authorization": "NOT_GRANTED: preparation only; separate user authorization required",
+  "historical_seed_count": 145,
+  "scenes": [
+    {
+      "id": "eval-easy-001",
+      "tier": "easy",
+      "generation_index": 1,
+      "tier_index": 1,
+      "seed": 1210463358,
+      "target_xy": [
+        1.9211199976709465,
+        -0.12431547884341121
+      ],
+      "target_yaw": 0.02376946448785011,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9404896698944367,
+        -2.529772112965553
+      ],
+      "bunker_yaw": 3.193789681525275,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": true,
+      "ablation": false,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-hard-001",
+      "tier": "hard",
+      "generation_index": 2,
+      "tier_index": 1,
+      "seed": 255254000,
+      "target_xy": [
+        1.9104758507728186,
+        -0.10330184927356859
+      ],
+      "target_yaw": -0.5066115679891712,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9788105203469732,
+        -2.5399035006241153
+      ],
+      "bunker_yaw": 3.1119249405996765,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.18177235637087147,
+            0.5569752169113728
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.009621354457026388
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.4223455507259415,
+            -0.3186092009185404
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.15880145025439446
+        }
+      ],
+      "context_control": true,
+      "ablation": true,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-easy-002",
+      "tier": "easy",
+      "generation_index": 3,
+      "tier_index": 2,
+      "seed": 203946317,
+      "target_xy": [
+        2.1306749648650074,
+        0.0517257042966173
+      ],
+      "target_yaw": 0.5059684004746515,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9429874172974992,
+        -2.522244176315518
+      ],
+      "bunker_yaw": 3.174620789145108,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": true,
+      "ablation": false,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-easy-003",
+      "tier": "easy",
+      "generation_index": 4,
+      "tier_index": 3,
+      "seed": 1259243681,
+      "target_xy": [
+        1.9250785332504121,
+        -0.015928028617535506
+      ],
+      "target_yaw": 0.26628950242582694,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0607050875408115,
+        -2.54778846749381
+      ],
+      "bunker_yaw": 3.127631143254899,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-001",
+      "tier": "moderate",
+      "generation_index": 5,
+      "tier_index": 1,
+      "seed": 2144209384,
+      "target_xy": [
+        1.9597632182343314,
+        0.019245360885658896
+      ],
+      "target_yaw": -0.11282673894058748,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9989328350484947,
+        -2.5497441242819767
+      ],
+      "bunker_yaw": 3.1037061931199026,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.5412792349855063,
+            0.5679661862668245
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.13492027953371633
+        }
+      ],
+      "context_control": true,
+      "ablation": false,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-easy-004",
+      "tier": "easy",
+      "generation_index": 6,
+      "tier_index": 4,
+      "seed": 1618578603,
+      "target_xy": [
+        2.028526135297149,
+        -0.07778276998881029
+      ],
+      "target_yaw": -0.0328603901160619,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0652519767187583,
+        -2.538482650790655
+      ],
+      "bunker_yaw": 3.208086852631874,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-002",
+      "tier": "moderate",
+      "generation_index": 7,
+      "tier_index": 2,
+      "seed": 2026455799,
+      "target_xy": [
+        1.8570724515587882,
+        0.1013400615813522
+      ],
+      "target_yaw": -0.5150145308782124,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0417184761914173,
+        -2.5861422580750313
+      ],
+      "bunker_yaw": 3.0980177002380125,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.26325858517605777,
+            0.5777165836610569
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.011508587806893011
+        }
+      ],
+      "context_control": true,
+      "ablation": false,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-hard-002",
+      "tier": "hard",
+      "generation_index": 8,
+      "tier_index": 2,
+      "seed": 572179566,
+      "target_xy": [
+        2.1353539559480494,
+        -0.12622832377476248
+      ],
+      "target_yaw": -0.26114232293658013,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9681268428543266,
+        -2.4346148315179574
+      ],
+      "bunker_yaw": 3.1577660724240704,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.2370139512042292,
+            0.4010437569253086
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.03992148636784773
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.36642069871977717,
+            -0.4280816656652078
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.1863667187624632
+        }
+      ],
+      "context_control": true,
+      "ablation": true,
+      "retain_success_rgbd": true
+    },
+    {
+      "id": "eval-moderate-003",
+      "tier": "moderate",
+      "generation_index": 9,
+      "tier_index": 3,
+      "seed": 1313725102,
+      "target_xy": [
+        2.054278276075916,
+        -0.11337299071768436
+      ],
+      "target_yaw": 0.16139806948292623,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.951750762781581,
+        -2.4349085492342253
+      ],
+      "bunker_yaw": 3.192550520595995,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.2749812284741254,
+            0.6933252096258573
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.14278092617466642
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-005",
+      "tier": "easy",
+      "generation_index": 10,
+      "tier_index": 5,
+      "seed": 342348758,
+      "target_xy": [
+        2.139917579539614,
+        0.14352664629793668
+      ],
+      "target_yaw": 0.13857272837280854,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.98659358373873,
+        -2.560672021989195
+      ],
+      "bunker_yaw": 3.1936313367464537,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-006",
+      "tier": "easy",
+      "generation_index": 11,
+      "tier_index": 6,
+      "seed": 1268197413,
+      "target_xy": [
+        1.9342735068260029,
+        -0.12470866851146242
+      ],
+      "target_yaw": -0.0555554977104491,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9212022392729318,
+        -2.533934899014549
+      ],
+      "bunker_yaw": 3.0686446715379874,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-003",
+      "tier": "hard",
+      "generation_index": 12,
+      "tier_index": 3,
+      "seed": 742306348,
+      "target_xy": [
+        1.9208311413834973,
+        -0.12207441157532652
+      ],
+      "target_yaw": -0.16950240377010145,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0146215120318476,
+        -2.4743847612981673
+      ],
+      "bunker_yaw": 3.214791970011406,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.19246231640235795,
+            0.5149795197608761
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.02742447492089159
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5616250066805765,
+            -0.3661244842292454
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.11471905119053893
+        }
+      ],
+      "context_control": false,
+      "ablation": true,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-004",
+      "tier": "moderate",
+      "generation_index": 13,
+      "tier_index": 4,
+      "seed": 1474139397,
+      "target_xy": [
+        1.9083588021217897,
+        0.10740864037825112
+      ],
+      "target_yaw": -0.3672182868771398,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9851944562066546,
+        -2.4325062388410603
+      ],
+      "bunker_yaw": 3.1009697942497945,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.45423376290622397,
+            0.7821142339858879
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.14772906454402823
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-005",
+      "tier": "moderate",
+      "generation_index": 14,
+      "tier_index": 5,
+      "seed": 1040101780,
+      "target_xy": [
+        2.014046654338455,
+        -0.1418944400140593
+      ],
+      "target_yaw": 0.3671503315915282,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.922212662792942,
+        -2.458886887778056
+      ],
+      "bunker_yaw": 3.120899024018376,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3709289194975379,
+            0.7215203360791933
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.23861559870639543
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-006",
+      "tier": "moderate",
+      "generation_index": 15,
+      "tier_index": 6,
+      "seed": 114753794,
+      "target_xy": [
+        2.097303228063457,
+        -0.12769136996387373
+      ],
+      "target_yaw": -0.1736473659067393,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9052302103139374,
+        -2.4044799089483315
+      ],
+      "bunker_yaw": 3.1679455091533395,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.33454326374259014,
+            0.6878227580676545
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.16530935907657796
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-007",
+      "tier": "moderate",
+      "generation_index": 16,
+      "tier_index": 7,
+      "seed": 1771585328,
+      "target_xy": [
+        2.135078343972601,
+        -0.013336659763988512
+      ],
+      "target_yaw": 0.201494141302207,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.957913911181281,
+        -2.504053674766894
+      ],
+      "bunker_yaw": 3.115614410332606,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3619721784222861,
+            0.5658717260622779
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.16191202106355518
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-007",
+      "tier": "easy",
+      "generation_index": 17,
+      "tier_index": 7,
+      "seed": 301722068,
+      "target_xy": [
+        1.9833187415621825,
+        0.05930078979538003
+      ],
+      "target_yaw": 0.12084490440985585,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0570942210675276,
+        -2.5901390541503
+      ],
+      "bunker_yaw": 3.215776924827629,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-008",
+      "tier": "easy",
+      "generation_index": 18,
+      "tier_index": 8,
+      "seed": 36731972,
+      "target_xy": [
+        1.96610197468138,
+        0.007907960710304807
+      ],
+      "target_yaw": 0.38602141980152593,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9362562020535847,
+        -2.4960782660587304
+      ],
+      "bunker_yaw": 3.1756797492627675,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-009",
+      "tier": "easy",
+      "generation_index": 19,
+      "tier_index": 9,
+      "seed": 1995439984,
+      "target_xy": [
+        1.8847407090723525,
+        0.11901584999524004
+      ],
+      "target_yaw": -0.21901874246662417,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.030466238859359,
+        -2.4892381834468655
+      ],
+      "bunker_yaw": 3.0949534116466637,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-010",
+      "tier": "easy",
+      "generation_index": 20,
+      "tier_index": 10,
+      "seed": 577646205,
+      "target_xy": [
+        2.1312697486995487,
+        -0.12503994936480886
+      ],
+      "target_yaw": -0.17599030252762082,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9508975843145198,
+        -2.5994308068777707
+      ],
+      "bunker_yaw": 3.0656992839070054,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-011",
+      "tier": "easy",
+      "generation_index": 21,
+      "tier_index": 11,
+      "seed": 6291815,
+      "target_xy": [
+        1.8949579894906174,
+        0.04259230810035844
+      ],
+      "target_yaw": 0.18968114643787592,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.996412147211452,
+        -2.521733019641339
+      ],
+      "bunker_yaw": 3.1671993290627163,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-012",
+      "tier": "easy",
+      "generation_index": 22,
+      "tier_index": 12,
+      "seed": 1529985687,
+      "target_xy": [
+        1.9314386012725624,
+        -0.09918767442829435
+      ],
+      "target_yaw": -0.17933655846937413,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0496270301121564,
+        -2.5735506290582357
+      ],
+      "bunker_yaw": 3.177809380647298,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-013",
+      "tier": "easy",
+      "generation_index": 23,
+      "tier_index": 13,
+      "seed": 1836638481,
+      "target_xy": [
+        2.026094495882333,
+        -0.14059041394559704
+      ],
+      "target_yaw": 0.2665327204932917,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9728776725884796,
+        -2.5672194037160874
+      ],
+      "bunker_yaw": 3.099247277747373,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-008",
+      "tier": "moderate",
+      "generation_index": 24,
+      "tier_index": 8,
+      "seed": 1908570494,
+      "target_xy": [
+        1.9745643312124894,
+        -0.09831912950356717
+      ],
+      "target_yaw": 0.3066080263501033,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9653117550173635,
+        -2.5354989473791845
+      ],
+      "bunker_yaw": 3.2024688265459864,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.512282942171585,
+            0.7295893625091989
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.17091631053919998
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-004",
+      "tier": "hard",
+      "generation_index": 25,
+      "tier_index": 4,
+      "seed": 1588955310,
+      "target_xy": [
+        1.9546451758110484,
+        0.04925505562715027
+      ],
+      "target_yaw": -0.0208542119399312,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.993691723138754,
+        -2.573798822123398
+      ],
+      "bunker_yaw": 3.058141925435287,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.34816632541284737,
+            0.3871998098660767
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.1938537870291735
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.42490812810560435,
+            -0.3503925430993583
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.202002719901469
+        }
+      ],
+      "context_control": false,
+      "ablation": true,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-009",
+      "tier": "moderate",
+      "generation_index": 26,
+      "tier_index": 9,
+      "seed": 2099544331,
+      "target_xy": [
+        2.0238297286485674,
+        -0.13656589351194978
+      ],
+      "target_yaw": 0.23211918582090985,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9984583914534158,
+        -2.436061712867118
+      ],
+      "bunker_yaw": 3.1796374612165117,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.4652167895818369,
+            0.6698503911212395
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.12690481223990419
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-014",
+      "tier": "easy",
+      "generation_index": 27,
+      "tier_index": 14,
+      "seed": 1198289218,
+      "target_xy": [
+        1.9097989118581733,
+        -0.13740966394101586
+      ],
+      "target_yaw": -0.34317700548316366,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0053909170580604,
+        -2.4512945816351523
+      ],
+      "bunker_yaw": 3.1866817600435233,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-010",
+      "tier": "moderate",
+      "generation_index": 28,
+      "tier_index": 10,
+      "seed": 252873871,
+      "target_xy": [
+        2.131822824672644,
+        0.12241034158186057
+      ],
+      "target_yaw": 0.10776813097485727,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.092226739212889,
+        -2.451415968759902
+      ],
+      "bunker_yaw": 3.19358863023896,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.4638366781573521,
+            0.7924744595684504
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.0009661936025185947
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-005",
+      "tier": "hard",
+      "generation_index": 29,
+      "tier_index": 5,
+      "seed": 2032977054,
+      "target_xy": [
+        2.0202192309967986,
+        0.036854394323103334
+      ],
+      "target_yaw": -0.04113851611426622,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.984674605101135,
+        -2.4633583592572634
+      ],
+      "bunker_yaw": 3.2071748387633803,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.15245342053656202,
+            0.48132643880983583
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.08019684972806054
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5046342373099529,
+            -0.533916339577641
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.16794945877472178
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-006",
+      "tier": "hard",
+      "generation_index": 30,
+      "tier_index": 6,
+      "seed": 783331617,
+      "target_xy": [
+        2.075519859366484,
+        -0.0339271279709272
+      ],
+      "target_yaw": 0.32894643905435117,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9099110782180833,
+        -2.5581114614559217
+      ],
+      "bunker_yaw": 3.079284557402303,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.15761654657155802,
+            0.46055925503376177
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.04332872407648819
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.4055310328901625,
+            -0.506838069506483
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.19291804439688948
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-015",
+      "tier": "easy",
+      "generation_index": 31,
+      "tier_index": 15,
+      "seed": 1054175095,
+      "target_xy": [
+        1.8917303213505376,
+        -0.07411275902701944
+      ],
+      "target_yaw": -0.3790698729458708,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.902524272049644,
+        -2.5448796082930896
+      ],
+      "bunker_yaw": 3.2157392616549334,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-016",
+      "tier": "easy",
+      "generation_index": 32,
+      "tier_index": 16,
+      "seed": 1445701850,
+      "target_xy": [
+        2.079482973803726,
+        0.12816695788233054
+      ],
+      "target_yaw": 0.5060817915635286,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0378303788092342,
+        -2.5823467696449764
+      ],
+      "bunker_yaw": 3.129163387911527,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-007",
+      "tier": "hard",
+      "generation_index": 33,
+      "tier_index": 7,
+      "seed": 1075287346,
+      "target_xy": [
+        2.1495152948292793,
+        0.11131928577877934
+      ],
+      "target_yaw": -0.02787176540460734,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.997730864381878,
+        -2.494159415615965
+      ],
+      "bunker_yaw": 3.1339849316924564,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.23179830601690576,
+            0.3732820113135559
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.004438796604462281
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.3767569905791854,
+            -0.3619259979952091
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.10747747526927859
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-017",
+      "tier": "easy",
+      "generation_index": 34,
+      "tier_index": 17,
+      "seed": 1730521730,
+      "target_xy": [
+        2.021037008222497,
+        -0.13034464045292873
+      ],
+      "target_yaw": -0.07981903824305026,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9509422330687927,
+        -2.471984943532969
+      ],
+      "bunker_yaw": 3.215048213423905,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-008",
+      "tier": "hard",
+      "generation_index": 35,
+      "tier_index": 8,
+      "seed": 952403840,
+      "target_xy": [
+        1.9836893160016527,
+        0.06464273528210926
+      ],
+      "target_yaw": -0.1360643354898891,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9052262681513183,
+        -2.5576017455424527
+      ],
+      "bunker_yaw": 3.1533323731839795,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.40387046875656585,
+            0.4261173803265473
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.12294729513831337
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.48764350576794596,
+            -0.3661840091403623
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.13401721229029429
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-011",
+      "tier": "moderate",
+      "generation_index": 36,
+      "tier_index": 11,
+      "seed": 547442462,
+      "target_xy": [
+        1.9932391099236044,
+        -0.10918117122480281
+      ],
+      "target_yaw": -0.3362604617963861,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9695660344039334,
+        -2.5109129746145356
+      ],
+      "bunker_yaw": 3.093371710304529,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.279203961592991,
+            0.6050614635314687
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.10035125475167178
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-018",
+      "tier": "easy",
+      "generation_index": 37,
+      "tier_index": 18,
+      "seed": 1791742366,
+      "target_xy": [
+        1.8764241384039528,
+        -0.1418032992670415
+      ],
+      "target_yaw": 0.23360969838932444,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9708789415817987,
+        -2.5934723512858797
+      ],
+      "bunker_yaw": 3.1433054760507044,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-009",
+      "tier": "hard",
+      "generation_index": 38,
+      "tier_index": 9,
+      "seed": 211928663,
+      "target_xy": [
+        1.9302479931787015,
+        0.053627334164662144
+      ],
+      "target_yaw": 0.3280085867776622,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0732392307504077,
+        -2.5001099434343708
+      ],
+      "bunker_yaw": 3.056376090680039,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.28105846730944206,
+            0.48260463527545416
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.17206512432269316
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.35685337834503383,
+            -0.47822661937557687
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.11734368215949667
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-010",
+      "tier": "hard",
+      "generation_index": 39,
+      "tier_index": 10,
+      "seed": 1801785368,
+      "target_xy": [
+        1.9710475919626185,
+        -0.005598126379944668
+      ],
+      "target_yaw": 0.297064179410941,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.930267777427403,
+        -2.4633747047792593
+      ],
+      "bunker_yaw": 3.191269002901636,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.1958755619122104,
+            0.599083575040103
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.17710946565535757
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5183275885920737,
+            -0.33107674146097277
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.1538167114845518
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-019",
+      "tier": "easy",
+      "generation_index": 40,
+      "tier_index": 19,
+      "seed": 1227555287,
+      "target_xy": [
+        2.1285341201633554,
+        -0.14462326211447443
+      ],
+      "target_yaw": 0.3211901502537161,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0517041069468296,
+        -2.522331495700842
+      ],
+      "bunker_yaw": 3.177482767151392,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-012",
+      "tier": "moderate",
+      "generation_index": 41,
+      "tier_index": 12,
+      "seed": 1778808044,
+      "target_xy": [
+        1.9081138596992293,
+        -0.11583923757480402
+      ],
+      "target_yaw": 0.3132561409115525,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0754098928049616,
+        -2.4403758816053753
+      ],
+      "bunker_yaw": 3.1324338219587795,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.37817237214072014,
+            0.7060537876773286
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.12226259206746587
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-013",
+      "tier": "moderate",
+      "generation_index": 42,
+      "tier_index": 13,
+      "seed": 2036053271,
+      "target_xy": [
+        1.8977692553908345,
+        0.11449166066135882
+      ],
+      "target_yaw": 0.3976523951119546,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0745781301031307,
+        -2.5782164510146663
+      ],
+      "bunker_yaw": 3.222830208311922,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.5324718540966618,
+            0.7276434584258046
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.06959375808632898
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-014",
+      "tier": "moderate",
+      "generation_index": 43,
+      "tier_index": 14,
+      "seed": 12453975,
+      "target_xy": [
+        1.903279465170102,
+        -0.13176045623366714
+      ],
+      "target_yaw": 0.15461814261916662,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.902942372055096,
+        -2.5036766910035553
+      ],
+      "bunker_yaw": 3.186637767664803,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.44328142952055716,
+            0.6170805602770508
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.2479504540213613
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-011",
+      "tier": "hard",
+      "generation_index": 44,
+      "tier_index": 11,
+      "seed": 1308936197,
+      "target_xy": [
+        1.946030454798166,
+        -0.1374705955433453
+      ],
+      "target_yaw": -0.05144470472710888,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9089618432635356,
+        -2.4589136415789445
+      ],
+      "bunker_yaw": 3.1247908154700474,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.25613932686645013,
+            0.629212839228284
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.16206543817525615
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5311814572405509,
+            -0.41333726847860414
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.04016019730636455
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-020",
+      "tier": "easy",
+      "generation_index": 45,
+      "tier_index": 20,
+      "seed": 624330444,
+      "target_xy": [
+        1.9194701582051388,
+        0.05396388692285964
+      ],
+      "target_yaw": 0.045914679628999755,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0135180039646,
+        -2.4797351318551093
+      ],
+      "bunker_yaw": 3.1413254164029345,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-015",
+      "tier": "moderate",
+      "generation_index": 46,
+      "tier_index": 15,
+      "seed": 1075436801,
+      "target_xy": [
+        1.8811287055136028,
+        -0.0517374043090259
+      ],
+      "target_yaw": -0.024344229840156828,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.073959653528256,
+        -2.4573471164234024
+      ],
+      "bunker_yaw": 3.175310658728871,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.457366162441884,
+            0.5379396597217112
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.2543850385033833
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-016",
+      "tier": "moderate",
+      "generation_index": 47,
+      "tier_index": 16,
+      "seed": 896070714,
+      "target_xy": [
+        1.9887063809830043,
+        0.13629651478296548
+      ],
+      "target_yaw": -0.3656306765664013,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0373150515315714,
+        -2.545886892445186
+      ],
+      "bunker_yaw": 3.1006193368357504,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.40815670162962514,
+            0.798304679365836
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.16680713310450632
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-012",
+      "tier": "hard",
+      "generation_index": 48,
+      "tier_index": 12,
+      "seed": 1705400159,
+      "target_xy": [
+        1.9043629264733881,
+        0.1191898060533775
+      ],
+      "target_yaw": -0.41269353370416867,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.085280655153559,
+        -2.5115906198735867
+      ],
+      "bunker_yaw": 3.1212386053117243,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3377220761840496,
+            0.41753720114981285
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.060632948036835554
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.4642029735574047,
+            -0.540289182797755
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.08348369710696141
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-021",
+      "tier": "easy",
+      "generation_index": 49,
+      "tier_index": 21,
+      "seed": 1921782030,
+      "target_xy": [
+        1.9746977094103033,
+        0.07985215148324115
+      ],
+      "target_yaw": -0.17997157338823438,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.948364368094444,
+        -2.518286451826146
+      ],
+      "bunker_yaw": 3.165121895171499,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-022",
+      "tier": "easy",
+      "generation_index": 50,
+      "tier_index": 22,
+      "seed": 624476128,
+      "target_xy": [
+        2.059507986620244,
+        -0.11132958497845216
+      ],
+      "target_yaw": -0.26988219501693933,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9969441127926673,
+        -2.4328628033033466
+      ],
+      "bunker_yaw": 3.1978814812370397,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-013",
+      "tier": "hard",
+      "generation_index": 51,
+      "tier_index": 13,
+      "seed": 1968384923,
+      "target_xy": [
+        1.9959688942750449,
+        -0.014710044489372576
+      ],
+      "target_yaw": 0.39326310686822663,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0487830347625606,
+        -2.5063752486717394
+      ],
+      "bunker_yaw": 3.14672947721937,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.41077096187092343,
+            0.6156605090217349
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.11372069701294352
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.47258607700048594,
+            -0.30796128649419
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.15496955045072197
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-014",
+      "tier": "hard",
+      "generation_index": 52,
+      "tier_index": 14,
+      "seed": 555805992,
+      "target_xy": [
+        1.934656455995926,
+        0.0218455313163749
+      ],
+      "target_yaw": 0.15165582589478055,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.030315467122935,
+        -2.458786871350553
+      ],
+      "bunker_yaw": 3.135823850727599,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.19333294631167758,
+            0.4703370449383476
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.02018299592791134
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.3977937223334477,
+            -0.31618838120131443
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.014797860077510938
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-017",
+      "tier": "moderate",
+      "generation_index": 53,
+      "tier_index": 17,
+      "seed": 1094383263,
+      "target_xy": [
+        1.9998334701217846,
+        0.024613509626036978
+      ],
+      "target_yaw": 0.2710295026646379,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9595147065678145,
+        -2.520508470436571
+      ],
+      "bunker_yaw": 3.1806434840722018,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3427849761017685,
+            0.5003441782602873
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.1836302938272269
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-015",
+      "tier": "hard",
+      "generation_index": 54,
+      "tier_index": 15,
+      "seed": 1395226981,
+      "target_xy": [
+        1.985113352426317,
+        0.04956751883760027
+      ],
+      "target_yaw": -0.09521105303942623,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0482096608949445,
+        -2.5777800221052263
+      ],
+      "bunker_yaw": 3.2259079171921026,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.4394398762119174,
+            0.5936572040588421
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.2194472088772439
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5853915145964312,
+            -0.5147760275373974
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.111427349121341
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-023",
+      "tier": "easy",
+      "generation_index": 55,
+      "tier_index": 23,
+      "seed": 840498448,
+      "target_xy": [
+        2.120706362311025,
+        0.14133597845808513
+      ],
+      "target_yaw": -0.4969768138985861,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0774960861428817,
+        -2.594118949472036
+      ],
+      "bunker_yaw": 3.1282928762061073,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-024",
+      "tier": "easy",
+      "generation_index": 56,
+      "tier_index": 24,
+      "seed": 1815207737,
+      "target_xy": [
+        1.9783820945329325,
+        0.005825571760115222
+      ],
+      "target_yaw": 0.37940865788638023,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0672931082249133,
+        -2.555199785892454
+      ],
+      "bunker_yaw": 3.204390868044059,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-025",
+      "tier": "easy",
+      "generation_index": 57,
+      "tier_index": 25,
+      "seed": 1586363002,
+      "target_xy": [
+        2.08178116520992,
+        0.051715537633733766
+      ],
+      "target_yaw": 0.012930854217541587,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.975065294052889,
+        -2.5753918206233117
+      ],
+      "bunker_yaw": 3.0600091641571896,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-026",
+      "tier": "easy",
+      "generation_index": 58,
+      "tier_index": 26,
+      "seed": 2083629771,
+      "target_xy": [
+        2.0041065936386215,
+        -0.08100733201334256
+      ],
+      "target_yaw": -0.21349449344969623,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.085440107752574,
+        -2.525911446706081
+      ],
+      "bunker_yaw": 3.0754756913181422,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-016",
+      "tier": "hard",
+      "generation_index": 59,
+      "tier_index": 16,
+      "seed": 2015921538,
+      "target_xy": [
+        2.1262584509035047,
+        0.07288376962182117
+      ],
+      "target_yaw": -0.49909644209559145,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.046603275878126,
+        -2.4951731823570404
+      ],
+      "bunker_yaw": 3.181089513055988,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3844152404640765,
+            0.5898850038058845
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.017004345953534283
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5191742058724806,
+            -0.2922170627099655
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.08084265613885763
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-018",
+      "tier": "moderate",
+      "generation_index": 60,
+      "tier_index": 18,
+      "seed": 1702771334,
+      "target_xy": [
+        2.006591402967211,
+        0.0554268840350195
+      ],
+      "target_yaw": 0.29046493740536106,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.077575865024367,
+        -2.5170098108792924
+      ],
+      "bunker_yaw": 3.086579587436007,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.46140994912111716,
+            0.7211938128739487
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.06343260068260326
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-019",
+      "tier": "moderate",
+      "generation_index": 61,
+      "tier_index": 19,
+      "seed": 1169197651,
+      "target_xy": [
+        1.928979019811858,
+        0.02136117822359812
+      ],
+      "target_yaw": 0.4890222741301512,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.983492801235833,
+        -2.4338168076241784
+      ],
+      "bunker_yaw": 3.1652053990448246,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.38309958474624267,
+            0.7890505428122536
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.0478929894898697
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-027",
+      "tier": "easy",
+      "generation_index": 62,
+      "tier_index": 27,
+      "seed": 1371677345,
+      "target_xy": [
+        2.1346124501870554,
+        -0.03580427379807746
+      ],
+      "target_yaw": 0.28633559545726495,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9830171134662384,
+        -2.4434999137993514
+      ],
+      "bunker_yaw": 3.185443968703008,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-020",
+      "tier": "moderate",
+      "generation_index": 63,
+      "tier_index": 20,
+      "seed": 1196848422,
+      "target_xy": [
+        2.0822563614782683,
+        0.11567371612530711
+      ],
+      "target_yaw": -0.14719720052142016,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9606361909405634,
+        -2.4091914255861213
+      ],
+      "bunker_yaw": 3.063664277435531,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.29433964467173723,
+            0.7569163541813971
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.05593071072893335
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-028",
+      "tier": "easy",
+      "generation_index": 64,
+      "tier_index": 28,
+      "seed": 276858287,
+      "target_xy": [
+        2.0547296058460347,
+        0.05796907776616425
+      ],
+      "target_yaw": -0.29105040653614334,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.974227298981233,
+        -2.415917450596684
+      ],
+      "bunker_yaw": 3.2126438288550725,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-017",
+      "tier": "hard",
+      "generation_index": 65,
+      "tier_index": 17,
+      "seed": 1104742798,
+      "target_xy": [
+        2.0856647768955487,
+        0.042652727572382476
+      ],
+      "target_yaw": -0.29311873247844233,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0829573401652124,
+        -2.5083916159593205
+      ],
+      "bunker_yaw": 3.0558276031866844,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3525669426723621,
+            0.5944754187085215
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.21979801000975702
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5951752855887635,
+            -0.47433937987470526
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.13499769885522023
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-018",
+      "tier": "hard",
+      "generation_index": 66,
+      "tier_index": 18,
+      "seed": 623667406,
+      "target_xy": [
+        2.0025959446210475,
+        0.033021095174415455
+      ],
+      "target_yaw": 0.21489187779692132,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9090279341483103,
+        -2.5843291598390246
+      ],
+      "bunker_yaw": 3.1616569673569495,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.17190322718874596,
+            0.4861064442800399
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.12275739853455234
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.589770483111096,
+            -0.25970140054057733
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.22183601160709948
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-019",
+      "tier": "hard",
+      "generation_index": 67,
+      "tier_index": 19,
+      "seed": 1161908827,
+      "target_xy": [
+        1.8838569166372683,
+        -0.06074322279909519
+      ],
+      "target_yaw": 0.3136950374422478,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0118905565880647,
+        -2.560201672717023
+      ],
+      "bunker_yaw": 3.1660426812151745,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3704513496836619,
+            0.5589761067872456
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.05881409139204882
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5015014394950652,
+            -0.33698075765122326
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.16724734772422029
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-020",
+      "tier": "hard",
+      "generation_index": 68,
+      "tier_index": 20,
+      "seed": 1670336334,
+      "target_xy": [
+        1.9574248506999155,
+        0.06759178636959806
+      ],
+      "target_yaw": -0.46135811968933166,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.079167952921089,
+        -2.5858199841556546
+      ],
+      "bunker_yaw": 3.1588249160321005,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.44758907101937984,
+            0.5562943575484394
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.23815911329859357
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.41887334305157337,
+            -0.26949102707973094
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.24572591431458374
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-029",
+      "tier": "easy",
+      "generation_index": 69,
+      "tier_index": 29,
+      "seed": 1464281037,
+      "target_xy": [
+        2.0157820102154296,
+        0.09159199228338794
+      ],
+      "target_yaw": -0.01732618335847025,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.073339923389316,
+        -2.562459928343161
+      ],
+      "bunker_yaw": 3.070550788070885,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-030",
+      "tier": "easy",
+      "generation_index": 70,
+      "tier_index": 30,
+      "seed": 1461492554,
+      "target_xy": [
+        1.9820558095691465,
+        0.08778604337491777
+      ],
+      "target_yaw": 0.5196262906026842,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.948274677275357,
+        -2.5881459259586372
+      ],
+      "bunker_yaw": 3.1380747402110702,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-021",
+      "tier": "hard",
+      "generation_index": 71,
+      "tier_index": 21,
+      "seed": 934204669,
+      "target_xy": [
+        1.9020446684466301,
+        0.08913245709722414
+      ],
+      "target_yaw": 0.2621142718199072,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0665931052530295,
+        -2.5592942596540067
+      ],
+      "bunker_yaw": 3.1892081074177945,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.21496489386153983,
+            0.5630587490950507
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.07977685436125864
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5614018221509183,
+            -0.3637670935738635
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.24336220723453816
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-031",
+      "tier": "easy",
+      "generation_index": 72,
+      "tier_index": 31,
+      "seed": 1552255101,
+      "target_xy": [
+        2.1074230993085887,
+        0.01650141457437615
+      ],
+      "target_yaw": -0.34315309783862324,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0632947484325648,
+        -2.5851535903267195
+      ],
+      "bunker_yaw": 3.1869529224411504,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-021",
+      "tier": "moderate",
+      "generation_index": 73,
+      "tier_index": 21,
+      "seed": 1663037551,
+      "target_xy": [
+        1.993313242348836,
+        -0.03887470322095145
+      ],
+      "target_yaw": 0.021631155929744406,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.966332766963759,
+        -2.5947843444743692
+      ],
+      "bunker_yaw": 3.190902198364622,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.5490012800902798,
+            0.722942996732834
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.06808303146209632
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-032",
+      "tier": "easy",
+      "generation_index": 74,
+      "tier_index": 32,
+      "seed": 1195288372,
+      "target_xy": [
+        1.9517262193640084,
+        0.12908815873934862
+      ],
+      "target_yaw": 0.0926834336143948,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.088785089166003,
+        -2.4310028555998264
+      ],
+      "bunker_yaw": 3.106688809517615,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-033",
+      "tier": "easy",
+      "generation_index": 75,
+      "tier_index": 33,
+      "seed": 580383716,
+      "target_xy": [
+        1.9231617691967344,
+        -0.024282941185732043
+      ],
+      "target_yaw": -0.33322968214340876,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.058598595747591,
+        -2.511148291197321
+      ],
+      "bunker_yaw": 3.199470179120912,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-034",
+      "tier": "easy",
+      "generation_index": 76,
+      "tier_index": 34,
+      "seed": 1116734341,
+      "target_xy": [
+        1.978375163451846,
+        0.12550310911976723
+      ],
+      "target_yaw": -0.5101119938309779,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.94691373139466,
+        -2.5787146740000995
+      ],
+      "bunker_yaw": 3.165116660979333,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-022",
+      "tier": "moderate",
+      "generation_index": 77,
+      "tier_index": 22,
+      "seed": 1946101076,
+      "target_xy": [
+        2.136044739540783,
+        0.07643213683368735
+      ],
+      "target_yaw": -0.5025568012349297,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.97529735255544,
+        -2.518735952280127
+      ],
+      "bunker_yaw": 3.222760109277551,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.33866185693738676,
+            0.6460493366189514
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.2411511093052401
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-035",
+      "tier": "easy",
+      "generation_index": 78,
+      "tier_index": 35,
+      "seed": 2063589663,
+      "target_xy": [
+        2.09127910031621,
+        -0.14276457003957785
+      ],
+      "target_yaw": -0.13454353219985887,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.929651746789453,
+        -2.579644753368388
+      ],
+      "bunker_yaw": 3.184898477953785,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-022",
+      "tier": "hard",
+      "generation_index": 79,
+      "tier_index": 22,
+      "seed": 208584040,
+      "target_xy": [
+        1.9611324977741973,
+        0.04727661819978046
+      ],
+      "target_yaw": 0.44438130130616305,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0110134535090003,
+        -2.516737114907909
+      ],
+      "bunker_yaw": 3.1053460525015892,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.27530631203990685,
+            0.4397898081188911
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.25268890865647986
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.6263574200617034,
+            -0.3679180536833452
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.09134325633216622
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-036",
+      "tier": "easy",
+      "generation_index": 80,
+      "tier_index": 36,
+      "seed": 140973717,
+      "target_xy": [
+        2.104269557570131,
+        -0.11118233363462608
+      ],
+      "target_yaw": -0.17743506910410967,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0055108588014994,
+        -2.4676284325697924
+      ],
+      "bunker_yaw": 3.1948079921886947,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-023",
+      "tier": "hard",
+      "generation_index": 81,
+      "tier_index": 23,
+      "seed": 1636798150,
+      "target_xy": [
+        2.082925899005463,
+        0.14856242769269537
+      ],
+      "target_yaw": -0.47521186905377333,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9337203599196062,
+        -2.410842039263872
+      ],
+      "bunker_yaw": 3.0664562483445312,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.327745788984655,
+            0.5825345676251314
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.16507473344746407
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5094100979470453,
+            -0.4453480799713819
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.23560508273988257
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-023",
+      "tier": "moderate",
+      "generation_index": 82,
+      "tier_index": 23,
+      "seed": 541862809,
+      "target_xy": [
+        2.099065964273249,
+        0.031815524665610884
+      ],
+      "target_yaw": -0.4901989743239312,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.04282448943612,
+        -2.462435960833949
+      ],
+      "bunker_yaw": 3.131140475267554,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.42739734725556294,
+            0.6442755996361236
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.06626789590902515
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-024",
+      "tier": "hard",
+      "generation_index": 83,
+      "tier_index": 24,
+      "seed": 2090990290,
+      "target_xy": [
+        2.093932403747196,
+        -0.04580952548826331
+      ],
+      "target_yaw": 0.3269548000884286,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0171431050818676,
+        -2.461506483667988
+      ],
+      "bunker_yaw": 3.072898988473608,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.2397968421891164,
+            0.4889634061973546
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.08419596895361808
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.4459957266033612,
+            -0.4452608724964583
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.011951137667972261
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-024",
+      "tier": "moderate",
+      "generation_index": 84,
+      "tier_index": 24,
+      "seed": 1468747216,
+      "target_xy": [
+        2.1225345201321546,
+        -0.13413248893394553
+      ],
+      "target_yaw": 0.2502690861752631,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.959700921175944,
+        -2.460394945854818
+      ],
+      "bunker_yaw": 3.1365894800975913,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.31091453080373765,
+            0.7215357897215452
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.13949765042106838
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-025",
+      "tier": "moderate",
+      "generation_index": 85,
+      "tier_index": 25,
+      "seed": 391283032,
+      "target_xy": [
+        2.039162752286159,
+        0.05540229411574493
+      ],
+      "target_yaw": -0.5053828360300585,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.915463055493846,
+        -2.5673415458657387
+      ],
+      "bunker_yaw": 3.0910822177923167,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.42212981784891285,
+            0.5307873512601313
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.11097653616298592
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-025",
+      "tier": "hard",
+      "generation_index": 86,
+      "tier_index": 25,
+      "seed": 1040934784,
+      "target_xy": [
+        1.8837202334660423,
+        0.14413911182502806
+      ],
+      "target_yaw": -0.2064649925233547,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0615716604251006,
+        -2.480717405450486
+      ],
+      "bunker_yaw": 3.1259632824687373,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3316001337539671,
+            0.4034214660517979
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.1924414385112088
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.4218663363894793,
+            -0.2912159868072626
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.22598422559471215
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-026",
+      "tier": "moderate",
+      "generation_index": 87,
+      "tier_index": 26,
+      "seed": 851728733,
+      "target_xy": [
+        2.0491502526181615,
+        0.002479500631590359
+      ],
+      "target_yaw": -0.2731379205097344,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9110465091724906,
+        -2.44079637765946
+      ],
+      "bunker_yaw": 3.0613110780541755,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.35578918985249985,
+            0.5777909125389322
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.011136382016050328
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-026",
+      "tier": "hard",
+      "generation_index": 88,
+      "tier_index": 26,
+      "seed": 1449563762,
+      "target_xy": [
+        2.119059413053087,
+        0.0463280852822025
+      ],
+      "target_yaw": -0.37445104044664324,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.028318452255366,
+        -2.5857325587889495
+      ],
+      "bunker_yaw": 3.1448679203073815,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.2873988644360483,
+            0.4444023302253421
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.03645140007316566
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.43381535689862216,
+            -0.4321909988677439
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.2523089194895342
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-027",
+      "tier": "moderate",
+      "generation_index": 89,
+      "tier_index": 27,
+      "seed": 527009834,
+      "target_xy": [
+        2.059822576031835,
+        -0.11441780150453261
+      ],
+      "target_yaw": -0.05706324308544475,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9142017856301234,
+        -2.533452837841271
+      ],
+      "bunker_yaw": 3.0617973632399242,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.5350829654359471,
+            0.7006532964259733
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": 0.20279800782768648
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-037",
+      "tier": "easy",
+      "generation_index": 90,
+      "tier_index": 37,
+      "seed": 236799364,
+      "target_xy": [
+        2.053915585839847,
+        -0.00933873276039568
+      ],
+      "target_yaw": 0.28010757229584404,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0283423806704057,
+        -2.5261041997884415
+      ],
+      "bunker_yaw": 3.0701508364970893,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-027",
+      "tier": "hard",
+      "generation_index": 91,
+      "tier_index": 27,
+      "seed": 1568986785,
+      "target_xy": [
+        2.114400596467102,
+        -0.030342856168704038
+      ],
+      "target_yaw": -0.26478699717451315,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0483699721168365,
+        -2.4411960941919393
+      ],
+      "bunker_yaw": 3.1504006521865096,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.16070957362722482,
+            0.4801551844669675
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.07666262118122397
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5635978180609165,
+            -0.4604656414972154
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.13903652851260473
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-028",
+      "tier": "hard",
+      "generation_index": 92,
+      "tier_index": 28,
+      "seed": 1011068456,
+      "target_xy": [
+        2.006121003080428,
+        0.11451764408423634
+      ],
+      "target_yaw": 0.08157217825493845,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.005080713195487,
+        -2.441869310155626
+      ],
+      "bunker_yaw": 3.089978436416389,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.4449147284632483,
+            0.6264432742636666
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.24206036495081834
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5409245246103264,
+            -0.37052058043561586
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.22129532392578377
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-easy-038",
+      "tier": "easy",
+      "generation_index": 93,
+      "tier_index": 38,
+      "seed": 1530090069,
+      "target_xy": [
+        2.038545473640921,
+        -0.000535411885155157
+      ],
+      "target_yaw": 0.38525059778451587,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.9547337538585183,
+        -2.4301461461006846
+      ],
+      "bunker_yaw": 3.206447757078063,
+      "bunker_z": 0.36,
+      "boxes": [],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-029",
+      "tier": "hard",
+      "generation_index": 94,
+      "tier_index": 29,
+      "seed": 446503030,
+      "target_xy": [
+        2.1406223872266827,
+        0.07387990094321945
+      ],
+      "target_yaw": 0.1991632274929096,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.0243105905654115,
+        -2.465941428855045
+      ],
+      "bunker_yaw": 3.0548108853021687,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.4459819035821374,
+            0.5947734110435721
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.04245258120685519
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.42680670443717544,
+            -0.36109597250730074
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": 0.14450154142119775
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-hard-030",
+      "tier": "hard",
+      "generation_index": 95,
+      "tier_index": 30,
+      "seed": 1499976107,
+      "target_xy": [
+        2.0889580405531563,
+        0.005691171265261918
+      ],
+      "target_yaw": 0.24482467040099498,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        2.908628971353575,
+        -2.4153277787227663
+      ],
+      "bunker_yaw": 3.135402305504935,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.3306925759493152,
+            0.5891735955734938
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.05774903078145133
+        },
+        {
+          "name": "eval_wall_1",
+          "center_xy": [
+            0.5073612028091241,
+            -0.3525708969244912
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1.0
+          ],
+          "yaw": -0.10909634057222281
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    },
+    {
+      "id": "eval-moderate-028",
+      "tier": "moderate",
+      "generation_index": 96,
+      "tier_index": 28,
+      "seed": 1595998203,
+      "target_xy": [
+        1.8970834246195498,
+        -0.13786724159963268
+      ],
+      "target_yaw": -0.2610629096783462,
+      "target_z": 0.0575,
+      "bunker_xy": [
+        3.044715944780763,
+        -2.4736732811590554
+      ],
+      "bunker_yaw": 3.2277586023058458,
+      "bunker_z": 0.36,
+      "boxes": [
+        {
+          "name": "eval_wall_0",
+          "center_xy": [
+            0.26482345632093574,
+            0.5164796705058137
+          ],
+          "size_xyz": [
+            0.15,
+            1.0,
+            1.0
+          ],
+          "yaw": -0.18900518685643944
+        }
+      ],
+      "context_control": false,
+      "ablation": false,
+      "retain_success_rgbd": false
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "eval-hard-015",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 2,
+      "scene": "eval-hard-015",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 3,
+      "scene": "eval-moderate-016",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 4,
+      "scene": "eval-moderate-016",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 5,
+      "scene": "eval-moderate-024",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 6,
+      "scene": "eval-moderate-024",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 7,
+      "scene": "eval-easy-033",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 8,
+      "scene": "eval-easy-033",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 9,
+      "scene": "eval-easy-009",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 10,
+      "scene": "eval-easy-009",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 11,
+      "scene": "eval-easy-006",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 12,
+      "scene": "eval-easy-006",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 13,
+      "scene": "eval-hard-007",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 14,
+      "scene": "eval-hard-007",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 15,
+      "scene": "eval-moderate-023",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 16,
+      "scene": "eval-moderate-023",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 17,
+      "scene": "eval-moderate-004",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 18,
+      "scene": "eval-moderate-004",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 19,
+      "scene": "eval-moderate-026",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 20,
+      "scene": "eval-moderate-026",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 21,
+      "scene": "eval-hard-006",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 22,
+      "scene": "eval-hard-006",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 23,
+      "scene": "eval-hard-002",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 24,
+      "scene": "eval-hard-002",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 25,
+      "scene": "eval-hard-002",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 26,
+      "scene": "eval-hard-002",
+      "method": "no_cost",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 27,
+      "scene": "eval-hard-002",
+      "method": "no_occlusion",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 28,
+      "scene": "eval-hard-002",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 29,
+      "scene": "eval-easy-015",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 30,
+      "scene": "eval-easy-015",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 31,
+      "scene": "eval-hard-027",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 32,
+      "scene": "eval-hard-027",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 33,
+      "scene": "eval-easy-004",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 34,
+      "scene": "eval-easy-004",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 35,
+      "scene": "eval-easy-038",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 36,
+      "scene": "eval-easy-038",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 37,
+      "scene": "eval-hard-009",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 38,
+      "scene": "eval-hard-009",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 39,
+      "scene": "eval-easy-036",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 40,
+      "scene": "eval-easy-036",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 41,
+      "scene": "eval-moderate-025",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 42,
+      "scene": "eval-moderate-025",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 43,
+      "scene": "eval-hard-008",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 44,
+      "scene": "eval-hard-008",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 45,
+      "scene": "eval-easy-014",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 46,
+      "scene": "eval-easy-014",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 47,
+      "scene": "eval-hard-023",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 48,
+      "scene": "eval-hard-023",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 49,
+      "scene": "eval-hard-024",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 50,
+      "scene": "eval-hard-024",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 51,
+      "scene": "eval-moderate-018",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 52,
+      "scene": "eval-moderate-018",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 53,
+      "scene": "eval-hard-012",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 54,
+      "scene": "eval-hard-012",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 55,
+      "scene": "eval-moderate-008",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 56,
+      "scene": "eval-moderate-008",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 57,
+      "scene": "eval-hard-030",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 58,
+      "scene": "eval-hard-030",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 59,
+      "scene": "eval-easy-034",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 60,
+      "scene": "eval-easy-034",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 61,
+      "scene": "eval-moderate-011",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 62,
+      "scene": "eval-moderate-011",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 63,
+      "scene": "eval-easy-026",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 64,
+      "scene": "eval-easy-026",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 65,
+      "scene": "eval-easy-019",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 66,
+      "scene": "eval-easy-019",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 67,
+      "scene": "eval-easy-013",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 68,
+      "scene": "eval-easy-013",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 69,
+      "scene": "eval-hard-004",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 70,
+      "scene": "eval-hard-004",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 71,
+      "scene": "eval-hard-004",
+      "method": "no_occlusion",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 72,
+      "scene": "eval-hard-004",
+      "method": "no_cost",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 73,
+      "scene": "eval-easy-016",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 74,
+      "scene": "eval-easy-016",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 75,
+      "scene": "eval-moderate-002",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 76,
+      "scene": "eval-moderate-002",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 77,
+      "scene": "eval-moderate-002",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 78,
+      "scene": "eval-moderate-002",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 79,
+      "scene": "eval-easy-037",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 80,
+      "scene": "eval-easy-037",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 81,
+      "scene": "eval-moderate-015",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 82,
+      "scene": "eval-moderate-015",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 83,
+      "scene": "eval-easy-027",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 84,
+      "scene": "eval-easy-027",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 85,
+      "scene": "eval-easy-003",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 86,
+      "scene": "eval-easy-003",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 87,
+      "scene": "eval-moderate-010",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 88,
+      "scene": "eval-moderate-010",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 89,
+      "scene": "eval-easy-029",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 90,
+      "scene": "eval-easy-029",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 91,
+      "scene": "eval-hard-010",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 92,
+      "scene": "eval-hard-010",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 93,
+      "scene": "eval-easy-023",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 94,
+      "scene": "eval-easy-023",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 95,
+      "scene": "eval-easy-002",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 96,
+      "scene": "eval-easy-002",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 97,
+      "scene": "eval-easy-002",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 98,
+      "scene": "eval-easy-002",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 99,
+      "scene": "eval-moderate-028",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 100,
+      "scene": "eval-moderate-028",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 101,
+      "scene": "eval-hard-028",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 102,
+      "scene": "eval-hard-028",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 103,
+      "scene": "eval-moderate-013",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 104,
+      "scene": "eval-moderate-013",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 105,
+      "scene": "eval-hard-017",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 106,
+      "scene": "eval-hard-017",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 107,
+      "scene": "eval-easy-031",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 108,
+      "scene": "eval-easy-031",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 109,
+      "scene": "eval-moderate-001",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 110,
+      "scene": "eval-moderate-001",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 111,
+      "scene": "eval-moderate-001",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 112,
+      "scene": "eval-moderate-001",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 113,
+      "scene": "eval-moderate-009",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 114,
+      "scene": "eval-moderate-009",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 115,
+      "scene": "eval-hard-026",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 116,
+      "scene": "eval-hard-026",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 117,
+      "scene": "eval-easy-035",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 118,
+      "scene": "eval-easy-035",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 119,
+      "scene": "eval-hard-018",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 120,
+      "scene": "eval-hard-018",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 121,
+      "scene": "eval-hard-020",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 122,
+      "scene": "eval-hard-020",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 123,
+      "scene": "eval-easy-024",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 124,
+      "scene": "eval-easy-024",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 125,
+      "scene": "eval-moderate-020",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 126,
+      "scene": "eval-moderate-020",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 127,
+      "scene": "eval-hard-014",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 128,
+      "scene": "eval-hard-014",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 129,
+      "scene": "eval-easy-005",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 130,
+      "scene": "eval-easy-005",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 131,
+      "scene": "eval-easy-018",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 132,
+      "scene": "eval-easy-018",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 133,
+      "scene": "eval-hard-003",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 134,
+      "scene": "eval-hard-003",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 135,
+      "scene": "eval-hard-003",
+      "method": "no_occlusion",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 136,
+      "scene": "eval-hard-003",
+      "method": "no_cost",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 137,
+      "scene": "eval-easy-030",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 138,
+      "scene": "eval-easy-030",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 139,
+      "scene": "eval-easy-001",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 140,
+      "scene": "eval-easy-001",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 141,
+      "scene": "eval-easy-001",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 142,
+      "scene": "eval-easy-001",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 143,
+      "scene": "eval-moderate-006",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 144,
+      "scene": "eval-moderate-006",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 145,
+      "scene": "eval-moderate-012",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 146,
+      "scene": "eval-moderate-012",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 147,
+      "scene": "eval-moderate-019",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 148,
+      "scene": "eval-moderate-019",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 149,
+      "scene": "eval-hard-016",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 150,
+      "scene": "eval-hard-016",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 151,
+      "scene": "eval-hard-001",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 152,
+      "scene": "eval-hard-001",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 153,
+      "scene": "eval-hard-001",
+      "method": "no_cost",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 154,
+      "scene": "eval-hard-001",
+      "method": "fixed",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 155,
+      "scene": "eval-hard-001",
+      "method": "no_occlusion",
+      "comparison_role": "secondary_ablation"
+    },
+    {
+      "slot": 156,
+      "scene": "eval-hard-001",
+      "method": "rm4d_only",
+      "comparison_role": "secondary_baseline"
+    },
+    {
+      "slot": 157,
+      "scene": "eval-easy-028",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 158,
+      "scene": "eval-easy-028",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 159,
+      "scene": "eval-hard-019",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 160,
+      "scene": "eval-hard-019",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 161,
+      "scene": "eval-easy-021",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 162,
+      "scene": "eval-easy-021",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 163,
+      "scene": "eval-moderate-027",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 164,
+      "scene": "eval-moderate-027",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 165,
+      "scene": "eval-easy-010",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 166,
+      "scene": "eval-easy-010",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 167,
+      "scene": "eval-moderate-005",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 168,
+      "scene": "eval-moderate-005",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 169,
+      "scene": "eval-moderate-017",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 170,
+      "scene": "eval-moderate-017",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 171,
+      "scene": "eval-hard-021",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 172,
+      "scene": "eval-hard-021",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 173,
+      "scene": "eval-easy-008",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 174,
+      "scene": "eval-easy-008",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 175,
+      "scene": "eval-moderate-007",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 176,
+      "scene": "eval-moderate-007",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 177,
+      "scene": "eval-easy-017",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 178,
+      "scene": "eval-easy-017",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 179,
+      "scene": "eval-hard-025",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 180,
+      "scene": "eval-hard-025",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 181,
+      "scene": "eval-easy-025",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 182,
+      "scene": "eval-easy-025",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 183,
+      "scene": "eval-hard-005",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 184,
+      "scene": "eval-hard-005",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 185,
+      "scene": "eval-moderate-014",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 186,
+      "scene": "eval-moderate-014",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 187,
+      "scene": "eval-easy-007",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 188,
+      "scene": "eval-easy-007",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 189,
+      "scene": "eval-easy-022",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 190,
+      "scene": "eval-easy-022",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 191,
+      "scene": "eval-hard-013",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 192,
+      "scene": "eval-hard-013",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 193,
+      "scene": "eval-moderate-021",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 194,
+      "scene": "eval-moderate-021",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 195,
+      "scene": "eval-easy-032",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 196,
+      "scene": "eval-easy-032",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 197,
+      "scene": "eval-hard-029",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 198,
+      "scene": "eval-hard-029",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 199,
+      "scene": "eval-moderate-022",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 200,
+      "scene": "eval-moderate-022",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 201,
+      "scene": "eval-moderate-003",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 202,
+      "scene": "eval-moderate-003",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 203,
+      "scene": "eval-easy-020",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 204,
+      "scene": "eval-easy-020",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 205,
+      "scene": "eval-hard-011",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 206,
+      "scene": "eval-hard-011",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 207,
+      "scene": "eval-easy-012",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 208,
+      "scene": "eval-easy-012",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 209,
+      "scene": "eval-easy-011",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 210,
+      "scene": "eval-easy-011",
+      "method": "generic",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 211,
+      "scene": "eval-hard-022",
+      "method": "ours",
+      "comparison_role": "primary"
+    },
+    {
+      "slot": 212,
+      "scene": "eval-hard-022",
+      "method": "generic",
+      "comparison_role": "primary"
+    }
+  ],
+  "tier_counts": {
+    "easy": 38,
+    "moderate": 28,
+    "hard": 30
+  },
+  "evaluation_version": {
+    "name": "paper1-eval-finite-scan-v1",
+    "purpose": "Version description, NOT an executable experiment configuration",
+    "release_tag": "paper1-eval-finite-scan-v1",
+    "agent_runtime_commit": "1a6e85b42e9d9fd642454de499672004503c3772",
+    "development_evaluation_commit": "0de63c5511b4732bb24090d7a75656eb2b752f1b",
+    "sim_commit": "a0ae8e32889e92a86f24d2794c7cb143999915fd",
+    "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation",
+    "sim_install_relative": "install/p450-clean",
+    "sim_overlay_relative": "install/p450-runtime-overlays",
+    "rm4d_baseline_commit": "e9d431299053f38a4a4319aed3dfeccc261b9fac",
+    "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+    "rm4d_config_relative": "configs/mr4_offline_base_placement.json",
+    "task_asset_relative": "assets/rm4d_ground_task_v1",
+    "px4_root": "/media/lu/P450_PAPER/P450-PAPER/workspaces/dependencies/px4",
+    "px4_commit": "713814f4eea5990e49dd776a38a36ad53e171f60",
+    "sitl_gazebo_commit": "9566172e7c0760f66681304b963d675c5b120daf",
+    "ros_python": "/usr/bin/python3",
+    "core_python": "/media/lu/P450_PAPER/RM4D_AUBO/conda-env/bin/python",
+    "task_profile": "configs/current_sim_task.json",
+    "single_task_entry": "scripts/run_retrieval.py",
+    "entry_execution_flags": [
+      "--integrated-joint-velocity",
+      "--full-robot-manipulation",
+      "--execution-clearance",
+      "--ground-dynamics"
+    ],
+    "development_clearance_m": 0.012,
+    "clearance_source": "SIM execution_clearance.py CHASSIS_MARGIN_M",
+    "efficiency_clock": "simulation",
+    "distance_claim": "excluded; incomplete trajectories are not full distances",
+    "formal_protocol": "docs/PAPER1_FORMAL_EXPERIMENT_PLAN.md",
+    "formal_execution": "NOT_STARTED; proposal only",
+    "environment_observed_2026_09_10": {
+      "os": "Ubuntu 20.04.6 LTS",
+      "ros_python": "3.8.10",
+      "core_python": "3.10.21",
+      "gazebo": "11.15.1-1~focal",
+      "ros_noetic_core": "1.5.0-1focal.20250520.015810",
+      "moveit": "1.1.16-1focal.20250521.021831",
+      "mavros": "1.20.1-1focal.20250520.005419",
+      "move_base": "1.17.3-1focal.20250521.010519",
+      "gazebo_ros_control": "2.9.3-1focal.20250521.005335",
+      "numpy": "2.2.6",
+      "matplotlib": "3.10.9",
+      "scipy": "1.15.2",
+      "pybullet": "3.2.5",
+      "tqdm": "4.70.0"
+    }
+  },
+  "sensor_mount_T_uav_lidar": [
+    [
+      0.9393727128473789,
+      0.0,
+      0.34289780745545134,
+      0.14714489037277256
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      -0.34289780745545134,
+      0.0,
+      0.9393727128473789,
+      0.27696863564236895
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "sensor_mount_use": "offline location accounting only; derived from public SIM launch"
+}
