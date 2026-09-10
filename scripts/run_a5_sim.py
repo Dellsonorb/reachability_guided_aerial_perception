@@ -310,7 +310,7 @@ def build_adapter_class(demo_module, options):
                             for axis in range(3))
             settled = (state is not None and received is not None
                        and time.monotonic() - received <= self._flight_health_max_age
-                       and (not acquisition or in_bounds)
+                       and in_bounds
                        and pose_settled(pose, settled_goal, state.velocity,
                                         options.settle_position_tolerance,
                                         options.settle_yaw_tolerance, options.settle_speed))
@@ -376,9 +376,6 @@ def build_adapter_class(demo_module, options):
             # Freeze one measured anchor only after a stable post-core dwell.
             goal = list(self._a5_measured_pose())
             bounds = options.flight_bounds
-            if any(not bounds[2 * axis] <= goal[axis] <= bounds[2 * axis + 1]
-                   for axis in range(3)):
-                raise DemoError("A5 measured capture anchor is outside configured flight bounds")
             settled_pose = self._a5_wait_settled(goal, reacquire_anchor=True)
             # Reacquire only XYZ; otherwise yaw tolerance could compound
             # between the stable dwell and the subsequent capture window.
