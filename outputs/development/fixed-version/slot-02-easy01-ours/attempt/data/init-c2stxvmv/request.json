@@ -1,0 +1,150 @@
+{
+  "config": {
+    "facade_position_tolerance": 0.05,
+    "flight_bounds": [
+      -4.0,
+      4.0,
+      -3.0,
+      3.0,
+      0.5,
+      3.0
+    ],
+    "max_viewpoints": 3,
+    "scan_pattern_path": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/scan_mode/mid360.csv",
+    "scan_publisher_sdf_path": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/MID360.sdf",
+    "scan_window_s": 5.0,
+    "support_anchor": "exact_winner",
+    "xy_offsets_m": [
+      -2.0,
+      -1.0,
+      0.0,
+      1.0,
+      2.0
+    ]
+  },
+  "current_bunker_pose": [
+    2.924012833972411,
+    -2.4254157534729957,
+    3.098122884574959
+  ],
+  "frame_calibration": {
+    "T_bunker_aubo": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.15
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_ground_odom_bunker": [
+      [
+        0.9999999999914467,
+        -4.1360161092180345e-06,
+        0.0,
+        -3.506700819499997e-06
+      ],
+      [
+        4.1360161092180345e-06,
+        0.9999999999914467,
+        0.0,
+        -4.743766977455266e-06
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_map_ground_odom": [
+      [
+        -0.9990551586157204,
+        -0.04346021218676268,
+        0.0,
+        2.924009124419748
+      ],
+      [
+        0.04346021218676268,
+        -0.9990551586157204,
+        0.0,
+        -2.4254203403559043
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.36
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "grasp": {
+    "frame_id": "map",
+    "grasp_id": "side-up-top-grasp",
+    "position_xyz": [
+      2.0205850272359,
+      -0.08516167643722916,
+      0.08211115854792635
+    ],
+    "quaternion_xyzw": [
+      -0.19307821974802925,
+      0.6802358422333623,
+      0.19307821974802927,
+      0.6802358422333624
+    ]
+  },
+  "method": "ours",
+  "op": "init",
+  "operational_gating": "v1.4",
+  "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-02-easy01-ours/attempt/data",
+  "perceived_target": {
+    "center_xyz": [
+      2.0205850272359,
+      -0.08516167643722916,
+      0.06021115854792635
+    ],
+    "size_xyz": [
+      0.24,
+      0.053,
+      0.115
+    ],
+    "yaw_rad": 0.5531321574466546
+  },
+  "rm4d_config": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo/configs/mr4_offline_base_placement.json",
+  "rm4d_map": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1/rmap.npy",
+  "rm4d_root": "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+  "rm4d_task_asset": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/assets/rm4d_ground_task_v1",
+  "sim_root": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation",
+  "target_reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-02-easy01-ours/attempt/data/target_reference.npz",
+  "target_reference_reason": null,
+  "target_reference_status": "AVAILABLE"
+}

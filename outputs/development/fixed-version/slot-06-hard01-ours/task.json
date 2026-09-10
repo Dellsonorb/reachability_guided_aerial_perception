@@ -1,0 +1,121 @@
+{
+  "profile": "sensor-retrieval-finite-scan-v1",
+  "acquisition_model": "finite_scan_v1",
+  "protocol": "docs/CURRENT_SIM_TASK.md",
+  "status": "DEVELOPMENT_BATCH",
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "observation_windows": 3,
+  "window_sim_s": 5,
+  "capture_wall_guard_s": 20,
+  "task_wall_guard_s": 1200,
+  "efficiency_clock": "simulation",
+  "operational_gating": "v1.4",
+  "support_anchor": "exact_winner",
+  "handoff_stop": "screened_candidate",
+  "record_diagnostics": true,
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "shared_a5_settings": {
+    "grid_resolution_m": 0.1,
+    "grid_width_m": 4,
+    "grid_height_m": 4,
+    "ground_z_m": 0,
+    "xy_offsets_m": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "flight_bounds": [
+      -4,
+      4,
+      -3,
+      3,
+      0.5,
+      3
+    ],
+    "flight_weight": 0.25,
+    "facade_position_tolerance": 0.05,
+    "max_ground_travel": 3,
+    "navigation_timeout": 120,
+    "settle_position_tolerance": 0.1,
+    "settle_yaw_tolerance": 0.1,
+    "settle_speed": 0.1,
+    "settle_duration": 0.5,
+    "settle_timeout": 45,
+    "core_timeout": 900,
+    "tf_max_age": 0.5,
+    "tf_timeout": 1
+  },
+  "scenes": [
+    {
+      "id": "fixed-hard-01",
+      "tier": "hard",
+      "seed": 204914204,
+      "target_xy": [
+        2.053104031998105,
+        -0.007684887038270194
+      ],
+      "target_z": 0.0575,
+      "target_yaw": -0.0708523187310987,
+      "bunker_xy": [
+        2.9155478675792312,
+        -2.457228980158889
+      ],
+      "bunker_z": 0.36,
+      "bunker_yaw": 3.151648572092956,
+      "boxes": [
+        {
+          "name": "a6_wall_h1",
+          "center_xy": [
+            0.3,
+            0.5
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        },
+        {
+          "name": "a6_wall_h2",
+          "center_xy": [
+            0.5,
+            -0.4
+          ],
+          "size_xyz": [
+            0.15,
+            0.6,
+            1
+          ],
+          "yaw": 0
+        }
+      ],
+      "replicate": 1
+    }
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "scene": "fixed-hard-01",
+      "method": "ours"
+    }
+  ],
+  "runtime_versions": {
+    "agent": "0de63c5511b4732bb24090d7a75656eb2b752f1b",
+    "sim": "a0ae8e32889e92a86f24d2794c7cb143999915fd",
+    "rm4d": "e9d431299053f38a4a4319aed3dfeccc261b9fac"
+  }
+}

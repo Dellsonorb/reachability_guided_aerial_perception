@@ -1,0 +1,154 @@
+{
+  "slot": 1,
+  "scene": "fixed-hard-02",
+  "method": "ours",
+  "seed": 1339075492,
+  "scene_spec": {
+    "id": "fixed-hard-02",
+    "tier": "hard",
+    "seed": 1339075492,
+    "target_xy": [
+      2.022306814353418,
+      0.06657223656463765
+    ],
+    "target_z": 0.0575,
+    "target_yaw": 0.3528526049799001,
+    "bunker_xy": [
+      3.0624843235951644,
+      -2.5583223820432406
+    ],
+    "bunker_z": 0.36,
+    "bunker_yaw": 3.184682815337662,
+    "boxes": [
+      {
+        "name": "a6_wall_h1",
+        "center_xy": [
+          0.3,
+          0.5
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1
+        ],
+        "yaw": 0
+      },
+      {
+        "name": "a6_wall_h2",
+        "center_xy": [
+          0.5,
+          -0.4
+        ],
+        "size_xyz": [
+          0.15,
+          0.6,
+          1
+        ],
+        "yaw": 0
+      }
+    ],
+    "replicate": 2
+  },
+  "initial_view": [
+    -1.4,
+    0,
+    1.2,
+    0
+  ],
+  "uav_launch_pose": [
+    -0.5,
+    0,
+    0.15,
+    0
+  ],
+  "config_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-11-hard02-ours/task.json",
+  "protocol": "docs/CURRENT_SIM_TASK.md",
+  "operational_gating": "v1.4",
+  "handoff_stop": "screened_candidate",
+  "kind": "DEVELOPMENT_ATTEMPT",
+  "status": "VALID_TRIAL",
+  "task_started": true,
+  "activation_wall": 1789020622.6367388,
+  "ground_dynamics_csv": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-11-hard02-ours/attempt/ground-dynamics.csv",
+  "physics_state_use": "diagnosis_only_never_algorithm_input",
+  "post_failure_load_contrast": false,
+  "joint_velocity_feedback": "integrated_pose_interval_velocity",
+  "full_robot_manipulation": true,
+  "execution_clearance": "chassis-clearance-v1",
+  "diagnostic_image_scope": "ground_handoff_to_end",
+  "diagnostic_image_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-11-hard02-ours/attempt/diagnostics-images.bag",
+    "/ground/d435/color/image_raw",
+    "/ground/d435/depth/image_raw"
+  ],
+  "diagnostic_image_path": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-11-hard02-ours/attempt/diagnostics-images.bag",
+  "diagnostic_image_start_trigger": {
+    "state": "A5_SELECTED",
+    "ros_time": 144.503,
+    "wall_monotonic": 249340.393323716
+  },
+  "ready_sim": 10.531,
+  "diagnostic_command": [
+    "rosbag",
+    "record",
+    "--lz4",
+    "--buffsize",
+    "256",
+    "-O",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/development/fixed-version/slot-11-hard02-ours/attempt/diagnostics.bag",
+    "/clock",
+    "/tf",
+    "/tf_static",
+    "/rosout_agg",
+    "/air_observer/target_pose",
+    "/uav1/prometheus/state",
+    "/ground/move_base/goal",
+    "/ground/move_base/status",
+    "/ground/move_base/result",
+    "/ground/move_base/cancel",
+    "/ground/nav_cmd_vel",
+    "/ground/cmd_vel",
+    "/ground/odom",
+    "/ground/scan",
+    "/ground/move_base/global_costmap/costmap",
+    "/ground/move_base/local_costmap/costmap",
+    "/ground/move_base/NavfnROS/plan",
+    "/ground/move_base/DWAPlannerROS/local_plan",
+    "/ground/d435/color/camera_info",
+    "/ground/d435/depth/camera_info",
+    "/ground_observer/status",
+    "/ground_observer/target_pose",
+    "/ground_observer/surface_cue",
+    "/ground/gripper/grasp_confirmed",
+    "/pick_target/contacts",
+    "/ground/joint_states",
+    "/ground/arm_controller/state",
+    "/ground/arm_controller/follow_joint_trajectory/goal",
+    "/ground/arm_controller/follow_joint_trajectory/status",
+    "/ground/arm_controller/follow_joint_trajectory/result",
+    "/ground/arm_controller/follow_joint_trajectory/cancel",
+    "/gazebo/model_states",
+    "/gazebo/link_states",
+    "/ground/gripper_controller/state",
+    "/ground/gripper_controller/follow_joint_trajectory/goal",
+    "/ground/gripper_controller/follow_joint_trajectory/result"
+  ],
+  "adapter_exit": 0,
+  "checker_exit": 0,
+  "runtime_exit_during_task": null,
+  "runtime_exit": 0,
+  "diagnostic_exit": 0,
+  "diagnostic_bag_finalized": true,
+  "diagnostic_image_exit": 0,
+  "diagnostic_image_bag_finalized": true,
+  "physical_status": "CHECKS_PASS",
+  "retrieval_success": true,
+  "classification_reason": null,
+  "finish_wall": 1789020950.8765662
+}
