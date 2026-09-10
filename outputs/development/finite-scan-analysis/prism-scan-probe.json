@@ -1,0 +1,1119 @@
+{
+  "kind": "exact_ray_known_prism_scan_probe",
+  "window_packets": 51,
+  "rationale": "capture requires last-first>=5 seconds; at10Hz this requires51consecutive packets",
+  "no_new_observations": true,
+  "no_mapper_updates": true,
+  "no_gt_geometry": true,
+  "csv_index_filter": {
+    "accepted": 799252,
+    "rejected": 748,
+    "raw_azimuth_minmax_deg": [
+      0.00037577,
+      360.0
+    ],
+    "elevation_minmax_deg": [
+      -7.212299999999999,
+      52.164
+    ],
+    "horizontal_index_minmax": [
+      0,
+      99
+    ],
+    "vertical_index_minmax": [
+      5,
+      360
+    ]
+  },
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "window": 2,
+      "pose_stats": [
+        {
+          "window": 1,
+          "planned_xyz": [
+            -1.4,
+            0.0,
+            1.2
+          ],
+          "recorded_first_xyz": [
+            -1.4519530479648433,
+            -0.08267238677247858,
+            1.1889585175253539
+          ],
+          "recorded_last_xyz": [
+            -1.4293047835520065,
+            -0.04536956625863273,
+            1.2861442127693845
+          ],
+          "xyz_offset_min_m": [
+            -0.051953047964843346,
+            -0.08267238677247858,
+            -0.011041482474646092
+          ],
+          "xyz_offset_max_m": [
+            -0.002982257008889766,
+            -0.04536956625863273,
+            0.08614421276938455
+          ],
+          "position_error_norm_max_m": 0.1016759227899281,
+          "roll_pitch_yaw_min_deg": [
+            -0.43330875618721115,
+            -0.29598643717889683,
+            -0.7731214645219809
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.1272726973237119,
+            0.24607102609593634,
+            -0.6291912220414222
+          ]
+        },
+        {
+          "window": 2,
+          "planned_xyz": [
+            -3.4293047855155185,
+            -2.045369566267527,
+            1.2861442082527883
+          ],
+          "recorded_first_xyz": [
+            -3.4252131434311037,
+            -2.0058198281814943,
+            1.3200747258216259
+          ],
+          "recorded_last_xyz": [
+            -3.4363038915261663,
+            -1.996342886630375,
+            1.206694384085123
+          ],
+          "xyz_offset_min_m": [
+            -0.006999106010647793,
+            0.03954973808603279,
+            -0.07944982416766533
+          ],
+          "xyz_offset_max_m": [
+            0.02223341745080054,
+            0.06849908015984374,
+            0.04177940168546601
+          ],
+          "position_error_norm_max_m": 0.09362092373751271,
+          "roll_pitch_yaw_min_deg": [
+            -0.1812783457334713,
+            -0.21359963201337945,
+            -0.73562505532175
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.19124557096498085,
+            0.13074667192891676,
+            -0.6521363751644292
+          ]
+        }
+      ],
+      "occupied_prism_count": 49,
+      "selected_prediction_s": 0.09606120697571896,
+      "ray_info": {
+        "grid_rays": 21814,
+        "unblocked_grid_rays": 15058
+      },
+      "scopes": {
+        "all_grid": {
+          "cells": 1600,
+          "actual": 1061,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 869,
+              "actual": 1061,
+              "tp": 859,
+              "fp": 10,
+              "fn": 202,
+              "tn": 529
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 863,
+              "actual": 1061,
+              "tp": 853,
+              "fp": 10,
+              "fn": 208,
+              "tn": 529
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 818,
+              "actual": 1061,
+              "tp": 814,
+              "fp": 4,
+              "fn": 247,
+              "tn": 535
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 923,
+              "actual": 1061,
+              "tp": 910,
+              "fp": 13,
+              "fn": 151,
+              "tn": 526
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 841,
+              "actual": 1061,
+              "tp": 837,
+              "fp": 4,
+              "fn": 224,
+              "tn": 535
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 890,
+              "actual": 1061,
+              "tp": 890,
+              "fp": 0,
+              "fn": 171,
+              "tn": 539
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 905.0125,
+            "brier": 0.10350888671874997,
+            "expected_false_positives": 11.1625,
+            "expected_false_negatives": 167.14999999999998,
+            "zero": 677,
+            "one": 841,
+            "fractional": 82
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 856.2375,
+            "brier": 0.13593994140625,
+            "expected_false_positives": 8.9875,
+            "expected_false_negatives": 213.75000000000003,
+            "zero": 737,
+            "one": 818,
+            "fractional": 45
+          },
+          "added_vs_center_prism_actual_ground": 57,
+          "added_vs_center_prism_no_actual_ground": 3,
+          "p50_p51_difference_count": 85
+        },
+        "viable_union": {
+          "cells": 168,
+          "actual": 141,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 114,
+              "actual": 141,
+              "tp": 114,
+              "fp": 0,
+              "fn": 27,
+              "tn": 27
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 114,
+              "actual": 141,
+              "tp": 114,
+              "fp": 0,
+              "fn": 27,
+              "tn": 27
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 114,
+              "actual": 141,
+              "tp": 114,
+              "fp": 0,
+              "fn": 27,
+              "tn": 27
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 120,
+              "actual": 141,
+              "tp": 120,
+              "fp": 0,
+              "fn": 21,
+              "tn": 27
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 117,
+              "actual": 141,
+              "tp": 117,
+              "fp": 0,
+              "fn": 24,
+              "tn": 27
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 113,
+              "actual": 141,
+              "tp": 113,
+              "fp": 0,
+              "fn": 28,
+              "tn": 27
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 119.6,
+            "brier": 0.12578683035714286,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 21.4,
+            "zero": 48,
+            "one": 117,
+            "fractional": 3
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 114.0,
+            "brier": 0.16071428571428573,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 27.0,
+            "zero": 54,
+            "one": 114,
+            "fractional": 0
+          },
+          "added_vs_center_prism_actual_ground": 6,
+          "added_vs_center_prism_no_actual_ground": 0,
+          "p50_p51_difference_count": 4
+        }
+      },
+      "benchmark": {
+        "candidate_count": 200,
+        "batch_s": 7.245967249997193,
+        "seconds_quantiles": [
+          0.010971594980219379,
+          0.013060257988399826,
+          0.10197953428723848,
+          0.1364905259979423
+        ]
+      },
+      "first_state_original_lattice": {
+        "ordered_pair_count": 4225,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 1
+      },
+      "first_state_test_lattice": {
+        "ordered_pair_count": 40000,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 1
+      },
+      "lattice_offsets_m": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "inventory_note": "Any-positive phase opportunity only; optimistic frozen pair upper bound; no probability of completion, no actual acquisition or flight feasibility claim"
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "window": 2,
+      "pose_stats": [
+        {
+          "window": 1,
+          "planned_xyz": [
+            -1.4,
+            0.0,
+            1.2
+          ],
+          "recorded_first_xyz": [
+            -1.4450403951075155,
+            -0.1094057869881173,
+            1.1916206053363023
+          ],
+          "recorded_last_xyz": [
+            -1.4185365294354624,
+            -0.09450837748840378,
+            1.2962053559949074
+          ],
+          "xyz_offset_min_m": [
+            -0.04504039510751556,
+            -0.1094057869881173,
+            -0.008379394663697637
+          ],
+          "xyz_offset_max_m": [
+            -0.010976269857001952,
+            -0.06973919292108267,
+            0.09620535599490743
+          ],
+          "position_error_norm_max_m": 0.1361282735551629,
+          "roll_pitch_yaw_min_deg": [
+            -0.21343064656292204,
+            -0.10927965940763272,
+            -0.6402678062872542
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.22155174886168524,
+            0.1664139081405891,
+            -0.4623791559586388
+          ]
+        },
+        {
+          "window": 2,
+          "planned_xyz": [
+            -1.418536530838355,
+            -2.0945083774788964,
+            1.2962053525695432
+          ],
+          "recorded_first_xyz": [
+            -1.4511993296176824,
+            -2.072156097909089,
+            1.3239375590555449
+          ],
+          "recorded_last_xyz": [
+            -1.466197045681346,
+            -2.049209739300117,
+            1.258995514023701
+          ],
+          "xyz_offset_min_m": [
+            -0.04766051484299094,
+            0.022352279569807454,
+            -0.037209838545842144
+          ],
+          "xyz_offset_max_m": [
+            -0.032469158441152945,
+            0.06144025131548192,
+            0.04887106604447
+          ],
+          "position_error_norm_max_m": 0.07714106377591044,
+          "roll_pitch_yaw_min_deg": [
+            -0.3570819719115677,
+            -0.1798689540184338,
+            44.365419550668605
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.14952004801786176,
+            0.1133611986414446,
+            44.449525331861715
+          ]
+        }
+      ],
+      "occupied_prism_count": 49,
+      "selected_prediction_s": 0.12808188502094708,
+      "ray_info": {
+        "grid_rays": 28819,
+        "unblocked_grid_rays": 14840
+      },
+      "scopes": {
+        "all_grid": {
+          "cells": 1600,
+          "actual": 746,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 571,
+              "actual": 746,
+              "tp": 541,
+              "fp": 30,
+              "fn": 205,
+              "tn": 824
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 534,
+              "actual": 746,
+              "tp": 534,
+              "fp": 0,
+              "fn": 212,
+              "tn": 854
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 520,
+              "actual": 746,
+              "tp": 520,
+              "fp": 0,
+              "fn": 226,
+              "tn": 854
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 578,
+              "actual": 746,
+              "tp": 578,
+              "fp": 0,
+              "fn": 168,
+              "tn": 854
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 549,
+              "actual": 746,
+              "tp": 549,
+              "fp": 0,
+              "fn": 197,
+              "tn": 854
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 581,
+              "actual": 746,
+              "tp": 581,
+              "fp": 0,
+              "fn": 165,
+              "tn": 854
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 572.1875,
+            "brier": 0.10603564453124999,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 173.8125,
+            "zero": 1022,
+            "one": 549,
+            "fractional": 29
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 531.8625,
+            "brier": 0.13281064453125,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 214.1375,
+            "zero": 1066,
+            "one": 520,
+            "fractional": 14
+          },
+          "added_vs_center_prism_actual_ground": 44,
+          "added_vs_center_prism_no_actual_ground": 0,
+          "p50_p51_difference_count": 31
+        },
+        "viable_union": {
+          "cells": 174,
+          "actual": 142,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 150,
+              "actual": 142,
+              "tp": 132,
+              "fp": 18,
+              "fn": 10,
+              "tn": 14
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 130,
+              "actual": 142,
+              "tp": 130,
+              "fp": 0,
+              "fn": 12,
+              "tn": 32
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 129,
+              "actual": 142,
+              "tp": 129,
+              "fp": 0,
+              "fn": 13,
+              "tn": 32
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 133,
+              "actual": 142,
+              "tp": 133,
+              "fp": 0,
+              "fn": 9,
+              "tn": 32
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 131,
+              "actual": 142,
+              "tp": 131,
+              "fp": 0,
+              "fn": 11,
+              "tn": 32
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 134,
+              "actual": 142,
+              "tp": 134,
+              "fp": 0,
+              "fn": 8,
+              "tn": 32
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 132.275,
+            "brier": 0.05323455459770114,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 9.725,
+            "zero": 41,
+            "one": 131,
+            "fractional": 2
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 129.6375,
+            "brier": 0.06972072557471264,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 12.3625,
+            "zero": 44,
+            "one": 129,
+            "fractional": 1
+          },
+          "added_vs_center_prism_actual_ground": 3,
+          "added_vs_center_prism_no_actual_ground": 0,
+          "p50_p51_difference_count": 2
+        }
+      },
+      "benchmark": {
+        "candidate_count": 200,
+        "batch_s": 7.140623083978426,
+        "seconds_quantiles": [
+          0.011032775015337393,
+          0.013477243497618474,
+          0.09966843991423954,
+          0.1323803839914035
+        ]
+      },
+      "first_state_original_lattice": {
+        "ordered_pair_count": 4225,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 2
+      },
+      "first_state_test_lattice": {
+        "ordered_pair_count": 40000,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 2
+      },
+      "lattice_offsets_m": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "inventory_note": "Any-positive phase opportunity only; optimistic frozen pair upper bound; no probability of completion, no actual acquisition or flight feasibility claim"
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "window": 2,
+      "pose_stats": [
+        {
+          "window": 1,
+          "planned_xyz": [
+            -1.4,
+            0.0,
+            1.2
+          ],
+          "recorded_first_xyz": [
+            -1.4441376475795349,
+            -0.09962786776684264,
+            1.1824289995597168
+          ],
+          "recorded_last_xyz": [
+            -1.4299224782060624,
+            -0.06399306312168167,
+            1.2852274068685987
+          ],
+          "xyz_offset_min_m": [
+            -0.04413764757953498,
+            -0.09962786776684264,
+            -0.017571000440283147
+          ],
+          "xyz_offset_max_m": [
+            -0.022269057450105878,
+            -0.06399306312168167,
+            0.08522740686859875
+          ],
+          "position_error_norm_max_m": 0.11069858947264638,
+          "roll_pitch_yaw_min_deg": [
+            -0.16748948370976383,
+            -0.15063131098812227,
+            -0.6592708958738249
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.07214799509061867,
+            0.13871042638290393,
+            -0.49513230540908065
+          ]
+        },
+        {
+          "window": 2,
+          "planned_xyz": [
+            -3.429922492729604,
+            -2.0639930630118832,
+            1.285227378653837
+          ],
+          "recorded_first_xyz": [
+            -3.4259580666557894,
+            -2.0260490454226283,
+            1.3204550873025795
+          ],
+          "recorded_last_xyz": [
+            -3.4321078915504666,
+            -2.0242882777229605,
+            1.2203084221272977
+          ],
+          "xyz_offset_min_m": [
+            -0.0021853988208624386,
+            0.03794401758925492,
+            -0.06491895652653934
+          ],
+          "xyz_offset_max_m": [
+            0.027959483001334995,
+            0.063094267715333,
+            0.04699762874908431
+          ],
+          "position_error_norm_max_m": 0.07612960566915072,
+          "roll_pitch_yaw_min_deg": [
+            -0.17031709076294155,
+            -0.22008387354419723,
+            -0.6690856035978692
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.2403152177146285,
+            0.13703005006365515,
+            -0.589275341917729
+          ]
+        }
+      ],
+      "occupied_prism_count": 49,
+      "selected_prediction_s": 0.09436141300830059,
+      "ray_info": {
+        "grid_rays": 22925,
+        "unblocked_grid_rays": 16545
+      },
+      "scopes": {
+        "all_grid": {
+          "cells": 1600,
+          "actual": 1096,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 937,
+              "actual": 1096,
+              "tp": 914,
+              "fp": 23,
+              "fn": 182,
+              "tn": 481
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 919,
+              "actual": 1096,
+              "tp": 906,
+              "fp": 13,
+              "fn": 190,
+              "tn": 491
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 882,
+              "actual": 1096,
+              "tp": 874,
+              "fp": 8,
+              "fn": 222,
+              "tn": 496
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 966,
+              "actual": 1096,
+              "tp": 951,
+              "fp": 15,
+              "fn": 145,
+              "tn": 489
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 892,
+              "actual": 1096,
+              "tp": 884,
+              "fp": 8,
+              "fn": 212,
+              "tn": 496
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 942,
+              "actual": 1096,
+              "tp": 942,
+              "fp": 0,
+              "fn": 154,
+              "tn": 504
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 950.0625,
+            "brier": 0.10097392578125,
+            "expected_false_positives": 13.45,
+            "expected_false_negatives": 159.38750000000002,
+            "zero": 634,
+            "one": 892,
+            "fractional": 74
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 913.8,
+            "brier": 0.1267255859375,
+            "expected_false_positives": 12.35,
+            "expected_false_negatives": 194.54999999999998,
+            "zero": 681,
+            "one": 882,
+            "fractional": 37
+          },
+          "added_vs_center_prism_actual_ground": 46,
+          "added_vs_center_prism_no_actual_ground": 2,
+          "p50_p51_difference_count": 77
+        },
+        "viable_union": {
+          "cells": 172,
+          "actual": 157,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 144,
+              "actual": 157,
+              "tp": 144,
+              "fp": 0,
+              "fn": 13,
+              "tn": 15
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 144,
+              "actual": 157,
+              "tp": 144,
+              "fp": 0,
+              "fn": 13,
+              "tn": 15
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 144,
+              "actual": 157,
+              "tp": 144,
+              "fp": 0,
+              "fn": 13,
+              "tn": 15
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 148,
+              "actual": 157,
+              "tp": 148,
+              "fp": 0,
+              "fn": 9,
+              "tn": 15
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 145,
+              "actual": 157,
+              "tp": 145,
+              "fp": 0,
+              "fn": 12,
+              "tn": 15
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 145,
+              "actual": 157,
+              "tp": 145,
+              "fp": 0,
+              "fn": 12,
+              "tn": 15
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 146.91250000000002,
+            "brier": 0.05461755087209302,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 10.0875,
+            "zero": 24,
+            "one": 145,
+            "fractional": 3
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 144.0,
+            "brier": 0.0755813953488372,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 13.0,
+            "zero": 28,
+            "one": 144,
+            "fractional": 0
+          },
+          "added_vs_center_prism_actual_ground": 4,
+          "added_vs_center_prism_no_actual_ground": 0,
+          "p50_p51_difference_count": 3
+        }
+      },
+      "benchmark": {
+        "candidate_count": 200,
+        "batch_s": 7.154118267004378,
+        "seconds_quantiles": [
+          0.010638523002853617,
+          0.013130133986123838,
+          0.10027991411625407,
+          0.13738622999517247
+        ]
+      },
+      "first_state_original_lattice": {
+        "ordered_pair_count": 4225,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 7
+      },
+      "first_state_test_lattice": {
+        "ordered_pair_count": 40000,
+        "pairs_with_any_complete_footprint": 1,
+        "maximum_completed_footprints": 2,
+        "minimum_missing_cells": 0
+      },
+      "lattice_offsets_m": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "inventory_note": "Any-positive phase opportunity only; optimistic frozen pair upper bound; no probability of completion, no actual acquisition or flight feasibility claim"
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "window": 2,
+      "pose_stats": [
+        {
+          "window": 1,
+          "planned_xyz": [
+            -1.4,
+            0.0,
+            1.2
+          ],
+          "recorded_first_xyz": [
+            -1.441123441426262,
+            -0.11065066189746954,
+            1.1992676515872212
+          ],
+          "recorded_last_xyz": [
+            -1.4217730691981225,
+            -0.09004376060926234,
+            1.2881941392437621
+          ],
+          "xyz_offset_min_m": [
+            -0.04112344142626201,
+            -0.11065066189746954,
+            -0.0007323484127788049
+          ],
+          "xyz_offset_max_m": [
+            -0.017921645660851526,
+            -0.08506848838663589,
+            0.08819413924376218
+          ],
+          "position_error_norm_max_m": 0.12794660030095725,
+          "roll_pitch_yaw_min_deg": [
+            -0.29988391630322064,
+            -0.08077243551634321,
+            -0.6003476133159922
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.1639496398586514,
+            0.15252380549302383,
+            -0.41823721079561454
+          ]
+        },
+        {
+          "window": 2,
+          "planned_xyz": [
+            -3.4217730771011263,
+            -2.090043760606381,
+            1.2881941235993568
+          ],
+          "recorded_first_xyz": [
+            -3.4248892399847475,
+            -2.0518504162077646,
+            1.3145462608039915
+          ],
+          "recorded_last_xyz": [
+            -3.419589448733939,
+            -2.0374932614210746,
+            1.235717911091693
+          ],
+          "xyz_offset_min_m": [
+            -0.003116162883621154,
+            0.038193344398616436,
+            -0.05247621250766388
+          ],
+          "xyz_offset_max_m": [
+            0.023880924842006657,
+            0.06326282838448716,
+            0.04105595534127837
+          ],
+          "position_error_norm_max_m": 0.07429721446070764,
+          "roll_pitch_yaw_min_deg": [
+            -0.3438873865138846,
+            -0.21760215155703802,
+            -0.6144594510634058
+          ],
+          "roll_pitch_yaw_max_deg": [
+            0.18594686002876307,
+            0.18918628491378137,
+            -0.5308044906496021
+          ]
+        }
+      ],
+      "occupied_prism_count": 47,
+      "selected_prediction_s": 0.09092530500493012,
+      "ray_info": {
+        "grid_rays": 22814,
+        "unblocked_grid_rays": 16362
+      },
+      "scopes": {
+        "all_grid": {
+          "cells": 1600,
+          "actual": 1088,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 937,
+              "actual": 1088,
+              "tp": 910,
+              "fp": 27,
+              "fn": 178,
+              "tn": 485
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 916,
+              "actual": 1088,
+              "tp": 904,
+              "fp": 12,
+              "fn": 184,
+              "tn": 500
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 879,
+              "actual": 1088,
+              "tp": 874,
+              "fp": 5,
+              "fn": 214,
+              "tn": 507
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 965,
+              "actual": 1088,
+              "tp": 952,
+              "fp": 13,
+              "fn": 136,
+              "tn": 499
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 888,
+              "actual": 1088,
+              "tp": 883,
+              "fp": 5,
+              "fn": 205,
+              "tn": 507
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 941,
+              "actual": 1088,
+              "tp": 941,
+              "fp": 0,
+              "fn": 147,
+              "tn": 512
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 949.375,
+            "brier": 0.0938412109375,
+            "expected_false_positives": 11.3,
+            "expected_false_negatives": 149.92499999999998,
+            "zero": 635,
+            "one": 888,
+            "fractional": 77
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 910.5250000000001,
+            "brier": 0.1216576171875,
+            "expected_false_positives": 10.6875,
+            "expected_false_negatives": 188.16250000000002,
+            "zero": 684,
+            "one": 879,
+            "fractional": 37
+          },
+          "added_vs_center_prism_actual_ground": 48,
+          "added_vs_center_prism_no_actual_ground": 1,
+          "p50_p51_difference_count": 83
+        },
+        "viable_union": {
+          "cells": 170,
+          "actual": 162,
+          "models": {
+            "saved_center_fov_prism": {
+              "predicted": 144,
+              "actual": 162,
+              "tp": 144,
+              "fp": 0,
+              "fn": 18,
+              "tn": 8
+            },
+            "scan_center_prism_any_phase": {
+              "predicted": 144,
+              "actual": 162,
+              "tp": 144,
+              "fp": 0,
+              "fn": 18,
+              "tn": 8
+            },
+            "scan_center_prism_every_phase": {
+              "predicted": 144,
+              "actual": 162,
+              "tp": 144,
+              "fp": 0,
+              "fn": 18,
+              "tn": 8
+            },
+            "scan_ray_prism_any_phase": {
+              "predicted": 152,
+              "actual": 162,
+              "tp": 152,
+              "fp": 0,
+              "fn": 10,
+              "tn": 8
+            },
+            "scan_ray_prism_every_phase": {
+              "predicted": 147,
+              "actual": 162,
+              "tp": 147,
+              "fp": 0,
+              "fn": 15,
+              "tn": 8
+            },
+            "moving_recorded_ray_prism": {
+              "predicted": 145,
+              "actual": 162,
+              "tp": 145,
+              "fp": 0,
+              "fn": 17,
+              "tn": 8
+            }
+          },
+          "scan_ray_prism_probability": {
+            "sum_opportunity": 150.4625,
+            "brier": 0.06196047794117647,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 11.537500000000001,
+            "zero": 18,
+            "one": 147,
+            "fractional": 5
+          },
+          "scan_center_prism_probability": {
+            "sum_opportunity": 144.0,
+            "brier": 0.10588235294117647,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 18.0,
+            "zero": 26,
+            "one": 144,
+            "fractional": 0
+          },
+          "added_vs_center_prism_actual_ground": 8,
+          "added_vs_center_prism_no_actual_ground": 0,
+          "p50_p51_difference_count": 5
+        }
+      },
+      "benchmark": {
+        "candidate_count": 200,
+        "batch_s": 6.937066871993011,
+        "seconds_quantiles": [
+          0.010795525013236329,
+          0.013093257512082346,
+          0.10183155470003839,
+          0.1342024570039939
+        ]
+      },
+      "first_state_original_lattice": {
+        "ordered_pair_count": 4225,
+        "pairs_with_any_complete_footprint": 0,
+        "maximum_completed_footprints": 0,
+        "minimum_missing_cells": 4
+      },
+      "first_state_test_lattice": {
+        "ordered_pair_count": 40000,
+        "pairs_with_any_complete_footprint": 4,
+        "maximum_completed_footprints": 2,
+        "minimum_missing_cells": 0
+      },
+      "lattice_offsets_m": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "inventory_note": "Any-positive phase opportunity only; optimistic frozen pair upper bound; no probability of completion, no actual acquisition or flight feasibility claim"
+    }
+  ],
+  "elapsed_s": 30.889271834981628
+}

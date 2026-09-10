@@ -1,0 +1,636 @@
+{
+  "kind": "independent_operational_occlusion_review",
+  "no_mapper_updates": true,
+  "no_observations_generated": true,
+  "no_gt_geometry": true,
+  "cylinder_audit": {
+    "independent_quadratic_comparisons": 12000,
+    "mismatches": 0
+  },
+  "flight_bounds": [
+    -4.0,
+    4.0,
+    -3.0,
+    3.0,
+    0.5,
+    3.0
+  ],
+  "facade_position_tolerance_m": 0.05,
+  "phase_start_pair_semantics": "enumerated joint geometric opportunities, not independent probabilities",
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "window": 2,
+      "geometry_metadata": {
+        "model": "operational_geometry_v1",
+        "full_cell_prisms": 42,
+        "ambiguous_cylinders": 89,
+        "ambiguous_radius_m": 0.033,
+        "ambiguous_height_semantics": "assumed_surrogate_not_measured_height",
+        "assumed_height_m": 1.0,
+        "target_semantics": "existing_perceived_expanded_oriented_box",
+        "raw_evidence_unchanged": true
+      },
+      "selected_prediction_seconds": 0.2207750850066077,
+      "scopes": {
+        "all_grid": {
+          "old_raw_prism": {
+            "predicted": 923,
+            "actual": 1061,
+            "tp": 910,
+            "fp": 13,
+            "fn": 151,
+            "tn": 526
+          },
+          "operational_geometry": {
+            "predicted": 923,
+            "actual": 1061,
+            "tp": 910,
+            "fp": 13,
+            "fn": 151,
+            "tn": 526
+          },
+          "phase_fraction": {
+            "sum_opportunity": 905.0125,
+            "brier": 0.10350888671874997,
+            "expected_false_positives": 11.1625,
+            "expected_false_negatives": 167.14999999999998,
+            "zero": 677,
+            "one": 841,
+            "fractional": 82
+          }
+        },
+        "viable_union": {
+          "old_raw_prism": {
+            "predicted": 120,
+            "actual": 141,
+            "tp": 120,
+            "fp": 0,
+            "fn": 21,
+            "tn": 27
+          },
+          "operational_geometry": {
+            "predicted": 120,
+            "actual": 141,
+            "tp": 120,
+            "fp": 0,
+            "fn": 21,
+            "tn": 27
+          },
+          "phase_fraction": {
+            "sum_opportunity": 119.6,
+            "brier": 0.12578683035714286,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 21.4,
+            "zero": 48,
+            "one": 117,
+            "fractional": 3
+          }
+        }
+      },
+      "cell781": {
+        "old_opportunity": 0.0,
+        "new_opportunity": 0.0,
+        "actual_second_ground": false,
+        "presence_before": 1,
+        "presence_after": 1
+      },
+      "first_state_inventories": [
+        {
+          "candidates": 65,
+          "legal_ordered_view_pairs": 3777,
+          "minimum_missing_cells": 0,
+          "any_positive_completing_view_pairs": 1,
+          "jointly_possible_view_pairs": 1,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                26,
+                26
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -1.4293047855155185,
+                    -2.045369566267527,
+                    1.2861442082527883
+                  ],
+                  "yaw": 0.7725776205975636
+                },
+                {
+                  "xyz": [
+                    -1.4293047855155185,
+                    -2.045369566267527,
+                    1.2861442082527883
+                  ],
+                  "yaw": 0.7725776205975636
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 623,
+                  "complete_phase_start_pairs": 6400
+                }
+              ]
+            }
+          ],
+          "offsets_m": [
+            -2,
+            0,
+            2
+          ],
+          "unfiltered_candidate_count": 72,
+          "prediction_seconds": 4.7588402739784215
+        },
+        {
+          "candidates": 193,
+          "legal_ordered_view_pairs": 35905,
+          "minimum_missing_cells": 0,
+          "any_positive_completing_view_pairs": 1,
+          "jointly_possible_view_pairs": 1,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                82,
+                82
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -1.4293047855155185,
+                    -2.045369566267527,
+                    1.2861442082527883
+                  ],
+                  "yaw": 0.7725776205975636
+                },
+                {
+                  "xyz": [
+                    -1.4293047855155185,
+                    -2.045369566267527,
+                    1.2861442082527883
+                  ],
+                  "yaw": 0.7725776205975636
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 623,
+                  "complete_phase_start_pairs": 6400
+                }
+              ]
+            }
+          ],
+          "offsets_m": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "unfiltered_candidate_count": 200,
+          "prediction_seconds": 14.761650033004116
+        }
+      ],
+      "belief_unchanged": true
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "window": 2,
+      "geometry_metadata": {
+        "model": "operational_geometry_v1",
+        "full_cell_prisms": 41,
+        "ambiguous_cylinders": 91,
+        "ambiguous_radius_m": 0.033,
+        "ambiguous_height_semantics": "assumed_surrogate_not_measured_height",
+        "assumed_height_m": 1.0,
+        "target_semantics": "existing_perceived_expanded_oriented_box",
+        "raw_evidence_unchanged": true
+      },
+      "selected_prediction_seconds": 0.2917231890023686,
+      "scopes": {
+        "all_grid": {
+          "old_raw_prism": {
+            "predicted": 578,
+            "actual": 746,
+            "tp": 578,
+            "fp": 0,
+            "fn": 168,
+            "tn": 854
+          },
+          "operational_geometry": {
+            "predicted": 595,
+            "actual": 746,
+            "tp": 595,
+            "fp": 0,
+            "fn": 151,
+            "tn": 854
+          },
+          "phase_fraction": {
+            "sum_opportunity": 589.1374999999999,
+            "brier": 0.09542314453125,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 156.8625,
+            "zero": 1005,
+            "one": 566,
+            "fractional": 29
+          }
+        },
+        "viable_union": {
+          "old_raw_prism": {
+            "predicted": 133,
+            "actual": 142,
+            "tp": 133,
+            "fp": 0,
+            "fn": 9,
+            "tn": 32
+          },
+          "operational_geometry": {
+            "predicted": 137,
+            "actual": 142,
+            "tp": 137,
+            "fp": 0,
+            "fn": 5,
+            "tn": 32
+          },
+          "phase_fraction": {
+            "sum_opportunity": 136.4,
+            "brier": 0.029728807471264374,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 5.6,
+            "zero": 37,
+            "one": 134,
+            "fractional": 3
+          }
+        }
+      },
+      "cell781": {
+        "old_opportunity": 0.0,
+        "new_opportunity": 1.0,
+        "actual_second_ground": true,
+        "presence_before": 1,
+        "presence_after": 2
+      },
+      "first_state_inventories": [
+        {
+          "candidates": 65,
+          "legal_ordered_view_pairs": 3777,
+          "minimum_missing_cells": 2,
+          "any_positive_completing_view_pairs": 0,
+          "jointly_possible_view_pairs": 0,
+          "joint_phase_inventory": [],
+          "offsets_m": [
+            -2,
+            0,
+            2
+          ],
+          "unfiltered_candidate_count": 72,
+          "prediction_seconds": 4.839513020997401
+        },
+        {
+          "candidates": 193,
+          "legal_ordered_view_pairs": 35905,
+          "minimum_missing_cells": 2,
+          "any_positive_completing_view_pairs": 0,
+          "jointly_possible_view_pairs": 0,
+          "joint_phase_inventory": [],
+          "offsets_m": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "unfiltered_candidate_count": 200,
+          "prediction_seconds": 14.588237275980646
+        }
+      ],
+      "belief_unchanged": true
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "window": 2,
+      "geometry_metadata": {
+        "model": "operational_geometry_v1",
+        "full_cell_prisms": 42,
+        "ambiguous_cylinders": 87,
+        "ambiguous_radius_m": 0.033,
+        "ambiguous_height_semantics": "assumed_surrogate_not_measured_height",
+        "assumed_height_m": 1.0,
+        "target_semantics": "existing_perceived_expanded_oriented_box",
+        "raw_evidence_unchanged": true
+      },
+      "selected_prediction_seconds": 0.21625687199411914,
+      "scopes": {
+        "all_grid": {
+          "old_raw_prism": {
+            "predicted": 966,
+            "actual": 1096,
+            "tp": 951,
+            "fp": 15,
+            "fn": 145,
+            "tn": 489
+          },
+          "operational_geometry": {
+            "predicted": 966,
+            "actual": 1096,
+            "tp": 951,
+            "fp": 15,
+            "fn": 145,
+            "tn": 489
+          },
+          "phase_fraction": {
+            "sum_opportunity": 950.0625,
+            "brier": 0.10097392578125,
+            "expected_false_positives": 13.45,
+            "expected_false_negatives": 159.38750000000002,
+            "zero": 634,
+            "one": 892,
+            "fractional": 74
+          }
+        },
+        "viable_union": {
+          "old_raw_prism": {
+            "predicted": 148,
+            "actual": 157,
+            "tp": 148,
+            "fp": 0,
+            "fn": 9,
+            "tn": 15
+          },
+          "operational_geometry": {
+            "predicted": 148,
+            "actual": 157,
+            "tp": 148,
+            "fp": 0,
+            "fn": 9,
+            "tn": 15
+          },
+          "phase_fraction": {
+            "sum_opportunity": 146.91250000000002,
+            "brier": 0.05461755087209302,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 10.0875,
+            "zero": 24,
+            "one": 145,
+            "fractional": 3
+          }
+        }
+      },
+      "cell781": {
+        "old_opportunity": 0.0,
+        "new_opportunity": 0.0,
+        "actual_second_ground": false,
+        "presence_before": 1,
+        "presence_after": 1
+      },
+      "first_state_inventories": [
+        {
+          "candidates": 65,
+          "legal_ordered_view_pairs": 3777,
+          "minimum_missing_cells": 7,
+          "any_positive_completing_view_pairs": 0,
+          "jointly_possible_view_pairs": 0,
+          "joint_phase_inventory": [],
+          "offsets_m": [
+            -2,
+            0,
+            2
+          ],
+          "unfiltered_candidate_count": 72,
+          "prediction_seconds": 4.746807824005373
+        },
+        {
+          "candidates": 193,
+          "legal_ordered_view_pairs": 35905,
+          "minimum_missing_cells": 0,
+          "any_positive_completing_view_pairs": 1,
+          "jointly_possible_view_pairs": 1,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                41,
+                41
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.429922492729604,
+                    -2.0639930630118832,
+                    1.285227378653837
+                  ],
+                  "yaw": -0.011506447807688946
+                },
+                {
+                  "xyz": [
+                    -2.429922492729604,
+                    -2.0639930630118832,
+                    1.285227378653837
+                  ],
+                  "yaw": -0.011506447807688946
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 582,
+                  "complete_phase_start_pairs": 2500
+                },
+                {
+                  "source_id": 501,
+                  "complete_phase_start_pairs": 6241
+                }
+              ]
+            }
+          ],
+          "offsets_m": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "unfiltered_candidate_count": 200,
+          "prediction_seconds": 14.294281979993684
+        }
+      ],
+      "belief_unchanged": true
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "window": 2,
+      "geometry_metadata": {
+        "model": "operational_geometry_v1",
+        "full_cell_prisms": 41,
+        "ambiguous_cylinders": 92,
+        "ambiguous_radius_m": 0.033,
+        "ambiguous_height_semantics": "assumed_surrogate_not_measured_height",
+        "assumed_height_m": 1.0,
+        "target_semantics": "existing_perceived_expanded_oriented_box",
+        "raw_evidence_unchanged": true
+      },
+      "selected_prediction_seconds": 0.23942522399011068,
+      "scopes": {
+        "all_grid": {
+          "old_raw_prism": {
+            "predicted": 965,
+            "actual": 1088,
+            "tp": 952,
+            "fp": 13,
+            "fn": 136,
+            "tn": 499
+          },
+          "operational_geometry": {
+            "predicted": 965,
+            "actual": 1088,
+            "tp": 952,
+            "fp": 13,
+            "fn": 136,
+            "tn": 499
+          },
+          "phase_fraction": {
+            "sum_opportunity": 949.375,
+            "brier": 0.0938412109375,
+            "expected_false_positives": 11.3,
+            "expected_false_negatives": 149.92499999999998,
+            "zero": 635,
+            "one": 888,
+            "fractional": 77
+          }
+        },
+        "viable_union": {
+          "old_raw_prism": {
+            "predicted": 152,
+            "actual": 162,
+            "tp": 152,
+            "fp": 0,
+            "fn": 10,
+            "tn": 8
+          },
+          "operational_geometry": {
+            "predicted": 152,
+            "actual": 162,
+            "tp": 152,
+            "fp": 0,
+            "fn": 10,
+            "tn": 8
+          },
+          "phase_fraction": {
+            "sum_opportunity": 150.4625,
+            "brier": 0.06196047794117647,
+            "expected_false_positives": 0.0,
+            "expected_false_negatives": 11.537500000000001,
+            "zero": 18,
+            "one": 147,
+            "fractional": 5
+          }
+        }
+      },
+      "cell781": {
+        "old_opportunity": 0.0,
+        "new_opportunity": 0.0,
+        "actual_second_ground": false,
+        "presence_before": 0,
+        "presence_after": 0
+      },
+      "first_state_inventories": [
+        {
+          "candidates": 65,
+          "legal_ordered_view_pairs": 3777,
+          "minimum_missing_cells": 4,
+          "any_positive_completing_view_pairs": 0,
+          "jointly_possible_view_pairs": 0,
+          "joint_phase_inventory": [],
+          "offsets_m": [
+            -2,
+            0,
+            2
+          ],
+          "unfiltered_candidate_count": 72,
+          "prediction_seconds": 4.897960770991631
+        },
+        {
+          "candidates": 193,
+          "legal_ordered_view_pairs": 35905,
+          "minimum_missing_cells": 0,
+          "any_positive_completing_view_pairs": 2,
+          "jointly_possible_view_pairs": 2,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                41,
+                41
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 623,
+                  "complete_phase_start_pairs": 3456
+                },
+                {
+                  "source_id": 541,
+                  "complete_phase_start_pairs": 6400
+                }
+              ]
+            },
+            {
+              "pair": [
+                42,
+                42
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 541,
+                  "complete_phase_start_pairs": 2304
+                }
+              ]
+            }
+          ],
+          "offsets_m": [
+            -2,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "unfiltered_candidate_count": 200,
+          "prediction_seconds": 14.535203256993555
+        }
+      ],
+      "belief_unchanged": true
+    }
+  ]
+}

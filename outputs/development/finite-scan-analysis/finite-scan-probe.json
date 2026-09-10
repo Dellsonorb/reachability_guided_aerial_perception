@@ -1,0 +1,5943 @@
+{
+  "kind": "finite_window_scan_opportunity_probe",
+  "pattern_path": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/scan_mode/mid360.csv",
+  "pattern_sha256": "aa1fc08b6a4400608dbd6ee832b7ea3a9c3c37197e734f60f58fe5abf762269a",
+  "no_observations_generated": true,
+  "no_mapper_updates": true,
+  "no_gt_geometry": true,
+  "window_packets": 50,
+  "window_seconds": 5,
+  "phase_prior": "uniform over 80 packet starts",
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "windows": [
+        {
+          "window": 1,
+          "planned_viewpoint": [
+            -1.4,
+            0.0,
+            1.2,
+            0.0
+          ],
+          "chunk_count": 51,
+          "phase_start": 64,
+          "recorded_phases": [
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.025192517990944907,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 946,
+                  "actual": 383,
+                  "tp": 383,
+                  "fp": 563,
+                  "fn": 0,
+                  "tn": 654
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 946,
+                  "actual": 383,
+                  "tp": 383,
+                  "fp": 563,
+                  "fn": 0,
+                  "tn": 654
+                },
+                "nominal_any_phase": {
+                  "predicted": 868,
+                  "actual": 383,
+                  "tp": 367,
+                  "fp": 501,
+                  "fn": 16,
+                  "tn": 716
+                },
+                "nominal_every_phase": {
+                  "predicted": 865,
+                  "actual": 383,
+                  "tp": 366,
+                  "fp": 499,
+                  "fn": 17,
+                  "tn": 718
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 868,
+                  "actual": 383,
+                  "tp": 367,
+                  "fp": 501,
+                  "fn": 16,
+                  "tn": 716
+                },
+                "moving_recorded_phase": {
+                  "predicted": 899,
+                  "actual": 383,
+                  "tp": 383,
+                  "fp": 516,
+                  "fn": 0,
+                  "tn": 701
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 865,
+                  "actual": 383,
+                  "tp": 366,
+                  "fp": 499,
+                  "fn": 17,
+                  "tn": 718
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 865,
+                  "actual": 383,
+                  "tp": 366,
+                  "fp": 499,
+                  "fn": 17,
+                  "tn": 718
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 865,
+                  "actual": 383,
+                  "tp": 366,
+                  "fp": 499,
+                  "fn": 17,
+                  "tn": 718
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 867.6125,
+                "brier": 0.32273916015625,
+                "expected_false_positives": 500.65000000000003,
+                "expected_false_negatives": 16.0375,
+                "zero": 732,
+                "one": 865,
+                "fractional": 3
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 867.6125,
+                "brier": 0.32273916015625,
+                "expected_false_positives": 500.65000000000003,
+                "expected_false_negatives": 16.0375,
+                "zero": 732,
+                "one": 865,
+                "fractional": 3
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 867.6125,
+                "brier": 0.32273916015625,
+                "expected_false_positives": 500.65000000000003,
+                "expected_false_negatives": 16.0375,
+                "zero": 732,
+                "one": 865,
+                "fractional": 3
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 31
+            },
+            "viable_union": {
+              "cells": 168,
+              "models": {
+                "center_fov": {
+                  "predicted": 157,
+                  "actual": 37,
+                  "tp": 37,
+                  "fp": 120,
+                  "fn": 0,
+                  "tn": 11
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 157,
+                  "actual": 37,
+                  "tp": 37,
+                  "fp": 120,
+                  "fn": 0,
+                  "tn": 11
+                },
+                "nominal_any_phase": {
+                  "predicted": 137,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 102,
+                  "fn": 2,
+                  "tn": 29
+                },
+                "nominal_every_phase": {
+                  "predicted": 136,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 101,
+                  "fn": 2,
+                  "tn": 30
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 137,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 102,
+                  "fn": 2,
+                  "tn": 29
+                },
+                "moving_recorded_phase": {
+                  "predicted": 145,
+                  "actual": 37,
+                  "tp": 37,
+                  "fp": 108,
+                  "fn": 0,
+                  "tn": 23
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 136,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 101,
+                  "fn": 2,
+                  "tn": 30
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 136,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 101,
+                  "fn": 2,
+                  "tn": 30
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 136,
+                  "actual": 37,
+                  "tp": 35,
+                  "fp": 101,
+                  "fn": 2,
+                  "tn": 30
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 136.725,
+                "brier": 0.6162239583333333,
+                "expected_false_positives": 101.725,
+                "expected_false_negatives": 2.0,
+                "zero": 31,
+                "one": 136,
+                "fractional": 1
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 136.725,
+                "brier": 0.6162239583333333,
+                "expected_false_positives": 101.725,
+                "expected_false_negatives": 2.0,
+                "zero": 31,
+                "one": 136,
+                "fractional": 1
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 136.725,
+                "brier": 0.6162239583333333,
+                "expected_false_positives": 101.725,
+                "expected_false_negatives": 2.0,
+                "zero": 31,
+                "one": 136,
+                "fractional": 1
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 8
+            }
+          },
+          "nominal_known_visible_missing_union_cells": [
+            {
+              "cell_id": 299,
+              "probability": 1.0,
+              "nominal_cycle_rays": 42,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 300,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 42,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 301,
+              "probability": 1.0,
+              "nominal_cycle_rays": 95,
+              "nominal_recorded_phase_rays": 59,
+              "moving_recorded_phase_rays": 47
+            },
+            {
+              "cell_id": 302,
+              "probability": 1.0,
+              "nominal_cycle_rays": 63,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 338,
+              "probability": 1.0,
+              "nominal_cycle_rays": 19,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 7
+            },
+            {
+              "cell_id": 339,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 340,
+              "probability": 1.0,
+              "nominal_cycle_rays": 82,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 341,
+              "probability": 1.0,
+              "nominal_cycle_rays": 99,
+              "nominal_recorded_phase_rays": 59,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 342,
+              "probability": 1.0,
+              "nominal_cycle_rays": 61,
+              "nominal_recorded_phase_rays": 39,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 343,
+              "probability": 1.0,
+              "nominal_cycle_rays": 59,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 31
+            },
+            {
+              "cell_id": 344,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 38
+            },
+            {
+              "cell_id": 345,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 346,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 347,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 377,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 378,
+              "probability": 0.725,
+              "nominal_cycle_rays": 2,
+              "nominal_recorded_phase_rays": 2,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 379,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 380,
+              "probability": 1.0,
+              "nominal_cycle_rays": 82,
+              "nominal_recorded_phase_rays": 54,
+              "moving_recorded_phase_rays": 38
+            },
+            {
+              "cell_id": 381,
+              "probability": 1.0,
+              "nominal_cycle_rays": 106,
+              "nominal_recorded_phase_rays": 64,
+              "moving_recorded_phase_rays": 50
+            },
+            {
+              "cell_id": 382,
+              "probability": 1.0,
+              "nominal_cycle_rays": 65,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 383,
+              "probability": 1.0,
+              "nominal_cycle_rays": 54,
+              "nominal_recorded_phase_rays": 45,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 384,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 11,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 385,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 386,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 387,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 417,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 418,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 419,
+              "probability": 1.0,
+              "nominal_cycle_rays": 47,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 12
+            },
+            {
+              "cell_id": 420,
+              "probability": 1.0,
+              "nominal_cycle_rays": 75,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 421,
+              "probability": 1.0,
+              "nominal_cycle_rays": 112,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 422,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 44,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 423,
+              "probability": 1.0,
+              "nominal_cycle_rays": 54,
+              "nominal_recorded_phase_rays": 40,
+              "moving_recorded_phase_rays": 33
+            },
+            {
+              "cell_id": 424,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 33
+            },
+            {
+              "cell_id": 425,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 426,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 427,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 428,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 429,
+              "probability": 1.0,
+              "nominal_cycle_rays": 22,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 457,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 458,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 2
+            },
+            {
+              "cell_id": 459,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 12
+            },
+            {
+              "cell_id": 460,
+              "probability": 1.0,
+              "nominal_cycle_rays": 75,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 37
+            },
+            {
+              "cell_id": 461,
+              "probability": 1.0,
+              "nominal_cycle_rays": 115,
+              "nominal_recorded_phase_rays": 68,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 462,
+              "probability": 1.0,
+              "nominal_cycle_rays": 74,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 463,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 40,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 464,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 465,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 466,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 467,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 468,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 469,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 497,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 498,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 3
+            },
+            {
+              "cell_id": 499,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 500,
+              "probability": 1.0,
+              "nominal_cycle_rays": 80,
+              "nominal_recorded_phase_rays": 50,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 501,
+              "probability": 1.0,
+              "nominal_cycle_rays": 114,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 61
+            },
+            {
+              "cell_id": 502,
+              "probability": 1.0,
+              "nominal_cycle_rays": 73,
+              "nominal_recorded_phase_rays": 54,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 503,
+              "probability": 1.0,
+              "nominal_cycle_rays": 48,
+              "nominal_recorded_phase_rays": 33,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 504,
+              "probability": 1.0,
+              "nominal_cycle_rays": 42,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 505,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 506,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 507,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 508,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 509,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 537,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 538,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 2
+            },
+            {
+              "cell_id": 539,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 10
+            },
+            {
+              "cell_id": 540,
+              "probability": 1.0,
+              "nominal_cycle_rays": 87,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 541,
+              "probability": 1.0,
+              "nominal_cycle_rays": 123,
+              "nominal_recorded_phase_rays": 73,
+              "moving_recorded_phase_rays": 59
+            },
+            {
+              "cell_id": 542,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 55,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 543,
+              "probability": 1.0,
+              "nominal_cycle_rays": 49,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 544,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 545,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 546,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 547,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 548,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 549,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 577,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 578,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 2
+            },
+            {
+              "cell_id": 579,
+              "probability": 1.0,
+              "nominal_cycle_rays": 22,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 9
+            },
+            {
+              "cell_id": 580,
+              "probability": 1.0,
+              "nominal_cycle_rays": 95,
+              "nominal_recorded_phase_rays": 59,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 581,
+              "probability": 1.0,
+              "nominal_cycle_rays": 120,
+              "nominal_recorded_phase_rays": 72,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 582,
+              "probability": 1.0,
+              "nominal_cycle_rays": 74,
+              "nominal_recorded_phase_rays": 57,
+              "moving_recorded_phase_rays": 62
+            },
+            {
+              "cell_id": 583,
+              "probability": 1.0,
+              "nominal_cycle_rays": 50,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 584,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 585,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 586,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 587,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 588,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 589,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 590,
+              "probability": 1.0,
+              "nominal_cycle_rays": 23,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 617,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 618,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 619,
+              "probability": 1.0,
+              "nominal_cycle_rays": 7,
+              "nominal_recorded_phase_rays": 4,
+              "moving_recorded_phase_rays": 11
+            },
+            {
+              "cell_id": 620,
+              "probability": 1.0,
+              "nominal_cycle_rays": 118,
+              "nominal_recorded_phase_rays": 79,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 621,
+              "probability": 1.0,
+              "nominal_cycle_rays": 117,
+              "nominal_recorded_phase_rays": 69,
+              "moving_recorded_phase_rays": 58
+            },
+            {
+              "cell_id": 622,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 58
+            },
+            {
+              "cell_id": 623,
+              "probability": 1.0,
+              "nominal_cycle_rays": 49,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 42
+            },
+            {
+              "cell_id": 624,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 29
+            },
+            {
+              "cell_id": 625,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 29
+            },
+            {
+              "cell_id": 626,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 627,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 628,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 629,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 630,
+              "probability": 1.0,
+              "nominal_cycle_rays": 22,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 657,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 658,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 659,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 11
+            },
+            {
+              "cell_id": 660,
+              "probability": 1.0,
+              "nominal_cycle_rays": 127,
+              "nominal_recorded_phase_rays": 86,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 661,
+              "probability": 1.0,
+              "nominal_cycle_rays": 108,
+              "nominal_recorded_phase_rays": 64,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 662,
+              "probability": 1.0,
+              "nominal_cycle_rays": 75,
+              "nominal_recorded_phase_rays": 50,
+              "moving_recorded_phase_rays": 59
+            },
+            {
+              "cell_id": 663,
+              "probability": 1.0,
+              "nominal_cycle_rays": 50,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 42
+            },
+            {
+              "cell_id": 664,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 33,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 665,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 666,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 667,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 668,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 669,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 698,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 738,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            }
+          ]
+        },
+        {
+          "window": 2,
+          "planned_viewpoint": [
+            -3.4293047855155185,
+            -2.045369566267527,
+            1.2861442082527883,
+            -0.012820542799884649
+          ],
+          "chunk_count": 51,
+          "phase_start": 65,
+          "recorded_phases": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.024349954997887835,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 1600,
+                  "actual": 1061,
+                  "tp": 1061,
+                  "fp": 539,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 869,
+                  "actual": 1061,
+                  "tp": 859,
+                  "fp": 10,
+                  "fn": 202,
+                  "tn": 529
+                },
+                "nominal_any_phase": {
+                  "predicted": 1594,
+                  "actual": 1061,
+                  "tp": 1055,
+                  "fp": 539,
+                  "fn": 6,
+                  "tn": 0
+                },
+                "nominal_every_phase": {
+                  "predicted": 1407,
+                  "actual": 1061,
+                  "tp": 979,
+                  "fp": 428,
+                  "fn": 82,
+                  "tn": 111
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 1559,
+                  "actual": 1061,
+                  "tp": 1040,
+                  "fp": 519,
+                  "fn": 21,
+                  "tn": 20
+                },
+                "moving_recorded_phase": {
+                  "predicted": 1554,
+                  "actual": 1061,
+                  "tp": 1060,
+                  "fp": 494,
+                  "fn": 1,
+                  "tn": 45
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 816,
+                  "actual": 1061,
+                  "tp": 812,
+                  "fp": 4,
+                  "fn": 249,
+                  "tn": 535
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 1407,
+                  "actual": 1061,
+                  "tp": 979,
+                  "fp": 428,
+                  "fn": 82,
+                  "tn": 111
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 816,
+                  "actual": 1061,
+                  "tp": 812,
+                  "fp": 4,
+                  "fn": 249,
+                  "tn": 535
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 1564.7624999999998,
+                "brier": 0.32257861328125,
+                "expected_false_positives": 521.375,
+                "expected_false_negatives": 17.6125,
+                "zero": 6,
+                "one": 1407,
+                "fractional": 187
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 855.65,
+                "brier": 0.1359564453125,
+                "expected_false_positives": 8.9125,
+                "expected_false_negatives": 214.26250000000002,
+                "zero": 737,
+                "one": 816,
+                "fractional": 47
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 855.65,
+                "brier": 0.1359564453125,
+                "expected_false_positives": 8.9125,
+                "expected_false_negatives": 214.26250000000002,
+                "zero": 737,
+                "one": 816,
+                "fractional": 47
+              },
+              "actual_phase_vs_any_phase_cells": 35,
+              "nominal_vs_moving_actual_phase_cells": 69
+            },
+            "viable_union": {
+              "cells": 168,
+              "models": {
+                "center_fov": {
+                  "predicted": 168,
+                  "actual": 141,
+                  "tp": 141,
+                  "fp": 27,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 114,
+                  "actual": 141,
+                  "tp": 114,
+                  "fp": 0,
+                  "fn": 27,
+                  "tn": 27
+                },
+                "nominal_any_phase": {
+                  "predicted": 168,
+                  "actual": 141,
+                  "tp": 141,
+                  "fp": 27,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase": {
+                  "predicted": 167,
+                  "actual": 141,
+                  "tp": 140,
+                  "fp": 27,
+                  "fn": 1,
+                  "tn": 0
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 168,
+                  "actual": 141,
+                  "tp": 141,
+                  "fp": 27,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "moving_recorded_phase": {
+                  "predicted": 168,
+                  "actual": 141,
+                  "tp": 141,
+                  "fp": 27,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 113,
+                  "actual": 141,
+                  "tp": 113,
+                  "fp": 0,
+                  "fn": 28,
+                  "tn": 27
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 167,
+                  "actual": 141,
+                  "tp": 140,
+                  "fp": 27,
+                  "fn": 1,
+                  "tn": 0
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 113,
+                  "actual": 141,
+                  "tp": 113,
+                  "fp": 0,
+                  "fn": 28,
+                  "tn": 27
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 167.9875,
+                "brier": 0.1607152157738095,
+                "expected_false_positives": 27.0,
+                "expected_false_negatives": 0.012499999999999956,
+                "zero": 0,
+                "one": 167,
+                "fractional": 1
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 113.9875,
+                "brier": 0.1607152157738095,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 27.0125,
+                "zero": 54,
+                "one": 113,
+                "fractional": 1
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 113.9875,
+                "brier": 0.1607152157738095,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 27.0125,
+                "zero": 54,
+                "one": 113,
+                "fractional": 1
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 0
+            }
+          },
+          "nominal_known_visible_missing_union_cells": []
+        }
+      ],
+      "benchmark": {
+        "candidate_count": 65,
+        "batch_seconds": 1.174680523981806,
+        "seconds_quantiles": [
+          0.013129216007655486,
+          0.01776820098166354,
+          0.020913842791924254,
+          0.024560105986893177
+        ],
+        "downward_cache_rays": 158208,
+        "packet_cell_storage_int64_bytes": 1024000
+      }
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "windows": [
+        {
+          "window": 1,
+          "planned_viewpoint": [
+            -1.4,
+            0.0,
+            1.2,
+            0.0
+          ],
+          "chunk_count": 51,
+          "phase_start": 51,
+          "recorded_phases": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.019517231005011126,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 946,
+                  "actual": 403,
+                  "tp": 403,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 654
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 946,
+                  "actual": 403,
+                  "tp": 403,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 654
+                },
+                "nominal_any_phase": {
+                  "predicted": 869,
+                  "actual": 403,
+                  "tp": 392,
+                  "fp": 477,
+                  "fn": 11,
+                  "tn": 720
+                },
+                "nominal_every_phase": {
+                  "predicted": 866,
+                  "actual": 403,
+                  "tp": 390,
+                  "fp": 476,
+                  "fn": 13,
+                  "tn": 721
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 868,
+                  "actual": 403,
+                  "tp": 391,
+                  "fp": 477,
+                  "fn": 12,
+                  "tn": 720
+                },
+                "moving_recorded_phase": {
+                  "predicted": 892,
+                  "actual": 403,
+                  "tp": 403,
+                  "fp": 489,
+                  "fn": 0,
+                  "tn": 708
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 866,
+                  "actual": 403,
+                  "tp": 390,
+                  "fp": 476,
+                  "fn": 13,
+                  "tn": 721
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 866,
+                  "actual": 403,
+                  "tp": 390,
+                  "fp": 476,
+                  "fn": 13,
+                  "tn": 721
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 866,
+                  "actual": 403,
+                  "tp": 390,
+                  "fp": 476,
+                  "fn": 13,
+                  "tn": 721
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 868.5625,
+                "brier": 0.30471181640625,
+                "expected_false_positives": 476.725,
+                "expected_false_negatives": 11.162500000000001,
+                "zero": 731,
+                "one": 866,
+                "fractional": 3
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 868.5625,
+                "brier": 0.30471181640625,
+                "expected_false_positives": 476.725,
+                "expected_false_negatives": 11.162500000000001,
+                "zero": 731,
+                "one": 866,
+                "fractional": 3
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 868.5625,
+                "brier": 0.30471181640625,
+                "expected_false_positives": 476.725,
+                "expected_false_negatives": 11.162500000000001,
+                "zero": 731,
+                "one": 866,
+                "fractional": 3
+              },
+              "actual_phase_vs_any_phase_cells": 1,
+              "nominal_vs_moving_actual_phase_cells": 24
+            },
+            "viable_union": {
+              "cells": 174,
+              "models": {
+                "center_fov": {
+                  "predicted": 156,
+                  "actual": 32,
+                  "tp": 32,
+                  "fp": 124,
+                  "fn": 0,
+                  "tn": 18
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 156,
+                  "actual": 32,
+                  "tp": 32,
+                  "fp": 124,
+                  "fn": 0,
+                  "tn": 18
+                },
+                "nominal_any_phase": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                },
+                "nominal_every_phase": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                },
+                "moving_recorded_phase": {
+                  "predicted": 136,
+                  "actual": 32,
+                  "tp": 32,
+                  "fp": 104,
+                  "fn": 0,
+                  "tn": 38
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 130,
+                  "actual": 32,
+                  "tp": 30,
+                  "fp": 100,
+                  "fn": 2,
+                  "tn": 42
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 130.0,
+                "brier": 0.5862068965517241,
+                "expected_false_positives": 100.0,
+                "expected_false_negatives": 2.0,
+                "zero": 44,
+                "one": 130,
+                "fractional": 0
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 130.0,
+                "brier": 0.5862068965517241,
+                "expected_false_positives": 100.0,
+                "expected_false_negatives": 2.0,
+                "zero": 44,
+                "one": 130,
+                "fractional": 0
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 130.0,
+                "brier": 0.5862068965517241,
+                "expected_false_positives": 100.0,
+                "expected_false_negatives": 2.0,
+                "zero": 44,
+                "one": 130,
+                "fractional": 0
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 6
+            }
+          },
+          "nominal_known_visible_missing_union_cells": [
+            {
+              "cell_id": 300,
+              "probability": 1.0,
+              "nominal_cycle_rays": 70,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 42
+            },
+            {
+              "cell_id": 301,
+              "probability": 1.0,
+              "nominal_cycle_rays": 93,
+              "nominal_recorded_phase_rays": 62,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 302,
+              "probability": 1.0,
+              "nominal_cycle_rays": 64,
+              "nominal_recorded_phase_rays": 36,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 303,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 338,
+              "probability": 1.0,
+              "nominal_cycle_rays": 20,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 8
+            },
+            {
+              "cell_id": 339,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 340,
+              "probability": 1.0,
+              "nominal_cycle_rays": 83,
+              "nominal_recorded_phase_rays": 55,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 341,
+              "probability": 1.0,
+              "nominal_cycle_rays": 97,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 51
+            },
+            {
+              "cell_id": 342,
+              "probability": 1.0,
+              "nominal_cycle_rays": 60,
+              "nominal_recorded_phase_rays": 33,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 343,
+              "probability": 1.0,
+              "nominal_cycle_rays": 59,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 344,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 10,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 345,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 29
+            },
+            {
+              "cell_id": 346,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 376,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 377,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 378,
+              "probability": 1.0,
+              "nominal_cycle_rays": 3,
+              "nominal_recorded_phase_rays": 2,
+              "moving_recorded_phase_rays": 5
+            },
+            {
+              "cell_id": 379,
+              "probability": 1.0,
+              "nominal_cycle_rays": 45,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 380,
+              "probability": 1.0,
+              "nominal_cycle_rays": 84,
+              "nominal_recorded_phase_rays": 54,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 381,
+              "probability": 1.0,
+              "nominal_cycle_rays": 104,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 382,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 39,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 383,
+              "probability": 1.0,
+              "nominal_cycle_rays": 54,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 384,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 385,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 386,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 387,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 388,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 417,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 418,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 3
+            },
+            {
+              "cell_id": 419,
+              "probability": 1.0,
+              "nominal_cycle_rays": 48,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 420,
+              "probability": 1.0,
+              "nominal_cycle_rays": 78,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 46
+            },
+            {
+              "cell_id": 421,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 67,
+              "moving_recorded_phase_rays": 52
+            },
+            {
+              "cell_id": 422,
+              "probability": 1.0,
+              "nominal_cycle_rays": 65,
+              "nominal_recorded_phase_rays": 38,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 423,
+              "probability": 1.0,
+              "nominal_cycle_rays": 55,
+              "nominal_recorded_phase_rays": 40,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 424,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 425,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 426,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 427,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 428,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 429,
+              "probability": 1.0,
+              "nominal_cycle_rays": 23,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 457,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 458,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 2
+            },
+            {
+              "cell_id": 459,
+              "probability": 1.0,
+              "nominal_cycle_rays": 41,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 460,
+              "probability": 1.0,
+              "nominal_cycle_rays": 76,
+              "nominal_recorded_phase_rays": 49,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 461,
+              "probability": 1.0,
+              "nominal_cycle_rays": 115,
+              "nominal_recorded_phase_rays": 71,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 462,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 51
+            },
+            {
+              "cell_id": 463,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 464,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 465,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 466,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 467,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 468,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 469,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 497,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 498,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 499,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 500,
+              "probability": 1.0,
+              "nominal_cycle_rays": 79,
+              "nominal_recorded_phase_rays": 53,
+              "moving_recorded_phase_rays": 47
+            },
+            {
+              "cell_id": 501,
+              "probability": 1.0,
+              "nominal_cycle_rays": 115,
+              "nominal_recorded_phase_rays": 70,
+              "moving_recorded_phase_rays": 50
+            },
+            {
+              "cell_id": 502,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 49,
+              "moving_recorded_phase_rays": 63
+            },
+            {
+              "cell_id": 503,
+              "probability": 1.0,
+              "nominal_cycle_rays": 49,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 504,
+              "probability": 1.0,
+              "nominal_cycle_rays": 41,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 505,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 506,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 507,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 508,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 509,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 537,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 538,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 539,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 540,
+              "probability": 1.0,
+              "nominal_cycle_rays": 92,
+              "nominal_recorded_phase_rays": 59,
+              "moving_recorded_phase_rays": 37
+            },
+            {
+              "cell_id": 541,
+              "probability": 1.0,
+              "nominal_cycle_rays": 119,
+              "nominal_recorded_phase_rays": 78,
+              "moving_recorded_phase_rays": 52
+            },
+            {
+              "cell_id": 542,
+              "probability": 1.0,
+              "nominal_cycle_rays": 73,
+              "nominal_recorded_phase_rays": 50,
+              "moving_recorded_phase_rays": 65
+            },
+            {
+              "cell_id": 543,
+              "probability": 1.0,
+              "nominal_cycle_rays": 51,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 544,
+              "probability": 1.0,
+              "nominal_cycle_rays": 42,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 545,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 546,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 547,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 548,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 549,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 577,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 578,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 579,
+              "probability": 1.0,
+              "nominal_cycle_rays": 24,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 7
+            },
+            {
+              "cell_id": 580,
+              "probability": 1.0,
+              "nominal_cycle_rays": 97,
+              "nominal_recorded_phase_rays": 60,
+              "moving_recorded_phase_rays": 50
+            },
+            {
+              "cell_id": 581,
+              "probability": 1.0,
+              "nominal_cycle_rays": 118,
+              "nominal_recorded_phase_rays": 74,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 582,
+              "probability": 1.0,
+              "nominal_cycle_rays": 73,
+              "nominal_recorded_phase_rays": 52,
+              "moving_recorded_phase_rays": 63
+            },
+            {
+              "cell_id": 583,
+              "probability": 1.0,
+              "nominal_cycle_rays": 49,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 584,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 585,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 586,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 587,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 588,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 589,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 617,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 618,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 619,
+              "probability": 1.0,
+              "nominal_cycle_rays": 9,
+              "nominal_recorded_phase_rays": 6,
+              "moving_recorded_phase_rays": 8
+            },
+            {
+              "cell_id": 620,
+              "probability": 1.0,
+              "nominal_cycle_rays": 118,
+              "nominal_recorded_phase_rays": 72,
+              "moving_recorded_phase_rays": 46
+            },
+            {
+              "cell_id": 621,
+              "probability": 1.0,
+              "nominal_cycle_rays": 118,
+              "nominal_recorded_phase_rays": 79,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 622,
+              "probability": 1.0,
+              "nominal_cycle_rays": 70,
+              "nominal_recorded_phase_rays": 49,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 623,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 624,
+              "probability": 1.0,
+              "nominal_cycle_rays": 43,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 625,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 626,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 627,
+              "probability": 1.0,
+              "nominal_cycle_rays": 31,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 628,
+              "probability": 1.0,
+              "nominal_cycle_rays": 23,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 629,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 657,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 658,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 659,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 660,
+              "probability": 1.0,
+              "nominal_cycle_rays": 128,
+              "nominal_recorded_phase_rays": 83,
+              "moving_recorded_phase_rays": 50
+            },
+            {
+              "cell_id": 661,
+              "probability": 1.0,
+              "nominal_cycle_rays": 108,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 662,
+              "probability": 1.0,
+              "nominal_cycle_rays": 75,
+              "nominal_recorded_phase_rays": 52,
+              "moving_recorded_phase_rays": 64
+            },
+            {
+              "cell_id": 663,
+              "probability": 1.0,
+              "nominal_cycle_rays": 50,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 664,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 33
+            },
+            {
+              "cell_id": 665,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 666,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 667,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 668,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 669,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 697,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 698,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 699,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 8
+            },
+            {
+              "cell_id": 737,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 738,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 777,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 778,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            }
+          ]
+        },
+        {
+          "window": 2,
+          "planned_viewpoint": [
+            -1.418536530838355,
+            -2.0945083774788964,
+            1.2962053525695432,
+            0.7744075861930404
+          ],
+          "chunk_count": 51,
+          "phase_start": 59,
+          "recorded_phases": [
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.022749894007574767,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 1189,
+                  "actual": 746,
+                  "tp": 746,
+                  "fp": 443,
+                  "fn": 0,
+                  "tn": 411
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 571,
+                  "actual": 746,
+                  "tp": 541,
+                  "fp": 30,
+                  "fn": 205,
+                  "tn": 824
+                },
+                "nominal_any_phase": {
+                  "predicted": 1106,
+                  "actual": 746,
+                  "tp": 738,
+                  "fp": 368,
+                  "fn": 8,
+                  "tn": 486
+                },
+                "nominal_every_phase": {
+                  "predicted": 1092,
+                  "actual": 746,
+                  "tp": 724,
+                  "fp": 368,
+                  "fn": 22,
+                  "tn": 486
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 1103,
+                  "actual": 746,
+                  "tp": 735,
+                  "fp": 368,
+                  "fn": 11,
+                  "tn": 486
+                },
+                "moving_recorded_phase": {
+                  "predicted": 1116,
+                  "actual": 746,
+                  "tp": 746,
+                  "fp": 370,
+                  "fn": 0,
+                  "tn": 484
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 520,
+                  "actual": 746,
+                  "tp": 520,
+                  "fp": 0,
+                  "fn": 226,
+                  "tn": 854
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 1092,
+                  "actual": 746,
+                  "tp": 724,
+                  "fp": 368,
+                  "fn": 22,
+                  "tn": 486
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 520,
+                  "actual": 746,
+                  "tp": 520,
+                  "fp": 0,
+                  "fn": 226,
+                  "tn": 854
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 1103.6875,
+                "brier": 0.23534541015625,
+                "expected_false_positives": 368.0,
+                "expected_false_negatives": 10.3125,
+                "zero": 494,
+                "one": 1092,
+                "fractional": 14
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 531.6875,
+                "brier": 0.13284541015625,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 214.3125,
+                "zero": 1066,
+                "one": 520,
+                "fractional": 14
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 531.6875,
+                "brier": 0.13284541015625,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 214.3125,
+                "zero": 1066,
+                "one": 520,
+                "fractional": 14
+              },
+              "actual_phase_vs_any_phase_cells": 3,
+              "nominal_vs_moving_actual_phase_cells": 19
+            },
+            "viable_union": {
+              "cells": 174,
+              "models": {
+                "center_fov": {
+                  "predicted": 161,
+                  "actual": 142,
+                  "tp": 142,
+                  "fp": 19,
+                  "fn": 0,
+                  "tn": 13
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 150,
+                  "actual": 142,
+                  "tp": 132,
+                  "fp": 18,
+                  "fn": 10,
+                  "tn": 14
+                },
+                "nominal_any_phase": {
+                  "predicted": 141,
+                  "actual": 142,
+                  "tp": 140,
+                  "fp": 1,
+                  "fn": 2,
+                  "tn": 31
+                },
+                "nominal_every_phase": {
+                  "predicted": 140,
+                  "actual": 142,
+                  "tp": 139,
+                  "fp": 1,
+                  "fn": 3,
+                  "tn": 31
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 140,
+                  "actual": 142,
+                  "tp": 139,
+                  "fp": 1,
+                  "fn": 3,
+                  "tn": 31
+                },
+                "moving_recorded_phase": {
+                  "predicted": 143,
+                  "actual": 142,
+                  "tp": 142,
+                  "fp": 1,
+                  "fn": 0,
+                  "tn": 31
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 129,
+                  "actual": 142,
+                  "tp": 129,
+                  "fp": 0,
+                  "fn": 13,
+                  "tn": 32
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 140,
+                  "actual": 142,
+                  "tp": 139,
+                  "fp": 1,
+                  "fn": 3,
+                  "tn": 31
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 129,
+                  "actual": 142,
+                  "tp": 129,
+                  "fp": 0,
+                  "fn": 13,
+                  "tn": 32
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 140.625,
+                "brier": 0.01804956896551724,
+                "expected_false_positives": 1.0,
+                "expected_false_negatives": 2.375,
+                "zero": 33,
+                "one": 140,
+                "fractional": 1
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 129.625,
+                "brier": 0.06977370689655173,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 12.375,
+                "zero": 44,
+                "one": 129,
+                "fractional": 1
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 129.625,
+                "brier": 0.06977370689655173,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 12.375,
+                "zero": 44,
+                "one": 129,
+                "fractional": 1
+              },
+              "actual_phase_vs_any_phase_cells": 1,
+              "nominal_vs_moving_actual_phase_cells": 3
+            }
+          },
+          "nominal_known_visible_missing_union_cells": [
+            {
+              "cell_id": 300,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 301,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 340,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 379,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 380,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 418,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 419,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 457,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 458,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 497,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 498,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 536,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 537,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 575,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 576,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 615,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 616,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 655,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            }
+          ]
+        }
+      ],
+      "benchmark": {
+        "candidate_count": 65,
+        "batch_seconds": 1.263141531002475,
+        "seconds_quantiles": [
+          0.01366873801453039,
+          0.019618987978901714,
+          0.022856625798158347,
+          0.02597634299308993
+        ],
+        "downward_cache_rays": 158208,
+        "packet_cell_storage_int64_bytes": 1024000
+      }
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "windows": [
+        {
+          "window": 1,
+          "planned_viewpoint": [
+            -1.4,
+            0.0,
+            1.2,
+            0.0
+          ],
+          "chunk_count": 50,
+          "phase_start": 49,
+          "recorded_phases": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "phase_steps_histogram": {
+            "1": 48,
+            "2": 1
+          },
+          "static_cached_prediction_s": 0.012838047987315804,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 910,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 690
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 910,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 690
+                },
+                "nominal_any_phase": {
+                  "predicted": 831,
+                  "actual": 367,
+                  "tp": 355,
+                  "fp": 476,
+                  "fn": 12,
+                  "tn": 757
+                },
+                "nominal_every_phase": {
+                  "predicted": 819,
+                  "actual": 367,
+                  "tp": 349,
+                  "fp": 470,
+                  "fn": 18,
+                  "tn": 763
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 826,
+                  "actual": 367,
+                  "tp": 353,
+                  "fp": 473,
+                  "fn": 14,
+                  "tn": 760
+                },
+                "moving_recorded_phase": {
+                  "predicted": 856,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 489,
+                  "fn": 0,
+                  "tn": 744
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 819,
+                  "actual": 367,
+                  "tp": 349,
+                  "fp": 470,
+                  "fn": 18,
+                  "tn": 763
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 819,
+                  "actual": 367,
+                  "tp": 349,
+                  "fp": 470,
+                  "fn": 18,
+                  "tn": 763
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 819,
+                  "actual": 367,
+                  "tp": 349,
+                  "fp": 470,
+                  "fn": 18,
+                  "tn": 763
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 829.725,
+                "brier": 0.3042525390625,
+                "expected_false_positives": 475.2875,
+                "expected_false_negatives": 12.5625,
+                "zero": 769,
+                "one": 819,
+                "fractional": 12
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 829.725,
+                "brier": 0.3042525390625,
+                "expected_false_positives": 475.2875,
+                "expected_false_negatives": 12.5625,
+                "zero": 769,
+                "one": 819,
+                "fractional": 12
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 829.725,
+                "brier": 0.3042525390625,
+                "expected_false_positives": 475.2875,
+                "expected_false_negatives": 12.5625,
+                "zero": 769,
+                "one": 819,
+                "fractional": 12
+              },
+              "actual_phase_vs_any_phase_cells": 5,
+              "nominal_vs_moving_actual_phase_cells": 30
+            },
+            "viable_union": {
+              "cells": 172,
+              "models": {
+                "center_fov": {
+                  "predicted": 143,
+                  "actual": 19,
+                  "tp": 19,
+                  "fp": 124,
+                  "fn": 0,
+                  "tn": 29
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 143,
+                  "actual": 19,
+                  "tp": 19,
+                  "fp": 124,
+                  "fn": 0,
+                  "tn": 29
+                },
+                "nominal_any_phase": {
+                  "predicted": 116,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 100,
+                  "fn": 3,
+                  "tn": 53
+                },
+                "nominal_every_phase": {
+                  "predicted": 115,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 99,
+                  "fn": 3,
+                  "tn": 54
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 115,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 99,
+                  "fn": 3,
+                  "tn": 54
+                },
+                "moving_recorded_phase": {
+                  "predicted": 122,
+                  "actual": 19,
+                  "tp": 19,
+                  "fp": 103,
+                  "fn": 0,
+                  "tn": 50
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 115,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 99,
+                  "fn": 3,
+                  "tn": 54
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 115,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 99,
+                  "fn": 3,
+                  "tn": 54
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 115,
+                  "actual": 19,
+                  "tp": 16,
+                  "fp": 99,
+                  "fn": 3,
+                  "tn": 54
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 115.725,
+                "brier": 0.596079215116279,
+                "expected_false_positives": 99.725,
+                "expected_false_negatives": 3.0,
+                "zero": 56,
+                "one": 115,
+                "fractional": 1
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 115.725,
+                "brier": 0.596079215116279,
+                "expected_false_positives": 99.725,
+                "expected_false_negatives": 3.0,
+                "zero": 56,
+                "one": 115,
+                "fractional": 1
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 115.725,
+                "brier": 0.596079215116279,
+                "expected_false_positives": 99.725,
+                "expected_false_negatives": 3.0,
+                "zero": 56,
+                "one": 115,
+                "fractional": 1
+              },
+              "actual_phase_vs_any_phase_cells": 1,
+              "nominal_vs_moving_actual_phase_cells": 7
+            }
+          },
+          "nominal_known_visible_missing_union_cells": [
+            {
+              "cell_id": 337,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 340,
+              "probability": 1.0,
+              "nominal_cycle_rays": 43,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 341,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 44,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 342,
+              "probability": 1.0,
+              "nominal_cycle_rays": 92,
+              "nominal_recorded_phase_rays": 58,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 343,
+              "probability": 1.0,
+              "nominal_cycle_rays": 60,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 39
+            },
+            {
+              "cell_id": 344,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 345,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 6,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 346,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 37,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 377,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 378,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 379,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 380,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 381,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 50,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 382,
+              "probability": 1.0,
+              "nominal_cycle_rays": 93,
+              "nominal_recorded_phase_rays": 58,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 383,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 39,
+              "moving_recorded_phase_rays": 37
+            },
+            {
+              "cell_id": 384,
+              "probability": 1.0,
+              "nominal_cycle_rays": 51,
+              "nominal_recorded_phase_rays": 39,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 385,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 8,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 386,
+              "probability": 1.0,
+              "nominal_cycle_rays": 43,
+              "nominal_recorded_phase_rays": 36,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 387,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 11,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 417,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 418,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 419,
+              "probability": 1.0,
+              "nominal_cycle_rays": 15,
+              "nominal_recorded_phase_rays": 11,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 420,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 421,
+              "probability": 1.0,
+              "nominal_cycle_rays": 85,
+              "nominal_recorded_phase_rays": 55,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 422,
+              "probability": 1.0,
+              "nominal_cycle_rays": 100,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 52
+            },
+            {
+              "cell_id": 423,
+              "probability": 1.0,
+              "nominal_cycle_rays": 62,
+              "nominal_recorded_phase_rays": 36,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 424,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 425,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 11,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 426,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 427,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 428,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 457,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 458,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 459,
+              "probability": 0.725,
+              "nominal_cycle_rays": 2,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 8
+            },
+            {
+              "cell_id": 460,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 461,
+              "probability": 1.0,
+              "nominal_cycle_rays": 85,
+              "nominal_recorded_phase_rays": 56,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 462,
+              "probability": 1.0,
+              "nominal_cycle_rays": 104,
+              "nominal_recorded_phase_rays": 64,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 463,
+              "probability": 1.0,
+              "nominal_cycle_rays": 65,
+              "nominal_recorded_phase_rays": 40,
+              "moving_recorded_phase_rays": 37
+            },
+            {
+              "cell_id": 464,
+              "probability": 1.0,
+              "nominal_cycle_rays": 56,
+              "nominal_recorded_phase_rays": 39,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 465,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 466,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 467,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 468,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 497,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 498,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 499,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 5
+            },
+            {
+              "cell_id": 500,
+              "probability": 1.0,
+              "nominal_cycle_rays": 48,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 501,
+              "probability": 1.0,
+              "nominal_cycle_rays": 85,
+              "nominal_recorded_phase_rays": 55,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 502,
+              "probability": 1.0,
+              "nominal_cycle_rays": 103,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 503,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 45,
+              "moving_recorded_phase_rays": 46
+            },
+            {
+              "cell_id": 504,
+              "probability": 1.0,
+              "nominal_cycle_rays": 55,
+              "nominal_recorded_phase_rays": 37,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 505,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 506,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 507,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 508,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 538,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 539,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 4
+            },
+            {
+              "cell_id": 540,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 541,
+              "probability": 1.0,
+              "nominal_cycle_rays": 91,
+              "nominal_recorded_phase_rays": 56,
+              "moving_recorded_phase_rays": 51
+            },
+            {
+              "cell_id": 542,
+              "probability": 1.0,
+              "nominal_cycle_rays": 109,
+              "nominal_recorded_phase_rays": 67,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 543,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 44,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 544,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 35,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 545,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 546,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 547,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 548,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 549,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 578,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 579,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 580,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 581,
+              "probability": 1.0,
+              "nominal_cycle_rays": 92,
+              "nominal_recorded_phase_rays": 54,
+              "moving_recorded_phase_rays": 53
+            },
+            {
+              "cell_id": 582,
+              "probability": 1.0,
+              "nominal_cycle_rays": 115,
+              "nominal_recorded_phase_rays": 71,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 583,
+              "probability": 1.0,
+              "nominal_cycle_rays": 70,
+              "nominal_recorded_phase_rays": 49,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 584,
+              "probability": 1.0,
+              "nominal_cycle_rays": 51,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 585,
+              "probability": 1.0,
+              "nominal_cycle_rays": 41,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 586,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 587,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 588,
+              "probability": 1.0,
+              "nominal_cycle_rays": 24,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 618,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 619,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 620,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 13
+            },
+            {
+              "cell_id": 621,
+              "probability": 1.0,
+              "nominal_cycle_rays": 98,
+              "nominal_recorded_phase_rays": 60,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 622,
+              "probability": 1.0,
+              "nominal_cycle_rays": 114,
+              "nominal_recorded_phase_rays": 69,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 623,
+              "probability": 1.0,
+              "nominal_cycle_rays": 72,
+              "nominal_recorded_phase_rays": 51,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 624,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 31
+            },
+            {
+              "cell_id": 625,
+              "probability": 1.0,
+              "nominal_cycle_rays": 42,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 626,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 627,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 628,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 629,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 658,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 659,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 660,
+              "probability": 1.0,
+              "nominal_cycle_rays": 20,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 11
+            },
+            {
+              "cell_id": 661,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 68,
+              "moving_recorded_phase_rays": 52
+            },
+            {
+              "cell_id": 662,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 70,
+              "moving_recorded_phase_rays": 61
+            },
+            {
+              "cell_id": 663,
+              "probability": 1.0,
+              "nominal_cycle_rays": 68,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 59
+            },
+            {
+              "cell_id": 664,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 31
+            },
+            {
+              "cell_id": 665,
+              "probability": 1.0,
+              "nominal_cycle_rays": 45,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 666,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 667,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 668,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 698,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 699,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 700,
+              "probability": 1.0,
+              "nominal_cycle_rays": 5,
+              "nominal_recorded_phase_rays": 2,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 701,
+              "probability": 1.0,
+              "nominal_cycle_rays": 130,
+              "nominal_recorded_phase_rays": 78,
+              "moving_recorded_phase_rays": 50
+            },
+            {
+              "cell_id": 702,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 77,
+              "moving_recorded_phase_rays": 59
+            },
+            {
+              "cell_id": 703,
+              "probability": 1.0,
+              "nominal_cycle_rays": 68,
+              "nominal_recorded_phase_rays": 45,
+              "moving_recorded_phase_rays": 61
+            },
+            {
+              "cell_id": 704,
+              "probability": 1.0,
+              "nominal_cycle_rays": 50,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 705,
+              "probability": 1.0,
+              "nominal_cycle_rays": 47,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 29
+            },
+            {
+              "cell_id": 706,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 707,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 708,
+              "probability": 1.0,
+              "nominal_cycle_rays": 31,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 738,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 739,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 740,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 12
+            },
+            {
+              "cell_id": 741,
+              "probability": 1.0,
+              "nominal_cycle_rays": 138,
+              "nominal_recorded_phase_rays": 82,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 742,
+              "probability": 1.0,
+              "nominal_cycle_rays": 107,
+              "nominal_recorded_phase_rays": 75,
+              "moving_recorded_phase_rays": 63
+            },
+            {
+              "cell_id": 743,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 43,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 744,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 745,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 32
+            },
+            {
+              "cell_id": 746,
+              "probability": 1.0,
+              "nominal_cycle_rays": 38,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 747,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 748,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 779,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            }
+          ]
+        },
+        {
+          "window": 2,
+          "planned_viewpoint": [
+            -3.429922492729604,
+            -2.0639930630118832,
+            1.285227378653837,
+            -0.011506447807688946
+          ],
+          "chunk_count": 51,
+          "phase_start": 64,
+          "recorded_phases": [
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.019752104999497533,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 1600,
+                  "actual": 1096,
+                  "tp": 1096,
+                  "fp": 504,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 937,
+                  "actual": 1096,
+                  "tp": 914,
+                  "fp": 23,
+                  "fn": 182,
+                  "tn": 481
+                },
+                "nominal_any_phase": {
+                  "predicted": 1582,
+                  "actual": 1096,
+                  "tp": 1088,
+                  "fp": 494,
+                  "fn": 8,
+                  "tn": 10
+                },
+                "nominal_every_phase": {
+                  "predicted": 1422,
+                  "actual": 1096,
+                  "tp": 1019,
+                  "fp": 403,
+                  "fn": 77,
+                  "tn": 101
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 1545,
+                  "actual": 1096,
+                  "tp": 1076,
+                  "fp": 469,
+                  "fn": 20,
+                  "tn": 35
+                },
+                "moving_recorded_phase": {
+                  "predicted": 1549,
+                  "actual": 1096,
+                  "tp": 1095,
+                  "fp": 454,
+                  "fn": 1,
+                  "tn": 50
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 879,
+                  "actual": 1096,
+                  "tp": 871,
+                  "fp": 8,
+                  "fn": 225,
+                  "tn": 496
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 1422,
+                  "actual": 1096,
+                  "tp": 1019,
+                  "fp": 403,
+                  "fn": 77,
+                  "tn": 101
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 879,
+                  "actual": 1096,
+                  "tp": 871,
+                  "fp": 8,
+                  "fn": 225,
+                  "tn": 496
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 1557.1124999999997,
+                "brier": 0.29911923828125,
+                "expected_false_positives": 479.5875,
+                "expected_false_negatives": 18.475,
+                "zero": 18,
+                "one": 1422,
+                "fractional": 160
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 913.3,
+                "brier": 0.12673261718749998,
+                "expected_false_positives": 12.2875,
+                "expected_false_negatives": 194.98749999999998,
+                "zero": 681,
+                "one": 879,
+                "fractional": 40
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 913.3,
+                "brier": 0.12673261718749998,
+                "expected_false_positives": 12.2875,
+                "expected_false_negatives": 194.98749999999998,
+                "zero": 681,
+                "one": 879,
+                "fractional": 40
+              },
+              "actual_phase_vs_any_phase_cells": 37,
+              "nominal_vs_moving_actual_phase_cells": 76
+            },
+            "viable_union": {
+              "cells": 172,
+              "models": {
+                "center_fov": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 144,
+                  "actual": 157,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 13,
+                  "tn": 15
+                },
+                "nominal_any_phase": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "moving_recorded_phase": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 144,
+                  "actual": 157,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 13,
+                  "tn": 15
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 172,
+                  "actual": 157,
+                  "tp": 157,
+                  "fp": 15,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 144,
+                  "actual": 157,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 13,
+                  "tn": 15
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 172.0,
+                "brier": 0.0872093023255814,
+                "expected_false_positives": 15.0,
+                "expected_false_negatives": 0.0,
+                "zero": 0,
+                "one": 172,
+                "fractional": 0
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 144.0,
+                "brier": 0.0755813953488372,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 13.0,
+                "zero": 28,
+                "one": 144,
+                "fractional": 0
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 144.0,
+                "brier": 0.0755813953488372,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 13.0,
+                "zero": 28,
+                "one": 144,
+                "fractional": 0
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 0
+            }
+          },
+          "nominal_known_visible_missing_union_cells": []
+        }
+      ],
+      "benchmark": {
+        "candidate_count": 65,
+        "batch_seconds": 1.3942123629967682,
+        "seconds_quantiles": [
+          0.015717943984782323,
+          0.02098270400892943,
+          0.025044647400500254,
+          0.028822573978686705
+        ],
+        "downward_cache_rays": 158208,
+        "packet_cell_storage_int64_bytes": 1024000
+      }
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "windows": [
+        {
+          "window": 1,
+          "planned_viewpoint": [
+            -1.4,
+            0.0,
+            1.2,
+            0.0
+          ],
+          "chunk_count": 51,
+          "phase_start": 54,
+          "recorded_phases": [
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.016044940013671294,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 910,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 690
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 910,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 543,
+                  "fn": 0,
+                  "tn": 690
+                },
+                "nominal_any_phase": {
+                  "predicted": 831,
+                  "actual": 367,
+                  "tp": 359,
+                  "fp": 472,
+                  "fn": 8,
+                  "tn": 761
+                },
+                "nominal_every_phase": {
+                  "predicted": 820,
+                  "actual": 367,
+                  "tp": 352,
+                  "fp": 468,
+                  "fn": 15,
+                  "tn": 765
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 825,
+                  "actual": 367,
+                  "tp": 354,
+                  "fp": 471,
+                  "fn": 13,
+                  "tn": 762
+                },
+                "moving_recorded_phase": {
+                  "predicted": 848,
+                  "actual": 367,
+                  "tp": 367,
+                  "fp": 481,
+                  "fn": 0,
+                  "tn": 752
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 820,
+                  "actual": 367,
+                  "tp": 352,
+                  "fp": 468,
+                  "fn": 15,
+                  "tn": 765
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 820,
+                  "actual": 367,
+                  "tp": 352,
+                  "fp": 468,
+                  "fn": 15,
+                  "tn": 765
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 820,
+                  "actual": 367,
+                  "tp": 352,
+                  "fp": 468,
+                  "fn": 15,
+                  "tn": 765
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 830.0125,
+                "brier": 0.29964404296874997,
+                "expected_false_positives": 471.6625,
+                "expected_false_negatives": 8.649999999999999,
+                "zero": 769,
+                "one": 820,
+                "fractional": 11
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 830.0125,
+                "brier": 0.29964404296874997,
+                "expected_false_positives": 471.6625,
+                "expected_false_negatives": 8.649999999999999,
+                "zero": 769,
+                "one": 820,
+                "fractional": 11
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 830.0125,
+                "brier": 0.29964404296874997,
+                "expected_false_positives": 471.6625,
+                "expected_false_negatives": 8.649999999999999,
+                "zero": 769,
+                "one": 820,
+                "fractional": 11
+              },
+              "actual_phase_vs_any_phase_cells": 6,
+              "nominal_vs_moving_actual_phase_cells": 23
+            },
+            "viable_union": {
+              "cells": 170,
+              "models": {
+                "center_fov": {
+                  "predicted": 141,
+                  "actual": 15,
+                  "tp": 15,
+                  "fp": 126,
+                  "fn": 0,
+                  "tn": 29
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 141,
+                  "actual": 15,
+                  "tp": 15,
+                  "fp": 126,
+                  "fn": 0,
+                  "tn": 29
+                },
+                "nominal_any_phase": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                },
+                "nominal_every_phase": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                },
+                "moving_recorded_phase": {
+                  "predicted": 118,
+                  "actual": 15,
+                  "tp": 15,
+                  "fp": 103,
+                  "fn": 0,
+                  "tn": 52
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 115,
+                  "actual": 15,
+                  "tp": 14,
+                  "fp": 101,
+                  "fn": 1,
+                  "tn": 54
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 115.0,
+                "brier": 0.6,
+                "expected_false_positives": 101.0,
+                "expected_false_negatives": 1.0,
+                "zero": 55,
+                "one": 115,
+                "fractional": 0
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 115.0,
+                "brier": 0.6,
+                "expected_false_positives": 101.0,
+                "expected_false_negatives": 1.0,
+                "zero": 55,
+                "one": 115,
+                "fractional": 0
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 115.0,
+                "brier": 0.6,
+                "expected_false_positives": 101.0,
+                "expected_false_negatives": 1.0,
+                "zero": 55,
+                "one": 115,
+                "fractional": 0
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 3
+            }
+          },
+          "nominal_known_visible_missing_union_cells": [
+            {
+              "cell_id": 297,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 304,
+              "probability": 1.0,
+              "nominal_cycle_rays": 49,
+              "nominal_recorded_phase_rays": 41,
+              "moving_recorded_phase_rays": 38
+            },
+            {
+              "cell_id": 305,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 4,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 337,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 338,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 341,
+              "probability": 1.0,
+              "nominal_cycle_rays": 69,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 342,
+              "probability": 1.0,
+              "nominal_cycle_rays": 90,
+              "nominal_recorded_phase_rays": 57,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 343,
+              "probability": 1.0,
+              "nominal_cycle_rays": 59,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 44
+            },
+            {
+              "cell_id": 344,
+              "probability": 1.0,
+              "nominal_cycle_rays": 54,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 42
+            },
+            {
+              "cell_id": 345,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 5,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 346,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 42,
+              "moving_recorded_phase_rays": 31
+            },
+            {
+              "cell_id": 377,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 378,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 379,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 5
+            },
+            {
+              "cell_id": 380,
+              "probability": 1.0,
+              "nominal_cycle_rays": 41,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 381,
+              "probability": 1.0,
+              "nominal_cycle_rays": 71,
+              "nominal_recorded_phase_rays": 51,
+              "moving_recorded_phase_rays": 44
+            },
+            {
+              "cell_id": 382,
+              "probability": 1.0,
+              "nominal_cycle_rays": 94,
+              "nominal_recorded_phase_rays": 57,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 383,
+              "probability": 1.0,
+              "nominal_cycle_rays": 65,
+              "nominal_recorded_phase_rays": 35,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 384,
+              "probability": 1.0,
+              "nominal_cycle_rays": 51,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 43
+            },
+            {
+              "cell_id": 385,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 10,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 386,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 38,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 417,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 418,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 419,
+              "probability": 1.0,
+              "nominal_cycle_rays": 16,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 420,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 421,
+              "probability": 1.0,
+              "nominal_cycle_rays": 82,
+              "nominal_recorded_phase_rays": 57,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 422,
+              "probability": 1.0,
+              "nominal_cycle_rays": 102,
+              "nominal_recorded_phase_rays": 62,
+              "moving_recorded_phase_rays": 52
+            },
+            {
+              "cell_id": 423,
+              "probability": 1.0,
+              "nominal_cycle_rays": 62,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 44
+            },
+            {
+              "cell_id": 424,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 46
+            },
+            {
+              "cell_id": 425,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 426,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 35,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 427,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 15,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 428,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 457,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 458,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 459,
+              "probability": 1.0,
+              "nominal_cycle_rays": 4,
+              "nominal_recorded_phase_rays": 1,
+              "moving_recorded_phase_rays": 4
+            },
+            {
+              "cell_id": 460,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 17
+            },
+            {
+              "cell_id": 461,
+              "probability": 1.0,
+              "nominal_cycle_rays": 86,
+              "nominal_recorded_phase_rays": 60,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 462,
+              "probability": 1.0,
+              "nominal_cycle_rays": 105,
+              "nominal_recorded_phase_rays": 62,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 463,
+              "probability": 1.0,
+              "nominal_cycle_rays": 62,
+              "nominal_recorded_phase_rays": 35,
+              "moving_recorded_phase_rays": 47
+            },
+            {
+              "cell_id": 464,
+              "probability": 1.0,
+              "nominal_cycle_rays": 56,
+              "nominal_recorded_phase_rays": 46,
+              "moving_recorded_phase_rays": 48
+            },
+            {
+              "cell_id": 465,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 466,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 467,
+              "probability": 1.0,
+              "nominal_cycle_rays": 33,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 468,
+              "probability": 1.0,
+              "nominal_cycle_rays": 26,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 497,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 498,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 499,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 3
+            },
+            {
+              "cell_id": 500,
+              "probability": 1.0,
+              "nominal_cycle_rays": 48,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 14
+            },
+            {
+              "cell_id": 501,
+              "probability": 1.0,
+              "nominal_cycle_rays": 86,
+              "nominal_recorded_phase_rays": 58,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 502,
+              "probability": 1.0,
+              "nominal_cycle_rays": 108,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 503,
+              "probability": 1.0,
+              "nominal_cycle_rays": 65,
+              "nominal_recorded_phase_rays": 40,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 504,
+              "probability": 1.0,
+              "nominal_cycle_rays": 54,
+              "nominal_recorded_phase_rays": 44,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 505,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 22
+            },
+            {
+              "cell_id": 506,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 507,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 22,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 508,
+              "probability": 1.0,
+              "nominal_cycle_rays": 27,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 538,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 539,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 540,
+              "probability": 1.0,
+              "nominal_cycle_rays": 40,
+              "nominal_recorded_phase_rays": 29,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 541,
+              "probability": 1.0,
+              "nominal_cycle_rays": 90,
+              "nominal_recorded_phase_rays": 56,
+              "moving_recorded_phase_rays": 38
+            },
+            {
+              "cell_id": 542,
+              "probability": 1.0,
+              "nominal_cycle_rays": 108,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 58
+            },
+            {
+              "cell_id": 543,
+              "probability": 1.0,
+              "nominal_cycle_rays": 67,
+              "nominal_recorded_phase_rays": 42,
+              "moving_recorded_phase_rays": 58
+            },
+            {
+              "cell_id": 544,
+              "probability": 1.0,
+              "nominal_cycle_rays": 51,
+              "nominal_recorded_phase_rays": 38,
+              "moving_recorded_phase_rays": 36
+            },
+            {
+              "cell_id": 545,
+              "probability": 1.0,
+              "nominal_cycle_rays": 41,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 546,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 547,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 548,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 16
+            },
+            {
+              "cell_id": 549,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 20,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 578,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 579,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 580,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 11
+            },
+            {
+              "cell_id": 581,
+              "probability": 1.0,
+              "nominal_cycle_rays": 94,
+              "nominal_recorded_phase_rays": 61,
+              "moving_recorded_phase_rays": 41
+            },
+            {
+              "cell_id": 582,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 63,
+              "moving_recorded_phase_rays": 54
+            },
+            {
+              "cell_id": 583,
+              "probability": 1.0,
+              "nominal_cycle_rays": 70,
+              "nominal_recorded_phase_rays": 48,
+              "moving_recorded_phase_rays": 64
+            },
+            {
+              "cell_id": 584,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 38,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 585,
+              "probability": 1.0,
+              "nominal_cycle_rays": 43,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 27
+            },
+            {
+              "cell_id": 586,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 23,
+              "moving_recorded_phase_rays": 28
+            },
+            {
+              "cell_id": 587,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 27,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 588,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 589,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 19,
+              "moving_recorded_phase_rays": 19
+            },
+            {
+              "cell_id": 618,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 619,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 620,
+              "probability": 1.0,
+              "nominal_cycle_rays": 30,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 8
+            },
+            {
+              "cell_id": 621,
+              "probability": 1.0,
+              "nominal_cycle_rays": 99,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 622,
+              "probability": 1.0,
+              "nominal_cycle_rays": 114,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 623,
+              "probability": 1.0,
+              "nominal_cycle_rays": 70,
+              "nominal_recorded_phase_rays": 48,
+              "moving_recorded_phase_rays": 68
+            },
+            {
+              "cell_id": 624,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 29
+            },
+            {
+              "cell_id": 625,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 31
+            },
+            {
+              "cell_id": 626,
+              "probability": 1.0,
+              "nominal_cycle_rays": 35,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 627,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 628,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 12,
+              "moving_recorded_phase_rays": 15
+            },
+            {
+              "cell_id": 658,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 659,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 660,
+              "probability": 1.0,
+              "nominal_cycle_rays": 20,
+              "nominal_recorded_phase_rays": 14,
+              "moving_recorded_phase_rays": 7
+            },
+            {
+              "cell_id": 661,
+              "probability": 1.0,
+              "nominal_cycle_rays": 115,
+              "nominal_recorded_phase_rays": 73,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 662,
+              "probability": 1.0,
+              "nominal_cycle_rays": 110,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 56
+            },
+            {
+              "cell_id": 663,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 47,
+              "moving_recorded_phase_rays": 72
+            },
+            {
+              "cell_id": 664,
+              "probability": 1.0,
+              "nominal_cycle_rays": 53,
+              "nominal_recorded_phase_rays": 31,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 665,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 34,
+              "moving_recorded_phase_rays": 30
+            },
+            {
+              "cell_id": 666,
+              "probability": 1.0,
+              "nominal_cycle_rays": 37,
+              "nominal_recorded_phase_rays": 21,
+              "moving_recorded_phase_rays": 26
+            },
+            {
+              "cell_id": 667,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 25,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 668,
+              "probability": 1.0,
+              "nominal_cycle_rays": 25,
+              "nominal_recorded_phase_rays": 13,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 698,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 699,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 700,
+              "probability": 1.0,
+              "nominal_cycle_rays": 9,
+              "nominal_recorded_phase_rays": 6,
+              "moving_recorded_phase_rays": 6
+            },
+            {
+              "cell_id": 701,
+              "probability": 1.0,
+              "nominal_cycle_rays": 128,
+              "nominal_recorded_phase_rays": 79,
+              "moving_recorded_phase_rays": 40
+            },
+            {
+              "cell_id": 702,
+              "probability": 1.0,
+              "nominal_cycle_rays": 111,
+              "nominal_recorded_phase_rays": 73,
+              "moving_recorded_phase_rays": 57
+            },
+            {
+              "cell_id": 703,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 45,
+              "moving_recorded_phase_rays": 68
+            },
+            {
+              "cell_id": 704,
+              "probability": 1.0,
+              "nominal_cycle_rays": 50,
+              "nominal_recorded_phase_rays": 28,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 705,
+              "probability": 1.0,
+              "nominal_cycle_rays": 46,
+              "nominal_recorded_phase_rays": 35,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 706,
+              "probability": 1.0,
+              "nominal_cycle_rays": 32,
+              "nominal_recorded_phase_rays": 18,
+              "moving_recorded_phase_rays": 24
+            },
+            {
+              "cell_id": 707,
+              "probability": 1.0,
+              "nominal_cycle_rays": 36,
+              "nominal_recorded_phase_rays": 26,
+              "moving_recorded_phase_rays": 23
+            },
+            {
+              "cell_id": 708,
+              "probability": 1.0,
+              "nominal_cycle_rays": 28,
+              "nominal_recorded_phase_rays": 16,
+              "moving_recorded_phase_rays": 20
+            },
+            {
+              "cell_id": 738,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 739,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 0
+            },
+            {
+              "cell_id": 740,
+              "probability": 0.0,
+              "nominal_cycle_rays": 0,
+              "nominal_recorded_phase_rays": 0,
+              "moving_recorded_phase_rays": 3
+            },
+            {
+              "cell_id": 741,
+              "probability": 1.0,
+              "nominal_cycle_rays": 138,
+              "nominal_recorded_phase_rays": 86,
+              "moving_recorded_phase_rays": 49
+            },
+            {
+              "cell_id": 742,
+              "probability": 1.0,
+              "nominal_cycle_rays": 109,
+              "nominal_recorded_phase_rays": 70,
+              "moving_recorded_phase_rays": 55
+            },
+            {
+              "cell_id": 743,
+              "probability": 1.0,
+              "nominal_cycle_rays": 66,
+              "nominal_recorded_phase_rays": 43,
+              "moving_recorded_phase_rays": 67
+            },
+            {
+              "cell_id": 744,
+              "probability": 1.0,
+              "nominal_cycle_rays": 52,
+              "nominal_recorded_phase_rays": 30,
+              "moving_recorded_phase_rays": 34
+            },
+            {
+              "cell_id": 745,
+              "probability": 1.0,
+              "nominal_cycle_rays": 44,
+              "nominal_recorded_phase_rays": 32,
+              "moving_recorded_phase_rays": 35
+            },
+            {
+              "cell_id": 746,
+              "probability": 1.0,
+              "nominal_cycle_rays": 39,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 21
+            },
+            {
+              "cell_id": 747,
+              "probability": 1.0,
+              "nominal_cycle_rays": 34,
+              "nominal_recorded_phase_rays": 24,
+              "moving_recorded_phase_rays": 25
+            },
+            {
+              "cell_id": 748,
+              "probability": 1.0,
+              "nominal_cycle_rays": 29,
+              "nominal_recorded_phase_rays": 17,
+              "moving_recorded_phase_rays": 18
+            },
+            {
+              "cell_id": 782,
+              "probability": 1.0,
+              "nominal_cycle_rays": 107,
+              "nominal_recorded_phase_rays": 66,
+              "moving_recorded_phase_rays": 49
+            }
+          ]
+        },
+        {
+          "window": 2,
+          "planned_viewpoint": [
+            -3.4217730771011263,
+            -2.090043760606381,
+            1.2881941235993568,
+            -0.010379273828591273
+          ],
+          "chunk_count": 51,
+          "phase_start": 62,
+          "recorded_phases": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "phase_steps_histogram": {
+            "1": 50
+          },
+          "static_cached_prediction_s": 0.02004725197912194,
+          "cached_equals_direct": true,
+          "scopes": {
+            "all_grid": {
+              "cells": 1600,
+              "models": {
+                "center_fov": {
+                  "predicted": 1600,
+                  "actual": 1088,
+                  "tp": 1088,
+                  "fp": 512,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 937,
+                  "actual": 1088,
+                  "tp": 910,
+                  "fp": 27,
+                  "fn": 178,
+                  "tn": 485
+                },
+                "nominal_any_phase": {
+                  "predicted": 1577,
+                  "actual": 1088,
+                  "tp": 1082,
+                  "fp": 495,
+                  "fn": 6,
+                  "tn": 17
+                },
+                "nominal_every_phase": {
+                  "predicted": 1413,
+                  "actual": 1088,
+                  "tp": 1015,
+                  "fp": 398,
+                  "fn": 73,
+                  "tn": 114
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 1532,
+                  "actual": 1088,
+                  "tp": 1067,
+                  "fp": 465,
+                  "fn": 21,
+                  "tn": 47
+                },
+                "moving_recorded_phase": {
+                  "predicted": 1549,
+                  "actual": 1088,
+                  "tp": 1087,
+                  "fp": 462,
+                  "fn": 1,
+                  "tn": 50
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 874,
+                  "actual": 1088,
+                  "tp": 869,
+                  "fp": 5,
+                  "fn": 219,
+                  "tn": 507
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 1413,
+                  "actual": 1088,
+                  "tp": 1015,
+                  "fp": 398,
+                  "fn": 73,
+                  "tn": 114
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 874,
+                  "actual": 1088,
+                  "tp": 869,
+                  "fp": 5,
+                  "fn": 219,
+                  "tn": 507
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 1552.0125,
+                "brier": 0.29731279296875,
+                "expected_false_positives": 479.625,
+                "expected_false_negatives": 15.6125,
+                "zero": 23,
+                "one": 1413,
+                "fractional": 164
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 910.0,
+                "brier": 0.121637890625,
+                "expected_false_positives": 10.6,
+                "expected_false_negatives": 188.6,
+                "zero": 684,
+                "one": 874,
+                "fractional": 42
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 910.0,
+                "brier": 0.121637890625,
+                "expected_false_positives": 10.6,
+                "expected_false_negatives": 188.6,
+                "zero": 684,
+                "one": 874,
+                "fractional": 42
+              },
+              "actual_phase_vs_any_phase_cells": 45,
+              "nominal_vs_moving_actual_phase_cells": 65
+            },
+            "viable_union": {
+              "cells": 170,
+              "models": {
+                "center_fov": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_with_known_occlusion": {
+                  "predicted": 144,
+                  "actual": 162,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 18,
+                  "tn": 8
+                },
+                "nominal_any_phase": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_recorded_phases": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "moving_recorded_phase": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "nominal_every_phase_with_known_occlusion": {
+                  "predicted": 144,
+                  "actual": 162,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 18,
+                  "tn": 8
+                },
+                "center_intersect_every_phase": {
+                  "predicted": 170,
+                  "actual": 162,
+                  "tp": 162,
+                  "fp": 8,
+                  "fn": 0,
+                  "tn": 0
+                },
+                "center_known_intersect_every_phase": {
+                  "predicted": 144,
+                  "actual": 162,
+                  "tp": 144,
+                  "fp": 0,
+                  "fn": 18,
+                  "tn": 8
+                }
+              },
+              "phase_averaged": {
+                "sum_opportunity": 170.0,
+                "brier": 0.047058823529411764,
+                "expected_false_positives": 8.0,
+                "expected_false_negatives": 0.0,
+                "zero": 0,
+                "one": 170,
+                "fractional": 0
+              },
+              "phase_averaged_known_occlusion": {
+                "sum_opportunity": 144.0,
+                "brier": 0.10588235294117647,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 18.0,
+                "zero": 26,
+                "one": 144,
+                "fractional": 0
+              },
+              "phase_averaged_center_known": {
+                "sum_opportunity": 144.0,
+                "brier": 0.10588235294117647,
+                "expected_false_positives": 0.0,
+                "expected_false_negatives": 18.0,
+                "zero": 26,
+                "one": 144,
+                "fractional": 0
+              },
+              "actual_phase_vs_any_phase_cells": 0,
+              "nominal_vs_moving_actual_phase_cells": 0
+            }
+          },
+          "nominal_known_visible_missing_union_cells": []
+        }
+      ],
+      "benchmark": {
+        "candidate_count": 65,
+        "batch_seconds": 1.2678936070005875,
+        "seconds_quantiles": [
+          0.010450598987517878,
+          0.019389768014661968,
+          0.024536664405604824,
+          0.027751629997510463
+        ],
+        "downward_cache_rays": 158208,
+        "packet_cell_storage_int64_bytes": 1024000
+      }
+    }
+  ],
+  "elapsed_s": 27.842796987009933
+}

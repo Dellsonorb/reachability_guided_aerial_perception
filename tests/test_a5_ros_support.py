@@ -622,11 +622,18 @@ class CaptureWindowTests(unittest.TestCase):
             np.testing.assert_allclose(data["chunk_stamps_s"], [10.1, 10.2, 10.5])
             self.assertEqual(data["points_xyz"].shape, (3, 3))
 
-    def test_capture_rejects_measured_anchor_outside_existing_flight_bounds(self):
-        self.node._a5_measured_pose = lambda stamp=None, **_kwargs: [0., 0., .4, 0.]
-        with self.assertRaisesRegex(RuntimeError, "flight bounds"):
-            self.capture([(10.1, "uav1/livox")])
+    def test_capture_persistent_outside_anchor_expires_without_observation_or_stamp_change(self):
+        self.configure_bounds_readiness([self.recorded_outside_pose()])
+        previous_stamp = self.node._a5_previous_stamp
+        with self.assertRaisesRegex(RuntimeError, "did not settle"):
+            self.capture([(10. + n * .1, "uav1/livox") for n in range(1, 30)])
+        self.assertGreaterEqual(self.clock.wall, self.options.settle_timeout)
+        self.assertLessEqual(self.clock.wall, self.options.settle_timeout + .1)
         self.assertEqual(self.node._a5_observations, [])
+        self.assertEqual(self.node._a5_previous_stamp, previous_stamp)
+        self.assertEqual(list(self.node._a5_output.glob("*.npz")), [])
+        self.assertFalse(any(state in ("A5_CAPTURE_ANCHOR", "A5_OBSERVATION")
+                             for state, _ in self.statuses))
 
     def test_capture_anchor_requires_fresh_public_map_tf(self):
         lookup = self.node._tf_buffer.lookup_transform
@@ -728,6 +735,116 @@ class CaptureWindowTests(unittest.TestCase):
         wait = type(self.node)._a5_wait_settled.__get__(self.node)
         with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
             return wait(self.goal, reacquire_anchor=reacquire_anchor)
+
+    @staticmethod
+    def recorded_outside_pose():
+        # Launch 02, Hard01 Generic: arrival error 68.35 mm, outside Y by 18.69 mm.
+        return [-3.321879862385112, -3.018693064093046, 1.1768188266842465,
+                -.007028927374043635]
+
+    def configure_bounds_readiness(self, poses):
+        """Replay measured poses every 100 ms; keep all readiness predicates real."""
+        self.goal = [-3.3466904836423352, -2.959591326896615, 1.1530795735420998,
+                     -.007266812064021355]
+        self.options.settle_timeout = 2.
+        self.options.facade_position_tolerance = .05
+        self.node._flight_health_max_age = .5
+
+        def measured(stamp=None, **_kwargs):
+            elapsed = self.clock.wall if stamp is None else stamp.to_sec() - 10.
+            index = min(max(int(round(elapsed * 10)), 0), len(poses) - 1)
+            return list(poses[index])
+
+        # Public TF and native-state transport are the only replaced inputs.
+        self.node._a5_measured_pose = measured
+        self.node._air_snapshot = lambda: (
+            SimpleNamespace(velocity=[0., 0., 0.]), None, self.clock.wall, None)
+        self.node._a5_settled_now = type(self.node)._a5_settled_now.__get__(self.node)
+        self.node._a5_wait_settled = type(self.node)._a5_wait_settled.__get__(self.node)
+        self.node._wait_step = lambda: setattr(self.clock, 'wall', self.clock.wall + .1)
+        self.node._fly_to_command, self.node._hover_command = 2, 3
+        self.node._view_pose = lambda: SimpleNamespace(pose=SimpleNamespace(
+            position=SimpleNamespace(x=0., y=0., z=0.),
+            orientation=SimpleNamespace(x=0., y=0., z=0., w=1.)))
+        self.flight_commands = []
+        self.node._execute_flight = lambda command, _label, target=None: self.flight_commands.append(
+            (command, self.clock.wall, measured()))
+
+    def fly_from_bounds_samples(self, poses):
+        self.configure_bounds_readiness(poses)
+        with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
+            self.node._a5_fly_and_hover(self.goal, 'bounds regression', force_flight=True)
+
+    def test_recorded_arrival_tolerant_outside_pose_fails_both_readiness_modes(self):
+        outside = self.recorded_outside_pose()
+        self.configure_bounds_readiness([outside])
+        self.assertLess(np.linalg.norm(np.asarray(outside[:3]) - self.goal[:3]),
+                        self.options.settle_position_tolerance)
+        self.assertLess(outside[1], self.options.flight_bounds[2])
+        with patch.object(self.adapter.time, 'monotonic', side_effect=lambda: self.clock.wall):
+            for acquisition in (False, True):
+                with self.subTest(acquisition=acquisition):
+                    self.assertFalse(self.node._a5_settled_now(self.goal, acquisition=acquisition)[0])
+
+    def test_flight_waits_for_in_bounds_dwell_before_hover_latches_current_position(self):
+        outside = self.recorded_outside_pose()
+        inside = list(outside)
+        inside[1] = -2.99
+        self.fly_from_bounds_samples([outside] * 3 + [inside] * 20)
+        self.assertEqual([command for command, _, _ in self.flight_commands], [2, 3])
+        _, hover_at, hover_pose = self.flight_commands[-1]
+        self.assertGreaterEqual(hover_at, .3 + self.options.settle_duration)
+        self.assertEqual(hover_pose, inside)
+
+    def test_flight_persistent_outside_pose_hits_original_deadline_without_hover(self):
+        with self.assertRaisesRegex(RuntimeError, 'did not settle'):
+            self.fly_from_bounds_samples([self.recorded_outside_pose()])
+        self.assertEqual([command for command, _, _ in self.flight_commands], [2])
+        self.assertGreaterEqual(self.clock.wall, self.options.settle_timeout)
+        self.assertLessEqual(self.clock.wall, self.options.settle_timeout + .1)
+        self.assertFalse(any(state == 'A5_SETTLED' for state, _ in self.statuses))
+
+    def test_flight_outside_sample_interrupts_dwell_before_hover(self):
+        outside = self.recorded_outside_pose()
+        inside = list(outside)
+        inside[1] = -2.99
+        # Leaving at the otherwise-completing sample must reset, not return.
+        self.fly_from_bounds_samples([inside] * 5 + [outside] + [inside] * 20)
+        self.assertEqual([command for command, _, _ in self.flight_commands], [2, 3])
+        self.assertGreaterEqual(self.flight_commands[-1][1], .6 + self.options.settle_duration)
+        self.assertEqual(self.flight_commands[-1][2], inside)
+
+    def test_flight_bounds_interruptions_do_not_restart_the_original_deadline(self):
+        outside = self.recorded_outside_pose()
+        inside = list(outside)
+        inside[1] = -2.99
+        with self.assertRaisesRegex(RuntimeError, 'did not settle'):
+            self.fly_from_bounds_samples(([inside] * 4 + [outside]) * 5)
+        self.assertEqual([command for command, _, _ in self.flight_commands], [2])
+        self.assertGreaterEqual(self.clock.wall, self.options.settle_timeout)
+        self.assertLessEqual(self.clock.wall, self.options.settle_timeout + .1)
+
+    def test_capture_outside_then_inside_saves_only_a_new_complete_in_bounds_window(self):
+        outside = self.recorded_outside_pose()
+        inside = list(outside)
+        inside[1] = -2.99
+        self.configure_bounds_readiness([outside] * 3 + [inside] * 30)
+        try:
+            result = self.capture([(10. + n * .1, 'uav1/livox') for n in range(1, 30)])
+        except RuntimeError as error:
+            self.fail('capture readiness should wait for in-bounds stable dwell: %s' % error)
+        self.assertEqual(result, inside)
+        self.assertEqual(len(self.node._a5_observations), 1)
+        self.assertEqual(len(list(self.node._a5_output.glob('*.npz'))), 1)
+        anchor = next(data for state, data in self.statuses if state == 'A5_CAPTURE_ANCHOR')
+        self.assertEqual(anchor['capture_anchor_map'], inside)
+        with np.load(self.node._a5_observations[0], allow_pickle=False) as data:
+            stamps = data['chunk_stamps_s']
+            self.assertGreater(stamps[0], 10.3 + self.options.settle_duration)
+            self.assertGreaterEqual(stamps[-1] - stamps[0], self.options.cloud_window_s)
+            self.assertEqual(self.node._a5_previous_stamp, stamps[-1])
+        self.assertEqual(sum(state == 'A5_OBSERVATION' for state, _ in self.statuses), 1)
+        self.assertEqual(self.flight_commands, [])
 
     def test_capture_dwell_reacquires_uncommanded_transient_anchor(self):
         later = [.2, 0., 1.5, 0.]

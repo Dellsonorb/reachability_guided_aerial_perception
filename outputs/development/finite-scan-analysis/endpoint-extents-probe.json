@@ -1,0 +1,1070 @@
+{
+  "kind": "recorded_endpoint_extents_in_viable_raw_occupied_cells",
+  "no_mapper_updates": true,
+  "no_gt_geometry": true,
+  "no_observations_generated": true,
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "rounds": [
+        {
+          "round": 1,
+          "target": {
+            "center_xyz": [
+              1.9562608058485755,
+              0.11035124805490008,
+              0.06045136034346172
+            ],
+            "yaw_rad": -0.12290784519671072,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04658937317384741,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.781967470111704,
+              0.05823686574909591
+            ],
+            [
+              2.1126328274126296,
+              0.017389607592974393
+            ],
+            [
+              2.130554141585447,
+              0.16246563036070427
+            ],
+            [
+              1.7998887842845215,
+              0.20331288851682577
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.0436380128303857,
+            0.16454073351730913
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 781,
+              "cell_lower_xy": [
+                2.0562608058485754,
+                0.010351248054900175
+              ],
+              "cell_upper_xy": [
+                2.1562608058485755,
+                0.11035124805490018
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 4,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                623,
+                581
+              ],
+              "ambiguous_xy_min": [
+                2.0579787077594074,
+                0.06332247604988295
+              ],
+              "ambiguous_xy_max": [
+                2.0731545852249065,
+                0.1048819160161591
+              ],
+              "bbox_including_radius_min": [
+                2.0249787077594075,
+                0.030322476049882946
+              ],
+              "bbox_including_radius_max": [
+                2.1061545852249064,
+                0.1378819160161591
+              ],
+              "bbox_fraction_of_cell": 0.3992937894177023,
+              "point_z_minmax_m": [
+                0.05023404160941913,
+                0.11418435907541191
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 4
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "target": {
+            "center_xyz": [
+              1.9562608058485755,
+              0.11035124805490008,
+              0.06045136034346172
+            ],
+            "yaw_rad": -0.12290784519671072,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.04658937317384741,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.781967470111704,
+              0.05823686574909591
+            ],
+            [
+              2.1126328274126296,
+              0.017389607592974393
+            ],
+            [
+              2.130554141585447,
+              0.16246563036070427
+            ],
+            [
+              1.7998887842845215,
+              0.20331288851682577
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.0436380128303857,
+            0.16454073351730913
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 781,
+              "cell_lower_xy": [
+                2.0562608058485754,
+                0.010351248054900175
+              ],
+              "cell_upper_xy": [
+                2.1562608058485755,
+                0.11035124805490018
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 4,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                623,
+                581
+              ],
+              "ambiguous_xy_min": [
+                2.0579787077594074,
+                0.06332247604988295
+              ],
+              "ambiguous_xy_max": [
+                2.0731545852249065,
+                0.1048819160161591
+              ],
+              "bbox_including_radius_min": [
+                2.0249787077594075,
+                0.030322476049882946
+              ],
+              "bbox_including_radius_max": [
+                2.1061545852249064,
+                0.1378819160161591
+              ],
+              "bbox_fraction_of_cell": 0.3992937894177023,
+              "point_z_minmax_m": [
+                0.05023404160941913,
+                0.11418435907541191
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "rounds": [
+        {
+          "round": 1,
+          "target": {
+            "center_xyz": [
+              1.9581755636992593,
+              0.1105221803176144,
+              0.06054141815471887
+            ],
+            "yaw_rad": -0.16057074080351152,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046589748864054356,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.78204308488524,
+              0.065007284707185
+            ],
+            [
+              2.1109366259205564,
+              0.011738003018715776
+            ],
+            [
+              2.1343080425132785,
+              0.1560370759280438
+            ],
+            [
+              1.8054145014779621,
+              0.20930635761651303
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.043548330709335496,
+            0.16463116701877323
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 778,
+              "cell_lower_xy": [
+                1.7581755636992593,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                1.8581755636992594,
+                0.11052218031761454
+              ],
+              "ground_presence": 0,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 10,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.83892206228376,
+                0.09739138330776483
+              ],
+              "ambiguous_xy_max": [
+                1.84957541936918,
+                0.11027281319185754
+              ],
+              "bbox_including_radius_min": [
+                1.8059220622837602,
+                0.06439138330776482
+              ],
+              "bbox_including_radius_max": [
+                1.88257541936918,
+                0.14327281319185753
+              ],
+              "bbox_fraction_of_cell": 0.24104956668522895,
+              "point_z_minmax_m": [
+                0.06547505912289897,
+                0.11430101061001485
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 10
+            },
+            {
+              "cell_id": 779,
+              "cell_lower_xy": [
+                1.8581755636992594,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                1.9581755636992595,
+                0.11052218031761454
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 21,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.8629158202721583,
+                0.08280679952583485
+              ],
+              "ambiguous_xy_max": [
+                1.9554157298028638,
+                0.10841885006188022
+              ],
+              "bbox_including_radius_min": [
+                1.8299158202721584,
+                0.04980679952583485
+              ],
+              "bbox_including_radius_max": [
+                1.9884157298028637,
+                0.1414188500618802
+              ],
+              "bbox_fraction_of_cell": 0.6071538079177974,
+              "point_z_minmax_m": [
+                0.05338994042687317,
+                0.1141427783910478
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 21
+            },
+            {
+              "cell_id": 780,
+              "cell_lower_xy": [
+                1.9581755636992593,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                2.058175563699259,
+                0.11052218031761454
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 20,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.9614138793147018,
+                0.06702545750445517
+              ],
+              "ambiguous_xy_max": [
+                2.0485289061753207,
+                0.0987135372723937
+              ],
+              "bbox_including_radius_min": [
+                1.9284138793147019,
+                0.03402545750445517
+              ],
+              "bbox_including_radius_max": [
+                2.0815289061753206,
+                0.1317135372723937
+              ],
+              "bbox_fraction_of_cell": 0.7649672281315927,
+              "point_z_minmax_m": [
+                0.06103562994585854,
+                0.11423704561866765
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 20
+            },
+            {
+              "cell_id": 781,
+              "cell_lower_xy": [
+                2.058175563699259,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                2.1581755636992592,
+                0.11052218031761454
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 0
+              },
+              "ambiguous_endpoint_count": 5,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                581,
+                620
+              ],
+              "ambiguous_xy_min": [
+                2.0623237719861116,
+                0.0639339704503185
+              ],
+              "ambiguous_xy_max": [
+                2.07486763480667,
+                0.10920777011477305
+              ],
+              "bbox_including_radius_min": [
+                2.0293237719861117,
+                0.030933970450318496
+              ],
+              "bbox_including_radius_max": [
+                2.10786763480667,
+                0.14220777011477304
+              ],
+              "bbox_fraction_of_cell": 0.3954902984037218,
+              "point_z_minmax_m": [
+                0.07950261402554615,
+                0.11429063949526408
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 5
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "target": {
+            "center_xyz": [
+              1.9581755636992593,
+              0.1105221803176144,
+              0.06054141815471887
+            ],
+            "yaw_rad": -0.16057074080351152,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046589748864054356,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.78204308488524,
+              0.065007284707185
+            ],
+            [
+              2.1109366259205564,
+              0.011738003018715776
+            ],
+            [
+              2.1343080425132785,
+              0.1560370759280438
+            ],
+            [
+              1.8054145014779621,
+              0.20930635761651303
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.043548330709335496,
+            0.16463116701877323
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 778,
+              "cell_lower_xy": [
+                1.7581755636992593,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                1.8581755636992594,
+                0.11052218031761454
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 2,
+                "target_occupied_votes": 2
+              },
+              "ambiguous_endpoint_count": 12,
+              "complete_ambiguous_window_votes": 2,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.838433046055021,
+                0.0968332646461878
+              ],
+              "ambiguous_xy_max": [
+                1.84957541936918,
+                0.11027281319185754
+              ],
+              "bbox_including_radius_min": [
+                1.805433046055021,
+                0.0638332646461878
+              ],
+              "bbox_including_radius_max": [
+                1.88257541936918,
+                0.14327281319185753
+              ],
+              "bbox_fraction_of_cell": 0.2462490958590585,
+              "point_z_minmax_m": [
+                0.06547505912289897,
+                0.11430101061001485
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 12
+            },
+            {
+              "cell_id": 779,
+              "cell_lower_xy": [
+                1.8581755636992594,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                1.9581755636992595,
+                0.11052218031761454
+              ],
+              "ground_presence": 2,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 2,
+                "target_occupied_votes": 2
+              },
+              "ambiguous_endpoint_count": 43,
+              "complete_ambiguous_window_votes": 2,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.8629158202721583,
+                0.0802879579495297
+              ],
+              "ambiguous_xy_max": [
+                1.9573682315599341,
+                0.10841885006188022
+              ],
+              "bbox_including_radius_min": [
+                1.8299158202721584,
+                0.047287957949529696
+              ],
+              "bbox_including_radius_max": [
+                1.990368231559934,
+                0.1414188500618802
+              ],
+              "bbox_fraction_of_cell": 0.6323422236808489,
+              "point_z_minmax_m": [
+                0.05224668380471065,
+                0.1141427783910478
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 43
+            },
+            {
+              "cell_id": 780,
+              "cell_lower_xy": [
+                1.9581755636992593,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                2.058175563699259,
+                0.11052218031761454
+              ],
+              "ground_presence": 2,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 2,
+                "target_occupied_votes": 2
+              },
+              "ambiguous_endpoint_count": 43,
+              "complete_ambiguous_window_votes": 2,
+              "viable_source_ids": [
+                620
+              ],
+              "ambiguous_xy_min": [
+                1.9586021602926804,
+                0.06621052393067695
+              ],
+              "ambiguous_xy_max": [
+                2.0576757001127493,
+                0.10013753462071051
+              ],
+              "bbox_including_radius_min": [
+                1.9256021602926805,
+                0.033210523930676944
+              ],
+              "bbox_including_radius_max": [
+                2.090675700112749,
+                0.1331375346207105
+              ],
+              "bbox_fraction_of_cell": 0.7731165638693748,
+              "point_z_minmax_m": [
+                0.05113142088897127,
+                0.11423704561866765
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 43
+            },
+            {
+              "cell_id": 781,
+              "cell_lower_xy": [
+                2.058175563699259,
+                0.010522180317614538
+              ],
+              "cell_upper_xy": [
+                2.1581755636992592,
+                0.11052218031761454
+              ],
+              "ground_presence": 2,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 2,
+                "target_occupied_votes": 0
+              },
+              "ambiguous_endpoint_count": 9,
+              "complete_ambiguous_window_votes": 2,
+              "viable_source_ids": [
+                581,
+                620
+              ],
+              "ambiguous_xy_min": [
+                2.0623237719861116,
+                0.0634387735020221
+              ],
+              "ambiguous_xy_max": [
+                2.076835247614763,
+                0.10920777011477305
+              ],
+              "bbox_including_radius_min": [
+                2.0293237719861117,
+                0.030438773502022093
+              ],
+              "bbox_including_radius_max": [
+                2.109835247614763,
+                0.14220777011477304
+              ],
+              "bbox_fraction_of_cell": 0.41370834829701986,
+              "point_z_minmax_m": [
+                0.07950261402554615,
+                0.11429063949526408
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "rounds": [
+        {
+          "round": 1,
+          "target": {
+            "center_xyz": [
+              1.863602249833565,
+              -0.04268212016608721,
+              0.05978618193217417
+            ],
+            "yaw_rad": -0.3222130616523338,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046266380392243955,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.682849770959068,
+              -0.05905272628961354
+            ],
+            [
+              1.9982693779747338,
+              -0.16435471347426456
+            ],
+            [
+              2.044354728708062,
+              -0.026311514042560883
+            ],
+            [
+              1.728935121692396,
+              0.07899047314209012
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.04398019846006978,
+            0.16355256232441812
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 779,
+              "cell_lower_xy": [
+                1.763602249833565,
+                -0.14268212016608728
+              ],
+              "cell_upper_xy": [
+                1.8636022498335651,
+                -0.04268212016608727
+              ],
+              "ground_presence": 0,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 16,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                542,
+                541
+              ],
+              "ambiguous_xy_min": [
+                1.7788901313321777,
+                -0.07076021079371102
+              ],
+              "ambiguous_xy_max": [
+                1.853898428070187,
+                -0.04762129812754282
+              ],
+              "bbox_including_radius_min": [
+                1.7458901313321777,
+                -0.10376021079371102
+              ],
+              "bbox_including_radius_max": [
+                1.8868984280701868,
+                -0.014621298127542821
+              ],
+              "bbox_fraction_of_cell": 0.6107809062762379,
+              "point_z_minmax_m": [
+                0.06985544301519209,
+                0.11445822827246421
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 16
+            },
+            {
+              "cell_id": 780,
+              "cell_lower_xy": [
+                1.863602249833565,
+                -0.14268212016608728
+              ],
+              "cell_upper_xy": [
+                1.963602249833565,
+                -0.04268212016608727
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 33,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                542
+              ],
+              "ambiguous_xy_min": [
+                1.8676343220514275,
+                -0.104651051084945
+              ],
+              "ambiguous_xy_max": [
+                1.9635858285830845,
+                -0.047786038737857243
+              ],
+              "bbox_including_radius_min": [
+                1.8346343220514276,
+                -0.13765105108494502
+              ],
+              "bbox_including_radius_max": [
+                1.9965858285830844,
+                -0.014786038737857242
+              ],
+              "bbox_fraction_of_cell": 0.9496893091885781,
+              "point_z_minmax_m": [
+                0.05531376077122241,
+                0.11417447274145798
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 33
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "target": {
+            "center_xyz": [
+              1.863602249833565,
+              -0.04268212016608721,
+              0.05978618193217417
+            ],
+            "yaw_rad": -0.3222130616523338,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046266380392243955,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.682849770959068,
+              -0.05905272628961354
+            ],
+            [
+              1.9982693779747338,
+              -0.16435471347426456
+            ],
+            [
+              2.044354728708062,
+              -0.026311514042560883
+            ],
+            [
+              1.728935121692396,
+              0.07899047314209012
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.04398019846006978,
+            0.16355256232441812
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": [
+            {
+              "cell_id": 779,
+              "cell_lower_xy": [
+                1.763602249833565,
+                -0.14268212016608728
+              ],
+              "cell_upper_xy": [
+                1.8636022498335651,
+                -0.04268212016608727
+              ],
+              "ground_presence": 0,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 16,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                542,
+                541
+              ],
+              "ambiguous_xy_min": [
+                1.7788901313321777,
+                -0.07076021079371102
+              ],
+              "ambiguous_xy_max": [
+                1.853898428070187,
+                -0.04762129812754282
+              ],
+              "bbox_including_radius_min": [
+                1.7458901313321777,
+                -0.10376021079371102
+              ],
+              "bbox_including_radius_max": [
+                1.8868984280701868,
+                -0.014621298127542821
+              ],
+              "bbox_fraction_of_cell": 0.6107809062762379,
+              "point_z_minmax_m": [
+                0.06985544301519209,
+                0.11445822827246421
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 16
+            },
+            {
+              "cell_id": 780,
+              "cell_lower_xy": [
+                1.863602249833565,
+                -0.14268212016608728
+              ],
+              "cell_upper_xy": [
+                1.963602249833565,
+                -0.04268212016608727
+              ],
+              "ground_presence": 1,
+              "evidence": {
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "target_occupied_votes": 1
+              },
+              "ambiguous_endpoint_count": 33,
+              "complete_ambiguous_window_votes": 1,
+              "viable_source_ids": [
+                542
+              ],
+              "ambiguous_xy_min": [
+                1.8676343220514275,
+                -0.104651051084945
+              ],
+              "ambiguous_xy_max": [
+                1.9635858285830845,
+                -0.047786038737857243
+              ],
+              "bbox_including_radius_min": [
+                1.8346343220514276,
+                -0.13765105108494502
+              ],
+              "bbox_including_radius_max": [
+                1.9965858285830844,
+                -0.014786038737857242
+              ],
+              "bbox_fraction_of_cell": 0.9496893091885781,
+              "point_z_minmax_m": [
+                0.05531376077122241,
+                0.11417447274145798
+              ],
+              "ambiguous_center_distance_to_expanded_target_obb_minmax_m": [
+                0.0,
+                0.0
+              ],
+              "ambiguous_disks_intersecting_expanded_target_obb": 33
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "rounds": [
+        {
+          "round": 1,
+          "target": {
+            "center_xyz": [
+              1.8652327621868292,
+              -0.04255297434886043,
+              0.06062544570598474
+            ],
+            "yaw_rad": -0.301172366178301,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046249773722712405,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.6848855012985382,
+              -0.0627119011469218
+            ],
+            [
+              2.0024190362288206,
+              -0.1613445693968036
+            ],
+            [
+              2.04558002307512,
+              -0.022394047550799063
+            ],
+            [
+              1.7280464881448376,
+              0.07623862069908274
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.043124328016727664,
+            0.16437521942869715
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": []
+        },
+        {
+          "round": 2,
+          "target": {
+            "center_xyz": [
+              1.8652327621868292,
+              -0.04255297434886043,
+              0.06062544570598474
+            ],
+            "yaw_rad": -0.301172366178301,
+            "size_xyz": [
+              0.24,
+              0.053,
+              0.115
+            ],
+            "geometry_allowance_m": 0.046249773722712405,
+            "frame_id": "map"
+          },
+          "target_vertices_xy": [
+            [
+              1.6848855012985382,
+              -0.0627119011469218
+            ],
+            [
+              2.0024190362288206,
+              -0.1613445693968036
+            ],
+            [
+              2.04558002307512,
+              -0.022394047550799063
+            ],
+            [
+              1.7280464881448376,
+              0.07623862069908274
+            ]
+          ],
+          "target_expanded_z_minmax_m": [
+            -0.043124328016727664,
+            0.16437521942869715
+          ],
+          "ambiguous_radius_m": 0.033,
+          "ambiguous_profile_available": true,
+          "sidecar_matches_actual_retained_rows": true,
+          "cells": []
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Bounding boxes enclose existing 33mm endpoint disks, not complete unseen obstacle geometry.",
+    "Endpoint height ranges are diagnostic measured heights and do not calibrate a future obstruction-height bound.",
+    "The target dimensions and allowance are existing perceived/declared geometry, not scene GT.",
+    "The operational gate and all source evidence are unchanged."
+  ]
+}

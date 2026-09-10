@@ -22,16 +22,21 @@ def check_snapshot(ranking, arrays):
     if np.any(finite):
         errors.append(float(np.max(np.abs(marginal[finite]-arrays['marginal_task_gain'][finite]))))
     visibility = arrays['visibility']
+    opportunity = arrays['observation_opportunity'] if 'observation_opportunity' in arrays else visibility
+    opportunity_valid = (opportunity.shape == visibility.shape
+                         and np.all(np.isfinite(opportunity) & (opportunity >= 0) & (opportunity <= 1))
+                         and np.array_equal(opportunity > 0, visibility))
     comparisons = []
-    for row, mask in zip(ranking['candidates'], visibility):
-        task = float(np.nansum(marginal*mask))
-        generic = float(np.sum(delta*mask))
+    for row, mask, weight in zip(ranking['candidates'], visibility, opportunity):
+        task = float(np.nansum(marginal*weight))
+        generic = float(np.sum(delta*weight))
         penalty = ranking['config']['flight_weight']*row['flight_cost']
         errors.extend((abs(task-row['task_gain']), abs(generic-row['generic_gain'])))
         if row['status'] == 'VALID':
             errors.extend((abs(task-penalty-row['task_score']), abs(generic-penalty-row['generic_score'])))
         comparisons.append(dict(candidate_id=row['candidate_id'], task_gain=task,
                                 generic_gain=generic, common_penalty=penalty,
+                                summed_observation_opportunity=float(np.sum(weight)),
                                 visible_cells=int(np.count_nonzero(mask))))
     numerically_valid = bool(np.all(np.isfinite(errors)) and not any(np.any(np.isinf(arrays[key])) for key in
                               ('a3_task_relevance_at_environment_cell', 'a3_task_relevant_uncertainty',
@@ -47,7 +52,7 @@ def check_snapshot(ranking, arrays):
                     and task_order==list(ranking['task_order']) and generic_order==list(ranking['generic_order'])
                     and all(row['candidate_id']==i for i,row in enumerate(ranking['candidates'])))
     return dict(candidate_count=len(ranking['candidates']), shared_visibility_shape=list(visibility.shape),
-                gain_and_cost_identity_pass=bool(same_nan and numerically_valid and argmax_valid
+                gain_and_cost_identity_pass=bool(same_nan and numerically_valid and argmax_valid and opportunity_valid
                                                 and len(visibility)==len(ranking['candidates']) and maximum<1e-9),
                 argmax_identity_pass=argmax_valid, finite_scalar_checks_pass=numerically_valid,
                 maximum_abs_identity_error=maximum, best_ours_id=best_o, best_generic_id=best_g,

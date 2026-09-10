@@ -1,4 +1,4 @@
-"""Select the approved A6 comparators without modifying frozen A1–A5."""
+"""Select comparators on one shared acquisition/execution profile."""
 
 from dataclasses import asdict, replace
 
@@ -16,14 +16,18 @@ VIEW_BUDGET = 3
 
 
 def _without_occlusion(belief, ranking):
-    """Change only A4's visibility mask from visible to range_fov."""
-    evaluations, visibility = [], []
+    """Remove only known-prism occlusion, preserving the acquisition model."""
+    evaluations, visibility, opportunities = [], [], []
     for original in ranking.candidates:
-        prediction = predict_visibility(belief, original.viewpoint,
-                                        sensor=ranking.sensor, config=ranking.config)
-        visible = prediction.range_fov
-        task_gain = float(np.nansum(ranking.marginal_task_gain * visible))
-        generic_gain = float(np.sum(ranking.delta_unknown * visible))
+        if ranking.unoccluded_opportunity is None:
+            prediction = predict_visibility(belief, original.viewpoint,
+                                            sensor=ranking.sensor, config=ranking.config)
+            opportunity = prediction.range_fov.astype(float)
+        else:
+            opportunity = ranking.unoccluded_opportunity[original.candidate_id]
+        visible = opportunity > 0
+        task_gain = float(np.nansum(ranking.marginal_task_gain * opportunity))
+        generic_gain = float(np.sum(ranking.delta_unknown * opportunity))
         valid = original.status == 'VALID'
         penalty = ranking.config.flight_weight * original.flight_cost
         evaluations.append(replace(
@@ -34,12 +38,14 @@ def _without_occlusion(belief, ranking):
             visible_task_cells=int(np.count_nonzero(visible & (ranking.support_state == SupportState.SUPPORTED))),
         ))
         visibility.append(visible)
+        opportunities.append(opportunity)
     valid_ids = [row.candidate_id for row in evaluations if row.status == 'VALID']
     task_order = tuple(sorted(valid_ids, key=lambda i: (-evaluations[i].task_score, evaluations[i].flight_cost, i)))
     generic_order = tuple(sorted(valid_ids, key=lambda i: (-evaluations[i].generic_score, evaluations[i].flight_cost, i)))
     status = ('NO_VALID_CANDIDATE' if not valid_ids else
               'NO_PREDICTED_TASK_GAIN' if not any(evaluations[i].task_gain > 0 for i in valid_ids) else 'RANKED')
     return replace(ranking, candidates=tuple(evaluations), visibility=readonly(visibility),
+                   observation_opportunity=readonly(opportunities),
                    task_order=task_order, generic_order=generic_order, status=status)
 
 
@@ -94,7 +100,9 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
     best = variant.candidates[order[0]] if order else None
     visibility = None if best is None else dict(candidate_id=best.candidate_id,
                                                 shape=list(variant.grid.shape),
-                                                cell_ids=np.flatnonzero(variant.visibility[best.candidate_id]).tolist())
+                                                cell_ids=np.flatnonzero(variant.visibility[best.candidate_id]).tolist(),
+                                                opportunity=variant.observation_opportunity[best.candidate_id][
+                                                    variant.visibility[best.candidate_id]].tolist())
     choice.update(stop_reason=stop, next_viewpoint=next_pose, policy_method=method,
                   policy_best_candidate_id=None if best is None else best.candidate_id,
                   policy_best_gain=None if best is None else getattr(best, gain_name),

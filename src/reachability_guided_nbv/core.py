@@ -49,6 +49,9 @@ class NBVResult:
     support_state: np.ndarray
     best_operational_source: np.ndarray
     a1_cell_state: np.ndarray
+    observation_opportunity: np.ndarray | None = None
+    unoccluded_opportunity: np.ndarray | None = None
+    acquisition_metadata: dict | None = None
 
     @property
     def best_task(self):
@@ -60,7 +63,8 @@ class NBVResult:
 
     def task_contribution(self, candidate_id):
         """Unweighted-by-cost cell contributions; NaN keeps NO_VALIDATED_SUPPORT."""
-        return self.marginal_task_gain * self.visibility[candidate_id]
+        opportunity = self.visibility if self.observation_opportunity is None else self.observation_opportunity
+        return self.marginal_task_gain * opportunity[candidate_id]
 
 
 def _check_inputs(task, belief):
@@ -99,16 +103,23 @@ def _check_inputs(task, belief):
         raise ValueError('A3 U_task must equal M_operational * unknown_score with no-support NaNs')
 
 
-def rank_viewpoints(task, belief, current, *, candidates=None, sensor=SensorModel(), config=NBVConfig()):
-    """Predict one new informative endpoint per visible cell, then rank.
+def rank_viewpoints(task, belief, current, *, candidates=None, sensor=SensorModel(), config=NBVConfig(),
+                    scan=None, occlusion=None):
+    """Rank one-observation opportunities, without adding any belief evidence.
 
     G_task = (1-exp(-1/tau)) * sum(V * U_task). This is an uncertainty-reduction
     surrogate with fixed A3 operational support, not calibrated expected IG.
+    Optional scan supplies a finite scheduled-phase fraction instead of binary V.
     Supplying candidates overrides generation; caller should include stay/rescan.
     """
     _check_inputs(task, belief)
     if not isinstance(current, Viewpoint):
         raise ValueError('current must be a level-hover Viewpoint in map')
+    if scan is not None and hasattr(scan, 'sensor') and not np.allclose(
+            scan.sensor.T_uav_lidar, sensor.T_uav_lidar, rtol=0, atol=1e-12):
+        raise ValueError('scan sensor mount must match the ranking sensor')
+    if occlusion is not None and scan is None:
+        raise ValueError('operational occlusion requires the explicit finite scan model')
     viewpoints = (generate_candidates(current, sensor=sensor, config=config)
                   if candidates is None else tuple(candidates))
     if not viewpoints or not all(isinstance(v, Viewpoint) for v in viewpoints):
@@ -116,12 +127,25 @@ def rank_viewpoints(task, belief, current, *, candidates=None, sensor=SensorMode
     alpha = -np.expm1(-1 / belief.config.unknown_scale)
     delta = alpha * belief.unknown_score
     marginal = alpha * task.task_relevant_uncertainty
-    visibility, evaluations = [], []
+    visibility, opportunities, unoccluded, evaluations = [], [], [], []
     for index, viewpoint in enumerate(viewpoints):
-        prediction = predict_visibility(belief, viewpoint, sensor=sensor, config=config)
-        visible = prediction.visible
-        task_gain = float(np.nansum(marginal * visible))
-        generic_gain = float(np.sum(delta * visible))
+        if scan is None:
+            prediction = predict_visibility(belief, viewpoint, sensor=sensor, config=config)
+            opportunity = prediction.visible.astype(float)
+            before_occlusion = prediction.range_fov.astype(float)
+        else:
+            prediction = scan.predict(belief, viewpoint, config=config,
+                                      **({} if occlusion is None else {'occlusion': occlusion}))
+            opportunity = np.asarray(prediction.opportunity, dtype=float)
+            before_occlusion = np.asarray(prediction.unoccluded_opportunity, dtype=float)
+        for array in (opportunity, before_occlusion):
+            if array.shape != belief.grid.shape or not np.all(np.isfinite(array) & (array >= 0) & (array <= 1)):
+                raise ValueError('observation opportunity must match the grid and be finite in [0,1]')
+        if np.any(opportunity > before_occlusion):
+            raise ValueError('occlusion cannot increase observation opportunity')
+        visible = opportunity > 0
+        task_gain = float(np.nansum(marginal * opportunity))
+        generic_gain = float(np.sum(delta * opportunity))
         cost = flight_cost(current, viewpoint, config)
         valid = prediction.status == 'VALID'
         evaluations.append(CandidateEvaluation(
@@ -131,6 +155,8 @@ def rank_viewpoints(task, belief, current, *, candidates=None, sensor=SensorMode
             int(visible.sum()), int(np.count_nonzero(visible & (task.support_state == SupportState.SUPPORTED))),
         ))
         visibility.append(visible)
+        opportunities.append(opportunity)
+        unoccluded.append(before_occlusion)
     valid_ids = [e.candidate_id for e in evaluations if e.status == 'VALID']
     task_order = tuple(sorted(valid_ids, key=lambda i: (-evaluations[i].task_score, evaluations[i].flight_cost, i)))
     generic_order = tuple(sorted(valid_ids, key=lambda i: (-evaluations[i].generic_score, evaluations[i].flight_cost, i)))
@@ -138,4 +164,8 @@ def rank_viewpoints(task, belief, current, *, candidates=None, sensor=SensorMode
               'NO_PREDICTED_TASK_GAIN' if not any(evaluations[i].task_gain > 0 for i in valid_ids) else 'RANKED')
     return NBVResult(belief.grid, current, sensor, config, status, tuple(evaluations), task_order, generic_order,
                      *(readonly(a) for a in (visibility, delta, marginal, task.support_state,
-                                            task.best_operational_source, task.a1_cell_state)))
+                                            task.best_operational_source, task.a1_cell_state)),
+                     readonly(opportunities), readonly(unoccluded),
+                     {'model': 'idealized'} if scan is None else dict(
+                         scan.metadata, occlusion={'model': 'raw_occupied_prisms'} if occlusion is None
+                         else occlusion.metadata))

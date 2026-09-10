@@ -1,5 +1,6 @@
 {
-  "profile": "sensor-retrieval-screened-handoff-v1",
+  "profile": "sensor-retrieval-finite-scan-v1",
+  "acquisition_model": "finite_scan_v1",
   "protocol": "docs/CURRENT_SIM_TASK.md",
   "status": "DEVELOPMENT_BATCH",
   "initial_view": [-1.4, 0, 1.2, 0],
@@ -16,7 +17,7 @@
   "diagnostic_image_scope": "ground_handoff_to_end",
   "shared_a5_settings": {
     "grid_resolution_m": 0.1, "grid_width_m": 4, "grid_height_m": 4,
-    "ground_z_m": 0, "xy_offsets_m": [-2, 0, 2],
+    "ground_z_m": 0, "xy_offsets_m": [-2, -1, 0, 1, 2],
     "flight_bounds": [-4, 4, -3, 3, 0.5, 3], "flight_weight": 0.25,
     "facade_position_tolerance": 0.05, "max_ground_travel": 3,
     "navigation_timeout": 120, "settle_position_tolerance": 0.1,
