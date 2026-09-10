@@ -6,7 +6,6 @@ Intersecting rays never become measured endpoints, belief updates, or votes.
 
 from copy import deepcopy
 from dataclasses import dataclass, field
-import hashlib
 import math
 from numbers import Integral, Real
 from pathlib import Path
@@ -147,7 +146,12 @@ class FiniteScan:
         object.__setattr__(self, 'packet_rows', rows)
         object.__setattr__(self, 'packet_period_s', period)
         object.__setattr__(self, 'window_s', window)
-        object.__setattr__(self, '_window_packets', math.ceil(window / period) + 1)
+        span = window / period
+        # Decimal durations can divide a few ULPs above an integer (e.g. .14/.02).
+        nearest = round(span)
+        if abs(span - nearest) <= 4 * math.ulp(span):
+            span = nearest
+        object.__setattr__(self, '_window_packets', math.ceil(span) + 1)
         object.__setattr__(self, '_packet_ids', readonly(np.flatnonzero(downward) // rows))
         object.__setattr__(self, '_slopes', readonly(-body_rays[downward, :2] / body_rays[downward, 2, None]))
         object.__setattr__(self, '_distance_scale', readonly(-1 / body_rays[downward, 2]))
@@ -174,7 +178,7 @@ class FiniteScan:
         if publisher_sdf_path is not None:
             publisher_sdf_path = Path(publisher_sdf_path).resolve()
             emitted, publisher = _publisher_mask(values, publisher_sdf_path, rows, period)
-        source = dict(scan_path=str(path), scan_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+        source = dict(scan_path=str(path),
                       publisher_sdf_path=None if publisher_sdf_path is None else str(publisher_sdf_path),
                       publisher=publisher)
         return cls(directions, packet_rows=rows, packet_period_s=period, window_s=window_s,
@@ -182,7 +186,8 @@ class FiniteScan:
 
     @property
     def metadata(self):
-        return dict(scan_path=None, scan_sha256=None, publisher_sdf_path=None, publisher=None) | deepcopy(self._source) | dict(
+        return dict(scan_path=None, publisher_sdf_path=None, publisher=None) | deepcopy(self._source) | dict(
+            model='finite_scan_v1',
             rows=len(self.directions), packet_rows=self.packet_rows, packet_count=len(self.directions) // self.packet_rows,
             emitted_rows=int(self.emission_mask.sum()), packet_period_s=self.packet_period_s,
             window_s=self.window_s, window_packets=self._window_packets,

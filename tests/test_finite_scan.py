@@ -61,6 +61,16 @@ class FiniteScanTests(unittest.TestCase):
         model = scan([[.25, .25, -1], [1.25, .25, -1], [0, 0, 1], [0, 0, 1]], window_s=100)
         np.testing.assert_array_equal(model.predict(belief(), Viewpoint((0, 0, 1), 0)).opportunity, [[1, 1]])
 
+    def test_decimal_packet_span_does_not_add_a_roundoff_packet(self):
+        model = FiniteScan([[0, 0, -1]], packet_rows=1, packet_period_s=.02, window_s=.14)
+        self.assertEqual(model.metadata['window_packets'], 8)
+        longer = FiniteScan([[0, 0, -1]], packet_rows=1, packet_period_s=.02, window_s=.140000001)
+        self.assertEqual(longer.metadata['window_packets'], 9)
+
+    def test_metadata_names_model_without_new_asset_hash_contract(self):
+        self.assertEqual(scan([[0, 0, -1]]).metadata['model'], 'finite_scan_v1')
+        self.assertNotIn('scan_sha256', scan([[0, 0, -1]]).metadata)
+
     def test_phase_fraction_matches_enumerated_windows_without_independence(self):
         directions = [[.2, .2, -1], [0, 0, 1], [1.2, .2, -1], [.3, .3, -1], [1.4, .3, -1], [0, 0, 1]]
         for packets in range(1, 9):
@@ -195,7 +205,7 @@ class CsvScheduleTests(unittest.TestCase):
             self.assertEqual(model.metadata['packet_count'], 2)
             self.assertEqual(model.metadata['emitted_rows'], 4)
             self.assertEqual(model.metadata['scan_path'], str(path.resolve()))
-            self.assertEqual(len(model.metadata['scan_sha256']), 64)
+            self.assertNotIn('scan_sha256', model.metadata)
 
     def test_publisher_sdf_rounding_mask_keeps_original_packet_positions(self):
         with tempfile.TemporaryDirectory() as folder:
