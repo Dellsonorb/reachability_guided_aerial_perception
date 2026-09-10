@@ -1,0 +1,3433 @@
+{
+  "kind": "same_state_shared_mask_scoring_diagnostics",
+  "snapshots": [
+    {
+      "candidate_count": 193,
+      "shared_visibility_shape": [
+        193,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 82,
+      "best_generic_id": 1,
+      "different_selection": true,
+      "task_uncertainty_mass": 65.6857192698265,
+      "generic_unknown_mass": 1356.0490090218327,
+      "never_observed_area_m2": 9.8,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 18.074846664263458,
+          "generic_gain": 109.73420308486023,
+          "common_penalty": 0.0,
+          "summed_observation_opportunity": 458.5125,
+          "visible_cells": 462
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 24.705757058865608,
+          "generic_gain": 398.40796521647775,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 1235.1125000000002,
+          "visible_cells": 1257
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 22.927155061396295,
+          "generic_gain": 371.60622657565244,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 1158.925,
+          "visible_cells": 1180
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 2.717640751137813,
+          "generic_gain": 117.19778033829698,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 347.8625,
+          "visible_cells": 369
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 22.871430986635804,
+          "generic_gain": 191.38391480226477,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 699.75,
+          "visible_cells": 724
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 23.30368114993611,
+          "generic_gain": 347.7968907733382,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 1095.625,
+          "visible_cells": 1107
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 23.06204679116316,
+          "generic_gain": 285.6044159954978,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 933.3875,
+          "visible_cells": 948
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 22.225537399335984,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 59.4125,
+          "visible_cells": 62
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 23.616910874271426,
+          "generic_gain": 225.16277586324105,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 785.5250000000001,
+          "visible_cells": 794
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 19.986429212213555,
+          "generic_gain": 316.96360751439164,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 976.5875,
+          "visible_cells": 983
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 19.380851745165284,
+          "generic_gain": 199.5635257218114,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 670.5875,
+          "visible_cells": 681
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 1.0377753850079294,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 2.6375,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 0.0,
+          "generic_gain": 1.9927376748189456,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 8.35,
+          "visible_cells": 9
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 21.07825853703951,
+          "generic_gain": 233.06388721715012,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 764.975,
+          "visible_cells": 784
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 9.137053359590254,
+          "generic_gain": 337.1602827734969,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 994.4625000000001,
+          "visible_cells": 1006
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 7.240081342493385,
+          "generic_gain": 171.49498236275397,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 547.525,
+          "visible_cells": 565
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.0,
+          "generic_gain": 62.314525732556305,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 229.73749999999998,
+          "visible_cells": 247
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 10.318376891369152,
+          "generic_gain": 285.95140855523266,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 866.15,
+          "visible_cells": 884
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 0.187937834601188,
+          "generic_gain": 350.32403410114205,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 978.7,
+          "visible_cells": 996
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 150.1527084019307,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 427.98749999999995,
+          "visible_cells": 436
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 0.8203635637353444,
+          "generic_gain": 140.27332533464838,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 438.975,
+          "visible_cells": 449
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 0.4773024370823822,
+          "generic_gain": 333.40543103240856,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 944.2249999999999,
+          "visible_cells": 953
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 25.347132208695058,
+          "generic_gain": 309.5792586100064,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 1013.1125000000001,
+          "visible_cells": 1028
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 24.64520694141842,
+          "generic_gain": 326.9997802828191,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 1054.7749999999999,
+          "visible_cells": 1065
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 121.77707221759626,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 345.5375,
+          "visible_cells": 356
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 4.585086536222634,
+          "generic_gain": 87.6458403257555,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 365.32500000000005,
+          "visible_cells": 375
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 24.01665166532792,
+          "generic_gain": 241.58515049413745,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 832.225,
+          "visible_cells": 837
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 23.971904561851446,
+          "generic_gain": 201.24737547737686,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 711.2874999999999,
+          "visible_cells": 723
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 5.752582073285816,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 16.5875,
+          "visible_cells": 17
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 18.212071114924644,
+          "generic_gain": 140.9778615780192,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 552.4125,
+          "visible_cells": 560
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 20.117687382411212,
+          "generic_gain": 185.68007295658856,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 645.5625000000001,
+          "visible_cells": 648
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 17.5232186463519,
+          "generic_gain": 95.88711483238663,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 364.13750000000005,
+          "visible_cells": 372
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 21.835976155907787,
+          "generic_gain": 154.28988432039912,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 573.4375,
+          "visible_cells": 583
+        },
+        {
+          "candidate_id": 65,
+          "task_gain": 4.3464353176814425,
+          "generic_gain": 207.2605747393594,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 643.125,
+          "visible_cells": 650
+        },
+        {
+          "candidate_id": 66,
+          "task_gain": 0.0,
+          "generic_gain": 88.29300412665383,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 263.02500000000003,
+          "visible_cells": 270
+        },
+        {
+          "candidate_id": 67,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 68,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 69,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 70,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 71,
+          "task_gain": 0.0,
+          "generic_gain": 33.897911985990746,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 135.78750000000002,
+          "visible_cells": 143
+        },
+        {
+          "candidate_id": 72,
+          "task_gain": 6.264594486706266,
+          "generic_gain": 196.23965951919865,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 623.575,
+          "visible_cells": 630
+        },
+        {
+          "candidate_id": 73,
+          "task_gain": 0.0,
+          "generic_gain": 239.92705142348416,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 675.7875,
+          "visible_cells": 681
+        },
+        {
+          "candidate_id": 74,
+          "task_gain": 0.0,
+          "generic_gain": 99.27755168814154,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 285.65,
+          "visible_cells": 288
+        },
+        {
+          "candidate_id": 75,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 76,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 77,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 78,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 79,
+          "task_gain": 0.0,
+          "generic_gain": 101.86392682532261,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 308.8375,
+          "visible_cells": 312
+        },
+        {
+          "candidate_id": 80,
+          "task_gain": 0.0,
+          "generic_gain": 260.8760096341182,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 731.2375,
+          "visible_cells": 736
+        },
+        {
+          "candidate_id": 81,
+          "task_gain": 25.606665408858607,
+          "generic_gain": 229.64230753071976,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 789.8125,
+          "visible_cells": 796
+        },
+        {
+          "candidate_id": 82,
+          "task_gain": 25.809518944618617,
+          "generic_gain": 263.7136039356206,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 861.4625000000001,
+          "visible_cells": 867
+        },
+        {
+          "candidate_id": 83,
+          "task_gain": 0.0,
+          "generic_gain": 117.92861620213303,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 322.0,
+          "visible_cells": 324
+        },
+        {
+          "candidate_id": 84,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 85,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 86,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 87,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 88,
+          "task_gain": 0.0,
+          "generic_gain": 24.124655054282655,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 101.0875,
+          "visible_cells": 102
+        },
+        {
+          "candidate_id": 89,
+          "task_gain": 22.21544530595313,
+          "generic_gain": 184.4538229680408,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 668.2625,
+          "visible_cells": 673
+        },
+        {
+          "candidate_id": 90,
+          "task_gain": 14.495078386145593,
+          "generic_gain": 146.92250644084635,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 518.0125,
+          "visible_cells": 522
+        },
+        {
+          "candidate_id": 91,
+          "task_gain": 0.0,
+          "generic_gain": 4.900383889872916,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 18.5875,
+          "visible_cells": 19
+        },
+        {
+          "candidate_id": 92,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 93,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 94,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 95,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 96,
+          "task_gain": 0.0,
+          "generic_gain": 57.04659065203997,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 239.0375,
+          "visible_cells": 240
+        },
+        {
+          "candidate_id": 97,
+          "task_gain": 0.0,
+          "generic_gain": 101.17997568706758,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 369.5625,
+          "visible_cells": 376
+        },
+        {
+          "candidate_id": 98,
+          "task_gain": 0.0,
+          "generic_gain": 51.37676270380361,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 161.225,
+          "visible_cells": 164
+        },
+        {
+          "candidate_id": 99,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 100,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 101,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 102,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 103,
+          "task_gain": 0.0,
+          "generic_gain": 15.589890851203306,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 65.325,
+          "visible_cells": 68
+        },
+        {
+          "candidate_id": 104,
+          "task_gain": 0.9546048741647644,
+          "generic_gain": 104.10652886448892,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 387.4125,
+          "visible_cells": 390
+        },
+        {
+          "candidate_id": 105,
+          "task_gain": 1.3334636835989053,
+          "generic_gain": 142.747737312661,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 439.6125,
+          "visible_cells": 444
+        },
+        {
+          "candidate_id": 106,
+          "task_gain": 0.0,
+          "generic_gain": 37.735369131851876,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 121.3125,
+          "visible_cells": 123
+        },
+        {
+          "candidate_id": 107,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 108,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 109,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 110,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 111,
+          "task_gain": 0.0,
+          "generic_gain": 63.858484809128825,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 179.525,
+          "visible_cells": 181
+        },
+        {
+          "candidate_id": 112,
+          "task_gain": 0.2386512185411911,
+          "generic_gain": 179.9015250721465,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 526.425,
+          "visible_cells": 531
+        },
+        {
+          "candidate_id": 113,
+          "task_gain": 4.534373152282631,
+          "generic_gain": 117.41780499858837,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 412.23749999999995,
+          "visible_cells": 414
+        },
+        {
+          "candidate_id": 114,
+          "task_gain": 9.483402796780581,
+          "generic_gain": 187.24555999725862,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 586.35,
+          "visible_cells": 591
+        },
+        {
+          "candidate_id": 115,
+          "task_gain": 0.0,
+          "generic_gain": 105.92024477942175,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 284.6,
+          "visible_cells": 287
+        },
+        {
+          "candidate_id": 116,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 117,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 118,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 119,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 120,
+          "task_gain": 0.0,
+          "generic_gain": 0.22373551738236663,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 0.9375,
+          "visible_cells": 1
+        },
+        {
+          "candidate_id": 121,
+          "task_gain": 1.1067450259847735,
+          "generic_gain": 106.84905745998273,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 375.7125,
+          "visible_cells": 377
+        },
+        {
+          "candidate_id": 122,
+          "task_gain": 0.0,
+          "generic_gain": 105.09033147207667,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 321.7,
+          "visible_cells": 322
+        },
+        {
+          "candidate_id": 123,
+          "task_gain": 0.0,
+          "generic_gain": 9.913753375423076,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 30.5125,
+          "visible_cells": 31
+        },
+        {
+          "candidate_id": 124,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 125,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 126,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 127,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 128,
+          "task_gain": 0.0,
+          "generic_gain": 9.76978425903001,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 40.9375,
+          "visible_cells": 41
+        },
+        {
+          "candidate_id": 129,
+          "task_gain": 0.2386512185411911,
+          "generic_gain": 98.82005468790744,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 357.22499999999997,
+          "visible_cells": 358
+        },
+        {
+          "candidate_id": 130,
+          "task_gain": 0.0,
+          "generic_gain": 50.017362118166446,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 154.6125,
+          "visible_cells": 155
+        },
+        {
+          "candidate_id": 131,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 132,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 133,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 134,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 135,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 136,
+          "task_gain": 0.0,
+          "generic_gain": 35.18613903366686,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 147.4375,
+          "visible_cells": 148
+        },
+        {
+          "candidate_id": 137,
+          "task_gain": 1.4319073112471465,
+          "generic_gain": 96.83670872973784,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 362.5375,
+          "visible_cells": 365
+        },
+        {
+          "candidate_id": 138,
+          "task_gain": 0.0,
+          "generic_gain": 13.229242854136263,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 47.0,
+          "visible_cells": 47
+        },
+        {
+          "candidate_id": 139,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 140,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 141,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 142,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 143,
+          "task_gain": 0.0,
+          "generic_gain": 4.623867359235577,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 19.375,
+          "visible_cells": 20
+        },
+        {
+          "candidate_id": 144,
+          "task_gain": 0.7159536556235733,
+          "generic_gain": 71.55956787957615,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 299.85,
+          "visible_cells": 301
+        },
+        {
+          "candidate_id": 145,
+          "task_gain": 6.118420615349787,
+          "generic_gain": 106.88472774881915,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 398.73749999999995,
+          "visible_cells": 401
+        },
+        {
+          "candidate_id": 146,
+          "task_gain": 0.0,
+          "generic_gain": 0.4773024370823822,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 2.0,
+          "visible_cells": 2
+        },
+        {
+          "candidate_id": 147,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 148,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 149,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 150,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 151,
+          "task_gain": 0.0,
+          "generic_gain": 62.75346831624784,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 218.8375,
+          "visible_cells": 221
+        },
+        {
+          "candidate_id": 152,
+          "task_gain": 14.581589452866774,
+          "generic_gain": 128.1196274136932,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 489.9625,
+          "visible_cells": 493
+        },
+        {
+          "candidate_id": 153,
+          "task_gain": 0.0,
+          "generic_gain": 18.405854421824486,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 69.575,
+          "visible_cells": 70
+        },
+        {
+          "candidate_id": 154,
+          "task_gain": 0.0,
+          "generic_gain": 92.89848254006634,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 276.525,
+          "visible_cells": 279
+        },
+        {
+          "candidate_id": 155,
+          "task_gain": 0.0,
+          "generic_gain": 83.98088816271093,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 227.86249999999998,
+          "visible_cells": 229
+        },
+        {
+          "candidate_id": 156,
+          "task_gain": 0.0,
+          "generic_gain": 1.0377753850079294,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 2.6375,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 157,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 158,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 159,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 160,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 161,
+          "task_gain": 0.0,
+          "generic_gain": 3.737569540095806,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 15.0125,
+          "visible_cells": 16
+        },
+        {
+          "candidate_id": 162,
+          "task_gain": 0.0,
+          "generic_gain": 27.021856916122047,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 82.7375,
+          "visible_cells": 83
+        },
+        {
+          "candidate_id": 163,
+          "task_gain": 0.0,
+          "generic_gain": 0.7159536556235733,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 3.0,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 164,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 165,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 166,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 167,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 168,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 169,
+          "task_gain": 0.0,
+          "generic_gain": 1.6705585297883376,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 7.0,
+          "visible_cells": 7
+        },
+        {
+          "candidate_id": 170,
+          "task_gain": 0.0,
+          "generic_gain": 3.4332892364557885,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 13.7375,
+          "visible_cells": 14
+        },
+        {
+          "candidate_id": 171,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 172,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 173,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 174,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 175,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 176,
+          "task_gain": 0.0,
+          "generic_gain": 3.0159547743143023,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 12.6375,
+          "visible_cells": 13
+        },
+        {
+          "candidate_id": 177,
+          "task_gain": 0.0,
+          "generic_gain": 3.0129716340825374,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 12.625,
+          "visible_cells": 13
+        },
+        {
+          "candidate_id": 178,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 179,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 180,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 181,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 182,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 183,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 184,
+          "task_gain": 0.0,
+          "generic_gain": 15.494430363786833,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 64.925,
+          "visible_cells": 66
+        },
+        {
+          "candidate_id": 185,
+          "task_gain": 0.0,
+          "generic_gain": 19.384445226008246,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 81.225,
+          "visible_cells": 82
+        },
+        {
+          "candidate_id": 186,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 187,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 188,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 189,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 190,
+          "task_gain": 0.0,
+          "generic_gain": 0.3934693402873666,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 1.0,
+          "visible_cells": 1
+        },
+        {
+          "candidate_id": 191,
+          "task_gain": 0.0,
+          "generic_gain": 54.6784814419901,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 192.1375,
+          "visible_cells": 193
+        },
+        {
+          "candidate_id": 192,
+          "task_gain": 0.0,
+          "generic_gain": 65.48784118885294,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 264.9125,
+          "visible_cells": 266
+        }
+      ],
+      "snapshot": "outputs/development/fixed-version/slot-10-moderate02-ours/attempt/data/rounds/round-01",
+      "actual_method": "ours",
+      "round": 1,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 113,
+      "shared_visibility_shape": [
+        113,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 0,
+      "best_generic_id": 8,
+      "different_selection": true,
+      "task_uncertainty_mass": 39.84040264242671,
+      "generic_unknown_mass": 1053.0124033121883,
+      "never_observed_area_m2": 5.41,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 15.668739480447542,
+          "generic_gain": 175.56424644033933,
+          "common_penalty": 0.0,
+          "summed_observation_opportunity": 923.825,
+          "visible_cells": 931
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 14.378661513329943,
+          "generic_gain": 303.5061802100781,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 1197.5375,
+          "visible_cells": 1224
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 4.409424973163518,
+          "generic_gain": 88.6173545705252,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 408.2875,
+          "visible_cells": 432
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 14.621116559043488,
+          "generic_gain": 143.3419202255262,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 733.7625,
+          "visible_cells": 760
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 14.77491267013044,
+          "generic_gain": 317.0417218050581,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 1238.9125,
+          "visible_cells": 1264
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 14.090972317296707,
+          "generic_gain": 242.33026207230338,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 982.2,
+          "visible_cells": 1002
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 0.0,
+          "generic_gain": 26.274574858191873,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 93.89999999999999,
+          "visible_cells": 99
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 14.382280245355517,
+          "generic_gain": 180.31589566555607,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 817.9875000000001,
+          "visible_cells": 828
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 14.282765114652197,
+          "generic_gain": 294.0538276854497,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 1128.8375,
+          "visible_cells": 1142
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 12.133238291460462,
+          "generic_gain": 174.8374759021907,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 740.0625000000001,
+          "visible_cells": 751
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 0.0,
+          "generic_gain": 1.822698681608347,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 7.6375,
+          "visible_cells": 8
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 1.2864592350920234,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 8.8875,
+          "visible_cells": 10
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 13.133817696532036,
+          "generic_gain": 201.651068721463,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 796.675,
+          "visible_cells": 815
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 12.565676768516713,
+          "generic_gain": 277.79124171216574,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 1006.85,
+          "visible_cells": 1016
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 15.06983933021483,
+          "generic_gain": 251.08750549990003,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 1105.575,
+          "visible_cells": 1120
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 0.9607733527902453,
+          "generic_gain": 86.43498746680308,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 398.9625,
+          "visible_cells": 408
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 4.127163875168644,
+          "generic_gain": 61.60413160307722,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 397.7375,
+          "visible_cells": 411
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 15.151260800790272,
+          "generic_gain": 237.25844195869522,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 1062.5875,
+          "visible_cells": 1081
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 14.555979382583134,
+          "generic_gain": 154.40754430358035,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 781.3125,
+          "visible_cells": 791
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 13.696728374506124,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 53.2375,
+          "visible_cells": 55
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 12.099230527511056,
+          "generic_gain": 103.3081077122904,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 589.7125,
+          "visible_cells": 601
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 14.807481258360617,
+          "generic_gain": 192.7495474213025,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 884.225,
+          "visible_cells": 889
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 12.469780369838967,
+          "generic_gain": 79.0685934661648,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 437.2875,
+          "visible_cells": 443
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 13.597015395805675,
+          "generic_gain": 126.39491220489757,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 611.3750000000001,
+          "visible_cells": 619
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 12.885934552780128,
+          "generic_gain": 162.47272784949286,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 695.5625,
+          "visible_cells": 699
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 11.382721586447143,
+          "generic_gain": 104.56957972964494,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 597.5375,
+          "visible_cells": 602
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 8.075011854388237,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 41.9125,
+          "visible_cells": 43
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.289498562046025,
+          "generic_gain": 39.84182782583562,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 267.4625,
+          "visible_cells": 269
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 14.52920908268488,
+          "generic_gain": 124.65995425850265,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 718.4375,
+          "visible_cells": 725
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 3.3165679014397735,
+          "generic_gain": 25.801423807364078,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 174.8125,
+          "visible_cells": 177
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 6.36896836501255,
+          "generic_gain": 64.67102703721253,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 405.8875,
+          "visible_cells": 409
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 12.198745658214378,
+          "generic_gain": 70.81867472967143,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 450.5625,
+          "visible_cells": 453
+        },
+        {
+          "candidate_id": 65,
+          "task_gain": 8.198237403940869,
+          "generic_gain": 133.9009175019482,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 660.475,
+          "visible_cells": 666
+        },
+        {
+          "candidate_id": 66,
+          "task_gain": 0.0,
+          "generic_gain": 81.4441783196177,
+          "common_penalty": 0.2990873852123405,
+          "summed_observation_opportunity": 336.9375,
+          "visible_cells": 339
+        },
+        {
+          "candidate_id": 67,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 68,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 69,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 70,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.39726215563702155,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 71,
+          "task_gain": 0.0,
+          "generic_gain": 0.41072608490279794,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 2.8375,
+          "visible_cells": 3
+        },
+        {
+          "candidate_id": 72,
+          "task_gain": 4.883478868513883,
+          "generic_gain": 81.15782647682927,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 468.025,
+          "visible_cells": 471
+        },
+        {
+          "candidate_id": 73,
+          "task_gain": 0.6712747907442205,
+          "generic_gain": 75.47916289193411,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 386.1,
+          "visible_cells": 388
+        },
+        {
+          "candidate_id": 74,
+          "task_gain": 0.0,
+          "generic_gain": 12.963909451402593,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 62.55,
+          "visible_cells": 63
+        },
+        {
+          "candidate_id": 75,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 76,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 77,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 78,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 79,
+          "task_gain": 0.0,
+          "generic_gain": 7.648190136053422,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 52.8375,
+          "visible_cells": 53
+        },
+        {
+          "candidate_id": 80,
+          "task_gain": 2.171239215345187,
+          "generic_gain": 74.52247239674492,
+          "common_penalty": 0.40264077580561436,
+          "summed_observation_opportunity": 429.3125,
+          "visible_cells": 430
+        },
+        {
+          "candidate_id": 81,
+          "task_gain": 0.0,
+          "generic_gain": 39.60450674195527,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 199.475,
+          "visible_cells": 201
+        },
+        {
+          "candidate_id": 82,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 83,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 84,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 85,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 86,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 87,
+          "task_gain": 0.0,
+          "generic_gain": 24.312080923534175,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 166.6625,
+          "visible_cells": 167
+        },
+        {
+          "candidate_id": 88,
+          "task_gain": 0.8684956861380749,
+          "generic_gain": 69.05467830361631,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 405.875,
+          "visible_cells": 407
+        },
+        {
+          "candidate_id": 89,
+          "task_gain": 0.0,
+          "generic_gain": 75.1742139505534,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 343.4375,
+          "visible_cells": 345
+        },
+        {
+          "candidate_id": 90,
+          "task_gain": 0.0,
+          "generic_gain": 74.03566864297716,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 283.425,
+          "visible_cells": 285
+        },
+        {
+          "candidate_id": 91,
+          "task_gain": 0.0,
+          "generic_gain": 1.9092097483295287,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 8.0,
+          "visible_cells": 8
+        },
+        {
+          "candidate_id": 92,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 93,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 94,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 95,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 96,
+          "task_gain": 0.0,
+          "generic_gain": 19.051829733928408,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 114.24999999999999,
+          "visible_cells": 115
+        },
+        {
+          "candidate_id": 97,
+          "task_gain": 0.0,
+          "generic_gain": 23.161926828549138,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 115.4875,
+          "visible_cells": 116
+        },
+        {
+          "candidate_id": 98,
+          "task_gain": 0.0,
+          "generic_gain": 3.595353777100845,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 19.0,
+          "visible_cells": 19
+        },
+        {
+          "candidate_id": 99,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 100,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 101,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 102,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 103,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 104,
+          "task_gain": 0.0,
+          "generic_gain": 5.457332743248838,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 35.212500000000006,
+          "visible_cells": 36
+        },
+        {
+          "candidate_id": 105,
+          "task_gain": 0.0,
+          "generic_gain": 4.964128270101277,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 30.6375,
+          "visible_cells": 31
+        },
+        {
+          "candidate_id": 106,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 107,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 108,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 109,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 110,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 111,
+          "task_gain": 0.0,
+          "generic_gain": 2.750236339437237,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 19.0,
+          "visible_cells": 19
+        },
+        {
+          "candidate_id": 112,
+          "task_gain": 0.0,
+          "generic_gain": 4.831007254143042,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 33.375,
+          "visible_cells": 34
+        }
+      ],
+      "snapshot": "outputs/development/fixed-version/slot-10-moderate02-ours/attempt/data/rounds/round-02",
+      "actual_method": "ours",
+      "round": 2,
+      "confirmed_candidate_count": 0
+    },
+    {
+      "candidate_count": 113,
+      "shared_visibility_shape": [
+        113,
+        40,
+        40
+      ],
+      "gain_and_cost_identity_pass": true,
+      "argmax_identity_pass": true,
+      "finite_scalar_checks_pass": true,
+      "maximum_abs_identity_error": 0.0,
+      "best_ours_id": 0,
+      "best_generic_id": 8,
+      "different_selection": true,
+      "task_uncertainty_mass": 24.164425697928017,
+      "generic_unknown_mass": 864.6345281316153,
+      "never_observed_area_m2": 5.29,
+      "candidates": [
+        {
+          "candidate_id": 0,
+          "task_gain": 9.49479140625005,
+          "generic_gain": 98.4398172252635,
+          "common_penalty": 0.0,
+          "summed_observation_opportunity": 870.1,
+          "visible_cells": 876
+        },
+        {
+          "candidate_id": 1,
+          "task_gain": 8.62683772432171,
+          "generic_gain": 244.08242779140176,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 1179.5125,
+          "visible_cells": 1208
+        },
+        {
+          "candidate_id": 2,
+          "task_gain": 1.2818052029125302,
+          "generic_gain": 54.39802075850382,
+          "common_penalty": 0.5490873852123405,
+          "summed_observation_opportunity": 371.825,
+          "visible_cells": 392
+        },
+        {
+          "candidate_id": 3,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 4,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 5,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 6,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 7,
+          "task_gain": 7.9212927693687005,
+          "generic_gain": 86.55626198777107,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 653.9625,
+          "visible_cells": 684
+        },
+        {
+          "candidate_id": 8,
+          "task_gain": 9.016309327080647,
+          "generic_gain": 260.16737759339446,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 1236.9375,
+          "visible_cells": 1261
+        },
+        {
+          "candidate_id": 9,
+          "task_gain": 8.520268272528881,
+          "generic_gain": 189.16281562436097,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 952.7125000000001,
+          "visible_cells": 972
+        },
+        {
+          "candidate_id": 10,
+          "task_gain": 0.0,
+          "generic_gain": 17.700067122549104,
+          "common_penalty": 0.6081043795872879,
+          "summed_observation_opportunity": 72.3,
+          "visible_cells": 76
+        },
+        {
+          "candidate_id": 11,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 12,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 13,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 14,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7062791500119691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 15,
+          "task_gain": 8.93839137382141,
+          "generic_gain": 126.1764374319024,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 768.2125,
+          "visible_cells": 782
+        },
+        {
+          "candidate_id": 16,
+          "task_gain": 8.499416989262325,
+          "generic_gain": 239.8948208548461,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 1099.1999999999998,
+          "visible_cells": 1108
+        },
+        {
+          "candidate_id": 17,
+          "task_gain": 7.366863077099883,
+          "generic_gain": 123.29809016289171,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 688.3,
+          "visible_cells": 697
+        },
+        {
+          "candidate_id": 18,
+          "task_gain": 0.0,
+          "generic_gain": 0.27864236596929903,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 1.925,
+          "visible_cells": 2
+        },
+        {
+          "candidate_id": 19,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 20,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 21,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 22,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 23,
+          "task_gain": 8.207499023530533,
+          "generic_gain": 160.55002115694373,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 764.7624999999999,
+          "visible_cells": 780
+        },
+        {
+          "candidate_id": 24,
+          "task_gain": 7.744381047820697,
+          "generic_gain": 233.579142796059,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 983.575,
+          "visible_cells": 992
+        },
+        {
+          "candidate_id": 25,
+          "task_gain": 9.178462506994752,
+          "generic_gain": 175.54512798680327,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 1068.7125,
+          "visible_cells": 1082
+        },
+        {
+          "candidate_id": 26,
+          "task_gain": 0.08779487691181713,
+          "generic_gain": 50.82341844305303,
+          "common_penalty": 0.29908738521234046,
+          "summed_observation_opportunity": 365.21250000000003,
+          "visible_cells": 377
+        },
+        {
+          "candidate_id": 27,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 28,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 29,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 30,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 31,
+          "task_gain": 0.8340513306622628,
+          "generic_gain": 31.059698318150907,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 319.91249999999997,
+          "visible_cells": 331
+        },
+        {
+          "candidate_id": 32,
+          "task_gain": 9.280791393777498,
+          "generic_gain": 163.07020988962148,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 1011.4,
+          "visible_cells": 1028
+        },
+        {
+          "candidate_id": 33,
+          "task_gain": 8.874740088060342,
+          "generic_gain": 96.76842453967635,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 743.3125,
+          "visible_cells": 754
+        },
+        {
+          "candidate_id": 34,
+          "task_gain": 0.0,
+          "generic_gain": 5.818586774212825,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 26.6125,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 35,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 36,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302952,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 37,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 38,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 39,
+          "task_gain": 5.6858157160015566,
+          "generic_gain": 58.62215518249237,
+          "common_penalty": 0.45172816101795477,
+          "summed_observation_opportunity": 515.525,
+          "visible_cells": 526
+        },
+        {
+          "candidate_id": 40,
+          "task_gain": 8.912052910747866,
+          "generic_gain": 134.2851876345614,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 846.5875,
+          "visible_cells": 853
+        },
+        {
+          "candidate_id": 41,
+          "task_gain": 6.906052239194329,
+          "generic_gain": 48.53815136292911,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 386.3125,
+          "visible_cells": 391
+        },
+        {
+          "candidate_id": 42,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6081043795872879,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 43,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 44,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 45,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 46,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7062791500119691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 47,
+          "task_gain": 8.247118984022336,
+          "generic_gain": 85.09669040846815,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 564.0,
+          "visible_cells": 571
+        },
+        {
+          "candidate_id": 48,
+          "task_gain": 8.128483634309898,
+          "generic_gain": 119.3698543095442,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 665.6249999999999,
+          "visible_cells": 671
+        },
+        {
+          "candidate_id": 49,
+          "task_gain": 5.684718280040158,
+          "generic_gain": 59.44348542394273,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 550.3625,
+          "visible_cells": 557
+        },
+        {
+          "candidate_id": 50,
+          "task_gain": 0.0,
+          "generic_gain": 3.5630598326175553,
+          "common_penalty": 0.29908738521234046,
+          "summed_observation_opportunity": 33.375,
+          "visible_cells": 35
+        },
+        {
+          "candidate_id": 51,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 52,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 53,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 54,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 55,
+          "task_gain": 0.0,
+          "generic_gain": 18.56303898313884,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 204.5375,
+          "visible_cells": 206
+        },
+        {
+          "candidate_id": 56,
+          "task_gain": 8.263692789324786,
+          "generic_gain": 73.35866276810515,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 679.375,
+          "visible_cells": 684
+        },
+        {
+          "candidate_id": 57,
+          "task_gain": 1.316923153677257,
+          "generic_gain": 18.438333162233995,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 205.47500000000002,
+          "visible_cells": 207
+        },
+        {
+          "candidate_id": 58,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5490873852123405,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 59,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 60,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 61,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 62,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 63,
+          "task_gain": 1.9314872920599766,
+          "generic_gain": 38.64607003194186,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 374.6375,
+          "visible_cells": 377
+        },
+        {
+          "candidate_id": 64,
+          "task_gain": 7.16735426388847,
+          "generic_gain": 51.677539806882024,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 510.2125,
+          "visible_cells": 513
+        },
+        {
+          "candidate_id": 65,
+          "task_gain": 3.775179707208136,
+          "generic_gain": 78.62737673779003,
+          "common_penalty": 0.25,
+          "summed_observation_opportunity": 590.175,
+          "visible_cells": 593
+        },
+        {
+          "candidate_id": 66,
+          "task_gain": 0.0,
+          "generic_gain": 47.273872965588225,
+          "common_penalty": 0.29908738521234046,
+          "summed_observation_opportunity": 291.15,
+          "visible_cells": 294
+        },
+        {
+          "candidate_id": 67,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 68,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 69,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.44634954084936207,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 70,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.3972621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 71,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.34817477042468103,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 72,
+          "task_gain": 1.4925129075008912,
+          "generic_gain": 42.22734191786698,
+          "common_penalty": 0.2990873852123406,
+          "summed_observation_opportunity": 403.1875,
+          "visible_cells": 406
+        },
+        {
+          "candidate_id": 73,
+          "task_gain": 0.0,
+          "generic_gain": 39.7256696866788,
+          "common_penalty": 0.3535533905932738,
+          "summed_observation_opportunity": 330.33750000000003,
+          "visible_cells": 332
+        },
+        {
+          "candidate_id": 74,
+          "task_gain": 0.0,
+          "generic_gain": 4.513892704139286,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 37.3125,
+          "visible_cells": 38
+        },
+        {
+          "candidate_id": 75,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.4517281610179548,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 76,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302952,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 77,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5499029314426358,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 78,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.5008155462302953,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 79,
+          "task_gain": 0.0,
+          "generic_gain": 2.3386360337385286,
+          "common_penalty": 0.45172816101795477,
+          "summed_observation_opportunity": 26.6375,
+          "visible_cells": 27
+        },
+        {
+          "candidate_id": 80,
+          "task_gain": 0.3193538647667348,
+          "generic_gain": 38.03012660072801,
+          "common_penalty": 0.4026407758056143,
+          "summed_observation_opportunity": 364.1625,
+          "visible_cells": 366
+        },
+        {
+          "candidate_id": 81,
+          "task_gain": 0.0,
+          "generic_gain": 19.06567418168897,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 158.9875,
+          "visible_cells": 160
+        },
+        {
+          "candidate_id": 82,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6081043795872879,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 83,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 84,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 85,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 86,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7062791500119691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 87,
+          "task_gain": 0.0,
+          "generic_gain": 10.383939066745171,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 118.275,
+          "visible_cells": 119
+        },
+        {
+          "candidate_id": 88,
+          "task_gain": 0.08779487691181713,
+          "generic_gain": 34.99985505051695,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 343.1,
+          "visible_cells": 344
+        },
+        {
+          "candidate_id": 89,
+          "task_gain": 0.0,
+          "generic_gain": 41.08943465397014,
+          "common_penalty": 0.5,
+          "summed_observation_opportunity": 288.05,
+          "visible_cells": 289
+        },
+        {
+          "candidate_id": 90,
+          "task_gain": 0.0,
+          "generic_gain": 45.805529524554565,
+          "common_penalty": 0.5490873852123405,
+          "summed_observation_opportunity": 237.3375,
+          "visible_cells": 238
+        },
+        {
+          "candidate_id": 91,
+          "task_gain": 0.0,
+          "generic_gain": 0.289498562046025,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 2.0,
+          "visible_cells": 2
+        },
+        {
+          "candidate_id": 92,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370215,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 93,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6963495408493621,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 94,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6472621556370216,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 95,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.598174770424681,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 96,
+          "task_gain": 0.0,
+          "generic_gain": 6.483514171202749,
+          "common_penalty": 0.5490873852123406,
+          "summed_observation_opportunity": 66.7125,
+          "visible_cells": 67
+        },
+        {
+          "candidate_id": 97,
+          "task_gain": 0.0,
+          "generic_gain": 10.169235444650017,
+          "common_penalty": 0.5590169943749475,
+          "summed_observation_opportunity": 84.8125,
+          "visible_cells": 85
+        },
+        {
+          "candidate_id": 98,
+          "task_gain": 0.0,
+          "generic_gain": 0.5457269793135574,
+          "common_penalty": 0.6081043795872879,
+          "summed_observation_opportunity": 5.7375,
+          "visible_cells": 6
+        },
+        {
+          "candidate_id": 99,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 100,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.706279150011969,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 101,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7553665352243095,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 102,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.7062791500119691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 103,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.6571917647996285,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 104,
+          "task_gain": 0.0,
+          "generic_gain": 1.1434160058949323,
+          "common_penalty": 0.608104379587288,
+          "summed_observation_opportunity": 12.375,
+          "visible_cells": 13
+        },
+        {
+          "candidate_id": 105,
+          "task_gain": 0.0,
+          "generic_gain": 1.4616724347002694,
+          "common_penalty": 0.7071067811865476,
+          "summed_observation_opportunity": 16.0,
+          "visible_cells": 16
+        },
+        {
+          "candidate_id": 106,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.756194166398888,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 107,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 108,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235691,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 109,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.9034563220359096,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 110,
+          "task_gain": 0.0,
+          "generic_gain": 0.0,
+          "common_penalty": 0.8543689368235692,
+          "summed_observation_opportunity": 0.0,
+          "visible_cells": 0
+        },
+        {
+          "candidate_id": 111,
+          "task_gain": 0.0,
+          "generic_gain": 0.43897438455908566,
+          "common_penalty": 0.8052815516112286,
+          "summed_observation_opportunity": 5.0,
+          "visible_cells": 5
+        },
+        {
+          "candidate_id": 112,
+          "task_gain": 0.0,
+          "generic_gain": 0.2633846307354514,
+          "common_penalty": 0.7561941663988881,
+          "summed_observation_opportunity": 3.0,
+          "visible_cells": 3
+        }
+      ],
+      "snapshot": "outputs/development/fixed-version/slot-10-moderate02-ours/attempt/data/rounds/round-03",
+      "actual_method": "ours",
+      "round": 3,
+      "confirmed_candidate_count": 1
+    }
+  ],
+  "snapshot_count": 3,
+  "all_identity_checks_pass": true,
+  "differing_selection_snapshots": 3,
+  "note": "Both scores use each saved snapshot's single ordered candidate set, visibility tensor and cost. This is not a claim that divergent closed-loop trials share later states. Ablation snapshots also retain the original shared ranking; variant decisions are separate."
+}

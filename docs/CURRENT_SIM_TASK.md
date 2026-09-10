@@ -5,6 +5,11 @@ This is the current program entry, not a formal experiment or an automatic matri
 The default target is the known red brick class/dimensions in the configured initial
 camera search region; this is not arbitrary object/world search.
 
+The latest [fixed-version paired development evaluation](FIXED_VERSION_PAIRED_RESULTS.md)
+ran twelve fresh sensor-to-retrieval tasks without runtime changes: eleven physical
+successes and one three-window support-deficit failure. See that report for exact
+AGENT/SIM/RM4D commits, configuration, paired outcomes and measurement limits.
+
 ## Start and inspect
 
 From the AGENT repository, a fresh natural scene and Ours:

@@ -23,6 +23,13 @@ python3 scripts/run_retrieval.py status outputs/tasks/natural-001
 
 ## 已做到哪里
 
+[最新固定版本六场景配对评估](docs/FIXED_VERSION_PAIRED_RESULTS.md)：12 次计划任务
+全部完成，无额外启动或运行中改参；Ours 6/6、Generic 5/6。唯一失败是
+Hard02/Generic 三窗后仍缺真实 ground support；其余11次均由程序自主选站，完成
+导航、精定位、物理抓取、提升与短时保持。一个 discordant pair 和一组少用一窗
+只是值得独立验证的开发信号，不是统计优势。成功任务的距离缺测保留；共用执行层
+未再表现为系统性阻断。建议转入正式实验方案设计，不继续主动增加功能或恢复旧矩阵。
+
 [此前六场景 Generic/Ours 配对开发结果](docs/DEV_MULTISCENE_PAIRED_RESULTS.md)：
 12 次自然任务中，8 次 confirmed，8 次完成实际 Ground 抓取/提升/保持，7 次原独立
 retrieval 检查通过；4 次 Hard 缺真实地面支持，1 次检查器缺早期观测。历史原结果保留。
