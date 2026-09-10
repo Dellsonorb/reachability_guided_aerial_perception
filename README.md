@@ -6,6 +6,10 @@ D435 精定位、AUBO i5 / AG95 的碰撞感知规划与物理夹持完成提升
 
 ## 当前启动入口
 
+[评估版本说明：依赖、叠加 PR、配置与能力边界](docs/EVALUATION_VERSION.md)；
+[正式实验方案（仅设计，未启动）](docs/PAPER1_FORMAL_EXPERIMENT_PLAN.md)。
+两仓库使用同名 `paper1-eval-finite-scan-v1` tag；历史 `main` 不是最新评估栈。
+
 ```bash
 # 查看实际共用配置，不启动机器人
 python3 scripts/run_retrieval.py run --dry-run --output-dir outputs/tasks/natural-001

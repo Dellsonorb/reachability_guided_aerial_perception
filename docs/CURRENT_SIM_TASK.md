@@ -5,6 +5,10 @@ This is the current program entry, not a formal experiment or an automatic matri
 The default target is the known red brick class/dimensions in the configured initial
 camera search region; this is not arbitrary object/world search.
 
+The named [evaluation version and dependency/PR index](EVALUATION_VERSION.md)
+preserves this executable profile. The [formal proposal](PAPER1_FORMAL_EXPERIMENT_PLAN.md)
+does not launch a matrix or change this entry's historical development-mode flag.
+
 The latest [fixed-version paired development evaluation](FIXED_VERSION_PAIRED_RESULTS.md)
 ran twelve fresh sensor-to-retrieval tasks without runtime changes: eleven physical
 successes and one three-window support-deficit failure. See that report for exact
