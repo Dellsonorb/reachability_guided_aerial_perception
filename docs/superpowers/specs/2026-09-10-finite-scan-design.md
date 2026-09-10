@@ -103,8 +103,9 @@ change, not an operational gate or confirmation change. `operational_occlusion.p
 holds this small pure geometry function; shared ranking passes it to the predictor.
 
 The independent 1 m lattice probe found joint-phase completing opportunities in
-both Hard02 recordings absent from their original lattice; it still found none
-for Hard01. Enable the common 1 m XY lattice within the unchanged ±2 m extent,
+both Hard02 recordings absent from their original lattice; Hard01 Ours still had
+none, while Hard01 Generic retained its one original completing pair. Enable the
+common 1 m XY lattice within the unchanged ±2 m extent,
 flight bounds and altitude. Both methods receive the same superset; development
 candidate IDs/order can differ from old records and are logged explicitly. This
 is not a success claim or a change to the three-window budget. Do not introduce

@@ -49,6 +49,12 @@ explicit timestamp queries and immediate timeout-zero capture checks are unchang
 The callback-readiness patch passed the natural complete task in this next batch
 at `73902d9` (code unchanged from `1b01750`). Finite-scan changes are separately
 versioned and their online results are recorded in `FINITE_SCAN_DEVELOPMENT.md`.
+At `66c20aa`, measured flight bounds also participate in the commanded arrival
+dwell **before** HOVER latches the current position. Capture's first transient
+out-of-bounds pose goes through its existing bounded stable-dwell check; a
+persistent violation still fails without producing an observation. The original
+position/yaw/speed/freshness, timeout and packet-level bounds checks are retained.
+This is sampled readiness, not continuous-time containment assurance.
 If the local Gazebo renderer needs an existing X session, set the same
 `P450_GAZEBO_DISPLAY`/`P450_GAZEBO_XAUTHORITY` pair used by SIM; these are platform
 environment inputs, not perception data. No GUI/GT clicking is needed.
@@ -135,3 +141,6 @@ required; genuine unknown remains blocking for confirmation. Failing in the
 three-window budget is an explained task failure, not an instruction to add votes
 or automatically rerun. Arbitrary target search, calibrated real-world performance
 and statistically established task-weighting advantage are not claimed.
+
+Latest bounded development results, including all failures and version separation:
+[FINITE_SCAN_DEVELOPMENT_RESULTS.md](FINITE_SCAN_DEVELOPMENT_RESULTS.md).

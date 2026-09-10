@@ -1,0 +1,836 @@
+{
+  "kind": "frozen_footprint_joint_phase_inventory",
+  "no_observations_generated": true,
+  "no_mapper_updates": true,
+  "no_gt_geometry": true,
+  "model_metadata": {
+    "scan_path": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/scan_mode/mid360.csv",
+    "scan_sha256": "aa1fc08b6a4400608dbd6ee832b7ea3a9c3c37197e734f60f58fe5abf762269a",
+    "publisher_sdf_path": "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/install/p450-clean/share/sim_platform_assets/models/MID360/MID360.sdf",
+    "publisher": {
+      "samples": 10000,
+      "downsample": 1,
+      "update_rate_hz": 10.0,
+      "horizontal": {
+        "samples": 100,
+        "resolution": 1.0,
+        "min_angle_rad": 0.0,
+        "max_angle_rad": 6.2831852,
+        "range_count": 100
+      },
+      "vertical": {
+        "samples": 360,
+        "resolution": 1.0,
+        "min_angle_rad": -0.925024488,
+        "max_angle_rad": 0.122173046,
+        "range_count": 360
+      }
+    },
+    "rows": 800000,
+    "packet_rows": 10000,
+    "packet_count": 80,
+    "emitted_rows": 799252,
+    "packet_period_s": 0.1,
+    "window_s": 5.0,
+    "window_packets": 51,
+    "phase_prior": "uniform_cyclic_packet_starts",
+    "phase_fraction_not_calibrated": true,
+    "nominal_pose": "level_hover_with_fixed_sensor_mount",
+    "ground_intersections_are_observations": false
+  },
+  "runs": [
+    {
+      "run": "launch-05-hard01-generic",
+      "inventories": [
+        {
+          "lattice": "original_2m",
+          "candidates": 65,
+          "sum_prediction_s": 1.9724871260405052,
+          "best_any_positive_pair": [
+            82,
+            82
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -1.4293047855155185,
+                -2.045369566267527,
+                1.2861442082527883
+              ],
+              "yaw": 0.7725776205975636
+            },
+            {
+              "xyz": [
+                -1.4293047855155185,
+                -2.045369566267527,
+                1.2861442082527883
+              ],
+              "yaw": 0.7725776205975636
+            }
+          ],
+          "best_missing_cells": 1,
+          "best_source_id": 623,
+          "residual_cells": [
+            {
+              "cell_id": 781,
+              "raw_a2_state": 100,
+              "ground_presence": 1,
+              "evidence": {
+                "target_occupied_votes": 1,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        },
+        {
+          "lattice": "midpoint_1m",
+          "candidates": 200,
+          "sum_prediction_s": 6.340591491141822,
+          "best_any_positive_pair": [
+            82,
+            82
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -1.4293047855155185,
+                -2.045369566267527,
+                1.2861442082527883
+              ],
+              "yaw": 0.7725776205975636
+            },
+            {
+              "xyz": [
+                -1.4293047855155185,
+                -2.045369566267527,
+                1.2861442082527883
+              ],
+              "yaw": 0.7725776205975636
+            }
+          ],
+          "best_missing_cells": 1,
+          "best_source_id": 623,
+          "residual_cells": [
+            {
+              "cell_id": 781,
+              "raw_a2_state": 100,
+              "ground_presence": 1,
+              "evidence": {
+                "target_occupied_votes": 1,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 1,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        }
+      ]
+    },
+    {
+      "run": "launch-06-hard01-ours",
+      "inventories": [
+        {
+          "lattice": "original_2m",
+          "candidates": 65,
+          "sum_prediction_s": 2.0174520609143656,
+          "best_any_positive_pair": [
+            82,
+            82
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -1.418536530838355,
+                -2.0945083774788964,
+                1.2962053525695432
+              ],
+              "yaw": 0.7744075861930404
+            },
+            {
+              "xyz": [
+                -1.418536530838355,
+                -2.0945083774788964,
+                1.2962053525695432
+              ],
+              "yaw": 0.7744075861930404
+            }
+          ],
+          "best_missing_cells": 2,
+          "best_source_id": 623,
+          "residual_cells": [
+            {
+              "cell_id": 419,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                0.0,
+                0.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 459,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                0.0,
+                0.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        },
+        {
+          "lattice": "midpoint_1m",
+          "candidates": 200,
+          "sum_prediction_s": 6.3453867858916055,
+          "best_any_positive_pair": [
+            82,
+            82
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -1.418536530838355,
+                -2.0945083774788964,
+                1.2962053525695432
+              ],
+              "yaw": 0.7744075861930404
+            },
+            {
+              "xyz": [
+                -1.418536530838355,
+                -2.0945083774788964,
+                1.2962053525695432
+              ],
+              "yaw": 0.7744075861930404
+            }
+          ],
+          "best_missing_cells": 2,
+          "best_source_id": 623,
+          "residual_cells": [
+            {
+              "cell_id": 419,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                0.0,
+                0.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 459,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                0.0,
+                0.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        }
+      ]
+    },
+    {
+      "run": "launch-11-hard02-ours",
+      "inventories": [
+        {
+          "lattice": "original_2m",
+          "candidates": 65,
+          "sum_prediction_s": 2.007140396919567,
+          "best_any_positive_pair": [
+            1,
+            1
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -3.429922492729604,
+                -2.0639930630118832,
+                1.285227378653837
+              ],
+              "yaw": -0.011506447807688946
+            },
+            {
+              "xyz": [
+                -3.429922492729604,
+                -2.0639930630118832,
+                1.285227378653837
+              ],
+              "yaw": -0.011506447807688946
+            }
+          ],
+          "best_missing_cells": 7,
+          "best_source_id": 501,
+          "residual_cells": [
+            {
+              "cell_id": 697,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 698,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 699,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 700,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 740,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 741,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 742,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        },
+        {
+          "lattice": "midpoint_1m",
+          "candidates": 200,
+          "sum_prediction_s": 6.282811962912092,
+          "best_any_positive_pair": [
+            41,
+            41
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -2.429922492729604,
+                -2.0639930630118832,
+                1.285227378653837
+              ],
+              "yaw": -0.011506447807688946
+            },
+            {
+              "xyz": [
+                -2.429922492729604,
+                -2.0639930630118832,
+                1.285227378653837
+              ],
+              "yaw": -0.011506447807688946
+            }
+          ],
+          "best_missing_cells": 0,
+          "best_source_id": 582,
+          "residual_cells": [],
+          "any_positive_completing_pairs": 1,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                41,
+                41
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.429922492729604,
+                    -2.0639930630118832,
+                    1.285227378653837
+                  ],
+                  "yaw": -0.011506447807688946
+                },
+                {
+                  "xyz": [
+                    -2.429922492729604,
+                    -2.0639930630118832,
+                    1.285227378653837
+                  ],
+                  "yaw": -0.011506447807688946
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 582,
+                  "candidate_id": "candidate-000007",
+                  "cells": 106,
+                  "complete_phase_start_pairs": 2500,
+                  "total_phase_start_pairs": 6400
+                },
+                {
+                  "source_id": 501,
+                  "candidate_id": "candidate-000011",
+                  "cells": 101,
+                  "complete_phase_start_pairs": 6241,
+                  "total_phase_start_pairs": 6400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run": "launch-12-hard02-generic",
+      "inventories": [
+        {
+          "lattice": "original_2m",
+          "candidates": 65,
+          "sum_prediction_s": 1.9411276820173953,
+          "best_any_positive_pair": [
+            1,
+            1
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -3.4217730771011263,
+                -2.090043760606381,
+                1.2881941235993568
+              ],
+              "yaw": -0.010379273828591273
+            },
+            {
+              "xyz": [
+                -3.4217730771011263,
+                -2.090043760606381,
+                1.2881941235993568
+              ],
+              "yaw": -0.010379273828591273
+            }
+          ],
+          "best_missing_cells": 4,
+          "best_source_id": 541,
+          "residual_cells": [
+            {
+              "cell_id": 697,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 698,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 740,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "cell_id": 741,
+              "raw_a2_state": -1,
+              "ground_presence": 0,
+              "evidence": {
+                "target_occupied_votes": 0,
+                "environment_occupied_votes": 0,
+                "ambiguous_occupied_votes": 0,
+                "ground_votes": 0
+              },
+              "pair_scan_only_phase_opportunity": [
+                1.0,
+                1.0
+              ],
+              "pair_ray_prism_phase_opportunity": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "any_positive_completing_pairs": 0,
+          "joint_phase_inventory": []
+        },
+        {
+          "lattice": "midpoint_1m",
+          "candidates": 200,
+          "sum_prediction_s": 6.179713090998121,
+          "best_any_positive_pair": [
+            41,
+            41
+          ],
+          "best_pair_poses": [
+            {
+              "xyz": [
+                -2.4217730771011263,
+                -2.090043760606381,
+                1.2881941235993568
+              ],
+              "yaw": -0.010379273828591273
+            },
+            {
+              "xyz": [
+                -2.4217730771011263,
+                -2.090043760606381,
+                1.2881941235993568
+              ],
+              "yaw": -0.010379273828591273
+            }
+          ],
+          "best_missing_cells": 0,
+          "best_source_id": 623,
+          "residual_cells": [],
+          "any_positive_completing_pairs": 4,
+          "joint_phase_inventory": [
+            {
+              "pair": [
+                41,
+                41
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 623,
+                  "candidate_id": "candidate-000007",
+                  "cells": 106,
+                  "complete_phase_start_pairs": 3456,
+                  "total_phase_start_pairs": 6400
+                },
+                {
+                  "source_id": 541,
+                  "candidate_id": "candidate-000011",
+                  "cells": 103,
+                  "complete_phase_start_pairs": 6400,
+                  "total_phase_start_pairs": 6400
+                }
+              ]
+            },
+            {
+              "pair": [
+                41,
+                42
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 541,
+                  "candidate_id": "candidate-000011",
+                  "cells": 103,
+                  "complete_phase_start_pairs": 3840,
+                  "total_phase_start_pairs": 6400
+                }
+              ]
+            },
+            {
+              "pair": [
+                42,
+                41
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": -0.010379273828591273
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 541,
+                  "candidate_id": "candidate-000011",
+                  "cells": 103,
+                  "complete_phase_start_pairs": 3840,
+                  "total_phase_start_pairs": 6400
+                }
+              ]
+            },
+            {
+              "pair": [
+                42,
+                42
+              ],
+              "poses": [
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                },
+                {
+                  "xyz": [
+                    -2.4217730771011263,
+                    -2.090043760606381,
+                    1.2881941235993568
+                  ],
+                  "yaw": 0.775018889568857
+                }
+              ],
+              "exact_winners": [
+                {
+                  "source_id": 541,
+                  "candidate_id": "candidate-000011",
+                  "cells": 103,
+                  "complete_phase_start_pairs": 2304,
+                  "total_phase_start_pairs": 6400
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The frozen belief and exact footprints do not change after hypothetical views.",
+    "Any-positive cell masks alone are an optimistic upper bound because cells share packet phases.",
+    "Enumerated phase-start pairs demonstrate joint geometric opportunity conditional on both poses, not independent probabilities, future timing feasibility or task success.",
+    "No drift, dropout or unknown occluders enter the hypothetical models.",
+    "Residual vote classifications are recorded endpoint categories; they do not authorize changing occupied geometry or operational gates."
+  ]
+}

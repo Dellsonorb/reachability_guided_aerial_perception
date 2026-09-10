@@ -23,21 +23,30 @@ python3 scripts/run_retrieval.py status outputs/tasks/natural-001
 
 ## 已做到哪里
 
-[最近六场景 Generic/Ours 配对开发结果](docs/DEV_MULTISCENE_PAIRED_RESULTS.md)：
+[此前六场景 Generic/Ours 配对开发结果](docs/DEV_MULTISCENE_PAIRED_RESULTS.md)：
 12 次自然任务中，8 次 confirmed，8 次完成实际 Ground 抓取/提升/保持，7 次原独立
 retrieval 检查通过；4 次 Hard 缺真实地面支持，1 次检查器缺早期观测。历史原结果保留。
 
 当前开发在此基础上修复检查器观测保留，提供统一任务入口，并增加共用
 `screened_candidate` 停止规则：真实观测确认 + 完整机器人操作预检通过后交接，
 无需仅因尚有未知区域就耗完三窗。到位后仍用实际姿态和新近场感知重新规划；
-预检不等于实际 `D_exec`。[本轮四次启动与最新修订](docs/TASK_HANDOFF_DEVELOPMENT_RESULTS.md)：
-两次真实 retrieval 成功（分别2/3窗），两次运行时失败保留；最新 TF 等待补丁
-仅做了离线回归，不能与此前在线版本混为一谈。
+预检不等于实际 `D_exec`。[此前四次启动](docs/TASK_HANDOFF_DEVELOPMENT_RESULTS.md)
+的两次成功、两次运行时失败仍保留。
 
-[当前设计](docs/superpowers/specs/2026-09-10-task-handoff-design.md)；
+[最新有限扫描开发批次](docs/FINITE_SCAN_DEVELOPMENT_RESULTS.md)已完成六次启动：
+基线自然任务成功；新版 Hard Ours、Moderate Generic/Ours 均完成真实 retrieval；
+Hard Generic 的越界采集失败保留。共用到位/HOVER 就绪缺陷修复后，最新版
+自然完整任务再次成功，程序自主选站，物体实际升高149.0 mm并短时保持。
+Moderate 配对分别用2窗（Ours）/3窗（Generic），但不据此宣称统计优势。
+
+[任务交接设计](docs/superpowers/specs/2026-09-10-task-handoff-design.md)；
 [Hard 理想观测机会与真实支持诊断](outputs/development/task-handoff-analysis/REPORT.md)。
 [进一步扫描/回波诊断](outputs/development/task-handoff-analysis/SCAN-PATTERN-REPORT.md)
 确认 nominal FOV 内的 cell 不一定在有限扫描窗口中获得真实 ground endpoint。
+现已接入[有限扫描机会模型](docs/superpowers/specs/2026-09-10-finite-scan-design.md)：
+读取真实传感器方向程序，逐射线地面投影与局部遮挡，共用1 m视点格点。
+六个新版实际后续观测窗口的支持区域漏预测69→43 cell-window，误报4→4；
+漂移和保守遮挡仍产生误差，预测不代替任何真实回波或支持票。
 尚未证明 Ours 的统计优势，未启动新的正式矩阵。
 
 ## 代码边界
@@ -58,8 +67,8 @@ Gazebo GT 只用于仿真场景初始化和外部结果测量，从不作为算�
 ## 范围与历史
 
 当前是已知砖块类型、初始相机搜索区域、静态水平地面和有界作业区内的开发程序，
-不是任意场景/物体搜索。LiDAR 可见性是理想 endpoint opportunity，不保证实际
-回波；12mm 是开发净空余量，不是校准安全保证。未满足真实支持、规划或抓取
+不是任意场景/物体搜索。LiDAR 模型是名义悬停下的有限扫描相位机会，不是校准
+回波概率；旧配置保留理想模型。12mm 是开发净空余量，不是校准安全保证。未满足真实支持、规划或抓取
 条件时报告失败，不补票、不瞬移、不伪造抓取。
 
 历史[原A5](docs/A5_SIM_ACTIVE_PERCEPTION.md)、[v1.1](docs/OBJECT_AWARE_GATING_V11.md)、

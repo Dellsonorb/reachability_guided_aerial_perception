@@ -47,3 +47,12 @@ the shared model/candidate set actually offers the missing support opportunities
 The detailed design and implementation plan will record the chosen representation,
 assumptions and tests after this initial diagnosis, under the user's autonomous
 local-design authorization. Do not start or resume formal experiments.
+
+## Closed batch
+
+All six starts are complete. Starts2–5 ran unchanged at `6cb5f0c`; the single
+recorded flight-bounds readiness defect was fixed at `66c20aa` after both pairs.
+Reserve6 was used once for the latest natural full-task regression and passed.
+No further online start or formal experiment belongs to this batch. Complete
+outcomes, prediction mismatch and remaining limits:
+[FINITE_SCAN_DEVELOPMENT_RESULTS.md](FINITE_SCAN_DEVELOPMENT_RESULTS.md).
