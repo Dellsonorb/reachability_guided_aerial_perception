@@ -1,4 +1,4 @@
-"""Compose frozen A1-A4 and recover exact, observed-ground-supported candidates."""
+"""Compose manipulation support, shared acquisition and exact Ground handoff."""
 
 from collections.abc import Mapping
 from dataclasses import asdict, dataclass
@@ -23,8 +23,18 @@ class A5Config:
     flight_bounds: tuple[float, ...] = (-4, 4, -3, 3, .5, 3)
     facade_position_tolerance: float = .15
     support_anchor: str = 'cell_center'
+    scan_pattern_path: str | None = None
+    scan_publisher_sdf_path: str | None = None
+    scan_window_s: float = 5.0
 
     def __post_init__(self):
+        if not np.isfinite(self.scan_window_s) or self.scan_window_s <= 0:
+            raise ValueError('scan_window_s must be finite and positive')
+        for path in (self.scan_pattern_path, self.scan_publisher_sdf_path):
+            if path is not None and (not isinstance(path, str) or not path.strip()):
+                raise ValueError('scan asset paths must be nonempty strings or None')
+        if self.scan_publisher_sdf_path is not None and self.scan_pattern_path is None:
+            raise ValueError('scan publisher requires a scan pattern')
         if self.support_anchor not in ('cell_center', 'exact_winner'):
             raise ValueError('support_anchor must be cell_center or exact_winner')
         if isinstance(self.max_viewpoints, bool) or not isinstance(self.max_viewpoints, Integral) or self.max_viewpoints < 1:
@@ -162,7 +172,16 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config(), opera
     if not candidates:
         raise ValueError('no viewpoint within the configured operating area')
     task = build_support_task(field, raw, belief, config, operational=operational)
-    ranking = rank_viewpoints(task, belief, current, candidates=candidates, config=nbv_config)
+    scan, occlusion = None, None
+    if config.scan_pattern_path is not None:
+        from reachability_guided_nbv.finite_scan import FiniteScan
+        scan = FiniteScan.from_csv(config.scan_pattern_path, window_s=config.scan_window_s,
+                                   publisher_sdf_path=config.scan_publisher_sdf_path)
+        if operational is not None:
+            from reachability_guided_nbv.operational_occlusion import build_operational_occlusion
+            occlusion = build_operational_occlusion(belief, operational, assumed_height_m=nbv_config.assumed_height_m)
+    ranking = rank_viewpoints(task, belief, current, candidates=candidates, config=nbv_config,
+                              scan=scan, occlusion=occlusion)
     assessments = assess_candidates(field, belief, candidate_catalog(field, raw), task=task, operational=operational)
     confirmed = [c for c in assessments if c['confirmed']]
     selected = max(confirmed, key=lambda c: c['relevance']) if confirmed else None
@@ -178,7 +197,8 @@ def decide(field, raw, belief, current, *, round_count, config=A5Config(), opera
                 assessments=assessments, environment_cells={s.name: int(np.count_nonzero(belief.state == s))
                                                            for s in EnvironmentState},
                 total_observation_votes=int(belief.observation_count.sum()),
-                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty)))
+                task_uncertainty_mass=float(np.nansum(task.task_relevant_uncertainty)),
+                acquisition=ranking.acquisition_metadata)
     if operational is not None:
         choice['operational_semantics'] = task.operational_semantics
     if task.anchor_semantics == 'exact-validated-winner-v1.2':

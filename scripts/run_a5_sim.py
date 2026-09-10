@@ -52,6 +52,10 @@ def build_parser():
     parser.add_argument("--cloud-timeout", type=float, default=20.)
     parser.add_argument("--cloud-window-s", type=float, default=5.,
                         help="stable hover duration of fresh Livox chunks per observation")
+    parser.add_argument('--scan-pattern-path', type=Path,
+                        help='explicit finite scan direction program; absent preserves idealized prediction')
+    parser.add_argument('--scan-publisher-sdf-path', type=Path,
+                        help='optional SIM publisher angular/rate definition for that scan program')
     parser.add_argument("--core-timeout", type=float, default=900.)
     parser.add_argument("--tf-max-age", type=float, default=.5)
     parser.add_argument("--tf-timeout", type=float, default=1.)
@@ -69,6 +73,15 @@ def build_parser():
 
 
 def validate_options(parser, options):
+    if options.scan_publisher_sdf_path is not None and options.scan_pattern_path is None:
+        parser.error('--scan-publisher-sdf-path requires --scan-pattern-path')
+    for name in ('scan_pattern_path', 'scan_publisher_sdf_path'):
+        path = getattr(options, name)
+        if path is not None:
+            path = path.expanduser().resolve()
+            if not path.is_file():
+                parser.error('required scan asset does not exist: %s' % path)
+            setattr(options, name, path)
     if options.handoff_stop == 'screened_candidate' and not options.execution_clearance:
         parser.error('--handoff-stop screened_candidate requires --execution-clearance')
     if options.execution_clearance and not options.full_robot_manipulation:
@@ -109,6 +122,14 @@ def validate_options(parser, options):
         options.rm4d_task_asset = options.rm4d_task_asset.expanduser().resolve()
         if not options.rm4d_task_asset.is_dir():
             parser.error("RM4D task asset directory does not exist: %s" % options.rm4d_task_asset)
+
+
+def acquisition_options(options):
+    """Use the actual capture duration, never a second independent scan budget."""
+    return dict(scan_pattern_path=None if getattr(options, 'scan_pattern_path', None) is None
+                else str(options.scan_pattern_path),
+                scan_publisher_sdf_path=None if getattr(options, 'scan_publisher_sdf_path', None) is None
+                else str(options.scan_publisher_sdf_path), scan_window_s=options.cloud_window_s)
 
 
 def build_demo_parameters(parameters, options):
@@ -548,7 +569,7 @@ def build_adapter_class(demo_module, options):
                                "support_anchor": getattr(options, 'support_anchor', 'cell_center'),
                                "flight_bounds": options.flight_bounds,
                                "facade_position_tolerance": options.facade_position_tolerance,
-                               "xy_offsets_m": options.xy_offsets_m},
+                               "xy_offsets_m": options.xy_offsets_m, **acquisition_options(options)},
                     **getattr(self, '_operational_init', {}),
                 }, "init")
                 self._a5_candidate_count = initial.get("candidate_count", 0)

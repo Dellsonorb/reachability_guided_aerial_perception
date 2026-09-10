@@ -111,6 +111,13 @@ def adapter_args(config, output, sim, rm):
         args += ['--support-anchor', config['support_anchor']]
     if 'handoff_stop' in config:
         args += ['--handoff-stop', config['handoff_stop']]
+    acquisition = config.get('acquisition_model', 'idealized')
+    if acquisition not in ('idealized', 'finite_scan_v1'):
+        raise ValueError('unsupported acquisition_model: %s' % acquisition)
+    if acquisition == 'finite_scan_v1':
+        model = sim / 'install/p450-clean/share/sim_platform_assets/models/MID360'
+        args += ['--scan-pattern-path', str(model / 'scan_mode/mid360.csv'),
+                 '--scan-publisher-sdf-path', str(model / 'MID360.sdf')]
     return args
 
 

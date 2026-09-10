@@ -1,6 +1,6 @@
 # Current sensor-driven retrieval task
 
-Development profile: `configs/current_sim_task.json`, `sensor-retrieval-screened-handoff-v1`.
+Development profile: `configs/current_sim_task.json`, `sensor-retrieval-finite-scan-v1`.
 This is the current program entry, not a formal experiment or an automatic matrix.
 The default target is the known red brick class/dimensions in the configured initial
 camera search region; this is not arbitrary object/world search.
@@ -46,8 +46,9 @@ timeout; another node's ready buffer is insufficient.
 Current-pose reads also wait within the existing `tf_timeout` wall-time allowance
 for an actually fresh sample. They do not accept a negative or excessive age;
 explicit timestamp queries and immediate timeout-zero capture checks are unchanged.
-This final callback-readiness patch was tested offline after the four-start cap;
-the latest complete online retrieval used commit `846debc`, before this patch.
+The callback-readiness patch passed the natural complete task in this next batch
+at `73902d9` (code unchanged from `1b01750`). Finite-scan changes are separately
+versioned and their online results are recorded in `FINITE_SCAN_DEVELOPMENT.md`.
 If the local Gazebo renderer needs an existing X session, set the same
 `P450_GAZEBO_DISPLAY`/`P450_GAZEBO_XAUTHORITY` pair used by SIM; these are platform
 environment inputs, not perception data. No GUI/GT clicking is needed.
@@ -72,6 +73,22 @@ candidates. Real MID360 endpoints/public TF update A2 and the v1.4 operational
 sidecar; exact-winner footprints form manipulation support. Generic/Ours use the
 same viewpoints, visibility, flight cost, three-window cap, sensing and execution;
 only the existing NBV gain weighting differs.
+
+The current profile uses the selected SIM's installed MID360 CSV and publisher
+SDF to predict actual nominal ray/ground-cell intersections. For a five-second
+first-to-last capture at 10 Hz, it considers 51 nominal packets and averages the
+binary cell-hit opportunity over all 80 cyclic start phases. This fraction is not
+a calibrated return probability and never creates ground evidence. The current
+common XY lattice is 1 m within the previous ±2 m extent; altitude, flight bounds,
+cost and observation budget are unchanged. Old profiles without this explicit
+acquisition option retain their idealized model and original candidate lattice.
+
+Prediction occluders now respect the existing operational geometry: the perceived
+target's expanded oriented box, complete AMBIGUOUS endpoint disks extruded to
+the 1 m assumed height, and full-cell ENVIRONMENT/missing-history prisms. A raw
+OCCUPIED cell does not veto rays elsewhere in that cell when its local evidence is
+available. This neither relabels ambiguity nor changes the collision gate or the
+requirement for two real ground-support observations.
 
 New explicit `--handoff-stop screened_candidate` changes the common task stop:
 after each completed real observation, confirmed candidates are screened in the
@@ -111,9 +128,9 @@ proposal; `A5_DECISION`/`A6_ACTIVE_STOP` events record the actual screened task 
 
 ## Known boundaries
 
-Static horizontal ground, fixed-height occlusion surrogate, finite grid and
-endpoint-opportunity visibility remain approximations. An ideal visible ground
-cell may receive no actual LiDAR endpoint. Whole-footprint repeated support is
+Static horizontal ground, nominal level hover, finite grid, unknown scan phase
+and assumed ENVIRONMENT/AMBIGUOUS heights remain approximations. Actual drift,
+packet loss and unknown occluders can change ground returns. Whole-footprint repeated support is
 required; genuine unknown remains blocking for confirmation. Failing in the
 three-window budget is an explained task failure, not an instruction to add votes
 or automatically rerun. Arbitrary target search, calibrated real-world performance

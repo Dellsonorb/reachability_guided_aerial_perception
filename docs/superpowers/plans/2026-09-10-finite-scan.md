@@ -13,6 +13,13 @@ capture duration. Historical idealized mode remains the default for old configs.
 
 **Tech Stack:** Existing Python 3.10/NumPy numerical worker and Python 3.8 ROS adapter.
 
+**Implementation checkpoint:** Steps 1–2 and the offline/model portions of step 3
+are complete. Start 1 physically retrieved and held the object. Numerical,
+file-boundary, policy and runtime-routing regressions passed, followed by an
+independent specification/code-quality review (no blocking finding). The detailed
+task list below retains the original test-first sequence. Starts 2–5 remain the
+required online verification; no claim of finite-model E2E success is made yet.
+
 ## 1. Baseline and exact model
 
 - [x] Preserve prior branch/history; run relevant legacy numerical tests.
@@ -49,6 +56,19 @@ capture duration. Historical idealized mode remains the default for old configs.
   method decisions, and serialization. Run legacy tests, inspect diff and commit.
 
 ## 3. Replay and bounded online batch
+
+- [ ] Additional concrete consistency test: an AMBIGUOUS disk on the left edge
+  of a raw OCCUPIED cell must not block a vertical ray through the separated right
+  side. The same disk, target box, ENVIRONMENT or missing history must still block
+  true intersections. Add `tests/test_operational_occlusion.py` first; implement
+  `src/reachability_guided_nbv/operational_occlusion.py` with actual closed cylinders
+  (not their AABBs), target OBB and fallback cell prisms. Pass one shared geometry
+  object through ranking to finite `predict`; never mutate raw context or votes.
+- [ ] Test that finite scan does not first cull raw OCCUPIED cells when this
+  explicit operational geometry is supplied, and that custom sensor mismatch
+  is rejected. Extend real file-boundary/policy tests for both methods.
+- [ ] Change only current profile offsets to `[-2,-1,0,1,2]` after the documented
+  offline common-candidate coverage finding; retain old/default profiles.
 
 - [ ] Independently review specification then code quality; resolve real issues.
 - [ ] Replay all eight existing Hard windows: compare old center model and actual

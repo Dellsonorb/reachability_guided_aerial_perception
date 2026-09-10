@@ -192,10 +192,11 @@ class FiniteScan:
             emitted_rows=int(self.emission_mask.sum()), packet_period_s=self.packet_period_s,
             window_s=self.window_s, window_packets=self._window_packets,
             phase_prior='uniform_cyclic_packet_starts', phase_fraction_not_calibrated=True,
+            angular_support='scan_directions_and_publisher_not_rectangular_center_fov',
             nominal_pose='level_hover_with_fixed_sensor_mount',
             ground_intersections_are_observations=False)
 
-    def predict(self, belief, viewpoint, config=NBVConfig()):
+    def predict(self, belief, viewpoint, config=NBVConfig(), *, occlusion=None):
         """Intersect scheduled rays and existing known prisms before cell binning."""
         grid = belief.grid
         shape = grid.shape
@@ -209,7 +210,9 @@ class FiniteScan:
         status = 'VALID'
         if origin[2] <= belief.config.ground_z_m:
             status = 'SENSOR_AT_OR_BELOW_GROUND'
-        elif np.any(np.all((origin >= lower) & (origin <= upper), axis=1)):
+        elif occlusion is not None and occlusion.contains(origin):
+            status = 'SENSOR_INSIDE_OPERATIONAL_OCCLUDER'
+        elif occlusion is None and np.any(np.all((origin >= lower) & (origin <= upper), axis=1)):
             status = 'SENSOR_INSIDE_ASSUMED_PRISM'
         if status == 'VALID':
             height = origin[2] - belief.config.ground_z_m
@@ -227,16 +230,21 @@ class FiniteScan:
             cells = rows[inside] * grid.width_cells + cols[inside]
             packet = self._packet_ids[inside_range][inside]
             ends = np.column_stack((x[inside], y[inside], np.full(inside.sum(), belief.config.ground_z_m)))
-            # The existing no-occlusion ablation also excludes occupied targets.
-            eligible = belief.state.ravel()[cells] != EnvironmentState.OCCUPIED
+            # Legacy raw-prism mode excludes whole occupied cells. Operational
+            # geometry must instead test actual rays even within a mixed cell.
+            eligible = (belief.state.ravel()[cells] != EnvironmentState.OCCUPIED if occlusion is None
+                        else np.ones(len(cells), dtype=bool))
             cells, packet, ends = cells[eligible], packet[eligible], ends[eligible]
             unoccluded_hits[packet, cells] = True
             active = np.ones(len(cells), dtype=bool)
             segment_lo, segment_hi = np.minimum(ends, origin), np.maximum(ends, origin)
-            for lo, hi in zip(lower, upper):
-                possible = active & np.all(segment_lo <= hi, axis=1) & np.all(segment_hi >= lo, axis=1)
-                indices = np.flatnonzero(possible)
-                active[indices] &= ~segments_intersect_box(origin, ends[indices], lo, hi)
+            if occlusion is not None:
+                active = ~occlusion.blocked(origin, ends)
+            else:
+                for lo, hi in zip(lower, upper):
+                    possible = active & np.all(segment_lo <= hi, axis=1) & np.all(segment_hi >= lo, axis=1)
+                    indices = np.flatnonzero(possible)
+                    active[indices] &= ~segments_intersect_box(origin, ends[indices], lo, hi)
             hits[packet[active], cells[active]] = True
         return FiniteScanPrediction(status,
             readonly(_phase_fraction(hits, self._window_packets).reshape(shape)),

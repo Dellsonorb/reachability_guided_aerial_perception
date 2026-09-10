@@ -80,3 +80,32 @@ pose drift and missed packets. Then run the bounded online schedule in
 
 Local design is decided under the user's explicit autonomous authorization;
 there is no new approval or evidence framework. No formal runs.
+
+## Evidence-driven consistency extension before the new online runs
+
+The exact per-ray prototype revealed a separate contradiction: Hard01 Generic
+source623 requires a second real ground presence in cell781. That cell already
+has one real ground vote and only TARGET/AMBIGUOUS occupied evidence, with complete
+endpoint history; its exact footprint is operationally viable. A whole-cell
+one-meter NBV prism predicts zero opportunity forever. Do not restore this removed
+cell-aliasing approximation in the acquisition layer.
+
+For finite mode with an operational context, use the existing perceived target's
+expanded oriented 3D box; retain each complete AMBIGUOUS endpoint's existing
+33 mm disk as a vertical cylinder from ground to the same assumed 1 m height.
+Do not relabel ambiguity as target, estimate its height from a target, or clear
+any vote. ENVIRONMENT and missing/unsupported ambiguity history retain full-cell
+prisms. Unknown remains transparent. Geometric ray filtering applies this union;
+a raw OCCUPIED cell is not separately culled. The no-occlusion variant omits this
+geometry union only; its raw ground intersections are still predictions, not votes.
+Sensor-origin checks use the same union. This is an acquisition-model consistency
+change, not an operational gate or confirmation change. `operational_occlusion.py`
+holds this small pure geometry function; shared ranking passes it to the predictor.
+
+The independent 1 m lattice probe found joint-phase completing opportunities in
+both Hard02 recordings absent from their original lattice; it still found none
+for Hard01. Enable the common 1 m XY lattice within the unchanged ±2 m extent,
+flight bounds and altitude. Both methods receive the same superset; development
+candidate IDs/order can differ from old records and are logged explicitly. This
+is not a success claim or a change to the three-window budget. Do not introduce
+sub-0.1 m pose search or a tuned completion objective.

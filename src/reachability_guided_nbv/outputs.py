@@ -25,8 +25,9 @@ def save_result(result, task, belief, output_dir):
     paths = {'ranking': directory / 'ranking.json', 'arrays': directory / 'fields.npz'}
     summary = {
         'gain_semantics': 'predicted_observation_gain_surrogate', 'status': result.status,
-        'formula': 'G_task = (1-exp(-1/tau)) * sum(V * U_task)',
-        'visibility_semantics': 'idealized_one_new_informative_endpoint_opportunity',
+        'formula': 'G_task = (1-exp(-1/tau)) * sum(observation_opportunity * U_task)',
+        'visibility_semantics': 'nonzero_observation_opportunity_not_guaranteed_return',
+        'acquisition': result.acquisition_metadata,
         'unknown_occludes': False, 'height_semantics': 'assumed_occlusion_surrogate_not_A2_measured_height',
         'flight_cost_semantics': 'straight_line_plus_yaw_proxy_not_path_or_energy',
         'current': asdict(result.current), 'config': asdict(result.config),
@@ -46,6 +47,8 @@ def save_result(result, task, belief, output_dir):
     arrays.update({f'a2_{name}': getattr(belief, name) for name in
                    ('state', 'occupied_evidence', 'free_evidence', 'observation_count', 'unknown_score')})
     np.savez_compressed(paths['arrays'], **arrays, visibility=result.visibility,
+                        observation_opportunity=result.observation_opportunity,
+                        unoccluded_opportunity=result.unoccluded_opportunity,
                         delta_unknown=result.delta_unknown, marginal_task_gain=result.marginal_task_gain,
                         task_contributions=np.stack([result.task_contribution(i) for i in range(len(result.candidates))]))
     return paths
@@ -79,9 +82,9 @@ def render_result(result, task, belief, output_path, *, title='A4 predicted obse
         if candidate is None:
             panel(axis, np.zeros(belief.grid.shape), f'{label}: no selection')
             continue
-        visible = result.visibility[candidate.candidate_id]
-        panel(axis, visible.astype(float),
-              f'{label} #{candidate.candidate_id}: predicted visibility (not observed free)')
+        opportunity = result.observation_opportunity[candidate.candidate_id]
+        panel(axis, opportunity,
+              f'{label} #{candidate.candidate_id}: observation opportunity (not observed free)')
         x, y, _ = candidate.viewpoint.position_xyz
         yaw = candidate.viewpoint.yaw_rad
         axis.plot(x, y, 'rx', markersize=8)
@@ -100,8 +103,9 @@ def render_result(result, task, belief, output_path, *, title='A4 predicted obse
     axes[5].set_title(f'lambda={result.config.flight_weight:g}; scores have different task weighting', fontsize=10)
     axes[5].legend()
     axes[5].grid(axis='y', alpha=.2)
-    figure.suptitle(title + f'\nH_assumed={result.config.assumed_height_m:g} m surrogate; '
-                   'UNKNOWN transparent; no real scan or flight', fontsize=13)
+    model = (result.acquisition_metadata or {}).get('model', 'idealized')
+    figure.suptitle(title + f'\n{model}; H_assumed={result.config.assumed_height_m:g} m surrogate; '
+                   'UNKNOWN transparent; predicted, not observed', fontsize=13)
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
