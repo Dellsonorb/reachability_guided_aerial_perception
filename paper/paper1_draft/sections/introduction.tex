@@ -1,0 +1,66 @@
+\section{Introduction}
+\label{sec:introduction}
+An aerial robot and a ground mobile manipulator offer complementary capabilities:
+the former can change its observation position without following a ground route,
+whereas the latter can support a manipulator and physically retrieve an object.
+Exploiting this complementarity requires more than detecting a target from the
+air. The ground robot must eventually occupy a suitable base pose, see the
+target at close range, and execute a collision-aware grasp and lift. Information
+that improves a map is therefore not necessarily information that makes the
+retrieval task executable.
+
+Next-best-view (NBV) planning provides a natural mechanism for deciding where
+to observe. Exploration and reconstruction approaches select measurements that
+reveal unmapped space or incompletely observed surfaces
+\cite{bircher2016nbv,border2018see}. Such objectives address their intended
+mapping tasks, but do not by themselves express the capabilities of a different
+robot that will act later. For retrieval, a large poorly observed area outside
+useful manipulator base placements can contribute substantial generic observation
+gain while providing little evidence about an executable manipulation pose.
+Conversely, a smaller unresolved region intersecting a promising base footprint
+may prevent the entire task from proceeding. With a finite sensing budget, this
+distinction makes the spatial allocation of observations consequential.
+
+Task-oriented view selection is not new: prior work selects views for grasp
+detection or decides when to stop observing and grasp
+\cite{gualtieri2017viewpoint,breyer2022target}. We address a different coupling.
+The aerial sensing robot does not execute the grasp, and the region that needs
+observation is not restricted to the object's visible surface. It depends on
+where the ground manipulator can stand, the area occupied by its base, and the
+operational constraints between that stance and a completed retrieval. The
+research question is whether these downstream manipulation requirements can
+guide aerial observation more effectively than a shared, information-centric
+NBV objective under the same observation budget.
+
+Our central idea is to propagate manipulation support backward into the sensing
+objective. Given an aerially perceived grasp target, an inverse-reachability
+query produces candidate base poses. Validated candidates supply a
+joint-margin-based manipulation relevance field. Their exact base footprints
+project this relevance into environment space, where it weights the current
+observation deficit. A finite-scan acquisition model then estimates which cells
+a candidate aerial view can observe during the next accepted window. The policy
+selects a view using the resulting task-weighted gain and a shared motion-cost
+proxy. After each observation, the system rechecks whether an exact base
+candidate is sufficiently observed and passes a common execution screen. This
+connects observation choice to a physical handoff rather than treating a heatmap
+or a reachable grasp as the final outcome.
+
+We make three contributions:
+\begin{enumerate}
+\item A manipulation-aware active-perception framework for heterogeneous
+aerial-ground retrieval, in which the ground robot's future operation informs
+the aerial robot's sensing decisions.
+\item A footprint-aware task relevance formulation that combines validated
+manipulator reachability, exact base-pose support and operational geometry with
+environmental observation deficit, while keeping unsupported capability,
+unobserved ground and observed collision evidence distinct.
+\item Closed-loop physics-based validation on P450, BUNKER, AUBO i5 and AG95,
+using 96 independent scenes and 192 primary paired trials with physical retrieval
+success as the primary endpoint. A controlled Generic/Ours comparison shares
+the sensing model, candidates, costs, budget and execution pipeline, isolating
+the observation-gain weighting.
+\end{enumerate}
+The proposed contribution is neither a new inverse-kinematics solver nor the
+shared platform corrections. The evaluation supports a success-rate advantage
+within the defined simulated task population; efficiency, failure mechanisms
+and transfer limitations are reported separately.

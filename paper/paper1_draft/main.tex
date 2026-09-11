@@ -1,0 +1,31 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\setlength{\emergencystretch}{2em}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\Dexec}{D_{\mathrm{exec}}}
+% Build with the working directory paper/paper1_draft. Existing assets are inputs.
+\newcommand{\assetdir}{../paper1_evaluation}
+\title{Manipulation-aware Active Perception for Aerial-Ground\\
+Cooperative Mobile Manipulation}
+\author{} % Authorship and affiliations must be supplied by the project authors.
+\date{Research manuscript first draft}
+
+\begin{document}
+\maketitle
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+\clearpage
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

@@ -1,0 +1,22 @@
+\begin{abstract}
+Aerial sensing can reveal regions that a ground robot cannot readily inspect,
+but maximizing environmental information alone need not reveal the locations
+that make a manipulation task executable. We study this mismatch in cooperative
+retrieval by an aerial robot and a ground mobile manipulator. Our framework
+projects validated inverse-reachability candidates through the ground robot's
+footprint to identify environment cells relevant to future manipulation. It
+combines this support with an observation-deficit field and a finite-window
+LiDAR acquisition model to select aerial viewpoints. A shared execution interface
+requires measured ground support, geometric compatibility and collision-aware
+manipulation screening before handoff; sensing predictions never count as
+observations. We evaluate the complete perception-to-retrieval loop on a
+P450--BUNKER--AUBO i5--AG95 physics-based simulation platform using 96 independent
+scenes and 192 primary paired trials. Under the same three-window observation
+budget, manipulation-aware selection achieves physical retrieval in 80/96
+scenes, compared with 56/96 for a generic NBV policy that differs only in gain
+weighting. The paired difference is 25.00 percentage points, with a prespecified
+conservative 95\% confidence interval of [8.56, 39.15] and an exact McNemar
+$p=8.43\times10^{-6}$. These results support task-conditioned sensing for the
+studied static, known-object retrieval population; they do not establish a
+general time-saving or real-robot performance claim.
+\end{abstract}

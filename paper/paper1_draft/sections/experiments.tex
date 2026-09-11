@@ -1,0 +1,145 @@
+\section{Experiments}
+\label{sec:experiments}
+\subsection{Platform and task}
+We evaluate the fixed \texttt{paper1-eval-finite-scan-v1} system in Gazebo
+physics-based simulation. P450 supplies aerial RGB-D and MID360 observations;
+BUNKER carries an AUBO i5 arm, an AG95 gripper and a wrist-mounted D435 camera.
+The shared stack uses PX4 SITL/Prometheus for aerial control, ROS navigation
+for the base, and MoveIt-based arm planning. Each task begins with normal aerial
+target perception and proceeds through the policy's own observations, base
+selection and robot execution. No successful base pose is manually assigned.
+The perceived target is a known brick on static horizontal ground. Physical
+grasping uses simulated contact and normal controller execution, not an object
+teleportation or a substituted success label.
+
+All methods use the same initial observation pose
+$(x,y,z,\psi)=(-1.4,0,1.2,0)$ in map, the same RGB-D acceptance gate, aligned
+$0.10\,\mathrm{m}$ fields, and the settings of Section~\ref{sec:method} where
+applicable. The actual collection revisions are AGENT \texttt{3d13a95},
+SIM \texttt{a0ae8e3} and original RM4D \texttt{e9d4312}, with the separately
+calibrated Ground-task asset. These identify the executed system rather than
+assuming that a later development tip reproduces it. No robot decision rule,
+scene seed, sensor gate or physical success predicate changed during collection.
+
+\subsection{Independent scenes and paired protocol}
+\label{sec:scenes}
+The primary study contains 96 independently sampled scenes. Difficulty is drawn
+independently with probability $1/3$ for Easy, Moderate and Hard, giving the
+prospectively fixed realization of 38, 28 and 30 scenes. Easy contains no wall,
+Moderate one wall, and Hard two walls. The walls are $1\,\mathrm{m}$ high;
+the Moderate wall is $1\,\mathrm{m}$ long and Hard walls $0.6\,\mathrm{m}$ long,
+all with $0.15\,\mathrm{m}$ thickness. Target position/yaw, initial base pose,
+and wall position/yaw are independently perturbed according to the frozen
+generation rules. The target is centered near $(2,0)$ and the base near
+$(3,-2.5)\,\mathrm{m}$. Target XY perturbations are bounded by $0.15\,\mathrm{m}$
+and yaw by $\pi/6$; wall-center perturbations are bounded by
+$0.15\,\mathrm{m}$ and wall yaw by $\pi/12$.
+
+The Hard generator introduces opportunities for occlusion alongside unknown
+space that need not support manipulation; it does not guarantee that each
+realization produces either a blocked useful region or a favorable method
+difference. Seeds were disjoint from development data, and the complete
+geometry, method order and auxiliary subsets were fixed before method runs.
+Admissibility checks concern initial geometry and sensor setup, not candidate
+counts, path existence, viewpoint scores or retrieval outcomes. Each scene is
+run once per primary method in the predeclared balanced/shuffled order, yielding
+192 planned primary trials. The paired scene, not the view or candidate, is the
+independent analysis unit. We retain the realized mixture rather than
+post-stratifying tiers after observing their outcomes.
+
+\subsection{Comparators and ablations}
+\label{sec:baselines}
+The sole primary contrast is \emph{Generic NBV} versus \emph{Ours}. Generic uses
+Eq.~\eqref{eq:genericgain}; Ours uses Eq.~\eqref{eq:taskgain}. They share initial
+conditions, candidate generation, finite-scan opportunity and occlusion, cost,
+observation budget, evidence updates, exact support, operational gating,
+candidate screening and the full execution pipeline. Their later measurements
+may differ because their actions differ. Generic is also the without-task-
+weighting ablation; it is not counted a second time.
+
+Two context controls run on six predefined scenes, the first two generated
+IDs in each tier. \emph{RM4D-only} uses the initial aerial RGB-D target and
+calibrated task-domain map, selects the baseline top candidate, and skips
+MID360 confirmation and pre-handoff multi-candidate screening. Downstream
+physical checks remain enabled. It is therefore a context control, not a
+controlled isolation of relevance weighting or a test of the original
+literature map's domain. \emph{Fixed-view} reobserves the current measured hover
+location without selecting translated NBVs, retaining the three-window cap and
+shared screening stop.
+
+On the first four generated Hard IDs, \emph{without occlusion} removes occlusion
+only from the predicted gain, not from collision blocking or execution checks;
+\emph{without flight cost} sets the policy flight weight to zero. The scheduled
+Ours counterpart is reused for each auxiliary comparison. These 12 context and
+8 ablation tasks bring the total to 212 planned tasks, not 212 primary trials.
+The small auxiliary subsets provide descriptive context and do not support
+powered secondary superiority, equivalence or universal-necessity claims.
+
+\subsection{Outcomes, failures and observation cost}
+\label{sec:metrics}
+The primary binary endpoint is physical retrieval success. It requires the
+perception, arrival, grasp and lift/short-retention checks, including an
+independent simulated-object height check. The existing checker requires both
+TCP lift and measured object-height increase of at least $0.10\,\mathrm{m}$;
+the task also requires its existing one-second wall-clock hold of fresh grasp
+confirmation. This interface hold is distinct from the simulation-time efficiency
+metrics below. Candidate confirmation, a successful
+planning preview, $\Dexec$, TCP motion or a task-process success message alone
+does not establish retrieval. We record progress through observation,
+confirmation, screening, navigation/stopping, D435 refinement, $\Dexec$, grasp
+and lift/retention. First-terminal failure counts assign one cause to an
+unsuccessful task; downstream stages that were not reached do not create
+additional failures. Model rejection is not interpreted as proof that a
+physical collision occurred.
+
+The common observation budget is three accepted five-simulation-second windows,
+including the initial window. A further observation may follow translation,
+yaw-only motion or reobservation near the same location. We distinguish accepted
+windows from actual changes between measured observation poses. A resolved
+location change exceeds $0.20\,\mathrm{m}$ translation; wrapped yaw change
+exceeding $0.20\,\mathrm{rad}$ is separately identifiable. These are reporting
+categories, not flight-path lengths or additional control thresholds.
+
+Robot-efficiency times use simulation time. Active time starts at the first
+capture and ends at active stop or terminal failure, including observation,
+motion, waiting, computation and shared previews. It excludes initial takeoff,
+aerial RGB-D and the initial reachability query. Ground time starts at navigation
+and ends at the task's terminal Ground event. Whole-task time includes
+initialization and the normal return/landing sequence. Unreached Ground stages
+have missing Ground time, not zero cost. Distance traces are incomplete in this
+release, so distance saving is not an inferential endpoint or claim.
+
+Normal insufficient sensing, bounded planning rejection and physical execution
+failure remain valid outcomes. Only documented infrastructure-invalid attempts
+may receive one same-scene/method replacement within the fixed reserve. All
+212 planned slots have valid selected binary outcomes and all 96 primary pairs
+are complete. Two proven-invalid originals received replacements, giving 214
+formal activations; one additional external bare simulator startup was separately
+charged to resources. Original attempts are preserved. These activations are not
+additional independent samples.
+
+\subsection{Prespecified analysis}
+\label{sec:analysis}
+Let $a,b,c,d$ denote both-success, Ours-only, Generic-only and both-failure paired
+counts. We report the marginal success rates and
+\begin{equation}
+ \widehat\Delta=(b-c)/96.
+ \label{eq:effect}
+\end{equation}
+The single primary test is the two-sided exact McNemar test, conditioning on
+$b+c$ discordances, with significance level $0.05$. The prespecified conservative
+95\% interval for $\Delta$ combines two 97.5\% Clopper--Pearson intervals
+$[L_b,U_b]$ and $[L_c,U_c]$ for $b/96$ and $c/96$ as
+$[L_b-U_c,U_b-L_c]$. Bonferroni joint coverage is at least 95\%; independence of
+the two discordant categories is not assumed. The interval concerns the paired
+risk difference, not the test's $p$-value. A first-activation sensitivity counts
+infrastructure-invalid originals as unsuccessful without dropping denominators.
+
+Tier-specific outcomes and auxiliary comparisons are descriptive, not additional
+primary tests. Conditional efficiency is summarized on the 53 scenes where both
+primary methods retrieve successfully, with 10,000 whole-scene paired bootstrap
+resamples and the fixed analysis seed. Conditioning is explicit: these means
+are not unbiased all-task cost effects, and a failed quick task is not efficient
+retrieval. The existing analysis also reports all-96-denominator success-resource
+curves. No additional experiment, significance test or outcome-driven sample
+extension is introduced in this manuscript.

@@ -1,0 +1,180 @@
+\section{Results}
+\label{sec:results}
+\subsection{Primary physical retrieval outcome}
+Ours retrieves successfully in 80 of 96 scenes (83.33\%), compared with 56 of
+96 (58.33\%) for Generic (Table~\ref{tab:overall}). There are 27 Ours-only and
+3 Generic-only successes, alongside 53 joint successes and 13 joint failures
+(Table~\ref{tab:paired}). The paired difference is $+25.00$ percentage points,
+with the prespecified conservative 95\% interval $[+8.56,+39.15]$ percentage
+points and exact McNemar $p=8.43\times10^{-6}$ (Table~\ref{tab:inference}).
+This supports a success advantage in the specified simulated scene population
+under the common budget. Because the primary policies differ only in gain
+weighting, common platform and execution improvements cannot explain a
+method-exclusive implementation advantage within this comparison. The result
+does not compare against every published NBV planner or establish performance
+outside the sampled population.
+
+\begin{table}[tb]
+\centering
+\caption{Primary physical retrieval success under the shared observation budget.
+The table is directly included from the existing evaluation asset.}
+\label{tab:overall}
+\input{\assetdir/table1_overall.tex}
+\end{table}
+\begin{table}[tb]
+\centering
+\caption{Paired outcomes across all 96 independent scenes.}
+\label{tab:paired}
+\input{\assetdir/table2_paired_outcomes.tex}
+\end{table}
+\begin{table}[tb]
+\centering
+\caption{Prespecified paired inference. CI bounds refer to the Ours-minus-Generic
+risk difference, in percentage points (pp), not to the $p$-value.}
+\label{tab:inference}
+\resizebox{\linewidth}{!}{\input{\assetdir/table3_mcnemar.tex}}
+\end{table}
+
+The three Generic-only scenes remain in the analysis. Two involve an Ours
+perceived target/base collision rejection and one loss of grasp confirmation
+during lift/retention. In the first-activation-invalid-as-failure sensitivity,
+the paired counts become $52/27/4/13$, with a difference of $+23.96$ percentage
+points and interval $[+7.05,+38.72]$. The primary result uses the documented valid
+replacement; the sensitivity preserves the original activation policy without
+excluding a scene.
+
+\subsection{Difficulty and the Hard condition}
+\label{sec:hard}
+Figure~\ref{fig:difficulty} and Table~\ref{tab:difficulty} report the realized
+tier outcomes. Ours/Generic successes are 35/31 of 38 Easy scenes, 26/22 of 28
+Moderate scenes, and 19/3 of 30 Hard scenes. The largest observed descriptive
+gap occurs in the two-wall Hard condition, with 17 Ours-only and one Generic-only
+success. Nevertheless, Ours also fails in 11 Hard scenes. The tier results show
+heterogeneity in this sample; they are not three additional significance tests
+or evidence that all occluded scenes are solved by relevance weighting.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=.82\linewidth]{\assetdir/figure3_success_by_difficulty.pdf}
+\caption{Descriptive retrieval success by difficulty. Denominators are the
+prospectively sampled 38/28/30 mixture, not an outcome-dependent balanced subset.}
+\label{fig:difficulty}
+\end{figure}
+\begin{table}[tb]
+\centering
+\caption{Tier counts and paired success-rate differences (percentage points).
+The primary inference pools the original 96 scenes.}
+\label{tab:difficulty}
+\resizebox{.95\linewidth}{!}{\input{\assetdir/table5_difficulty.tex}}
+\end{table}
+
+\subsection{Where tasks stop}
+\label{sec:failures}
+Table~\ref{tab:failures} and Figure~\ref{fig:failures} aggregate the original
+first-terminal causes into the task stages. Budget exhaustion without a confirmed
+candidate accounts for 29 Generic failures and five Ours failures. Thus the
+observed failure distribution is consistent with the proposed emphasis on
+acquiring evidence needed for handoff. It is not a proof that the field alone
+explains every downstream difference.
+
+Ours and Generic respectively obtain at least one confirmed candidate in 89
+and 63 scenes; 88 and 63 pass the common screen and complete Ground navigation
+and stopping. Fresh D435 refinement and actual-arrival $\Dexec$ are reached in
+82 and 59 scenes. Subsequent physical retrieval succeeds in 80 and 56. These
+stages must not be collapsed: Ours has one task completing the lift stage but
+failing final retention, which remains a primary failure.
+
+The remaining first-terminal bins include observation/frame/capture failures,
+one Ours screen failure, D435 refinement failures, descent/closure failures and
+one Ours retention failure. There are no primary first-terminal navigation or
+refined-pregrasp failures in this cohort, not a guarantee that those stages
+cannot fail. More Ours tasks reach Ground execution, so comparing raw Ground
+failure counts does not estimate a conditional execution reliability advantage.
+Refinement and geometric rejection remain meaningful limits of the complete
+system even when aerial support has been confirmed.
+
+\begin{table}[tb]
+\centering
+\caption{Primary first-terminal failures. Unreached downstream stages are not
+counted as failures. Confirmation includes budget exhaustion without a confirmed
+candidate; observation includes early frame and capture acceptance.}
+\label{tab:failures}
+\input{\assetdir/table4_failure_stages.tex}
+\end{table}
+\begin{figure}[tb]
+\centering
+\includegraphics[width=.95\linewidth]{\assetdir/figure4_failure_stages.pdf}
+\caption{First-terminal distribution: 40 Generic and 16 Ours failures. These
+are all-task counts, not failure probabilities conditioned on reaching each stage.}
+\label{fig:failures}
+\end{figure}
+
+\subsection{Recorded qualitative example}
+\label{sec:qualitative}
+Figure~\ref{fig:qualitative} shows Hard-015, selected after the results as the
+lowest-scheduled eligible Hard Generic-failure/Ours-success pair with retained
+window evidence. This is an illustration, not a preselected representative
+scene or an additional statistical sample. Both methods accept three windows.
+For the displayed per-run exact anchors, Generic still lacks sufficient ground
+support in 19/96 covered cells, whereas Ours lacks support in 0/88. Confirmed
+candidate counts evolve as $0\rightarrow0\rightarrow0$ and
+$0\rightarrow0\rightarrow3$, respectively. Generic exhausts its budget without
+confirmation; Ours passes the shared screen after its third window and proceeds
+to the recorded successful physical retrieval.
+
+The panels retain each run's native grid origin and perceived target rather
+than assuming identical sensor estimates or exact anchor poses. Dotted pose
+connections indicate observation order, not reconstructed trajectories. The
+ground-presence map is not a collision-free-space certificate, and the figure
+does not independently prove grasp contact. Its limited explanatory role is
+to show how different observations leave different real support deficits at
+handoff-relevant locations.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth]{\assetdir/figure5_qualitative.pdf}
+\caption{Post-hoc Hard-015 illustration, slots 1/2, seed 1395226981. Measured
+observation poses, accumulated ground-presence votes and task deficit are shown
+for Generic and Ours. Continuous per-run anchors are preserved. White deficit
+cells have no validated support; zero deficit is not a FREE label. The two
+anchors are not assumed identical. No scene truth or synthesized sensor image
+is used in these panels.}
+\label{fig:qualitative}
+\end{figure}
+
+\subsection{Observation cost and descriptive controls}
+On the 53 joint-success pairs, Ours uses on average 0.283 fewer accepted windows;
+the descriptive paired bootstrap interval for Ours minus Generic is
+$[-0.415,-0.150]$ windows (Table~\ref{tab:efficiency}). The intervals for resolved
+location changes, active time, Ground time and whole-task time all include zero.
+Consequently, the data do not establish a general time or distance saving.
+The conditional window difference cannot be interpreted as an all-scene cost
+effect or as evidence of equal success rates.
+
+\begin{table}[tb]
+\centering
+\caption{Conditional efficiency on 53 joint successes. Differences are Ours
+minus Generic; \texttt{T\_active\_sim}, \texttt{T\_ground\_sim} and
+\texttt{T\_task\_sim} are seconds of simulation time. Intervals are descriptive
+paired bootstrap intervals. Location changes are counts, not path distance.}
+\label{tab:efficiency}
+\resizebox{\linewidth}{!}{\input{\assetdir/table6_conditional_efficiency.tex}}
+\end{table}
+
+Table~\ref{tab:auxiliary} shows the scheduled auxiliary comparisons. On the six
+context scenes, Ours succeeds in five, Fixed-view in one and RM4D-only in two.
+On the four ablation scenes, Ours succeeds in two; without flight cost also
+succeeds in two, and without occlusion in zero. The no-cost comparison is fully
+concordant on this small subset. It does not establish equivalence or that cost
+is unnecessary. Likewise, the occlusion result is descriptive evidence from
+four scenes, not proof of universal component necessity. The primary isolation
+of task weighting remains the full Generic/Ours comparison.
+
+\begin{table}[tb]
+\centering
+\caption{Descriptive auxiliary comparisons using scheduled Ours counterparts.
+$a,b,c,d$ have the paired meanings of Table~\ref{tab:paired}, replacing Generic
+with the listed comparator. Subsets are not powered secondary experiments.}
+\label{tab:auxiliary}
+\resizebox{\linewidth}{!}{\input{\assetdir/table7_auxiliary.tex}}
+\end{table}

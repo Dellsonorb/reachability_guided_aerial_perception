@@ -1,0 +1,53 @@
+\section{Related Work}
+\label{sec:related}
+\paragraph{NBV and active scene acquisition.}
+Bircher et al. select exploration motions through a receding-horizon NBV planner
+whose branches are valued by newly observable space \cite{bircher2016nbv}.
+Surface Edge Explorer instead uses the density and boundaries of existing 3D
+observations to direct further surface acquisition \cite{border2018see}.
+These approaches illustrate different representations for deciding where
+additional measurements are useful. Our work does not argue that generic
+exploration objectives are incorrect for mapping. It asks whether their
+spatial weighting is appropriate when the endpoint is another robot's
+manipulation task. Accordingly, our Generic comparator is an objective-level
+control in the same implemented planner, not a claimed reproduction or
+head-to-head evaluation of these complete published systems.
+
+\paragraph{Task-oriented perception and active grasping.}
+Gualtieri and Platt study how viewpoint selection affects the localization and
+confidence of grasp detections \cite{gualtieri2017viewpoint}. Breyer et al.
+combine exploration of occluded target regions with continuously updated grasp
+predictions and a decision to execute or continue observing
+\cite{breyer2022target}. These works establish that the value of a measurement
+can depend on a grasping objective rather than only on map completeness.
+Our formulation transfers this reasoning across heterogeneous robots: aerial
+observations are weighted by the ground mobile manipulator's feasible stance
+support, including its extended base footprint. The relevance of a ground cell
+is thus derived from future base placements, not solely from whether it belongs
+to an incompletely observed target. We do not claim to introduce task-oriented
+perception in general.
+
+\paragraph{Aerial-ground cooperation.}
+ColAG couples aerial perception and mapping to the navigation needs of
+perception-limited ground vehicles, including aerial waypoint scheduling
+\cite{li2023colag}. Lenz et al. demonstrate autonomous perception and brick
+handling with ground and aerial systems for wall construction
+\cite{lenz2020wall}. These studies motivate treating cooperative sensing and
+physical action as an integrated robotics problem. Our emphasis is the
+intermediate representation linking a ground arm's manipulation support to
+aerial viewpoint value, and its evaluation against a matched generic objective
+through physical retrieval. We do not claim general multi-robot task allocation
+or a replacement for collaborative navigation and localization.
+
+\paragraph{Reachability and mobile manipulation.}
+Capability-map work represents the structure of a robot's reachable workspace
+\cite{zacharias2007capability}. RM4D provides a compact representation supporting
+both reachability and inverse-reachability queries, including mobile-manipulator
+base-placement use cases \cite{rudorfer2025rm4d}. We reuse RM4D as the source of
+candidate manipulation support rather than presenting it as a contribution of
+this paper. The additional step is to project validated base-pose support into
+the environment that must be sensed before those poses can be used. Reachability
+alone remains insufficient: base occupancy, measured ground support, close-range
+visibility and collision-aware execution are evaluated downstream. Our shared
+execution interface makes these limitations visible in the experimental outcome
+instead of assuming that a valid inverse-kinematics solution completes the task.

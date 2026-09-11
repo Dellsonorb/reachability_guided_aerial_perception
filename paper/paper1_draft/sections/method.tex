@@ -1,0 +1,253 @@
+\section{Method}
+\label{sec:method}
+\subsection{Problem and system overview}
+Let $\widehat{T}_{g}\in SE(3)$ be a grasp TCP pose estimated from aerial RGB-D
+observations in a shared map frame. A ground base pose is
+$q=(p_x,p_y,\psi)\in SE(2)$, with $p$ denoting the BUNKER base-link ground-plane
+position and $\psi$ its yaw. An aerial viewpoint is $v=(p_v,\psi_v)$ under the
+implemented level-hover assumption. The task is to select observations and an
+executable ground stance that lead to physical retrieval within a limited number
+of accepted sensing windows. We do not solve an optimal joint belief-space
+control problem; we use an interpretable one-step sensing surrogate followed by
+explicit execution checks.
+
+Figure~\ref{fig:pipeline} shows the loop. Aerial RGB-D initializes the target;
+inverse reachability supplies ground-pose support; measured LiDAR endpoints
+update environmental evidence; and a task-weighted viewpoint policy requests
+further sensing unless a confirmed candidate passes the common execution screen.
+The ground robot then navigates, refines the grasp from wrist RGB-D, and performs
+the physical operation. All environment fields use aligned $0.10\,\mathrm{m}$
+cells in map coordinates. Algorithms consume sensor observations and public
+poses/TF, not scene-generator target coordinates. The simulation-specific
+localization and contact backends are disclosed in Section~\ref{sec:limitations}.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\linewidth]{\assetdir/figure1_system_pipeline.pdf}
+\caption{System overview. Manipulation support and measured environment evidence
+guide aerial sensing, while a common execution interface connects the selected
+exact base pose to physical retrieval. Schematic, not a trial reconstruction.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Validated manipulation relevance}
+\label{sec:relevance}
+An RM4D inverse query \cite{rudorfer2025rm4d} produces base candidates
+$\{q_i\}$ for $\widehat{T}_g$. The query uses an explicit rigid frame bridge
+between the public map and the calibrated robot-reference convention; returned
+poses are transformed back to map. The perception target itself is not shifted
+for subsequent manipulation. A separate Ground-task map supplies the required
+workspace coverage without modifying the reference RM4D algorithm.
+
+For each evaluated candidate, define a validity indicator $g_i$. It is one only
+when reachability, inverse kinematics, the validator's collision checks and
+minimum joint-limit margin all pass. For the associated joint solution $\theta_i$,
+let $m_i=\min_j\{\theta_{ij}-\theta_j^{\min},\theta_j^{\max}-\theta_{ij}\}$.
+The continuous quality is
+\begin{equation}
+ r_i=\begin{cases}
+ \operatorname{clip}(m_i/m_{\mathrm{sat}},0,1),&g_i=1,\\
+ 0,&g_i=0.
+ \end{cases}
+ \label{eq:quality}
+\end{equation}
+The gate requires $m_i\ge m_{\min}$ when a valid joint solution exists;
+invalid candidates need not have a defined margin. The executed settings use
+$m_{\min}=0.01\,\mathrm{rad}$ and
+$m_{\mathrm{sat}}=0.5\,\mathrm{rad}$. Numerical IK/FK residuals are acceptance
+diagnostics, not manipulation quality. Travel distance and the baseline's final
+ranking score do not enter $r_i$.
+
+For a base-grid cell $C$, choose the exact validated winner
+\begin{equation}
+ i_C^*=\arg\max_{i:p_i\in C,\,g_i=1} r_i,\qquad
+ q_C^*=q_{i_C^*},\qquad R(C)=r_{i_C^*}.
+ \label{eq:winner}
+\end{equation}
+Ties retain the first candidate in the fixed evaluated order, independently of
+environment evidence. Geometry is anchored at $q_C^*$, not at the grid-cell
+center. This avoids introducing an unvalidated displacement merely to rasterize
+support. Non-winning candidates are diagnostic and are not reselected as support
+because an environment happens to favor them.
+
+The planner validates at most 256 candidates. A cell containing no evaluated
+candidate remains \emph{unassessed}; a cell containing evaluations but no valid
+one has no validated feasible support in that evaluated set. Neither statement
+proves complete continuous-space infeasibility. Thus $R$ is a validated,
+partially assessed interest field, not a complete capability map. No smoothing
+fills gaps or spreads support to unassessed base poses.
+
+\subsection{Environment evidence and operational footprints}
+\label{sec:evidence}
+Each accepted LiDAR window supplies endpoints transformed into map using the
+sensor-time public TF. For a horizontal ground plane $z_0$, a usable endpoint
+within the ground tolerance supplies ground evidence; one at or above the
+obstacle-height threshold supplies occupied evidence. The executed tolerances
+are $0.02\,\mathrm{m}$ and $0.05\,\mathrm{m}$, respectively. Returns in the
+intermediate height band do not create either vote. Evidence is accumulated
+per cell per window, not per individual point. Raw occupancy prioritizes an
+occupied vote over a free vote in the same window, and historical occupied
+evidence is not erased by later ground returns. Two free-vote windows are
+required for the raw FREE label when no occupied evidence exists; other cells
+are UNKNOWN. Aerial rays are not carved as entire free XY segments: a ray can
+pass above an obstacle without observing the ground underneath it.
+
+Let $N_t(x)$ count informative raw evidence windows for cell $x$. The
+observation-deficit score is
+\begin{equation}
+ u_t(x)=\exp[-N_t(x)/\tau],\qquad \tau=2.
+ \label{eq:deficit}
+\end{equation}
+This is a heuristic, not a calibrated probability or entropy. In particular,
+FREE does not force $u_t=0$, and a low deficit does not certify collision freedom.
+
+Let $F(q)$ be the padded continuous rectangular base footprint and
+\begin{equation}
+ K(q)=\{x:\operatorname{cell}(x)\cap F(q)\ne\varnothing\}.
+ \label{eq:footprint}
+\end{equation}
+The padded half-length and half-width are $0.52$ and $0.39\,\mathrm{m}$.
+Closed cell/rectangle overlap includes boundary contact, rather than testing
+only whether cell centers lie inside the footprint.
+
+Operational evidence distinguishes measured endpoints associated with the
+known target, environmental obstacles, and ambiguous returns. Target association
+uses runtime perception and geometric consistency, not scene truth. The target
+is checked as a perceived, allowance-expanded continuous object against $F(q)$;
+a shared coarse cell alone is insufficient to declare target/base collision.
+Environmental occupied cells remain conservative blockers. Complete ambiguous
+endpoint records are checked using their declared local uncertainty disks
+against $F(q)$; missing endpoint history retains the conservative cell blocker.
+The executed disk radius is $0.033\,\mathrm{m}$, an engineering allowance
+conditional on the public-map TF profile, not a calibrated physical error bound.
+Ambiguous returns are not converted to target or free evidence. The target
+association allowance, endpoint uncertainty and execution clearance are distinct
+declared quantities, not interchangeable safety guarantees.
+
+Denote this operational blocker by $B_t(q)\in\{0,1\}$. Separately, let $H_t(x)$
+count windows containing an actual ground endpoint in $x$, even if the same cell
+also contains an occupied endpoint elsewhere. Confirmation requires
+\begin{equation}
+ A_t(q)=\ind[B_t(q)=0]\,
+ \ind[F(q)\text{ is inside the grid}]\,
+ \prod_{x\in K(q)}\ind[H_t(x)\ge 2].
+ \label{eq:confirmation}
+\end{equation}
+Keeping $H_t$ separate preserves measured ground presence without clearing
+occupied evidence. Unknown ground does not block a pose geometrically, but it
+does prevent confirmation. $B_t=1$ means blocked by this operational model,
+not a proof of global navigation infeasibility. The same assessment is used
+for relevance support and exact-candidate handoff.
+
+\subsection{Task relevance in environment space}
+\label{sec:projection}
+The nominal and operational support projections are
+\begin{align}
+ M_{\mathrm{nom}}(x)&=\max_{C:x\in K(q_C^*)} R(C),\label{eq:nominal}\\
+ M_{\mathrm{op},t}(x)&=\max_{C:x\in K(q_C^*),\,B_t(q_C^*)=0}R(C).
+ \label{eq:operational}
+\end{align}
+Only validated winners participate. Where nominal support exists but all
+covering poses are blocked, operational support is zero. Where no nominal
+support exists, the implementation retains a distinct no-validated-support
+state and excludes that cell from the task sum; it does not reinterpret the
+cell as observed or physically unreachable. The task field is
+\begin{equation}
+ U_{\mathrm{task},t}(x)=u_t(x)M_{\mathrm{op},t}(x).
+ \label{eq:task}
+\end{equation}
+The maximum avoids counting one environment cell repeatedly simply because
+several useful base poses cover it. This formulation retains unknown regions
+that could support a useful manipulation stance while excluding already blocked
+stances. Occupancy does not overwrite $R(C)$. Grid-clipped footprints may
+contribute to the in-grid projection but cannot be confirmed by
+Eq.~\eqref{eq:confirmation}. Both manipulation coverage and environment
+uncertainty remain explicit.
+
+\subsection{Finite-window task-aware viewpoint selection}
+\label{sec:nbv}
+A cell being inside the LiDAR field of view does not guarantee that a finite
+scan window measures it. We therefore use the installed cyclic scan directions
+and publisher angular/discard rules to predict ground intersections. For each
+scheduled packet-start phase $s\in\mathcal S$, define $h_s(v,x)$ as one if at
+least one emitted ray during the next five-second window reaches cell $x$ on
+the nominal ground plane, satisfies range limits, and is not occluded. The
+acquisition opportunity is
+\begin{equation}
+ w_t(v,x)=\frac{1}{|\mathcal S|}\sum_{s\in\mathcal S}h_s(v,x).
+ \label{eq:opportunity}
+\end{equation}
+This uniformly averages scheduled starting phases; it is not an empirically
+calibrated return probability. Environmental occupied cells and incomplete
+ambiguous evidence form assumed-height prisms; complete ambiguous endpoints
+form local cylinders; the perceived target uses its oriented box. The
+$1\,\mathrm{m}$ prism/cylinder height is an occlusion surrogate, not an estimated
+obstacle height. Unknown space does not occlude. Segment tests distinguish
+intersection from passing above an occluder. These predictions never increment
+evidence counts, and unmodeled interception or pose/scan mismatch can still cause
+missed returns.
+
+One additional informative window would reduce Eq.~\eqref{eq:deficit} by
+\begin{equation}
+ \Delta u_t(x)=(1-e^{-1/\tau})u_t(x)=\alpha u_t(x).
+ \label{eq:delta}
+\end{equation}
+Holding the current manipulation support fixed for one-step prediction gives
+\begin{align}
+ G_{\mathrm{task}}(v)&=\alpha\sum_xw_t(v,x)U_{\mathrm{task},t}(x),\label{eq:taskgain}\\
+ G_{\mathrm{generic}}(v)&=\alpha\sum_xw_t(v,x)u_t(x).
+ \label{eq:genericgain}
+\end{align}
+Equation~\eqref{eq:taskgain} is a predicted observation-gain surrogate: it favors
+observable task-relevant deficit mass, not calibrated expected information
+gain, guaranteed confirmation, or the probability of task completion.
+The current field is recomputed after actual observations.
+
+Both methods use
+\begin{equation}
+ S_m(v)=G_m(v)-\lambda C(v),\quad
+ C(v)=\|p_v-p_{\mathrm{cur}}\|_2+
+ \kappa|\operatorname{wrap}(\psi_v-\psi_{\mathrm{cur}})|.
+ \label{eq:score}
+\end{equation}
+The cost is a displacement/yaw proxy, not a measured path length or energy model.
+The shared settings are $\lambda=0.25$ and
+$\kappa=0.25\,\mathrm{m/rad}$. Candidates include the current pose and a
+task-independent local XY lattice with offsets $\{-2,-1,0,1,2\}\,\mathrm{m}$,
+fixed current altitude and yaw alternatives, filtered by common bounds. The
+tilted LiDAR mount makes yaw relevant despite its panoramic horizontal field
+of view. Ties use cost then fixed candidate index. Figure~\ref{fig:comparison}
+shows the controlled distinction: only $G_m$'s manipulation weighting differs.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\linewidth]{\assetdir/figure2_method_comparison.pdf}
+\caption{Matched NBV policies. The finite-scan opportunity, candidate set, motion
+cost, evidence updates and execution rules are shared. Manipulation support
+weights the deficit only in Ours. The diagram is conceptual, not a new result.}
+\label{fig:comparison}
+\end{figure}
+
+\subsection{Ground execution interface and stopping}
+\label{sec:execution}
+After each accepted update, exact winners satisfying Eq.~\eqref{eq:confirmation}
+are considered in the fixed relevance order. The common execution layer screens
+at most four confirmed candidates using the complete base, arm, gripper, target
+and post-grasp load models, with bounded observation-pose, IK and approach
+searches. A successful screen terminates active perception and supplies the
+exact candidate for navigation; the system does not use the field-cell center
+or a previously successful stance. If no screen succeeds, the policy requests
+its highest-scoring admissible view while budget and positive score permit.
+Nonpositive score, no usable view or budget exhaustion can terminate without
+handoff. The initial window counts toward the three-window limit.
+
+Screening is only a preview. BUNKER must actually arrive and stop, wrist D435
+must provide a fresh usable target estimate, and the arm must establish a
+collision-aware refined pregrasp at the measured arrival pose. We call this
+executed discovery stage $\Dexec$. Descent, physical closure, lifting and
+retention follow with their own checks. The common $12\,\mathrm{mm}$ development
+clearance and SIM-specific velocity-feedback mode are execution settings shared
+by all applicable comparisons, not method-specific contributions. A reachable
+target does not guarantee a usable camera view or a complete collision-free
+operation. Failure at any of these stages remains a task failure, not a reason
+to redefine success.

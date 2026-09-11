@@ -1,0 +1,68 @@
+\section{Discussion}
+\label{sec:discussion}
+\subsection{What the result supports}
+The primary evidence supports manipulation-conditioned aerial sensing for the
+studied retrieval population. The controlled difference is spatial weighting:
+the same acquisition model and candidates can direct measurements toward
+environment regions that support future manipulator stances rather than toward
+generic deficit alone. The observed reduction in no-confirmed-candidate failures
+is consistent with this mechanism, while the complete physical endpoint prevents
+candidate discovery from being mistaken for successful retrieval.
+
+The method's relevance field should not be read as a success probability. It
+combines validated samples, joint-margin quality, footprint geometry and current
+operational evidence. It neither models all IK branches nor optimizes navigation,
+camera visibility and grasp execution jointly. The one-step gain holds current
+support fixed, although future evidence may block or reveal other poses. The
+remaining failures, including Generic-only successes, show why a relevance-guided
+policy need not dominate on every scene. No guarantee of monotonic task progress
+or globally optimal sensing is established.
+
+\subsection{Task, sensing and simulation limitations}
+\label{sec:limitations}
+The evaluated population contains one known brick, static horizontal ground,
+the installed robot geometry and modest perturbations of zero-, one- and
+two-wall layouts. Initial sensing begins in a known work region; this is not
+an unrestricted aerial search for arbitrary objects. The RGB-D assumptions,
+Ground-task reachability map, planar reference bridge and gripper geometry are
+task-specific. Uneven terrain, dynamic occlusion, different object geometry and
+unseen layouts are outside the present evidence.
+
+Finite-scan opportunity averages a deterministic schedule over starting phases
+at a nominal hover pose. It does not calibrate real return likelihood,
+reflectance, pose error or intracloud motion distortion. Assumed-height
+environment occluders and optimistic unknown-space visibility can mispredict
+what the next window actually observes. Environmental evidence also retains
+coarse conservative blockers, and finite candidate validation can omit useful
+stances. Missing ground support remains a legitimate reason to stop within
+budget; predicted opportunities cannot substitute for measurements.
+
+Physics-based execution is stronger evidence than a kinematic reachability
+count, but is not real-robot validation. In the current platform, public UAV
+map alignment uses a private simulated body-state backend, Ground global
+alignment is spawn-derived, and grasp confirmation uses simulated bilateral
+contact and joint feedback. The policy receives runtime sensor observations
+and public transforms, but the complete localization/contact stack is not
+sensor-only in the real-world sense. An independent checker uses simulated
+object height to verify lifting. Short retention is additionally supported by
+the task's grasp-confirmation hold; the study does not provide an independent
+continuous object-height trace throughout a long hold. Dynamics, friction,
+calibration and feedback differences limit transfer.
+
+\subsection{Experimental interpretation and transfer}
+The 96 paired scenes permit the prespecified primary comparison, not a claim
+of universal generalization. Difficulty is a sampled mixture, the qualitative
+case is outcome-selected, and auxiliary subsets are small. Conditional
+efficiency includes only joint successes, and incomplete distance recordings
+preclude a distance-saving claim. The paired success result should therefore
+remain the central empirical conclusion, rather than being expanded into
+unmeasured energy, speed or real-world robustness benefits.
+
+Future transfer should first establish shared real map/time conventions,
+camera/LiDAR extrinsics and hand-eye calibration, then bind the public flight,
+base and trajectory interfaces to measured hardware feedback. Real grip and
+object-retention evidence require separate characterization; controller
+completion alone is insufficient. A stationary sensing/feedback dataset and
+offline geometry checks are a suitable first step before bounded motion tests.
+No real adapter or hardware experiment is included here. The current simulation
+versions and results remain fixed references for any later transfer study.
