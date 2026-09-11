@@ -1,0 +1,72 @@
+{
+  "slot": 194,
+  "method": "ours",
+  "status": "VALID_TRIAL",
+  "retrieval_success": true,
+  "native_csv_storage": "ground-dynamics.csv.gz (lossless gzip-1)",
+  "images_original_bytes": 2499894809,
+  "images_removed": true,
+  "frames": [
+    {
+      "label": "observation",
+      "topic": "/ground/d435/color/image_raw",
+      "requested_stamp": 213.086,
+      "actual_stamp": 213.075,
+      "delta_s": 0.011000000000024102,
+      "frame_id": "ground/d435_color_optical_frame",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "file": "review-frames/observation-color.png"
+    },
+    {
+      "label": "observation",
+      "topic": "/ground/d435/depth/image_raw",
+      "requested_stamp": 213.086,
+      "actual_stamp": 213.075,
+      "delta_s": 0.011000000000024102,
+      "frame_id": "ground/d435_depth_optical_frame",
+      "shape": [
+        480,
+        640
+      ],
+      "file": "review-frames/observation-depth.npz"
+    },
+    {
+      "label": "accepted_refine",
+      "topic": "/ground/d435/color/image_raw",
+      "requested_stamp": 226.564,
+      "actual_stamp": 226.564,
+      "delta_s": 0.0,
+      "frame_id": "ground/d435_color_optical_frame",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "file": "review-frames/accepted_refine-color.png"
+    },
+    {
+      "label": "accepted_refine",
+      "topic": "/ground/d435/depth/image_raw",
+      "requested_stamp": 226.564,
+      "actual_stamp": 226.564,
+      "delta_s": 0.0,
+      "frame_id": "ground/d435_depth_optical_frame",
+      "shape": [
+        480,
+        640
+      ],
+      "file": "review-frames/accepted_refine-depth.npz"
+    }
+  ],
+  "physical_stage_missingness_review_passed": true,
+  "physical_review": {
+    "status": "CHECKS_PASS",
+    "target_lift_m": 0.14917465046774314,
+    "ground_frame": "map"
+  },
+  "removal_reason": "Predeclared non-retention successful scene; physical/stage/missingness review and four real frame exports completed. Full RGB-D bag is not retained."
+}

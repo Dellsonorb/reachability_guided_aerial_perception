@@ -1,0 +1,18 @@
+{"method": "generic", "ros_time": 12.015, "state": "A6_TASK_START", "wall_monotonic": 362894.897938051}
+{"ros_time": 12.015, "state": "PREFLIGHT", "wall_monotonic": 362894.899622297}
+{"ros_time": 12.015, "state": "A5_PREFLIGHT_TF_WAIT", "wall_monotonic": 362894.901747246}
+{"ros_time": 12.015, "state": "A5_PREFLIGHT_TF_READY", "waited_wall_s": 0.0023240699665620923, "wall_monotonic": 362894.904071595}
+{"ros_time": 12.015, "state": "ARMING", "wall_monotonic": 362894.905536396}
+{"ros_time": 12.015, "state": "COMMAND_CONTROL", "wall_monotonic": 362894.907478988}
+{"ros_time": 12.015, "state": "TAKEOFF", "wall_monotonic": 362894.910080052}
+{"ros_time": 24.816, "state": "AIR_VIEW", "wall_monotonic": 362913.908525978}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 24.821, "state": "A5_VIEWPOINT", "view_role": "initial", "wall_monotonic": 362913.91269535}
+{"ros_time": 34.917, "state": "A5_SETTLED", "uav_pose_map": [-1.4295524222621525, -0.030831267375313325, 1.2163439131623026, -0.0008472731574982444], "wall_monotonic": 362927.770494518}
+{"ros_time": 34.922, "state": "AIR_OBSERVE", "wall_monotonic": 362927.781374545}
+{"observation_stamp": 34.542, "ros_time": 34.953, "state": "AIR_HANDOFF", "target_map": [1.9252454748887133, -0.09546417616996444, 0.062320887574582616, -0.181556426889189], "wall_monotonic": 362927.83578439}
+{"frame_id": "map", "mask_pixels": 261, "perceived_target": {"center_xyz": [1.9252454748887133, -0.09546417616996444, 0.062320887574582616], "size_xyz": [0.24, 0.053, 0.115], "yaw_rad": -0.181556426889189}, "points": 122, "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-207-eval-easy-012-generic/attempt/data/target_reference.npz", "ros_time": 35.122, "stamp_s": 34.542, "state": "TARGET_REFERENCE", "status": "AVAILABLE", "wall_monotonic": 362928.086472778}
+{"reason": "A5 Ground map TF is stale", "ros_time": 35.132, "state": "FAILED", "wall_monotonic": 362928.097295325}
+{"ros_time": 35.143, "stage": "landing", "state": "A6_STAGE_START", "wall_monotonic": 362928.109019257}
+{"ros_time": 41.644, "stage": "landing", "state": "A6_STAGE_END", "wall_monotonic": 362937.181548797}
+{"ros_time": 41.644, "state": "A6_LANDED", "wall_monotonic": 362937.181707192}
+{"adapter_run_result": false, "ros_time": 41.646, "state": "A6_TASK_END", "wall_monotonic": 362937.182872878}

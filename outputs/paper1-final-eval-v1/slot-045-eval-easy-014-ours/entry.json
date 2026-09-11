@@ -1,0 +1,31 @@
+{
+  "start_wall": 1789077438.5180554,
+  "command": [
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/scripts/with_p450_env.bash",
+    "/usr/bin/python3",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/scripts/run_a6_attempt.py",
+    "--config",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-045-eval-easy-014-ours/task.json",
+    "--slot",
+    "45",
+    "--output-dir",
+    "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-045-eval-easy-014-ours/attempt",
+    "--sim-root",
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation",
+    "--rm4d-root",
+    "/tmp/rm4d-aubo-baseline-v1.14uZXq/repo",
+    "--integrated-joint-velocity",
+    "--full-robot-manipulation",
+    "--execution-clearance",
+    "--ground-dynamics"
+  ],
+  "log": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-045-eval-easy-014-ours/launcher.log",
+  "kind": "EVALUATION_ENTRY",
+  "cohort": "paper1-eval-finite-scan-v1-final",
+  "slot": 45,
+  "scene": "eval-easy-014",
+  "seed": 1198289218,
+  "method": "ours",
+  "exit_code": 0,
+  "finish_wall": 1789077762.9065845
+}

@@ -1,0 +1,73 @@
+{
+  "slot": 2,
+  "method": "ours",
+  "status": "VALID_TRIAL",
+  "retrieval_success": true,
+  "images_original_bytes": 2012136706,
+  "images_removed": true,
+  "removal_reason": "Predeclared non-retention successful scene; physical/stage/missingness review and four real frame exports completed. Full RGB-D bag is not retained.",
+  "native_csv_storage": "ground-dynamics.csv.gz (lossless gzip-1)",
+  "frames": [
+    {
+      "label": "observation",
+      "topic": "/ground/d435/color/image_raw",
+      "requested_stamp": 195.554,
+      "actual_stamp": 195.544,
+      "delta_s": 0.009999999999990905,
+      "frame_id": "ground/d435_color_optical_frame",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "file": "review-frames/observation-color.png"
+    },
+    {
+      "label": "observation",
+      "topic": "/ground/d435/depth/image_raw",
+      "requested_stamp": 195.554,
+      "actual_stamp": 195.54,
+      "delta_s": 0.014000000000010004,
+      "frame_id": "ground/d435_depth_optical_frame",
+      "shape": [
+        480,
+        640
+      ],
+      "file": "review-frames/observation-depth.npz"
+    },
+    {
+      "label": "accepted_refine",
+      "topic": "/ground/d435/color/image_raw",
+      "requested_stamp": 210.353,
+      "actual_stamp": 210.353,
+      "delta_s": 0.0,
+      "frame_id": "ground/d435_color_optical_frame",
+      "shape": [
+        480,
+        640,
+        3
+      ],
+      "file": "review-frames/accepted_refine-color.png"
+    },
+    {
+      "label": "accepted_refine",
+      "topic": "/ground/d435/depth/image_raw",
+      "requested_stamp": 210.353,
+      "actual_stamp": 210.341,
+      "delta_s": 0.012000000000000455,
+      "frame_id": "ground/d435_depth_optical_frame",
+      "shape": [
+        480,
+        640
+      ],
+      "file": "review-frames/accepted_refine-depth.npz"
+    }
+  ],
+  "physical_review": {
+    "status": "CHECKS_PASS",
+    "target_lift_m": 0.14875868409729243,
+    "ground_frame": "map"
+  },
+  "policy": "Predeclared successful temporary RGB-D review; retain all nonimage records.",
+  "retain_full_success_rgbd": false
+}

@@ -1,0 +1,37 @@
+{
+  "measured_wall": 1789136704.2543488,
+  "first_start_wall": 1789063252.3554409,
+  "hard_deadline_wall": 1789495252.3554409,
+  "acquisition_postprocess_complete_wall": 1789136345.850706,
+  "collection_elapsed_h": 20.3037486847904,
+  "elapsed_h_at_snapshot": 20.403305253651407,
+  "formal_activations": 214,
+  "external_bare_starts": 1,
+  "all_starts": 215,
+  "planned_slots": 212,
+  "valid_completed_slots": 212,
+  "invalid_replacements": 2,
+  "missing_slots": 0,
+  "logged_resource_samples": 1910,
+  "sampled_peak_new_gib": 280.95426177978516,
+  "sampled_min_data_free_gib": 335.94124603271484,
+  "study_allocated_bytes_at_snapshot": 295438876672,
+  "external_growth_bytes_at_snapshot": {
+    "/media/lu/P450_PAPER/SIM/p450_sim_v1/.worktrees/bunker-a-implementation/logs": 1715224576,
+    "/tmp/a6-mpl": 0,
+    "/tmp/a6-cache": 0
+  },
+  "new_gib_at_snapshot": 276.74632263183594,
+  "data_free_gib_at_snapshot": 340.1491355895996,
+  "conservative_whole_disk_free_drop_gib": 279.5496406555176,
+  "root_free_gib_at_snapshot": 1.7367591857910156,
+  "damaged_progress_lines": [{"file": "operator/progress.jsonl", "line": 1196, "bytes": 280}],
+  "limits": {"all_starts": 224, "invalid_replacements": 12, "wall_h": 120, "new_gib": 500, "minimum_data_free_gib": 100},
+  "notes": [
+    "Extrema are recorded samples, not continuously proven global extrema.",
+    "New usage is study allocated blocks plus positive external growth above resource-baseline.json.",
+    "Whole-disk free-space drop also includes unassigned host/filesystem changes; report it conservatively, do not silently attribute all of it to this study.",
+    "The interrupted progress line is preserved, not repaired; primary records and the 212 selected valid outcomes are complete.",
+    "No new simulator launches after the final slot. Offline report/checkpoint time remains charged to the original deadline."
+  ]
+}

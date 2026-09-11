@@ -1,0 +1,601 @@
+{
+  "groups": {
+    "ours": {
+      "n": 96,
+      "successes": 80,
+      "windows": {
+        "3": 60,
+        "2": 34,
+        "0": 2
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 94,
+          "FAILED": 2
+        },
+        "execution_screen": {
+          "SUCCEEDED": 88,
+          "NOT_REACHED": 7,
+          "FAILED": 1
+        },
+        "ground_navigation": {
+          "SUCCEEDED": 88,
+          "NOT_REACHED": 8
+        },
+        "ground_refine": {
+          "SUCCEEDED": 82,
+          "FAILED": 6,
+          "NOT_REACHED": 8
+        },
+        "refined_pregrasp": {
+          "SUCCEEDED": 82,
+          "NOT_REACHED": 14
+        },
+        "descend": {
+          "SUCCEEDED": 81,
+          "NOT_REACHED": 14,
+          "FAILED": 1
+        },
+        "close": {
+          "SUCCEEDED": 81,
+          "NOT_REACHED": 15
+        },
+        "lift": {
+          "SUCCEEDED": 81,
+          "NOT_REACHED": 15
+        },
+        "retention": {
+          "SUCCEEDED": 80,
+          "NOT_REACHED": 15,
+          "FAILED": 1
+        }
+      },
+      "confirmed": 89,
+      "screened": 88,
+      "D_exec": 82,
+      "failure_stages": {
+        "ground_refine": 6,
+        "active": 5,
+        "aerial_observe": 2,
+        "descend": 1,
+        "retention": 1,
+        "execution_screen": 1
+      },
+      "failure_reasons": {
+        "guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link']": 3,
+        "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate": 5,
+        "no valid near-field D435 observation in six bounded camera views": 1,
+        "aerial target observation timed out": 2,
+        "grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target']": 1,
+        "AG95 lost grasp confirmation during lift": 1,
+        "no confirmed exact candidate passing bounded execution screen": 1,
+        "camera observation measured endpoint: full robot collision ['ground/upper_arm_link/execution_chassis_clearance']": 1,
+        "camera observation: full robot collision ['ground/right_finger_pad/ground/upper_arm_link']": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 2,
+        "T_ground_sim": 8,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "1": 75,
+        "2": 19,
+        "0": 2
+      },
+      "actual_yaw_only_changes": {
+        "0": 96
+      },
+      "command_counts": {
+        "1": 76,
+        "2": 18,
+        "0": 2
+      },
+      "complete_distance_records": {
+        "uav_active": 5,
+        "uav_total": 7,
+        "ground_total": 4
+      },
+      "joint_success_metrics": {
+        "windows": {
+          "n": 53,
+          "missing": 0,
+          "mean": 2.490566037735849,
+          "median": 2
+        },
+        "actual_location_changes": {
+          "n": 53,
+          "missing": 0,
+          "mean": 1.0566037735849056,
+          "median": 1
+        },
+        "T_active_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 81.5153396226415,
+          "median": 78.94400000000002
+        },
+        "T_ground_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 106.85784905660377,
+          "median": 98.68799999999999
+        },
+        "T_task_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 249.8426037735849,
+          "median": 246.928
+        }
+      }
+    },
+    "generic": {
+      "n": 96,
+      "successes": 56,
+      "windows": {
+        "3": 78,
+        "2": 15,
+        "0": 3
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 93,
+          "FAILED": 3
+        },
+        "execution_screen": {
+          "NOT_REACHED": 33,
+          "SUCCEEDED": 63
+        },
+        "ground_navigation": {
+          "NOT_REACHED": 33,
+          "SUCCEEDED": 63
+        },
+        "ground_refine": {
+          "NOT_REACHED": 33,
+          "SUCCEEDED": 59,
+          "FAILED": 4
+        },
+        "refined_pregrasp": {
+          "NOT_REACHED": 37,
+          "SUCCEEDED": 59
+        },
+        "descend": {
+          "NOT_REACHED": 37,
+          "SUCCEEDED": 57,
+          "FAILED": 2
+        },
+        "close": {
+          "NOT_REACHED": 39,
+          "SUCCEEDED": 56,
+          "FAILED": 1
+        },
+        "lift": {
+          "NOT_REACHED": 40,
+          "SUCCEEDED": 56
+        },
+        "retention": {
+          "NOT_REACHED": 40,
+          "SUCCEEDED": 56
+        }
+      },
+      "confirmed": 63,
+      "screened": 63,
+      "D_exec": 59,
+      "failure_stages": {
+        "active": 30,
+        "ground_refine": 4,
+        "aerial_observe": 3,
+        "descend": 2,
+        "close": 1
+      },
+      "failure_reasons": {
+        "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate": 29,
+        "no valid near-field D435 observation in six bounded camera views": 1,
+        "aerial target observation timed out": 2,
+        "guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link']": 2,
+        "A5 fresh MID360 PointCloud2 window capture timed out": 1,
+        "grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target']": 1,
+        "AG95 close controller action failed: state=4 status=": 1,
+        "camera observation: full robot collision ['ground/forearm_link/ground/d435_link']": 1,
+        "grasp approach measured endpoint: full robot collision ['ground/right_finger_pad/perceived_pick_target']": 1,
+        "A5 Ground map TF is stale": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 3,
+        "T_ground_sim": 33,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "1": 75,
+        "2": 18,
+        "0": 3
+      },
+      "actual_yaw_only_changes": {
+        "0": 96
+      },
+      "command_counts": {
+        "1": 77,
+        "2": 16,
+        "0": 3
+      },
+      "complete_distance_records": {
+        "uav_active": 30,
+        "uav_total": 33,
+        "ground_total": 14
+      },
+      "joint_success_metrics": {
+        "windows": {
+          "n": 53,
+          "missing": 0,
+          "mean": 2.7735849056603774,
+          "median": 3
+        },
+        "actual_location_changes": {
+          "n": 53,
+          "missing": 0,
+          "mean": 1.150943396226415,
+          "median": 1
+        },
+        "T_active_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 84.26752830188678,
+          "median": 87.88199999999998
+        },
+        "T_ground_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 108.37624528301887,
+          "median": 103.80099999999999
+        },
+        "T_task_sim": {
+          "n": 53,
+          "missing": 0,
+          "mean": 257.86749056603776,
+          "median": 254.74
+        }
+      }
+    },
+    "fixed": {
+      "n": 6,
+      "successes": 1,
+      "windows": {
+        "1": 3,
+        "3": 2,
+        "2": 1
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 6
+        },
+        "execution_screen": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "ground_navigation": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "ground_refine": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "refined_pregrasp": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "descend": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "close": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "lift": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        },
+        "retention": {
+          "NOT_REACHED": 5,
+          "SUCCEEDED": 1
+        }
+      },
+      "confirmed": 1,
+      "screened": 1,
+      "D_exec": 1,
+      "failure_stages": {
+        "active": 5
+      },
+      "failure_reasons": {
+        "A5 UAV position/yaw/speed did not settle": 2,
+        "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate": 2,
+        "A5 fresh MID360 PointCloud2 window capture timed out": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 0,
+        "T_ground_sim": 5,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "0": 3,
+        "2": 1,
+        "1": 2
+      },
+      "actual_yaw_only_changes": {
+        "0": 6
+      },
+      "command_counts": {
+        "null": 6
+      },
+      "complete_distance_records": {
+        "uav_active": 5,
+        "uav_total": 5,
+        "ground_total": 1
+      },
+      "joint_success_metrics": null
+    },
+    "rm4d_only": {
+      "n": 6,
+      "successes": 2,
+      "windows": {
+        "0": 6
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 5,
+          "FAILED": 1
+        },
+        "execution_screen": {
+          "NOT_REACHED": 6
+        },
+        "ground_navigation": {
+          "SUCCEEDED": 5,
+          "NOT_REACHED": 1
+        },
+        "ground_refine": {
+          "SUCCEEDED": 5,
+          "NOT_REACHED": 1
+        },
+        "refined_pregrasp": {
+          "SUCCEEDED": 4,
+          "FAILED": 1,
+          "NOT_REACHED": 1
+        },
+        "descend": {
+          "SUCCEEDED": 2,
+          "FAILED": 2,
+          "NOT_REACHED": 2
+        },
+        "close": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 4
+        },
+        "lift": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 4
+        },
+        "retention": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 4
+        }
+      },
+      "confirmed": 0,
+      "screened": 0,
+      "D_exec": 4,
+      "failure_stages": {
+        "descend": 2,
+        "refined_pregrasp": 1,
+        "aerial_observe": 1
+      },
+      "failure_reasons": {
+        "grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target']": 2,
+        "whole manipulation search rejected all six branches": 1,
+        "aerial target observation timed out": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 0,
+        "T_ground_sim": 1,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "0": 6
+      },
+      "actual_yaw_only_changes": {
+        "0": 6
+      },
+      "command_counts": {
+        "0": 6
+      },
+      "complete_distance_records": {
+        "uav_active": 6,
+        "uav_total": 6,
+        "ground_total": 1
+      },
+      "joint_success_metrics": null
+    },
+    "no_cost": {
+      "n": 4,
+      "successes": 2,
+      "windows": {
+        "3": 3,
+        "0": 1
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 3,
+          "FAILED": 1
+        },
+        "execution_screen": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "ground_navigation": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "ground_refine": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "refined_pregrasp": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "descend": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "close": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "lift": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        },
+        "retention": {
+          "SUCCEEDED": 2,
+          "NOT_REACHED": 2
+        }
+      },
+      "confirmed": 2,
+      "screened": 2,
+      "D_exec": 2,
+      "failure_stages": {
+        "active": 1,
+        "aerial_observe": 1
+      },
+      "failure_reasons": {
+        "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate": 1,
+        "aerial target observation timed out": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 1,
+        "T_ground_sim": 2,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "1": 2,
+        "2": 1,
+        "0": 1
+      },
+      "actual_yaw_only_changes": {
+        "0": 4
+      },
+      "command_counts": {
+        "1": 2,
+        "2": 1,
+        "0": 1
+      },
+      "complete_distance_records": {
+        "uav_active": 1,
+        "uav_total": 2,
+        "ground_total": 1
+      },
+      "joint_success_metrics": null
+    },
+    "no_occlusion": {
+      "n": 4,
+      "successes": 0,
+      "windows": {
+        "3": 3,
+        "0": 1
+      },
+      "stages": {
+        "aerial_observe": {
+          "SUCCEEDED": 3,
+          "FAILED": 1
+        },
+        "execution_screen": {
+          "NOT_REACHED": 4
+        },
+        "ground_navigation": {
+          "NOT_REACHED": 4
+        },
+        "ground_refine": {
+          "NOT_REACHED": 4
+        },
+        "refined_pregrasp": {
+          "NOT_REACHED": 4
+        },
+        "descend": {
+          "NOT_REACHED": 4
+        },
+        "close": {
+          "NOT_REACHED": 4
+        },
+        "lift": {
+          "NOT_REACHED": 4
+        },
+        "retention": {
+          "NOT_REACHED": 4
+        }
+      },
+      "confirmed": 0,
+      "screened": 0,
+      "D_exec": 0,
+      "failure_stages": {
+        "active": 3,
+        "aerial_observe": 1
+      },
+      "failure_reasons": {
+        "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate": 3,
+        "aerial target observation timed out": 1
+      },
+      "missing_metrics": {
+        "windows": 0,
+        "actual_location_changes": 0,
+        "T_active_sim": 1,
+        "T_ground_sim": 4,
+        "T_task_sim": 0
+      },
+      "actual_location_changes": {
+        "1": 3,
+        "0": 1
+      },
+      "actual_yaw_only_changes": {
+        "0": 4
+      },
+      "command_counts": {
+        "1": 3,
+        "0": 1
+      },
+      "complete_distance_records": {
+        "uav_active": 2,
+        "uav_total": 3,
+        "ground_total": 1
+      },
+      "joint_success_metrics": null
+    }
+  },
+  "same_state": {
+    "snapshots": 541,
+    "all_pass": true,
+    "different_selections": 514,
+    "maximum_error": 0.0
+  },
+  "mechanism": {
+    "snapshots": 541,
+    "statuses": {
+      "AVAILABLE": 541
+    },
+    "representative_only_blocked_sum": 0,
+    "target_alias_retained_snapshot_count": 350
+  },
+  "retention": {
+    "records": 214,
+    "removed_image_bags": 129,
+    "removed_image_bytes": 308276637429
+  },
+  "note": "These are descriptive exports. Primary inference remains analysis-latest.json; no records reclassified."
+}

@@ -1,0 +1,4 @@
+# Raw sensing, native dynamics and ROS logs remain on the data disk.
+# Only explicit compact source records are force-added from slot directories.
+/slot-*/
+/operator/slot-*-console.log

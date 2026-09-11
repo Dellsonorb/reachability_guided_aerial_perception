@@ -1,0 +1,220 @@
+{
+  "C_env_count_final": 6,
+  "C_env_count_max": 6,
+  "D_env": true,
+  "D_exec": true,
+  "T_active_sim": 92.064,
+  "T_exec_ready_sim": 251.23000000000002,
+  "T_first_env_sim": 79.00899999999999,
+  "T_task_sim": 274.91700000000003,
+  "active_end_sim": 146.53,
+  "active_start_sim": 54.466,
+  "adapter_run_result": true,
+  "cleanup_clock_reset_detected": false,
+  "clock_reset_detected": false,
+  "counts": {
+    "capture_calls": 3,
+    "completed_windows": 3,
+    "discarded_windows": 0,
+    "initial_outbound": 1,
+    "nbv_moves": 2,
+    "return_actions": 1,
+    "sensing_rescans": 0,
+    "sensing_visits": 3,
+    "voted_windows": 3
+  },
+  "efficiency_clock": "simulation",
+  "environment_decisions": [
+    {
+      "candidate_count": 37,
+      "confirmed_candidate_count": 0,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-076-eval-moderate-002-ours/attempt/data/rounds/round-01",
+      "ros_time": 73.341,
+      "round": 1,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 315403.524129934
+    },
+    {
+      "candidate_count": 37,
+      "confirmed_candidate_count": 0,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-076-eval-moderate-002-ours/attempt/data/rounds/round-02",
+      "ros_time": 107.571,
+      "round": 2,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 315443.262402533
+    },
+    {
+      "candidate_count": 37,
+      "confirmed_candidate_count": 6,
+      "output_dir": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-076-eval-moderate-002-ours/attempt/data/rounds/round-03",
+      "ros_time": 133.475,
+      "round": 3,
+      "state": "A6_ENV_RESULT",
+      "wall_monotonic": 315473.422156955
+    }
+  ],
+  "exec_ready_sim": 263.228,
+  "first_env_sim": 133.475,
+  "landed_sim": 162.614,
+  "method": "ours",
+  "paths": {
+    "ground_total": {
+      "clock_reset": false,
+      "complete": false,
+      "distance_m": null,
+      "end_sim": 286.915,
+      "gap_count": 0,
+      "missing_samples": 4,
+      "observed_distance_lower_bound_m": 2.670922858859613,
+      "observed_yaw_lower_bound_rad": 12.785900792028048,
+      "sample_count": 2745,
+      "start_sim": 11.998,
+      "yaw_travel_rad": null
+    },
+    "uav_active": {
+      "clock_reset": false,
+      "complete": false,
+      "distance_m": null,
+      "end_sim": 146.53,
+      "gap_count": 0,
+      "missing_samples": 1,
+      "observed_distance_lower_bound_m": 3.9441580374716563,
+      "observed_yaw_lower_bound_rad": 0.15501068874282906,
+      "sample_count": 914,
+      "start_sim": 54.466,
+      "yaw_travel_rad": null
+    },
+    "uav_cleanup": {
+      "clock_reset": false,
+      "complete": true,
+      "distance_m": 0.0,
+      "end_sim": 286.921,
+      "gap_count": 0,
+      "missing_samples": 0,
+      "observed_distance_lower_bound_m": 0.0,
+      "observed_yaw_lower_bound_rad": 0.0,
+      "sample_count": 2,
+      "start_sim": 286.915,
+      "yaw_travel_rad": 0.0
+    },
+    "uav_total": {
+      "clock_reset": false,
+      "complete": false,
+      "distance_m": null,
+      "end_sim": 162.614,
+      "gap_count": 0,
+      "missing_samples": 1,
+      "observed_distance_lower_bound_m": 10.332990459338545,
+      "observed_yaw_lower_bound_rad": 0.3358683084800818,
+      "sample_count": 1501,
+      "start_sim": 11.998,
+      "yaw_travel_rad": null
+    }
+  },
+  "physical_success": null,
+  "schema_version": 1,
+  "stages": {
+    "active": {
+      "duration_sim_s": 92.064,
+      "end_sim": 146.53,
+      "start_sim": 54.466,
+      "status": "SUCCEEDED"
+    },
+    "aerial_observe": {
+      "duration_sim_s": 0.3960000000000008,
+      "end_sim": 35.281,
+      "start_sim": 34.885,
+      "status": "SUCCEEDED"
+    },
+    "close": {
+      "duration_sim_s": 1.2730000000000246,
+      "end_sim": 271.1,
+      "start_sim": 269.827,
+      "status": "SUCCEEDED"
+    },
+    "descend": {
+      "duration_sim_s": 6.595000000000027,
+      "end_sim": 269.826,
+      "start_sim": 263.231,
+      "status": "SUCCEEDED"
+    },
+    "execution_screen": {
+      "attempt_count": 1,
+      "duration_sim_s": 13.055000000000007,
+      "end_sim": 146.53,
+      "start_sim": 133.475,
+      "status": "SUCCEEDED"
+    },
+    "ground_navigation": {
+      "duration_sim_s": 51.40699999999998,
+      "end_sim": 214.021,
+      "start_sim": 162.614,
+      "status": "SUCCEEDED"
+    },
+    "ground_refine": {
+      "duration_sim_s": 18.455000000000013,
+      "end_sim": 232.476,
+      "start_sim": 214.021,
+      "status": "SUCCEEDED"
+    },
+    "initial_query": {
+      "duration_sim_s": 19.185000000000002,
+      "end_sim": 54.466,
+      "start_sim": 35.281,
+      "status": "SUCCEEDED"
+    },
+    "initial_view": {
+      "duration_sim_s": 9.972999999999999,
+      "end_sim": 34.885,
+      "start_sim": 24.912,
+      "status": "SUCCEEDED"
+    },
+    "landing": {
+      "duration_sim_s": 8.201999999999998,
+      "end_sim": 162.613,
+      "start_sim": 154.411,
+      "status": "SUCCEEDED"
+    },
+    "lift": {
+      "duration_sim_s": 15.007999999999981,
+      "end_sim": 286.108,
+      "start_sim": 271.1,
+      "status": "SUCCEEDED"
+    },
+    "preflight": {
+      "duration_sim_s": 0.0129999999999999,
+      "end_sim": 12.012,
+      "start_sim": 11.999,
+      "status": "SUCCEEDED"
+    },
+    "refined_pregrasp": {
+      "duration_sim_s": 30.75,
+      "end_sim": 263.228,
+      "start_sim": 232.478,
+      "status": "SUCCEEDED"
+    },
+    "retention": {
+      "duration_sim_s": 0.8070000000000164,
+      "end_sim": 286.915,
+      "start_sim": 286.108,
+      "status": "SUCCEEDED"
+    },
+    "return": {
+      "duration_sim_s": 7.876000000000005,
+      "end_sim": 154.41,
+      "start_sim": 146.534,
+      "status": "SUCCEEDED"
+    },
+    "takeoff": {
+      "duration_sim_s": 12.899999999999999,
+      "end_sim": 24.912,
+      "start_sim": 12.012,
+      "status": "SUCCEEDED"
+    }
+  },
+  "task_end_sim": 286.915,
+  "task_start_sim": 11.998,
+  "terminal_failure_reason": null,
+  "terminal_failure_stage": null,
+  "terminal_status": "LIFT"
+}

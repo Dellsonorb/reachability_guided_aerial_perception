@@ -1,0 +1,14 @@
+{"method": "ours", "ros_time": 11.868, "state": "A6_TASK_START", "wall_monotonic": 331387.745235662}
+{"ros_time": 11.869, "state": "PREFLIGHT", "wall_monotonic": 331387.746488755}
+{"ros_time": 11.872, "state": "A5_PREFLIGHT_TF_WAIT", "wall_monotonic": 331387.748485587}
+{"ros_time": 11.873, "state": "A5_PREFLIGHT_TF_READY", "waited_wall_s": 0.0017907299916259944, "wall_monotonic": 331387.750278273}
+{"ros_time": 11.875, "state": "ARMING", "wall_monotonic": 331387.751777346}
+{"ros_time": 11.876, "state": "COMMAND_CONTROL", "wall_monotonic": 331387.753112432}
+{"ros_time": 11.878, "state": "TAKEOFF", "wall_monotonic": 331387.754516661}
+{"ros_time": 24.781, "state": "AIR_VIEW", "wall_monotonic": 331402.139267405}
+{"goal_map": [-1.4, 0.0, 1.2, 0.0], "rescan": false, "ros_time": 24.784, "state": "A5_VIEWPOINT", "view_role": "initial", "wall_monotonic": 331402.142236917}
+{"ros_time": 34.364, "state": "A5_SETTLED", "uav_pose_map": [-1.4355047576858682, -0.022015697083890753, 1.2191667984571268, -0.0006228513227428115], "wall_monotonic": 331412.840668674}
+{"ros_time": 34.372, "state": "AIR_OBSERVE", "wall_monotonic": 331412.850319971}
+{"observation_stamp": 33.965, "ros_time": 34.412, "state": "AIR_HANDOFF", "target_map": [1.875524860634263, -0.13529635939326115, 0.06126418126661081, 0.2359694435299074], "wall_monotonic": 331412.903288227}
+{"frame_id": "map", "mask_pixels": 316, "perceived_target": {"center_xyz": [1.875524860634263, -0.13529635939326115, 0.06126418126661081], "size_xyz": [0.24, 0.053, 0.115], "yaw_rad": 0.2359694435299074}, "points": 148, "reason": null, "reference_file": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1/slot-131-eval-easy-018-ours/attempt/data/target_reference.npz", "ros_time": 34.584, "stamp_s": 33.965, "state": "TARGET_REFERENCE", "status": "AVAILABLE", "wall_monotonic": 331413.111815293}
+{"label": "init", "operation": "init", "ros_time": 34.586, "state": "A5_CORE", "wall_monotonic": 331413.114319522}
