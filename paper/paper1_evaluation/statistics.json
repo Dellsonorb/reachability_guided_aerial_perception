@@ -1,0 +1,2243 @@
+{
+  "primary": {
+    "n": 96,
+    "a": 53,
+    "b": 27,
+    "c": 3,
+    "d": 13,
+    "ours_successes": 80,
+    "generic_successes": 56,
+    "risk_difference": 0.25,
+    "p_value": 8.430331945419312e-06,
+    "test": "single two-sided exact McNemar; IID mixture; alpha=0.05",
+    "b_97_5_percent_interval": [
+      0.18356026892334065,
+      0.3964895128979826
+    ],
+    "c_97_5_percent_interval": [
+      0.00497828687635035,
+      0.09794690338950936
+    ],
+    "conservative_exact_rd_interval": [
+      0.0856133655338313,
+      0.3915112260216323
+    ],
+    "interval": "two aggregate 97.5% Clopper-Pearson intervals; Bonferroni >=95%"
+  },
+  "failures": [
+    {
+      "stage": "uav_observation",
+      "label": "UAV observation",
+      "generic": 4,
+      "ours": 2
+    },
+    {
+      "stage": "confirmed_candidate",
+      "label": "Confirmed candidate",
+      "generic": 29,
+      "ours": 5
+    },
+    {
+      "stage": "screened_candidate",
+      "label": "Screened candidate",
+      "generic": 0,
+      "ours": 1
+    },
+    {
+      "stage": "bunker_navigation",
+      "label": "BUNKER navigation",
+      "generic": 0,
+      "ours": 0
+    },
+    {
+      "stage": "d435_refinement",
+      "label": "D435 refinement",
+      "generic": 4,
+      "ours": 6
+    },
+    {
+      "stage": "d_exec",
+      "label": "D_exec (refined pregrasp)",
+      "generic": 0,
+      "ours": 0
+    },
+    {
+      "stage": "grasp",
+      "label": "Grasp (descend / close)",
+      "generic": 3,
+      "ours": 1
+    },
+    {
+      "stage": "lift_retention",
+      "label": "Lift / retention",
+      "generic": 0,
+      "ours": 1
+    }
+  ],
+  "sensitivity": {
+    "n_scheduled": 96,
+    "n_complete_pairs": 96,
+    "a": 52,
+    "b": 27,
+    "c": 4,
+    "d": 13,
+    "pairs": [
+      {
+        "scene": "eval-easy-001",
+        "seed": 1210463358,
+        "ours": {
+          "slot": 140,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-140-eval-easy-001-ours/attempt"
+        },
+        "generic": {
+          "slot": 139,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-139-eval-easy-001-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-001",
+        "seed": 255254000,
+        "ours": {
+          "slot": 152,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-152-eval-hard-001-ours/attempt"
+        },
+        "generic": {
+          "slot": 151,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-151-eval-hard-001-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-easy-002",
+        "seed": 203946317,
+        "ours": {
+          "slot": 96,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-096-eval-easy-002-ours/attempt"
+        },
+        "generic": {
+          "slot": 95,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-095-eval-easy-002-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-003",
+        "seed": 1259243681,
+        "ours": {
+          "slot": 86,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-086-eval-easy-003-ours/attempt"
+        },
+        "generic": {
+          "slot": 85,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-085-eval-easy-003-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-001",
+        "seed": 2144209384,
+        "ours": {
+          "slot": 109,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-109-eval-moderate-001-ours/attempt"
+        },
+        "generic": {
+          "slot": 110,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-110-eval-moderate-001-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-004",
+        "seed": 1618578603,
+        "ours": {
+          "slot": 34,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-034-eval-easy-004-ours/attempt"
+        },
+        "generic": {
+          "slot": 33,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-033-eval-easy-004-generic/attempt"
+        },
+        "category": "c"
+      },
+      {
+        "scene": "eval-moderate-002",
+        "seed": 2026455799,
+        "ours": {
+          "slot": 76,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-076-eval-moderate-002-ours/attempt"
+        },
+        "generic": {
+          "slot": 75,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-075-eval-moderate-002-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-002",
+        "seed": 572179566,
+        "ours": {
+          "slot": 23,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-023-eval-hard-002-ours/attempt"
+        },
+        "generic": {
+          "slot": 24,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-024-eval-hard-002-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-003",
+        "seed": 1313725102,
+        "ours": {
+          "slot": 202,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-202-eval-moderate-003-ours/attempt"
+        },
+        "generic": {
+          "slot": 201,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-201-eval-moderate-003-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-005",
+        "seed": 342348758,
+        "ours": {
+          "slot": 129,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-129-eval-easy-005-ours/attempt"
+        },
+        "generic": {
+          "slot": 130,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-130-eval-easy-005-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-006",
+        "seed": 1268197413,
+        "ours": {
+          "slot": 12,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-012-eval-easy-006-ours/attempt"
+        },
+        "generic": {
+          "slot": 11,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-011-eval-easy-006-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-003",
+        "seed": 742306348,
+        "ours": {
+          "slot": 133,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-133-eval-hard-003-ours/attempt"
+        },
+        "generic": {
+          "slot": 134,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-134-eval-hard-003-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-moderate-004",
+        "seed": 1474139397,
+        "ours": {
+          "slot": 17,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-017-eval-moderate-004-ours/attempt"
+        },
+        "generic": {
+          "slot": 18,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-018-eval-moderate-004-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-005",
+        "seed": 1040101780,
+        "ours": {
+          "slot": 167,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-167-eval-moderate-005-ours/attempt"
+        },
+        "generic": {
+          "slot": 168,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-168-eval-moderate-005-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-006",
+        "seed": 114753794,
+        "ours": {
+          "slot": 144,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-144-eval-moderate-006-ours/attempt"
+        },
+        "generic": {
+          "slot": 143,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-143-eval-moderate-006-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-007",
+        "seed": 1771585328,
+        "ours": {
+          "slot": 175,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-175-eval-moderate-007-ours/attempt"
+        },
+        "generic": {
+          "slot": 176,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-176-eval-moderate-007-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-007",
+        "seed": 301722068,
+        "ours": {
+          "slot": 187,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-187-eval-easy-007-ours/attempt"
+        },
+        "generic": {
+          "slot": 188,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-188-eval-easy-007-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-008",
+        "seed": 36731972,
+        "ours": {
+          "slot": 174,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-174-eval-easy-008-ours/attempt"
+        },
+        "generic": {
+          "slot": 173,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-173-eval-easy-008-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-009",
+        "seed": 1995439984,
+        "ours": {
+          "slot": 9,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-009-eval-easy-009-ours/attempt"
+        },
+        "generic": {
+          "slot": 10,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-010-eval-easy-009-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-010",
+        "seed": 577646205,
+        "ours": {
+          "slot": 165,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-165-eval-easy-010-ours/attempt"
+        },
+        "generic": {
+          "slot": 166,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-166-eval-easy-010-generic/attempt"
+        },
+        "category": "c"
+      },
+      {
+        "scene": "eval-easy-011",
+        "seed": 6291815,
+        "ours": {
+          "slot": 209,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-209-eval-easy-011-ours/attempt"
+        },
+        "generic": {
+          "slot": 210,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-210-eval-easy-011-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-012",
+        "seed": 1529985687,
+        "ours": {
+          "slot": 208,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-208-eval-easy-012-ours/attempt"
+        },
+        "generic": {
+          "slot": 207,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-207-eval-easy-012-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-013",
+        "seed": 1836638481,
+        "ours": {
+          "slot": 67,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-067-eval-easy-013-ours/attempt"
+        },
+        "generic": {
+          "slot": 68,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-068-eval-easy-013-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-008",
+        "seed": 1908570494,
+        "ours": {
+          "slot": 55,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-055-eval-moderate-008-ours/attempt"
+        },
+        "generic": {
+          "slot": 56,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-056-eval-moderate-008-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-004",
+        "seed": 1588955310,
+        "ours": {
+          "slot": 70,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-070-eval-hard-004-ours/attempt"
+        },
+        "generic": {
+          "slot": 69,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-069-eval-hard-004-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-009",
+        "seed": 2099544331,
+        "ours": {
+          "slot": 114,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-114-eval-moderate-009-ours/attempt"
+        },
+        "generic": {
+          "slot": 113,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-113-eval-moderate-009-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-014",
+        "seed": 1198289218,
+        "ours": {
+          "slot": 45,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-045-eval-easy-014-ours/attempt"
+        },
+        "generic": {
+          "slot": 46,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-046-eval-easy-014-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-010",
+        "seed": 252873871,
+        "ours": {
+          "slot": 88,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-088-eval-moderate-010-ours/attempt"
+        },
+        "generic": {
+          "slot": 87,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-087-eval-moderate-010-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-005",
+        "seed": 2032977054,
+        "ours": {
+          "slot": 184,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-184-eval-hard-005-ours/attempt"
+        },
+        "generic": {
+          "slot": 183,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-183-eval-hard-005-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-hard-006",
+        "seed": 783331617,
+        "ours": {
+          "slot": 22,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-022-eval-hard-006-ours/attempt"
+        },
+        "generic": {
+          "slot": 21,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-021-eval-hard-006-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-015",
+        "seed": 1054175095,
+        "ours": {
+          "slot": 30,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-030-eval-easy-015-ours/attempt"
+        },
+        "generic": {
+          "slot": 29,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-029-eval-easy-015-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-016",
+        "seed": 1445701850,
+        "ours": {
+          "slot": 73,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-073-eval-easy-016-ours/attempt"
+        },
+        "generic": {
+          "slot": 74,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-074-eval-easy-016-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-007",
+        "seed": 1075287346,
+        "ours": {
+          "slot": 13,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-013-eval-hard-007-ours/attempt"
+        },
+        "generic": {
+          "slot": 14,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-014-eval-hard-007-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-easy-017",
+        "seed": 1730521730,
+        "ours": {
+          "slot": 177,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-177-eval-easy-017-ours/attempt"
+        },
+        "generic": {
+          "slot": 178,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-178-eval-easy-017-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-008",
+        "seed": 952403840,
+        "ours": {
+          "slot": 44,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-044-eval-hard-008-ours/attempt"
+        },
+        "generic": {
+          "slot": 43,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-043-eval-hard-008-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-011",
+        "seed": 547442462,
+        "ours": {
+          "slot": 61,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-061-eval-moderate-011-ours/attempt"
+        },
+        "generic": {
+          "slot": 62,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-062-eval-moderate-011-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-018",
+        "seed": 1791742366,
+        "ours": {
+          "slot": 131,
+          "status": "INVALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-131-eval-easy-018-ours/attempt"
+        },
+        "generic": {
+          "slot": 132,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-132-eval-easy-018-generic/attempt"
+        },
+        "category": "c"
+      },
+      {
+        "scene": "eval-hard-009",
+        "seed": 211928663,
+        "ours": {
+          "slot": 38,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-038-eval-hard-009-ours/attempt"
+        },
+        "generic": {
+          "slot": 37,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-037-eval-hard-009-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-010",
+        "seed": 1801785368,
+        "ours": {
+          "slot": 92,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-092-eval-hard-010-ours/attempt"
+        },
+        "generic": {
+          "slot": 91,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-091-eval-hard-010-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-019",
+        "seed": 1227555287,
+        "ours": {
+          "slot": 66,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-066-eval-easy-019-ours/attempt"
+        },
+        "generic": {
+          "slot": 65,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-065-eval-easy-019-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-012",
+        "seed": 1778808044,
+        "ours": {
+          "slot": 145,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-145-eval-moderate-012-ours/attempt"
+        },
+        "generic": {
+          "slot": 146,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-146-eval-moderate-012-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-013",
+        "seed": 2036053271,
+        "ours": {
+          "slot": 103,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-103-eval-moderate-013-ours/attempt"
+        },
+        "generic": {
+          "slot": 104,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-104-eval-moderate-013-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-014",
+        "seed": 12453975,
+        "ours": {
+          "slot": 185,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-185-eval-moderate-014-ours/attempt"
+        },
+        "generic": {
+          "slot": 186,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-186-eval-moderate-014-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-011",
+        "seed": 1308936197,
+        "ours": {
+          "slot": 206,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-206-eval-hard-011-ours/attempt"
+        },
+        "generic": {
+          "slot": 205,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-205-eval-hard-011-generic/attempt"
+        },
+        "category": "c"
+      },
+      {
+        "scene": "eval-easy-020",
+        "seed": 624330444,
+        "ours": {
+          "slot": 203,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-203-eval-easy-020-ours/attempt"
+        },
+        "generic": {
+          "slot": 204,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-204-eval-easy-020-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-015",
+        "seed": 1075436801,
+        "ours": {
+          "slot": 81,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-081-eval-moderate-015-ours/attempt"
+        },
+        "generic": {
+          "slot": 82,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-082-eval-moderate-015-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-moderate-016",
+        "seed": 896070714,
+        "ours": {
+          "slot": 3,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-003-eval-moderate-016-ours/attempt"
+        },
+        "generic": {
+          "slot": 4,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-004-eval-moderate-016-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-012",
+        "seed": 1705400159,
+        "ours": {
+          "slot": 53,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-053-eval-hard-012-ours/attempt"
+        },
+        "generic": {
+          "slot": 54,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-054-eval-hard-012-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-easy-021",
+        "seed": 1921782030,
+        "ours": {
+          "slot": 162,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-162-eval-easy-021-ours/attempt"
+        },
+        "generic": {
+          "slot": 161,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-161-eval-easy-021-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-022",
+        "seed": 624476128,
+        "ours": {
+          "slot": 190,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-190-eval-easy-022-ours/attempt"
+        },
+        "generic": {
+          "slot": 189,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-189-eval-easy-022-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-013",
+        "seed": 1968384923,
+        "ours": {
+          "slot": 191,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-191-eval-hard-013-ours/attempt"
+        },
+        "generic": {
+          "slot": 192,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-192-eval-hard-013-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-014",
+        "seed": 555805992,
+        "ours": {
+          "slot": 127,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-127-eval-hard-014-ours/attempt"
+        },
+        "generic": {
+          "slot": 128,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-128-eval-hard-014-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-moderate-017",
+        "seed": 1094383263,
+        "ours": {
+          "slot": 170,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-170-eval-moderate-017-ours/attempt"
+        },
+        "generic": {
+          "slot": 169,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-169-eval-moderate-017-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-hard-015",
+        "seed": 1395226981,
+        "ours": {
+          "slot": 2,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-002-eval-hard-015-ours/attempt"
+        },
+        "generic": {
+          "slot": 1,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-001-eval-hard-015-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-023",
+        "seed": 840498448,
+        "ours": {
+          "slot": 94,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-094-eval-easy-023-ours/attempt"
+        },
+        "generic": {
+          "slot": 93,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-093-eval-easy-023-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-024",
+        "seed": 1815207737,
+        "ours": {
+          "slot": 123,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-123-eval-easy-024-ours/attempt"
+        },
+        "generic": {
+          "slot": 124,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-124-eval-easy-024-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-025",
+        "seed": 1586363002,
+        "ours": {
+          "slot": 181,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-181-eval-easy-025-ours/attempt"
+        },
+        "generic": {
+          "slot": 182,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-182-eval-easy-025-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-026",
+        "seed": 2083629771,
+        "ours": {
+          "slot": 64,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-064-eval-easy-026-ours/attempt"
+        },
+        "generic": {
+          "slot": 63,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-063-eval-easy-026-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-016",
+        "seed": 2015921538,
+        "ours": {
+          "slot": 150,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-150-eval-hard-016-ours/attempt"
+        },
+        "generic": {
+          "slot": 149,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-149-eval-hard-016-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-018",
+        "seed": 1702771334,
+        "ours": {
+          "slot": 52,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-052-eval-moderate-018-ours/attempt"
+        },
+        "generic": {
+          "slot": 51,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-051-eval-moderate-018-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-019",
+        "seed": 1169197651,
+        "ours": {
+          "slot": 147,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-147-eval-moderate-019-ours/attempt"
+        },
+        "generic": {
+          "slot": 148,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-148-eval-moderate-019-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-027",
+        "seed": 1371677345,
+        "ours": {
+          "slot": 84,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-084-eval-easy-027-ours/attempt"
+        },
+        "generic": {
+          "slot": 83,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-083-eval-easy-027-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-020",
+        "seed": 1196848422,
+        "ours": {
+          "slot": 126,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-126-eval-moderate-020-ours/attempt"
+        },
+        "generic": {
+          "slot": 125,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-125-eval-moderate-020-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-028",
+        "seed": 276858287,
+        "ours": {
+          "slot": 158,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-158-eval-easy-028-ours/attempt"
+        },
+        "generic": {
+          "slot": 157,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-157-eval-easy-028-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-hard-017",
+        "seed": 1104742798,
+        "ours": {
+          "slot": 105,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-105-eval-hard-017-ours/attempt"
+        },
+        "generic": {
+          "slot": 106,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-106-eval-hard-017-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-018",
+        "seed": 623667406,
+        "ours": {
+          "slot": 119,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-119-eval-hard-018-ours/attempt"
+        },
+        "generic": {
+          "slot": 120,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-120-eval-hard-018-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-hard-019",
+        "seed": 1161908827,
+        "ours": {
+          "slot": 159,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-159-eval-hard-019-ours/attempt"
+        },
+        "generic": {
+          "slot": 160,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-160-eval-hard-019-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-020",
+        "seed": 1670336334,
+        "ours": {
+          "slot": 121,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-121-eval-hard-020-ours/attempt"
+        },
+        "generic": {
+          "slot": 122,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-122-eval-hard-020-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-easy-029",
+        "seed": 1464281037,
+        "ours": {
+          "slot": 90,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-090-eval-easy-029-ours/attempt"
+        },
+        "generic": {
+          "slot": 89,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-089-eval-easy-029-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-030",
+        "seed": 1461492554,
+        "ours": {
+          "slot": 137,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-137-eval-easy-030-ours/attempt"
+        },
+        "generic": {
+          "slot": 138,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-138-eval-easy-030-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-021",
+        "seed": 934204669,
+        "ours": {
+          "slot": 172,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-172-eval-hard-021-ours/attempt"
+        },
+        "generic": {
+          "slot": 171,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-171-eval-hard-021-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-031",
+        "seed": 1552255101,
+        "ours": {
+          "slot": 108,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-108-eval-easy-031-ours/attempt"
+        },
+        "generic": {
+          "slot": 107,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-107-eval-easy-031-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-021",
+        "seed": 1663037551,
+        "ours": {
+          "slot": 194,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-194-eval-moderate-021-ours/attempt"
+        },
+        "generic": {
+          "slot": 193,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-193-eval-moderate-021-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-032",
+        "seed": 1195288372,
+        "ours": {
+          "slot": 195,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-195-eval-easy-032-ours/attempt"
+        },
+        "generic": {
+          "slot": 196,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-196-eval-easy-032-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-033",
+        "seed": 580383716,
+        "ours": {
+          "slot": 7,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-007-eval-easy-033-ours/attempt"
+        },
+        "generic": {
+          "slot": 8,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-008-eval-easy-033-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-easy-034",
+        "seed": 1116734341,
+        "ours": {
+          "slot": 60,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-060-eval-easy-034-ours/attempt"
+        },
+        "generic": {
+          "slot": 59,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-059-eval-easy-034-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-022",
+        "seed": 1946101076,
+        "ours": {
+          "slot": 199,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-199-eval-moderate-022-ours/attempt"
+        },
+        "generic": {
+          "slot": 200,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-200-eval-moderate-022-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-035",
+        "seed": 2063589663,
+        "ours": {
+          "slot": 117,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-117-eval-easy-035-ours/attempt"
+        },
+        "generic": {
+          "slot": 118,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-118-eval-easy-035-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-022",
+        "seed": 208584040,
+        "ours": {
+          "slot": 211,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-211-eval-hard-022-ours/attempt"
+        },
+        "generic": {
+          "slot": 212,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-212-eval-hard-022-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-036",
+        "seed": 140973717,
+        "ours": {
+          "slot": 40,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-040-eval-easy-036-ours/attempt"
+        },
+        "generic": {
+          "slot": 39,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-039-eval-easy-036-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-023",
+        "seed": 1636798150,
+        "ours": {
+          "slot": 47,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-047-eval-hard-023-ours/attempt"
+        },
+        "generic": {
+          "slot": 48,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-048-eval-hard-023-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-moderate-023",
+        "seed": 541862809,
+        "ours": {
+          "slot": 16,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-016-eval-moderate-023-ours/attempt"
+        },
+        "generic": {
+          "slot": 15,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-015-eval-moderate-023-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-024",
+        "seed": 2090990290,
+        "ours": {
+          "slot": 49,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-049-eval-hard-024-ours/attempt"
+        },
+        "generic": {
+          "slot": 50,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-050-eval-hard-024-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-024",
+        "seed": 1468747216,
+        "ours": {
+          "slot": 6,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-006-eval-moderate-024-ours/attempt"
+        },
+        "generic": {
+          "slot": 5,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-005-eval-moderate-024-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-025",
+        "seed": 391283032,
+        "ours": {
+          "slot": 42,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-042-eval-moderate-025-ours/attempt"
+        },
+        "generic": {
+          "slot": 41,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-041-eval-moderate-025-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-025",
+        "seed": 1040934784,
+        "ours": {
+          "slot": 179,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-179-eval-hard-025-ours/attempt"
+        },
+        "generic": {
+          "slot": 180,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-180-eval-hard-025-generic/attempt"
+        },
+        "category": "d"
+      },
+      {
+        "scene": "eval-moderate-026",
+        "seed": 851728733,
+        "ours": {
+          "slot": 20,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-020-eval-moderate-026-ours/attempt"
+        },
+        "generic": {
+          "slot": 19,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-019-eval-moderate-026-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-026",
+        "seed": 1449563762,
+        "ours": {
+          "slot": 116,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-116-eval-hard-026-ours/attempt"
+        },
+        "generic": {
+          "slot": 115,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-115-eval-hard-026-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-moderate-027",
+        "seed": 527009834,
+        "ours": {
+          "slot": 164,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-164-eval-moderate-027-ours/attempt"
+        },
+        "generic": {
+          "slot": 163,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-163-eval-moderate-027-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-037",
+        "seed": 236799364,
+        "ours": {
+          "slot": 79,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-079-eval-easy-037-ours/attempt"
+        },
+        "generic": {
+          "slot": 80,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-080-eval-easy-037-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-027",
+        "seed": 1568986785,
+        "ours": {
+          "slot": 32,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-032-eval-hard-027-ours/attempt"
+        },
+        "generic": {
+          "slot": 31,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-031-eval-hard-027-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-028",
+        "seed": 1011068456,
+        "ours": {
+          "slot": 102,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-102-eval-hard-028-ours/attempt"
+        },
+        "generic": {
+          "slot": 101,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-101-eval-hard-028-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-easy-038",
+        "seed": 1530090069,
+        "ours": {
+          "slot": 35,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-035-eval-easy-038-ours/attempt"
+        },
+        "generic": {
+          "slot": 36,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-036-eval-easy-038-generic/attempt"
+        },
+        "category": "a"
+      },
+      {
+        "scene": "eval-hard-029",
+        "seed": 446503030,
+        "ours": {
+          "slot": 198,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-198-eval-hard-029-ours/attempt"
+        },
+        "generic": {
+          "slot": 197,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-197-eval-hard-029-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-hard-030",
+        "seed": 1499976107,
+        "ours": {
+          "slot": 57,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-057-eval-hard-030-ours/attempt"
+        },
+        "generic": {
+          "slot": 58,
+          "status": "VALID_TRIAL",
+          "retrieval_success": false,
+          "attempt_dir": "slot-058-eval-hard-030-generic/attempt"
+        },
+        "category": "b"
+      },
+      {
+        "scene": "eval-moderate-028",
+        "seed": 1595998203,
+        "ours": {
+          "slot": 99,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-099-eval-moderate-028-ours/attempt"
+        },
+        "generic": {
+          "slot": 100,
+          "status": "VALID_TRIAL",
+          "retrieval_success": true,
+          "attempt_dir": "slot-100-eval-moderate-028-generic/attempt"
+        },
+        "category": "a"
+      }
+    ],
+    "risk_difference": 0.23958333333333334,
+    "risk_difference_bounds": [
+      0.23958333333333334,
+      0.23958333333333334
+    ],
+    "conservative_exact_rd_interval": [
+      0.07045427245285811,
+      0.38721840455345186
+    ]
+  },
+  "conditional_efficiency": {
+    "definition": "conditional on both succeeding; descriptive whole-scene paired bootstrap",
+    "joint_success_scenes": 53,
+    "joint_success_fraction": 0.5520833333333334,
+    "metrics": {
+      "windows": {
+        "n_pairs": 53,
+        "mean_difference_ours_minus_generic": -0.2830188679245283,
+        "median_difference_ours_minus_generic": 0.0,
+        "mean_difference_interval": [
+          -0.41509433962264153,
+          -0.1504716981132144
+        ],
+        "median_difference_interval": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_seed": 2026091024,
+        "bootstrap_resamples": 10000,
+        "sparse": false,
+        "degenerate": false,
+        "missing_pairs": 0
+      },
+      "resolved_location_changes": {
+        "n_pairs": 53,
+        "mean_difference_ours_minus_generic": -0.09433962264150944,
+        "median_difference_ours_minus_generic": 0.0,
+        "mean_difference_interval": [
+          -0.20754716981132076,
+          0.018867924528301886
+        ],
+        "median_difference_interval": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_seed": 2026091024,
+        "bootstrap_resamples": 10000,
+        "sparse": false,
+        "degenerate": false,
+        "missing_pairs": 0
+      },
+      "T_active_sim": {
+        "n_pairs": 53,
+        "mean_difference_ours_minus_generic": -2.7521886792452794,
+        "median_difference_ours_minus_generic": 0.7690000000000055,
+        "mean_difference_interval": [
+          -7.872661792452827,
+          2.8048141509434
+        ],
+        "median_difference_interval": [
+          -5.545000000000002,
+          3.065000000000012
+        ],
+        "bootstrap_seed": 2026091024,
+        "bootstrap_resamples": 10000,
+        "sparse": false,
+        "degenerate": false,
+        "missing_pairs": 0
+      },
+      "T_ground_sim": {
+        "n_pairs": 53,
+        "mean_difference_ours_minus_generic": -1.5183962264150963,
+        "median_difference_ours_minus_generic": -1.950000000000017,
+        "mean_difference_interval": [
+          -7.875040566037739,
+          5.132872641509432
+        ],
+        "median_difference_interval": [
+          -4.788000000000011,
+          2.0069999999999766
+        ],
+        "bootstrap_seed": 2026091024,
+        "bootstrap_resamples": 10000,
+        "sparse": false,
+        "degenerate": false,
+        "missing_pairs": 0
+      },
+      "T_task_sim": {
+        "n_pairs": 53,
+        "mean_difference_ours_minus_generic": -8.024886792452836,
+        "median_difference_ours_minus_generic": -9.241999999999905,
+        "mean_difference_interval": [
+          -17.00417452830189,
+          1.2416415094339488
+        ],
+        "median_difference_interval": [
+          -18.790999999999997,
+          1.2959999999999923
+        ],
+        "bootstrap_seed": 2026091024,
+        "bootstrap_resamples": 10000,
+        "sparse": false,
+        "degenerate": false,
+        "missing_pairs": 0
+      }
+    }
+  },
+  "auxiliary": {
+    "fixed": {
+      "n_scheduled": 6,
+      "n_complete_pairs": 6,
+      "a": 1,
+      "b": 4,
+      "c": 0,
+      "d": 1,
+      "pairs": [
+        {
+          "scene": "eval-easy-001",
+          "seed": 1210463358,
+          "ours": {
+            "slot": 140,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-140-eval-easy-001-ours/attempt"
+          },
+          "fixed": {
+            "slot": 141,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-141-eval-easy-001-fixed/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-hard-001",
+          "seed": 255254000,
+          "ours": {
+            "slot": 152,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-152-eval-hard-001-ours/attempt"
+          },
+          "fixed": {
+            "slot": 154,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-154-eval-hard-001-fixed/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-easy-002",
+          "seed": 203946317,
+          "ours": {
+            "slot": 96,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-096-eval-easy-002-ours/attempt"
+          },
+          "fixed": {
+            "slot": 97,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-097-eval-easy-002-fixed/attempt"
+          },
+          "category": "a"
+        },
+        {
+          "scene": "eval-moderate-001",
+          "seed": 2144209384,
+          "ours": {
+            "slot": 109,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-109-eval-moderate-001-ours/attempt"
+          },
+          "fixed": {
+            "slot": 112,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-112-eval-moderate-001-fixed/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-moderate-002",
+          "seed": 2026455799,
+          "ours": {
+            "slot": 76,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-076-eval-moderate-002-ours/attempt"
+          },
+          "fixed": {
+            "slot": 78,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-078-eval-moderate-002-fixed/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-hard-002",
+          "seed": 572179566,
+          "ours": {
+            "slot": 23,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-023-eval-hard-002-ours/attempt"
+          },
+          "fixed": {
+            "slot": 28,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-028-eval-hard-002-fixed/attempt"
+          },
+          "category": "b"
+        }
+      ],
+      "risk_difference": 0.6666666666666666,
+      "risk_difference_bounds": [
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "conservative_exact_rd_interval": [
+        -0.3343331666986347,
+        0.9699446587093625
+      ]
+    },
+    "rm4d_only": {
+      "n_scheduled": 6,
+      "n_complete_pairs": 6,
+      "a": 2,
+      "b": 3,
+      "c": 0,
+      "d": 1,
+      "pairs": [
+        {
+          "scene": "eval-easy-001",
+          "seed": 1210463358,
+          "ours": {
+            "slot": 140,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-140-eval-easy-001-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 142,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-142-eval-easy-001-rm4d_only/attempt"
+          },
+          "category": "a"
+        },
+        {
+          "scene": "eval-hard-001",
+          "seed": 255254000,
+          "ours": {
+            "slot": 152,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-152-eval-hard-001-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 156,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-156-eval-hard-001-rm4d_only/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-easy-002",
+          "seed": 203946317,
+          "ours": {
+            "slot": 96,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-096-eval-easy-002-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 98,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-098-eval-easy-002-rm4d_only/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-moderate-001",
+          "seed": 2144209384,
+          "ours": {
+            "slot": 109,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-109-eval-moderate-001-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 111,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-111-eval-moderate-001-rm4d_only/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-moderate-002",
+          "seed": 2026455799,
+          "ours": {
+            "slot": 76,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-076-eval-moderate-002-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 77,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-077-eval-moderate-002-rm4d_only/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-hard-002",
+          "seed": 572179566,
+          "ours": {
+            "slot": 23,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-023-eval-hard-002-ours/attempt"
+          },
+          "rm4d_only": {
+            "slot": 25,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-025-eval-hard-002-rm4d_only/attempt"
+          },
+          "category": "a"
+        }
+      ],
+      "risk_difference": 0.5,
+      "risk_difference_bounds": [
+        0.5,
+        0.5
+      ],
+      "conservative_exact_rd_interval": [
+        -0.42646775874355675,
+        0.9082140007430547
+      ]
+    },
+    "no_cost": {
+      "n_scheduled": 4,
+      "n_complete_pairs": 4,
+      "a": 2,
+      "b": 0,
+      "c": 0,
+      "d": 2,
+      "pairs": [
+        {
+          "scene": "eval-hard-001",
+          "seed": 255254000,
+          "ours": {
+            "slot": 152,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-152-eval-hard-001-ours/attempt"
+          },
+          "no_cost": {
+            "slot": 153,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-153-eval-hard-001-no_cost/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-hard-002",
+          "seed": 572179566,
+          "ours": {
+            "slot": 23,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-023-eval-hard-002-ours/attempt"
+          },
+          "no_cost": {
+            "slot": 26,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-026-eval-hard-002-no_cost/attempt"
+          },
+          "category": "a"
+        },
+        {
+          "scene": "eval-hard-003",
+          "seed": 742306348,
+          "ours": {
+            "slot": 133,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-133-eval-hard-003-ours/attempt"
+          },
+          "no_cost": {
+            "slot": 136,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-136-eval-hard-003-no_cost/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-hard-004",
+          "seed": 1588955310,
+          "ours": {
+            "slot": 70,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-070-eval-hard-004-ours/attempt"
+          },
+          "no_cost": {
+            "slot": 72,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-072-eval-hard-004-no_cost/attempt"
+          },
+          "category": "a"
+        }
+      ],
+      "risk_difference": 0.0,
+      "risk_difference_bounds": [
+        0.0,
+        0.0
+      ],
+      "conservative_exact_rd_interval": [
+        -0.6656298475117892,
+        0.6656298475117892
+      ]
+    },
+    "no_occlusion": {
+      "n_scheduled": 4,
+      "n_complete_pairs": 4,
+      "a": 0,
+      "b": 2,
+      "c": 0,
+      "d": 2,
+      "pairs": [
+        {
+          "scene": "eval-hard-001",
+          "seed": 255254000,
+          "ours": {
+            "slot": 152,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-152-eval-hard-001-ours/attempt"
+          },
+          "no_occlusion": {
+            "slot": 155,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-155-eval-hard-001-no_occlusion-replacement-1/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-hard-002",
+          "seed": 572179566,
+          "ours": {
+            "slot": 23,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-023-eval-hard-002-ours/attempt"
+          },
+          "no_occlusion": {
+            "slot": 27,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-027-eval-hard-002-no_occlusion/attempt"
+          },
+          "category": "b"
+        },
+        {
+          "scene": "eval-hard-003",
+          "seed": 742306348,
+          "ours": {
+            "slot": 133,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-133-eval-hard-003-ours/attempt"
+          },
+          "no_occlusion": {
+            "slot": 135,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-135-eval-hard-003-no_occlusion/attempt"
+          },
+          "category": "d"
+        },
+        {
+          "scene": "eval-hard-004",
+          "seed": 1588955310,
+          "ours": {
+            "slot": 70,
+            "status": "VALID_TRIAL",
+            "retrieval_success": true,
+            "attempt_dir": "slot-070-eval-hard-004-ours/attempt"
+          },
+          "no_occlusion": {
+            "slot": 71,
+            "status": "VALID_TRIAL",
+            "retrieval_success": false,
+            "attempt_dir": "slot-071-eval-hard-004-no_occlusion/attempt"
+          },
+          "category": "b"
+        }
+      ],
+      "risk_difference": 0.5,
+      "risk_difference_bounds": [
+        0.5,
+        0.5
+      ],
+      "conservative_exact_rd_interval": [
+        -0.6185090554478224,
+        0.9528792079360333
+      ]
+    }
+  }
+}

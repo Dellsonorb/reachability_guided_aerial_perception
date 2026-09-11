@@ -1,0 +1,57 @@
+Slot,Scene,Method,Original stage,Original reason,Paper stage
+1,eval-hard-015,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+13,eval-hard-007,ours,ground_refine,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],d435_refinement
+14,eval-hard-007,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+21,eval-hard-006,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+31,eval-hard-027,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+34,eval-easy-004,ours,ground_refine,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],d435_refinement
+37,eval-hard-009,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+43,eval-hard-008,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+46,eval-easy-014,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+47,eval-hard-023,ours,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+48,eval-hard-023,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+50,eval-hard-024,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+53,eval-hard-012,ours,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+54,eval-hard-012,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+58,eval-hard-030,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+69,eval-hard-004,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+74,eval-easy-016,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+75,eval-moderate-002,generic,ground_refine,no valid near-field D435 observation in six bounded camera views,d435_refinement
+81,eval-moderate-015,ours,ground_refine,no valid near-field D435 observation in six bounded camera views,d435_refinement
+82,eval-moderate-015,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+83,eval-easy-027,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+91,eval-hard-010,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+95,eval-easy-002,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+101,eval-hard-028,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+106,eval-hard-017,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+119,eval-hard-018,ours,aerial_observe,aerial target observation timed out,uav_observation
+120,eval-hard-018,generic,aerial_observe,aerial target observation timed out,uav_observation
+121,eval-hard-020,ours,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+122,eval-hard-020,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+124,eval-easy-024,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+127,eval-hard-014,ours,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+128,eval-hard-014,generic,ground_refine,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],d435_refinement
+133,eval-hard-003,ours,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+134,eval-hard-003,generic,active,A5 fresh MID360 PointCloud2 window capture timed out,uav_observation
+149,eval-hard-016,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+151,eval-hard-001,generic,aerial_observe,aerial target observation timed out,uav_observation
+152,eval-hard-001,ours,aerial_observe,aerial target observation timed out,uav_observation
+157,eval-easy-028,generic,descend,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],grasp
+158,eval-easy-028,ours,descend,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],grasp
+160,eval-hard-019,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+163,eval-moderate-027,generic,close,AG95 close controller action failed: state=4 status=,grasp
+165,eval-easy-010,ours,retention,AG95 lost grasp confirmation during lift,lift_retention
+169,eval-moderate-017,generic,ground_refine,camera observation: full robot collision ['ground/forearm_link/ground/d435_link'],d435_refinement
+170,eval-moderate-017,ours,execution_screen,no confirmed exact candidate passing bounded execution screen,screened_candidate
+171,eval-hard-021,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+179,eval-hard-025,ours,ground_refine,camera observation measured endpoint: full robot collision ['ground/upper_arm_link/execution_chassis_clearance'],d435_refinement
+180,eval-hard-025,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+183,eval-hard-005,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+184,eval-hard-005,ours,ground_refine,camera observation: full robot collision ['ground/right_finger_pad/ground/upper_arm_link'],d435_refinement
+192,eval-hard-013,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+193,eval-moderate-021,generic,ground_refine,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],d435_refinement
+197,eval-hard-029,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate
+200,eval-moderate-022,generic,descend,grasp approach measured endpoint: full robot collision ['ground/right_finger_pad/perceived_pick_target'],grasp
+206,eval-hard-011,ours,ground_refine,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],d435_refinement
+207,eval-easy-012,generic,aerial_observe,A5 Ground map TF is stale,uav_observation
+212,eval-hard-022,generic,active,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,confirmed_candidate

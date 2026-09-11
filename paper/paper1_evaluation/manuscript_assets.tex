@@ -1,0 +1,48 @@
+% Include from an article using graphicx. Example assumes compile from AGENT root.
+% Adjust float placement and numbering to the venue; captions here are concise.
+% Complete source/missingness caveats are in CAPTIONS.md and README.md.
+\begin{table}[t]
+\centering
+\caption{Physical retrieval success under the shared three-window budget.}
+\input{paper/paper1_evaluation/table1_overall.tex}
+\end{table}
+\begin{table}[t]
+\centering
+\caption{Complete paired physical outcomes across96 independent scenes.}
+\input{paper/paper1_evaluation/table2_paired_outcomes.tex}
+\end{table}
+\begin{table*}[t]
+\centering
+\caption{Prespecified exact McNemar test and conservative confidence interval for the paired risk difference (percentage points), not the p-value.}
+\resizebox{\textwidth}{!}{\input{paper/paper1_evaluation/table3_mcnemar.tex}}
+\end{table*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{paper/paper1_evaluation/figure1_system_pipeline.pdf}
+\caption{Sensor-driven task pipeline and shared physical execution. Schematic only.}
+\label{fig:system}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{paper/paper1_evaluation/figure2_method_comparison.pdf}
+\caption{The sole policy difference is global versus manipulation-support weighting of the common finite-scan observation opportunity.}
+\label{fig:method}
+\end{figure*}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{paper/paper1_evaluation/figure3_success_by_difficulty.pdf}
+\caption{Descriptive physical retrieval outcomes by tier. The single primary paired test pools all96 scenes.}
+\label{fig:success}
+\end{figure}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.85\textwidth]{paper/paper1_evaluation/figure4_failure_stages.pdf}
+\caption{Primary first-terminal failures, Generic40 versus Ours16. Not-reached stages do not add failures. Budget exhaustion without confirmation is displayed at the confirmation checkpoint.}
+\label{fig:failures}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{paper/paper1_evaluation/figure5_qualitative.pdf}
+\caption{Post-hoc illustrative Hard015 pair, selected as the first scheduled eligible Hard Generic-failure/Ours-success case. Recorded packet poses, ground-presence evidence and task deficit; per-run exact anchors and native grids are preserved. Dotted lines encode observation order, not flight paths. The example is not an additional statistical trial.}
+\label{fig:qualitative}
+\end{figure*}

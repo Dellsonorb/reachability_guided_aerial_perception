@@ -1,0 +1,811 @@
+{
+  "selection_rule": "Post hoc illustrative outcome-selected example: lowest scheduled primary Hard pair with Ours retrieval success, Generic failure, and retained accepted window snapshots for both methods. Not representative, predeclared, or an additional independent test; no score-gap maximization. Reproduction is frozen to eval-hard-015, seed 1395226981, Generic slot 001 and Ours slot 002; missing local evidence does not trigger reselection.",
+  "results_root": "/media/lu/P450_PAPER/AGENT/reachability_guided_aerial_perception/outputs/paper1-final-eval-v1",
+  "cases": [
+    {
+      "slot": 1,
+      "scene": "eval-hard-015",
+      "method": "generic",
+      "seed": 1395226981,
+      "selected_attempt": "slot-001-eval-hard-015-generic/attempt",
+      "retrieval_success": false,
+      "physical_status": "FAIL",
+      "failure_reason": "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate",
+      "terminal_event": {
+        "reason": "A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate",
+        "ros_time": 127.189,
+        "state": "FAILED",
+        "wall_monotonic": 291952.470286877
+      },
+      "anchor": {
+        "candidate_id": "candidate-000000",
+        "x": 2.3963625278486025,
+        "y": -0.4547808304258378,
+        "yaw": -3.141592653589793,
+        "relevance": 1.0,
+        "source_id": 584,
+        "evaluation_index": 0,
+        "footprint_clipped": false,
+        "free_cells": 77,
+        "occupied_cells": 0,
+        "unknown_cells": 19,
+        "representative_blocked": false,
+        "confirmed": false,
+        "mean_unknown_score": 0.40328353155453117,
+        "operational": {
+          "covered_cells": [
+            458,
+            459,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            498,
+            499,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            538,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668,
+            669,
+            698,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749
+          ],
+          "footprint_clipped": false,
+          "environment_cells": 0,
+          "ambiguous_cells": 0,
+          "target_cells": 0,
+          "ground_supported_cells": 77,
+          "ground_missing_cells": 19,
+          "target_collision": false,
+          "blocked": false,
+          "ground_supported": false
+        },
+        "ambiguous_subcell": {
+          "intersecting_endpoint_indices": [],
+          "legacy_fallback_cell_ids": [],
+          "coarse_ambiguous_cell_ids": [],
+          "aliased_clear_cell_ids": []
+        }
+      },
+      "anchor_selection": "first runtime assessed continuous exact candidate",
+      "anchor_semantics": "exact-validated-winner-v1.2",
+      "confirmed_counts": [
+        0,
+        0,
+        0
+      ],
+      "task_uncertainty_mass": [
+        145.32653298563167,
+        99.71653032171675,
+        71.56529403867192
+      ],
+      "worker_stop_reason": "VIEW_BUDGET_REACHED",
+      "runtime_stop_reason": "VIEW_BUDGET_REACHED",
+      "runtime_decision_source": "slot-001-eval-hard-015-generic/attempt/data/events.jsonl:40",
+      "runtime_decision_ros_time": 127.184,
+      "runtime_selected_event": null,
+      "runtime_selected_source": null,
+      "frame_id": "map",
+      "extent": [
+        -0.023540964797548858,
+        3.976459035202451,
+        -1.9464480313095023,
+        2.0535519686904977
+      ],
+      "native_grid": {
+        "origin_xy": [
+          -0.023540964797548858,
+          -1.9464480313095023
+        ],
+        "frame_id": "map",
+        "resolution_m": 0.1,
+        "width_cells": 40,
+        "height_cells": 40
+      },
+      "footprint": {
+        "half_length_m": 0.52,
+        "half_width_m": 0.39
+      },
+      "free_observations": 2,
+      "operational_semantics": "object-aware-v1.4",
+      "windows": [
+        {
+          "round": 1,
+          "packet_start_stamp_s": 53.234,
+          "packet_end_stamp_s": 58.258,
+          "accepted_event_ros_time": 58.398,
+          "accepted_event_source": "slot-001-eval-hard-015-generic/attempt/data/events.jsonl:18",
+          "observation_source": "slot-001-eval-hard-015-generic/attempt/data/observation_01.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 51,
+          "first_packet_uav_map_xyz_yaw": [
+            -1.4376994711816329,
+            -0.1258433433743162,
+            1.170668974619809,
+            -0.006357107041351484
+          ]
+        },
+        {
+          "round": 2,
+          "packet_start_stamp_s": 87.135,
+          "packet_end_stamp_s": 92.161,
+          "accepted_event_ros_time": 92.297,
+          "accepted_event_source": "slot-001-eval-hard-015-generic/attempt/data/events.jsonl:27",
+          "observation_source": "slot-001-eval-hard-015-generic/attempt/data/observation_02.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 51,
+          "first_packet_uav_map_xyz_yaw": [
+            -3.4144771007469283,
+            -2.0902865931448815,
+            1.2999252465294235,
+            -0.009430623370705084
+          ]
+        },
+        {
+          "round": 3,
+          "packet_start_stamp_s": 113.867,
+          "packet_end_stamp_s": 118.962,
+          "accepted_event_ros_time": 119.118,
+          "accepted_event_source": "slot-001-eval-hard-015-generic/attempt/data/events.jsonl:36",
+          "observation_source": "slot-001-eval-hard-015-generic/attempt/data/observation_03.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 52,
+          "first_packet_uav_map_xyz_yaw": [
+            -3.4392483560010696,
+            -2.1602269417104014,
+            1.2054185730277167,
+            -0.009406758674092072
+          ]
+        }
+      ],
+      "poses": [
+        [
+          -1.4376994711816329,
+          -0.1258433433743162,
+          1.170668974619809,
+          -0.006357107041351484
+        ],
+        [
+          -3.4144771007469283,
+          -2.0902865931448815,
+          1.2999252465294235,
+          -0.009430623370705084
+        ],
+        [
+          -3.4392483560010696,
+          -2.1602269417104014,
+          1.2054185730277167,
+          -0.009406758674092072
+        ]
+      ],
+      "csv_poses": [
+        [
+          -1.4376994711816329,
+          -0.1258433433743162,
+          1.170668974619809,
+          -0.006357107041351484
+        ],
+        [
+          -3.4144771007469283,
+          -2.0902865931448815,
+          1.2999252465294235,
+          -0.009430623370705084
+        ],
+        [
+          -3.4392483560010696,
+          -2.1602269417104014,
+          1.2054185730277167,
+          -0.009406758674092072
+        ]
+      ],
+      "sources": [
+        {
+          "path": "slots.csv"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/events.jsonl"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-01/ranking.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-01/decision.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/observation_01.npz"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-02/ranking.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-02/decision.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/observation_02.npz"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-03/ranking.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-03/decision.json"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/observation_03.npz"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-03/operational_evidence.npz"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-03/fields.npz"
+        },
+        {
+          "path": "slot-001-eval-hard-015-generic/attempt/data/rounds/round-03/operational_summary.json"
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "scene": "eval-hard-015",
+      "method": "ours",
+      "seed": 1395226981,
+      "selected_attempt": "slot-002-eval-hard-015-ours/attempt",
+      "retrieval_success": true,
+      "physical_status": "CHECKS_PASS",
+      "failure_reason": "",
+      "terminal_event": {
+        "grasp_confirmed": true,
+        "ros_time": 254.397,
+        "state": "LIFT",
+        "target_map": [
+          1.9894628269687247,
+          0.06405869129582739,
+          0.058619102826913336,
+          0.02033955812410837
+        ],
+        "tcp_lift": 0.1494238491002772,
+        "wall_monotonic": 292321.036544123
+      },
+      "anchor": {
+        "candidate_id": "candidate-000000",
+        "x": 2.412901443601094,
+        "y": -0.45148595448844225,
+        "yaw": -3.141592653589793,
+        "relevance": 1.0,
+        "source_id": 584,
+        "evaluation_index": 0,
+        "footprint_clipped": false,
+        "free_cells": 88,
+        "occupied_cells": 0,
+        "unknown_cells": 0,
+        "representative_blocked": false,
+        "confirmed": true,
+        "mean_unknown_score": 0.30537406982059606,
+        "operational": {
+          "covered_cells": [
+            459,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            499,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668,
+            669,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749
+          ],
+          "footprint_clipped": false,
+          "environment_cells": 0,
+          "ambiguous_cells": 0,
+          "target_cells": 0,
+          "ground_supported_cells": 88,
+          "ground_missing_cells": 0,
+          "target_collision": false,
+          "blocked": false,
+          "ground_supported": true
+        },
+        "ambiguous_subcell": {
+          "intersecting_endpoint_indices": [],
+          "legacy_fallback_cell_ids": [],
+          "coarse_ambiguous_cell_ids": [],
+          "aliased_clear_cell_ids": []
+        }
+      },
+      "anchor_selection": "selected continuous exact candidate",
+      "anchor_semantics": "exact-validated-winner-v1.2",
+      "confirmed_counts": [
+        0,
+        0,
+        3
+      ],
+      "task_uncertainty_mass": [
+        137.60490090218326,
+        83.85506066418012,
+        51.97008826079902
+      ],
+      "worker_stop_reason": "VIEW_BUDGET_REACHED",
+      "runtime_stop_reason": "SCREENED_CANDIDATE_READY",
+      "runtime_decision_source": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl:43",
+      "runtime_decision_ros_time": 145.335,
+      "runtime_selected_event": {
+        "ambiguous_subcell": {
+          "aliased_clear_cell_ids": [],
+          "coarse_ambiguous_cell_ids": [],
+          "intersecting_endpoint_indices": [],
+          "legacy_fallback_cell_ids": []
+        },
+        "candidate_id": "candidate-000000",
+        "confirmed": true,
+        "evaluation_index": 0,
+        "execution_screen": {
+          "arrival_revalidation_required": true,
+          "attempts": [
+            {
+              "attempt": 1,
+              "grasp_yaw_offset": 0.0,
+              "loaded_joint_max": 0.522,
+              "reason": "whole manipulation chain checked",
+              "seed": "measured",
+              "stage": "accepted"
+            }
+          ],
+          "camera_observation_and_transit_guaranteed": false,
+          "candidate_base": [
+            2.412901443601094,
+            -0.45148595448844225,
+            -3.141592653589793
+          ],
+          "feasible": true,
+          "grasp_yaw_offset": 0.0,
+          "measured_base_z": 0.36,
+          "reason": "whole manipulation chain checked",
+          "source": "aerial_predicted",
+          "target_base": [
+            0.4273761943627267,
+            -0.5042941371867122,
+            -0.2988828034304708,
+            3.044407315891616
+          ],
+          "version": "chassis-clearance-v1"
+        },
+        "footprint_clipped": false,
+        "free_cells": 88,
+        "mean_unknown_score": 0.30537406982059606,
+        "occupied_cells": 0,
+        "operational": {
+          "ambiguous_cells": 0,
+          "blocked": false,
+          "covered_cells": [
+            459,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            499,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668,
+            669,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749
+          ],
+          "environment_cells": 0,
+          "footprint_clipped": false,
+          "ground_missing_cells": 0,
+          "ground_supported": true,
+          "ground_supported_cells": 88,
+          "target_cells": 0,
+          "target_collision": false
+        },
+        "relevance": 1.0,
+        "representative_blocked": false,
+        "ros_time": 145.336,
+        "source_id": 584,
+        "state": "A5_SELECTED",
+        "unknown_cells": 0,
+        "wall_monotonic": 292184.838870433,
+        "x": 2.412901443601094,
+        "y": -0.45148595448844225,
+        "yaw": -3.141592653589793
+      },
+      "runtime_selected_source": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl:44",
+      "frame_id": "map",
+      "extent": [
+        -0.01447475076163296,
+        3.985525249238367,
+        -1.94719181730173,
+        2.05280818269827
+      ],
+      "native_grid": {
+        "origin_xy": [
+          -0.01447475076163296,
+          -1.94719181730173
+        ],
+        "frame_id": "map",
+        "resolution_m": 0.1,
+        "width_cells": 40,
+        "height_cells": 40
+      },
+      "footprint": {
+        "half_length_m": 0.52,
+        "half_width_m": 0.39
+      },
+      "free_observations": 2,
+      "operational_semantics": "object-aware-v1.4",
+      "windows": [
+        {
+          "round": 1,
+          "packet_start_stamp_s": 49.955,
+          "packet_end_stamp_s": 55.047,
+          "accepted_event_ros_time": 55.222,
+          "accepted_event_source": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl:18",
+          "observation_source": "slot-002-eval-hard-015-ours/attempt/data/observation_01.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 52,
+          "first_packet_uav_map_xyz_yaw": [
+            -1.5037715656961548,
+            -0.0698238964466894,
+            1.1664696608266483,
+            -0.010319949524441182
+          ]
+        },
+        {
+          "round": 2,
+          "packet_start_stamp_s": 86.069,
+          "packet_end_stamp_s": 91.158,
+          "accepted_event_ros_time": 91.341,
+          "accepted_event_source": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl:27",
+          "observation_source": "slot-002-eval-hard-015-ours/attempt/data/observation_02.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 52,
+          "first_packet_uav_map_xyz_yaw": [
+            -1.4599527141828694,
+            -2.065460510127262,
+            1.2309963347620996,
+            0.7726829340728374
+          ]
+        },
+        {
+          "round": 3,
+          "packet_start_stamp_s": 114.077,
+          "packet_end_stamp_s": 119.169,
+          "accepted_event_ros_time": 119.319,
+          "accepted_event_source": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl:36",
+          "observation_source": "slot-002-eval-hard-015-ours/attempt/data/observation_03.npz",
+          "sensor_frame": "uav1/lidar_link",
+          "packet_count": 52,
+          "first_packet_uav_map_xyz_yaw": [
+            -1.4242252260927133,
+            -2.1059644221211773,
+            1.1823780288176966,
+            0.7716427766590254
+          ]
+        }
+      ],
+      "poses": [
+        [
+          -1.5037715656961548,
+          -0.0698238964466894,
+          1.1664696608266483,
+          -0.010319949524441182
+        ],
+        [
+          -1.4599527141828694,
+          -2.065460510127262,
+          1.2309963347620996,
+          0.7726829340728374
+        ],
+        [
+          -1.4242252260927133,
+          -2.1059644221211773,
+          1.1823780288176966,
+          0.7716427766590254
+        ]
+      ],
+      "csv_poses": [
+        [
+          -1.5037715656961548,
+          -0.0698238964466894,
+          1.1664696608266483,
+          -0.010319949524441182
+        ],
+        [
+          -1.4599527141828694,
+          -2.065460510127262,
+          1.2309963347620996,
+          0.7726829340728374
+        ],
+        [
+          -1.4242252260927133,
+          -2.1059644221211773,
+          1.1823780288176966,
+          0.7716427766590254
+        ]
+      ],
+      "sources": [
+        {
+          "path": "slots.csv"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/events.jsonl"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-01/ranking.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-01/decision.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/observation_01.npz"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-02/ranking.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-02/decision.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/observation_02.npz"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-03/ranking.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-03/decision.json"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/observation_03.npz"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-03/operational_evidence.npz"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-03/fields.npz"
+        },
+        {
+          "path": "slot-002-eval-hard-015-ours/attempt/data/rounds/round-03/operational_summary.json"
+        }
+      ]
+    }
+  ],
+  "frame_semantics": "T_map_uav = first chunk_T_map_sensor @ inverse(saved T_uav_lidar); all plots map frame",
+  "spatial_semantics": "native grid origins preserved, no resampling; exact base anchors remain continuous",
+  "visualization_semantics": "saved runtime fields only; no GT geometry, image synthesis, or algorithm rerun",
+  "pose_line_semantics": "observation order only, not the flown trajectory",
+  "ground_support_semantics": "ground_presence_votes >= saved free_observations; blocking remains independent",
+  "anchor_rule": "selected exact candidate if present, otherwise first runtime assessment; not a matched shared anchor"
+}

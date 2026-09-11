@@ -1,0 +1,42 @@
+{
+  "release_tag": "paper1-eval-finite-scan-v1",
+  "agent_tag_commit": "6c9fd2a5c3d8777c4c5a33bc85ba605af53a1166",
+  "sim_tag_commit": "a0ae8e32889e92a86f24d2794c7cb143999915fd",
+  "actual_collection_versions": [
+    {
+      "agent": "3d13a95c3aac8e530aeb9d54f4ab75cc0b37b81a",
+      "rm4d": "e9d431299053f38a4a4319aed3dfeccc261b9fac",
+      "sim": "a0ae8e32889e92a86f24d2794c7cb143999915fd"
+    }
+  ],
+  "source_results_commit": "6fec29b6ad54f76f5bdceb6b0fbee4e709fd374b",
+  "runtime_ancestry_commit": "1a6e85b42e9d9fd642454de499672004503c3772",
+  "config_files": [
+    "configs/paper1_eval.json",
+    "configs/current_sim_task.json",
+    "configs/evaluation_version.json",
+    "assets/rm4d_ground_task_v1/metadata.json"
+  ],
+  "original_rm4d_config": "configs/mr4_offline_base_placement.json",
+  "numerical_environment": {
+    "os": "Ubuntu 20.04.6 LTS",
+    "ros_python": "3.8.10",
+    "core_python": "3.10.21",
+    "gazebo": "11.15.1-1~focal",
+    "ros_noetic_core": "1.5.0-1focal.20250520.015810",
+    "moveit": "1.1.16-1focal.20250521.021831",
+    "mavros": "1.20.1-1focal.20250520.005419",
+    "move_base": "1.17.3-1focal.20250521.010519",
+    "gazebo_ros_control": "2.9.3-1focal.20250521.005335",
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.9",
+    "scipy": "1.15.2",
+    "pybullet": "3.2.5",
+    "tqdm": "4.70.0"
+  },
+  "tag_probe_semantics": "Local read-only Git probes; null means unavailable here, not a changed frozen runtime.",
+  "seed_count": 96,
+  "task_count": 212,
+  "exact_replay_limitation": "Asynchronous Gazebo/ROS/PX4 dynamics and scan phase are not bitwise replayable.",
+  "raw_data_limitation": "Compact Git package cannot replay all sensor windows; retained local NPZ/bags required for qualitative/mechanism reproduction."
+}
