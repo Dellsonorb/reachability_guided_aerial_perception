@@ -1,0 +1,213 @@
+slot,scene,method,tier,role,retrieval_success,confirmation_failure,status,failure_reason,recorded_windows,available_snapshots,missing,evidence_applicability
+1,eval-hard-015,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+2,eval-hard-015,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+3,eval-moderate-016,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+4,eval-moderate-016,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+5,eval-moderate-024,generic,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+6,eval-moderate-024,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+7,eval-easy-033,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+8,eval-easy-033,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+9,eval-easy-009,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+10,eval-easy-009,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+11,eval-easy-006,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+12,eval-easy-006,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+13,eval-hard-007,ours,hard,primary,False,False,VALID_TRIAL,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],3,3,[],OBSERVATION_PIPELINE
+14,eval-hard-007,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+15,eval-moderate-023,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+16,eval-moderate-023,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+17,eval-moderate-004,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+18,eval-moderate-004,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+19,eval-moderate-026,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+20,eval-moderate-026,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+21,eval-hard-006,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+22,eval-hard-006,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+23,eval-hard-002,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+24,eval-hard-002,generic,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+25,eval-hard-002,rm4d_only,hard,secondary_baseline,True,False,VALID_TRIAL,,0,0,[],BYPASS
+26,eval-hard-002,no_cost,hard,secondary_ablation,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+27,eval-hard-002,no_occlusion,hard,secondary_ablation,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+28,eval-hard-002,fixed,hard,secondary_baseline,False,False,VALID_TRIAL,A5 UAV position/yaw/speed did not settle,1,1,[],OBSERVATION_PIPELINE
+29,eval-easy-015,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+30,eval-easy-015,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+31,eval-hard-027,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+32,eval-hard-027,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+33,eval-easy-004,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+34,eval-easy-004,ours,easy,primary,False,False,VALID_TRIAL,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],2,2,[],OBSERVATION_PIPELINE
+35,eval-easy-038,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+36,eval-easy-038,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+37,eval-hard-009,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+38,eval-hard-009,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+39,eval-easy-036,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+40,eval-easy-036,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+41,eval-moderate-025,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+42,eval-moderate-025,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+43,eval-hard-008,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+44,eval-hard-008,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+45,eval-easy-014,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+46,eval-easy-014,generic,easy,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+47,eval-hard-023,ours,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+48,eval-hard-023,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+49,eval-hard-024,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+50,eval-hard-024,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+51,eval-moderate-018,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+52,eval-moderate-018,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+53,eval-hard-012,ours,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+54,eval-hard-012,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+55,eval-moderate-008,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+56,eval-moderate-008,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+57,eval-hard-030,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+58,eval-hard-030,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+59,eval-easy-034,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+60,eval-easy-034,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+61,eval-moderate-011,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+62,eval-moderate-011,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+63,eval-easy-026,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+64,eval-easy-026,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+65,eval-easy-019,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+66,eval-easy-019,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+67,eval-easy-013,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+68,eval-easy-013,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+69,eval-hard-004,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+70,eval-hard-004,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+71,eval-hard-004,no_occlusion,hard,secondary_ablation,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+72,eval-hard-004,no_cost,hard,secondary_ablation,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+73,eval-easy-016,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+74,eval-easy-016,generic,easy,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+75,eval-moderate-002,generic,moderate,primary,False,False,VALID_TRIAL,no valid near-field D435 observation in six bounded camera views,3,3,[],OBSERVATION_PIPELINE
+76,eval-moderate-002,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+77,eval-moderate-002,rm4d_only,moderate,secondary_baseline,False,False,VALID_TRIAL,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],0,0,[],BYPASS
+78,eval-moderate-002,fixed,moderate,secondary_baseline,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+79,eval-easy-037,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+80,eval-easy-037,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+81,eval-moderate-015,ours,moderate,primary,False,False,VALID_TRIAL,no valid near-field D435 observation in six bounded camera views,3,3,[],OBSERVATION_PIPELINE
+82,eval-moderate-015,generic,moderate,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+83,eval-easy-027,generic,easy,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+84,eval-easy-027,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+85,eval-easy-003,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+86,eval-easy-003,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+87,eval-moderate-010,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+88,eval-moderate-010,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+89,eval-easy-029,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+90,eval-easy-029,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+91,eval-hard-010,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+92,eval-hard-010,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+93,eval-easy-023,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+94,eval-easy-023,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+95,eval-easy-002,generic,easy,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+96,eval-easy-002,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+97,eval-easy-002,fixed,easy,secondary_baseline,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+98,eval-easy-002,rm4d_only,easy,secondary_baseline,False,False,VALID_TRIAL,whole manipulation search rejected all six branches,0,0,[],BYPASS
+99,eval-moderate-028,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+100,eval-moderate-028,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+101,eval-hard-028,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+102,eval-hard-028,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+103,eval-moderate-013,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+104,eval-moderate-013,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+105,eval-hard-017,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+106,eval-hard-017,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+107,eval-easy-031,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+108,eval-easy-031,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+109,eval-moderate-001,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+110,eval-moderate-001,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+111,eval-moderate-001,rm4d_only,moderate,secondary_baseline,False,False,VALID_TRIAL,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],0,0,[],BYPASS
+112,eval-moderate-001,fixed,moderate,secondary_baseline,False,False,VALID_TRIAL,A5 UAV position/yaw/speed did not settle,1,1,[],OBSERVATION_PIPELINE
+113,eval-moderate-009,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+114,eval-moderate-009,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+115,eval-hard-026,generic,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+116,eval-hard-026,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+117,eval-easy-035,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+118,eval-easy-035,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+119,eval-hard-018,ours,hard,primary,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+120,eval-hard-018,generic,hard,primary,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+121,eval-hard-020,ours,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+122,eval-hard-020,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+123,eval-easy-024,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+124,eval-easy-024,generic,easy,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+125,eval-moderate-020,generic,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+126,eval-moderate-020,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+127,eval-hard-014,ours,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+128,eval-hard-014,generic,hard,primary,False,False,VALID_TRIAL,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],3,3,[],OBSERVATION_PIPELINE
+129,eval-easy-005,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+130,eval-easy-005,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+131,eval-easy-018,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+132,eval-easy-018,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+133,eval-hard-003,ours,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+134,eval-hard-003,generic,hard,primary,False,False,VALID_TRIAL,A5 fresh MID360 PointCloud2 window capture timed out,2,2,[],OBSERVATION_PIPELINE
+135,eval-hard-003,no_occlusion,hard,secondary_ablation,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+136,eval-hard-003,no_cost,hard,secondary_ablation,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+137,eval-easy-030,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+138,eval-easy-030,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+139,eval-easy-001,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+140,eval-easy-001,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+141,eval-easy-001,fixed,easy,secondary_baseline,False,False,VALID_TRIAL,A5 fresh MID360 PointCloud2 window capture timed out,1,1,[],OBSERVATION_PIPELINE
+142,eval-easy-001,rm4d_only,easy,secondary_baseline,True,False,VALID_TRIAL,,0,0,[],BYPASS
+143,eval-moderate-006,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+144,eval-moderate-006,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+145,eval-moderate-012,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+146,eval-moderate-012,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+147,eval-moderate-019,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+148,eval-moderate-019,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+149,eval-hard-016,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+150,eval-hard-016,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+151,eval-hard-001,generic,hard,primary,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+152,eval-hard-001,ours,hard,primary,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+153,eval-hard-001,no_cost,hard,secondary_ablation,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+154,eval-hard-001,fixed,hard,secondary_baseline,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+155,eval-hard-001,no_occlusion,hard,secondary_ablation,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],OBSERVATION_PIPELINE
+156,eval-hard-001,rm4d_only,hard,secondary_baseline,False,False,VALID_TRIAL,aerial target observation timed out,0,0,[],BYPASS
+157,eval-easy-028,generic,easy,primary,False,False,VALID_TRIAL,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],3,3,[],OBSERVATION_PIPELINE
+158,eval-easy-028,ours,easy,primary,False,False,VALID_TRIAL,grasp approach measured endpoint: full robot collision ['ground/left_finger_pad/perceived_pick_target'],3,3,[],OBSERVATION_PIPELINE
+159,eval-hard-019,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+160,eval-hard-019,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+161,eval-easy-021,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+162,eval-easy-021,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+163,eval-moderate-027,generic,moderate,primary,False,False,VALID_TRIAL,AG95 close controller action failed: state=4 status=,2,2,[],OBSERVATION_PIPELINE
+164,eval-moderate-027,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+165,eval-easy-010,ours,easy,primary,False,False,VALID_TRIAL,AG95 lost grasp confirmation during lift,2,2,[],OBSERVATION_PIPELINE
+166,eval-easy-010,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+167,eval-moderate-005,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+168,eval-moderate-005,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+169,eval-moderate-017,generic,moderate,primary,False,False,VALID_TRIAL,camera observation: full robot collision ['ground/forearm_link/ground/d435_link'],3,3,[],OBSERVATION_PIPELINE
+170,eval-moderate-017,ours,moderate,primary,False,False,VALID_TRIAL,no confirmed exact candidate passing bounded execution screen,3,3,[],OBSERVATION_PIPELINE
+171,eval-hard-021,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+172,eval-hard-021,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+173,eval-easy-008,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+174,eval-easy-008,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+175,eval-moderate-007,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+176,eval-moderate-007,generic,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+177,eval-easy-017,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+178,eval-easy-017,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+179,eval-hard-025,ours,hard,primary,False,False,VALID_TRIAL,camera observation measured endpoint: full robot collision ['ground/upper_arm_link/execution_chassis_clearance'],3,3,[],OBSERVATION_PIPELINE
+180,eval-hard-025,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+181,eval-easy-025,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+182,eval-easy-025,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+183,eval-hard-005,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+184,eval-hard-005,ours,hard,primary,False,False,VALID_TRIAL,camera observation: full robot collision ['ground/right_finger_pad/ground/upper_arm_link'],3,3,[],OBSERVATION_PIPELINE
+185,eval-moderate-014,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+186,eval-moderate-014,generic,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+187,eval-easy-007,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+188,eval-easy-007,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+189,eval-easy-022,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+190,eval-easy-022,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+191,eval-hard-013,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+192,eval-hard-013,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+193,eval-moderate-021,generic,moderate,primary,False,False,VALID_TRIAL,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],3,3,[],OBSERVATION_PIPELINE
+194,eval-moderate-021,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+195,eval-easy-032,ours,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+196,eval-easy-032,generic,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+197,eval-hard-029,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE
+198,eval-hard-029,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+199,eval-moderate-022,ours,moderate,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+200,eval-moderate-022,generic,moderate,primary,False,False,VALID_TRIAL,grasp approach measured endpoint: full robot collision ['ground/right_finger_pad/perceived_pick_target'],3,3,[],OBSERVATION_PIPELINE
+201,eval-moderate-003,generic,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+202,eval-moderate-003,ours,moderate,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+203,eval-easy-020,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+204,eval-easy-020,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+205,eval-hard-011,generic,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+206,eval-hard-011,ours,hard,primary,False,False,VALID_TRIAL,guarded observation start full robot state invalid; collisions=['perceived_pick_target/ground/base_link'],3,3,[],OBSERVATION_PIPELINE
+207,eval-easy-012,generic,easy,primary,False,False,VALID_TRIAL,A5 Ground map TF is stale,0,0,[],OBSERVATION_PIPELINE
+208,eval-easy-012,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+209,eval-easy-011,ours,easy,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+210,eval-easy-011,generic,easy,primary,True,False,VALID_TRIAL,,2,2,[],OBSERVATION_PIPELINE
+211,eval-hard-022,ours,hard,primary,True,False,VALID_TRIAL,,3,3,[],OBSERVATION_PIPELINE
+212,eval-hard-022,generic,hard,primary,False,True,VALID_TRIAL,A5 stopped (VIEW_BUDGET_REACHED) without a confirmed exact candidate,3,3,[],OBSERVATION_PIPELINE

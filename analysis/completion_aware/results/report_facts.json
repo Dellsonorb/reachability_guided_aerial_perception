@@ -1,0 +1,43 @@
+{
+  "paired_scenes": 96,
+  "paired_round2_available": 93,
+  "minimum_missing_cells_round2_paired": {
+    "ours_lower": 53,
+    "equal": 17,
+    "ours_higher": 23,
+    "median_ours_minus_generic": -1.0
+  },
+  "fixed_missing_tickets_round2_paired": {
+    "ours_lower": 62,
+    "equal": 9,
+    "ours_higher": 22,
+    "median_ours_minus_generic": -2.0
+  },
+  "generic_failures_with_paired_ours_retrieval": 22,
+  "historical_first_no_completion_flag": {
+    "generic": {
+      "n": 93,
+      "flagged": 22,
+      "confirmation_failures_flagged": 20,
+      "confirmation_failures_unflagged": 9
+    },
+    "ours": {
+      "n": 94,
+      "flagged": 11,
+      "confirmation_failures_flagged": 5,
+      "confirmation_failures_unflagged": 0
+    }
+  },
+  "cumulative_confirmation": {
+    "generic": [
+      0,
+      14,
+      63
+    ],
+    "ours": [
+      0,
+      34,
+      89
+    ]
+  }
+}
