@@ -23,10 +23,18 @@ localization and contact backends are disclosed in Section~\ref{sec:limitations}
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=\linewidth]{\assetdir/figure1_system_pipeline.pdf}
-\caption{System overview. Manipulation support and measured environment evidence
-guide aerial sensing, while a common execution interface connects the selected
-exact base pose to physical retrieval. Schematic, not a trial reconstruction.}
+\includegraphics[width=\linewidth]{\figdir/figure1_system_pipeline.pdf}
+\caption{\textbf{Manipulation-guided sensing and physical handoff.}
+Validated exact base footprints project future manipulation requirements into
+environment space. Measured MID360 evidence supplies observation deficit and
+operational blocking; blue boxes highlight the relevance-weighted sensing path.
+The dashed connector denotes workflow order, not an input from deficit to
+confirmation: confirmation independently requires measured $H_t$ and $B_t$.
+Full-robot screening precedes another view. A ready candidate enters the shared
+execution sequence (green), with $\Dexec$ checked after fresh D435 refinement.
+Further observation requires remaining budget and a positive admissible score;
+failure may terminate the task at any stage. This is a schematic, not a trial
+reconstruction.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -221,10 +229,16 @@ shows the controlled distinction: only $G_m$'s manipulation weighting differs.
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=\linewidth]{\assetdir/figure2_method_comparison.pdf}
-\caption{Matched NBV policies. The finite-scan opportunity, candidate set, motion
-cost, evidence updates and execution rules are shared. Manipulation support
-weights the deficit only in Ours. The diagram is conceptual, not a new result.}
+\includegraphics[width=\linewidth]{\figdir/figure2_method_comparison.pdf}
+\caption{\textbf{The controlled difference in observation value.}
+\textbf{a}, Generic values observable deficit throughout the environment.
+\textbf{b}, Ours additionally weights deficit by operational manipulation support.
+Yellow denotes the known target; teal rectangles illustrate useful continuous
+base footprints. Coloured outlines distinguish the regions contributing to each
+objective schematically, not exact field boundaries. Both policies share finite-scan
+opportunity, candidate views, cost, updates, budget and execution.
+The spatial cartoons are not measured heatmaps or predictions of a winning view;
+$\alpha=1-e^{-1/\tau}$.}
 \label{fig:comparison}
 \end{figure}
 

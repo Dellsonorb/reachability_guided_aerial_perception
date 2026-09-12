@@ -1,0 +1,200 @@
+\section{方法}
+\label{sec:method}
+\subsection{问题定义与系统概述}
+令 $\widehat{T}_g\in SE(3)$ 为从空中 RGB-D 观测估计、在共享 map 坐标系中表达的抓取工具中心点
+（tool centre point，TCP）位姿。地面底盘位姿为 $q=(p_x,p_y,\psi)\in SE(2)$，
+其中 $p$ 表示 BUNKER 的 base-link 地面平面位置，$\psi$ 为偏航角。
+在水平悬停假设下，空中视点表示为 $v=(p_v,\psi_v)$。
+任务是在有限个被接受的感知窗口内选择观测与可执行地面站位，实现物理取回。
+本文不求解最优联合信念空间控制，而采用可解释的单步感知替代目标，再进行显式执行检查。
+
+图~\ref{fig:pipeline} 给出闭环结构。空中 RGB-D 初始化目标，逆可达性提供地面位姿支撑，
+实测激光端点更新环境证据，任务加权策略在尚无候选通过共用筛选时请求进一步观测。
+随后，地面机器人导航、使用腕部 RGB-D 精定位并完成物理操作。
+所有环境场使用 map 下对齐的 $0.10\,\mathrm{m}$ 栅格。
+算法使用传感器观测与公共位姿/TF，而不使用场景生成器中的目标坐标。
+仿真定位及接触后端的边界在第~\ref{sec:limitations} 节说明。
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\linewidth]{\figdir/figure1_system_pipeline.pdf}
+\caption{\textbf{操作需求引导感知与物理交接。}经验证的精确底盘占地轮廓将未来操作需求投影到环境。
+实测 MID360 证据提供观测缺失度及操作阻断信息；蓝色框强调相关性加权感知路径。
+虚线连接只表示处理顺序，不表示缺失度是确认输入：确认独立要求实测 $H_t$ 与 $B_t$。
+请求新视点前先做完整机器人筛选；就绪候选进入共用执行链（绿色），新鲜 D435 精定位后检查 $\Dexec$。
+追加观测还需满足剩余预算和正的可用评分。任一阶段均可能终止。本图是示意图，不是某次任务重建。}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{经验证的操作相关性}
+\label{sec:relevance}
+RM4D 逆查询\cite{rudorfer2025rm4d} 根据 $\widehat{T}_g$ 生成底盘候选 $\{q_i\}$。
+查询通过显式刚体桥接在公共 map 与校准后的机器人参考约定间变换，返回位姿再转回 map。
+后续操作使用的感知目标本身不被平移。独立地面任务可达性资产提供所需工作空间覆盖，
+而不改变参考 RM4D 算法。
+
+对每个被评估候选定义有效性指示量 $g_i$。只有可达性、逆运动学、验证器碰撞检查和
+最小关节限位余量均通过时，$g_i=1$。对于关节解 $\theta_i$，令
+$m_i=\min_j\{\theta_{ij}-\theta_j^{\min},\theta_j^{\max}-\theta_{ij}\}$。
+连续质量为
+\begin{equation}
+r_i=\begin{cases}
+\operatorname{clip}(m_i/m_{\mathrm{sat}},0,1),&g_i=1,\\
+0,&g_i=0.
+\end{cases}
+\label{eq:quality}
+\end{equation}
+存在有效关节解时，门限要求 $m_i\ge m_{\min}$；无效候选不必具有已定义的余量。
+执行参数为 $m_{\min}=0.01\,\mathrm{rad}$、$m_{\mathrm{sat}}=0.5\,\mathrm{rad}$。
+IK/FK 数值残差仅用于接受判定与诊断，不作为操作质量；移动距离和 baseline 的最终排序分数
+均不进入 $r_i$。
+
+对底盘栅格 $C$，选择经验证的精确优胜候选：
+\begin{equation}
+i_C^*=\arg\max_{i:p_i\in C,\,g_i=1}r_i,\qquad q_C^*=q_{i_C^*},\qquad R(C)=r_{i_C^*}.
+\label{eq:winner}
+\end{equation}
+并列时保留固定评估顺序中的第一个候选，与环境证据无关。
+几何锚定于 $q_C^*$，而非栅格中心，避免栅格化引入未经验证的位移。
+非优胜候选仅用于诊断，不因某个环境更有利而重新选为支撑。
+
+规划器最多验证 256 个候选。没有候选进入评估的栅格保持“未评估”；
+有评估但无有效候选的栅格，仅表示该已评估集合没有有效支撑。
+两者都不能证明连续空间中的完全不可行。因此 $R$ 是经验证但部分评估的兴趣场，
+并非完整能力地图；不通过平滑填补空缺或向未评估位姿扩展支撑。
+
+\subsection{环境证据与操作占地轮廓}
+\label{sec:evidence}
+每个被接受的激光窗口提供经传感器时刻公共 TF 转到 map 的端点。
+在水平地面 $z_0$ 假设下，地面容差内的可用端点产生地面证据，达到或超过障碍高度门限的端点
+产生占据证据。执行值分别为 $0.02\,\mathrm{m}$ 和 $0.05\,\mathrm{m}$；中间高度带不产生二者之一。
+证据按每窗口、每栅格累积，而非逐点计票。同窗口原始占据票优先于自由票，
+后续地面回波不删除历史占据证据。无占据证据且至少两个窗口提供自由票时，原始状态标记为 FREE；
+其余无占据且未满足要求的栅格为 UNKNOWN。空中射线不被解释为整段 XY 自由空间，
+因为射线可能越过障碍而未观测其下方地面。
+
+令 $N_t(x)$ 为栅格 $x$ 获得有效原始证据的窗口数，观测缺失度定义为
+\begin{equation}
+u_t(x)=\exp[-N_t(x)/\tau],\qquad \tau=2.
+\label{eq:deficit}
+\end{equation}
+它是启发式分数，不是校准概率或熵。FREE 不强制 $u_t=0$，低缺失度也不证明无碰撞。
+
+令 $F(q)$ 为带余量的连续矩形底盘占地轮廓，并定义
+\begin{equation}
+K(q)=\{x:\operatorname{cell}(x)\cap F(q)\ne\varnothing\}.
+\label{eq:footprint}
+\end{equation}
+加入余量后的半长、半宽分别为 $0.52$ 和 $0.39\,\mathrm{m}$。
+闭集相交包含边界接触，而非仅检查栅格中心是否落在轮廓内。
+
+派生操作证据将端点区分为与已知目标关联的证据、环境障碍证据和关联不明确的证据。
+关联使用运行时感知与几何一致性，不使用场景真值。
+目标以感知得到并按声明余量扩展的连续物体几何与 $F(q)$ 检查；仅共享粗栅格不足以认定目标与底盘碰撞。
+环境占据栅格仍保守阻断。具有完整端点记录的不明确证据使用局部不确定圆盘与 $F(q)$ 检查；
+缺少端点历史时保留粗栅格阻断。所用半径为 $0.033\,\mathrm{m}$，这是依赖公共 map TF 条件的工程余量，
+不是校准后的物理误差界。不明确证据不自动转为目标或自由证据。
+目标关联余量、端点不确定范围与执行净空是不同量，不能互换为安全保证。
+
+记操作阻断为 $B_t(q)\in\{0,1\}$。另用 $H_t(x)$ 统计实际包含地面端点的窗口数，
+即使同栅格其他位置也存在占据端点。确认条件为
+\begin{equation}
+A_t(q)=\ind[B_t(q)=0]\,
+\ind[F(q)\text{ 位于栅格范围内}]\,
+\prod_{x\in K(q)}\ind[H_t(x)\ge2].
+\label{eq:confirmation}
+\end{equation}
+独立保留 $H_t$ 能保存真实地面存在证据而不清除占据。
+未知地面不构成几何阻断，但会阻止确认。$B_t=1$ 仅表示当前操作模型阻断，
+并非全局导航不可行证明。相关性支撑与精确候选交接使用同一套判定。
+
+\subsection{环境空间中的任务相关性}
+\label{sec:projection}
+名义支撑与操作可用支撑分别为
+\begin{align}
+M_{\mathrm{nom}}(x)&=\max_{C:x\in K(q_C^*)}R(C),\label{eq:nominal}\\
+M_{\mathrm{op},t}(x)&=\max_{C:x\in K(q_C^*),\,B_t(q_C^*)=0}R(C).
+\label{eq:operational}
+\end{align}
+仅经验证的优胜候选参与投影。存在名义支撑但所有覆盖位姿均被阻断时，操作支撑为零。
+无名义支撑时，实现保留独立的“无经验证支撑”状态，将该栅格排除出任务求和；
+不把它解释为已观测或物理不可达。任务场为
+\begin{equation}
+U_{\mathrm{task},t}(x)=u_t(x)M_{\mathrm{op},t}(x).
+\label{eq:task}
+\end{equation}
+最大值避免多个有用站位覆盖同一环境栅格时重复计值。
+该定义保留可能支撑有价值站位的未知区域，并排除已被操作证据阻断的站位。
+占据不回写 $R(C)$。越界轮廓可贡献栅格范围内的投影，但无法通过式~\eqref{eq:confirmation} 确认。
+
+\subsection{有限窗口下的任务感知视点选择}
+\label{sec:nbv}
+落入激光雷达视场并不保证有限扫描窗口真正测到某一栅格。
+因此，本文使用已安装的周期扫描方向及发布端角度/丢弃规则预测地面交点。
+对每个计划数据包起始相位 $s\in\mathcal S$，若下一五秒窗口中至少一条发射射线在名义地面上
+命中 $x$，且满足距离范围并未被遮挡，则 $h_s(v,x)=1$。采集机会定义为
+\begin{equation}
+w_t(v,x)=\frac{1}{|\mathcal S|}\sum_{s\in\mathcal S}h_s(v,x).
+\label{eq:opportunity}
+\end{equation}
+这是对计划起始相位的均匀平均，不是经实测校准的回波概率。
+环境占据栅格和不完整的不明确证据构成假设高度棱柱；完整不明确端点构成局部圆柱；
+感知目标使用有向包围盒。棱柱/圆柱的 $1\,\mathrm{m}$ 高度是遮挡替代模型，不是估计障碍高度。
+未知空间不遮挡。线段检测区分穿过障碍与从其上方越过。
+这些预测不增加证据计数，未建模截获、位姿和扫描偏差仍可能导致漏测。
+
+一次新增有效观测窗口会使式~\eqref{eq:deficit} 减少
+\begin{equation}
+\Delta u_t(x)=(1-e^{-1/\tau})u_t(x)=\alpha u_t(x).
+\label{eq:delta}
+\end{equation}
+在单步预测中保持当前操作支撑不变，可得
+\begin{align}
+G_{\mathrm{task}}(v)&=\alpha\sum_xw_t(v,x)U_{\mathrm{task},t}(x),\label{eq:taskgain}\\
+G_{\mathrm{generic}}(v)&=\alpha\sum_xw_t(v,x)u_t(x).
+\label{eq:genericgain}
+\end{align}
+式~\eqref{eq:taskgain} 是预测观测增益的替代目标，偏好可观测的任务相关缺失度总量。
+它不是校准意义上的期望信息增益、保证确认的指标或任务完成概率。实际观测后重新计算场。
+
+两种方法均使用
+\begin{equation}
+S_m(v)=G_m(v)-\lambda C(v),\quad
+C(v)=\|p_v-p_{\mathrm{cur}}\|_2+
+\kappa|\operatorname{wrap}(\psi_v-\psi_{\mathrm{cur}})|.
+\label{eq:score}
+\end{equation}
+成本是位移/偏航代理量，并非实测路径长度或能耗。
+共用参数为 $\lambda=0.25$、$\kappa=0.25\,\mathrm{m/rad}$。
+候选包括当前位姿和与任务无关的局部 XY 格点，偏移为 $\{-2,-1,0,1,2\}\,\mathrm{m}$，
+保持当前高度并搜索偏航角，再通过共用边界过滤。
+倾斜安装使偏航影响覆盖，即使雷达水平视场为全周。
+并列评分按成本、固定候选序号决胜。图~\ref{fig:comparison} 显示唯一受控差异：$G_m$ 的操作相关性加权。
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\linewidth]{\figdir/figure2_method_comparison.pdf}
+\caption{\textbf{观测价值的受控差异。}a，Generic 评价环境中所有可观测缺失度；
+b，Ours 进一步按操作可用支撑加权。黄色为已知目标，青色矩形为连续底盘占地轮廓。
+彩色外框仅示意贡献区域，不表示精确场边界。
+两策略共用有限扫描机会、视点、成本、更新、预算和执行。
+空间图示不是测量热图或最优视点预测；$\alpha=1-e^{-1/\tau}$。}
+\label{fig:comparison}
+\end{figure}
+
+\subsection{地面执行接口与停止条件}
+\label{sec:execution}
+每次接受更新后，满足式~\eqref{eq:confirmation} 的精确优胜候选按固定相关性顺序接受检查。
+共用执行层最多筛选四个已确认候选，使用完整底盘、机械臂、夹爪、目标和抓取后负载模型，
+并进行有界的观察姿态、IK 与接近方式搜索。
+成功筛选终止主动感知并将该精确候选交给导航，而非采用栅格中心或历史成功站位。
+若筛选未成功且预算与正评分允许，策略请求最高分的可用视点。
+非正评分、无可用视点或预算耗尽均可导致无交接终止。初始窗口计入三个窗口预算。
+
+筛选只是预览。BUNKER 必须实际到位停车，腕部 D435 必须给出新的有效目标估计，
+机械臂还必须在实测到位姿态下建立考虑碰撞的精定位后预抓取。
+本文将这一执行阶段的候选可用性验证记为 $\Dexec$。
+随后分别检查下降、物理闭合、提升和保持。
+共用 $12\,\mathrm{mm}$ 开发净空以及仅针对 SIM 的速度反馈模式，属于公共执行配置，
+不是方法独有贡献。抓取目标可达不保证相机看得清，也不保证整段操作无碰撞。
+这些阶段的失败均保留为任务失败，不用于重新定义成功。

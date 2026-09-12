@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:results}
-\subsection{Primary physical retrieval outcome}
-Ours retrieves successfully in 80 of 96 scenes (83.33\%), compared with 56 of
+\subsection{Manipulation-aware sensing improved physical retrieval}
+Ours retrieved successfully in 80 of 96 scenes (83.33\%), compared with 56 of
 96 (58.33\%) for Generic (Table~\ref{tab:overall}). There are 27 Ours-only and
 3 Generic-only successes, alongside 53 joint successes and 13 joint failures
 (Table~\ref{tab:paired}). The paired difference is $+25.00$ percentage points,
@@ -43,7 +43,7 @@ points and interval $[+7.05,+38.72]$. The primary result uses the documented val
 replacement; the sensitivity preserves the original activation policy without
 excluding a scene.
 
-\subsection{Difficulty and the Hard condition}
+\subsection{The largest descriptive gap occurred in Hard scenes}
 \label{sec:hard}
 Figure~\ref{fig:difficulty} and Table~\ref{tab:difficulty} report the realized
 tier outcomes. Ours/Generic successes are 35/31 of 38 Easy scenes, 26/22 of 28
@@ -55,9 +55,15 @@ or evidence that all occluded scenes are solved by relevance weighting.
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.82\linewidth]{\assetdir/figure3_success_by_difficulty.pdf}
-\caption{Descriptive retrieval success by difficulty. Denominators are the
-prospectively sampled 38/28/30 mixture, not an outcome-dependent balanced subset.}
+\includegraphics[width=\linewidth]{\figdir/figure3_success_by_difficulty.pdf}
+\caption{\textbf{Retrieval performance and paired outcomes.}
+\textbf{a}, Descriptive success proportions in the prospectively sampled
+38/28/30 Easy/Moderate/Hard scenes. Labels give successes/scene count; connectors
+join marginal proportions, not individual trajectories or uncertainty intervals.
+\textbf{b}, All 96 scene-level paired outcomes, including Generic-only successes.
+The reported interval is the prespecified conservative paired risk-difference
+interval; inference uses the two-sided exact McNemar test. No new tier-wise
+intervals or tests are introduced.}
 \label{fig:difficulty}
 \end{figure}
 \begin{table}[tb]
@@ -68,7 +74,7 @@ The primary inference pools the original 96 scenes.}
 \resizebox{.95\linewidth}{!}{\input{\assetdir/table5_difficulty.tex}}
 \end{table}
 
-\subsection{Where tasks stop}
+\subsection{Fewer tasks stopped before candidate confirmation}
 \label{sec:failures}
 Table~\ref{tab:failures} and Figure~\ref{fig:failures} aggregate the original
 first-terminal causes into the task stages. Budget exhaustion without a confirmed
@@ -103,9 +109,12 @@ candidate; observation includes early frame and capture acceptance.}
 \end{table}
 \begin{figure}[tb]
 \centering
-\includegraphics[width=.95\linewidth]{\assetdir/figure4_failure_stages.pdf}
-\caption{First-terminal distribution: 40 Generic and 16 Ours failures. These
-are all-task counts, not failure probabilities conditioned on reaching each stage.}
+\includegraphics[width=\linewidth]{\figdir/figure4_failure_stages.pdf}
+\caption{\textbf{First-terminal failure distribution.}
+Counts use all 96 tasks per method and sum to 40 Generic and 16 Ours failures.
+Each failed task contributes once. Zero-count stages remain visible; unreached
+downstream stages do not create additional failures. Bars are counts, not
+conditional failure probabilities, and have no sampling-error bars.}
 \label{fig:failures}
 \end{figure}
 
@@ -132,13 +141,18 @@ handoff-relevant locations.
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=\linewidth]{\assetdir/figure5_qualitative.pdf}
-\caption{Post-hoc Hard-015 illustration, slots 1/2, seed 1395226981. Measured
-observation poses, accumulated ground-presence votes and task deficit are shown
-for Generic and Ours. Continuous per-run anchors are preserved. White deficit
-cells have no validated support; zero deficit is not a FREE label. The two
-anchors are not assumed identical. No scene truth or synthesized sensor image
-is used in these panels.}
+\includegraphics[width=\linewidth]{\figdir/figure5_qualitative.pdf}
+\caption{\textbf{Different observations leave different handoff evidence.}
+Post-hoc Hard-015 illustration, slots 1/2, seed 1395226981; not a representative
+sample. \textbf{a,b}, Measured poses of the three accepted windows; dotted lines
+show order, not flight trajectories. \textbf{c,d}, Ground-presence votes after
+window 3, with environmental occupied evidence overlaid. \textbf{e,f}, Saved
+task deficit on a common 0--1 scale. Yellow shows the perceived target plus
+allowance; teal shows each run's continuous exact anchor (first assessed for
+Generic, selected for Ours). Native grids are preserved, without resampling.
+White deficit cells have no validated support; zero is not a FREE label.
+Ground presence does not certify collision freedom; ambiguous endpoint blockers
+are not depicted. No scene truth or synthesised sensor image is used.}
 \label{fig:qualitative}
 \end{figure}
 

@@ -1,0 +1,133 @@
+\section{结果}
+\label{sec:results}
+\subsection{操作需求引导感知提高了物理取回成功率}
+Ours 在 96 个场景中成功取回 80 次（83.33\%），Generic 为 56 次（58.33\%；表~\ref{tab:overall}）。
+共有 27 个仅 Ours 成功、3 个仅 Generic 成功、53 个两者均成功和 13 个两者均失败的场景
+（表~\ref{tab:paired}）。配对差为 $+25.00$ 个百分点，预定保守 95\% 区间为
+$[+8.56,+39.15]$ 个百分点，精确 McNemar $p=8.43\times10^{-6}$（表~\ref{tab:inference}）。
+结果支持在相同预算、指定仿真场景总体中的成功率优势。
+由于两个主策略仅在增益加权上不同，共同平台与执行改进不能解释本次比较中某个方法独有的实现优势。
+这并不是与所有已发表 NBV 规划器的比较，也不能直接推及未采样总体。
+
+\begin{table}[tb]\centering
+\caption{共用观测预算下的主要物理取回成功率。}
+\label{tab:overall}\input{\assetdir/table1_overall.tex}
+\end{table}
+\begin{table}[tb]\centering
+\caption{全部 96 个独立场景的配对结果。}
+\label{tab:paired}\input{\assetdir/table2_paired_outcomes.tex}
+\end{table}
+\begin{table}[tb]\centering
+\caption{预定配对推断。区间针对 Ours 减 Generic 的成功率差，单位为百分点，不是 $p$ 值区间。}
+\label{tab:inference}\resizebox{\linewidth}{!}{\input{\assetdir/table3_mcnemar.tex}}
+\end{table}
+
+三个仅 Generic 成功的场景均保留在分析中：两个涉及 Ours 对感知目标/底盘碰撞的拒绝，
+一个在提升/保持中失去抓取确认。
+将首次基础设施无效激活计为失败时，配对计数为 $52/27/4/13$，
+差值为 $+23.96$ 个百分点，区间为 $[+7.05,+38.72]$。
+主分析使用有记录的有效替代；敏感性分析保留首次激活口径而不排除场景。
+
+\subsection{最大的描述性差异出现在困难场景}
+\label{sec:hard}
+图~\ref{fig:difficulty} 与表~\ref{tab:difficulty} 给出难度分层结果。
+Ours/Generic 在 38 个 Easy 场景中分别成功 35/31 次，在 28 个 Moderate 场景中成功 26/22 次，
+在 30 个 Hard 场景中成功 19/3 次。
+两墙 Hard 条件出现最大的描述性差异，其中 17 个仅 Ours 成功，1 个仅 Generic 成功。
+然而，Ours 在 Hard 中仍有 11 次失败。
+分层结果反映该样本中的异质性，不构成三个额外显著性检验，
+也不证明相关性加权能够解决所有遮挡场景。
+
+\begin{figure}[tb]\centering
+\includegraphics[width=\linewidth]{\figdir/figure3_success_by_difficulty.pdf}
+\caption{\textbf{取回性能与配对结果。}a，预先抽样的 38/28/30 个简单/中等/困难场景的描述性成功率，
+标签为成功数/场景数。连接线连接边际比例，不是个体轨迹或误差区间。
+b，全部 96 个场景的配对结果，包括仅 Generic 成功的场景。
+图示区间为预先规定的保守配对风险差区间，推断采用双侧精确 McNemar 检验。
+不引入新的分层区间或检验。}
+\label{fig:difficulty}\end{figure}
+\begin{table}[tb]\centering
+\caption{分层数量与配对成功率差（百分点）。主推断合并原始 96 个场景。}
+\label{tab:difficulty}\resizebox{.95\linewidth}{!}{\input{\assetdir/table5_difficulty.tex}}
+\end{table}
+
+\subsection{更少任务在候选确认前终止}
+\label{sec:failures}
+表~\ref{tab:failures} 与图~\ref{fig:failures} 按任务阶段汇总原始首次终止原因。
+预算耗尽但没有已确认候选，造成 Generic 29 次失败、Ours 5 次失败。
+这一分布与方法强调交接所需证据的设计相一致，但不能单独证明该场解释了全部下游差异。
+
+Ours 和 Generic 分别在 89 和 63 个场景中获得至少一个已确认候选；
+分别有 88 和 63 个场景通过共用筛选并完成地面导航停车。
+新鲜 D435 精定位与实际到位后的 $\Dexec$ 分别在 82 和 59 个场景中达到，
+最终物理取回为 80 和 56。
+这些阶段不能混为一谈：Ours 有一次完成提升阶段但未通过最终保持，仍属于主终点失败。
+
+其余首次终止类别包括观测/坐标系/采集失败、一次 Ours 筛选失败、D435 精定位失败、
+下降/闭合失败及一次 Ours 保持失败。本组场景没有导航或精定位后预抓取的首次终止失败，
+但这不保证这些阶段不会失败。
+Ours 有更多任务进入地面执行，因此直接比较地面失败总数不能估计到达该阶段后的条件可靠性优势。
+即使空中支撑得到确认，精定位与几何拒绝仍是完整系统的重要边界。
+
+\begin{table}[tb]\centering
+\caption{主实验首次终止失败。未到达的下游阶段不计为失败。
+候选确认包含预算耗尽但未确认；无人机观测包含早期坐标系和采集接受失败。}
+\label{tab:failures}\input{\assetdir/table4_failure_stages.tex}
+\end{table}
+\begin{figure}[tb]\centering
+\includegraphics[width=\linewidth]{\figdir/figure4_failure_stages.pdf}
+\caption{\textbf{首次终止失败分布。}以每种方法全部 96 个任务为分母，
+Generic 与 Ours 分别有 40、16 个失败。每个失败任务只贡献一次。
+零计数阶段保留；未到达的下游阶段不新增失败。
+柱长是计数，不是条件失败概率，不附加抽样误差条。}
+\label{fig:failures}\end{figure}
+
+\subsection{记录中的定性案例}
+\label{sec:qualitative}
+图~\ref{fig:qualitative} 展示 Hard-015。该例在结果产生后选择，
+是保留窗口证据的 Hard 场景中符合“Generic 失败、Ours 成功”的最早计划配对。
+它是说明性案例，不是预先选定的代表场景，也不是额外统计样本。
+两种方法均接受三个窗口。对于图示各自的精确锚点，Generic 仍有 19/96 个覆盖栅格缺少足够地面支撑，
+Ours 为 0/88。确认数分别按 $0\rightarrow0\rightarrow0$ 与 $0\rightarrow0\rightarrow3$ 变化。
+Generic 因预算耗尽而未确认；Ours 在第三窗口后通过共用筛选，并完成记录中的物理取回。
+
+图中保留各任务原生栅格原点和感知目标，不假设两次传感器估计或精确锚点相同。
+位姿间虚线表示观测顺序，不是重建飞行轨迹。
+地面存在图不证明无碰撞，图本身也不独立证明抓取接触。
+它仅用于说明不同观测如何在交接相关位置留下不同的真实支撑缺口。
+
+\begin{figure}[p]\centering
+\includegraphics[width=\linewidth]{\figdir/figure5_qualitative.pdf}
+\caption{\textbf{不同观测留下不同交接证据。}事后选取 Hard-015，slot 1/2，种子 1395226981，
+不是代表性样本。a、b，三个窗口的实测位姿，虚线只表示顺序；c、d，第三窗口后地面存在票数，
+叠加环境占据；e、f，保存的任务缺失度，共用 0--1 色标。
+黄色为感知目标及余量，青色为各自精确底盘锚点（Generic 为首个已评估候选，Ours 为选中候选）。
+保留原生栅格，不重采样。白色缺失度格无经验证支撑；零值不等于 FREE。
+地面存在不证明无碰撞，图中不显示不明确端点阻断。不使用场景真值或合成传感器图像。}
+\label{fig:qualitative}\end{figure}
+
+\subsection{观测成本与描述性对照}
+在 53 个共同成功配对上，Ours 平均少使用 0.283 个被接受窗口，
+Ours 减 Generic 的描述性配对 bootstrap 区间为 $[-0.415,-0.150]$ 个窗口
+（表~\ref{tab:efficiency}）。可判定位置变化、主动时间、地面时间及全任务时间的区间均包含零。
+因此，数据尚未确立普遍的时间或距离节省。
+条件窗口差异不能解释为全场景成本效应，也不表示成功率相同。
+
+\begin{table}[tb]\centering
+\caption{53 个共同成功配对上的条件效率。差值为 Ours 减 Generic；时间使用仿真秒。
+区间为描述性配对 bootstrap 区间。位置变化是次数，不是路径距离。}
+\label{tab:efficiency}\resizebox{\linewidth}{!}{\input{\assetdir/table6_conditional_efficiency.tex}}
+\end{table}
+
+表~\ref{tab:auxiliary} 给出预定辅助比较。六个背景场景中，Ours 成功五次，固定视点一次，仅 RM4D 两次。
+四个消融场景中，Ours 与去除成本均成功两次，去除遮挡预测为零次。
+去除成本在这个小子集上与 Ours 完全一致，但不能证明两者等价或成本无必要。
+同样，四个场景的遮挡结果仅为描述性证据，不能证明组件的普遍必要性。
+任务加权的主要隔离证据仍是完整 Generic/Ours 比较。
+
+\begin{table}[tb]\centering
+\caption{使用预定 Ours 对应任务的描述性辅助比较。
+$a,b,c,d$ 含义同表~\ref{tab:paired}，其中 Generic 替换为所列对照。
+这些子集不是具有预定统计功效的次要实验。}
+\label{tab:auxiliary}\resizebox{\linewidth}{!}{\input{\assetdir/table7_auxiliary.tex}}
+\end{table}

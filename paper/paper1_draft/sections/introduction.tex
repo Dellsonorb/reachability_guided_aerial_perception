@@ -1,13 +1,12 @@
 \section{Introduction}
 \label{sec:introduction}
-An aerial robot and a ground mobile manipulator offer complementary capabilities:
-the former can change its observation position without following a ground route,
-whereas the latter can support a manipulator and physically retrieve an object.
-Exploiting this complementarity requires more than detecting a target from the
-air. The ground robot must eventually occupy a suitable base pose, see the
-target at close range, and execute a collision-aware grasp and lift. Information
-that improves a map is therefore not necessarily information that makes the
-retrieval task executable.
+Aerial-ground cooperation separates the robot that observes from the robot
+that must act. An aerial robot can inspect a work region from multiple viewpoints;
+a ground mobile manipulator can retrieve the detected object. Yet successful
+cooperation requires more than aerial detection. The ground robot must occupy
+a suitable stance, observe the object at close range, and execute a grasp and
+lift. The sensing problem is therefore not simply which view reveals the most
+unknown space, but which view resolves the evidence needed for that operation.
 
 Next-best-view (NBV) planning provides a natural mechanism for deciding where
 to observe. Exploration and reconstruction approaches select measurements that
@@ -32,18 +31,14 @@ research question is whether these downstream manipulation requirements can
 guide aerial observation more effectively than a shared, information-centric
 NBV objective under the same observation budget.
 
-Our central idea is to propagate manipulation support backward into the sensing
-objective. Given an aerially perceived grasp target, an inverse-reachability
-query produces candidate base poses. Validated candidates supply a
-joint-margin-based manipulation relevance field. Their exact base footprints
-project this relevance into environment space, where it weights the current
-observation deficit. A finite-scan acquisition model then estimates which cells
-a candidate aerial view can observe during the next accepted window. The policy
-selects a view using the resulting task-weighted gain and a shared motion-cost
-proxy. After each observation, the system rechecks whether an exact base
-candidate is sufficiently observed and passes a common execution screen. This
-connects observation choice to a physical handoff rather than treating a heatmap
-or a reachable grasp as the final outcome.
+Our central idea is to propagate future manipulation requirements back into
+the sensing objective. Validated inverse-reachability candidates define where
+the ground robot could stand. Their exact footprints map manipulation relevance
+onto the environment, weighting unresolved evidence around useful stances.
+A finite-scan model predicts the next view's acquisition opportunities, and a
+common execution screen determines whether measured evidence supports handoff.
+This representation connects viewpoint selection to physical retrieval, rather
+than treating map coverage or a reachable grasp as the endpoint.
 
 We make three contributions:
 \begin{enumerate}

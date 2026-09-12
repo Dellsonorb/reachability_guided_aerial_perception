@@ -1,0 +1,38 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec,xeCJK}
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,
+  ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+\usepackage[margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\renewcommand{\abstractname}{摘要}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\setlength{\emergencystretch}{2em}
+\linespread{1.15}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\Dexec}{D_{\mathrm{exec}}}
+\newcommand{\figdir}{../figures}
+\newcommand{\assetdir}{tables}
+\title{面向空地协同移动操作的\\操作需求引导主动感知}
+\author{} % 作者与单位由项目作者填写。
+\date{中文论文初稿 · 与英文修订稿对应}
+\begin{document}
+\maketitle
+\input{abstract}
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{experiments}
+\input{results}
+\input{discussion}
+\input{conclusion}
+\clearpage
+\bibliographystyle{plain}
+\bibliography{../references}
+\end{document}
