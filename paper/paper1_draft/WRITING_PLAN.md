@@ -40,6 +40,15 @@ Verification: nine TeX files, eight resolved citation keys, 45 unique labels,
 21 resolved reference occurrences, seven existing tables and five existing
 figure PDFs. Primary counts/effect/interval and failure totals match the saved
 assets. Independent read-only review found no blocking/high-priority scientific
-or static LaTeX issue. No TeX executable exists, so rendered layout remains
-unverified. All non-draft code/configuration/assets/results remain unchanged.
+or static LaTeX issue. At the original source-only checkpoint, no TeX executable
+was installed and rendered layout was unverified.
+All non-draft code/configuration/assets/results remained unchanged.
 The existing 57 focused Paper 1 tests also passed without simulator execution.
+
+Authorized compilation follow-up (2026-09-12): installed portable Tectonic
+0.17.0 on the data disk and generated `main.pdf` (14 A4 pages), without editing
+the manuscript's TeX sources or experimental assets. A cached-only rebuild
+completed successfully. Bibliography/cross-references resolve; no missing
+characters or box-overflow warnings were reported. Representative title,
+equation, results-figure/table, qualitative and bibliography pages were visually
+checked. Venue-specific layout remains future author work.

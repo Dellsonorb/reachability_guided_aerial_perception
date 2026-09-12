@@ -31,8 +31,28 @@ planned tasks including descriptive controls/ablations **212**.
 
 ## Build
 
-Use an existing LaTeX installation with standard `article`, `fontenc`, `inputenc`,
-`geometry`, `amsmath`, `amssymb`, `graphicx`, `hyperref`, `url`, and BibTeX:
+Compiled draft: [main.pdf](main.pdf), 14 A4 pages. Verified on 2026-09-12
+with Tectonic 0.17.0, including a cached-only rebuild, resolved bibliography
+and cross-references, and visual checks of equations, tables and figures.
+There are no missing-character or overfull/underfull-box warnings. The benign
+`inputenc` warning indicates that this UTF-8 engine does not need that package.
+
+On this workstation, Tectonic 0.17.0 is installed as `tectonic`:
+
+```bash
+cd paper/paper1_draft
+tectonic --keep-logs main.tex
+```
+
+Tectonic handles LaTeX reruns and BibTeX automatically. The command wrapper is
+`/home/lu/.local/bin/tectonic`; the official prebuilt engine is installed at
+`/media/lu/P450_PAPER/TOOLS/tectonic-0.17.0/tectonic`, with package/font caches in
+`/media/lu/P450_PAPER/TOOLS/tectonic-cache`. This avoids using the nearly full
+system disk. Installation follows the [official Tectonic guidance](https://tectonic-typesetting.github.io/book/latest/installation/).
+
+Alternatively, use a conventional LaTeX installation with standard `article`,
+`fontenc`, `inputenc`, `geometry`, `amsmath`, `amssymb`, `graphicx`, `hyperref`,
+`url`, and BibTeX:
 
 ```bash
 cd paper/paper1_draft
@@ -45,9 +65,9 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 Run from this directory so relative section/asset paths resolve. Copy both
 `paper1_draft/` and sibling `paper1_evaluation/` when transferring the document.
 No simulator, asset regeneration or sensor data replay is needed to compile.
-This workstation has no `pdflatex`, `latexmk` or `tectonic` executable; no TeX
-stack was installed. Source/reference checks are performed, but a compiled PDF,
-resolved float layout and submission-template compatibility are **not claimed**.
+The original source-only checkpoint did not have a TeX engine. The subsequent
+authorized installation adds compilation without changing experimental assets.
+Submission-template compatibility still requires choosing and testing that template.
 
 ## Remaining author work
 
