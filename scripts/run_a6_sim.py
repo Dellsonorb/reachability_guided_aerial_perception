@@ -14,7 +14,7 @@ from a6_metrics import TF_MAX_AGE_S, summarize_metrics
 
 
 ROOT = Path(__file__).resolve().parents[1]
-METHODS = ('rm4d_only', 'fixed', 'generic', 'ours', 'no_occlusion', 'no_cost')
+METHODS = ('rm4d_only', 'fixed', 'generic', 'ours', 'no_occlusion', 'no_cost', 'confirmation')
 
 
 def build_parser():
@@ -125,7 +125,8 @@ def build_adapter_class(demo_module, options):
             if request['op'] == 'observe':
                 self._a6_event('A6_ENV_RESULT', round=response['round'],
                                confirmed_candidate_count=response['confirmed_candidate_count'],
-                               candidate_count=response['candidate_count'], output_dir=str(directory))
+                               candidate_count=response['candidate_count'], output_dir=str(directory),
+                               computation_timing=response.get('computation_timing'))
             return response
 
         def _a5_prepare_handoff(self, response, target_map):

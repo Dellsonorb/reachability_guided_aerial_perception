@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import time
 
 import numpy as np
 
@@ -30,6 +31,7 @@ def initialize(request):
 
 
 def observe(request):
+    observe_started = time.perf_counter()
     initial = json.loads(Path(request['initial_file']).read_text())
     config = _pilot_config(initial['config'])
     grasp = GraspTCP(**initial['grasp'])
@@ -50,14 +52,20 @@ def observe(request):
     if len(pose) != 4:
         raise ValueError('uav_pose must be [x,y,z,yaw]')
     method = request.get('method', 'ours')
+    policy_started = time.perf_counter()
     choice, ranking = decide_policy(field, raw, belief, Viewpoint(tuple(pose[:3]), pose[3]),
                                     method=method, round_count=len(paths), config=config, operational=operational)
+    policy_wall_s = time.perf_counter() - policy_started
     task = build_support_task(field, raw, belief, config, operational=operational)
     directory = Path(request['output_dir'])
     save_belief(belief, directory / 'a2')
     save_operational(directory, operational, operational_metadata)
     save_result(ranking, task, belief, directory)
     render_result(ranking, task, belief, directory / 'nbv.png', title=f'A6 {method} observation {len(paths)}')
+    choice['computation_timing'] = dict(policy_wall_s=policy_wall_s,
+        worker_observe_wall_s=time.perf_counter()-observe_started,
+        clock='wall_perf_counter', includes_shared_prediction=True,
+        excludes_process_startup=True)
     write_json(directory / 'decision.json', choice)
     return choice
 

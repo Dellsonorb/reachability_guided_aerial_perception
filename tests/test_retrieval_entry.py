@@ -45,6 +45,15 @@ class RetrievalEntryTests(unittest.TestCase):
         self.assertEqual(command[0], '/sim/scripts/with_p450_env.bash')
         self.assertEqual(command[command.index('--slot')+1], '1')
 
+    def test_confirmation_is_explicit_development_variant_with_shared_profile(self):
+        profile=json.loads((ROOT/'configs/current_sim_task.json').read_text())
+        scene=json.loads((ROOT/'examples/sim/natural.json').read_text())
+        ours=self.entry.task_config(profile,scene,'ours')
+        new=self.entry.task_config(profile,scene,'confirmation')
+        self.assertEqual(new.pop('slots')[0]['method'],'confirmation')
+        ours.pop('slots')
+        self.assertEqual(new,ours)
+
     def test_status_preserves_running_failure_and_missing_measurement(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary); (path/'attempt/data').mkdir(parents=True)

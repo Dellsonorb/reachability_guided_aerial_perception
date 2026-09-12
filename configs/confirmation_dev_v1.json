@@ -1,0 +1,23 @@
+{
+  "status": "DEVELOPMENT_BATCH",
+  "version": "candidate-confirmation-v1",
+  "scene_file": "configs/paper1_eval.json",
+  "shared_profile": "configs/current_sim_task.json",
+  "description": "Previously observed development cases, not an independent final test set. Geometry is read unchanged from scene_file.",
+  "online_start_cap": 10,
+  "planned_tasks": 8,
+  "reserved_infrastructure_starts": 2,
+  "wall_limit_hours": 6,
+  "new_storage_limit_gib": 80,
+  "minimum_free_gib": 100,
+  "slots": [
+    {"slot": 1, "scene": "eval-easy-003", "method": "ours"},
+    {"slot": 2, "scene": "eval-easy-003", "method": "confirmation"},
+    {"slot": 3, "scene": "eval-moderate-009", "method": "confirmation"},
+    {"slot": 4, "scene": "eval-moderate-009", "method": "ours"},
+    {"slot": 5, "scene": "eval-hard-015", "method": "ours"},
+    {"slot": 6, "scene": "eval-hard-015", "method": "confirmation"},
+    {"slot": 7, "scene": "eval-hard-023", "method": "confirmation"},
+    {"slot": 8, "scene": "eval-hard-023", "method": "ours"}
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "tasks_accounted": 212,
+  "states": 541,
+  "primary_groups": {
+    "ours_success": {
+      "1": {
+        "states": 80,
+        "status": {
+          "ALL_PHASE_NOMINAL_PLAN": 75,
+          "NO_NOMINAL_PLAN": 1,
+          "OPTIMISTIC_NOMINAL_PLAN": 4
+        },
+        "changed_from_ours": 66,
+        "differs_from_one_step": 27,
+        "solver_wall_s_max": 0.026495511003304273
+      },
+      "2": {
+        "states": 80,
+        "status": {
+          "ALL_PHASE_NOMINAL_PLAN": 44,
+          "ALREADY_CONFIRMED": 32,
+          "OPTIMISTIC_NOMINAL_PLAN": 3,
+          "NO_NOMINAL_PLAN": 1
+        },
+        "changed_from_ours": 14,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.005336452974006534
+      },
+      "3": {
+        "states": 48,
+        "status": {
+          "ALREADY_CONFIRMED": 48
+        },
+        "changed_from_ours": 0,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.0005561409634537995
+      }
+    },
+    "ours_failure": {
+      "1": {
+        "states": 14,
+        "status": {
+          "ALL_PHASE_NOMINAL_PLAN": 7,
+          "NO_NOMINAL_PLAN": 7
+        },
+        "changed_from_ours": 6,
+        "differs_from_one_step": 3,
+        "solver_wall_s_max": 0.022430994955357164
+      },
+      "2": {
+        "states": 14,
+        "status": {
+          "ALL_PHASE_NOMINAL_PLAN": 7,
+          "ALREADY_CONFIRMED": 2,
+          "SUPPORT_BUDGET_IMPOSSIBLE": 5
+        },
+        "changed_from_ours": 8,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.005084817006718367
+      },
+      "3": {
+        "states": 12,
+        "status": {
+          "ALREADY_CONFIRMED": 7,
+          "VIEW_BUDGET_REACHED": 5
+        },
+        "changed_from_ours": 0,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.000783960975240916
+      }
+    },
+    "generic": {
+      "1": {
+        "states": 93,
+        "status": {
+          "ALL_PHASE_NOMINAL_PLAN": 78,
+          "OPTIMISTIC_NOMINAL_PLAN": 6,
+          "NO_NOMINAL_PLAN": 9
+        },
+        "changed_from_ours": 66,
+        "differs_from_one_step": 24,
+        "solver_wall_s_max": 0.02344326500315219
+      },
+      "2": {
+        "states": 93,
+        "status": {
+          "SUPPORT_BUDGET_IMPOSSIBLE": 19,
+          "ALL_PHASE_NOMINAL_PLAN": 55,
+          "ALREADY_CONFIRMED": 14,
+          "OPTIMISTIC_NOMINAL_PLAN": 2,
+          "NO_NOMINAL_PLAN": 3
+        },
+        "changed_from_ours": 59,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.0037401049630716443
+      },
+      "3": {
+        "states": 78,
+        "status": {
+          "VIEW_BUDGET_REACHED": 29,
+          "ALREADY_CONFIRMED": 49
+        },
+        "changed_from_ours": 0,
+        "differs_from_one_step": 0,
+        "solver_wall_s_max": 0.0008424170082435012
+      }
+    }
+  }
+}

@@ -315,7 +315,11 @@ class A6WorkerTests(unittest.TestCase):
                     expected, _ = decide_policy(field, raw, replay_observations(grid, observations),
                                                 Viewpoint((-4, 0, 1.5), 0), method=method,
                                                 round_count=2, config=config)
-                    self.assertEqual(response, json.loads(json.dumps(expected)))
+                    timing = response['computation_timing']
+                    self.assertGreaterEqual(timing['worker_observe_wall_s'], timing['policy_wall_s'])
+                    self.assertGreaterEqual(timing['policy_wall_s'], 0)
+                    self.assertEqual({k:v for k,v in response.items() if k!='computation_timing'},
+                                     json.loads(json.dumps(expected)))
                     self.assertEqual(response['total_observation_votes'], 1800)
                     for name in ('decision.json', 'ranking.json', 'fields.npz', 'nbv.png'):
                         self.assertTrue((output / name).exists(), name)

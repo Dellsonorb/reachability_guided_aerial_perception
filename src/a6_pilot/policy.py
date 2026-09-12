@@ -12,6 +12,7 @@ from task_relevant_uncertainty import SupportState
 
 
 METHODS = ('ours', 'generic', 'fixed', 'no_occlusion', 'no_cost')
+DEVELOPMENT_METHODS = ('confirmation',)
 VIEW_BUDGET = 3
 
 
@@ -69,7 +70,7 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
     ``policy_visibility`` stores only the selected candidate's flattened cell
     indices, with its shape, so decision JSON does not repeat every mask.
     """
-    if method not in METHODS:
+    if method not in METHODS + DEVELOPMENT_METHODS:
         raise ValueError(f'unsupported A6 method: {method}')
     if config.max_viewpoints != VIEW_BUDGET:
         raise ValueError('A6 max_viewpoints must be 3')
@@ -77,6 +78,9 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
                               config=config, operational=operational)
     if method == 'ours':
         return choice, ranking
+    if method == 'confirmation':
+        from .confirmation import apply_confirmation
+        return apply_confirmation(choice, ranking, operational, config, round_count), ranking
 
     variant = ranking
     gain_name, score_name = 'task_gain', 'task_score'

@@ -57,6 +57,10 @@ class FiniteWorkerTests(unittest.TestCase):
                 output = folder / method
                 result = observe(dict(initial_file=initial['initial_file'], observations=[str(observation)],
                     uav_pose=[*current.position_xyz, current.yaw_rad], method=method, output_dir=str(output)))
+                self.assertIn('computation_timing', result)
+                self.assertGreaterEqual(result['computation_timing']['policy_wall_s'], 0)
+                self.assertGreaterEqual(result['computation_timing']['worker_observe_wall_s'],
+                                        result['computation_timing']['policy_wall_s'])
                 ranking = json.loads((output / 'ranking.json').read_text())
                 self.assertEqual(result['acquisition']['window_packets'], 2)
                 self.assertEqual(ranking['acquisition']['model'], 'finite_scan_v1')

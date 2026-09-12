@@ -31,8 +31,8 @@ def load_scene(path, scene_id):
 
 
 def task_config(profile, scene, method):
-    if profile['status'] != 'DEVELOPMENT_BATCH' or method not in ('generic', 'ours'):
-        raise ValueError('current entry is development only: Generic or Ours')
+    if profile['status'] != 'DEVELOPMENT_BATCH' or method not in ('generic', 'ours', 'confirmation'):
+        raise ValueError('current entry is development only: Generic, Ours or confirmation')
     config = copy.deepcopy(profile)
     config.update(scenes=[copy.deepcopy(scene)], slots=[dict(slot=1, scene=scene['id'], method=method)])
     return config
@@ -119,7 +119,7 @@ def main(argv=None):
     run = actions.add_parser('run', help='start exactly one fresh SIM task; never retry automatically')
     run.add_argument('--scene-file', type=Path, default=ROOT/'examples/sim/natural.json')
     run.add_argument('--scene-id', help='required for a multi-scene JSON collection')
-    run.add_argument('--method', choices=('generic', 'ours'), default='ours')
+    run.add_argument('--method', choices=('generic', 'ours', 'confirmation'), default='ours')
     run.add_argument('--output-dir', type=Path, required=True, help='new directory; never overwrites a task')
     run.add_argument('--sim-root', type=Path, default=SIM)
     run.add_argument('--rm4d-root', type=Path, default=RM)
