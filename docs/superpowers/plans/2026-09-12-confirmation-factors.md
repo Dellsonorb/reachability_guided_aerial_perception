@@ -33,22 +33,22 @@ are required, but new method routing has a new commit. No statistical claim.
 
 ## Implementation and checks
 
-- [ ] Add `tests/test_deficit_policy.py` before source: independent import;
+- [x] Add `tests/test_deficit_policy.py` before source: independent import;
   `H=[1,1,1],S=[[0,1],[2]],w=[[1,0,0],[0,0,.75]]` picks view1 (max per-candidate,
   not pooled support); `H=[0],remaining=1` means real budget impossibility;
   `H=[1],w=0` means no nominal progress. Check immutable input, ties, guards and
   original Ours/confirmation routes. Run `PYTHONPATH=src:scripts python3 -m
   unittest discover -s tests -p test_deficit_policy.py`, first red, then green.
-- [ ] Implement pure `plan_deficit(h,supports,w,valid,first_cost,remaining)` and
+- [x] Implement pure `plan_deficit(h,supports,w,valid,first_cost,remaining)` and
   `apply_deficit(...)` in `src/a6_pilot/deficit.py`. Add only explicit development
   method routing to policy and existing run entry; keep old core unchanged.
-- [ ] Add `analysis/confirmation_factors/analyze.py`: replay all old 541 states
+- [x] Add `analysis/confirmation_factors/analyze.py`: replay all old 541 states
   plus previous eight runs' 21 states; derive phase-first/windows-first/deficit
   differences. Use existing offline transition calibration only on actually
   commanded actions; next observations are labels, never policy inputs. Record
   candidate completion false positives and needed-cell hit misses separately.
   Write derived data only under this new analysis directory.
-- [ ] Review code and replay outputs, run relevant regressions, commit before
+- [x] Review code and replay outputs, run relevant regressions, commit before
   the first online start. No code changes during the four planned tasks.
 
 ## Online budget and fixed order
@@ -63,13 +63,30 @@ diagnostic/replacement reserve. Wall cap two hours from first start; new storage
 25 GiB and disk free >=100 GiB. Check budget before each task and leave 30 minutes
 for its existing runtime guard/cleanup. No parameter tuning.
 
-- [ ] Run each task with existing `scripts/run_retrieval.py run --scene-file
+- [x] Run each task with existing `scripts/run_retrieval.py run --scene-file
   configs/paper1_eval.json --scene-id <listed-scene> --method deficit --output-dir
   outputs/development/confirmation-factors/slot-NN-<scene>-deficit`.
-- [ ] Reuse prior `summarize_online.summarize` for stages, physical outcomes,
+- [x] Reuse prior `summarize_online.summarize` for stages, physical outcomes,
   simulation active/Ground times and full worker/policy wall timing; separately
   extract `deficit_plan` solver timing and proposals. Show old eight references
   with their original versions, no overwritten results or pooled final statistics.
-- [ ] Review actual success/failure and model calibration, run tests, commit/push
+- [x] Review actual success/failure and model calibration, run tests, commit/push
   checkpoint. Give an explicit retain/simplify/continue-lookahead recommendation.
   Stop after this batch, do not promote default Ours or start a matrix.
+
+## Closing decision
+
+All four planned starts finished at runtime `2a25892`; no invalid/retry or
+mid-batch runtime/config change. Easy003, Moderate009 and Hard023 retrieved;
+Hard015 failed confirmation with four real support cells still missing at the
+best exact candidate. Preserve that stage regression relative to the old runs.
+Same-state two-step also predicted the failed final action would confirm.
+
+Fresh verification: 132 relevant runtime regressions and two factor-analysis
+tests pass; independent final review matched all six actual transitions and
+four task outcome/timing records to raw data. One draft report count was corrected
+before delivery: three all-phase next-window predictions, two actual confirmations.
+Recommend simplifying to a single-step development alternative; do not promote
+it, deepen lookahead, or start a matrix. Detailed evidence and limitations in
+`analysis/confirmation_factors/REPORT.md`. Keep this development branch and raw
+records; push the analysis checkpoint, no merge to main.

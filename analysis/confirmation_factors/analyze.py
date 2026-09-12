@@ -76,6 +76,14 @@ def main():
                 phase_solver_s=old['solver_wall_s'],deficit_solver_s=one['solver_wall_s'])
             row.update(phase_action=effective_action(old,ours_action),windows_action=effective_action(wf,ours_action),
                        deficit_action=effective_action(one,ours_action),ours_action=ours_action)
+            if len(old['view_ids'])==2:
+                hit=w==1 if old['nominal_tier']==2 else w>0
+                repeated=np.zeros(len(w),bool)
+                for s in supports:repeated|=np.all(h[s]+2*hit[:,s]>=2,axis=1)
+                ids=np.flatnonzero(repeated & args['valid'])
+                row['same_tier_repeat_exists']=bool(len(ids))
+                row['same_tier_repeat_min_cost']=float(args['first_cost'][ids].min()) if len(ids) else None
+                row['phase_cost']=old['total_flight_cost']
             states.append(row)
             current=(r,d,h,fields)
             if prior is not None:
