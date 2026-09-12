@@ -46,12 +46,17 @@ dependencies. Design and bounded task order: `docs/CANDIDATE_CONFIRMATION_DEVELO
 
 ## 3. Bounded online comparison
 
-- [ ] Commit implementation/config/design after tests and independent review.
+- [x] Commit implementation/config/design after tests and independent review.
   Prepare eight explicit rows from the already specified scenes and balanced order.
-- [ ] Execute one existing `run_retrieval.py run` task per row, fresh perception,
+- [x] Execute one existing `run_retrieval.py run` task per row, fresh perception,
   output under `outputs/development/confirmation-v1/slot-NN-*`. No retry on
   method failure; enforce ten-start/six-hour/80-GiB caps with existing checks.
-- [ ] Reuse existing event/metric readers, adding only field extraction for
+- [x] Reuse existing event/metric readers, adding only field extraction for
   confirmation and computation time. Save per-run paired summary and first causes.
-- [ ] Review actual outcomes vs claims, run regressions, preserve old results,
+- [x] Review actual outcomes vs claims, run regressions, preserve old results,
   commit/push development checkpoint and report. Do not start another batch.
+
+Result: 8/8 valid tasks, no retries, all runtime `a3c62c4`; both methods 2/4
+retrieval and 3/4 confirmation. New method takes an extra Easy window and does
+not rescue either Hard case. See `docs/CANDIDATE_CONFIRMATION_DEVELOPMENT_RESULTS.md`.
+Keep experimental; no promotion to Ours, no additional batch or formal matrix.
