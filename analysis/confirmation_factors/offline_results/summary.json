@@ -1,0 +1,398 @@
+{
+  "tasks": 220,
+  "states": 562,
+  "transitions": 355,
+  "groups": {
+    "old212/fixed/False/round1": {
+      "states": 5,
+      "phase_status": {
+        "OPTIMISTIC_NOMINAL_PLAN": 1,
+        "ALL_PHASE_NOMINAL_PLAN": 3,
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 2,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/fixed/False/round2": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "SUPPORT_BUDGET_IMPOSSIBLE": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/fixed/True/round1": {
+      "states": 1,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 1,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/generic/False/round1": {
+      "states": 37,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 23,
+        "OPTIMISTIC_NOMINAL_PLAN": 5,
+        "NO_NOMINAL_PLAN": 9
+      },
+      "phase_vs_windows_first": 1,
+      "phase_vs_deficit": 13,
+      "raw_phase_vs_deficit_proposal": 19,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 1,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/generic/False/round2": {
+      "states": 36,
+      "phase_status": {
+        "SUPPORT_BUDGET_IMPOSSIBLE": 19,
+        "ALL_PHASE_NOMINAL_PLAN": 12,
+        "OPTIMISTIC_NOMINAL_PLAN": 2,
+        "NO_NOMINAL_PLAN": 3
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 3,
+      "deficit_vs_legacy": 1,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 2,
+      "deficit_matches_command": 2
+    },
+    "old212/generic/True/round1": {
+      "states": 56,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 55,
+        "OPTIMISTIC_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 5,
+      "phase_vs_deficit": 14,
+      "raw_phase_vs_deficit_proposal": 14,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 5,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 1
+    },
+    "old212/generic/True/round2": {
+      "states": 43,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 43
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 29,
+      "deficit_matches_command": 29
+    },
+    "old212/no_cost/False/round1": {
+      "states": 1,
+      "phase_status": {
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 1,
+      "deficit_matches_command": 1
+    },
+    "old212/no_cost/False/round2": {
+      "states": 1,
+      "phase_status": {
+        "SUPPORT_BUDGET_IMPOSSIBLE": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/no_cost/True/round1": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "OPTIMISTIC_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 2,
+      "deficit_matches_command": 1
+    },
+    "old212/no_cost/True/round2": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "OPTIMISTIC_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 1,
+      "deficit_matches_command": 1
+    },
+    "old212/no_occlusion/False/round1": {
+      "states": 3,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "OPTIMISTIC_NOMINAL_PLAN": 1,
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 2,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/no_occlusion/False/round2": {
+      "states": 3,
+      "phase_status": {
+        "SUPPORT_BUDGET_IMPOSSIBLE": 3
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    },
+    "old212/ours/False/round1": {
+      "states": 14,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 7,
+        "NO_NOMINAL_PLAN": 7
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 7,
+      "raw_phase_vs_deficit_proposal": 10,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 8,
+      "deficit_matches_command": 5
+    },
+    "old212/ours/False/round2": {
+      "states": 12,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 7,
+        "SUPPORT_BUDGET_IMPOSSIBLE": 5
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 4,
+      "deficit_matches_command": 4
+    },
+    "old212/ours/True/round1": {
+      "states": 80,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 75,
+        "NO_NOMINAL_PLAN": 1,
+        "OPTIMISTIC_NOMINAL_PLAN": 4
+      },
+      "phase_vs_windows_first": 5,
+      "phase_vs_deficit": 27,
+      "raw_phase_vs_deficit_proposal": 28,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 5,
+      "phase_matches_command": 14,
+      "deficit_matches_command": 23
+    },
+    "old212/ours/True/round2": {
+      "states": 48,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 44,
+        "OPTIMISTIC_NOMINAL_PLAN": 3,
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 34,
+      "deficit_matches_command": 34
+    },
+    "online_v1/confirmation/False/round1": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 2
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 2,
+      "deficit_matches_command": 2
+    },
+    "online_v1/confirmation/False/round2": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 2,
+      "deficit_matches_command": 2
+    },
+    "online_v1/confirmation/True/round1": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 2
+      },
+      "phase_vs_windows_first": 1,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 1,
+      "phase_matches_command": 2,
+      "deficit_matches_command": 1
+    },
+    "online_v1/confirmation/True/round2": {
+      "states": 1,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 1,
+      "deficit_matches_command": 1
+    },
+    "online_v1/ours/False/round1": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 1,
+        "NO_NOMINAL_PLAN": 1
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 1,
+      "raw_phase_vs_deficit_proposal": 1,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 1,
+      "deficit_matches_command": 0
+    },
+    "online_v1/ours/False/round2": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 2
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 1,
+      "deficit_matches_command": 1
+    },
+    "online_v1/ours/True/round1": {
+      "states": 2,
+      "phase_status": {
+        "ALL_PHASE_NOMINAL_PLAN": 2
+      },
+      "phase_vs_windows_first": 0,
+      "phase_vs_deficit": 0,
+      "raw_phase_vs_deficit_proposal": 0,
+      "deficit_vs_legacy": 0,
+      "phase_2_to_windows_1": 0,
+      "phase_matches_command": 0,
+      "deficit_matches_command": 0
+    }
+  },
+  "calibration": {
+    "old212/fixed": {
+      "transitions": 5,
+      "all_phase_confirmation_predictions": 0,
+      "actual_confirmation_when_predicted": 0,
+      "actual_prior_support_when_predicted": 0,
+      "needed_predicted_hits": 224,
+      "needed_predicted_misses": 0
+    },
+    "old212/generic": {
+      "transitions": 171,
+      "all_phase_confirmation_predictions": 40,
+      "actual_confirmation_when_predicted": 37,
+      "actual_prior_support_when_predicted": 37,
+      "needed_predicted_hits": 15761,
+      "needed_predicted_misses": 140
+    },
+    "old212/no_cost": {
+      "transitions": 6,
+      "all_phase_confirmation_predictions": 1,
+      "actual_confirmation_when_predicted": 1,
+      "actual_prior_support_when_predicted": 1,
+      "needed_predicted_hits": 802,
+      "needed_predicted_misses": 6
+    },
+    "old212/no_occlusion": {
+      "transitions": 6,
+      "all_phase_confirmation_predictions": 0,
+      "actual_confirmation_when_predicted": 0,
+      "actual_prior_support_when_predicted": 0,
+      "needed_predicted_hits": 89,
+      "needed_predicted_misses": 0
+    },
+    "old212/ours": {
+      "transitions": 154,
+      "all_phase_confirmation_predictions": 53,
+      "actual_confirmation_when_predicted": 53,
+      "actual_prior_support_when_predicted": 53,
+      "needed_predicted_hits": 19619,
+      "needed_predicted_misses": 63
+    },
+    "online_v1/confirmation": {
+      "transitions": 7,
+      "all_phase_confirmation_predictions": 3,
+      "actual_confirmation_when_predicted": 3,
+      "actual_prior_support_when_predicted": 3,
+      "needed_predicted_hits": 779,
+      "needed_predicted_misses": 8
+    },
+    "online_v1/ours": {
+      "transitions": 6,
+      "all_phase_confirmation_predictions": 1,
+      "actual_confirmation_when_predicted": 1,
+      "actual_prior_support_when_predicted": 1,
+      "needed_predicted_hits": 831,
+      "needed_predicted_misses": 15
+    }
+  }
+}

@@ -12,7 +12,7 @@ from task_relevant_uncertainty import SupportState
 
 
 METHODS = ('ours', 'generic', 'fixed', 'no_occlusion', 'no_cost')
-DEVELOPMENT_METHODS = ('confirmation',)
+DEVELOPMENT_METHODS = ('confirmation', 'deficit')
 VIEW_BUDGET = 3
 
 
@@ -81,6 +81,9 @@ def decide_policy(field, raw, belief, current, *, method, round_count, config=A5
     if method == 'confirmation':
         from .confirmation import apply_confirmation
         return apply_confirmation(choice, ranking, operational, config, round_count), ranking
+    if method == 'deficit':
+        from .deficit import apply_deficit
+        return apply_deficit(choice, ranking, operational, config, round_count), ranking
 
     variant = ranking
     gain_name, score_name = 'task_gain', 'task_score'

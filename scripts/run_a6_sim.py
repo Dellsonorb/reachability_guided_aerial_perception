@@ -14,7 +14,7 @@ from a6_metrics import TF_MAX_AGE_S, summarize_metrics
 
 
 ROOT = Path(__file__).resolve().parents[1]
-METHODS = ('rm4d_only', 'fixed', 'generic', 'ours', 'no_occlusion', 'no_cost', 'confirmation')
+METHODS = ('rm4d_only', 'fixed', 'generic', 'ours', 'no_occlusion', 'no_cost', 'confirmation', 'deficit')
 
 
 def build_parser():
